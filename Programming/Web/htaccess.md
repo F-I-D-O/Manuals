@@ -1,0 +1,1 @@
+[kakpsatweb](https://www.jakpsatweb.cz/server/htaccess.html)

@@ -1,0 +1,12 @@
+# Keymap
+- **Copy**: `Ctrl` + `C`
+- **Cut**: `Ctrl` + `X`
+- **Paste**: `Ctrl` + `V`
+- **Toggle comment**: `Ctrl` + `Q`
+- **Search in file**: `Ctrl` + `S`
+- **Sellect all**: `Ctrl` + `A`
+- **Format selection**: `Ctrl` + `F`
+- **Format File**: `Ctrl` + `Shift` + `F`
+- **Refacor->Rename**: `Ctrl` + `R` 
+- **Text transform**: `Ctrl` + `T`
+    - ` + U`: to upper case
