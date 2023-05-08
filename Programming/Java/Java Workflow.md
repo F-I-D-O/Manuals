@@ -64,6 +64,13 @@ The correct JDK has to be set up in various places:
 - language level should be the same as target jdk: `File` -> `Project Structure...` -> `Modules` -> `Language Level`
     
 
+## Compilation
+Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:
+
+
+
+
+
 # Set Java version for project
 There are two options to set:
 - *source* version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to **compile** the source code.

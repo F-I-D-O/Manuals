@@ -19,7 +19,43 @@ Integer types varies in the sign and size.
 
 Unfortunatelly, **the minimum sizes guaranteed by the standard are not usable, because the real size is different and it differs even between platforms**. Especially the `long` type. To use an integer with a specific size, or a specific minimal size, we can use [type aliases defined in `cstdint`](https://en.cppreference.com/w/cpp/types/integer)
 
+### Overflow and Underflow
+The overflow (and underflow) is a common problem in most programming languages. The problem in C++ is that:
+- overflows are **not detected**
+- overflows can happen in many unexpected situations
+
+#### Dangerous situations
+In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:
+- the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:
+```cpp
+short a = 32767;
+short b = 1;
+int c = a + b; // overflow happens beffore the assignment
+```
+A solution to this problem is to use a numeric cast of the opperands (even one is enouhg):
+```cpp
+short a = 32767;
+short b = 1;
+int c = static_cast<int>(a) + b;
+```
+
+
+#### Detecting overflows
+There are some methods how to detect overflows automatically by suppliying arguments to the compiler. These are summarized here:
+- **MSVC**: not implemented
+- **GCC**: only detectes signed and floating point overflows, as the unsigned overflows are not considered as errors (the behaviour is defined in the standard). All undefined behaviour can be detected using the `-fsanitize=undefined` flag. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html)
+- **Clang**: Both signed and unsigned overflow can be detected. The undefined behaviour can be detected using the `-fsanitize=undefined` flag. Fo all integer overflows, the `-fsanitize=integer` flag can be used. [Documentation](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)
+
+The reasoning behind excluding the unsigned overflows from GCC are described [here](https://gcc.gnu.org/legacy-ml/gcc/2016-07/msg00051.html).
+
+
+It is also possible to do an ad-hoc overflow check in the code, the possible solutions are described in [this SO question](https://stackoverflow.com/questions/199333/how-do-i-detect-unsigned-integer-overflow)
+
+
 ## Pointers
+[cppreference](https://en.cppreference.com/w/cpp/language/pointer)
+
+
 ### Pointers to Functions
 Function pointers are declared as:
 ```cpp
@@ -32,6 +68,32 @@ bool (*ptr)(int) = &the_function
 ```
 
 The above example can be then simply called as `bool b = ptr(2)`
+
+
+### Pointers to Member Objects
+Pointers to member objects has a cumbersome syntax
+- declaration: `<member type> <class type>::*<pointer name> = ...`
+- usage: `<object name>.*<pointer name> = ...`
+
+Example:
+```cpp
+class My_class{
+public:
+	int my_member;
+}
+
+int main{
+	// declaring the pointer
+	int My_class::*ptr = &My_class::my_member;
+
+	// creating the instance
+	My_class inst;
+
+	// using the pointer to a member object
+	inst.*ptr = 2;
+}
+```
+
 
 ### Pointers to Member Functions
 Pointers to member functions are even more scary in C++. We need to use the member object and the function adress and combine it in a obscure way:
@@ -107,13 +169,15 @@ for(auto&& a: g(){ // same
 
 
 ## Arrays
+[cppreference](https://en.cppreference.com/w/cpp/language/array)
+
 There are two types of arrays:
 - *static*, i.e., their size is known at compile type, and
 - *dynamic*, the size of which is computed at runtime
 
-The following applies for both types of arrays, unless specified in a dedicated dynamic array section.
-
 We can use the array name to access the first elemnt of the array as it is the pointer to that element.
+
+### Static arrays
 
 Declaration:
 ```cpp
@@ -259,10 +323,19 @@ Aggregate types are:
 
 The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).
 
-## Type Promotion
-When there are multiple types in an expression, a type promotion is aplied, so that operands has compatible types. 
+## Type Conversion
+[cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion)
+
+In some context, an implicit type conversion is aplied, so that operand(s) have compatible types. 
 
 This process can be tricky though, for example, the signess can be changed as a result of type promotion.
+
+Bellow, the promotions are sorted according to the target type.
+
+
+### Integral Promotion
+- `bool` is promoted to `int`: `false` -> `0`, `true` -> `1`
+
 
 ## Show the Type
 Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:
@@ -339,13 +412,13 @@ Note that the standard also supports [**alternative tokens**](https://en.cpprefe
 
 # Functions
 
-## Deciding between C function, member function and static member function
+## Deciding between free function, member function and static member function
 Basically, you should decide as follows:
 1. Function needs access to instance -> **member function**
 2. Function 
 	- should be called only by class members (i.e., member functions), so we want to limit its visibility, or
 	- we need to access static members of the class -> **static member function**
-1. Otherwise -> **C function**
+1. Otherwise -> **free function**
 
 ## Argument-parameter Conversions
 Arg/param | value | reference | rvalue
@@ -445,6 +518,22 @@ The return type of a function can be automatically deduced if we use the auto ke
 - return type `decltyype(auto)` -> the return type is `decltype(<RETURN EXPRESSION>)`
 
 See more rules on [cppreference](https://en.cppreference.com/w/cpp/language/function#Return_type_deduction)
+
+
+## Function visibility
+The **member function** visibility is determined by the access specifier, in the same manner as the member variable visibility. 
+
+For **free functions**, the visibility is determined by the *linkage specifier*. Without the specifier, the function is visible. To make it visible only in the current translation unit, we can use the `static` specifier. 
+
+An equivalent way to make a function visible only in the current translation unit is to put it into an *anonymous namespace*:
+```cpp
+namespace {
+	void f() {}
+}
+```
+This way, the function is visible in the current translation unit, as the namespace is implicitly imported into it, but it is not visible in other translation units, because anonymous namespaces cannot be imported.
+
+One of the other approches frequently used in C++ is to **put the function declaration into the source file** so it cannot be included from the header. This solution is, however, flawed, unsafe, and therefore, **not recommended**. The problem is that this way, the function is still visible to the linker, and can be mistakenly used from another translation unit if somebody declare a function with the same name.
 
 
 
@@ -838,7 +927,21 @@ Content& get_content(unsigned index){
 ```
 
 
-# IO
+
+# IO and Filesystem
+
+## Standard IO
+The simple way to print to standard input is:
+```cpp
+std::cout << "Hello world" << std::endl;
+```
+
+To return to the begining of the line and overwrite the previous output, we can use the `'\r'` character:
+```cpp
+std::cout << "Hello world" << '\r' << std::flush;
+```
+
+
 ## File path manipulation
 Although we can use strings to work with file paths in C++, the standard format which is also easy to use is [`std::filesystem::path`](https://en.cppreference.com/w/cpp/filesystem/path) from the [filesystem library](https://en.cppreference.com/w/cpp/filesystem).
 
@@ -849,6 +952,47 @@ Basic operations:
 	- [`std::filesystem::absolute(<path>)`](https://en.cppreference.com/w/cpp/filesystem/absolute) to get the path as `CWD/<path>`
 	- [`std::filesystem::canonical(<path>)`](https://en.cppreference.com/w/cpp/filesystem/canonical) to get the dots resolved. Note that this method throws exception if the path does not exists.
 - The path to the **current working directory** can be obtained by calling `std::filesystem::current_path()` and set using `std::filesystem::current_path(<path>)`.
+
+
+
+## Filesystem manipulation
+[cppreference](https://en.cppreference.com/w/cpp/filesystem) 
+
+### Copying
+To copy, we can use [`std::filesystem::copy(<source path>, <destination path>[, <options>])`](https://en.cppreference.com/w/cpp/filesystem/copy) function.
+
+The options parameter type is [`std::filesystem::copy_options`](https://en.cppreference.com/w/cpp/filesystem/copy_options). This enum is a bitmask type, therefore, multiple options can be combined using the `|` operator. Example:
+```cpp
+auto options = std::filesystem::copy_options::recursive | std::filesystem::copy_options::overwrite_existing;
+
+std::filesystem::copy("C:/temp/data", "c:/data/new", options);
+```
+
+Note that **unlike the unix `cp` command, the `copy` function does not copy the directoy itself**, even if the destination directory exists. Suppose we have two direcories:
+- `C:/temp/new` 
+- `C:/data/`
+
+And we want to copy the `new` folder, so that the result is: `C:/data/new/`. In bash, this will be:
+```bash
+cp -r C:/temp/new C:/data/
+```
+While in C++, we need to do:
+```cpp
+std::filesystem::copy("C:/temp/new", "C:/data/new",  std::filesystem::copy_options::recursive);
+```
+
+
+### Creating directories
+To create a directory, we can use [`std::filesystem::create_directory(<path>)`](https://en.cppreference.com/w/cpp/filesystem/create_directory) function. 
+
+This function fails if the parent directory does not exist. To create the parent directories as well, we can use [`std::filesystem::create_directories(<path>)`](https://en.cppreference.com/w/cpp/filesystem/create_directory) function.
+
+
+### Removing files and directories
+To remove a file or an empty directory, we can use [`std::filesystem::remove(<path>)`](https://en.cppreference.com/w/cpp/filesystem/remove) function.
+
+To remove a directory with all its content, we can use `std::filesystem::remove_all(<path>)` function listed on the same page of cppreference.
+
 
 ## Simple line by line IO
 ### Input
@@ -867,6 +1011,8 @@ batch_file.close();
 ### Input
 ### Output
 For csv output, we can usually use the general line-by-line approach.
+
+
 
 
 
@@ -1529,6 +1675,10 @@ std::vector vec{range.begin(), range.end()}; // in-place vector construction
 ```
 Note that the range algorithm cannot produce result without an input, i.e., **we always need a range or collection on which we want to apply our algorithm/adapter.**
 
+
+### Range functions
+- [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) - shuffles the elements in the range (formerly `std::random_shuffle`).
+
 ### Other Resources
 -   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library)
 
@@ -1691,7 +1841,7 @@ There are also two general (most powerfull) classes:
 
 # Collections
 ## Sets
-Normal set collection for C++ is `std::unordered_set`. By default, the set uses a `Hash`, `KeyEqual` and `Allocator` template params provided by std functions. However, they need to exist, specifically:
+Normal set collection for C++ is [`std::unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set). By default, the set uses a `Hash`, `KeyEqual` and `Allocator` template params provided by std functions. However, they need to exist, specifically:
 - [`std::hash<Key>`](https://en.cppreference.com/w/cpp/utility/hash)
 - `std::equal_to<Key>`
 - `std::allocator<Key>`
@@ -1818,14 +1968,22 @@ There are two types of smart pointers:
 
 ## Creation
 Usually, we create the pointer together with the target object in one call:
-- `std::make_unique<T>(<OBJECT PARAMS>)` for unique pointer
+- [`std::make_unique<T>(<OBJECT PARAMS>)`](https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique) for unique pointer
 - `std::make_shared<T>(<OBJECT PARAMS>)` for shared pointer
 
-Smart pointers created using the empty constructor of the respective pointer type does not create the target object, but initialize the pointer to null instead:
+These methods work well for objects, but cannot be used for arbitrary array initialization (only the empty/zero-initialized array can be created using these methods). For arbitrary array initialization, we need to use the smart pointer constructor:
+```cpp
+std::unique_ptr<int[]> ptr(new int[]{1, 2, 3}); 
+```
+
+Counter-intuitively, smart pointers created using the empty constructor of the respective pointer type does not default-construct the target object, but initialize the pointer to null instead:
 ```cpp
 std::unique_ptr<My_class> ptr(std::null_ptr); // ptr is null
 std::unique_ptr<My_class> ptr(); // ptr is also null
 ```
+
+
+
 
 ## Shared Pointer
 Pointer to object with non-trivial ownership (owned by multiple objects). 
@@ -1838,12 +1996,61 @@ Pointer to object with non-trivial ownership (owned by multiple objects).
 
 
 # Strings
- The standard type for string in modern C++ is not `char*` (char array), but `std::string`.
- 
+In C++, there are two types of strings:
+- [`std::string`](https://en.cppreference.com/w/cpp/string/basic_string) is an owning class for a string.
+- [`std::string_view`](https://en.cppreference.com/w/cpp/string/basic_string_view) is a non-owning class for a string.
+
+Also, there is a C-style string (`char*`), but it is not recommended to use it in modern C++.
+
+The difference between `std::string` and `std::string_view` is best explained by a table below:
+
+| | `std::string` | `std::string_view` |
+| --- | --- | --- |
+| **Owning** | Yes | No |
+| **Null-terminated** | Yes | No |
+| **Size** | Dynamic | Static |
+| **Lifetime** | Managed by the string | Managed by the underlying char sequence |
+| **Can be `constexpr`** | No | Yes |
+
+and the following code:
+```cpp
+std::string_view sv = "hello"; // sv is a view of the string literal "hello"
+std::string s = "hello"; // s stores a copy of the string literal "hello"
+```
+
+
 ## [String Literals](https://en.cppreference.com/w/cpp/language/string_literal)
  The standard string literal is writen as `"literal"`. However, we need to escape some characters in such literals, therefore, a *raw string* literal is sometimes more desirable: `R"(literal)"` If our literal contains `(` or `)`, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
  `R"lit(literal)lit"`.
+
+## Formatting strings
+The usage of modern string formating is either
+- [`std::format`](https://en.cppreference.com/w/cpp/utility/format/format) from the `<format>` header if the compiler supports [C++20 string formatting](https://en.cppreference.com/w/cpp/utility/format) ([compiler support](https://en.cppreference.com/w/cpp/compiler_support)) or
+- `fmt::format` from the [`fmt`](https://github.com/fmtlib/fmt) library if not.
+
+Either way, the usage is the same:
+```cpp
+format(<literal>, <arguments>)
+```
+where the literal is a string literal with `{}` placeholders and the arguments are the values to be inserted into the placeholders. 
+
+The placeholders can be filled width  
+- argument identification, if we want to use the same argument multiple times or change the order in the string while keep the order of arguments in the function call or
+- format specification.
+
+These two parts are separated by `:`, both of them are optional.
+
+The most common format specifications are:
+- data type:
+	- `d` for decimal integer
+	- `f` for floating point number
+	- `s` for string
+- width and precision, in the format `<width>.<precision>`. Both values can be dynamic: `std::format("{:{}.{}f}", a, b, c)` formats a float number `a` with width `b` and precision `c`.
+
+
+ The formating reference can be found in the [cppreference](https://en.cppreference.com/w/cpp/utility/format/formatter#Standard_format_specification) 
  
+
 ## Spliting the string into tokens
 If we want to split the string on patern, the easiest way is to use the split view from the ranges library:
 ```cpp
@@ -1867,6 +2074,16 @@ Unfortunatelly, the STL has case changing functions only for characters, so we n
 
 auto upper = boost::to_upper(str);
 ``` 
+
+
+# Date and time
+The date and time structure in C++ is std::tm. We can create it from the date and time string using [`std::get_time`](https://en.cppreference.com/w/cpp/io/manip/get_time) function:
+```cpp
+std::tm tm;
+std::istringstream ss("2011-Feb-18 23:12:34");
+ss >> std::get_time(&tm, "%Y-%b-%d %H:%M:%S");
+```
+
 
 
 # Lambda Functions
@@ -1997,6 +2214,7 @@ const std::regex regex{R"regex(Plan (\d+))regex"};
 Note that **we use the raw string** so we do not have to escape the pattern. Also, note that `std::regex` cannot be `constexpr`
 
 ## Matching the result
+We use the [`std::regex_search`](https://en.cppreference.com/w/cpp/regex/regex_search) to search for the occurence of the pattern in a string. The result is stored in a `std::smatch` object which contains the whole match on the 0th index and then the macthed groups on subsequent indices.
 A typical operation:
 ```cpp
 std::smatch matches;
@@ -2017,6 +2235,7 @@ namespace my_namespace {
 	...
 }
 ```
+The namespaces are used in both declaration and definition (both in header and source files). 
 
 The inner namespace has access to outer namespaces. For using some namespace inside our namespace without full qualification, we can write:
 ```cpp
@@ -2032,6 +2251,14 @@ namespace {
 }
 ```
 Each anonnymous namespaces has a different and unknown ID. Therefore, the content of the annonymous namespace cannot be accessed from outside the namespace, with exception of the file where the namespace is declared which has an implicit access to it.
+
+
+## Namespace aliases
+We can create a [namespace alias](https://en.cppreference.com/w/cpp/language/namespace_alias) using the `namespace` keyword to short the nested namespace names. Typicall example:
+```cpp
+namespace fs = std::filesystem;
+```
+
 
 
 # `decltype`: Determining Type from Expressions
@@ -2262,6 +2489,30 @@ std::function<int(int, int)> func = static_cast<int(*)(int, int)>add;
 ```
 
 
+# Testing with Google Test
+## Private method testing
+The testing of private method is not easy with Google Test, but that is common also for other tets frameworks or even computer languages (see the common manual). Some solutions are described in [this SO question](https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest).
+
+Usually, the easiest solution is to aplly some naming/namespace convention and make the function accessible.
+
+For free functions:
+```cpp
+namespace internal {
+	void private_function(){
+		...
+	}
+}
+```
+
+For member functions:
+```cpp
+class MyClass{
+public:
+	void _private_function();
+```
+
+
+
 # Conditional Function Execution
 W know it from other languages: if the function can be run in two (or more) modes, there is a function parameter that controls the execution. Usually, most of the function is the same (otherwise, we eould create multiple fuctions), and the switch controls just a small part.
 
@@ -2356,3 +2607,11 @@ auto max_mem = pmc.PeakWorkingSetSize
 Potential libs similar to Python Pandas:
 - [Arrow](https://arrow.apache.org/docs/cpp/)
 - [Dataframe](https://github.com/hosseinmoein/DataFrame)
+
+
+# Executing external commands
+The support for executing external commands in C++ is unsatisfactory. The most common solution is to use the [`system`](https://en.cppreference.com/w/cpp/utility/program/system) function.
+However, the `system` calls are not portable, e.g., the quotes around the command are not supported in Windows
+
+Another option is to use the Boost [Process](https://www.boost.org/doc/libs/1_82_0/doc/html/process.html) library. 
+

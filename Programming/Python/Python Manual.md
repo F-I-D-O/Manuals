@@ -102,7 +102,10 @@ except <ERROR TYPE> as <ERROR VAR>:
 # Date and time
 [Python documentation](https://docs.python.org/3/library/datetime.html)
 
-The base object for date and time is [`datetime`](https://docs.python.org/3/library/datetime.html#datetime-objects), which can be directly constructed from the parts:
+The base object for date and time is [`datetime`](https://docs.python.org/3/library/datetime.html#datetime-objects)
+
+## `datetime` construction
+The `datetime` object can be directly constructed from the parts:
 ```python
 from daterime import datetime
 
@@ -117,6 +120,22 @@ d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
 ```
 For all possible time formats, check the [`strftime` cheatsheet](https://strftime.org/)
 
+
+## Accessing the parts of `datetime`
+The `datetime` object has the following attributes:
+- `year`
+- `month`
+- `day`
+- `hour`
+- `minute`
+- `second`
+
+We can also query the day of the week using the `weekday()` method. The day of the week is represented as an integer, where Monday is 0 and Sunday is 6.
+
+
+
+
+## Intervals
 There is also a dedicated object for time interval named [`timedelta`](https://docs.python.org/3/library/datetime.html#timedelta-objects). It can be constructed from parts (seconds to days), all parts are optional.
 
 We can obtain a timedelta by substracting a `datetime` from another `datetime`:
@@ -174,9 +193,56 @@ There are different method available, depending what we need
 - recursive iteration: `os.walk(<path>)`, see [example on SO](https://stackoverflow.com/questions/16953842/using-os-walk-to-recursively-traverse-directories-in-python)
 
 
+## Get parent directory
+We can use the `parent` property of the `Path` object:
+```Python
+p = Path("C:/workspace/project/file.txt")
+parent = p.parent # 'C:\\workspace\\project'
+```
+
+
+## Splitting paths and working with path parts
+We can split the path into parts using the `parts` property:
+```Python
+p = Path("C:/workspace/project/file.txt")
+parts = p.parts # ('C:\\', 'workspace', 'project', 'file.txt')
+```
+
+To find the index of some specific part, we can use the `index` method:
+```Python
+p = Path("C:/workspace/project/file.txt")
+index = p.parts.index('project') # 2
+```
+
+Later, we can use the index to manipulate the path:
+```Python
+p = Path("C:/workspace/project/file.txt")
+index = p.parts.index('project') # 2
+p = Path(*p.parts[:index]) # 'C:\\workspace'
+```
+
+
 
 # Built-in data structures
 Python has several built-in data structures, most notably `list`, `tuple`, `dict`, and `set`. These are less efficient then comparable structures in other languages, but they are very convenient to use.
+
+## Dictionary
+[Official Manual](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+
+Disctionaries are initialized using curly braces (`{}`) and the `:` operator:
+```Python
+d = {
+    'key1': 'value1',
+    'key2': 'value2',
+    ...
+}
+```
+
+Two dictionaries can be merged using the `|` operator:
+```Python   
+d3 = d1 | d2 
+```
+
 
 ## Comprehensions
 In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:
@@ -192,6 +258,25 @@ a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
 ```
 
 
+## Sorting
+[Official Manual](https://docs.python.org/3/howto/sorting.html)
+
+For sorting, you can use the `sorted` function. 
+
+Instead of using comparators, Python has a different concept of *key functions* for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.
+
+
+
+# I/O
+## HDF5
+HDF5 is a binary file format for storing large amounts of data. The `h5py` module provides a Python interface for working with HDF5 files.
+
+[An example of reading a dataset from an HDF5 file on SO](https://stackoverflow.com/questions/28170623/how-to-read-hdf5-files-in-python)
+
+
+
+# Command line arguments
+The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
 
 
 # Numpy
@@ -208,7 +293,16 @@ a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
 
 
 # Regular expressions
+In Python,  the regex patterns are not compiled by default. Therefore we can use strings to store them.
 
+The basic syntax for regex search is:
+```Python
+result = re.search(<pattern>, <string>)
+if result: # pattern matches
+    group = result.group(<group index>)) # print the first group
+```
+
+The 0th group is the whole match, as usual.
 
 
 

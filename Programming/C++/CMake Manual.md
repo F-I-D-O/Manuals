@@ -6,6 +6,7 @@ cmake <dir>
 ```
 Here `<dir>` is the `CMakeLists.txt` directory. The build scripts are build in current directory.
 
+
 ### Toolchain file
 To work with package managers, a link to toolchain file has to be provided as an argument `-DCMAKE_TOOLCHAIN_FILE`. For `vcpkg`, the argument is as follows:
 
@@ -16,7 +17,66 @@ To work with package managers, a link to toolchain file has to be provided as an
 Note that the toolchain is only loaded at the beginnning of the generation process. Once you forgot it, **you need to delete the build scripts diectory content to make this argument work** for subsequent cmake commands.
 
 ### Usefull arguments
-`-LH` to see cmake nonadvanced variables together with the description. Use `-LHA` to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.
+- `-LH` to see cmake nonadvanced variables together with the description. 
+- `-LHA` to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.
+- To change build options (`option` in `CMakeLists.txt`), run cmake with `-D <option name>=<option value> <build dir>`. Example: 
+```cmake
+cmake -D BUILD_TESTING=OFF .
+```
+
+
+## Building
+For building, use:
+```bash
+cmake --build <build dir>
+```
+where build dir is the directory containing the build scripts (`CmakeFiles` folder).
+
+To list the build options:
+```
+cmake -L
+```
+
+
+### Specify the target
+We can use the `--target` parameter for that:
+```cmake
+cmake --build . --target <TARGET NAME>
+```
+
+
+## Specify the build type (Debug, Release)
+In CMake, we use a specific build type string instead of compiler and linker flags:
+- `Debug` - Debug build
+- `Release` - Release build
+- `RelWithDebInfo` - Release build with debug information
+- `MinSizeRel` - Release build with minimal size
+
+Unfortunately, the way how the build type should be specified depends on the build system:
+- **Single-configuration systems** (GCC, Clang, MinGW) 
+- **Multi-configuration systems** (MSVC)
+
+### Single-configuration systems
+Single configuration systems have the compiler flags hardcoded in the build scripts. Therefore, we need to specify the build type for CMake when we generate the build scripts:
+```bash
+cmake ../ -DCMAKE_BUILD_TYPE=Release
+```
+**By default, the build type is an empty string**. This means that no extra flags are added to the compiler and linker so the compiler and linker run with their default settings.
+
+Interesting info can be found in [this SO question](https://stackoverflow.com/questions/48754619/what-are-cmake-build-type-debug-release-relwithdebinfo-and-minsizerel).
+
+### Multi-configuration systems
+In multi-configuration systems, the `-DCMAKE_BUILD_TYPE` parameter is ignored, because the build configuration is supposed to be determined when building the code (i.e., same build scripts for debug and for release). Therefore, we omit it, and instead specify the `--config` parameter when building the code:
+```bash
+cmake --build . --config Release
+```
+
+
+## Clean the source files
+Run:
+```
+cmake --build . --target clean
+```
 
 
 
@@ -88,6 +148,17 @@ endif()
 ``` 
 
 
+## Generator expressions
+[`Manual`](https://cmake.org/cmake/help/v3.4/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions%287%29)
+
+Generator expressions are a very useful tool to control the build process based on the build type, compiler type, or similar properties. CMake use them to generate mutliple build scripts from a single `CMakeLists.txt` file.
+
+The syntax for a basic condition expression is:
+```cmake
+"$<$<condition>:<this will be printed if condition is satisfied>>"
+```
+
+
 
 # CMakeLists.txt
 The typical structure of the `CMakeLists.txt` file is as follows:
@@ -108,7 +179,7 @@ The typical content of the top section is:
 - compile options: `add_compile_options(<option 1> <option 2> ...)`
 
 ### Compile options
-Most of the compile options are now sets automatically based on the declarations in the CMakeLists.txt file. However, some notable exceptions exists. To set such options, we have to use the `add_compile_options` command:
+Most of the compile options are now sets automatically based on the declarations in the `CMakeLists.txt` file. However, some notable exceptions exists. To set such options, we have to use the `add_compile_options` command:
 ```cmake
 add_compile_options(<option 1> <option 2> ...)
 ```
@@ -116,6 +187,15 @@ add_compile_options(<option 1> <option 2> ...)
 #### MSVC
 - [`/permissive-`](https://learn.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=msvc-170&viewFallbackFrom=vs-2019) to enable the strictest mode of the compiler
 
+#### GCC
+- [`-pedantic-errors`](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) to report all cases where non-standard GCC extension is used and treat them as  errors
+
+
+### Linker Options
+Linker options can be set with `add_link_options` command. Example: 
+```Cmake
+add_link_options("/STACK: 10000000")
+```
 
 
 ## Searching for libraries
@@ -145,6 +225,20 @@ There are two types of package (library) info search:
 Unless specified, the module mode is used. To force a speciic mode, we can use the `MODULE`/`CONFIG` parameters.
 
 
+#### Conig packages
+Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. 
+
+The configuration files are executed as follows:
+1. Package version file: `<package name>-config-version.cmake` or `<package name>ConfigVersion.cmake`. This file handles the version compatibility, i.e., it ensures that the installed version of the package is compatible with the version requested in the `find_package` command.
+1. Package configuration file: `<package name>-config.cmake` or `<package name>Config.cmake`.
+
+
+#### Module Packages
+Module packages are packages that are not cmake projects themselves, but are hooked into cmake using custom find module scrips. These scripts are automatically executed by `find_package`.
+
+They are located in e.g.: `CMake/share/cmake-3.22/Modules/Find<package name>.cmake`. 
+
+
 ### `find_path`
 The [`find_path`](https://cmake.org/cmake/help/latest/command/find_path.html) command is intended to find the path (e.g., an include directory).
 A simple syntax is:
@@ -157,8 +251,9 @@ find_path(
 ```
 Here:
 - `<var name>` is the name of the resulting variable
-- `<file names>` are **all possible** file names split by space that needs to be present in a path for it to be considered to be the found path
+- `<file names>` are **all possible** file names split by space. At least one of the files needs to be present in a path for it to be considered to be the found path.
 - `<paths>` are candidate paths split by space
+
 
 
 ### `find_library`
@@ -294,3 +389,9 @@ foreach(dir ${dirs})
   message(STATUS "dir='${dir}'")
 endforeach()
 ```
+
+
+
+# CMake Directory Structure
+## System Find_XXX.cmake files
+The system find scripts are located in the `CMake/share/cmake-<version>/Modules/` directory.

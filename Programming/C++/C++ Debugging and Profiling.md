@@ -141,6 +141,20 @@ Natvis errors can be displayed in the output window if turned on in settins: `De
 ### Existing visualisations
 Existing natvis files are stored in `<VS Installation Folder>\Common7\Packages\Debugger\Visualizers` folder. The STL visualizations are in `stl.natvis`
 
+
+## Debugger manual
+### Address breakpoints
+Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.
+
+To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:
+- use the `&` operator on the variable in the watch window
+- use the `&` operator on the variable in the immediate window
+
+The addres should have a format `0x0000000000000000`.
+
+
+
+
 ## Memory Errors
 These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:
 - *Read Access Violation*
@@ -195,7 +209,7 @@ More at [Microsoft learn](https://learn.microsoft.com/en-us/cpp/linux/linux-asan
 Valgrind is a toolbox for debugging C/C++ code. The most famous tool is calle [Memcheck](https://valgrind.org/docs/manual/mc-manual.html) and is intended for memory error detection.
 Basic usage:
 ```bash
-valgrind leak-check=yes <program> <program arguments>
+valgrind --leak-check=yes <program> <program arguments>
 ```
 
 The explanation of the error messages can be found on the [Valgrind website](https://valgrind.org/docs/manual/mc-manual.html#mc-manual.errormsgs)

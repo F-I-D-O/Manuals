@@ -1,3 +1,64 @@
+# Creating a DataFrame
+The `DataFrame` class has a constructor that supports multiple formats of input data as well as many configuration parameters. Therefore , for most formats of input data, we can create a dataframe using the constructor. However, we can also crete a dataframe using the `from_*` functions, and for some formats, these functions are the only way to create a dataframe.
+
+## From a dictionary
+When having a dictionary, we can choose between two options the constructor and the [`from_dict`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.from_dict.html) function.
+
+The required syntax depend on the shape of the dictionary with respect to the required dataframe.
+
+### Keys are column names, values are list of column values
+```python
+df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+# or equivalently
+df.DataFrame.from_dict({'col1': [1, 2], 'col2': [3, 4]})
+```
+Note that the values of the dictionary have to be lists. If we have a dictionary with values that are not lists (i.e., only one row), we have to use the `orient` parameter to specify the orientation of the data and then transpose the dataframe:
+```python
+d = {'col1': 1, 'col2': 2}
+
+df = pd.DataFrame.from_dict(d, orient='index').T
+# or equivalently
+df = pd.DataFrame([d], columns=d.keys())
+```
+
+
+### Keys are indices, values are values of a single column
+```python
+df = pd.DataFrame.from_dict({'row1': 1, 'row2': 2}, orient='index', columns=['Values'])
+```
+
+
+### Keys are indices, values are values of single row
+```python
+df = pd.DataFrame.from_dict({'row1': [1, 2], 'row2': [3, 4]}, orient='index')
+```
+
+
+### Keys are one column, values are another column
+```python
+d = {'row1 col1': 'row1 col2', 'row2 col1': 'row2 col2'
+
+df = pd.DataFrame.from_dict(d.items())
+
+# or equivalently
+df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
+``` 
+
+
+
+## From a list of dictionaries
+```python
+df = pd.DataFrame([{'col1': 1, 'col2': 3}, {'col1': 2, 'col2': 4}])
+```
+
+## From a list of lists
+```python
+df = pd.DataFrame([[1, 3], [2, 4]], columns=['col1', 'col2'])
+```
+
+## From 
+
+
 # Obtaining info about dataset
 For a DataFrame `df`:
 - column names: `df.columns`
@@ -39,6 +100,8 @@ Iterates over columns
 ## Iteration with modification
 When doing some modifications, we need to copy the dataframe and do the modifications on the copy.
 
+
+
 # Filtration
 ```python
 filtered = df[df['max_delay'] == x]
@@ -47,6 +110,7 @@ or equivalently:
 ```python
 filtered = df[df.max_delay == x]
 ```
+
 
 ## Filtration by Multiple Columns
 Example:
@@ -75,10 +139,18 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 
 
-# Working with columns
-We can access columns using the array operator (`[]`) on the dataframe or on its [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) property. 
+# Selection
+If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see [filtration](#filtration)), we can use these methods:
+- [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html): select by label, works for both rows and columns
+- [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html): select by position, works for both rows and columns
+- `[]`: select by label, works only for columns
 
-The `[]` operator `loc` method has has many possible input parameters, the most common syntax is 
+There are also other methods that works for selection but does not work for setting values, such as:
+- [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html): select by label, works for both rows and columns
+
+
+## `loc`
+The operator `loc` has has many possible input parameters, the most common syntax is 
 ```Python
 df.loc[<row selection>, <column selection>]
 ```
@@ -88,6 +160,7 @@ df.loc[:, <column name>]
 ```
 
 
+## Difference between array operator on dataframe and on `loc`
 Both methods can be used both for getting and setting the column:
 ```Python
 a = df['col']
@@ -99,7 +172,6 @@ df2['col'] = a
 df2.loc[:, 'col'] = a
 ```
 
-## Difference between array operator on dataframe and on `loc`
 The difference between these two methods is apparent when we want to use a chained selection, i.e., selecting from a selection. While the `loc` selects the appropriate columns in one step, so we know that we still refer to the original dataframe, the array operator operations are separate, and therefore, the result value can refer to a temporary:
 ```Python
 dfmi.loc[:, ('one', 'second')] = value # we set a value of a part of dfmi
@@ -115,6 +187,12 @@ sel['a'] =  ... # we possibly edit a temporary!
 For more, see the [dovumentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy).
 
 
+## `iloc`
+The `iloc` method works similarly to the `loc` method, but it uses the position instead of the label.
+
+Be aware that **if the `iloc` operator selects by single value (e.g.: `df.iloc[3]`), it returns the single row as series**. To get a dataframe slice, we need to use a list of values (e.g.: `df.iloc[[3]]`).
+
+
 ## Selecting all columns but one
 If we do not mind copying the dataframe, we can use the `drop` function. 
 
@@ -123,12 +201,64 @@ Otherwise, we can use the `loc` method and supply the filtered column lables obt
 df.loc[:, df.columns != '<column to skip>']
 ```
 
+
+## Multi-index selection
+[documentation](https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical)
+
+When selecting from a dataframe with a multi-index, things get a bit more complicated. We can specify index levels using the `level` argument. Example:
+```Python
+df.loc[<row selection>, <column selection>, level=<level number>]
+```
+
+If we want to specify more than one level, we can use a tuple:
+```python
+df.loc[(<row index level 1>, <row index level 2>, ...), (<col index level 1>, <col index level 2>, ...)]
+```
+
+If we select an upper level only, all lover level values are selected.
+
+For more complex cases where we wanto to select all from upper level but limit the lower level, we can use the [`slice`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers) function:
+```python
+df.loc[(slice(None), slice('15', '30')), ...]
+```
+We can obtain the same result with a more readable syntax using the [`IndexSlice`](https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html) object:
+```python
+idx = pd.IndexSlice
+dft.loc[idx[:, '15':'30'], ...]
+```
+
+Also, note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the [`sort_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html) function.
+
+
+
+# Sorting
+for sorting the dataframe, we can use the [`sort_values`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html) function. The first argument is the list of columns to sort by, starting with the most important column. Example:
+```python
+df.sort_values(['col1', 'col2'])
+```
+
+If we want to use a custom sorting function, we can use the `key` argument. The key function should satisfy the classical python sorting interface (see Python manual) and additionaly, it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. Example key function:
+```python
+def key_fn(l: list):
+    return [len(x) for x in l]
+```
+
+
+# Working with columns
+
+
 ## Adding a column
 The preferable way is to use the [`assign`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.assign.html) function:
 ```Python  
 # adds a column named 'instance_length' with constant value
 result_df_5_nyc_mv.assign(instance_length = 5) 
 ```
+
+Multiple columns can be added at once:
+```Python
+trips = trips.assign(dropoff_datetime = 0, dropoff_GPS_lon = 0, dropoff_GPS_lat = 0, pickup_GPS_lon = 0, pickup_GPS_lat = 0)
+```
+
 
 ## Rename a column
 To rename a column, we can use the pandas [`rename`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html) function:
@@ -140,12 +270,7 @@ df.rename({'<old name 1>': '<new name 1>', '<old name 2>': '<new name 2>'}, axis
 ```
 
 
-# Accessing rows
-We can locate the rows of a dataframe in two ways:
-- using the dataframe's index: `df.loc[<index>]`
-- using the row number: `df.iloc[<row number>]`
 
-If the dataframe is sorted by the index and the index starts from 0 (default), both `loc` and `iloc` deliver the same row. The dataframe index can be, however, arbitary sorted, it can be even non-numeric, so it is wise to distinguish between these two functions.
 
 
 
@@ -153,7 +278,11 @@ If the dataframe is sorted by the index and the index starts from 0 (default), b
 Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index. 
 
 ## Changing the index
-for that, we can use the [`set_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html) function.
+For that, we can use the [`set_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html) function.
+
+
+## Renaming the index
+The [`Index.rename`](https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html) function can be used for that.
 
 
 # Aggregation
@@ -172,6 +301,20 @@ df.groupby('col').size()
 
 
 # Joins
+
+
+# Appending one dataframe to another
+We can use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) function for that:
+```python
+pd.concat([df1, df2])
+```
+
+
+# Exporting to CSV
+We can use the `to_csv` method for that:
+```python
+df.to_csv(<file name> [, <other params>])
+```
 
 
 
@@ -231,10 +374,38 @@ Important parameters:
 ## Formatting the values
 The values are formated by the [`format`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html) function. Important parameters:
 - `escape`: by default, the values are not escaped, to do so, we need to set `escape` to `'latex'`.
+- `na_rep`: the string to use for missing values
+- `precision`: the number of decimal places to use for floats
+
+## Hihglighting min/max values
+For highlighting the min/max values, we can use the [`highlight_min`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html) and [`highlight_max`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html) functions. Important parameters:
+- `subset`: the columns in which the highlighting should be applied
+- `props`: the css properties to apply to the highlighted cells
+
+
+## Hiding some columns, rows, or indices
+For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Example:
+```python
+df.style.hide(level=<index name>) # hide the index with the given name
+```
+
 
 
 ## Exporting to latex
 For the export, we use the [`to_latex`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html) function. Important parameters:
+
+
+
+# Displaying the dataframe in console
+We can display the dataframe in the conslo print or int the log just by supplying the dataframe as an argument because it implements the `__repr__` method. Sometimes, however, the default display parameters are not sufficient. In that case, we can use the [`set_option`](https://pandas.pydata.org/docs/reference/api/pandas.set_option.html) function to change the display parameters:
+```python
+pd.set_option('display.max_rows', 1000)
+```
+
+Important parameters:
+- `display.max_rows`: the maximum number of rows to display
+- `display.max_columns`: the maximum number of columns to display
+- `display.max_colwidth`: the maximum width of a column
 
 
 
@@ -244,9 +415,27 @@ For the export, we use the [`to_latex`](https://pandas.pydata.org/docs/dev/refer
 - [`pivot_table`](https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html): function that can aggragate and transform a dataframe in one step. with this function, one can create a pivot table, but also a lot more.
 
 
+## `pivot_table`
+The pivot table (mega)function do a lot of things at once:
+- it aggregates the data
+- it transforms the data
+- it sorts the data due to reindexing
+
+Although this function is very powerfall there are also many pitfalls. The most important ones are:
+- column data type change for columns with missing values
+
+### Column data type change for columns with missing values
+The tranformation often creates row-column combinations that do not exist in the original data. These are filled with `NaN` values. But some data types does not support `NaN` values, and in conclusion, the data type of the columns with missing values is changed to `float`. Possible solutions:
+- we can use the `fill_value` parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)
+- we can use the `dropna` parameter to drop the rows with missing values
+- we can change the data type of the columns with missing values prior to calling the `pivot_table` function. For example, the [pandas integer data types](https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer) support `NaN` values.
+
+
 
 # Geopandas
 Geopandas is a GIS addon to pandas, an equivalent to PostGIS. Unfortunately, **it currently supports only one geometry column per table.**
+
+**Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!** Use the `to_wkt` function instead.
 
 ## Create a geodataframe from CSV
 Geopandas has it's own `read_csv` function, however, it requires a very specific csv format, so it is usually easier to first import csv to pandas and then create geopandas dataframe from pandas dataframe.
@@ -269,6 +458,14 @@ gdf = gpd.read_file(<PATH TO FOLDER WITH SHAPEFILES>)
 
 ## Working with the geometry
 The geometry can be accessed using the `geometry` property of the geodataframe.
+
+
+## Spliting multi-geometry columns
+If the geometry column contains multi-geometries, we can split them into separate rows using the [`explode`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explode.html) function:
+```Python
+gdf = gdf.explode()
+```
+
 
 
 ## Insert geodataframe into db

@@ -82,6 +82,13 @@ WHERE
 ```
 
 
+# Handeling  duplicates in the `INSERT` statement
+To handle duplicates on `INSERT`, PostgreSQL provides the `ON CONFLICT` clause (see the [`INSERT`](https://www.postgresql.org/docs/current/sql-insert.html) documentation).
+
+The options are:
+- `DO NOTHING`: do nothing
+- `DO UPDATE SET <column name> = <value>`: update the column to the given value
+
 
 # Procedures and functions
 ## Calling a procedure

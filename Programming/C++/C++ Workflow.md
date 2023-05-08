@@ -20,6 +20,12 @@ There are various toolchains available on Windows and Linux, but we limit this g
 
 ## MSCV (Windows only)
 -   install [Visual Studio 2019 Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
+
+
+### Common Compiler Flags
+- [`/MD`, `/MT`, and similar](https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library): these determines the version of the standard run-time library. The `/MD` flag is the default and also prefered.
+- [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
+- [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags
     
 
 ## GCC (Linux/WSL)
@@ -44,39 +50,9 @@ For using gcc 10:
 		3. `sudo rm <INSTALLER>`
 	-   add cmake executable to path
 
-## Integrating libraries with find_package
-The `find_package()` command tries to find some library.  In case of success, it runs the asociated cmake scripts which set up the environment variables and run the commands needed to include/link the library in your cmake file.
+Other details about CMake can be found in the CMake Manual.
 
-Usually, it tries to find and init:
-- CMake modules, either Modulae packages, or config-file packages: see below
-- Vcpkg modules: see under vcpkg
-
-More about packages can be found in [cmake documentation](https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html)
-
-### Config File Packages
-Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. 
-
-The configuration files are executed as follows:
-1. Package version file: `<package name>-config-version.cmake` or `<package name>ConfigVersion.cmake`. This file handles the version compatibility, i.e., it ensures that the installed version of the package is compatible with the version requested in the `find_package` command.
-1. Package configuration file: `<package name>-config.cmake` or `<package name>Config.cmake`.
-
-
-### Module Packages
-Module packages are packages that are not cmake projects themselves, but are hooked into cmake using custom find module scrips. These scripts are automatically executed by `find_package`.
-
-They are located in e.g.: `CMake/share/cmake-3.22/Modules/Find<package name>.cmake`. 
-
-## Setting Toolchain Flags
-
-### Compiler Options
-Compiler options can be set with `add_compile_options` command. Example: `add_compile_options("/W4")`
-
-### Linker Options
-Linker options can be set with `add_link_options` command. Example: `add_link_options("/STACK: 10000000")`
-
-    
-
-vcpkg # vcpkg
+# vcpkg
 -   follow the [installation guide](https://github.com/microsoft/vcpkg), including the user and PowerShell/bash integration
 -   add the vcpkg directory to `PATH`, so the program can be run from anywhere
 -   Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
@@ -158,9 +134,6 @@ Most project settings resides (hereinafter *Project settings*) in `settings` -> 
 
 #### WSL extra configuration
 The CLion does not see the WSL's environment variables (as of 2023-03, see [here](https://intellij-support.jetbrains.com/hc/en-us/community/posts/5633934229906-Programs-cannot-get-environment-variables-from-wsl)). To fix it, go to *Project settings* and set add the necessary environment variables to `Environment` field. 
-
-
-# Run configuration
 
 
 ### WSL configuration - Deprecated
@@ -264,7 +237,10 @@ The launch settings determins the launch configuration, most importantly, the ru
 		- `name`: the display name in Visual Studio
 		- `args`: json array with arguments as strings
 			- arguments with spaces have to be quoted with escaped quotes
+		- `cwd`: the working directory
 3.  Select the launch configuration in the drop-down menu next to the play button
+
+[`launch.vs.json` reference](https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170)
 
 ##### Other launch.vs.json options
 - `cwd`: the working directory
@@ -366,57 +342,6 @@ In WSL, when combined with CLion, some find scripts does not work, because they 
 -   JNI
 -   Gurobi
     
-# Command Line
-
-## Creating build scripts
-1. `cd` to the folder where you want the build scripts to be generated
-2. `cmake <dir>`
-	-  `<dir>` is the `CMakeLists.txt` directory
-	-   if the toolchain is not found, it is probably because the new cmake expects that you use vcpkg in a per-project configuration. To make it work, add: `-DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake`
-	- To change build options (`option` in `CMakeLists.txt`), run cmake with `-D <option name>=<option value> <build dir>`. Example: `cmake -D BUILD_TESTING=OFF .`
-
-    
-## Building
-For building, use:
-```bash
-cmake --build <build dir>
-```
-where build dir is the directory containing the build scripts (`CmakeFiles` folder).
-
-To list the build options:
-```
-cmake -L
-```
-
-### Specify the build type (Debug, Release)
-To build in release mode, or any other build mode except for the default, we need to specify the parameters for CMake. Unfortunately, these parameters depends on the build system:
-- **Single-configuration systems** (Unix, MinGW) 
-- **Multi-configuration systems** (Visual Studio)
-
-#### Single-configuration systems
-Single configuration systems have the build type hardcoded in the build scripts. Therefore, we need to specify the build type for CMake when we generate the build scripts:
-```bash
-cmake ../ -DCMAKE_BUILD_TYPE=Release
-```
-**By default, the build type is `Release`**.
-
-#### Multi-configuration systems
-In multi-configuration systems, the `-DCMAKE_BUILD_TYPE` parameter is ignored, because the build configuration is supposed to be determined when building the code (i.e., same build scripts for debug and for release). Therefore, we omit it, and instead specify the `--config` parameter when building the code:
-```bash
-cmake --build . --config Release
-```
-
-### Specify the target
-We can use the `--target` parameter for that:
-```cmake
-cmake --build . --target <TARGET NAME>
-```
-
-## Clean the source files
-Run:
-```
-cmake --build . --target clean
-```
 
 
 # Handling Case Insensitivity

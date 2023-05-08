@@ -2,11 +2,22 @@
 # Commands
 
 ## [`srun`](https://slurm.schedmd.com/srun.html)
+Run the task in the current shell in blocking mode, i.e., the console will be blocked till the task finishes. This command is only useful if we expect that the resources will be available immediatelly and the task will finish quickly. Otherwise, we should use `sbatch`.
+
+
 Params:
 - `--pty` runs the in terminal mode. Output and error streams are closed for everything except the first task.
 - `-i` Input setting. If followed by no param, it indicates that the input stream is closed.
 
 ## [sbatch](https://slurm.schedmd.com/sbatch.html)
+Request the execution of a task, with the required resources specified as `sbatch` parameters. The plain call with all resources defaulted is:
+```bash
+sbatch <bash script>
+```
+
+Note that the `<bash script>` here realy needs to be a bash script, it cannot be an arbitrary command or executable.
+
+Important parameters:
 - `-n, --ntasks`: maximum number of tasks/threads that will be allocated by the job
     - default is one task per node
 - `-N, --nodes`: number of allocated nodes. 

@@ -522,6 +522,17 @@ switch(list){
 ```
 
 
+
+# Random numbers
+
+## Generate random integer
+To get an infinite iterator of random integers, we can use the [`Random.ints`](https://docs.oracle.com/javase/8/docs/api/java/util/Random.html#ints-int-int-) method:
+```Java
+var it = new Random().ints(0, map.nodesFromAllGraphs.size()).iterator();\
+int a = it.nextInt();
+```
+
+
 # Reflection
 Reflection is a toolset for working with Java types. Its methods can be accessed from a class object associated with all classes. 
 

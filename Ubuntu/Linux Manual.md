@@ -8,17 +8,6 @@ lsb_release -a
 sudo lsof -i -P
 ```
 
-## Updating
-To update the list of possible updates:
-```bash
-sudo apt update
-```
-
-To perform the update:
-```bash
-sudo apt upgrade
-```
-
 ## Checking GLIBC version
 ```
 ldd --version
@@ -79,6 +68,16 @@ appendWindowsPath = false
 ```
 1. restart WSL
 
+
+
+# File System
+## copy file
+The `cp` command is used to copy files. The most used options are:
+- `-r`, `-R`: copy recursively
+- `-v`: verbose
+- `-f`: force
+- `-p`: preserve permissions and timestamps
+- `-a`: same as `-p -R` plus some other options
 
 
 # Network
@@ -194,6 +193,13 @@ echo resut is: `cut -d, -f 7`
 echo resut is: $(cut -d, -f 7)
 ```
 
+## Bash Script Arguments
+We refer the arguments of a bash script as
+- `$0` - the name of the script
+- `$1..$n` - the arguments of the script
+- `$@` - all the arguments of the script
+
+
 ## Conditions
 In general, condition in bash has the following syntax:
 ```bash
@@ -260,6 +266,66 @@ done < <input>
 ```
 
 The same goes for the output, i.e., we can forward th outut of a loop with `|`.
+
+
+## Strings literals
+String literals can be easily defined as:
+```bash
+str="string literal"
+# or equivalently
+str='string literal'
+```
+If we use double quotes, the variables are expanded, e.g., `echo "Hello $USER"` will print `Hello <username>`.
+
+The problem arises when we want to use double quotes in the string literal containing variables, e.g., `normal string "quotted string" $myvar`. In this case, we have to use quite cumbersome syntax:
+```bash
+a = "normal string "\""quotted string"\"
+# or equivalently
+a = "normal string "'"'"quotted string"'"'
+```
+```
+
+
+
+
+
+# Managing packages with `apt` and `dpkg`
+To **update the list** of possible updates:
+```bash
+sudo apt update
+```
+
+To perform the **update**:
+```bash
+sudo apt upgrade
+```
+
+To find the location of an **installed package**:
+```bash
+dpkg -L <package>
+```
+
+To **search** for a package:
+```bash
+apt-cache search <package>
+```
+
+
+## Changing package repositories
+If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:
+```bash
+curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
+```
+
+The number in the leftmost column indicates the bandwidth in bytes (larger number is better).
+
+To change the repositories to the best mirror, we need to replace the mirror in `etc/apt/source.list`. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: [`apt-mirror-updater`](https://apt-mirror-updater.readthedocs.io/en/latest/readme.html). Steps:
+1. install the python script: `sudo pip install apt-mirror-updater`
+1. backup the old file: `sudo cp sources.list sources.list.bak`
+1. change the mirror with the script: `apt-mirror-updater -c <mirror URL>`
+
+Note that the `apt-mirror-updater` script can also measure the bandwidth, however, the result does not seem to be reliable.
+
 
 
 # String Modification
@@ -371,17 +437,3 @@ nabling SSH Access to Server
 2. shutdown WSL: `wsl --shutdown`
 3. backup the distro: `wsl --export <disto name> <backup folder path>/<backup name>.tar`
 
-# Changing package repositories
-If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:
-```bash
-curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
-```
-
-The number in the leftmost column indicates the bandwidth in bytes (larger number is better).
-
-To change the repositories to the best mirror, we need to replace the mirror in `etc/apt/source.list`. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: [`apt-mirror-updater`](https://apt-mirror-updater.readthedocs.io/en/latest/readme.html). Steps:
-1. install the python script: `sudo pip install apt-mirror-updater`
-1. backup the old file: `sudo cp sources.list sources.list.bak`
-1. change the mirror with the script: `apt-mirror-updater -c <mirror URL>`
-
-Note that the `apt-mirror-updater` script can also measure the bandwidth, however, the result does not seem to be reliable.

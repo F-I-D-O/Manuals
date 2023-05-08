@@ -266,8 +266,8 @@ ORDER BY <LIST OF COLUMNS>
 
 
 
-# INSERT
-Standard syntax is
+# `INSERT`
+Standard syntax for the [`INSERT`](https://en.wikipedia.org/wiki/Insert_(SQL)) statement is
 ```sql
 INSERT INTO <table>
 (<col_1>, <col_2>,...)
@@ -280,6 +280,9 @@ If we fill all columns and we are confident with the column ordering, we can omi
 INSERT INTO <table>
 VALUES (<val_1>, <val_2>,...)
 ```
+
+Sometimes, we need to handle the eroro cases, e.g., the case when the record already exists. The solutions for these cases are, however, database specific. 
+
 
 ## INSERT SELECT
 If we want to duplicate the records, we can use:
