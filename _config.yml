@@ -1,3 +1,7 @@
 title: "Manuals by Fido"
 # remote_theme: just-the-docs/just-the-docs
-theme: leap-day
+# theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+plugins:
+- jekyll-include-cache
