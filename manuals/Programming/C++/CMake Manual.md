@@ -1,3 +1,8 @@
+<!-- ---
+toc: true
+--- -->
+
+
 # Commands
 ## Generating Build scripts
 General syntax is:

@@ -1,7 +1,26 @@
-title: "Manuals by Fido"
 # remote_theme: just-the-docs/just-the-docs
 # theme: minimal-mistakes-jekyll
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
+minimal_mistakes_skin: air
+
+title: "Manuals by Fido"
+
+# highlighter: rouge
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
 plugins:
 - jekyll-include-cache
+
+defaults:
+  - scope:
+      path: manuals
+      type: pages
+    values:
+      toc: true
+      author_profile: true
