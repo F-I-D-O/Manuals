@@ -1,0 +1,6 @@
+site_name: Manuals
+docs_dir: manuals
+nav:
+    - LaTeX: 
+        - 'LaTeX manual': 'LaTeX/Latex manual.md'
+    - QGIS: 'QGIS.md'
