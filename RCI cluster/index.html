@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>General - Manuals</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Programming/Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../Programming/Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Programming/C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../Programming/C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Programming/Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../Programming/Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../Programming/Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Programming/Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../Programming/Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../Programming/Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../Programming/Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../Programming/Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../Programming/Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Programming/Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../Programming/Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../Programming/Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../QGIS/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../LaTeX/Latex%20manual/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#general" class="nav-link">General</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#usual-command-usage" class="nav-link">Usual command Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#how-to-clone-projects" class="nav-link">How to clone projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#specifics-for-java-projects" class="nav-link">Specifics for java projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#specifics-for-python-projects" class="nav-link">Specifics for python projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#specifics-for-c-projects" class="nav-link">Specifics for C++ projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#specific-for-projects-with-gurobi" class="nav-link">Specific for projects with gurobi</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#gurobi-and-java" class="nav-link">Gurobi and Java</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gurobi-and-c" class="nav-link">Gurobi and C++</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#commands" class="nav-link">Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#task-explanations" class="nav-link">Task Explanations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="general">General</h1>
+<p>To get access to the RCI cluster: https://docs.google.com/forms/d/e/1FAIpQLSewws_V6-D567fkp6QZmr0GQlkzQrEoB6QquAgQkZu8so818Q/viewform</p>
+<p>Official instructions: 
+https://login.rci.cvut.cz/wiki/how_to_start</p>
+<h2 id="usual-command-usage">Usual command Usage</h2>
+<ul>
+<li>You can watch your jobs with <code>squeue -u username</code>.</li>
+<li>You test/debug your program when running it with <code>srun</code> command<ul>
+<li>you usually don’t have to allocate resources when testing</li>
+<li>To start an interactive shell, run: <code>srun -p cpufast --pty bash -i</code></li>
+<li>Set your main script file (sh) executable via <code>chmod +x &lt;filename&gt;</code> command </li>
+<li>Test your script in console</li>
+<li>Cancel the job: <code>scancel &lt;JOB ID&gt;</code></li>
+</ul>
+</li>
+<li>You run your job with <code>sbatch</code> command with allocated resources<ul>
+<li>Example sbatch: <code>sbatch --mem=30G -t 60 -n30 -o /home/fiedlda1/Amodsim/log/ih.log /home/fiedlda1/Amodsim/rci_launchers/ih.sh</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="how-to-clone-projects">How to clone projects</h1>
+<p>Usually, you need to clone some of the SUM projects to start working on the RCI cluster. To do that:
+1. Copy your key to <code>~/.ssh/</code>
+2. Set file permissions to your ssh key safely
+3. Modify <code>~/.ssh/config IdentityFile</code> to point to your key
+4. Clone your project</p>
+<h1 id="specifics-for-java-projects">Specifics for java projects</h1>
+<ol>
+<li>Clone project on RCI cluster</li>
+<li>Download binary maven from: http://maven.apache.org/download.cgi and export it to your home folder on the RCI cluster.</li>
+<li>Prepare your bash script<ul>
+<li>Add <code>#!/bin/bash</code> to the first line</li>
+<li>Change the environment variable <code>PATH</code> for your maven location with this command: <code>PATH=$PATH:/home/$USER/apache-maven-3.6.1/bin/</code></li>
+<li>Load all required software via ml command, definitely <code>ml Java</code></li>
+<li>Build, compile, run your project via <code>mvn</code> commands</li>
+<li>Set your file executable via <code>chmod +x filename</code> command</li>
+<li>Example run command: <code>mvn exec:exec -Dexec.executable=java -Dexec.args=’-classpath %classpath -Xmx30g  cz.cvut.fel.aic.amodsim.OnDemandVehiclesSimulation /home/kholkolg/amod-to-agentpolis/local_config_files/olga_vga_RCI.cfg’ -Dfile.encoding=UTF-8</code></li>
+<li>Example -  Bash script for amodsim project: </li>
+</ul>
+</li>
+<li>Run your script with srun, sbatch etc. commands, I recommend first use srun, to check everything is set up ok and then use sbatch command, because if computational nodes are busy, your job will be added to the queue and you can do other work.</li>
+</ol>
+<h1 id="specifics-for-python-projects">Specifics for python projects</h1>
+<ol>
+<li>First load the appropriate version of python, e. G.: <code>ml Python/3.6.6-foss-2018b</code></li>
+<li>You can’t just install the packages with <code>sudo</code>, you have to install them to the user space instead:<ul>
+<li>Run <code>pip install --user packagename</code></li>
+</ul>
+</li>
+</ol>
+<h1 id="specifics-for-c-projects">Specifics for C++ projects</h1>
+<p>As linux binaries are usually not portable. They are not compatible with older linux versions due to the infamous <code>glibc</code> incompatibility. There are three solutions to this problem:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Setup</th>
+<th>Program Upgrade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compile the code on the RCI</td>
+<td>Setup the compilation on RCI.</td>
+<td>Copy the source code to RCI and recompile after every change</td>
+</tr>
+<tr>
+<td>Use a <a href="https://en.wikipedia.org/wiki/Singularity_(software)">Singularity</a> container</td>
+<td>learn with singularity, create the container</td>
+<td>Generate new container and copy it to the RCI</td>
+</tr>
+<tr>
+<td>Build a compatible binary using a <a href="https://crosstool-ng.github.io/docs/introduction/">modified toolchain</a></td>
+<td>learn with a toolchain generator, configure and generate the right toolchain</td>
+<td>Copy the updated binary</td>
+</tr>
+</tbody>
+</table>
+<h1 id="specific-for-projects-with-gurobi">Specific for projects with gurobi</h1>
+<ol>
+<li>Load Gurobi with <ul>
+<li><code>ml Gurobi</code></li>
+<li>or <code>ml Gurobi/8.1.1-foss-2018b-Python-3.6.6</code> for a specific version</li>
+</ul>
+</li>
+<li>Be aware that this operation can reload other packages</li>
+</ol>
+<h2 id="gurobi-and-java">Gurobi and Java</h2>
+<p>It is necessary to install Gurobi to maven: <code>mvn install:install-file -Dfile=/mnt/appl/software/Gurobi/9.0.3-GCCcore-8.3.0-Python-3.7.4/lib/gurobi.jar -DgroupId=com.gurobi -DartifactId=gurobi -Dversion=1.0 -Dpackaging=jar</code></p>
+<h2 id="gurobi-and-c">Gurobi and C++</h2>
+<p>As RCI use Linux as OS, we need to compile the Gurobi C++ libs with the same compiler as the one we use for compilation of our code (see C++ Workflow for more details). Note that <strong>this is necessary even if the Gurobi seems to be compiled with the same copiler we use for compilation</strong>.</p>
+<p>Unlike in Linux installation we controll, we cannot build the C++ lib in the Gurobi installation folder. To make the Linking work, foloow these steps:
+1. copy the <code>src</code> dir from the RCI Gurobi module located at <code>mnt/appl/software/Gurobi/&lt;desired version&gt;</code> to our home
+2. run make located in <code>src/build</code>
+3. copy the <code>libgurobi_c++.a</code> to the <code>lib</code> subfolder of your project
+4. configure the searching for the C++ lib in <code>FindGUROVI.cmake</code> file:</p>
+<pre><code class="language-cmake">find_library(GUROBI_CXX_LIBRARY
+    NAMES gurobi_c++
+    HINTS ${PROJECT_SOURCE_DIR}
+    PATH_SUFFIXES lib
+    NO_CMAKE_ENVIRONMENT_PATH
+    REQUIRED
+)
+</code></pre>
+<ol>
+<li>if the CMake cache is already generated, delete it.</li>
+<li>Generate the CMake cache and build the project</li>
+</ol>
+<h1 id="commands">Commands</h1>
+<p>For command description, see Slurm manual.</p>
+<p>Main params
+- <code>--mem=&lt;required memory&gt;</code>
+     - <code>&lt;required memory&gt;</code> is in megabytes by default, for gigabytes, we need to add G
+- <code>-t &lt;time&gt;</code>
+    - Time in minutes</p>
+<h1 id="task-explanations">Task Explanations</h1>
+<p><code>srun --pty bash -i</code>
+    - <code>--pty</code> runs the first task and close output and error stream for everything except the first task
+    - <code>bash</code>: what we want to run
+    - <code>-i</code> Input setting, here followed by no param indicating that the input stream is closed
+osed</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

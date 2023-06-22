@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>CMake Manual - Manuals</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../../SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../../Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../../Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../C%2B%2B%20Workflow/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../Java/Debugging%20Java/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#commands" class="nav-link">Commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generating-build-scripts" class="nav-link">Generating Build scripts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#building" class="nav-link">Building</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#syntax" class="nav-link">Syntax</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#control-structures" class="nav-link">Control structures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#generator-expressions" class="nav-link">Generator expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#cmakeliststxt" class="nav-link">CMakeLists.txt</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#typical-top-section-content" class="nav-link">Typical Top section content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#searching-for-libraries" class="nav-link">Searching for libraries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-include-directories" class="nav-link">Setting include directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#linking-configuration" class="nav-link">Linking configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#include-directories" class="nav-link">Include directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- ---
+toc: true
+--- -->
+
+<h1 id="commands">Commands</h1>
+<h2 id="generating-build-scripts">Generating Build scripts</h2>
+<p>General syntax is:</p>
+<pre><code class="language-bash">cmake &lt;dir&gt;
+</code></pre>
+<p>Here <code>&lt;dir&gt;</code> is the <code>CMakeLists.txt</code> directory. The build scripts are build in current directory.</p>
+<h3 id="toolchain-file">Toolchain file</h3>
+<p>To work with package managers, a link to toolchain file has to be provided as an argument <code>-DCMAKE_TOOLCHAIN_FILE</code>. For <code>vcpkg</code>, the argument is as follows:</p>
+<pre><code class="language-bash">-DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsystems/vcpkg.cmake
+</code></pre>
+<p>Note that the toolchain is only loaded at the beginnning of the generation process. Once you forgot it, <strong>you need to delete the build scripts diectory content to make this argument work</strong> for subsequent cmake commands.</p>
+<h3 id="usefull-arguments">Usefull arguments</h3>
+<ul>
+<li><code>-LH</code> to see cmake nonadvanced variables together with the description. </li>
+<li><code>-LHA</code> to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.</li>
+<li>To change build options (<code>option</code> in <code>CMakeLists.txt</code>), run cmake with <code>-D &lt;option name&gt;=&lt;option value&gt; &lt;build dir&gt;</code>. Example: </li>
+</ul>
+<pre><code class="language-cmake">cmake -D BUILD_TESTING=OFF .
+</code></pre>
+<h2 id="building">Building</h2>
+<p>For building, use:</p>
+<pre><code class="language-bash">cmake --build &lt;build dir&gt;
+</code></pre>
+<p>where build dir is the directory containing the build scripts (<code>CmakeFiles</code> folder).</p>
+<p>To list the build options:</p>
+<pre><code>cmake -L
+</code></pre>
+<h3 id="specify-the-target">Specify the target</h3>
+<p>We can use the <code>--target</code> parameter for that:</p>
+<pre><code class="language-cmake">cmake --build . --target &lt;TARGET NAME&gt;
+</code></pre>
+<h2 id="specify-the-build-type-debug-release">Specify the build type (Debug, Release)</h2>
+<p>In CMake, we use a specific build type string instead of compiler and linker flags:
+- <code>Debug</code> - Debug build
+- <code>Release</code> - Release build
+- <code>RelWithDebInfo</code> - Release build with debug information
+- <code>MinSizeRel</code> - Release build with minimal size</p>
+<p>Unfortunately, the way how the build type should be specified depends on the build system:
+- <strong>Single-configuration systems</strong> (GCC, Clang, MinGW) 
+- <strong>Multi-configuration systems</strong> (MSVC)</p>
+<h3 id="single-configuration-systems">Single-configuration systems</h3>
+<p>Single configuration systems have the compiler flags hardcoded in the build scripts. Therefore, we need to specify the build type for CMake when we generate the build scripts:</p>
+<pre><code class="language-bash">cmake ../ -DCMAKE_BUILD_TYPE=Release
+</code></pre>
+<p><strong>By default, the build type is an empty string</strong>. This means that no extra flags are added to the compiler and linker so the compiler and linker run with their default settings.</p>
+<p>Interesting info can be found in <a href="https://stackoverflow.com/questions/48754619/what-are-cmake-build-type-debug-release-relwithdebinfo-and-minsizerel">this SO question</a>.</p>
+<h3 id="multi-configuration-systems">Multi-configuration systems</h3>
+<p>In multi-configuration systems, the <code>-DCMAKE_BUILD_TYPE</code> parameter is ignored, because the build configuration is supposed to be determined when building the code (i.e., same build scripts for debug and for release). Therefore, we omit it, and instead specify the <code>--config</code> parameter when building the code:</p>
+<pre><code class="language-bash">cmake --build . --config Release
+</code></pre>
+<h2 id="clean-the-source-files">Clean the source files</h2>
+<p>Run:</p>
+<pre><code>cmake --build . --target clean
+</code></pre>
+<h1 id="syntax">Syntax</h1>
+<h2 id="variables">Variables</h2>
+<p>We can use the variable using their name:</p>
+<pre><code class="language-cmake">if(DEFINED &lt;name&gt;)
+...
+</code></pre>
+<p>In string, we need to wrap the variable in <code>${}</code>:</p>
+<pre><code class="language-cmake">message(STATUS &quot;dir=${dir}&quot;)
+</code></pre>
+<h3 id="enviromental-variables">Enviromental variables</h3>
+<p>We can use environmental variables using the <code>ENV</code> variable:</p>
+<pre><code class="language-cmake">if(DEFINED ENV{&lt;name&gt;})
+...
+</code></pre>
+<p>Be aware that in string, we use only one pair of curly braces (see <a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variable-references">variable references manual</a>):</p>
+<pre><code class="language-cmake">message(STATUS &quot;dir=$ENV{dir}&quot;)
+</code></pre>
+<h3 id="print-all-variables">Print all variables</h3>
+<p>To print all variables, the following function can be used:</p>
+<pre><code class="language-cmake">function(dump_cmake_variables)
+    if (ARGV0)
+        message(STATUS &quot;Printing variables matching '${ARGV0}'&quot;)
+    else()
+        message(STATUS &quot;Printing all variables&quot;)
+    endif()
+    get_cmake_property(_variableNames VARIABLES)
+    list (SORT _variableNames)
+    foreach (_variableName ${_variableNames})
+        if (ARGV0)
+            unset(MATCHED)
+            string(REGEX MATCH ${ARGV0} MATCHED ${_variableName})
+            if (NOT MATCHED)
+                continue()
+            endif()
+        endif()
+        message(STATUS &quot;${_variableName}=${${_variableName}}&quot;)
+    endforeach()
+    message(STATUS &quot;Printing variables - END&quot;)
+endfunction()
+</code></pre>
+<p>To print all variables related to HDF5 lib, call <code>dump_cmake_variables(HDF)</code> after the <code>find_package</code> call.</p>
+<h2 id="control-structures">Control structures</h2>
+<h3 id="if"><code>if</code></h3>
+<p>The <code>if</code> command has the following syntax:</p>
+<pre><code class="language-cmake">if(&lt;condition&gt;)
+...
+elseif(&lt;condition&gt;)
+...
+else()
+...
+endif()
+</code></pre>
+<h2 id="generator-expressions">Generator expressions</h2>
+<p><a href="https://cmake.org/cmake/help/v3.4/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions%287%29"><code>Manual</code></a></p>
+<p>Generator expressions are a very useful tool to control the build process based on the build type, compiler type, or similar properties. CMake use them to generate mutliple build scripts from a single <code>CMakeLists.txt</code> file.</p>
+<p>The syntax for a basic condition expression is:</p>
+<pre><code class="language-cmake">&quot;$&lt;$&lt;condition&gt;:&lt;this will be printed if condition is satisfied&gt;&gt;&quot;
+</code></pre>
+<h1 id="cmakeliststxt">CMakeLists.txt</h1>
+<p>The typical structure of the <code>CMakeLists.txt</code> file is as follows:
+1. Top section contains project wide setting like name, minimum cmake version, and the language specification.</p>
+<ol>
+<li>Targets sections containing:<ul>
+<li>the target definition together with sources used</li>
+<li>target includes</li>
+<li>target linking</li>
+</ul>
+</li>
+</ol>
+<h2 id="typical-top-section-content">Typical Top section content</h2>
+<p>The typical content of the top section is:
+- minimum cmake version: <code>cmake_minimum_required(VERSION &lt;version&gt;)</code>
+- project name: <code>project(&lt;name&gt;)</code>
+- language specification: <code>enable_language(&lt;language&gt;)</code>
+- language standard, e.g.: <code>set(CMAKE_CXX_STANDARD &lt;version&gt;)</code>
+- compile options: <code>add_compile_options(&lt;option 1&gt; &lt;option 2&gt; ...)</code></p>
+<h3 id="compile-options">Compile options</h3>
+<p>Most of the compile options are now sets automatically based on the declarations in the <code>CMakeLists.txt</code> file. However, some notable exceptions exists. To set such options, we have to use the <code>add_compile_options</code> command:</p>
+<pre><code class="language-cmake">add_compile_options(&lt;option 1&gt; &lt;option 2&gt; ...)
+</code></pre>
+<h4 id="msvc">MSVC</h4>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=msvc-170&amp;viewFallbackFrom=vs-2019"><code>/permissive-</code></a> to enable the strictest mode of the compiler</li>
+</ul>
+<h4 id="gcc">GCC</h4>
+<ul>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html"><code>-pedantic-errors</code></a> to report all cases where non-standard GCC extension is used and treat them as  errors</li>
+</ul>
+<h3 id="linker-options">Linker Options</h3>
+<p>Linker options can be set with <code>add_link_options</code> command. Example: </p>
+<pre><code class="language-Cmake">add_link_options(&quot;/STACK: 10000000&quot;)
+</code></pre>
+<h2 id="searching-for-libraries">Searching for libraries</h2>
+<p>Although it is possible to hard-code the paths for includes and linking, it is usually better to initialize the paths automatically using a rich set of commands cmake offers.  It has the following advatages:
+- Hardcoding the paths is error-prone, while cmake commands usually deliver correct paths
+- It boost the productivity as we do not have to investigate where each library is installed
+- The resulting <code>CMakeLists.txt</code> file is more portable
+- And most importantly, <strong>potential errors concerning missing libraries are reported prior to the compilation/linking</strong>.</p>
+<p>Most of the libraries have CMake support, so their CMake variables can be initialized simply by calling the <code>find_package</code> command described below. These packages have either:
+- their own cmake config (cmake-aware libs usually installed through the package manager like <code>vcpkg</code>)
+- or they have a <code>Find&lt;package name&gt;</code> script created by someone else that heuristically search for the packege (The default location for these scripts is <code>CMake/share/cmake-&lt;version&gt;/Modules</code>). </p>
+<p>For packages without the CMake support, we have to use lower-level cmake commands like <code>find_path</code> or <code>find_libraries</code>. For convinience, we can put these command to our own <code>Find&lt;name&gt;</code> script taht can be used by multiple project or even shared. </p>
+<h3 id="find_package"><code>find_package</code></h3>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/find_package.html"><code>find_package</code></a> command is the primary way of obtaining correct variables for a library including:
+- include paths
+- linking paths
+- platform/toolchain specific enviromental variables</p>
+<p>There are two types of package (library) info search:
+- <em>module</em>, which uses cmake scripts provided by CMake or OS. The modules are typically provided only for the most used libraries (e.g. boost). All modules provided by CMake are listed in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules">documentation</a>.
+- <em>config</em> which uses CMake scripts provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager. </p>
+<p>Unless specified, the module mode is used. To force a speciic mode, we can use the <code>MODULE</code>/<code>CONFIG</code> parameters.</p>
+<h4 id="conig-packages">Conig packages</h4>
+<p>Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. </p>
+<p>The configuration files are executed as follows:
+1. Package version file: <code>&lt;package name&gt;-config-version.cmake</code> or <code>&lt;package name&gt;ConfigVersion.cmake</code>. This file handles the version compatibility, i.e., it ensures that the installed version of the package is compatible with the version requested in the <code>find_package</code> command.
+1. Package configuration file: <code>&lt;package name&gt;-config.cmake</code> or <code>&lt;package name&gt;Config.cmake</code>.</p>
+<h4 id="module-packages">Module Packages</h4>
+<p>Module packages are packages that are not cmake projects themselves, but are hooked into cmake using custom find module scrips. These scripts are automatically executed by <code>find_package</code>.</p>
+<p>They are located in e.g.: <code>CMake/share/cmake-3.22/Modules/Find&lt;package name&gt;.cmake</code>. </p>
+<h3 id="find_path"><code>find_path</code></h3>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/find_path.html"><code>find_path</code></a> command is intended to find the path (e.g., an include directory).
+A simple syntax is:</p>
+<pre><code class="language-cmake">find_path(
+    &lt;var name&gt;
+    NAMES &lt;file names&gt;
+    PATHS &lt;paths&gt;
+)
+</code></pre>
+<p>Here:
+- <code>&lt;var name&gt;</code> is the name of the resulting variable
+- <code>&lt;file names&gt;</code> are <strong>all possible</strong> file names split by space. At least one of the files needs to be present in a path for it to be considered to be the found path.
+- <code>&lt;paths&gt;</code> are candidate paths split by space</p>
+<h3 id="find_library"><code>find_library</code></h3>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/find_library.html"><code>find_library</code></a> command is used to populate a variable with a result of a specific file search optimized for libraries. </p>
+<p>The search algorithm works as follows:
+1. ?
+2. Search package paths
+    - order:
+        1. <code>&lt;CurrentPackage&gt;_ROOT</code>, 
+        2. <code>ENV{&lt;CurrentPackage&gt;_ROOT}</code>, 
+        3. <code>&lt;ParentPackage&gt;_ROOT</code>,
+        4. <code>ENV{&lt;ParentPackage&gt;_ROOT}</code>
+    - this only happens if the <code>find_library</code> command is called from within a <code>find_&lt;module&gt;</code> or <code>find_package</code>
+    - this step can be skipped using the <code>NO_PACKAGE_ROOT_PATH</code> parameter 
+3. Search path from cmake cache. During a clean cmake generation, these can be only supplied by command line. 
+    - Considered variables:
+        - <code>CMAKE_LIBRARY_ARCHITECTURE</code>
+        - <code>CMAKE_PREFIX_PATH</code>
+        - <code>CMAKE_LIBRARY_PATH</code>
+        - <code>CMAKE_FRAMEWORK_PATH</code>
+    - this step can be skipped using the <code>NO_CMAKE_PATH</code> parameter
+4. Same as step 3, but the variables are searched among system environmental variables instead
+    - this step can be skipped using the <code>NO_CMAKE_ENVIRONMENT_PATH</code> parameter
+5. Search paths specified by the <code>HINTS</code> option
+6. Search the standard system environmental paths
+    - variables considered are <code>LIB</code> and <code>PATH</code>
+    - this step can be skipped using the <code>NO_SYSTEM_ENVIRONMENT_PATH</code> parameter
+7. Search in system paths
+    - Considered variables:
+        - <code>CMAKE_LIBRARY_ARCHITECTURE</code>
+        - <code>CMAKE_SYSTEM_PREFIX_PATH</code>
+        - <code>CMAKE_SYSTEM_LIBRARY_PATH</code>
+        - <code>CMAKE_SYSTEM_FRAMEWORK_PATH</code>
+    - this step can be skipped using the <code>NO_CMAKE_SYSTEM_PATH</code> parameter
+8. Search the paths specified by the <code>PATHS</code> option</p>
+<h4 id="searching-for-libraries-in-the-project-dir">Searching for libraries in the project dir</h4>
+<p>Note that the project dir is not searched by default. To include in the search, use: <code>HINTS ${PROJECT_SOURCE_DIR}</code>. Full example on the Gurobi lib stored in <code>&lt;CMAKE LISTS DIR/lib/gurobi_c++.a&gt;</code>:</p>
+<pre><code class="language-cmake">find_library(GUROBI_CXX_LIBRARY
+    NAMES gurobi_c++
+    HINTS ${PROJECT_SOURCE_DIR}
+    PATH_SUFFIXES lib
+    NO_CMAKE_ENVIRONMENT_PATH
+    REQUIRED
+)
+</code></pre>
+<h3 id="creating-a-custom-find-script">Creating a custom find script</h3>
+<p>The structure of a simple find scripts is described in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html#find-modules">documentation</a>. </p>
+<p>We can either put the find script to the default location, so it will be available for all projects, or we can put it in the project directory and add that directory to the <code>CMAKE_MODULE_PATH</code>:</p>
+<pre><code class="language-cmake">list(APPEND CMAKE_MODULE_PATH &quot;${CMAKE_CURRENT_LIST_DIR}/cmake&quot;)
+</code></pre>
+<p>The usual structure of the find script is:
+1. the comment section describing the file:</p>
+<pre><code class="language-cmake">#[=======================================================================[.rst:
+FindMOSEK
+-------
+
+Finds the MOSEK library.
+
+Result Variables
+^^^^^^^^^^^^^^^^
+This will define the following variables:
+
+``MOESK_FOUND``
+  True if the system has the MOSEK library.
+``MOSEK_INCLUDE_DIRS``
+  Include directories needed to use MOSEK.
+``MOSEK_LIBRARIES``
+  Libraries needed to link to MOSEK.
+
+#]=======================================================================]
+</code></pre>
+<ol>
+<li>find commands that fils some temp variables:</li>
+</ol>
+<pre><code class="language-cmake">find_path(
+    MOSEK_INCLUDE_DIR
+    NAMES mosek.h
+    PATHS &quot;$ENV{MOSEK_HOME}/h&quot;
+)
+
+find_library(
+    MOSEK_LIBRARY
+    NAMES libmosek64.so.10.0 libfusion64.so.10.0
+    PATHS &quot;$ENV{MOSEK_HOME}/bin&quot;
+)
+</code></pre>
+<ol>
+<li>handeling of the result of the file commands. The standard approach is:</li>
+</ol>
+<pre><code class="language-cmake">include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(MOSEK
+  FOUND_VAR MOSEK_FOUND
+  REQUIRED_VARS
+    MOSEK_LIBRARY
+    MOSEK_INCLUDE_DIR
+)
+</code></pre>
+<ol>
+<li>setting the final variables:</li>
+</ol>
+<pre><code class="language-cmake">if(MOSEK_FOUND)
+    set(MOSEK_LIBRARIES ${MOSEK_LIBRARY})
+    set(MOSEK_INCLUDE_DIRS ${MOSEK_INCLUDE_DIR})
+endif()
+</code></pre>
+<h2 id="setting-include-directories">Setting include directories</h2>
+<p>To inlude the headers, we need to use a <code>inlude_directories</code> (global), or better <code>target_include_directories</code> command.</p>
+<h2 id="linking-configuration">Linking configuration</h2>
+<p>For linkink, use the <code>target_link_libraries</code> command.</p>
+<h2 id="include-directories">Include directories</h2>
+<p>All the global include directories are stored in the <code>INCLUDE_DIRECTORIES</code> property, to print them, add this to the <code>CMakeLists.txt</code> file:</p>
+<pre><code class="language-cmake">get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS &quot;dir='${dir}'&quot;)
+endforeach()
+</code></pre>
+<h1 id="cmake-directory-structure">CMake Directory Structure</h1>
+<h2 id="system-find_xxxcmake-files">System Find_XXX.cmake files</h2>
+<p>The system find scripts are located in the <code>CMake/share/cmake-&lt;version&gt;/Modules/</code> directory.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

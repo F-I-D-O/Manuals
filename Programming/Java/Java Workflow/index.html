@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Java developement stack - Manuals</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../../SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../../Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../../C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Java%20Programming%20Guide/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Maven/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#java-developement-stack" class="nav-link">Java developement stack</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#jdk" class="nav-link">JDK</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#javac" class="nav-link">javac</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#warning-control" class="nav-link">Warning control</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#maven" class="nav-link">Maven</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#netbeans" class="nav-link">Netbeans</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#project-configuration" class="nav-link">Project configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#idea" class="nav-link">Idea</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#project-configuration_1" class="nav-link">Project configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compilation" class="nav-link">Compilation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#set-java-version-for-project" class="nav-link">Set Java version for project</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-maven" class="nav-link">Setting Java version in Maven</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-netbeans" class="nav-link">Setting Java version in Netbeans</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-used-for-executing-maven" class="nav-link">Setting Java version used for executing Maven</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#enabling-preview-features" class="nav-link">Enabling preview features</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gurobi" class="nav-link">Gurobi</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#archive" class="nav-link">Archive</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#aic-maven-repo-access" class="nav-link">AIC maven repo access</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="java-developement-stack">Java developement stack</h1>
+<p>We use this stack:
+- Toolchain: JDK
+- Package manager: standalone Maven
+- IDE: Netbeans, Idea</p>
+<h1 id="jdk">JDK</h1>
+<p>Java developem kit is the standard Java toolchain. Most comon tools are:
+- <code>javac</code> for compilation
+- <code>java</code> for execution</p>
+<h2 id="javac"><a href="https://docs.oracle.com/en/java/javase/12/tools/javac.html"><code>javac</code></a></h2>
+<p>The syntax is:</p>
+<pre><code>javac [options] [sourcefiles]
+</code></pre>
+<h2 id="warning-control">Warning control</h2>
+<p>By default, all warnings are disabled and only a summary of the warnings is displayed in the output (i.e., all warning types encountered, without specific lines where they occur).</p>
+<p>To enable all warnings use the <code>-Xlint</code> argument. To enable/disable specific warnings, use <code>-Xlint:&lt;warning name&gt;</code> and <code>-Xlint:-&lt;warning name&gt;</code>, respectively.</p>
+<h1 id="maven">Maven</h1>
+<ul>
+<li>Download maven from the official website and extract the archive somewhere (e.g. <code>C:/</code>)</li>
+<li>Add absolute path to <code>&lt;mavendir&gt;/bin</code> to <code>PATH</code></li>
+</ul>
+<h1 id="netbeans">Netbeans</h1>
+<ul>
+<li>Install the latest version of Apache Netbeans</li>
+<li>Configuration:<ul>
+<li>Autosaving: <code>Editor</code> -&gt; <code>Autosave</code></li>
+<li>Tab size, tabs instead of spaces, 120 char marker line: <code>Editor</code> -&gt; <code>Formatting</code> -&gt; <code>All Languages</code></li>
+<li>Multi-row tabs: <code>Appearance</code> -&gt; <code>DocumentTabs</code></li>
+<li>Git labels on projects: <code>Team</code> -&gt; <code>Versioning</code> -&gt; <code>Show Versioning Labels</code></li>
+<li>Internet Browser: <code>General</code> -&gt; <code>web browser</code></li>
+</ul>
+</li>
+<li>Javadoc config:<ul>
+<li>if the javadoc for java SE does not work out of the box, maybe there is a wrong URL. Go to <code>Tools</code> -&gt; <code>Java Platforms</code> -&gt; <code>Javadoc</code> and enter there the path where the Javadoc is accessible online</li>
+</ul>
+</li>
+<li>Install the basic plugins<ul>
+<li><a href="https://github.com/madflow/flow-netbeans-markdown">Markdown</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="project-configuration">Project configuration</h2>
+<h3 id="configure-maven-goals">Configure Maven Goals</h3>
+<p>These can be configured in <code>Project properties</code> -&gt; <code>Actions</code></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If there is a serious problem, one way to solve it can be to delete the Netbeans cache located in <code>~\AppData\Local\NetBeans\Cache</code>.</p>
+<h1 id="idea">Idea</h1>
+<h2 id="configuration">Configuration</h2>
+<h3 id="settings-synchronization">Settings synchronization</h3>
+<ol>
+<li>Log in into JetBrains Toolbox or to the App</li>
+<li>Click on the gear icon on the top-right and choose Sync</li>
+<li>Check all categories and click on pull settings from the cloud</li>
+<li>Resatart Ida to update all the settings</li>
+</ol>
+<p><a href="https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html">More on Jetbrains</a></p>
+<h2 id="project-configuration_1">Project configuration</h2>
+<p>The correct JDK has to be set up in various places:
+- compielr has to be at least target jdk, set it in: <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Project bytecode version</code> and <code>Per-module bytecode version</code>
+- language level should be the same as target jdk: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code></p>
+<h2 id="compilation">Compilation</h2>
+<p>Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:</p>
+<h1 id="set-java-version-for-project">Set Java version for project</h1>
+<p>There are two options to set:
+- <em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.
+- <em>target</em> version determines the least version of java that can be used to <strong>run</strong> your java application.</p>
+<p>The target version can be higher than the source version, but not he other way around. most of the time, however, we use the same version for source and for target.</p>
+<p>Usually, these versions needs to be set:
+1. in the project compilation tool (maven) to configure the project compilation
+2. in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.</p>
+<p>Sometimes, the Java version used for running Maven has to be also set because it cannot be lower then the Java version used for project compilation using Maven.</p>
+<p><a href="https://stackoverflow.com/questions/38882080/specifying-java-version-in-maven-differences-between-properties-and-compiler-p">SO explanation</a></p>
+<h2 id="setting-java-version-in-maven">Setting Java version in Maven</h2>
+<p>Since Java 9, both Java versions can be set at once with the release option:</p>
+<pre><code class="language-xml">&lt;properties&gt;
+    &lt;maven.compiler.release&gt;10&lt;/maven.compiler.release&gt;
+&lt;/properties&gt;
+</code></pre>
+<p>or equivalently</p>
+<pre><code class="language-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.10.1&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;release&gt;10&lt;/release&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>The old way is to use separate properties:</p>
+<pre><code class="language-xml">&lt;properties&gt;
+    &lt;maven.compiler.target&gt;10&lt;/maven.compiler.target&gt;
+    &lt;maven.compiler.source&gt;10&lt;/maven.compiler.source&gt;
+&lt;/properties&gt;   
+</code></pre>
+<p><strong>Note that the Java version configured in the pom file cannot be greater then the Java version used to run the Maven.</strong></p>
+<h2 id="setting-java-version-in-netbeans">Setting Java version in Netbeans</h2>
+<p><strong>Note that for maven projects, this is automatically set to match the properties in the pom file.</strong></p>
+<p>For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: 
+1. Right click on project -&gt; <code>Properties</code> -&gt; <code>Sources</code>
+2. In the bottom, change the <code>Source/Binary Format</code></p>
+<h2 id="setting-java-version-used-for-executing-maven">Setting Java version used for executing Maven</h2>
+<p>If the Maven is executed from command line, edit the <code>JAVA_HOME</code> system property.</p>
+<p>If the Maven is executed from Netbeans, edit <code>Project Properties</code> -&gt; <code>Build</code> -&gt; <code>Compile</code> -&gt; <code>Java Platform</code></p>
+<h2 id="enabling-preview-features">Enabling preview features</h2>
+<p>The preview features can be enabled using the <code>--enable-preview</code> argument. In Maven, this has to be passed to the compiler plugin:</p>
+<pre><code class="language-XML">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.8.0&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;enablePreview&gt;true&lt;/enablePreview&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>For Maven compiler plugin older then version 3.10.1, use: </p>
+<pre><code class="language-XML">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.8.0&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;compilerArgs&gt;
+                    &lt;arg&gt;--enable-preview&lt;/arg&gt;
+                &lt;/compilerArgs&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>Unfortunatelly, it is also necessary to enable preview features in the IDE configuration: 
+- In Netbeans, add <code>--enable-preview</code> to <code>Project Properties</code> -&gt; <code>Run</code> -&gt; <code>VM options</code>.
+- In IDEA:
+    1. add <code>--enable-preview</code> to <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Override compiler parameters per-module</code>
+    2. add <code>--enable-preview</code> to run configuration -&gt; <code>Build and run</code> vm options</p>
+<h2 id="gurobi">Gurobi</h2>
+<p>Gurobi is a commercial project not contained in any public maven repositories. It is necessary to <a href="http://fido.ninja/manuals/add-gurobi-java-interface-maven">install the gurobi maven artifact</a> manualy.</p>
+<h3 id="potential-problems">Potential problems</h3>
+<ul>
+<li><code>unsatisfied linker error</code>: Check if the gurobi version in the error log matches the gurobi version installed.</li>
+</ul>
+<h1 id="archive">Archive</h1>
+<h2 id="aic-maven-repo-access">AIC maven repo access</h2>
+<p>To Access the AIC maven repo, copy maven settings from another computer (located in ~/.m2)</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyMzk0MzE5ODgsODQ2NDIwNDY4LC0xNT
+E3MzY3OTY5LDExMzQzNzcwNTcsLTczMDI5NjAyNyw3MzA5OTgx
+MTZdfQ==
+--></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

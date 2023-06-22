@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Data types - Manuals</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../JSON/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Regex/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#date" class="nav-link">Date</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#auto-incrementing-columns" class="nav-link">Auto incrementing columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hstore" class="nav-link">hstore</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#selecting-rows-for-deletion-based-on-data-from-another-table" class="nav-link">Selecting rows for deletion based on data from another table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#handeling-duplicates-in-the-insert-statement" class="nav-link">Handeling  duplicates in the INSERT statement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#procedures-and-functions" class="nav-link">Procedures and functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#calling-a-procedure" class="nav-link">Calling a procedure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#creating-a-procedure" class="nav-link">Creating a procedure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#deciding-the-language" class="nav-link">Deciding the language</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#conditional-filters-based-on-the-value-of-a-variable-or-input-parameter" class="nav-link">Conditional filters based on the value of a variable or input parameter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#temporary-tables-in-postgresql" class="nav-link">Temporary tables in PostgreSQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#do-command" class="nav-link">DO command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#window-functions" class="nav-link">Window functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#postgis" class="nav-link">PostGis</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#geometry-columns" class="nav-link">Geometry columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spatial-indexing" class="nav-link">Spatial Indexing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#converting-between-geometry-types" class="nav-link">Converting between geometry types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compute-area-surrounding-geometries" class="nav-link">Compute area surrounding geometries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#split-area-to-polygons-based-on-points" class="nav-link">Split area to polygons based on points</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-useful-functions" class="nav-link">Other Useful Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#pgrouting" class="nav-link">PgRouting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#finding-strongly-connected-components" class="nav-link">Finding strongly connected components</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#plpgsql" class="nav-link">PL/pgSQL</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#branching" class="nav-link">Branching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#logging" class="nav-link">Logging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#query-diagnostics" class="nav-link">Query diagnostics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#psql" class="nav-link">psql</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#importing-data-from-csv" class="nav-link">Importing data from csv</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#psql-copy-command" class="nav-link">psql COPY command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#importing-data-from-a-shapefile" class="nav-link">Importing data from a shapefile</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#importing-data-from-geojson" class="nav-link">Importing data from GeoJSON</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#datagrip" class="nav-link">DataGrip</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#import-formats" class="nav-link">Import Formats</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#view-geometry" class="nav-link">View Geometry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#create-a-spatial-index" class="nav-link">Create a spatial Index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filter-out-store-procedures" class="nav-link">Filter out store procedures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#creating-functions-and-procedures" class="nav-link">Creating functions and procedures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#duplicate-table" class="nav-link">Duplicate table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#navicat" class="nav-link">Navicat</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#cannot-connect-to-db" class="nav-link">Cannot connect to db</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#pgadmin" class="nav-link">PgAdmin</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#diagrams" class="nav-link">Diagrams</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#kill-a-hanging-query" class="nav-link">Kill a hanging query</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#select-postgresql-version" class="nav-link">Select PostgreSQL version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tried-to-send-an-out-of-range-integer-as-a-2-byte-value" class="nav-link">Tried to send an out-of-range integer as a 2-byte value</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="data-types">Data types</h1>
+<p><a href="https://www.postgresql.org/docs/current/datatype.html">official documentation</a></p>
+<h2 id="date">Date</h2>
+<p><a href="https://www.postgresql.org/docs/current/datatype-datetime.html">official documentation</a></p>
+<ul>
+<li><code>date</code>: for dates</li>
+<li><code>time</code> for time</li>
+<li><code>timestmp</code> for both date and time</li>
+<li><code>interval</code></li>
+</ul>
+<h3 id="select-a-part-of-datetimetimestamp">Select a part of date/time/timestamp</h3>
+<p>If we want just a part of a date, time, or timestamp, we can use the <code>extract</code> function. Example:</p>
+<pre><code class="language-sql">SELECT extract(hour FROM &lt;date column name&gt;) FROM...
+</code></pre>
+<p>Other parts can be extracted too. To extract <strong>day of week</strong>, we can use <code>isodow</code> (assigns 1 to Monday and 7 to Sunday).</p>
+<h2 id="auto-incrementing-columns">Auto incrementing columns</h2>
+<p>In PostgreSQL, sequences are used for auto-incrementing columns. When you are creating a new db table or adding a new column, the process of creating a new sequence can be automated by choosing an <code>identity</code> or a <code>serial</code> column type.</p>
+<p>When updating an aexisting column, a manual intervention is required:
+1. change the column to some numerical datatype
+2. create the sequence:</p>
+<pre><code class="language-SQL">CREATE SEQUENCE &lt;SEQUENCE NAME&gt; OWNED BY &lt;TABLE NAME&gt;.&lt;COLUMN NAME&gt;;
+</code></pre>
+<ol>
+<li>adjust the value of the sequence:</li>
+</ol>
+<pre><code class="language-SQL">SELECT setval(pg_get_serial_sequence('&lt;TABLE NAME&gt;', '&lt;COLUMN NAME&gt;'), max(&lt;COLUMN NAME&gt;)) FROM &lt;TABLE NAME&gt;;
+</code></pre>
+<ol>
+<li>set the column to be incremented by the sequence:</li>
+</ol>
+<pre><code class="language-SQL">ALTER TABLE &lt;TABLE NAME&gt;
+   ALTER COLUMN &lt;COLUMN NAME&gt; SET DEFAULT nextval('&lt;SEQUENCE NAME&gt;');
+</code></pre>
+<h2 id="strings">Strings</h2>
+<p>There are many string function available, including the <code>format</code> function that works similarly to the C format function. For all functions, check the <a href="https://www.postgresql.org/docs/9.1/functions-string.html">documentation</a>.</p>
+<h2 id="arrays">Arrays</h2>
+<p><a href="https://www.postgresql.org/docs/8.4/functions-array.html">array functions and operators</a></p>
+<p>To compute array <strong>length</strong>, use <code>array_length(contracted_vertices, 1)</code> where <code>1</code> stands for the first dimension.</p>
+<p>To cretea an <strong>array literal</strong>, we use single quatation and curly brackets: <code>'{1, 2, 3}'</code>.</p>
+<p>To check that some value match at least some member of the array, we use <code>ANY</code>:</p>
+<pre><code class="language-SQL">SELECT ...
+FROM tab
+WHERE tab.a = ANY(&lt;array&gt;)
+</code></pre>
+<h3 id="working-with-the-array-members-individualy">Working with the array members individualy</h3>
+<p>For using the members of an array in the <code>SELECT</code> or <code>JOIN</code>, we have to first split the array using the <code>unnest</code> function. This function transforms the result set to a form where there is a separate row for each member of the array (a kind of inverse operation to group by).</p>
+<p>If we want to also keep the array index, we can use the <code>WITH ORDINALITY</code> expression, as shown in the <a href="https://www.postgresql.org/docs/current/functions-srf.html">manual</a> or on <a href="https://stackoverflow.com/questions/8760419/postgresql-unnest-with-element-number">SO</a>.</p>
+<h2 id="hstore">hstore</h2>
+<p>A specific feature of PostgreSQL is the <a href="https://www.postgresql.org/docs/current/hstore.html"><code>hstore</code></a> column type. It enables to store structured data in a single column. It can be used to dump variables that we do not plan to utilize in the database (i.e., in the SELECT, JOIN statements) frequently. </p>
+<p>When we, exceptionally, want to access a variable from a hstore column, we can use the following syntax:</p>
+<pre><code class="language-SQL">SELECT &lt;COLUMN NAME&gt;-&gt;&lt;VARIABLE NAME&gt; AS ...
+</code></pre>
+<h1 id="selecting-rows-for-deletion-based-on-data-from-another-table">Selecting rows for deletion based on data from another table</h1>
+<p>If we want to delete rows from a table based on some condition on data from another table, we can use the <code>DELETE</code> statement with a <code>USING</code> clause. Example:</p>
+<pre><code class="language-SQL">DELETE FROM nodes_ways_speeds
+USING nodes_ways
+WHERE
+    nodes_ways_speeds.to_node_ways_id = nodes_ways.id
+    AND nodes_ways.area IN (5,6)
+</code></pre>
+<h1 id="handeling-duplicates-in-the-insert-statement">Handeling  duplicates in the <code>INSERT</code> statement</h1>
+<p>To handle duplicates on <code>INSERT</code>, PostgreSQL provides the <code>ON CONFLICT</code> clause (see the <a href="https://www.postgresql.org/docs/current/sql-insert.html"><code>INSERT</code></a> documentation).</p>
+<p>The options are:
+- <code>DO NOTHING</code>: do nothing
+- <code>DO UPDATE SET &lt;column name&gt; = &lt;value&gt;</code>: update the column to the given value</p>
+<h1 id="procedures-and-functions">Procedures and functions</h1>
+<h2 id="calling-a-procedure">Calling a procedure</h2>
+<p>to exectue a stored procedure, use"</p>
+<pre><code class="language-SQL">CALL &lt;procedure name&gt;(&lt;procedure arguments&gt;)
+</code></pre>
+<p>Unlike in programing languages, there is no implicit type cast of the program arguments, including literals. Therefore, we need to cast all parameters explicitely, as in the following example:</p>
+<pre><code class="language-SQL">CREATE OR REPLACE PROCEDURE compute_speeds_for_segments(target_area_id smallint)
+...
+
+CALL compute_speeds_for_segments(1::smallint);
+</code></pre>
+<h2 id="creating-a-procedure">Creating a procedure</h2>
+<p><a href="https://www.postgresql.org/docs/current/sql-createprocedure.html">documentation</a></p>
+<p>The syntax is as follows:</p>
+<pre><code class="language-SQL">CREATE PROCEDURE &lt;name&gt; (&lt;params&gt;)
+LANGUAGE &lt;language name&gt;
+&lt;procedure body&gt;
+</code></pre>
+<p>, while <code>&lt;procedure body&gt;</code> can be both a delimited string:</p>
+<pre><code class="language-SQL">AS $$
+&lt;sql statements&gt;
+$$
+</code></pre>
+<p>OR an active SQL body (since PostgreSQL 14):</p>
+<pre><code class="language-SQL">BEGIN ATOMIC
+    &lt;sql statements&gt;
+END
+</code></pre>
+<p>There are some differences between those syntaxes (e.g., the second one works only for SQL and is evaluated/checked for validity at the time of creation), bot in most cases, they are interchangable. </p>
+<p>For more details, check the <a href="https://www.postgresql.org/docs/current/sql-createprocedure.html">manual</a>.</p>
+<h2 id="variables">Variables</h2>
+<p>In PostgreSQL, all variables must be <a href="https://www.postgresql.org/docs/current/plpgsql-declarations.html"><em>declared</em></a> before assignmant in the <code>DECLARE</code> block which is before the sql body of the function/procedure/<code>DO</code>. The syntax is:</p>
+<pre><code class="language-SQL">&lt;variable name&gt; &lt;variable type&gt;[ = &lt;varianle value&gt;];
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-PostgreSQL">CREATE OR REPLACE PROCEDURE compute_speeds_for_segments()
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    dataset_quality smallint = 1;
+BEGIN
+    ...
+</code></pre>
+<p>The, the value of a variable can be change using the classical assignment syntax:</p>
+<pre><code class="language-SQL">&lt;variable name&gt; = &lt;varianle value&gt;;
+</code></pre>
+<p>Be carful to <strong>not use a variable name equal to the name of some of the columns</strong> used in the same context, which results in a name clash. </p>
+<h3 id="assigning-a-value-to-a-variable-using-sql">Assigning a value to a variable using SQL</h3>
+<p>There are two options how to assign a value to a variable using SQL:
+- using the <code>INTO</code> clause in the <code>SELECT</code> statement
+- using a <code>SELECT</code> statement as rvlaue of the assignment</p>
+<p>Example with <code>INTO</code>:</p>
+<pre><code class="language-PostgreSQL">SELECT name INTO customer_name FROM customers WHERE id = 1
+</code></pre>
+<p>EXAMPLE with <code>SELECT</code> as rvalue:</p>
+<pre><code class="language-PostgreSQL">customer_name = (SELECT name FROM customers WHERE id = 1)
+</code></pre>
+<h2 id="functions">Functions</h2>
+<p><a href="https://www.postgresql.org/docs/12/sql-createfunction.html">Functions</a> in PostgreSQL have a similar syntax to procedures. </p>
+<p>Unlike for procedures, we need to specify a return type for function, either as an <code>OUT</code>/<code>INOUT</code> parameter, or using the <code>RETURNS</code> clause. To return tabular data, we use <a href="https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE"><code>TABLE</code></a> return type:</p>
+<pre><code class="language-SQL">RETURNS TABLE(&lt;param 1 name&gt; &lt;param 1 type&gt;, ..., &lt;param n name&gt; &lt;param n type&gt;)
+</code></pre>
+<p>To select the result of a function with the return type above, call:</p>
+<pre><code class="language-SQL">SELECT * FROM &lt;function signature&gt;
+</code></pre>
+<h3 id="return-next-and-return-query"><code>RETURN NEXT</code> and <code>RETURN QUERY</code></h3>
+<p>Sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In PG/plSQL, we can also use the <a href="https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING"><code>RETURN NEXT</code> and <code>RETURN QUERY</code></a> constructs.
+These constructs prepare the result, and <strong>does not return from the function</strong>. Instead, use an empty <code>RETURN</code> to return from the function. Example:</p>
+<pre><code class="language-SQL">RETURN QUERY
+SELECT ...;
+DROP TABLE target_ways;
+RETURN;
+</code></pre>
+<p>Note that for these constructs, the return type needs to be a <code>table</code> or <code>setof</code> type. The <code>RETURN QUERY</code> cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead. </p>
+<h2 id="deciding-the-language">Deciding the language</h2>
+<p>For simple statements, we can use the SQL language. We need the PL/pgSQL if:
+- we need to use variables or control statements specific to PL/pgSQL
+- we need to use temporary tables, as the SQL language fails to recognize them if they are created inside the function/procedure</p>
+<h2 id="conditional-filters-based-on-the-value-of-a-variable-or-input-parameter">Conditional filters based on the value of a variable or input parameter</h2>
+<p>To add some filter to the <code>WHERE</code> or <code>ON</code> clause of a query based on the value of a variable or input parameter, we can use the following technique:
+1. set the variable or input parameter to <code>NULL</code> if we do not want to apply the filter
+2. in the filter test for disjunction of NULL or the filter condition</p>
+<p>Example:</p>
+<pre><code class="language-SQL">SELECT ... FROM ... 
+WHERE param IS NULL OR some_column = param
+</code></pre>
+<h1 id="temporary-tables-in-postgresql">Temporary tables in PostgreSQL</h1>
+<p>To use a result set efficiently in a function or procedure, we often use temporary tables. Unlike in other relational database systems, in PostgreSQl, the lifetime of a temporary table is bound to a session. Therefoe, if we call a function that creates a tempoary table multiple times in a single session, we encounter an error, because the table already exists.</p>
+<p>To tackle this problem, we need to delete all temporary tables manually. Luckily, there is a special <a href="https://www.postgresql.org/docs/current/sql-discard.html"><code>DISCARD</code></a> command that can be used to dtop all temporary tables at once:</p>
+<pre><code class="language-SQL">DISCARD TEMPORARY;
+</code></pre>
+<h1 id="do-command"><code>DO</code> command</h1>
+<p>The <a href="https://www.postgresql.org/docs/12/sql-do.html"><code>DO</code> command</a> can be used to execude an anonymus code block in any of the languages suported by PostgreSQL.
+It behaves like a function with no parameters and no return value. Syntax:</p>
+<pre><code class="language-SQL">DO [LANGUAGE &lt;lang name&gt;] &lt;code&gt;
+</code></pre>
+<p>The default language is <code>plpgsql</code>.</p>
+<p>Example:</p>
+<pre><code class="language-SQL">DO $$
+BEGIN
+    RAISE NOTICE 'Hello world';
+END
+$$
+</code></pre>
+<h1 id="window-functions">Window functions</h1>
+<p>PostgreSQL supports an extended syntax for <a href="https://www.postgresql.org/docs/current/tutorial-window.html">window functions</a>.</p>
+<p>We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an <a href="https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column">SO answer</a>.</p>
+<h1 id="postgis">PostGis</h1>
+<h2 id="geometry-columns">Geometry columns</h2>
+<p>Postgis features can be utilized with geometry and geography column types. To add a new geometry column:</p>
+<pre><code class="language-SQL">ADD COLUMN &lt;COLUUMN NAME&gt; geometry(&lt;GEOMETRY TYPE&gt;, &lt;SRID&gt;)
+</code></pre>
+<h2 id="spatial-indexing">Spatial Indexing</h2>
+<p><a href="http://postgis.net/workshops/postgis-intro/indexing.html">Documentation</a></p>
+<p>Analogously to standard SQL column indicis, there are spatial indices in PostGIS. The only difference is that we need to add the <code>USING GIST</code> at the end of the <code>CREATE INDEX</code> statement:</p>
+<pre><code class="language-SQL">CREATE INDEX nodes_geom_idx
+  ON nodes
+  USING GIST (geom);
+</code></pre>
+<h2 id="converting-between-geometry-types">Converting between geometry types</h2>
+<p>There are dedicated functions whcich we can use to convert between geometry types:
+- <code>ST_Multi</code>: converts geometries to their multi-variant, e.g., <code>LineString</code> to <code>MultiLineString</code>.</p>
+<h2 id="compute-area-surrounding-geometries">Compute area surrounding geometries</h2>
+<p>If we are ok with a convex envelope of the geometries, we can simply use the <a href="https://postgis.net/docs/ST_ConvexHull.html"><code>St_ConvexHull</code></a> functon. Howeever, if we need the exact shape, We have to use the <a href="https://postgis.net/docs/ST_ConcaveHull.html"><code>St_ConcaveHull</code></a> function which computes the concave hull of a geometry.</p>
+<p>The <code>St_ConcaveHull</code> function takes an additional parameter <code>param_pctconvex</code> which determines how <em>concave</em> is the result: 0 means strictly concave, while 1 means convex hull. Note that while lowere values leads to more acurate results, the computation is much slower. There is also another parameter <code>param_allow_holes</code> which determines whether holes in the object are permited (default false).</p>
+<h2 id="split-area-to-polygons-based-on-points">Split area to polygons based on points</h2>
+<p>The split of spece into polygons based on a set of points is called <em>Voronoi diagram</em>. In PostGIS, we have a [<code>ST_Voronoi_Polygons](https://postgis.net/docs/ST_VoronoiPolygons.html) for that. To obtain a set of polygons from a set of points, it is necessary to
+1. Aggregate the rows (</code>ST_Collect<code>)
+2. Compute the polygon geometry (</code>ST_Voronoi_Polygons<code>)
+3. Disaggregate the geometry into individual polygons (</code>ST_Dump`)</p>
+<p>Also, there is an important aspect of how far the polygons will reach outside of the points. By default, it enlarge the area determined by the points by about 50%. If we need a larger area, we can use the <code>extend_to</code> parameter. If we need a smaller area, however, we need to compute the intersection with this smaller area afterwards manually.</p>
+<p>Full example:</p>
+<pre><code class="language-SQL">SELECT st_intersection(
+    (st_dump(
+        st_voronoipolygons(st_collect(&lt;GEOMETRY COLUMN&gt;))
+    )).geom, 
+    (&lt;select clause for area of desired voronoi polygons&gt;)
+) AS geom FROM ...
+</code></pre>
+<p><strong>If we need to join the polygons to the original points, we need to do it manually</strong> (e.g. by <code>JOIN ... ON ST_Within(&lt;POINT COLUMN&gt;, &lt;VORONOI POLYGONS GEO DUMP&gt;)</code> ).</p>
+<h2 id="other-useful-functions">Other Useful Functions</h2>
+<ul>
+<li>[<code>ST_Within</code>] <code>ST_Within</code>(A, B) if A is completly inside B</li>
+<li><a href="https://postgis.net/docs/ST_Intersects.html"><code>ST_Intersects</code></a> <code>ST_Intersects(g1, g2)</code> if <code>g1</code> and <code>g2</code> have at least one point in common.</li>
+<li><a href="https://postgis.net/docs/ST_Transform.html"><code>ST_Transform</code></a>: <code>ST_Transform(g, srid)</code> transforms geometry <code>g</code> to a projection defined by the <code>srid</code> and returns the result as a geometry.</li>
+<li><a href="https://postgis.net/docs/ST_Buffer.html"><code>ST_Buffer</code></a>: <code>ST_Buffer(g, radius)</code> computes a geometry that is an extension of <code>g</code> by <code>radius</code> to all directions</li>
+<li><a href="https://postgis.net/docs/ST_Collect.html"><code>St_Collect</code></a> aggregates data into single geometry. It is usually apllied to a geometry column in an SQL selection.</li>
+<li><a href="https://postgis.net/docs/ST_Union.html"><code>ST_Union</code></a></li>
+<li><a href="https://postgis.net/docs/ST_Area.html"><code>ST_Area</code></a></li>
+<li><a href="https://postgis.net/docs/ST_Equals.html"><code>ST_Equals</code></a></li>
+<li><a href="https://postgis.net/docs/ST_MakeLine.html"><code>ST_MakeLine</code></a>: make line between two points</li>
+<li><a href="https://postgis.net/docs/ST_SetSRID.html"><code>ST_SetSRID</code></a>: sets the <code>SRID</code> of the geometry and returns the result as a new geometry.</li>
+<li><a href="https://postgis.net/docs/ST_MakePoint.html"><code>ST_MakePoint</code></a>: creates a point geometry from the given coordinates.</li>
+</ul>
+<h1 id="pgrouting">PgRouting</h1>
+<p><a href="https://pgrouting.org/">PgRouting</a> is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
+- finding the strongly connected components: <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0">`pgr_strongComponents</a>
+- graph contraction/simplification</p>
+<h2 id="finding-strongly-connected-components">Finding strongly connected components</h2>
+<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a> finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:
+- <code>id</code>, 
+- <code>source</code>,
+- <code>target</code>, 
+- <code>cost</code>,
+- <code>reverse_cost</code>.</p>
+<p>The first three parameters are obvious. The cost parameter does not have any effect. <strong>You should provide a negative <code>reverse_cost</code>, othervise, the edge will be considered as bidirectional!</strong></p>
+<h1 id="plpgsql">PL/pgSQL</h1>
+<p><a href="https://www.postgresql.org/docs/current/plpgsql.html">PL/pgSQL</a> is a procedural language available in PostgreSQL databases. It can be used inside:
+- functions
+- procedures
+- <code>DO</code> command</p>
+<h2 id="branching">Branching</h2>
+<p>PL/pgSQL has the following branching:</p>
+<pre><code class="language-SQL">IF &lt;condition&gt; THEN
+    ...
+[ELSEIF
+    ...
+]
+[ELSE
+    ...
+]
+END IF
+</code></pre>
+<h2 id="logging">Logging</h2>
+<p>Basic logging can be done using the <code>RAISE</code> command:</p>
+<pre><code class="language-SQL">RAISE NOTICE 'Some message';
+</code></pre>
+<p>We can add parameters by using the <code>%</code> placeholder:</p>
+<pre><code class="language-SQL">RAISE NOTICE 'Some message %', &lt;variable or SQL command&gt;;
+</code></pre>
+<p>For more, see the <a href="https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html">documentation</a>.</p>
+<h2 id="query-diagnostics">Query diagnostics</h2>
+<p>Various information about the last query can be obtained using the <code>GET DIAGNOSTIC</code> command. For example, the number of rows affected by the last query can be obtained using the <code>ROW_COUNT</code> parameter:</p>
+<pre><code class="language-SQL">GET DIAGNOSTIC &lt;variable&gt; = ROW_COUNT;
+</code></pre>
+<p>The result is stored in the variable <code>&lt;variable&gt;</code>.</p>
+<p>Note that this constract is not available in the SQL queries but only in a PL/pgSQL block.</p>
+<p>For other diagnostic fields, see the <a href="https://www.postgresql.org/docs/current/plpgsql-statements.html#PLPGSQL-STATEMENTS-DIAGNOSTICS">documentation</a>.</p>
+<h1 id="psql"><code>psql</code></h1>
+<p><code>psql</code> is a basic command line utitiltyfor manipulating postgres database. </p>
+<p>To connect:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; 
+</code></pre>
+<p>Then the psql commands can be executed. To execute command immediatelly, use the <code>-c</code> parameter:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;&lt;command&gt;&quot;
+</code></pre>
+<p>Do not forget to quote the command.</p>
+<h1 id="importing-data-from-csv">Importing data from csv</h1>
+<p>The prefered mathod depends on the characte of the data: 
+- data exactly match the table  in the database: use <code>psql</code> <code>COPY</code> command
+- data do not match the table, but they are small: 
+    1. load the data with pandas
+    2. process the data as needed
+    3. use <code>pandas.to_sql</code> to upload the data
+- data do not match the table and they are large:
+    1. preprocess the data with bach commands
+    2. use <code>psql</code> <code>COPY</code> to upload the data
+- data do not match the table and they are large <em>and dirty</em>: use the <a href="https://www.postgresql.org/docs/current/file-fdw.html"><code>file_fdw</code></a> module:     <br />
+    1. create a table for SQL mapping with tolerant column types (e.g., text for problematic columns)
+    2. select from the mapping to the real table</p>
+<h2 id="psql-copy-command"><code>psql COPY</code> command</h2>
+<p>The <code>COPY</code> command can be used to copy the input into a database table. A subset of database column can be selected, but that is not true for the input, i.e, all input columns have to be used. If a subset of input columns needs to be used, or some columns requires processing, you need to perform some preprocessing.</p>
+<p><a href="https://www.postgresql.org/docs/current/sql-copy.html"><code>COPY</code> manual</a></p>
+<h1 id="importing-data-from-a-shapefile">Importing data from a shapefile</h1>
+<p>There are multiple options:
+- <code>shp2psql</code>: simple tool that creates sql from a shapefile
+    - easy start, almost no configuration
+    - always imports all data from shapefile, cannot be configured to skip columns
+    - included in the Postgres instalation
+- <code>ogr2ogr</code>
+    - needs to be installed, part of GDAL
+- <code>QGIS</code>
+    - The db manger can be used to export data from <code>QGIS</code>
+    - data can be viewed before import
+    - only suitable for creating new table, not for appending to an existing one</p>
+<h1 id="importing-data-from-geojson">Importing data from GeoJSON</h1>
+<p>For a single geometry stored in a GeoJSON file, the function <a href="http://postgis.net/docs/ST_GeomFromGeoJSON.html"><code>ST_GeomFromGeoJSON</code></a> can be used.
+- just copy the geometry part of the file
+- change the geometry type to match the type in db
+- don't forget to surround the object with curly brackets</p>
+<p>For the whole document, the <code>ogr2ogr</code> tool can be used.</p>
+<h1 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server</h1>
+<p>The password for the db superuser is stored in db <code>postgres</code>. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
+1. find the <code>pg_hba.conf file</code> 
+    - usually located in <code>C:\Program Files\PostgreSQL\13\data</code>
+2. backup the file and replace all occurances of <code>scram-sha-256</code> in the file with <code>trust</code>
+3. restart the posgreSQL service
+    - in the Windows service management, there should be a service for postgresql running
+4. change the password for the superuser
+    1. <code>psql -U postgres</code>
+    2.  <code>ALTER USER postgres WITH password 'yourpassword';</code> (do not forget the semicolon at the end!)
+5. restore the <code>pg_hba.conf</code> file from backup
+6. restart the postgreSQL service again
+7. test if the new password works</p>
+<h1 id="datagrip">DataGrip</h1>
+<h2 id="import-formats">Import Formats</h2>
+<p>DataGrip can handle imports only from separator baset files (csv, tsv).</p>
+<h2 id="view-geometry">View Geometry</h2>
+<p>In the reuslt window/tab, click on the gear wheel -&gt; <code>Show GeoView</code>. However, the <strong>geoviewer has a fixed WGS84 projection, so you have to project the result to this projection first</strong>.</p>
+<h2 id="create-a-spatial-index">Create a spatial Index</h2>
+<p>There is currently no GUI tool for that in DataGrip. Just add a normal index and modify the auto generated statement by changing <code>&lt;column&gt;</code> to <code>USING GIST(&lt;column&gt;)</code> at the end of the statement.</p>
+<h2 id="filter-out-store-procedures">Filter out store procedures</h2>
+<ol>
+<li>right-click on <code>routines</code></li>
+<li>click <code>open table</code></li>
+<li>sort by type</li>
+</ol>
+<h2 id="creating-functions-and-procedures">Creating functions and procedures</h2>
+<p>There is no UI available currently, use Navicat or console</p>
+<h2 id="duplicate-table">Duplicate table</h2>
+<p>Drag the table in the database explorer and drop it to the location you want it to copy to.</p>
+<h1 id="navicat">Navicat</h1>
+<h2 id="cannot-connect-to-db">Cannot connect to db</h2>
+<p>Symptoms:
+- cant connect to db server: <code>Could not connect</code>
+- after editing the connection and trying to save it (ok button): <code>connection is being used</code></p>
+<p>Try:
+1. close navicat
+2. open navicat, edit connection
+1. click test connection
+1. click ok, and start the connection by double click</p>
+<h1 id="pgadmin">PgAdmin</h1>
+<p>The best way to install the PgAdmin is to use the <a href="https://www.postgresql.org/download/windows/">EDB PostgreSQL installer</a> and uncheck the database installation during the installation configuration. This way, we also install useful tools like <code>psql</code></p>
+<h2 id="diagrams">Diagrams</h2>
+<p>To create diagram from an existing database: right click on the database -&gt; <code>Generate ERD</code></p>
+<h1 id="kill-a-hanging-query">Kill a hanging query</h1>
+<p>To kill a hanging query, we need to complete two steps:
+1. identify the query PID
+1. kill the query</p>
+<p>To identify the PID of the problematic query, we can use tool such as <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
+<pre><code class="language-bash">sudo -u postgres pg_activity -U postgres
+</code></pre>
+<p>To kill the query, run:</p>
+<pre><code class="language-sql">SELECT pg_cancel_backend(&lt;PID&gt;)
+</code></pre>
+<h1 id="troubleshooting">Troubleshooting</h1>
+<p>If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.</p>
+<h2 id="select-postgresql-version">Select PostgreSQL version</h2>
+<pre><code class="language-SQL">SELECT version()
+</code></pre>
+<h2 id="tried-to-send-an-out-of-range-integer-as-a-2-byte-value"><code>Tried to send an out-of-range integer as a 2-byte value</code></h2>
+<p>This error is caused by a too large number of values in the insert statement. The maximum index is a 2-byte number (max value: 32767). The solution is to split the insert statement into smaller bulks.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

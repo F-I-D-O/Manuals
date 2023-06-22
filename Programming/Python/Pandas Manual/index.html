@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Creating a DataFrame - Manuals</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../../SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../../Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../../C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../../Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Matplotlib%20Manual/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Plotly%20Manual/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#creating-a-dataframe" class="nav-link">Creating a DataFrame</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#from-a-dictionary" class="nav-link">From a dictionary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#from-a-list-of-dictionaries" class="nav-link">From a list of dictionaries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#from-a-list-of-lists" class="nav-link">From a list of lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#from" class="nav-link">From</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#obtaining-info-about-dataset" class="nav-link">Obtaining info about dataset</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#iteration" class="nav-link">Iteration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#standard-iteration" class="nav-link">Standard Iteration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#iteration-with-modification" class="nav-link">Iteration with modification</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#filtration" class="nav-link">Filtration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#filtration-by-multiple-columns" class="nav-link">Filtration by Multiple Columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#using-the-query-function" class="nav-link">Using the query function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filtering-series" class="nav-link">Filtering Series</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#useful-filter-functions" class="nav-link">Useful filter functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#selection" class="nav-link">Selection</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#loc" class="nav-link">loc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#difference-between-array-operator-on-dataframe-and-on-loc" class="nav-link">Difference between array operator on dataframe and on loc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#iloc" class="nav-link">iloc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#selecting-all-columns-but-one" class="nav-link">Selecting all columns but one</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#multi-index-selection" class="nav-link">Multi-index selection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#working-with-columns" class="nav-link">Working with columns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#adding-a-column" class="nav-link">Adding a column</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#rename-a-column" class="nav-link">Rename a column</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#working-with-the-index" class="nav-link">Working with the index</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#changing-the-index" class="nav-link">Changing the index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#aggregation" class="nav-link">Aggregation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#joins" class="nav-link">Joins</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#appending-one-dataframe-to-another" class="nav-link">Appending one dataframe to another</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#exporting-to-csv" class="nav-link">Exporting to CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#insert-dataframe-into-db" class="nav-link">Insert dataframe into db</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#latex-export" class="nav-link">Latex export</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#formatting-the-index-columns-and-row-labels" class="nav-link">Formatting the index: columns and row labels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formatting-the-values" class="nav-link">Formatting the values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hihglighting-minmax-values" class="nav-link">Hihglighting min/max values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hiding-some-columns-rows-or-indices" class="nav-link">Hiding some columns, rows, or indices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exporting-to-latex" class="nav-link">Exporting to latex</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#displaying-the-dataframe-in-console" class="nav-link">Displaying the dataframe in console</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#other-useful-functions" class="nav-link">Other useful functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#pivot_table" class="nav-link">pivot_table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#geopandas" class="nav-link">Geopandas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#create-a-geodataframe-from-csv" class="nav-link">Create a geodataframe from CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#converting-pandas-dataframe-to-geopandas-dataframe" class="nav-link">Converting pandas Dataframe to geopandas Dataframe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#create-geodataframe-from-shapely" class="nav-link">Create geodataframe from shapely</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#working-with-the-geometry" class="nav-link">Working with the geometry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spliting-multi-geometry-columns" class="nav-link">Spliting multi-geometry columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#insert-geodataframe-into-db" class="nav-link">Insert geodataframe into db</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="creating-a-dataframe">Creating a DataFrame</h1>
+<p>The <code>DataFrame</code> class has a constructor that supports multiple formats of input data as well as many configuration parameters. Therefore , for most formats of input data, we can create a dataframe using the constructor. However, we can also crete a dataframe using the <code>from_*</code> functions, and for some formats, these functions are the only way to create a dataframe.</p>
+<h2 id="from-a-dictionary">From a dictionary</h2>
+<p>When having a dictionary, we can choose between two options the constructor and the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.from_dict.html"><code>from_dict</code></a> function.</p>
+<p>The required syntax depend on the shape of the dictionary with respect to the required dataframe.</p>
+<h3 id="keys-are-column-names-values-are-list-of-column-values">Keys are column names, values are list of column values</h3>
+<pre><code class="language-python">df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+# or equivalently
+df.DataFrame.from_dict({'col1': [1, 2], 'col2': [3, 4]})
+</code></pre>
+<p>Note that the values of the dictionary have to be lists. If we have a dictionary with values that are not lists (i.e., only one row), we have to use the <code>orient</code> parameter to specify the orientation of the data and then transpose the dataframe:</p>
+<pre><code class="language-python">d = {'col1': 1, 'col2': 2}
+
+df = pd.DataFrame.from_dict(d, orient='index').T
+# or equivalently
+df = pd.DataFrame([d], columns=d.keys())
+</code></pre>
+<h3 id="keys-are-indices-values-are-values-of-a-single-column">Keys are indices, values are values of a single column</h3>
+<pre><code class="language-python">df = pd.DataFrame.from_dict({'row1': 1, 'row2': 2}, orient='index', columns=['Values'])
+</code></pre>
+<h3 id="keys-are-indices-values-are-values-of-single-row">Keys are indices, values are values of single row</h3>
+<pre><code class="language-python">df = pd.DataFrame.from_dict({'row1': [1, 2], 'row2': [3, 4]}, orient='index')
+</code></pre>
+<h3 id="keys-are-one-column-values-are-another-column">Keys are one column, values are another column</h3>
+<pre><code class="language-python">d = {'row1 col1': 'row1 col2', 'row2 col1': 'row2 col2'
+
+df = pd.DataFrame.from_dict(d.items())
+
+# or equivalently
+df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
+</code></pre>
+<h2 id="from-a-list-of-dictionaries">From a list of dictionaries</h2>
+<pre><code class="language-python">df = pd.DataFrame([{'col1': 1, 'col2': 3}, {'col1': 2, 'col2': 4}])
+</code></pre>
+<h2 id="from-a-list-of-lists">From a list of lists</h2>
+<pre><code class="language-python">df = pd.DataFrame([[1, 3], [2, 4]], columns=['col1', 'col2'])
+</code></pre>
+<h2 id="from">From</h2>
+<h1 id="obtaining-info-about-dataset">Obtaining info about dataset</h1>
+<p>For a DataFrame <code>df</code>:
+- column names: <code>df.columns</code>
+- column types: <code>df.dtypes</code>
+- number of rows: <code>len(df)</code></p>
+<h1 id="iteration">Iteration</h1>
+<h2 id="standard-iteration">Standard Iteration</h2>
+<p>https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas</p>
+<p>Iteration without modifying the dataframe. From the fastest to the slowest.</p>
+<h3 id="vector-operations">Vector operations</h3>
+<h3 id="list-comprehensions">List Comprehensions</h3>
+<h3 id="apply">Apply</h3>
+<h3 id="itertuples">itertuples()</h3>
+<p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.htm</p>
+<p>Returns dataframe rows as pandas named tuples with index as the first member of the tuple.</p>
+<h3 id="iterrows">iterrows()</h3>
+<p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html</p>
+<p>returns a tuple (index, data)</p>
+<ul>
+<li>it does not preserve the dtype </li>
+</ul>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<h3 id="items">items()</h3>
+<p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html
+Iterates over columns</p>
+<h2 id="iteration-with-modification">Iteration with modification</h2>
+<p>When doing some modifications, we need to copy the dataframe and do the modifications on the copy.</p>
+<h1 id="filtration">Filtration</h1>
+<pre><code class="language-python">filtered = df[df['max_delay'] == x]
+</code></pre>
+<p>or equivalently:</p>
+<pre><code class="language-python">filtered = df[df.max_delay == x]
+</code></pre>
+<h2 id="filtration-by-multiple-columns">Filtration by Multiple Columns</h2>
+<p>Example:</p>
+<pre><code class="language-python">filtered = df[(df['max_delay'] == x) &amp; (df['exp_length'] == y)]
+</code></pre>
+<h2 id="using-the-query-function">Using the query function</h2>
+<p>The query function can be used for more complicated filters. It is more flexible and the syntax is less verbose. The above filter can be rewriten as:</p>
+<pre><code class="language-python">filtered = df.query('max_delay == x and exp_length == y']
+</code></pre>
+<h2 id="filtering-series">Filtering Series</h2>
+<p>A seris can be filtered even simpler then the dataframe:</p>
+<pre><code class="language-python">s = df['col']
+sf = s[s &lt;= 10] # now we have a Series with values from df['col'] less than 10
+</code></pre>
+<h2 id="useful-filter-functions">Useful filter functions</h2>
+<ul>
+<li>non null/nan values: <code>&lt;column selection&gt;.notnull()</code></li>
+<li>diltring using the string value: <code>&lt;column selection&gt;.str.&lt;string function&gt;</code></li>
+</ul>
+<h1 id="selection">Selection</h1>
+<p>If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see <a href="#filtration">filtration</a>), we can use these methods:
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a>: select by label, works for both rows and columns
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code>iloc</code></a>: select by position, works for both rows and columns
+- <code>[]</code>: select by label, works only for columns</p>
+<p>There are also other methods that works for selection but does not work for setting values, such as:
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a>: select by label, works for both rows and columns</p>
+<h2 id="loc"><code>loc</code></h2>
+<p>The operator <code>loc</code> has has many possible input parameters, the most common syntax is </p>
+<pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;]
+</code></pre>
+<p>each selection has the form of <code>&lt;start label&gt;:&lt;end label&gt;</code>. For the whole column, we therefore use:</p>
+<pre><code class="language-Python">df.loc[:, &lt;column name&gt;]
+</code></pre>
+<h2 id="difference-between-array-operator-on-dataframe-and-on-loc">Difference between array operator on dataframe and on <code>loc</code></h2>
+<p>Both methods can be used both for getting and setting the column:</p>
+<pre><code class="language-Python">a = df['col']
+# or equivalently
+a = df.loc[:, 'col']
+
+df2['col'] = a
+# or equivalently
+df2.loc[:, 'col'] = a
+</code></pre>
+<p>The difference between these two methods is apparent when we want to use a chained selection, i.e., selecting from a selection. While the <code>loc</code> selects the appropriate columns in one step, so we know that we still refer to the original dataframe, the array operator operations are separate, and therefore, the result value can refer to a temporary:</p>
+<pre><code class="language-Python">dfmi.loc[:, ('one', 'second')] = value # we set a value of a part of dfmi
+dfmi['one']['second'] = value # can be dangerous, we can set value to a temporary
+</code></pre>
+<p>This problem is indicated by a <code>SettingWithCopy</code> warning. Sometimes it is not obvious that we use a chain of array operator selections, e.g.:</p>
+<pre><code class="language-Python">sel = df[['a', 'b']]
+.....
+sel['a'] =  ... # we possibly edit a temporary!
+</code></pre>
+<p>For more, see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy">dovumentation</a>.</p>
+<h2 id="iloc"><code>iloc</code></h2>
+<p>The <code>iloc</code> method works similarly to the <code>loc</code> method, but it uses the position instead of the label.</p>
+<p>Be aware that <strong>if the <code>iloc</code> operator selects by single value (e.g.: <code>df.iloc[3]</code>), it returns the single row as series</strong>. To get a dataframe slice, we need to use a list of values (e.g.: <code>df.iloc[[3]]</code>).</p>
+<h2 id="selecting-all-columns-but-one">Selecting all columns but one</h2>
+<p>If we do not mind copying the dataframe, we can use the <code>drop</code> function. </p>
+<p>Otherwise, we can use the <code>loc</code> method and supply the filtered column lables obtained using the <code>columns</code> property:</p>
+<pre><code class="language-Python">df.loc[:, df.columns != '&lt;column to skip&gt;']
+</code></pre>
+<h2 id="multi-index-selection">Multi-index selection</h2>
+<p><a href="https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical">documentation</a></p>
+<p>When selecting from a dataframe with a multi-index, things get a bit more complicated. We can specify index levels using the <code>level</code> argument. Example:</p>
+<pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;, level=&lt;level number&gt;]
+</code></pre>
+<p>If we want to specify more than one level, we can use a tuple:</p>
+<pre><code class="language-python">df.loc[(&lt;row index level 1&gt;, &lt;row index level 2&gt;, ...), (&lt;col index level 1&gt;, &lt;col index level 2&gt;, ...)]
+</code></pre>
+<p>If we select an upper level only, all lover level values are selected.</p>
+<p>For more complex cases where we wanto to select all from upper level but limit the lower level, we can use the <a href="https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers"><code>slice</code></a> function:</p>
+<pre><code class="language-python">df.loc[(slice(None), slice('15', '30')), ...]
+</code></pre>
+<p>We can obtain the same result with a more readable syntax using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html"><code>IndexSlice</code></a> object:</p>
+<pre><code class="language-python">idx = pd.IndexSlice
+dft.loc[idx[:, '15':'30'], ...]
+</code></pre>
+<p>Also, note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html"><code>sort_index</code></a> function.</p>
+<h1 id="sorting">Sorting</h1>
+<p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
+<pre><code class="language-python">df.sort_values(['col1', 'col2'])
+</code></pre>
+<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should satisfy the classical python sorting interface (see Python manual) and additionaly, it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. Example key function:</p>
+<pre><code class="language-python">def key_fn(l: list):
+    return [len(x) for x in l]
+</code></pre>
+<h1 id="working-with-columns">Working with columns</h1>
+<h2 id="adding-a-column">Adding a column</h2>
+<p>The preferable way is to use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.assign.html"><code>assign</code></a> function:</p>
+<pre><code class="language-Python"># adds a column named 'instance_length' with constant value
+result_df_5_nyc_mv.assign(instance_length = 5) 
+</code></pre>
+<p>Multiple columns can be added at once:</p>
+<pre><code class="language-Python">trips = trips.assign(dropoff_datetime = 0, dropoff_GPS_lon = 0, dropoff_GPS_lat = 0, pickup_GPS_lon = 0, pickup_GPS_lat = 0)
+</code></pre>
+<h2 id="rename-a-column">Rename a column</h2>
+<p>To rename a column, we can use the pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html"><code>rename</code></a> function:</p>
+<pre><code class="language-Python">df.rename(columns={'&lt;old name 1&gt;': '&lt;new name 1&gt;', '&lt;old name 2&gt;': '&lt;new name 2&gt;'})
+
+# or equivalently
+df.rename({'&lt;old name 1&gt;': '&lt;new name 1&gt;', '&lt;old name 2&gt;': '&lt;new name 2&gt;'}, axis='columns')
+</code></pre>
+<h1 id="working-with-the-index">Working with the index</h1>
+<p>Index of a dataframe <code>df</code> can be accessed by <code>df.index</code>. Standard range operation can be applied to index. </p>
+<h2 id="changing-the-index">Changing the index</h2>
+<p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>set_index</code></a> function.</p>
+<h2 id="renaming-the-index">Renaming the index</h2>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html"><code>Index.rename</code></a> function can be used for that.</p>
+<h1 id="aggregation">Aggregation</h1>
+<p>Analogously to SQL, pandas has a <code>groupby</code> function for aggreagting rows. Depending on the aggregate function we choose, we get a different statistic, for example:</p>
+<pre><code class="language-Python">df.groupby('col').sum()
+</code></pre>
+<p>Sums the results for each group (column by column)</p>
+<p>To get a count, we need to call the <code>size</code> function:</p>
+<pre><code class="language-Python">df.groupby('col').size()
+</code></pre>
+<h1 id="joins">Joins</h1>
+<h1 id="appending-one-dataframe-to-another">Appending one dataframe to another</h1>
+<p>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function for that:</p>
+<pre><code class="language-python">pd.concat([df1, df2])
+</code></pre>
+<h1 id="exporting-to-csv">Exporting to CSV</h1>
+<p>We can use the <code>to_csv</code> method for that:</p>
+<pre><code class="language-python">df.to_csv(&lt;file name&gt; [, &lt;other params&gt;])
+</code></pre>
+<h1 id="insert-dataframe-into-db">Insert dataframe into db</h1>
+<p>We can use the <code>to_sql</code> method for that:</p>
+<pre><code class="language-python">df.to_sql(&lt;table name&gt;, &lt;sql alchemy engine&gt; [, &lt;other params&gt;])
+</code></pre>
+<p>Important params:
+- to append, not replace existing records: <code>if_exists='append'</code>
+- do not import dataframe index: <code>index=False</code></p>
+<p>For larger datasets, it is important to not insert everything at once, while also tracking the progress. The following code does exactly that</p>
+<pre><code class="language-python">def chunker(seq, size):
+    return (seq[pos:pos + size] for pos in range(0, len(seq), size))
+
+chunksize = int(len(data) / 1000) # 0.1%
+with tqdm(total=len(data)) as pbar:
+    for i, cdf in enumerate(chunker(data, chunksize)):
+        cdf.to_sql(&lt;table name&gt;, &lt;sqlalchemy_engine&gt;)
+        pbar.update(chunksize)
+</code></pre>
+<p><strong>If the speed is slow, it can be caused by a low upload speed of your internet connection.</strong> Note that due to the SQL syntax, the size of the SQL strings may be much larger than the size of the dataframe.</p>
+<h1 id="latex-export">Latex export</h1>
+<p>Currently, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html"><code>to_latex</code></a> function is deprecated. The <code>Styler</code> class should be used for latex exports instead. You can get the <code>Styler</code> from the DataFrame using the <code>style</code> property. The usual workfolow is:
+1. Create a <code>Styler</code> object from the dataframe using the <code>style</code> property.
+1. Apply the desired formatting to the styler object.
+1. Export DataFrame to latex using the <code>to_latex</code> method.</p>
+<p>Keep in mind that <strong>the <code>Styler</code> object is immutable, so you need to assign the result of each formatting operation to a new variable or chain the calls</strong>. Example:</p>
+<pre><code class="language-Python"># wrong, the format is not apllied
+df.style.format(...)
+df.style.to_latex(...)
+
+# correct: temp var
+s = df.style.format(...)
+s.to_latex(...)
+
+# correct: chain calls
+df.style.format(...).to_latex(...)
+</code></pre>
+<h2 id="formatting-the-index-columns-and-row-labels">Formatting the index: columns and row labels</h2>
+<p>The columns' and row labels' format is configures by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format_index.html"><code>format_index</code></a> function.
+Important parameters:
+- <code>axis</code>: 0 for rows, 1 for columns (cannot be both)
+- <code>escape</code>: by default, the index is not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.</p>
+<h2 id="formatting-the-values">Formatting the values</h2>
+<p>The values are formated by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html"><code>format</code></a> function. Important parameters:
+- <code>escape</code>: by default, the values are not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.
+- <code>na_rep</code>: the string to use for missing values
+- <code>precision</code>: the number of decimal places to use for floats</p>
+<h2 id="hihglighting-minmax-values">Hihglighting min/max values</h2>
+<p>For highlighting the min/max values, we can use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html"><code>highlight_min</code></a> and <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html"><code>highlight_max</code></a> functions. Important parameters:
+- <code>subset</code>: the columns in which the highlighting should be applied
+- <code>props</code>: the css properties to apply to the highlighted cells</p>
+<h2 id="hiding-some-columns-rows-or-indices">Hiding some columns, rows, or indices</h2>
+<p>For hiding some columns, rows, or indices, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html"><code>hide</code></a> function. Example:</p>
+<pre><code class="language-python">df.style.hide(level=&lt;index name&gt;) # hide the index with the given name
+</code></pre>
+<h2 id="exporting-to-latex">Exporting to latex</h2>
+<p>For the export, we use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html"><code>to_latex</code></a> function. Important parameters:</p>
+<h1 id="displaying-the-dataframe-in-console">Displaying the dataframe in console</h1>
+<p>We can display the dataframe in the conslo print or int the log just by supplying the dataframe as an argument because it implements the <code>__repr__</code> method. Sometimes, however, the default display parameters are not sufficient. In that case, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.set_option.html"><code>set_option</code></a> function to change the display parameters:</p>
+<pre><code class="language-python">pd.set_option('display.max_rows', 1000)
+</code></pre>
+<p>Important parameters:
+- <code>display.max_rows</code>: the maximum number of rows to display
+- <code>display.max_columns</code>: the maximum number of columns to display
+- <code>display.max_colwidth</code>: the maximum width of a column</p>
+<h1 id="other-useful-functions">Other useful functions</h1>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"><code>drop_duplicates</code></a> to quickly drop duplicate rows based on a subset of columns.</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.factorize.html"><code>factorize</code></a> to encode a series values as a categorical variable, i.e., assigns a different number to each unique value in series.</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html"><code>pivot_table</code></a>: function that can aggragate and transform a dataframe in one step. with this function, one can create a pivot table, but also a lot more.</li>
+</ul>
+<h2 id="pivot_table"><code>pivot_table</code></h2>
+<p>The pivot table (mega)function do a lot of things at once:
+- it aggregates the data
+- it transforms the data
+- it sorts the data due to reindexing</p>
+<p>Although this function is very powerfall there are also many pitfalls. The most important ones are:
+- column data type change for columns with missing values</p>
+<h3 id="column-data-type-change-for-columns-with-missing-values">Column data type change for columns with missing values</h3>
+<p>The tranformation often creates row-column combinations that do not exist in the original data. These are filled with <code>NaN</code> values. But some data types does not support <code>NaN</code> values, and in conclusion, the data type of the columns with missing values is changed to <code>float</code>. Possible solutions:
+- we can use the <code>fill_value</code> parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)
+- we can use the <code>dropna</code> parameter to drop the rows with missing values
+- we can change the data type of the columns with missing values prior to calling the <code>pivot_table</code> function. For example, the <a href="https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer">pandas integer data types</a> support <code>NaN</code> values.</p>
+<h1 id="geopandas">Geopandas</h1>
+<p>Geopandas is a GIS addon to pandas, an equivalent to PostGIS. Unfortunately, <strong>it currently supports only one geometry column per table.</strong></p>
+<p><strong>Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!</strong> Use the <code>to_wkt</code> function instead.</p>
+<h2 id="create-a-geodataframe-from-csv">Create a geodataframe from CSV</h2>
+<p>Geopandas has it's own <code>read_csv</code> function, however, it requires a very specific csv format, so it is usually easier to first import csv to pandas and then create geopandas dataframe from pandas dataframe.</p>
+<h2 id="converting-pandas-dataframe-to-geopandas-dataframe">Converting pandas Dataframe to geopandas Dataframe</h2>
+<p>The geopandas dataframe constructor accepts pandas dataframes, we just need to specify the geometry column and the coordinate system:</p>
+<pre><code class="language-Python">gdf = gpd.GeoDataFrame(
+    &lt;PANDAS DATAFRAME&gt;
+    geometry=gpd.points_from_xy(&lt;X COLUMN&gt;, &lt;Y COLUMN&gt;),
+    crs=&lt;SRID&gt;
+)
+</code></pre>
+<h2 id="create-geodataframe-from-shapely">Create geodataframe from <code>shapely</code></h2>
+<p>To load data from shapely, execute</p>
+<pre><code class="language-Python">gdf = gpd.read_file(&lt;PATH TO FOLDER WITH SHAPEFILES&gt;)
+</code></pre>
+<h2 id="working-with-the-geometry">Working with the geometry</h2>
+<p>The geometry can be accessed using the <code>geometry</code> property of the geodataframe.</p>
+<h2 id="spliting-multi-geometry-columns">Spliting multi-geometry columns</h2>
+<p>If the geometry column contains multi-geometries, we can split them into separate rows using the <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explode.html"><code>explode</code></a> function:</p>
+<pre><code class="language-Python">gdf = gdf.explode()
+</code></pre>
+<h2 id="insert-geodataframe-into-db">Insert geodataframe into db</h2>
+<h3 id="preprocesssing">preprocesssing</h3>
+<p>Before inserting a geodataframe into the database, we need to process it a little bit:
+1. set the SRID: <code>gdf.set_crs(epsg=&lt;SRID&gt;, allow_override=True, inplace=True)</code>
+2. set the geometry: <code>gdf.set_geometry('geom', inplace=True)</code>
+3. select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with <code>pandas</code></p>
+<h3 id="simple-insertion">Simple insertion</h3>
+<p>When the data are in the correct format and we don|t need any customization for the db query, we can use the <code>to_postgis</code> method:</p>
+<pre><code class="language-Python">gdf.to_postgis(&lt;TABLE NAME&gt;, &lt;SQL ALCHEMY CONNECTION&gt;, if_exists='append')
+</code></pre>
+<h3 id="customized-insertion-geoalchemy">Customized Insertion: <code>geoalchemy</code></h3>
+<p>If we need some special insert statement, we cannot rely on the <code>geodataframe.to_postgis</code> function, as it is not flexible enough. The <code>pandas</code> <code>dataframe.to_sql</code> function is more flexible, however, it has trouble when working with geodata. The easiest options is therefore to use <a href="https://geoalchemy-2.readthedocs.io/en/latest/"><code>geoalchemy</code></a>, the database wraper used in <code>geopandas</code> (extension of <code>sqlalchemy</code>, which is a database wrapper for <code>pandas</code>). </p>
+<p>First, we need to create the insert statement. The example here uses a modification for handeling duplicite elements.</p>
+<pre><code class="language-Python">meta = sqlalchemy.MetaData()    # create a collection for geoalchemy database  
+                                # objects
+
+table = geoalchemy2.Table(
+    '&lt;TABLE NAME&gt;', meta, autoload_with=&lt;SQL ALCHEMY CONNECTION&gt;)
+insert_statement 
+    = sqlalchemy.dialects.postgresql.insert(table).on_conflict_do_nothing()
+</code></pre>
+<p>In the above example, we create a <code>geoalchemy</code> representation of a table and then we use this representation to create a customized insert statement (the <a href="https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.Insert.on_conflict_do_nothing"><code>on_conflict_do_nothing</code></a> is the speciality here.). Note that we use a <a href="https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.insert"><code>speciatl PostgreSQL insert statement</code></a> instead of the standard SQLAlchemy insert statement.</p>
+<p>Second, we need to prepare the data as a list of dictionary entries:</p>
+<pre><code class="language-Python">list_to_insert = [
+    {'id': 0, 'geom': &lt;GEOM&gt;, ...},
+    {'id': 0, 'geom': &lt;GEOM&gt;, ...},
+    ....
+]
+</code></pre>
+<p>Note that the geometry in the geodataframe is in the shapely format. Therefore, we need to convert it to string using the <code>geoalchemy</code> <a href="https://geoalchemy-2.readthedocs.io/en/latest/shape.html"><code>from_shape</code></a> function:</p>
+<pre><code class="language-Python">geoalchemy2.shape.from_shape(&lt;GEOMETRY&gt;, srid=&lt;SRID&gt;)
+</code></pre>
+<p>Finally, we can execute the query using an <code>sqlalchemy</code> connection:</p>
+<pre><code class="language-Python">sqlalchemy_connection.execute(insert_statement, list_to_insert)
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

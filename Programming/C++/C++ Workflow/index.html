@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>C++ Workflow - Manuals</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../../SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../../Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../../Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../Slurm/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../CMake%20Manual/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#toolchain" class="nav-link">Toolchain</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#msys2-windows-only" class="nav-link">MSYS2 (Windows only)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#mscv-windows-only" class="nav-link">MSCV (Windows only)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gcc-linuxwsl" class="nav-link">GCC (Linux/WSL)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#cmake" class="nav-link">Cmake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#vcpkg" class="nav-link">vcpkg</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#update" class="nav-link">Update</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#update-package" class="nav-link">Update package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#package-features" class="nav-link">Package Features</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ide" class="nav-link">IDE</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#clion" class="nav-link">Clion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visual-studio" class="nav-link">Visual Studio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#installing-library-dependencies" class="nav-link">Installing Library Dependencies</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#vcpkg-libraries" class="nav-link">Vcpkg Libraries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gurobi" class="nav-link">Gurobi</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-libraries-not-available-in-vcpkg" class="nav-link">Other Libraries Not Available in vcpkg</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dependencies-with-wsl-and-clion" class="nav-link">Dependencies with WSL and CLion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#handling-case-insensitivity" class="nav-link">Handling Case Insensitivity</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>This guide presents how to prepare the following working environment:</p>
+<ul>
+<li>One or more from the following toolchains<ul>
+<li>MinGW  </li>
+<li>MSVC</li>
+<li>GCC</li>
+</ul>
+</li>
+<li>Cmake</li>
+<li>Clion and/or Visual studio</li>
+<li>vcpkg</li>
+</ul>
+<h1 id="toolchain">Toolchain</h1>
+<p>There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with Clion.</p>
+<h2 id="msys2-windows-only">MSYS2 (Windows only)</h2>
+<ul>
+<li><a href="https://www.msys2.org/">download</a></li>
+<li>follow the installation guide on the homepage</li>
+<li>install MinGW64 using: <code>pacman -S mingw-w64-x86_64-gcc</code></li>
+</ul>
+<h2 id="mscv-windows-only">MSCV (Windows only)</h2>
+<ul>
+<li>install <a href="https://visualstudio.microsoft.com/cs/vs/">Visual Studio 2019 Comunity Edition</a></li>
+</ul>
+<h3 id="common-compiler-flags">Common Compiler Flags</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library"><code>/MD</code>, <code>/MT</code>, and similar</a>: these determines the version of the standard run-time library. The <code>/MD</code> flag is the default and also prefered.</li>
+<li><a href="https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp"><code>/nologo</code></a>: do not print the copyright banner and information messages</li>
+<li><a href="https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model"><code>/EH</code></a>: exception handeling flags</li>
+</ul>
+<h2 id="gcc-linuxwsl">GCC (Linux/WSL)</h2>
+<ol>
+<li>If on Windows, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Install the WSL</a> first (preferably WSL 2)</li>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get upgrade</code></li>
+<li><code>sudo apt-get install build-essential rsync zip ninja-build make</code>3</li>
+</ol>
+<p>For using gcc 10:
+-   <code>sudo apt-get install gcc-10 g++-10</code></p>
+<h1 id="cmake">Cmake</h1>
+<ul>
+<li>Windows: Install CMake from <a href="https://cmake.org/download/">https://cmake.org/download/</a><ul>
+<li>if your CMake is too old (e.g. error: “CMake 3.15 or higher is required”), update CMake (same as new install)</li>
+</ul>
+</li>
+<li>Linux:<ul>
+<li>If cmake is installed already, uninstall it!</li>
+<li>Do not use the cmake from linux repositories!!</li>
+<li>Download CMake <code>sh</code> installer from <a href="https://cmake.org/download/">https://cmake.org/download/</a></li>
+<li>install:<ol>
+<li><code>sudo chmod +x &lt;INSTALLER&gt;</code></li>
+<li><code>sudo &lt;INSTALLER&gt;</code></li>
+<li><code>sudo rm &lt;INSTALLER&gt;</code></li>
+</ol>
+</li>
+<li>add cmake executable to path</li>
+</ul>
+</li>
+</ul>
+<p>Other details about CMake can be found in the CMake Manual.</p>
+<h1 id="vcpkg">vcpkg</h1>
+<ul>
+<li>follow the <a href="https://github.com/microsoft/vcpkg">installation guide</a>, including the user and PowerShell/bash integration</li>
+<li>add the vcpkg directory to <code>PATH</code>, so the program can be run from anywhere</li>
+<li>Beware that to run it with sudo on linux, <a href="https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing">it is not that easy</a>.</li>
+<li>add a new system variable <code>VCPKG_DEFAULT_TRIPLET</code>, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:<ul>
+<li><code>x64-linux</code> for Linux Compilers</li>
+<li><code>x64-windows</code> for MSVC</li>
+<li><code>x64-MinGW</code> for MinGW</li>
+</ul>
+</li>
+</ul>
+<h2 id="cmake-integration">CMake Integration</h2>
+<p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
+<p>The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.</p>
+<h2 id="update">Update</h2>
+<ol>
+<li><code>git pull</code></li>
+<li>bootstrap vcpkg again<ol>
+<li>Windows: <code>bootstrap-vcpkg.bat</code>   </li>
+<li>Linux: <code>bootstrap-vcpkg.sh</code></li>
+</ol>
+</li>
+</ol>
+<h2 id="update-package">Update package</h2>
+<ol>
+<li><a href="#update">Update vcpkg</a></li>
+<li><code>vcpkg update</code> to get a list of available updates</li>
+<li><code>vcpkg upgrade --no-dry-run</code> to actually perform the upgrade<ul>
+<li>you can supply the name of the package (e.g., zlib:x64-windows) as an argument to upgrade just one package</li>
+</ul>
+</li>
+</ol>
+<h2 id="package-features">Package Features</h2>
+<p>Some libraries have optional features, which are not installed by default, but we can install them explicitely. For example <code>llvm</code>. After <code>vcpkg install llvm</code> and typing <code>vcpkg search llvm</code>:</p>
+<pre><code>llvm                 10.0.0#6         The LLVM Compiler Infrastructure
+llvm[clang]                           Build C Language Family Front-end.
+llvm[clang-tools-extra]               Build Clang tools.
+...
+llvm[target-all]                      Build with all backends.
+llvm[target-amdgpu]                   Build with AMDGPU backend.
+llvm[target-arm]                      Build with ARM backend.
+</code></pre>
+<p>Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use <code>vcpkg install llvm[target-arm]</code>. Sometimes, a new build of the main package is required, in that case, we need to type <code>vcpkg install llvm[target-arm] --recurse</code>.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<h3 id="module-installation-scripts">Module Installation Scripts</h3>
+<p>They are located in the <code>ports</code> directory. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</p>
+<h3 id="modules">Modules</h3>
+<p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
+<h1 id="ide">IDE</h1>
+<h2 id="clion">Clion</h2>
+<h3 id="toolchain-configuration">Toolchain configuration</h3>
+<p>Go to <code>settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>toolchain</code>, add new toolchain and set:
+-   Name to whatever you want
+-   The environment should point to your toolchain:
+    -   MSVC: <code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community</code>
+    -   MSYS: <code>C:\MSYS2</code> 
+    -   WSL: From the drop-down list, choose the environment you configured for using with CLion in the previous steps
+-   Credentials (WSL) click to the setting button next to the credentials and fill
+    -   host: <code>localhost</code>
+    -   port: <code>2222</code>
+    -   user and password according to your WSL system credentials
+-   Architecture (non WSL): amd64
+-   CMake: <code>C:\Program Files\CMake\bin\cmake.exe</code>, for WSL, leave it as it is
+-   other fields should be filled automatically</p>
+<h3 id="project-configuration">Project configuration</h3>
+<p>Most project settings resides (hereinafter <em>Project settings</em>) in <code>settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>CMake</code>. For each build configuration, add a new template and set:
+-   <code>Name</code> to whatever you want <br />
+-   <code>Build type</code> to <code>debug</code>
+-   To <code>Cmake options</code>, add:
+    -   path to vcpkg toolchain file:
+        -   Linux: <code>-DCMAKE_TOOLCHAIN_FILE=/opt/vcpkg/scripts/buildsystems/vcpkg.cmake</code>
+        -   Windows: <code>-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake</code>
+    -   Set the correct vcpkg triplet
+        -   MSVC:   <code>-DVCPKG_TARGET_TRIPLET=x64-windows</code>
+        -   MinGW:  <code>-DVCPKG_TARGET_TRIPLET=x64-MinGW</code>
+        -   Linux: <code>-DVCPKG_TARGET_TRIPLET=x64-linux</code></p>
+<h4 id="wsl-extra-configuration">WSL extra configuration</h4>
+<p>The CLion does not see the WSL's environment variables (as of 2023-03, see <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/5633934229906-Programs-cannot-get-environment-variables-from-wsl">here</a>). To fix it, go to <em>Project settings</em> and set add the necessary environment variables to <code>Environment</code> field. </p>
+<h3 id="wsl-configuration-deprecated">WSL configuration - Deprecated</h3>
+<p>Clion connects to WSL through SSH. Therefore, you need to configure SSH in WSL. To do it, run the following script:</p>
+<pre><code>wget https://raw.githubusercontent.com/JetBrains/clion-wsl/master/ubuntu_setup_env.sh &amp;&amp; bash ubuntu_setup_env.sh
+</code></pre>
+<p>Next, It’s necessary to modify the WSL/create the WSL initialization script to fix a CMake issue when connecting from CLion. Download the wsl.conf file, and put it in /etc/.  The restart the WSL (wsl.exe -t Ubuntu-20.04)</p>
+<h2 id="visual-studio">Visual Studio</h2>
+<h3 id="installation">Installation</h3>
+<ol>
+<li>Install Visual Studio</li>
+<li>Open/Create a CMake project</li>
+<li>Install ReSharper C++</li>
+</ol>
+<h3 id="setting-synchronization">Setting Synchronization</h3>
+<ol>
+<li>Sign-in in Visual Studio using a Mictosoft account. <a href="https://docs.microsoft.com/en-us/visualstudio/ide/synchronized-settings-in-visual-studio?view=vs-2022">A lot of settings should be synchronized automatically</a>.</li>
+<li>Apply the layout: <code>Window</code> -&gt; <code>Apply Window Layout</code> -&gt; <code>&lt;Layout Name&gt;</code></li>
+<li>Sync ReSharper settings: you can share the file: <code>%APPDATA%\JetBrains\Shared\vAny\</code> (<code>~\AppData\Roaming\JetBrains\Shared\vAny\</code>). <ul>
+<li>This does not work good though as the files are changed on both sides constantly.</li>
+<li>unfortunately, as of 01/2023, there is no good way how to share resharper settings</li>
+</ul>
+</li>
+<li>Install roamed plugins</li>
+</ol>
+<h3 id="basic-configuration">Basic Configuration</h3>
+<ol>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines">Add 120 char guideline</a><ul>
+<li>install the extension </li>
+<li>add the guideline in command window: <code>Edit.AddGuideline 120</code></li>
+<li>if there is an error <em>extension ... did not load properly</em>, you need to install the <em>developer analytic tools</em> package to the Visual Studio:<ul>
+<li>Visual Studio Installer -&gt; <code>modify</code></li>
+<li>Go to the <code>Individual Components</code> tab</li>
+<li>search for the extension and select it</li>
+<li>proceed with the Visual Studio Modification</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If you need to use the system CMake, configure it now (described below)</li>
+<li>If you use <code>*.tpp</code> file, configure a support for them (described below).</li>
+</ol>
+<p>installation</p>
+<h4 id="enable-template-implementation-files-tpp-syntax-highlighting">Enable template implementation files (<code>.*tpp</code>) syntax highlighting:</h4>
+<ul>
+<li>Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Text Editor</code> -&gt; <code>File Extension</code></li>
+<li>select Microsoft Visual C++</li>
+<li>write <code>tpp</code> to the field and click add</li>
+<li>(reopen the file to see changes)</li>
+</ul>
+<h4 id="to-change-the-build-verbosity">To Change the Build Verbosity</h4>
+<ol>
+<li>Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Projects and Solutions</code> -&gt; <code>Build and Run</code></li>
+<li>Change the value of the MSBuild project build output verbosity.</li>
+</ol>
+<h3 id="project-setting">Project Setting</h3>
+<h4 id="configure-visual-studio-to-use-system-cmake">Configure Visual Studio to use system CMake:</h4>
+<ul>
+<li>Go to <code>Project</code> -&gt; <code>CMake Settings</code></li>
+<li>it should open the <code>CMakeSettings.json</code> file</li>
+<li>Scroll to the bottom and click on <code>show advanced settings</code> </li>
+<li>Set the CMake executable to point to the <code>cmake.exe</code> file of your system CMake </li>
+</ul>
+<h4 id="build-setting-and-enviromental-variables">Build Setting and Enviromental Variables</h4>
+<p>The build configuration is in the file <code>CMakePresets.json</code>, located in the root of the project. The  file can be also opened by right clicking on <code>CMakeLists.txt</code> ad selecting <code>Edit CMake presets</code>.</p>
+<h5 id="set-the-cmake-toolchain-file">Set the CMake Toolchain File</h5>
+<p>To set the vcpkg toolchain file add the following value to the base configuration <code>cacheVariables</code> dictionary:</p>
+<pre><code class="language-json">&quot;CMAKE_TOOLCHAIN_FILE&quot;: {
+    &quot;value&quot;: &quot;C:/vcpkg/scripts/buildsystems/vcpkg.cmake&quot;,
+    &quot;type&quot;: &quot;FILEPATH&quot;
+}
+</code></pre>
+<h5 id="set-the-compiler">Set the Compiler</h5>
+<p>The MSVC toolchain has two compiler executables, default one, and clang. The default compiler configuration looks like this:</p>
+<pre><code class="language-json">&quot;cacheVariables&quot;: {
+    ...
+    &quot;CMAKE_C_COMPILER&quot;: &quot;cl.exe&quot;,
+    &quot;CMAKE_CXX_COMPILER&quot;: &quot;cl.exe&quot;
+    ...
+},
+</code></pre>
+<p>To change the compiler to clang, replace <code>cl.exe</code> by <code>clang-cl.exe</code> in both rows.</p>
+<h5 id="old-method-using-cmakesettingsjson">Old Method Using CMakeSettings.json</h5>
+<p>We can open the build setting by right click on <code>CMakeList.txt</code> -&gt; <code>Cmake Settings</code></p>
+<p>To configure configure vcpkg toolchain file: Under <code>General</code>, fill to the <code>Cmake toolchain file</code> the following: <code>C:/vcpkg/scripts/buildsystems/vcpkg.cmake</code></p>
+<p>To configure the enviromental variable, edit the <code>CmakeSettings.json</code> file directly. The global variables can be set in the <code>environments</code> array, the per configuration ones in <code>&lt;config object&gt;/environments</code> (<a href="https://devblogs.microsoft.com/cppblog/set-environment-variables-for-debug-launch-and-tools-with-cmake-and-open-folder/">exmaple</a>).</p>
+<h4 id="launch-setting">Launch Setting</h4>
+<p>The launch settings determins the launch configuration, most importantly, the run arguments. To modify the run arguments:
+ 1. open the <code>launch.vs.json</code> file:
+    - use the context menu:
+            -   Right-click on <code>CMakeLists.txt</code> -&gt; <code>Add Debug Configuration</code>
+            -   select <code>default</code>
+    - or open the file directly, it is stored in <code>&lt;PROJECT DIR&gt;/.vs/</code>
+2.   in <code>launch.vs.json</code> configure:
+        - <code>type</code>: <code>default</code> for MSVC or <code>cppgdb</code> for WSL
+        - <code>projectTarget</code>: the name of the target (executable)
+        - <code>name</code>: the display name in Visual Studio
+        - <code>args</code>: json array with arguments as strings
+            - arguments with spaces have to be quoted with escaped quotes
+        - <code>cwd</code>: the working directory
+3.  Select the launch configuration in the drop-down menu next to the play button</p>
+<p><a href="https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170"><code>launch.vs.json</code> reference</a></p>
+<h5 id="other-launchvsjson-options">Other launch.vs.json options</h5>
+<ul>
+<li><code>cwd</code>: the working directory</li>
+</ul>
+<p><a href="https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170">Microsoft reference for <code>launch.vs.json</code></a></p>
+<h3 id="wsl-configuration">WSL Configuration</h3>
+<p>For using GCC 10:
+- go to <code>CmakeSettings.json</code> -&gt; <code>CMake variables and cache</code>
+- select <code>show advanced variables checkbox</code>
+- set <code>CMAKE_CXX_COMPILER</code> variable to <code>/usr/bin/g++-10</code></p>
+<h3 id="other-configuration">Other Configuration</h3>
+<ul>
+<li>show white spaces: <code>Edit</code> -&gt; <code>Advanced</code> -&gt; <code>View White Space</code>.</li>
+<li>configure indentation: described <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022">here</a></li>
+</ul>
+<h3 id="determine-visual-studio-version">Determine Visual Studio version</h3>
+<p>At total, <a href="https://blog.knatten.org/2022/08/26/microsoft-c-versions-explained/">there are 5 different versionigs related to Visual Studio</a>. </p>
+<p>The version which the <a href="https://en.cppreference.com/w/cpp/compiler_support">compiler support table</a> refers to is the version of the compiler (<code>cl.exe</code>).
+we can find it be examining the compiler executable stored in <code>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64</code>.</p>
+<h3 id="problems-solutions">Problems &amp; solutions</h3>
+<h4 id="cannot-regenerate-cmak-cache">Cannot regenerate Cmak cache</h4>
+<p>go to <code>./vs</code> and look for file named <code>CmakeWorkspaceSettings</code>. It most likelz contains a line with <code>disable = true</code>. Just delete the file, or the specific line.</p>
+<h1 id="installing-library-dependencies">Installing Library Dependencies</h1>
+<h2 id="vcpkg-libraries">Vcpkg Libraries</h2>
+<ul>
+<li>type <code>vcpkg list</code>, if the library you need is not listed, continue to the next steps</li>
+<li>type <code>vcpkg search &lt;library simple name&gt;</code> and inspect the result to determine the exact name of the package you need</li>
+<li>if the library is not listed, check the presence in <a href="https://repology.org/projects/?inrepo=vcpkg">vcpkg repo</a></li>
+<li>if the library is in repo, but search does not find it, <a href="#update">update vcpkg</a></li>
+<li>type <code>vcpkg install &lt;exact name&gt;</code> to install the package</li>
+<li>at the end of the installation log, there will be a cmake command needed to integrate the library, put it to the appropriate place to your <code>CMakeList.txt file</code></li>
+</ul>
+<h3 id="boost">Boost</h3>
+<p>With boost, we should install only the necessary components. Then to include boost, we need:
+- <code>find_package(Boost REQUIRED)</code>
+    - with all compiled components listed
+- <code>target_include_directories(&lt;YOUR TARGET NAME&gt; PUBLIC ${Boost_INCLUDE_DIRS})</code></p>
+<h3 id="jni">JNI</h3>
+<p>for JNI, a <code>JAVA_HOME</code> system property needs to be set to the absolute path to the JDK, e.g., <code>C:\Program Files\Java\jdk-15.0.1</code></p>
+<h2 id="gurobi">Gurobi</h2>
+<ol>
+<li>If you don’t have Gurobi installed, do it now, and check that the installation is working<ul>
+<li>Windows: just install as usual  </li>
+<li>Linux:<ol>
+<li>download the archive to <code>/opt</code></li>
+<li><code>sudo tar xvfz &lt;gurobi archive&gt;</code></li>
+<li>add the the <a href="https://drive.google.com/file/d/1Vr5VReq2_rOMNm4bsC7HJ9xELeiKeiTR/view?usp=sharing">file that introduce environment variables needed for gurobi</a> to <code>etc/profile.d</code></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>Linux only:</strong> it is necessary to build the C++ library for your version of the compiler. Steps:
+        1. <code>cd &lt;GUROBI DIR&gt;/linux64/src/build/</code>
+        2. <code>make</code>
+        3.  <code>mv libgurobi_c++.a ../../lib/libgurobi_c++_&lt;some id for you, like version&gt;.a</code>
+        4.  <code>cd ../../lib/</code>
+        5.  <code>ln -sf ./libgurobi_c++&lt;some id for you, like version&gt;.a libgurobi_c++.a</code></li>
+<li>Follow <a href="https://support.gurobi.com/hc/en-us/articles/360039499751-CMake-C-C-compilation-of-Gurobi-projects">this guide</a>, specifically:
+        1.   put the attached  <a href="https://drive.google.com/file/d/1h9JovBfjxnnQKLjBPIjSfQQpmEhn3VKC/view?usp=sharing">our custom FindGUROBI script</a> to: 
+             - Windows: <code>C:\Program Files\CMake\share\cmake-&lt;your cmake
+   version&gt;\Modules/</code>
+             - Linux: <code>/opt/&lt;CMAKNAME&gt;/share/cmake-&lt;VERSION&gt;/Modules</code>
+        2.   to your <code>CMakeLists.txt</code>, add:
+                -   <code>find_package(GUROBI REQUIRED)</code>
+                -   <code>target_include_directories(&lt;your executable&gt; PRIVATE ${GUROBI_INCLUDE_DIRS})</code>
+                -   <code>target_link_libraries(&lt;your executable&gt; PRIVATE ${GUROBI_LIBRARY})</code>
+                -   <code>target_link_libraries(&lt;your executable&gt; PRIVATE optimized ${GUROBI_CXX_LIBRARY} debug ${GUROBI_CXX_DEBUG_LIBRARY})</code>
+        3.   try to load the cmake projects (i.e., generate the build scripts using cmake).
+        4.   if the C++ library is not found (<code>Gurobi c++ library not found</code>), check whether the correct C++ library is in the gurobi home, the file <code>&lt;library name&gt;.lib</code> has to be in the <code>lib</code> directory of the gurobi installation. If the file is not there, it is possible that your gurobi version is too old</li>
+</ol>
+<h3 id="update-gurobi">Update Gurobi</h3>
+<ul>
+<li>Updating is done by <a href="https://www.gurobi.com/downloads/gurobi-software/">installing the new version</a> and generating and using <a href="https://www.gurobi.com/downloads/end-user-license-agreement-academic/">new licence key</a>.</li>
+<li>after update, you need to delete your build dir in order to prevent using of cached path to old Gurobi install</li>
+<li>Also, you need to update the library name on line 10 of the <code>FindGUROBI.cmake</code> script.</li>
+</ul>
+<h2 id="other-libraries-not-available-in-vcpkg">Other Libraries Not Available in vcpkg</h2>
+<h3 id="test-library-linkinginclusion">Test Library linking/inclusion</h3>
+<p>For testing purposes, we can follow this simple pattern:
+1. build the library
+2. include the library: <code>target_include_directories(&lt;target name&gt; PUBLIC &lt;path to include dir&gt;)</code>, where include dir is the directory with the main header file of the library.
+3. if the library is not the header only library, we need to:
+    3.1  link the library: <code>target_link_libraries(&lt;target name&gt; PUBLIC &lt;path to lib file&gt;)</code>, where path to lib file is the path to the dynamic library file used for linking (<code>.so</code> on Linux, <code>.lib</code> on Windows).
+    3.2. add the dynamic library to some path visible for the executable
+        - here the library file is <code>.so</code> on Linux and <code>.dll</code> on Windows
+        - there are plenty options for the visible path, the most common being the system <code>PATH</code> variable, or the directory with the executable. </p>
+<h2 id="dependencies-with-wsl-and-clion">Dependencies with WSL and CLion</h2>
+<p>In WSL, when combined with CLion, some find scripts does not work, because they depend on system variables, that are not correctly passed from CLIon SSH connection to CMake. Therefore, it is necessary to add hints with absolute path to these scripts. Some of them can be downloaded <a href="https://drive.google.com/drive/folders/1rWVl_T3p0cIf6QBYFtc-sEfuA-TUs2CU?usp=sharing">here</a>. Package that require these hints:
+-   JNI
+-   Gurobi</p>
+<h1 id="handling-case-insensitivity">Handling Case Insensitivity</h1>
+<p>Windows builds are, in line with the OS, case insensitive. Moreover, the Visual Studio does some magic with names internally, so the build is case insensitive even on VS WSL builds.</p>
+<p>The case insensitivity can bring inconsistencies that later breake Unix builds. Therefore, it is desirable to have the build case sensitive even on Windows. Fortunatelly, we can toggle the case sensitivity at the OS level using this PowerShell command:</p>
+<pre><code class="language-PowerShell">Get-ChildItem &lt;PROJECT ROOT PATH&gt; -Recurse -Directory | ForEach-Object { fsutil.exe file setCaseSensitiveInfo $_.FullName enable }
+</code></pre>
+<p>Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:</p>
+<pre><code>git config core.ignorecase false
+</code></pre>
+<p># Compilation for a specific CPU
+ ## MSVC
+ MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.</p>
+<p>The command for the compiler is: `/arch:<set name> (see <a href="https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170">MSVC documentation</a> for details).</p>
+<p>## GCC
+ In GCC, the <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html"><code>march</code></a> option enables compilation for a specific hardware.
+ml) option enables compilation for a specific hardware.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

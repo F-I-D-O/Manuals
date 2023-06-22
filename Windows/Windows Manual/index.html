@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>General Guides - Manuals</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Overpass%20Manual/" class="nav-link">Sources</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../QGIS/" class="nav-link">Adding layers</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../RCI%20cluster/" class="nav-link">General</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Programming/Common/" class="dropdown-item">Keymap</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/Gurobi/" class="dropdown-item">Parallel Execution</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/JSON/" class="dropdown-item">Jackson</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/Regex/" class="dropdown-item">Symbol meaning</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/SQL%20Manual/" class="dropdown-item">Literals</a>
+</li>
+                                    
+<li>
+    <a href="../../Programming/Slurm/" class="dropdown-item">Commands</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Programming/C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Java/Maven/" class="dropdown-item">Dependencies</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Web/htaccess/" class="dropdown-item">Htaccess</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">General Guides</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Powershell%20Manual/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#general-guides" class="nav-link">General Guides</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#keyboard-shortcuts" class="nav-link">Keyboard Shortcuts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#wireless-network" class="nav-link">Wireless Network</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#problem-cant-connect-to-this-network" class="nav-link">Problem: Can't connect to this network</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#connect-to-a-network-manually" class="nav-link">Connect to a Network Manually</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#various-commands-related-to-the-wifi" class="nav-link">Various Commands Related to the Wifi</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#changing-the-input-method" class="nav-link">Changing the input method</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#bluetooth" class="nav-link">Bluetooth</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#troiubleshooting" class="nav-link">Troiubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bluetooth-command-line-tools" class="nav-link">Bluetooth Command Line Tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#sugarsync" class="nav-link">Sugarsync</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#solving-sync-problems" class="nav-link">Solving sync problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#useful-commands" class="nav-link">Useful Commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get-motherboard-info" class="nav-link">Get Motherboard Info</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#copy-multiple-filesdirs" class="nav-link">Copy multiple files/dirs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#windows-11" class="nav-link">Windows 11</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#windows-10" class="nav-link">Windows 10</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#diskpart" class="nav-link">Diskpart</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#find-out-wheteher-a-disk-is-mbr-or-gpt" class="nav-link">Find out wheteher a disk is MBR or GPT</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#open-command-promp-from-the-windows-10-usb" class="nav-link">Open Command Promp from the Windows 10 USB</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#firewall" class="nav-link">Firewall</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generate-firewall-logs" class="nav-link">Generate firewall logs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ssh" class="nav-link">SSH</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#kitty" class="nav-link">KiTTY</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#problems" class="nav-link">Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#folder-sharing-problems" class="nav-link">Folder Sharing Problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pc-wakes-up-or-cannot-enter-sleep" class="nav-link">PC wakes up or cannot enter sleep</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#camera-problem" class="nav-link">Camera problem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#phone-app-cannot-see-the-connected-cell-phone" class="nav-link">Phone app cannot see the connected cell phone</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#vmmem-process-uses-a-lot-of-cpu" class="nav-link">vmmem process uses a lot of CPU</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="general-guides">General Guides</h1>
+<p>For PowerShell solutions/guides, check the <a href="https://drive.google.com/file/d/1yCSdzN_KVykt2CH-3USMVmTU2djAtfN9/view?usp=sharing">PoweShell manual</a></p>
+<h1 id="keyboard-shortcuts">Keyboard Shortcuts</h1>
+<ul>
+<li><code>Alt</code> + <code>Shift</code>: change input language</li>
+<li><code>Win</code> + <code>Space</code>: change keyboard input method</li>
+</ul>
+<h1 id="wireless-network">Wireless Network</h1>
+<h2 id="problem-cant-connect-to-this-network">Problem: Can't connect to this network</h2>
+<p>Solution: Forget the connection and connect to the network manually</p>
+<h2 id="connect-to-a-network-manually">Connect to a Network Manually</h2>
+<ol>
+<li><code>Control Panel</code> -&gt; <code>Network and Internet</code> -&gt; <code>Network and Sharing Center</code></li>
+<li><code>Set up a new connection or network</code></li>
+<li><code>Manually connect to a wireless network</code></li>
+<li>Fill the credentials:<ul>
+<li>Network name: SSID</li>
+<li>Security type: dpends, try WPA2 personal</li>
+<li>Security key: password</li>
+</ul>
+</li>
+<li>Click next</li>
+<li>Close the dialog </li>
+<li>Click the wifi icon in the taskbar and connect to the network</li>
+</ol>
+<p>There are various usefull comands. For most of the commands, you need to open PowerShell as admin.</p>
+<h2 id="various-commands-related-to-the-wifi">Various Commands Related to the Wifi</h2>
+<h3 id="show-all-network-profiles">Show All Network Profiles</h3>
+<p>This command show network configurations stored on the device.</p>
+<pre><code>netsh wlan show profile
+</code></pre>
+<h3 id="various-wifi-reports-in-html">Various Wifi Reports in HTML</h3>
+<pre><code>netsh wlan show wlanreport
+</code></pre>
+<h1 id="changing-the-input-method">Changing the input method</h1>
+<p>It is possible to let the system have a different input method for each app. It is not possible however, to remember the input method (after app/OS restart).</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="nothing-happens-after-clicking-on-the-input-method-in-the-taskbar-windows-10">Nothing happens after clicking on the input method in the taskbar (windows 10)</h3>
+<p>restrat the computer :)</p>
+<h1 id="bluetooth">Bluetooth</h1>
+<h2 id="troiubleshooting">Troiubleshooting</h2>
+<h3 id="cannot-connect-to-the-device">Cannot connect to the device</h3>
+<ol>
+<li>Try to remove the device and pair it with the PC again</li>
+<li>If it does not help, proceeed to the next section (even if the pairing is successfull)</li>
+</ol>
+<h3 id="cannot-pair-with-the-device">Cannot pair with the device</h3>
+<p>Turn off the device and unplug it from the electricity/remove batteries. Then plug it back after ~10 seconds, power it of, and try to pair with it again.</p>
+<h2 id="bluetooth-command-line-tools">Bluetooth Command Line Tools</h2>
+<p>https://bluetoothinstaller.com/bluetooth-command-line-tools</p>
+<p>Bluetooth Command Line Tools is a set off tools that enables command line interaction with blootooth services. Basic usage:
+- discover and list available devices: <code>btdiscovery -s</code></p>
+<h1 id="sugarsync">Sugarsync</h1>
+<p>Quick orientation in the desktop app:
+- for file changes, check left menu -&gt; <code>Activity</code>
+- for deleted files, check left menu -&gt; <code>Deleted Items</code></p>
+<h2 id="solving-sync-problems">Solving sync problems</h2>
+<ol>
+<li>check if the file is updated in cloud using web browser</li>
+<li>if not, check the activity log on the computer with the updated file</li>
+<li>if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.</li>
+</ol>
+<h1 id="useful-commands">Useful Commands</h1>
+<h2 id="get-motherboard-info">Get Motherboard Info</h2>
+<pre><code>wmic baseboard get product,Manufacturer,version,serialnumber
+</code></pre>
+<h2 id="copy-multiple-filesdirs">Copy multiple files/dirs</h2>
+<p><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy"><code>robocopy</code></a> is the best command for that. Usefull params:
+- <code>/e</code>: Copy subdirectories, including empty ones
+- <code>/b</code>: Copy in the backup mode, so that even files with a different owner can be copied
+- <code>/xc</code>: Excludes changed files.
+- <code>/xn</code>: Excludes newer files.
+- <code>/xo</code>: Excludes older files.
+- <code>/r:&lt;n&gt;</code>: Specifies the number of retries on failed copies. The default value of <em>n</em> is 1,000,000 (one million retries).
+- <code>/w:&lt;n&gt;</code>: Specifies the wait time between retries, in seconds. The default value of <em>n</em> is 30 (wait time 30 seconds).</p>
+<h1 id="installation">Installation</h1>
+<h2 id="windows-11">Windows 11</h2>
+<p>Windows 11 can be installed only as an update of Windows 10.</p>
+<h2 id="windows-10">Windows 10</h2>
+<p>Can be installed from bootable USB created by a tool downloaded from the official Miccosoft website. Single image for all Windows versions, a particular version is choosen based on the license key. Steps:
+1. Download the install tool from Microsoft
+2. Create a bootable USB
+3. Start the installation
+4. Fill in the licence key</p>
+<h3 id="we-couldnt-create-a-partition-or-locate-an-existing-one">we couldn’t create a partition or locate an existing one</h3>
+<p>Ensure that the boot priority of the drive where the Windows should be installed is right behind the installation USB priority.</p>
+<h1 id="diskpart">Diskpart</h1>
+<p>Diskpart is a useful command line tool for work with diska, partitions, etc.</p>
+<h2 id="find-out-wheteher-a-disk-is-mbr-or-gpt">Find out wheteher a disk is MBR or GPT</h2>
+<h1 id="open-command-promp-from-the-windows-10-usb">Open Command Promp from the Windows 10 USB</h1>
+<ol>
+<li>Insert the USB stick</li>
+<li>Wait till the first installation screen</li>
+<li><code>shift</code> + <code>F10</code></li>
+</ol>
+<h1 id="firewall">Firewall</h1>
+<h2 id="generate-firewall-logs">Generate firewall logs</h2>
+<ol>
+<li>Go to Windows firewall and select properties on the right</li>
+<li>At the top, choose the profile corresponding to the current network profile</li>
+<li>In the logging section, click to customizze</li>
+<li>set both DROP and ACCEPT to yes</li>
+</ol>
+<p>Do not forgot to turn of the logging after the investigation!</p>
+<h1 id="ssh">SSH</h1>
+<p>For ssh, we can use the standard <code>ssh</code> commannd available in PowerShell (check Linux manual for more info).</p>
+<p>However, for more features, we can use more sophisticated programs
+- <a href="http://www.9bis.net/kitty/index.html#!pages/Portability.md">KiTTY</a> for credentials storage, automatic reconection, etc.
+- [WinSCP] for file manipulation</p>
+<h2 id="kitty">KiTTY</h2>
+<p>It is best to use the portable version, so that nothing is stored in the Windows registry. Configurtation:
+- <a href="">copy the PuTTY credentials</a>: <code>.\kitty_portable-0.76.1.3.exe -convert-dir</code>
+- auto reconnect: <code>Connection</code> -&gt; <code>auto reconnect on connection failure</code> and <code>auto reconnect on system wakeup</code></p>
+<h1 id="problems">Problems</h1>
+<h2 id="folder-sharing-problems">Folder Sharing Problems</h2>
+<p>Note that updated <strong>Windows 10 disabled anonymous sharing</strong>, so password protected sharing has to be turned on. </p>
+<p><strong>To login, use the credentials for the computer with the shared folder</strong>. </p>
+<p>Below is a list of possible problems, together with solutions.</p>
+<h3 id="the-user-name-or-password-is-incorrect">The user name or password is incorrect</h3>
+<ol>
+<li>Check whether the computer can be seen in the network. If not, resolve this issue first.<ul>
+<li>quick check by running <code>net view &lt;IP address&gt;</code></li>
+</ul>
+</li>
+<li>Check that you are using the right username. You need to <strong>use the username and password of the computer you are connecting to</strong>.<ul>
+<li>Check that the user name is correct by running <code>net user</code> on the target computer</li>
+<li>Check that the folder is shared with you in: right click on the folder -&gt; <code>Properties</code> -&gt; <code>Sharing</code> -&gt; <code>Advanced Sharing...</code> -&gt; <code>Permisions</code>. Note that your full name can be there instead of your username, which is OK.</li>
+</ul>
+</li>
+<li>Check that you are using the right password. You have to use the password associated with your microsoft account. Note that <strong>it can differ from the password (PIN) you are using to log in to the computer!</strong></li>
+<li>check it on the command line: <code>net use * \\&lt;IP address&gt;\&lt;drive letter&gt;$ /use:&lt;username&gt; &lt;password&gt;</code></li>
+</ol>
+<h3 id="folder-right-and-ownership-cannot-be-read">Folder right and ownership cannot be read</h3>
+<p>Try to clear the windows filecache (CCcleaner or restart)</p>
+<h3 id="computer-does-not-see-itself-in-network-section-in-file-explorer">Computer does not see itself in Network section in File Explorer</h3>
+<p>Solution to this problem is to restart the service called <em>Function Discovery Resource Publication</em>. Either restart it in Computer Management -&gt; Services, or by:</p>
+<pre><code>net stop FDResPub
+net start FDResPub
+</code></pre>
+<h2 id="pc-wakes-up-or-cannot-enter-sleep">PC wakes up or cannot enter sleep</h2>
+<h3 id="1-find-the-source">1 Find the source</h3>
+<p>Using the Event viwer
+1. open the event viewer
+2. go to <code>windows logs</code> -&gt; <code>system</code>
+3. In case of wake up
+    1. inspect the logs when the wake up happened and search for the Information log with the message <em>"The system has returned from a low power state."</em>
+    2. There is a wake up source in the end of the log message. If the soure is Unknown go to the next section
+4. In case of not entering sleep
+    1. Search for the any <em>kernel power</em> event 
+    2. If there is an event stating: <em>The system is entering connected standby</em>, it means that the modern fake sleep is present in the system, replacing the real sleep mode. </p>
+<p>Using command line (admin):
+ 1. Try <code>powercfg -lastwake</code>
+ 2. If the results are not know, try to call <code>powercfg -devicequery wake_armed</code> to get the list of devices that can wake the computer</p>
+<h3 id="2-solve-the-problem">2 Solve the problem</h3>
+<h4 id="device-waken-up-by-network-adapter">Device waken up by network adapter</h4>
+<ol>
+<li>Open device manager and search for the specific network adapter </li>
+<li>right click -&gt; <code>Properties</code> -&gt; <code>Power Management</code></li>
+<li>Check <code>Only allow a magic packet to wake up the computer</code> </li>
+</ol>
+<h4 id="the-real-sleep-mode-is-not-available-on-the-system">The real sleep mode is not available on the system</h4>
+<p>If this is the case, use the hibernate mode instead. To add it to the start menu:
+1. go to <code>Control panel</code> -&gt; <code>Hardware and sound</code> -&gt; <code>Power options</code>
+2. click on the left panel to <code>Choose what the power buttons does</code>
+3. click on <code>Change settings that are currently unavailable</code>
+4. check the <code>hibernate</code> checkbox below</p>
+<h2 id="camera-problem">Camera problem</h2>
+<p>Symptoms: the screen is blank, black, single color, in all apps and there are no problems reported in device manager
+Cause: it can be caused by some external cameras (now disconnected) that are still selected in the apps using the camera. Go 
+Solution: Go to the app setting and select the correct camera</p>
+<h2 id="phone-app-cannot-see-the-connected-cell-phone">Phone app cannot see the connected cell phone</h2>
+<p>It can be due to the fucked up Windows N edition. Just install the normal edition.</p>
+<h2 id="vmmem-process-uses-a-lot-of-cpu"><code>vmmem</code> process uses a lot of CPU</h2>
+<p>This process represents all virtual systems. One cultprit is therefore WSL. Try to shutdown the WSL using </p>
+<pre><code>wsl --shutdown
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
