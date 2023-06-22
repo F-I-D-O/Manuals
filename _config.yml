@@ -16,11 +16,16 @@ kramdown:
 
 plugins:
 - jekyll-include-cache
+- jekyll-optional-front-matter
 
-defaults:
-  - scope:
-      path: manuals
-      type: pages
-    values:
-      toc: true
-      author_profile: true
+collections:
+  manuals:
+    output: true
+
+# defaults:
+#   - scope:
+#       path: manuals
+#       type: pages
+#     values:
+#       toc: true
+#       author_profile: true

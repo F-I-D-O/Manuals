@@ -1,3 +1,10 @@
+---
+title: "Installation"
+permalink: /docs/installation/
+excerpt: "Instructions for installing the theme for new and existing Jekyll based sites."
+last_modified_at: 2019-08-20T21:36:18-04:00
+toc: true
+---
 
 # Strings
 Classical string literals has to be enclosed in quotes (`"my string"`). They cannot contain some characters (newline, `"`). The backslash (`\`) character is reserved for Java escape sequences  and need to be ecaped as `\\`.
