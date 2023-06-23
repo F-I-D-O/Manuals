@@ -8,11 +8,12 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Commands - Manuals</title>
+        <title>Slurm - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../extra.css" rel="stylesheet">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../js/bootstrap.min.js" defer></script>
@@ -33,65 +34,9 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Overpass%20Manual/" class="nav-link">Sources</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../QGIS/" class="nav-link">Adding layers</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../RCI%20cluster/" class="nav-link">General</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../Common/" class="dropdown-item">Keymap</a>
-</li>
-                                    
-<li>
-    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
-</li>
-                                    
-<li>
-    <a href="../Gurobi/" class="dropdown-item">Parallel Execution</a>
-</li>
-                                    
-<li>
-    <a href="../JSON/" class="dropdown-item">Jackson</a>
-</li>
-                                    
-<li>
-    <a href="../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
-</li>
-                                    
-<li>
-    <a href="../Regex/" class="dropdown-item">Symbol meaning</a>
-</li>
-                                    
-<li>
-    <a href="../SQL%20Manual/" class="dropdown-item">Literals</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active">Commands</a>
-</li>
                                     
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
@@ -112,19 +57,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+    <a href="../Java/Debugging%20Java/" class="dropdown-item">Debugging Java</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java Workflow</a>
 </li>
             
 <li>
-    <a href="../Java/Maven/" class="dropdown-item">Dependencies</a>
+    <a href="../Java/Maven/" class="dropdown-item">Maven</a>
 </li>
     </ul>
   </li>
@@ -138,7 +83,7 @@
 </li>
             
 <li>
-    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
 </li>
             
 <li>
@@ -150,11 +95,11 @@
 </li>
             
 <li>
-    <a href="../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+    <a href="../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
 </li>
             
 <li>
-    <a href="../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+    <a href="../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
 </li>
     </ul>
   </li>
@@ -164,18 +109,67 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+    <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
 <li>
     <a href="../Web/JavaScript/" class="dropdown-item">JavaScript</a>
 </li>
-            
-<li>
-    <a href="../Web/htaccess/" class="dropdown-item">Htaccess</a>
-</li>
     </ul>
   </li>
+                                    
+<li>
+    <a href="../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+                                    
+<li>
+    <a href="../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+                                    
+<li>
+    <a href="../RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+                                    
+<li>
+    <a href="../Regex/" class="dropdown-item">Regex</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Slurm</a>
+</li>
+                                    
+<li>
+    <a href="../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -183,7 +177,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -192,13 +186,22 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
 <li>
-    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">index</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                         </ul>
 
@@ -209,12 +212,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../SQL%20Manual/" class="nav-link">
+                                <a rel="prev" href="../Regex/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../C%2B%2B/C%2B%2B%20Workflow/" class="nav-link">
+                                <a rel="next" href="../SQL%20Manual/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -261,13 +264,13 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="commands">Commands</h1>
-<h2 id="srun"><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a></h2>
+<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
+<h2 id="srun"><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a><a class="headerlink" href="#srun" title="Permanent link">&para;</a></h2>
 <p>Run the task in the current shell in blocking mode, i.e., the console will be blocked till the task finishes. This command is only useful if we expect that the resources will be available immediatelly and the task will finish quickly. Otherwise, we should use <code>sbatch</code>.</p>
 <p>Params:
 - <code>--pty</code> runs the in terminal mode. Output and error streams are closed for everything except the first task.
 - <code>-i</code> Input setting. If followed by no param, it indicates that the input stream is closed.</p>
-<h2 id="sbatch"><a href="https://slurm.schedmd.com/sbatch.html">sbatch</a></h2>
+<h2 id="sbatch"><a href="https://slurm.schedmd.com/sbatch.html">sbatch</a><a class="headerlink" href="#sbatch" title="Permanent link">&para;</a></h2>
 <p>Request the execution of a task, with the required resources specified as <code>sbatch</code> parameters. The plain call with all resources defaulted is:</p>
 <pre><code class="language-bash">sbatch &lt;bash script&gt;
 </code></pre>
@@ -282,13 +285,14 @@
     - default: partition time limit
 - <code>-p</code>, <code>--partition=</code>: partition name
 - <code>-o</code>, <code>--output=</code>: job's output file name. The default name is <code>slurm-&lt;JOB ID&gt;.out</code></p>
-<h2 id="squeue"><a href="https://slurm.schedmd.com/squeue.html">squeue</a></h2>
+<h2 id="squeue"><a href="https://slurm.schedmd.com/squeue.html">squeue</a><a class="headerlink" href="#squeue" title="Permanent link">&para;</a></h2>
 <ul>
+<li><code>--me</code> filter just my jobs</li>
 <li><code>-u &lt;username&gt;</code> filter just a specific user</li>
 <li><code>--start</code> print the expected start time and the nodes planed to run the task</li>
 <li><code>-w --nodelist</code> filter jobs running (but not planned) on specific nodes. The format for nodelist is <code>&lt;name&gt;[&lt;range&gt;]</code>, e.g., <code>n[05-06]</code>.</li>
 </ul>
-<h2 id="sinfo"><a href="https://slurm.schedmd.com/sinfo.html">sinfo</a></h2>
+<h2 id="sinfo"><a href="https://slurm.schedmd.com/sinfo.html">sinfo</a><a class="headerlink" href="#sinfo" title="Permanent link">&para;</a></h2>
 <p>Prints information about the computer cluster.</p></div>
             </div>
         </div>

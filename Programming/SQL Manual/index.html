@@ -8,11 +8,12 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Literals - Manuals</title>
+        <title>SQL Manual - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../extra.css" rel="stylesheet">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../js/bootstrap.min.js" defer></script>
@@ -33,65 +34,9 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Overpass%20Manual/" class="nav-link">Sources</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../QGIS/" class="nav-link">Adding layers</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../RCI%20cluster/" class="nav-link">General</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../Common/" class="dropdown-item">Keymap</a>
-</li>
-                                    
-<li>
-    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
-</li>
-                                    
-<li>
-    <a href="../Gurobi/" class="dropdown-item">Parallel Execution</a>
-</li>
-                                    
-<li>
-    <a href="../JSON/" class="dropdown-item">Jackson</a>
-</li>
-                                    
-<li>
-    <a href="../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
-</li>
-                                    
-<li>
-    <a href="../Regex/" class="dropdown-item">Symbol meaning</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active">Literals</a>
-</li>
-                                    
-<li>
-    <a href="../Slurm/" class="dropdown-item">Commands</a>
-</li>
                                     
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
@@ -112,19 +57,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+    <a href="../Java/Debugging%20Java/" class="dropdown-item">Debugging Java</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java Workflow</a>
 </li>
             
 <li>
-    <a href="../Java/Maven/" class="dropdown-item">Dependencies</a>
+    <a href="../Java/Maven/" class="dropdown-item">Maven</a>
 </li>
     </ul>
   </li>
@@ -138,7 +83,7 @@
 </li>
             
 <li>
-    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
 </li>
             
 <li>
@@ -150,11 +95,11 @@
 </li>
             
 <li>
-    <a href="../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+    <a href="../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
 </li>
             
 <li>
-    <a href="../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+    <a href="../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
 </li>
     </ul>
   </li>
@@ -164,18 +109,67 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+    <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
 <li>
     <a href="../Web/JavaScript/" class="dropdown-item">JavaScript</a>
 </li>
-            
-<li>
-    <a href="../Web/htaccess/" class="dropdown-item">Htaccess</a>
-</li>
     </ul>
   </li>
+                                    
+<li>
+    <a href="../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+                                    
+<li>
+    <a href="../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+                                    
+<li>
+    <a href="../RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+                                    
+<li>
+    <a href="../Regex/" class="dropdown-item">Regex</a>
+</li>
+                                    
+<li>
+    <a href="../Slurm/" class="dropdown-item">Slurm</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">SQL Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -183,7 +177,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -192,13 +186,22 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
 <li>
-    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">index</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                         </ul>
 
@@ -209,12 +212,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Regex/" class="nav-link">
+                                <a rel="prev" href="../Slurm/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../Slurm/" class="nav-link">
+                                <a rel="next" href="../../LaTeX/Latex%20manual/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -254,6 +257,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#count-selecting-rows" class="nav-link">Count selecting rows</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#count-distinct" class="nav-link">Count distinct</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#select-from-another-column-if-the-specified-column-is-null" class="nav-link">Select from another column if the specified column is NULL</a>
@@ -283,6 +290,18 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#join-only-one-row" class="nav-link">Join Only One Row</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#joining-a-specific-row" class="nav-link">Joining a specific row</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#join-random-row" class="nav-link">Join random row</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#joining-any-row-find-active-nodes" class="nav-link">Joining any row find active nodes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#getting-all-combinations-of-rows" class="nav-link">Getting All Combinations of Rows</a>
@@ -303,6 +322,10 @@
             <li class="nav-item" data-level="1"><a href="#group-by" class="nav-link">GROUP BY</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#using-aggregate-functions-for-the-whole-result-set-while-using-group-by" class="nav-link">Using aggregate functions for the whole result set while using GROUP BY</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#get-any-row-from-each-group" class="nav-link">Get any row from each group</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -376,6 +399,10 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#show-table-indices" class="nav-link">Show Table Indices</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#show-indices-from-all-tables" class="nav-link">Show Indices From All Tables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -446,14 +473,14 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="literals">Literals</h1>
+<h1 id="literals">Literals<a class="headerlink" href="#literals" title="Permanent link">&para;</a></h1>
 <p>In SQL, there are three basic types of literals:
 - <strong>numeric</strong>: <code>1</code>, <code>1.2</code>, <code>1.2e3</code>
 - <strong>string</strong>: <code>'string'</code>, <code>"string"</code>
 - <strong>boolean</strong>: <code>true</code>, <code>false</code></p>
 <p>When we need a constant value for other types, we usually use either a constructor function or a specifically formatted string literal.</p>
 <p><strong>String literals can also span multiple lines</strong>, we do not need any operator to split the line (unlike in Python and despite the JetBrains IDEs adds a string concatenation operator automatically on newline).</p>
-<h1 id="with">WITH</h1>
+<h1 id="with">WITH<a class="headerlink" href="#with" title="Permanent link">&para;</a></h1>
 <p>Statement for defining variables pointing to temporary data, that can be used in the related <code>SELECT</code> statement. Usage:</p>
 <pre><code class="language-sql">WITH &lt;var&gt; 
 AS (&lt;sql that assigns data to var&gt;) 
@@ -465,12 +492,12 @@ AS (&lt;sql that assigns data to var&gt;)
     &lt;var 2&gt; AS (&lt;sql that assigns data to var 2&gt;)
 &lt;sql that use the variables&gt;
 </code></pre>
-<h1 id="select">SELECT</h1>
+<h1 id="select">SELECT<a class="headerlink" href="#select" title="Permanent link">&para;</a></h1>
 <p>Most common SQL statement, syntax:</p>
 <pre><code class="language-SQL">SELECT &lt;EXPRESSION&gt; [AS &lt;ALIAS&gt;][, &lt;EXPRESSION 2&gt; [AS &lt;ALIAS 2&gt; ...]]
 </code></pre>
 <p>The most common expression is just a column name.</p>
-<h2 id="selecting-row-number">Selecting row number</h2>
+<h2 id="selecting-row-number">Selecting row number<a class="headerlink" href="#selecting-row-number" title="Permanent link">&para;</a></h2>
 <p>We can select row numbers using the function <code>ROW_SELECT()</code> in the <code>SELECT</code> statement:</p>
 <pre><code class="language-SQL">SELECT 
     ...
@@ -478,46 +505,46 @@ AS (&lt;sql that assigns data to var&gt;)
     ...
 </code></pre>
 <p>Inside the <code>OVER</code> statement, we can specify the order of the row numbering. Note however, that this does not order the result, for that, we use the <code>ORDER BY</code> statement. If we want the rown numbering to correspond with the row order in the result, we can left the <code>OVER</code> statement empty.</p>
-<h2 id="count-selecting-rows">Count selecting rows</h2>
+<h2 id="count-selecting-rows">Count selecting rows<a class="headerlink" href="#count-selecting-rows" title="Permanent link">&para;</a></h2>
 <p>The <code>count()</code> function can be used to count the selection. The standard syntax is:</p>
 <pre><code class="language-sql">SELECT count(1) FROM ...
 </code></pre>
-<h3 id="count-distinct">Count distinct</h3>
+<h3 id="count-distinct">Count distinct<a class="headerlink" href="#count-distinct" title="Permanent link">&para;</a></h3>
 <p>To count distinct values in a selection we can use:</p>
 <pre><code class="language-sql">SELECT count(DISTINCT &lt;column name&gt;) FROM...
 </code></pre>
-<h2 id="select-from-another-column-if-the-specified-column-is-null">Select from another column if the specified column is NULL</h2>
+<h2 id="select-from-another-column-if-the-specified-column-is-null">Select from another column if the specified column is NULL<a class="headerlink" href="#select-from-another-column-if-the-specified-column-is-null" title="Permanent link">&para;</a></h2>
 <p>We can use a replacement column using the <code>coalesce</code> function:</p>
 <pre><code class="language-sql">SELECT coalesce (&lt;primary column&gt;, &lt;secondary column&gt;)
 </code></pre>
 <p>The secondary column value will be used if the primary column value in the row is <code>NULL</code>.</p>
-<h2 id="union"><code>UNION</code></h2>
+<h2 id="union"><code>UNION</code><a class="headerlink" href="#union" title="Permanent link">&para;</a></h2>
 <p><code>UNION</code> and <code>UNION ALL</code> are important keywords that enables to merge query results verticaly, i.e., appending rows of one query to the results set of another.</p>
 <p>The difference between them is that <code>UNION</code> discards duplicate rows, while <code>UNION ALL</code> keeps them</p>
 <p>The <code>UNUION</code> statement appends one <code>SELECT</code> statement to another, but some statements that appears to be part of the <code>SELECT</code> needs to stay outside (i.e., be specified just once for the whole union), namely <code>ORDER BY</code>, and <code>LIMIT</code>. In contrast, the <code>GROUP BY</code> and <code>HAVING</code> statement stays inside each individual select.</p>
-<h1 id="join">JOIN</h1>
+<h1 id="join">JOIN<a class="headerlink" href="#join" title="Permanent link">&para;</a></h1>
 <p>Classical syntax:</p>
 <pre><code class="language-SQL">JOIN &lt;table name&gt; [[AS] &lt;ALIAS&gt;] ON &lt;CONDITION&gt;
 </code></pre>
 <p>The alias is obligatory if there are duplicate names (e.g., we are joining one table twice)</p>
-<h2 id="types">Types</h2>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>INNER</code> (default): when there is nothing to join, the row is discarded</li>
 <li><code>[LEFT/RIGHT/FULL] OUTER</code>: when there is nothing to join, the missing values are set to null</li>
 <li><code>CROSS</code>: creates cartesian product between tables</li>
 </ul>
-<h2 id="outer-join">OUTER JOIN</h2>
+<h2 id="outer-join">OUTER JOIN<a class="headerlink" href="#outer-join" title="Permanent link">&para;</a></h2>
 <p>The OUTER JOIN has three subtypes
 - <code>LEFT</code>: joins right table to left, fills the missing rows on right with null
 - <code>RIGHT</code>: joins left to right, fills the missing rows on left with null  <br />
 - <code>FULL</code>: both <code>LEFT</code> and <code>RIGHT</code> <code>JOIN</code> is performend</p>
-<h2 id="properties">Properties</h2>
+<h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <ul>
 <li>When there are multiple matching rows, all of them are matched (i.e., it creates duplicit rows)</li>
 <li>If you want to filter the tables <em>before</em> join, you need to specify the condition inside <code>ON</code> caluse</li>
 </ul>
-<h2 id="join-only-one-row">Join Only One Row</h2>
-<h3 id="joining-a-specific-row">Joining a specific row</h3>
+<h2 id="join-only-one-row">Join Only One Row<a class="headerlink" href="#join-only-one-row" title="Permanent link">&para;</a></h2>
+<h3 id="joining-a-specific-row">Joining a specific row<a class="headerlink" href="#joining-a-specific-row" title="Permanent link">&para;</a></h3>
 <p>Sometimes, we want to join only one row from many fulfilling some condition. One way to do that is to use a subquery:</p>
 <pre><code class="language-sql">SELECT * FROM a
 JOIN (
@@ -543,7 +570,7 @@ JOIN LATERAL (
     LIMIT 1
 )
 </code></pre>
-<h3 id="join-random-row">Join random row</h3>
+<h3 id="join-random-row">Join random row<a class="headerlink" href="#join-random-row" title="Permanent link">&para;</a></h3>
 <p>To join a random row, we can use the <code>RANDOM</code> function in ordering, e.g.:</p>
 <pre><code class="language-sql">SELECT * FROM a
 JOIN (
@@ -557,7 +584,7 @@ JOIN LATERAL(
     SELECT * FROM b WHERE a.column_in_a IS NOT NULL ORDER BY RANDOM() LIMIT 1
 )
 </code></pre>
-<h3 id="joining-any-row-find-active-nodes">Joining any row find active nodes</h3>
+<h3 id="joining-any-row-find-active-nodes">Joining any row find active nodes<a class="headerlink" href="#joining-any-row-find-active-nodes" title="Permanent link">&para;</a></h3>
 <p>Sometimes, we need to join any matching row from B to find a set of active (referenced) rows in A. For example, we need to find a set of custommers with pending orders. </p>
 <p>IF the average number of matches in B is low, we proceed with normal join and then aggregate the results or use <code>DISTINCT</code>. However, sometimes, the average number of matching rows in B can be very high (e.g., finding all countries with at least one MC Donald). For those cases, the <code>LATERAL</code> join is again the solution:</p>
 <pre><code class="language-SQL">SELECT *
@@ -570,7 +597,7 @@ JOIN LATERAL(
     ) demand ON TRUE
 </code></pre>
 <p>For more information about the trade offs of this solution, check the <a href="https://stackoverflow.com/a/34715134/1827955">SO answer</a></p>
-<h2 id="getting-all-combinations-of-rows">Getting All Combinations of Rows</h2>
+<h2 id="getting-all-combinations-of-rows">Getting All Combinations of Rows<a class="headerlink" href="#getting-all-combinations-of-rows" title="Permanent link">&para;</a></h2>
 <p>This can be done using the <code>CROSS JOIN</code>, e.g.:</p>
 <pre><code class="language-sql">SELECT * FROM table_a CROSS JOIN table_b
 </code></pre>
@@ -579,13 +606,13 @@ JOIN LATERAL(
 <pre><code>SELECT * FROM table_a INNER JOIN table_b ON true
 </code></pre>
 <p>Here you replace the true value with your intended condition.</p>
-<h2 id="inverse-join">Inverse JOIN</h2>
+<h2 id="inverse-join">Inverse JOIN<a class="headerlink" href="#inverse-join" title="Permanent link">&para;</a></h2>
 <p>Sometimes, it is useful to find all rows in table A that has no match in table B. The usual approach is to use LEFT JOIN and filter out non null rows after the join:</p>
 <pre><code class="language-SQL">SELECT ... FROM tableA
     LEFT JOIN tableB
 WHERE tableB.id is NULL
 </code></pre>
-<h2 id="joining-a-table-on-multiple-options">Joining a table on multiple options</h2>
+<h2 id="joining-a-table-on-multiple-options">Joining a table on multiple options<a class="headerlink" href="#joining-a-table-on-multiple-options" title="Permanent link">&para;</a></h2>
 <p>There are situations, where we want to join a single table on multiple possible matches. For example, we want to match all people having birthday or name day the same day as some promotion is happanning. The foollowing query is a straighrorward solution:</p>
 <pre><code class="language-SQL">SELECT *
 FROM promo
@@ -597,35 +624,37 @@ FROM promo
     JOIN people ON promo.date IN(people.birthaday, people.name_day)
 </code></pre>
 <p>Nevertheless, this query can still lead to problems, despite being more compact. When we use any complex condition while joining tables, we risk poor performance. In general, it is better to use just simple column-to-column matches, even when there are more joins as a result. If you have performance problems, consult the "Replacing <code>OR</code>" section in the "Performance Optimization" chapter.</p>
-<h1 id="group-by">GROUP BY</h1>
+<h1 id="group-by">GROUP BY<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikipedia.org/wiki/Group_by_(SQL)">wiki</a></p>
 <p><code>GROUP BY</code> is used to aggregate data. Usual syntax:</p>
 <pre><code class="language-SQL">GROUP BY &lt;LIST OF COLUMNS&gt;
 </code></pre>
 <p>Note that we need to use some aggreagte function for all columns in the <code>SELECT</code> clause that are not present in the <code>GROUP BY</code> list. On the other hand, we can use columns not present in the <code>SELECT</code> in the <code>GROUP BY</code> statement.</p>
-<h2 id="using-aggregate-functions-for-the-whole-result-set-while-using-group-by">Using aggregate functions for the whole result set while using <code>GROUP BY</code></h2>
+<h2 id="using-aggregate-functions-for-the-whole-result-set-while-using-group-by">Using aggregate functions for the whole result set while using <code>GROUP BY</code><a class="headerlink" href="#using-aggregate-functions-for-the-whole-result-set-while-using-group-by" title="Permanent link">&para;</a></h2>
 <p>If a query contains a <code>GROUP BY</code> statement, all aggregate functions (e.g., <code>count</code>, <code>avg</code>) are applied to groups, i.e., for each row of the result set. If we need to apply an aggregate function to the whole result set while using <code>GROUP BY</code>, we need to specify it using the <code>OVER</code> statement:</p>
 <pre><code class="language-SQL">SELECT count(1) OVER () as result_count
 ...
 </code></pre>
 <p>This will add a coulumn with a total count to each row of the result. If we do not need the actual groups, but only the distinct count, we can use a <code>LIMIT</code> statement.</p>
-<h1 id="window-functions">Window functions</h1>
+<h2 id="get-any-row-from-each-group">Get any row from each group<a class="headerlink" href="#get-any-row-from-each-group" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we need a value from a non-grouped column, but we do not care which one. The reson can be, for example, that we no that the values are the same for all rows in the group. There is no dedicated aggregation for this case, but we can use some simple ones as <code>MIN</code> or <code>MAX</code>.</p>
+<h1 id="window-functions">Window functions<a class="headerlink" href="#window-functions" title="Permanent link">&para;</a></h1>
 <p>Sometimes, we would need an aggregate function that somehow use two different columns (e.g., value of col A for the row where col B is largest). For that, we cannot use the classical aggregation, but we rather have to use a <a href="https://en.wikipedia.org/wiki/Window_function_(SQL)"><em>window function</em></a>.</p>
 <p>A window function is a function that for each row returns a value computed from one or multiple rows. </p>
 <p>Syntactically, we recognize a window function by the <code>OVER</code> clause that determines the rows used as an input for the function. Functions with the same name can exist as aggregate and window functions.</p>
 <p>Window functions are evaluated after the <code>GROUP BY</code> clause and aggregate functions.</p>
-<h2 id="specifiing-the-range">Specifiing the range</h2>
+<h2 id="specifiing-the-range">Specifiing the range<a class="headerlink" href="#specifiing-the-range" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>()</code>: the whole result set</li>
 <li><code>(PARTITION BY &lt;column set&gt;)</code>: the rows with the same values for that set of columns
 We can also order the result for the selected range using <code>ORDER BY</code> inside the parantheses.</li>
 </ul>
 <p>In some SQL dialects (e.g., PostgreSQL), there are even more sophisticated ways how to specify the range for the window functions.</p>
-<h1 id="order-by">ORDER BY</h1>
+<h1 id="order-by">ORDER BY<a class="headerlink" href="#order-by" title="Permanent link">&para;</a></h1>
 <p>By default, there is no guarantee that the result will be in any particular order. To sort the result, we need to add an <code>ORDER BY</code> statement at the end of the query:</p>
 <pre><code class="language-SQL">ORDER BY &lt;LIST OF COLUMNS&gt;
 </code></pre>
-<h1 id="insert"><code>INSERT</code></h1>
+<h1 id="insert"><code>INSERT</code><a class="headerlink" href="#insert" title="Permanent link">&para;</a></h1>
 <p>Standard syntax for the <a href="https://en.wikipedia.org/wiki/Insert_(SQL)"><code>INSERT</code></a> statement is</p>
 <pre><code class="language-sql">INSERT INTO &lt;table&gt;
 (&lt;col_1&gt;, &lt;col_2&gt;,...)
@@ -636,7 +665,7 @@ VALUES (&lt;val_1&gt;, &lt;val_2&gt;,...)
 VALUES (&lt;val_1&gt;, &lt;val_2&gt;,...)
 </code></pre>
 <p>Sometimes, we need to handle the eroro cases, e.g., the case when the record already exists. The solutions for these cases are, however, database specific. </p>
-<h2 id="insert-select">INSERT SELECT</h2>
+<h2 id="insert-select">INSERT SELECT<a class="headerlink" href="#insert-select" title="Permanent link">&para;</a></h2>
 <p>If we want to duplicate the records, we can use:</p>
 <pre><code class="language-sql">INSERT INTO &lt;table&gt; 
 SELECT * FROM &lt;table&gt;  
@@ -647,7 +676,7 @@ SELECT * FROM &lt;table&gt;
 SELECT &lt;col_1&gt;, &lt;any expression&gt; FROM &lt;anything suported by select&gt;  
 [WHERE  &lt;condition&gt;]
 </code></pre>
-<h1 id="update">UPDATE</h1>
+<h1 id="update">UPDATE<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
 <p><code>UPDATE</code> query has the following structure:</p>
 <pre><code class="language-sql">UPDATE table_name
 SET column1 = value1, column2 = value2...., columnN = valueN
@@ -659,28 +688,28 @@ SET column1 = other_table.column1
 FROM other_table WHERE other_table.id = table_name.id
 </code></pre>
 <p><strong>Don't forget the <code>WHERE</code> clause</strong> here, otherwise, you are matching the whole result set returned by the <code>FROM</code> clause to each row of the table.</p>
-<h2 id="use-the-table-for-updating-itself">Use the table for updating itself</h2>
+<h2 id="use-the-table-for-updating-itself">Use the table for updating itself<a class="headerlink" href="#use-the-table-for-updating-itself" title="Permanent link">&para;</a></h2>
 <p>If we are abou to update the table using date stored in int, we need to use aliases:</p>
 <pre><code class="language-SQL">UPDATE nodes_ways new SET way_id = ways.osm_id
 FROM nodes_ways old
 JOIN ways ON old.way_id = ways.id AND old.area = ways.area
 WHERE new.way_id = old.way_id AND new.area = old.area AND new.position = old.position
 </code></pre>
-<h1 id="delete"><code>DELETE</code></h1>
+<h1 id="delete"><code>DELETE</code><a class="headerlink" href="#delete" title="Permanent link">&para;</a></h1>
 <p>To delete records from a table, we use the <a href="https://en.wikipedia.org/wiki/Delete_(SQL)"><code>DELETE</code></a> statement:</p>
 <pre><code class="language-sql">DELETE FROM &lt;table_name&gt; WHERE &lt;condition&gt;
 </code></pre>
 <p>If some data from another table are required for the selection of the records to be deleted, the syntax varies depending on the database engine. </p>
-<h1 id="explain"><code>EXPLAIN</code></h1>
+<h1 id="explain"><code>EXPLAIN</code><a class="headerlink" href="#explain" title="Permanent link">&para;</a></h1>
 <p>Sources
 - <a href="https://www.postgresql.org/docs/current/sql-explain.html">official documentation</a> 
 - <a href="https://www.postgresql.org/docs/current/using-explain.html">official cosumentation: usage</a>
 - https://docs.gitlab.com/ee/development/understanding_explain_plans.html</p>
-<h2 id="remarks">Remarks:</h2>
+<h2 id="remarks">Remarks:<a class="headerlink" href="#remarks" title="Permanent link">&para;</a></h2>
 <ul>
 <li>to show the actual run times, we need to run <code>EXPLAIN ANALYZE</code></li>
 </ul>
-<h2 id="nodes">Nodes</h2>
+<h2 id="nodes">Nodes<a class="headerlink" href="#nodes" title="Permanent link">&para;</a></h2>
 <p>Sources
 - <a href="https://gitlab.com/postgres/postgres/blob/master/src/include/nodes/plannodes.h">Plan nodes source code</a>
 - <a href="https://www.pgmustard.com/docs/explain">PG documentation with nodes described</a></p>
@@ -700,10 +729,10 @@ In first parantheses, there are expected values:
 - <code>rows</code> The real number of rows returned. </p>
 <p>The <code>Rows Removed by the Filter</code> indicates the number of rows that were filtered out.
 The <code>Buffers</code> statistic shows the number of buffers used. Each buffer consists of 8 KB of data.</p>
-<h1 id="keys">Keys</h1>
+<h1 id="keys">Keys<a class="headerlink" href="#keys" title="Permanent link">&para;</a></h1>
 <p>Keys serves as a way of identifying table rows, they are <strong>unique</strong>.
 There are many type of keys, see <a href="https://www.databasestar.com/database-keys/">databastar article</a> for the terminology overview.</p>
-<h2 id="primary-key">Primary key</h2>
+<h2 id="primary-key">Primary key<a class="headerlink" href="#primary-key" title="Permanent link">&para;</a></h2>
 <p>Most important keys in ORM are primary keys. Each table should have a single primary key. A primary key has to be non null.</p>
 <p>When choosing primary key, we can either
 - use a uniqu combination of database colums: a <em>natural key</em>
@@ -719,28 +748,28 @@ Area | Property | Natural key | Composite key | Surrogate key |
 || extra insertion time | <strong>no</strong> | A lot if there are reference tables, otherwise none | yes |
 || join performance | suboptimal due to sparse values | even more sub-optimal due to sparse values | <strong>optimal</strong></p>
 <p>From the table above, we can see that using natural keys should be considered only if rows can be identified by a single column and we have a strong confidence in that natural id, specifically in its uniquness and timelessnes. </p>
-<h2 id="non-primary-unique-keys">Non-primary (UNIQUE) keys</h2>
+<h2 id="non-primary-unique-keys">Non-primary (UNIQUE) keys<a class="headerlink" href="#non-primary-unique-keys" title="Permanent link">&para;</a></h2>
 <p>Sometimes, we need to enforse a uniqueness of a set of columns that does not compose a primary key (e.g., we use a surogate key). We can use a non primary key for that.</p>
 <p>One of the differences between primary and non-primary keys is that non-primary keys can be null, and each of the null values is considered unique.</p>
-<h1 id="indices">Indices</h1>
+<h1 id="indices">Indices<a class="headerlink" href="#indices" title="Permanent link">&para;</a></h1>
 <p>Indices are essential for speeding queries containing conditions (including conditional joins).</p>
 <p>The basic syntax for creating an index is:</p>
 <pre><code class="language-sql">CREATE INDEX &lt;index name&gt; ON &lt;table name&gt;(&lt;column name&gt;);
 </code></pre>
-<h2 id="show-table-indices">Show Table Indices</h2>
+<h2 id="show-table-indices">Show Table Indices<a class="headerlink" href="#show-table-indices" title="Permanent link">&para;</a></h2>
 <p>MySQL:</p>
 <pre><code class="language-sql">SHOW INDEX FROM &lt;tablename&gt;;
 </code></pre>
 <p>PostgreSQL</p>
 <pre><code class="language-sql">SELECT * FROM pg_indexes WHERE tablename = '&lt;tablename &gt;';
 </code></pre>
-<h3 id="show-indices-from-all-tables">Show Indices From All Tables</h3>
+<h3 id="show-indices-from-all-tables">Show Indices From All Tables<a class="headerlink" href="#show-indices-from-all-tables" title="Permanent link">&para;</a></h3>
 <p>MySQL:</p>
 <pre><code class="language-sql">SELECT DISTINCT TABLE_NAME, INDEX_NAME
 FROM INFORMATION_SCHEMA.STATISTICS
 WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 </code></pre>
-<h1 id="create-table">CREATE TABLE</h1>
+<h1 id="create-table">CREATE TABLE<a class="headerlink" href="#create-table" title="Permanent link">&para;</a></h1>
 <p>The syntax is:</p>
 <pre><code class="language-SQL">CREATE TABLE &lt;TABLE NAME&gt; (
     &lt;COLUNM 1 NAME&gt; &lt;COLUNM 1 TYPE&gt;,
@@ -750,8 +779,8 @@ WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 )
 </code></pre>
 <p>The primary key is optional, but usually, any table should have one. Each row has to have a unique primary key. An index is created automatically for the list of primary key columns.</p>
-<h1 id="alter-table">ALTER TABLE</h1>
-<h2 id="add-column-generated-from-other-columns">Add column generated from other columns</h2>
+<h1 id="alter-table">ALTER TABLE<a class="headerlink" href="#alter-table" title="Permanent link">&para;</a></h1>
+<h2 id="add-column-generated-from-other-columns">Add column generated from other columns<a class="headerlink" href="#add-column-generated-from-other-columns" title="Permanent link">&para;</a></h2>
 <p>SQL:</p>
 <pre><code class="language-sql">ALTER TABLE &lt;table name&gt; ADD &lt;column name&gt; AS (&lt;generator expression&gt;);
 </code></pre>
@@ -762,23 +791,23 @@ WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 <pre><code class="language-sql">ALTER TABLE &lt;tablename&gt; ADD &lt;columnname&gt; &lt;datatype&gt; GENERATED ALWAYS AS (&lt;generator expression&gt;) STORED
 </code></pre>
 <p>The advantage of the Postgres approach is that the column is set as generated, therefore it is generated for the new rows automatically.</p>
-<h1 id="procedures-and-functions">Procedures and functions</h1>
+<h1 id="procedures-and-functions">Procedures and functions<a class="headerlink" href="#procedures-and-functions" title="Permanent link">&para;</a></h1>
 <p>In SQL there are two constructs that are able to encapsulate SQL statements to increase resusability and readability: functions and procedues. The main difference between these two is that functions are intended to be called inline from SLQ statements, while procedures cannot be used in SQL statements and instead, they are used as a wrapper of a set of SQL statement to be called repeatedly with different arguments. The extensive summary of the different capabilities of functions and procedures is on <a href="https://stackoverflow.com/questions/1179758/function-vs-stored-procedure-in-sql-server">SO</a>.</p>
-<h2 id="calling-a-procedure">Calling a procedure</h2>
+<h2 id="calling-a-procedure">Calling a procedure<a class="headerlink" href="#calling-a-procedure" title="Permanent link">&para;</a></h2>
 <p>The keyword for calling a procedure differs between database system, refer to the documentation for your system for the right keyword.</p>
-<h2 id="creating-a-procedure">Creating a procedure</h2>
+<h2 id="creating-a-procedure">Creating a procedure<a class="headerlink" href="#creating-a-procedure" title="Permanent link">&para;</a></h2>
 <p>The syntax for calling a procedure differs between database system, refer to the documentation for your system for the right syntax.</p>
-<h2 id="parameters">Parameters</h2>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <p>Procedures and functions can have parameters similar to parameters in programming languages. We can use those parameters in the body of a function/procedure equally as a column or constant.</p>
 <p>Parameters can have <strong>default values</strong>, suplied after the <code>=</code> sign. We can test whether a default argument was supplied by testing the parameter for the default value.</p>
-<h1 id="views">Views</h1>
+<h1 id="views">Views<a class="headerlink" href="#views" title="Permanent link">&para;</a></h1>
 <p>Views are basically named SQL queries stored in database. The queries are run on each view invocation, unles the view is materialized.</p>
 <p>The syntax is:</p>
 <pre><code class="language-SQL">CREATE VIEW &lt;VIEW NAME&gt; AS &lt;QUERY&gt;
 </code></pre>
-<h2 id="modifying-the-view">Modifying the view</h2>
+<h2 id="modifying-the-view">Modifying the view<a class="headerlink" href="#modifying-the-view" title="Permanent link">&para;</a></h2>
 <p>The view can be modified with <code>CREATE OR REPLACE VIEW</code>, however, <a href="https://dba.stackexchange.com/questions/586/cant-rename-columns-in-postgresql-views-with-create-or-replace">existing columns cannot be changed</a>. If you need to change existing columns, drop the view first.</p>
-<h1 id="performace-optimization">Performace Optimization</h1>
+<h1 id="performace-optimization">Performace Optimization<a class="headerlink" href="#performace-optimization" title="Permanent link">&para;</a></h1>
 <p>When the query is slow, first inspect the following checklist:
 - Do not use <code>OR</code> or <code>IN</code> for a set of columns (see replacing <code>OR</code> below).
 - Check that all column and combination of columns used in conditions (<code>WHERE</code>) are indexed.
@@ -787,7 +816,7 @@ WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 <p>If nothing from the above works, try to start with a simple query and add more complex pars to find where the problem is. </p>
 <p>If decomposing the query also does not bing light into the problem, refer to either one of the subsections below, or to the external sources.</p>
 <p>Also, note that <strong>some IDEs limits the number of returned rows automatically, which can hide serious problems</strong> and confuse you. Try to remove the limit when testing the performance this way.</p>
-<h2 id="replacing-or">Replacing <code>OR</code></h2>
+<h2 id="replacing-or">Replacing <code>OR</code><a class="headerlink" href="#replacing-or" title="Permanent link">&para;</a></h2>
 <p>We can slow down the query significantly using <code>OR</code> or <code>IN</code> statements if the set of available options is not constant (e.g., <code>IN(1, 2)</code> is okish, while <code>IN(origin, destination)</code> can have drastic performance impact).</p>
 <p>To get rid of these disjunctioncs, we can use the <code>UNION</code> statement, basically duplicating the query. The resulting query will be double in size, but much faster:</p>
 <pre><code class="language-SQL">SELECT people.id
@@ -805,7 +834,7 @@ FROM promo
     JOIN people ON promo.date = people.name_day
 GROUP BY people.id
 </code></pre>
-<h2 id="a-specific-join-makes-the-query-slow">A specific join makes the query slow</h2>
+<h2 id="a-specific-join-makes-the-query-slow">A specific join makes the query slow<a class="headerlink" href="#a-specific-join-makes-the-query-slow" title="Permanent link">&para;</a></h2>
 <p>If a single join makes the query slow, there is a great chance that the index is not used for the join. Even if the table has an index on the referenced column(s), the join can still not use it if we are joining not to the table itself but to:
 - a subquery,
 - a variable created with a <code>WITH</code> statement,
@@ -817,10 +846,10 @@ GROUP BY people.id
 1. create the required indices
 1. perform the actual query that utilizes th view/table</p>
 <p>Of course we can skip the first three steps if the materialized view is constant for all queries, which is common during the testing phase.</p>
-<h2 id="slow-delete">Slow <code>DELETE</code></h2>
+<h2 id="slow-delete">Slow <code>DELETE</code><a class="headerlink" href="#slow-delete" title="Permanent link">&para;</a></h2>
 <p>When the delete is slow, the cause can be the missing index on the child table that refers to the table we are deleting from.</p>
 <p>Other possible causes are listed in the <a href="https://stackoverflow.com/questions/10901299/delete-statement-in-sql-is-very-slow">SO answer</a>.</p>
-<h2 id="sources">Sources</h2>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
 <p><a href="https://stackoverflow.com/questions/621884/database-development-mistakes-made-by-application-developers/621891#621891">Database development mistakes made by application developers</a></p></div>
             </div>
         </div>

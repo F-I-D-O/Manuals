@@ -8,11 +8,12 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Dependencies - Manuals</title>
+        <title>Maven - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../../extra.css" rel="stylesheet">
 
         <script src="../../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../../js/bootstrap.min.js" defer></script>
@@ -33,65 +34,9 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../Overpass%20Manual/" class="nav-link">Sources</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../QGIS/" class="nav-link">Adding layers</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../RCI%20cluster/" class="nav-link">General</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Common/" class="dropdown-item">Keymap</a>
-</li>
-                                    
-<li>
-    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
-</li>
-                                    
-<li>
-    <a href="../../Gurobi/" class="dropdown-item">Parallel Execution</a>
-</li>
-                                    
-<li>
-    <a href="../../JSON/" class="dropdown-item">Jackson</a>
-</li>
-                                    
-<li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
-</li>
-                                    
-<li>
-    <a href="../../Regex/" class="dropdown-item">Symbol meaning</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">Literals</a>
-</li>
-                                    
-<li>
-    <a href="../../Slurm/" class="dropdown-item">Commands</a>
-</li>
                                     
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
@@ -112,19 +57,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Debugging%20Java/" class="dropdown-item">General rules</a>
+    <a href="../Debugging%20Java/" class="dropdown-item">Debugging Java</a>
 </li>
             
 <li>
-    <a href="../Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+    <a href="../Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
 <li>
-    <a href="../Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+    <a href="../Java%20Workflow/" class="dropdown-item">Java Workflow</a>
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Dependencies</a>
+    <a href="./" class="dropdown-item active">Maven</a>
 </li>
     </ul>
   </li>
@@ -138,7 +83,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
 </li>
             
 <li>
@@ -150,11 +95,11 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+    <a href="../../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
 </li>
             
 <li>
-    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
 </li>
     </ul>
   </li>
@@ -164,18 +109,67 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
 <li>
     <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
 </li>
-            
-<li>
-    <a href="../../Web/htaccess/" class="dropdown-item">Htaccess</a>
-</li>
     </ul>
   </li>
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Regex</a>
+</li>
+                                    
+<li>
+    <a href="../../Slurm/" class="dropdown-item">Slurm</a>
+</li>
+                                    
+<li>
+    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -183,7 +177,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -192,13 +186,22 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
 <li>
-    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">index</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                         </ul>
 
@@ -294,11 +297,11 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="dependencies">Dependencies</h1>
+<h1 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h1>
 <p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
 - check that the dependencies are on the maven central.
 - if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency</p>
-<h1 id="compilation">Compilation</h1>
+<h1 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h1>
 <p><a href="https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html">reference</a></p>
 <p>Compilation is handeled by the Maven compiler plugin. Usually, typing <code>mvn compile</code> is enough to compile the project.</p>
 <p>If you need any customization, add it to the compiler plugin configuration</p>
@@ -311,7 +314,7 @@
     &lt;/configuration&gt;
 &lt;/plugin&gt;
 </code></pre>
-<h2 id="passing-arguments-to-javac">Passing arguments to <code>javac</code></h2>
+<h2 id="passing-arguments-to-javac">Passing arguments to <code>javac</code><a class="headerlink" href="#passing-arguments-to-javac" title="Permanent link">&para;</a></h2>
 <p>A single argument can be passed using the <code>&lt;compilerArgument&gt;</code> property. For more compiler arguments, use <code>&lt;compilerArgs&gt;</code>:</p>
 <pre><code class="language-XML">&lt;compilerArgs&gt;
     &lt;arg&gt;-Xmaxerrs=1000&lt;/arg&gt;
@@ -319,9 +322,9 @@
 &lt;/compilerArgs&gt;
 
 </code></pre>
-<h1 id="tests">Tests</h1>
+<h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
 <p>Tests are usually executed with the Maven Surefire plugin using the <code>test</code> goal.</p>
-<h2 id="run-a-single-tests-file">Run a single tests file</h2>
+<h2 id="run-a-single-tests-file">Run a single tests file<a class="headerlink" href="#run-a-single-tests-file" title="Permanent link">&para;</a></h2>
 <p>To run a single test file, use:</p>
 <pre><code>mvn test -Dtest=&quot;&lt;TEST CLASS NAME&gt;&quot;
 </code></pre>
@@ -331,12 +334,12 @@
 <p>We can also use a fully qualified name, if there are more test classes with the same name:</p>
 <pre><code>mvn test -Dtest=&quot;cz.cvut.fel.aic.roadgraphtool.procedures.input.OSMFileTest&quot;
 </code></pre>
-<h2 id="run-tests-using-a-pattern">Run tests using a pattern</h2>
+<h2 id="run-tests-using-a-pattern">Run tests using a pattern<a class="headerlink" href="#run-tests-using-a-pattern" title="Permanent link">&para;</a></h2>
 <p>More test can be run with a pattern, for example:</p>
 <pre><code>mvn test -Dtest=&quot;cz.cvut.fel.aic.roadgraphtool.procedures.input.**&quot;
 </code></pre>
 <p>runs all tests within the <code>input</code> package.</p>
-<h1 id="execute-programs-from-maven">Execute Programs from Maven</h1>
+<h1 id="execute-programs-from-maven">Execute Programs from Maven<a class="headerlink" href="#execute-programs-from-maven" title="Permanent link">&para;</a></h1>
 <p>For executing programs, Maven has the exec target. Mostly, you need to exacute java programs from maven. Basic example:</p>
 <pre><code>mvn exec:java  -Dexec.mainClass=test.Main
 </code></pre>
@@ -353,14 +356,14 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;-classpath %c
 
 mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dexec.args=&quot;-classpath %classpath ${exec.mainClass}&quot;
 </code></pre>
-<h1 id="https-certificates">HTTPS certificates</h1>
+<h1 id="https-certificates">HTTPS certificates<a class="headerlink" href="#https-certificates" title="Permanent link">&para;</a></h1>
 <p>Sometimes, it can happen that maven cannot connect to a repository with this error:</p>
 <pre><code>PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 </code></pre>
 <p>This error signals that the server SSL certificate of the maven repo (when using HTTPS) is not present in the local SSL certificate keystore. This can have two reasons, to disintiguish between them, try to access the repo from your browser over https:
 - If you can access the repo from your browser, it means that the server has a valid SSL certificate, but it is not in zour local keystore (just in the browser keystore). You can solve this problem by adding the certificate to your java SSL keystore (see below).
 - if you cannot access the server from your browser, it is likely that the server does not have a valid SSL certificate, and you have to solve it on the serer side.</p>
-<h2 id="adding-a-new-ssl-certificate-to-your-keystore">Adding a new SSL certificate to your keystore</h2>
+<h2 id="adding-a-new-ssl-certificate-to-your-keystore">Adding a new SSL certificate to your keystore<a class="headerlink" href="#adding-a-new-ssl-certificate-to-your-keystore" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open the repo URL in your browser </li>
 <li>Export the certificate:<ul>
@@ -378,14 +381,14 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <p>You can check that the operation was sucessful by listing all certificates:</p>
 <pre><code>keytool -keystore &quot;&lt;PATH TO cacerts&gt;&quot; -list
 </code></pre>
-<h1 id="debugging-maven">Debugging maven</h1>
+<h1 id="debugging-maven">Debugging maven<a class="headerlink" href="#debugging-maven" title="Permanent link">&para;</a></h1>
 <p>First, try to look at the versions of related dependencies and plugins. Old versions of these can cause many problems.</p>
-<h2 id="no-tests-found-using-the-dtest-argument-of-the-test-goal">No tests found using the <code>Dtest</code> argument of the <code>test</code> goal</h2>
+<h2 id="no-tests-found-using-the-dtest-argument-of-the-test-goal">No tests found using the <code>Dtest</code> argument of the <code>test</code> goal<a class="headerlink" href="#no-tests-found-using-the-dtest-argument-of-the-test-goal" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Check the class name/path/pattern</li>
 <li>If the name works, but pattern does not, it can be caused by an old version of the surefire plugin that use a different patten syntax.</li>
 </ol>
-<h2 id="uncompilable-source-code">uncompilable  source code</h2>
+<h2 id="uncompilable-source-code">uncompilable  source code<a class="headerlink" href="#uncompilable-source-code" title="Permanent link">&para;</a></h2>
 <p>Try to clean and compile again</p></div>
             </div>
         </div>

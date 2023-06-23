@@ -8,11 +8,12 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Symbol meaning - Manuals</title>
+        <title>Regex - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../extra.css" rel="stylesheet">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
         <script src="../../js/bootstrap.min.js" defer></script>
@@ -33,65 +34,9 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Overpass%20Manual/" class="nav-link">Sources</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../QGIS/" class="nav-link">Adding layers</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../RCI%20cluster/" class="nav-link">General</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Floats</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../Common/" class="dropdown-item">Keymap</a>
-</li>
-                                    
-<li>
-    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Comments</a>
-</li>
-                                    
-<li>
-    <a href="../Gurobi/" class="dropdown-item">Parallel Execution</a>
-</li>
-                                    
-<li>
-    <a href="../JSON/" class="dropdown-item">Jackson</a>
-</li>
-                                    
-<li>
-    <a href="../PostgreSQL%20Manual/" class="dropdown-item">Data types</a>
-</li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active">Symbol meaning</a>
-</li>
-                                    
-<li>
-    <a href="../SQL%20Manual/" class="dropdown-item">Literals</a>
-</li>
-                                    
-<li>
-    <a href="../Slurm/" class="dropdown-item">Commands</a>
-</li>
                                     
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
@@ -112,19 +57,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Java/Debugging%20Java/" class="dropdown-item">General rules</a>
+    <a href="../Java/Debugging%20Java/" class="dropdown-item">Debugging Java</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Installation</a>
+    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
 <li>
-    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java developement stack</a>
+    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java Workflow</a>
 </li>
             
 <li>
-    <a href="../Java/Maven/" class="dropdown-item">Dependencies</a>
+    <a href="../Java/Maven/" class="dropdown-item">Maven</a>
 </li>
     </ul>
   </li>
@@ -138,7 +83,7 @@
 </li>
             
 <li>
-    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Creating a DataFrame</a>
+    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
 </li>
             
 <li>
@@ -150,11 +95,11 @@
 </li>
             
 <li>
-    <a href="../Python/Python%20Manual/" class="dropdown-item">Conditions and boolean context</a>
+    <a href="../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
 </li>
             
 <li>
-    <a href="../Python/Python%20Workflow/" class="dropdown-item">Dev Stack</a>
+    <a href="../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
 </li>
     </ul>
   </li>
@@ -164,18 +109,67 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Web/CSS%20Manual/" class="dropdown-item">Layout options</a>
+    <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
 <li>
     <a href="../Web/JavaScript/" class="dropdown-item">JavaScript</a>
 </li>
-            
-<li>
-    <a href="../Web/htaccess/" class="dropdown-item">Htaccess</a>
-</li>
     </ul>
   </li>
+                                    
+<li>
+    <a href="../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+                                    
+<li>
+    <a href="../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+                                    
+<li>
+    <a href="../RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Regex</a>
+</li>
+                                    
+<li>
+    <a href="../Slurm/" class="dropdown-item">Slurm</a>
+</li>
+                                    
+<li>
+    <a href="../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -183,7 +177,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Usefull Comands</a>
+    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -192,13 +186,22 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Important Aspects</a>
+    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
 <li>
-    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">General Guides</a>
+    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">index</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                         </ul>
 
@@ -209,12 +212,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../PostgreSQL%20Manual/" class="nav-link">
+                                <a rel="prev" href="../RCI%20cluster/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../SQL%20Manual/" class="nav-link">
+                                <a rel="next" href="../Slurm/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -299,7 +302,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="symbol-meaning">Symbol meaning</h1>
+<h1 id="symbol-meaning">Symbol meaning<a class="headerlink" href="#symbol-meaning" title="Permanent link">&para;</a></h1>
 <ul>
 <li><code>.</code> any character</li>
 <li><code>[xyz]</code> one of these characters   </li>
@@ -312,19 +315,19 @@
 <li><code>?!</code> negative lookahead. It is useful when we want to match a pattern, but we don't want to consume it.
 <code>?R</code> recursive pattern. </li>
 </ul>
-<h2 id="quantifiers">Quantifiers</h2>
+<h2 id="quantifiers">Quantifiers<a class="headerlink" href="#quantifiers" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>*</code>: zero or more </li>
 <li><code>+</code>: one or more</li>
 <li><code>?</code> zero or one</li>
 <li><code>{&lt;from&gt;, &lt;to&gt;}</code> between <code>from</code> and <code>to</code> times. If <code>to</code> is omitted, it means infinity. If <code>from</code> is omitted, it means zero. If there is only one number, it means exact count. If both are omitted, it means one. </li>
 </ul>
-<h2 id="anchors">Anchors</h2>
+<h2 id="anchors">Anchors<a class="headerlink" href="#anchors" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>^x</code> must start with x</li>
 <li><code>x$</code> must end with x</li>
 </ul>
-<h2 id="groups">Groups</h2>
+<h2 id="groups">Groups<a class="headerlink" href="#groups" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>()</code> capture group. We can refer to it later, either in the regex, or in the result of the match, depending on the programming language. <ul>
 <li>The nubering starts from 1, the 0 group is usually the whole match.</li>
@@ -333,39 +336,39 @@
 </li>
 <li><code>(?:)</code> non-caputing group. It is useful when we want to use the quantifiers on a group, but we don't want to capture it.</li>
 </ul>
-<h1 id="examples">Examples</h1>
-<h2 id="any-whitespace">Any whitespace</h2>
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<h2 id="any-whitespace">Any whitespace<a class="headerlink" href="#any-whitespace" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">/[\x{00a0}\s]/u
 </code></pre>
-<h2 id="non-breaking-space">Non-breaking space</h2>
+<h2 id="non-breaking-space">Non-breaking space<a class="headerlink" href="#non-breaking-space" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">((?!&amp;nbsp;)[^\s\x{00a0}])
 </code></pre>
-<h2 id="transform-google-sheet-to-latex-table">Transform Google sheet to latex table</h2>
+<h2 id="transform-google-sheet-to-latex-table">Transform Google sheet to latex table<a class="headerlink" href="#transform-google-sheet-to-latex-table" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">najít ([^\r\n]*)\r\n([^\r\n]*)\r\n([^\r\n]*)\r\n([^\r\n]*)\r\n
 nahradit \1 &amp; \2 &amp; \3 &amp; \4 \\\\\r\n
 </code></pre>
-<h2 id="csv-to-latex">CSV to Latex</h2>
+<h2 id="csv-to-latex">CSV to Latex<a class="headerlink" href="#csv-to-latex" title="Permanent link">&para;</a></h2>
 <p>Search:</p>
 <pre><code class="language-Regex"> ([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,\r\n]*)\n
 </code></pre>
 <p>Replace</p>
 <pre><code class="language-Regex"> \1 &amp; \2 &amp; \3 &amp; \4 &amp; \5 &amp; \6 &amp; \7 \\\\\r\n
 </code></pre>
-<h2 id="name-regex">Name regex</h2>
+<h2 id="name-regex">Name regex<a class="headerlink" href="#name-regex" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">([AÁBCČDEFGHIJKLMNOPQRŘSŠTUÚVWXYZŽ]{1}[aábcčdďeéěfghchiíjklmnňoópqrřsštťuúůvwxyýzžw]+ *){2,3}
 </code></pre>
-<h1 id="archive">Archive</h1>
-<h2 id="vasdomovnik">vasdomovnik</h2>
+<h1 id="archive">Archive<a class="headerlink" href="#archive" title="Permanent link">&para;</a></h1>
+<h2 id="vasdomovnik">vasdomovnik<a class="headerlink" href="#vasdomovnik" title="Permanent link">&para;</a></h2>
 <p>najít </p>
 <pre><code class="language-Regex">[0-9]+[ ]*([^\r\n]*)[\r\n]+
 </code></pre>
 <p>nahradit <code>'\1'</code>,</p>
-<h2 id="sloupce-na-pole-php">sloupce na pole php</h2>
+<h2 id="sloupce-na-pole-php">sloupce na pole php<a class="headerlink" href="#sloupce-na-pole-php" title="Permanent link">&para;</a></h2>
 <p>najít </p>
 <pre><code class="language-Regex">([^\r\n]*)([\r\n])+
 </code></pre>
 <p>nahradit <code>'\1' =&gt; ''\2,</code></p>
-<h2 id="pogamut-jen-logy-od-jednoho-bota">Pogamut - jen logy od jednoho bota</h2>
+<h2 id="pogamut-jen-logy-od-jednoho-bota">Pogamut - jen logy od jednoho bota<a class="headerlink" href="#pogamut-jen-logy-od-jednoho-bota" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">\(TeamCTF[^2][^\r\n]*\r\n 
 </code></pre>
 <p>nahradit za prázdno</p></div>
