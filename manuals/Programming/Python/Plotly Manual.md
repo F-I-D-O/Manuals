@@ -10,6 +10,16 @@ In general, it is easier to use plotly express, so we should use it if we are no
 
 
 # Plotly Express
+
+## Common Parameters For All Types of Plots
+- `data_frame`: the dataframe to use. Mandatory, first positional parameter.
+- `x`: the name of the column to use as x axis. Mandatory, second positional parameter.
+- `color`: the name of the column to use as color.
+- `facet_col`: the name of the column to use as facet column.
+- `facet_row`: the name of the column to use as facet row.
+- `color_discrete_sequence`: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.
+
+
 ## Histogram
 [documentation](https://plotly.com/python/histograms/)
 
@@ -24,6 +34,9 @@ Important parameters:
 - `nbins`: number of bins. 
 
 
+The plotly histogram is usually only good for simple cases or quick plotting. For more complex figures, it is better to generate the histogram manually (using numpy or pandas) and then plot it using the `px.bar` function.
+
+
 
 ## Bar Chart
 [documentation](https://plotly.github.io/plotly.py-docs/generated/plotly.express.bar.html)
@@ -35,6 +48,11 @@ px.bar(<dataframe>, <xcol name>, <y col name>)
 
 Important parameters:
 - `barmode`: how to combine the bars in case of multiple traces. Can be `group` (default), `stack` (default in *facet plots*), `relative` or `overlay`.
+- `bargap`: the gap between bars.
+- `bar_groupgap`: the gap between the bars from the same group (only for `barmode = group`).
+
+Unfortunately, **there is no way how to represent missing values** in the bar chart (they appear as `y = 0`).
+To mark the missing values, we can use annotations. 
 
 
 ## Automatic Subplots: Facet plots
@@ -130,16 +148,20 @@ The size and margins can be set using the `figure.update_layout` function. The s
 
 
 ## Customize axes
-For customizing the axes, we can use the `figure.update_xaxes` and `figure.update_yaxes` functions.
+For customizing the axes, we can use the `figure.update_xaxes` and `figure.update_yaxes` functions. By default, the functions will update all axes. To update only a specific axis, we can use the `row` and `col` parameters. 
+
+[axis reference](https://plotly.com/python/reference/layout/xaxis/)
+
 The most important parameters are:
 - `dtick`: the distance between the ticks
 - `tickvals`: the exact values of the ticks. This overrides the `dtick` parameter.
-- `title_text`: the title of the axis
+- `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
 
 
 
 ## Legend
 [documentation](https://plotly.com/python/legend/)
+[reference](https://plotly.com/python/reference/layout/#layout-legend)
 
 The legend can be styled using the `figure.update_layout` function. 
 The most important parameters are:
@@ -150,9 +172,49 @@ The most important parameters are:
     - `xanchor`, `yanchor`: the position of the legend box relative to the x and y coordinates
     - `title`: if string, the title of the legend (equivalent to the `legend_title_text` parameter). If dictionary, multiple legent title parameters can be set.
 
+Unfortunately, **there is no way how to customize the padding between the legend items and the legend box**. 
+
+### Hide legend
+To hide the legend, we can use the `showlegend` parameter. Example:
+```python
+fig.update_layout(showlegend=False)
+``` 
+
+
 
 ## Adding Figure Annotations
 For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. 
+
+Important parameters:
+- `x`, `y`: the x and y coordinates of the annotation
+- `text`: the text of the annotation
+- `xref`, `yref`: the coordinate system of the x and y coordinates. Can be `"paper"` or `"data"`.
+- `showarrow`: if `True`, an arrow will be added to the annotation
+- `textangle`: the angle of the text in degrees
+
+
+**By default** the annotation is meant to annotate the data. Therefore, **the `x` and `y` coordinates use the coordinate system of the data** (x and y axes). To align the annotation with respect to the whole figure, we need to set the `xref` and `yref` parameters to `"paper"`. In this case, the `x` and `y` coordinates are in the range `[0, 1]` and the origin is the bottom left corner of the figure.
+
+### Annotations in facet plots
+When using facet plots, the annotations are added to the whole figure. Therefore, the `x` and `y` coordinates are in the range `[0, 1]` and the origin is the bottom left corner of the figure. To align the annotation with respect to the subplot, we need to set the `xref` and `yref` parameters to the x and y axes of the subplot. Example:
+```python
+fig.add_annotation(x=0.5, y=0.5, text="Title", xref="x5", yref="y5", showarrow=False)
+```
+
+Unfortunately, **there is no way how to set the `xref` and `yref` parameters automatically**. Therefore, we need to compute them manually for each annotation.
+
+
+
+# Text
+[documentation](https://plotly.com/python/text-and-annotations)
+
+## Subscript and superscript
+To add a subscript or superscript to a text, we can use HTML tags. Example:
+```python
+fig.add_annotation(x=0.5, y=0.5, text="Title<sub>subscript</sub>", xref="x5", yref="y5", showarrow=False)
+```
+
+
 
 
 
@@ -165,4 +227,11 @@ fig.write_image("figure.png")
 ```
 
 The output format is determined by the extension.
+
+The margins of the figure should be set for the figure itself, not for the export.
+
+## Export hangs out 
+It can be cause by kaleido. The solution si to install an older version, specifically `0.1.0.post1`.
+
+https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4
 

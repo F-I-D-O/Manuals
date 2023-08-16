@@ -42,7 +42,10 @@ There are many string function available, including the `format` function that w
 
 
 ## Arrays
-[array functions and operators](https://www.postgresql.org/docs/8.4/functions-array.html)
+- [arrays](https://www.postgresql.org/docs/current/arrays.html)
+- [array functions and operators](https://www.postgresql.org/docs/8.4/functions-array.html)
+
+arrays are declared as `<type>[]`, e.g., `integer[]`. The type can be any type, including composite types.
 
 To compute array **length**, use `array_length(contracted_vertices, 1)` where `1` stands for the first dimension.
 
@@ -82,12 +85,50 @@ WHERE
 ```
 
 
-# Handeling  duplicates in the `INSERT` statement
+# Handeling duplicates in the `INSERT` statement
 To handle duplicates on `INSERT`, PostgreSQL provides the `ON CONFLICT` clause (see the [`INSERT`](https://www.postgresql.org/docs/current/sql-insert.html) documentation).
 
 The options are:
 - `DO NOTHING`: do nothing
 - `DO UPDATE SET <column name> = <value>`: update the column to the given value
+
+
+# Random oredering
+To order the result set randomly, we can use the `RANDOM()` function in the `ORDER BY` clause:
+```SQL 
+SELECT ...
+FROM ...
+ORDER BY RANDOM()
+```
+
+## Random ordering with a seed (Pseudo-random ordering)
+To receive a determinisic (repeatable) random ordering, we can use the `setseed` function:
+```SQL
+SELECT setseed(0.5);
+SELECT ...
+FROM ...
+ORDER BY RANDOM();
+```
+
+Note that we need two queries, one for setting the seed and one for the actual query. If we does not have an option to call arbitrary queries, we have to use `UNION`:
+```SQL
+SELECT col_1, ..., col_n FROM (
+	SELECT _, null AS col_1, ..., null AS col_n FROM setseed(0.5)
+	UNION ALL
+	SELECT null AS _, col_1, ..., col_n
+	FROM ...
+	OFFSET 1
+)
+ORDER BY RANDOM()
+```
+
+The `OFFSET 1` is used to skip the first row, which is the result of the `setseed` function.
+
+The union is the only way to guarantee that the seed will be set before the actual query. Other options, such as `WITH` or `SELECT ... FROM (SELECT setseed(0.5))` do not guarantee the order of execution, and produce a different result for each call.
+
+
+
+
 
 
 # Procedures and functions
@@ -319,11 +360,11 @@ SELECT st_intersection(
 - [`ST_Buffer`](https://postgis.net/docs/ST_Buffer.html): `ST_Buffer(g, radius)` computes a geometry that is an extension of `g` by `radius` to all directions
 - [`St_Collect`](https://postgis.net/docs/ST_Collect.html) aggregates data into single geometry. It is usually apllied to a geometry column in an SQL selection.
 - [`ST_Union`](https://postgis.net/docs/ST_Union.html)
-- [`ST_Area`](https://postgis.net/docs/ST_Area.html)
 - [`ST_Equals`](https://postgis.net/docs/ST_Equals.html)
 - [`ST_MakeLine`](https://postgis.net/docs/ST_MakeLine.html): make line between two points
 - [`ST_SetSRID`](https://postgis.net/docs/ST_SetSRID.html): sets the `SRID` of the geometry and returns the result as a new geometry.
 - [`ST_MakePoint`](https://postgis.net/docs/ST_MakePoint.html): creates a point geometry from the given coordinates.
+- [`ST_Area`](https://postgis.net/docs/ST_Area.html): computes the area of a geometry. The units of the result are the same as the units of the `SRID` of the geometry (use UTM coordinate system for getting the area in square meters).
 
 
 # PgRouting
@@ -531,6 +572,11 @@ If the db tools are unresponsive on certain tasks/queries, check if the table ne
 ## Select PostgreSQL version
 ```SQL
 SELECT version()
+```
+
+## Select PostGIS version
+```SQL
+SELECT PostGIS_version()
 ```
 
 ## `Tried to send an out-of-range integer as a 2-byte value`

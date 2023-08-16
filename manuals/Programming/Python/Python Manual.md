@@ -1,3 +1,51 @@
+
+# Data types
+
+## Numbers
+Python has the following numeric types:
+- `int` - integer
+- `float` - floating point number
+
+The `int` type is unlimited, i.e., it can represent any integer number. The `float` type is limited by the machine precision, i.e., it can represent only a finite number of real numbers.
+
+### Check whether a float number is integer
+To check whether a float number is integer, we can use the `is_integer` function:
+
+### Check whether a number is NaN
+To check whether a number is NaN, we can use the `math.isnan` function or the `numpyp.isnan` function:
+
+
+
+## Strings
+Strings in Python can be enclosed in single or double quotes (equivalent). The triple quotes can be used for multiline strings.
+
+### String formatting
+The string formatting can be done in several ways:
+- using the `f` prefix to string literal: `f'{<VAR>}'`
+- using the `format` method: `'{}'.format(<VAR>)`
+
+Each variable can be formatted for that, Python has a [string formatting mini language](https://docs.python.org/3/library/string.html#formatspec). 
+
+The format is specified after the `:` character (e.g., `f'{47:4}'` set the width of the number 47 to 4 characters). Most of the format specifiers have default values, so we can omit them (e.g., `f'{47:4}'` is equivalent to `f'{47:4d}'`).
+
+The following are the most common options:
+
+
+## Checking the type
+To check the exact type:
+```python
+if type(<VAR>) is <TYPE>:
+# e.g.
+if type(o) is str:
+```
+
+To check the type in the polymorphic way, including the subtypes:
+```Python
+if isinstance(<VAR>, <TYPE>):
+# e.g.
+if isinstance(o, str):
+
+
 # Conditions and boolean context
 
 ## Comparison operators
@@ -52,19 +100,7 @@ d = {'c': 142}
 call_me(**d) # calls the function with c = 142
 ```
 
-# Checking the type
-To check the exact type:
-```python
-if type(<VAR>) is <TYPE>:
-# e.g.
-if type(o) is str:
-```
 
-To check the type in the polymorphic way, including the subtypes:
-```Python
-if isinstance(<VAR>, <TYPE>):
-# e.g.
-if isinstance(o, str):
 ```
 
 
@@ -154,20 +190,31 @@ d2 = d + interval # '2022-05-20 19:00'
 
 
 
-# Working with paths
-We can use strings to manipulate with pths in Python, however, it is easier to manipulate the `Path` or `PurePath` objects from [`pathlib`](https://docs.python.org/3/library/pathlib.html#methods-and-properties) for complicated situations. The folowing code compares both approaches for path concatenation:
+# Filesystem
+There are three ways commonlz used to work with filesystem in Python:
+- manipulate paths as strings
+- [`os.path`](https://docs.python.org/3/library/os.path.html)
+- [`pathlib`](https://docs.python.org/3/library/pathlib.html)
+
+The folowing code compares both approaches for path concatenation:
 ```Python
+# string path concatenation
 a = "C:/workspace"
 b = "project/file.txt"
-
-# string path concatenation
 c = f"{a}/{b}"
+
+# os.path concatenation
+a = "C:/workspace"
+b = "project/file.txt"
+c = os.path.join(a, b)
 
 # pathlib concatentation
 a = Path("C:/workspace")
 b = Path("project/file.txt")
 c = a / b 
 ``` 
+
+As the `pathlib` is the most modern approach, we will use it in the following examples. Appart from `pathlib` documentation, there is also a [cheat sheet available on github](https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf).
 
 
 ## Computing relative path
@@ -187,11 +234,6 @@ b = Path("C:/workspace/project/file.txt")
 rel = os.path.relpath(a, b) # rel = '../Workspaces/project/file.txt'
 ```
 
-## iterating over files
-There are different method available, depending what we need
-- standard iteration
-- recursive iteration: `os.walk(<path>)`, see [example on SO](https://stackoverflow.com/questions/16953842/using-os-walk-to-recursively-traverse-directories-in-python)
-
 
 ## Get parent directory
 We can use the `parent` property of the `Path` object:
@@ -199,6 +241,11 @@ We can use the `parent` property of the `Path` object:
 p = Path("C:/workspace/project/file.txt")
 parent = p.parent # 'C:\\workspace\\project'
 ```
+
+
+## Absolute and canonical path
+We can use the `absolute` method of the `Path` object to get the *absolute* path. To get the *canonical* path, we can use the `resolve` method.
+
 
 
 ## Splitting paths and working with path parts
@@ -221,10 +268,116 @@ index = p.parts.index('project') # 2
 p = Path(*p.parts[:index]) # 'C:\\workspace'
 ```
 
+## Geting and setting the working directory
+- `os.getcwd()` - get the current working directory
+- `os.chdir(<path>)` - set the current working directory
 
 
-# Built-in data structures
+## Iterating over files
+The `pathlib` module provides a convenient way to iterate over files in a directory. The particular methods are:
+- `glob` - iterate over files in a single directory
+- `rglob` - iterate over files in a directory and all its subdirectories
+
+In general, the files will be sorted alphabetically. 
+
+### Single directory iteration
+Using pathlib, we can iterate over files using a filter with the `glob` method:
+```Python
+p = Path("C:/workspace/project")
+for filepath in p.glob('*.txt') # iterate over all txt files in the project directory
+```
+
+The old way is to use the `os.listdir` method:
+```Python
+p = Path("C:/workspace/project")
+for filename in os.listdir(p):
+    if filename.endswith('.txt'):
+        filepath = p / filename
+```
+
+### Recursive iteration
+Using pathlib, we can iterate over files using a filter with the `rglob` method:
+```Python
+p = Path("C:/workspace/project")
+for filepath in p.rglob('*.txt') # iterate over all txt files in the project directory and all its subdirectories
+```
+
+The old way is to use the `os.walk` method:
+```Python
+p = Path("C:/workspace/project")
+for root, dirs, files in os.walk(p):
+    for filename in files:
+        if filename.endswith('.txt'):
+            filepath = Path(root) / filename
+```
+
+
+### Iterate only directories
+To get only directories, we can use the `glob` method with the  following filter:
+```Python
+p = Path("C:/workspace/project")
+for filepath in p.glob('*/') # iterate over all directories in the project directory
+```
+
+### Iterate only files
+There is no specific filter for files, but we can use the `is_file` method to filter out directories:
+```Python
+p = Path("C:/workspace/project")
+for filepath in p.glob('*'):
+    if filepath.is_file():
+        # do something
+```
+
+
+
+## Get the path to the current script
+```Python
+Path(__file__).resolve().parent
+```
+
+## Checking write permissions for a directory
+Unfortunatelly, most of the methods for checking write permissions are not reliable outside Unix systems. The most reliable way is to try to create a file in the directory:
+```Python
+p = Path("C:/workspace/project")
+try:
+    with open(p / 'test.txt', 'w') as f:
+        pass
+    p.unlink()
+    return True
+except PermissionError:
+    return False
+except:
+    raise # re-raise the exception
+``` 
+
+Other methods like `os.access` or using `tempfile` module are not reliable on Windows (see e.g.: https://github.com/python/cpython/issues/66305).
+
+
+
+# Built-in data structures and generators
 Python has several built-in data structures, most notably `list`, `tuple`, `dict`, and `set`. These are less efficient then comparable structures in other languages, but they are very convenient to use.
+
+Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.
+
+## Generator
+[Python wiki](https://wiki.python.org/moin/Generators)
+
+Generators are mostly used in the iteration, we can iterte them the same way as lists. 
+
+To get the first item of the generator, we can use the `next` function:
+```Python
+g = (x for x in range(10))
+first = next(g) # 0
+```
+
+To create a generator function (a function that returns a generator), we can use the `yield` keyword. The following function returns a generator that yields the numbers 1, 2, and 3:
+```Python
+def gen():
+    yield 1
+    yield 2
+    yield 3
+```
+
 
 ## Dictionary
 [Official Manual](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
@@ -279,7 +432,77 @@ HDF5 is a binary file format for storing large amounts of data. The `h5py` modul
 The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
 
 
+
+# Logging
+[Official Manual](https://docs.python.org/3/howto/logging.html)
+
+A simple logging configuration:
+```Python
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    handlers=[
+        logging.FileHandler("log.txt"),
+        logging.StreamHandler()
+    ]
+)
+```
+
+The logging itself is then done using the `logging` module methods:
+```Python
+logging.info("message")
+logging.warning("message %s", "with parameter")
+```
+
+
+
+# Type hints
+[Official Manual](https://docs.python.org/3/library/typing.html)
+
+Type hints are a useful way to help the IDE and other tools to understand the code so that they can provide better support (autocompletion, type checking, refactoring, etc.). The type hints are not enforced at runtime, so they do not affect the performance of the code.
+
+We can specify the type of a variable using the `:` operator:
+```Python
+a: int = 1
+```
+Apart from the basic types, we can also use the `typing` module to specify more complex types:
+```Python
+from typing import List, Dict, Tuple, Set, Optional, Union, Any
+
+a: List[int] = [1, 2, 3]
+```
+
+We can also specify the type of a function argument and return value:
+```Python
+def foo(a: int, b: str) -> List[int]:
+    return [a, b]
+```
+
+## Type hints in loops
+The type of the loop variable is usually inferred by IDE from the type of the iterable. However, this sometimes fails, e.g., for zip objects. In such cases, we need to specify the type of the loop variable. However, **we cannot use the `:` directly in the loop, but instead, we have to declare the variable before the loop**:
+```Python
+for a: int in ... # error
+
+a: int
+for a in ... # ok
+```
+
+
+
 # Numpy
+
+## Sorting
+for sorting, we use the [`sort`](https://numpy.org/doc/stable/reference/generated/numpy.sort.html) function.
+
+There is no way how to set the sorting order, we have to use a trick for that:
+```Python
+a = np.array([1, 2, 3, 4, 5])
+a[::-1].sort() # sort in reverse order
+```
+
+
 ## Usefull array properties:
 - `size`: number of array items
     - unlike len, it counts all items in the mutli-dimensional array
@@ -288,7 +511,7 @@ The `sys` module provides access to the command line arguments. They are stored 
 
 
 ## Usefull functions
-- [`sort`](https://numpy.org/doc/stable/reference/generated/numpy.sort.html)
+
 
 
 
@@ -306,6 +529,47 @@ The 0th group is the whole match, as usual.
 
 
 
+# Decorators
+Decorators are a special type of function that can be used to modify other functions. 
+
+When we write an annotation with the name of a function above another function, the annotated function is *decorated*. It means that when we call the annotated function, a *wrapper* function is called instead. The wrapper function is the function returned by the *decorater*: the function with the same name as the annotation.
+
+If we want to also keep the original function functionality, we have to pass the function to the decorator and call it inside the wrapper function. 
+
+In the following example, we create a dummy decorator that keeps the original function functionality:
+Example:
+```Python
+def decorator(func):
+    def wrapper():
+        result = func()
+        return result
+    return wrapper
+
+@decorator
+def my_func():
+    # do something
+    return result
+```
+
+## Decorator with arguments
+If the original function has arguments, we have to pass them to the wrapper function. Example:
+```Python
+def decorator(func):
+    def wrapper(param_1, param_2):
+        result = func(param_1, param_2)
+        return result
+    return wrapper
+
+@decorator
+def my_func(param_1, param_2):
+    # do something
+    return result
+```
+
+
+
+
+
 # Jupyter
 
 ## Memory
@@ -318,10 +582,31 @@ ipython_vars = ['In', 'Out', 'exit', 'quit', 'get_ipython', 'ipython_vars']
 sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith('_') and x not in sys.modules and x not in ipython_vars], key=lambda x: x[1], reverse=True)
 ```
 
+
+# Matplotlib
+[Official Manual](https://matplotlib.org/stable/contents.html)
+
+## Saving figures
+To save a figure, we can use the `savefig` function. The **`savefig` function has to be called before the `show` function, otherwise the figure will be empty**.
+
+
 # Docstrings
 For documenting Python code, we use docstrings, special comments soroudned by three quotation marks: `""" docstring """`
 
 Unlike in other languages, there are multiple styles for docstring content.
+
+
+
+# Progress bars
+For displaying progress bars, we can use the `tqdm` library. It is very simple to use:
+```Python
+from tqdm import tqdm
+for i in tqdm(range(100)):
+    ...
+```
+Important parameters:
+- `desc`: description of the progress bar
+
 
 # PostgreSQL
 When working with PostgreSQL databases, we usually use either

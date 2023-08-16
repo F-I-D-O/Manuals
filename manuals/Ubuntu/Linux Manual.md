@@ -28,9 +28,17 @@ Foe unpacking, you can use the `tar -f <file>` command. The most used options ar
 
 
 
-
 # Environment Variables
-We will demonstrate it on the `PATH` example. If you have a program in a custom location, adding it to `$PATH` permanently and be able to run it under all circumstances is not an easy task on linux. Standard procedure to add a system variable: 
+The environment variables are introduced with the `export` command:
+```bash
+export <variable>=<value>
+```
+without export, the variable is just a local shell variable:
+```bash
+<variable>=<value> # local variable
+```
+
+We will demonstrate the work with environment variables on the `PATH` example. If you have a program in a custom location, adding it to `$PATH` permanently and be able to run it under all circumstances is not an easy task on linux. Standard procedure is to add a system variable: 
 1.  Create a dedicated `.sh` file in `/etc/profile.d.` for your configuration (config for each app should be stored in a separate file).
 2.  the file should contain: `export PATH=$PATH:YOURPATH`
 1. exit nano and save the file: `ctrl+x` and `y`
@@ -78,6 +86,29 @@ The `cp` command is used to copy files. The most used options are:
 - `-f`: force
 - `-p`: preserve permissions and timestamps
 - `-a`: same as `-p -R` plus some other options
+
+
+## Remove file
+The `rm` command is used to remove files. The most used options are:
+- `-r`, `-R`: remove recursively
+
+To remove all files in a directory, you can use
+
+
+## Access rights
+The Linux access rights use the same system for files and folders. The access rights are divided into three groups, from left to right:
+- owner
+- group
+- other
+
+Each group has three possible access rights:
+- `r`: read
+- `w`: write
+- `x`: execute
+
+Important aspects:
+- to access a directory, the user has to have the `x` right on the directory.
+- to access a file, the user has to have the `x` right on all folders in the path to the file.
 
 
 # Network

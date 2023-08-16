@@ -91,7 +91,6 @@ returns a tuple (index, data)
 
  - it does not preserve the dtype 
 
-> Written with [StackEdit](https://stackedit.io/).
 
 ### items()
 https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html
@@ -117,6 +116,13 @@ Example:
 ```python
 filtered = df[(df['max_delay'] == x) & (df['exp_length'] == y)]
 ```
+
+## Accept multiple values
+For that, we can use the [`isin`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isin.html) function:
+```python
+filtered = df[df['max_delay'].isin([x, y])]
+```
+
 
 ## Using the query function
 The query function can be used for more complicated filters. It is more flexible and the syntax is less verbose. The above filter can be rewriten as:
@@ -286,17 +292,53 @@ The [`Index.rename`](https://pandas.pydata.org/docs/reference/api/pandas.Index.r
 
 
 # Aggregation
-Analogously to SQL, pandas has a `groupby` function for aggreagting rows. Depending on the aggregate function we choose, we get a different statistic, for example:
+Analogously to SQL, pandas has a [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) function for aggreagting rows. The usage is as follows:
+```Python
+group = df.groupby(<columns>) # returns a groupby object grouped by the columns
+sel = group[<columns>] # we can select only some columns from the groupby object
+agg = sel.<aggregation function> # we apply an aggregation function to the selected columns
+```
+we can skip the `sel` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
+
+For the aggregate function, we can use one of the prepared aggregation functions, for example:
+- `sum`
+- `mean`
+- `median`
+- `min`
+- `max`
+- `count`
+
+Full example (sum):
 ```Python
 df.groupby('col').sum()
 ```
 Sums the results for each group (column by column)
 
-To get a count, we need to call the `size` function:
+To get a count, we can call the `size` function:
 ```Python
 df.groupby('col').size()
 ```
 
+## Custom aggegate function
+Also, there is a general [`agg`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html) function that can be used to apply a custom aggregation function. Example:
+```Python
+df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
+```
+
+We can also use the `apply` method. This function takes a dataframe as an argument and returns a series. Example:
+```Python
+def agg_fn(df):
+    return pd.Series([df['col1'].sum(), df['col2'].mean()], index=['sum', 'mean'])
+```
+
+The difference between `agg` and `apply` is summarized in the following table:
+
+property | agg | apply |
+| --- | --- | --- |
+| applied to | each specified column | whole dataframe |
+| output | dataframe | series |
+| can use multiple aggregate functions | yes | no |
+| can be applied to dataframe | no | yes |
 
 
 
@@ -309,16 +351,22 @@ We can use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.co
 pd.concat([df1, df2])
 ```
 
+# I/O
 
-# Exporting to CSV
-We can use the `to_csv` method for that:
+## csv
+For reading csv files, we can use the [`read_csv`](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html) function. Important params:
+- `sep`: separator
+- `header`: row number to use as column names. If `None`, no header is used
+
+
+For export, we can use the `to_csv` method for that:
 ```python
 df.to_csv(<file name> [, <other params>])
 ```
 
 
 
-# Insert dataframe into db
+## Insert dataframe into db
 We can use the `to_sql` method for that:
 ```python
 df.to_sql(<table name>, <sql alchemy engine> [, <other params>])
@@ -371,11 +419,17 @@ Important parameters:
 - `escape`: by default, the index is not escaped, to do so, we need to set `escape` to `'latex'`.
 
 
-## Formatting the values
+## Formatting or changing the values
 The values are formated by the [`format`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html) function. Important parameters:
 - `escape`: by default, the values are not escaped, to do so, we need to set `escape` to `'latex'`.
 - `na_rep`: the string to use for missing values
 - `precision`: the number of decimal places to use for floats
+
+## Replacing values
+For replace some values for the presentation with something else, we can  also use the `format` function.For example, to change the boolean presentation in column `col` we call:
+```python
+df.style.format({'col': lambda x: 'yes' if x else 'no'})
+```
 
 ## Hihglighting min/max values
 For highlighting the min/max values, we can use the [`highlight_min`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html) and [`highlight_max`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html) functions. Important parameters:
@@ -384,10 +438,25 @@ For highlighting the min/max values, we can use the [`highlight_min`](https://pa
 
 
 ## Hiding some columns, rows, or indices
-For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Example:
+For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Format:
 ```python
-df.style.hide(level=<index name>) # hide the index with the given name
+df.style.hide(<index name>) # hide the index with the given name
 ```
+By default, the `<index_name>` refers to the row index. **To hide a column**:
+```python
+df.style.hide_columns(<column name>, axis=1)
+```
+
+To hide row index:
+```python
+df.style.hide(axis='index')
+```
+
+
+## Changing the header (column labels)
+There is no equivalent to the header parameter of the old `to_latex` function in the new style system. Instead, it is necessary to change the column names of the dataframe. 
+
+
 
 
 
@@ -413,6 +482,7 @@ Important parameters:
 - [`drop_duplicates`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html) to quickly drop duplicate rows based on a subset of columns.
 - [`factorize`](https://pandas.pydata.org/docs/reference/api/pandas.factorize.html) to encode a series values as a categorical variable, i.e., assigns a different number to each unique value in series.
 - [`pivot_table`](https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html): function that can aggragate and transform a dataframe in one step. with this function, one can create a pivot table, but also a lot more.
+- [`cut`](https://pandas.pydata.org/docs/reference/api/pandas.cut.html): function that can be used to discretize a continuous variable into bins.
 
 
 ## `pivot_table`

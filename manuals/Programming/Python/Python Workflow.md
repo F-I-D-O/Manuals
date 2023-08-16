@@ -31,6 +31,15 @@ Normal packages are installed using: pip install `<package name>`.
 
 However, if a package uses a C/C++ backend and does not contain the compiled wheel on PyPy, this approach will fail on Windows. Instead, you have to download the wheel from [the Chris Gohlke page](https://www.lfd.uci.edu/~gohlke/pythonlibs/) and install it: `pip install <path to wheel>`. Also, you have to install the dependencies mentioned on that page.
 
+## Uninstalling packages
+To uninstall a package, use `pip uninstall <package name>`.
+
+There is no way how to uninstall more packages using some wildcard. To uninstall more packages efficiently (not one by one):
+1.  create a file with the list of all installed packages: `pip freeze > packages.txt`
+2.  edit the file and remove all packages you want to keep
+3.  uninstall all packages from the file: `pip uninstall -r packages.txt -y`
+
+
 ## Troubleshooting
 If the installation fails, check the following:
 1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
@@ -61,6 +70,16 @@ Same as in IDEA:
 ### Non deterministic output in the run window
 Problem: It can happen that the output printing/logging can be reordered randomly (not matching the order of calls in the source, neither the system console output).
 Solution: `Edit Configurations...` -> select configuration for the script -> check `Emulate terminal in output console`.
+
+
+### Pycharm does not recognize a locally installed package
+It can happen that a locally installed package (`-e`) is not recognized by Pycharm. This can be solved by adding the path to the package to the interpreter paths:
+1.  `File` -> `Settings` -> `Project: <project name>` -> `Python Interpreter`
+1. Click on the arrow next to the interpreter name and choose `Show All...`
+1. Click on the desired interpreter and click on the filetree icon on the top of the window
+1. Add the path to the package to the list of paths
+
+
 
 
 # Jupyter

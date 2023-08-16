@@ -8,8 +8,10 @@
 - **Format selection**: `Ctrl` + `F`
 - **Format File**: `Ctrl` + `Shift` + `F`
 - **Refacor->Rename**: `Ctrl` + `R` 
+- **Refacor->Change signature**: `Ctrl` + `W`
 - **Text transform**: `Ctrl` + `T`
     - ` + U`: to upper case
+- **Build**: `Ctrl` + `B`
 
 # Testing private methods
 An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.
