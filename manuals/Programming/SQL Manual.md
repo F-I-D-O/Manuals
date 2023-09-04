@@ -236,6 +236,9 @@ SELECT count(1) OVER () as result_count
 ```
 This will add a coulumn with a total count to each row of the result. If we do not need the actual groups, but only the distinct count, we can use a `LIMIT` statement.
 
+## Get any row from each group
+Sometimes, we need a value from a non-grouped column, but we do not care which one. The reson can be, for example, that we no that the values are the same for all rows in the group. There is no dedicated aggregation for this case, but we can use some simple ones as `MIN` or `MAX`.
+
 
 # Window functions
 Sometimes, we would need an aggregate function that somehow use two different columns (e.g., value of col A for the row where col B is largest). For that, we cannot use the classical aggregation, but we rather have to use a [*window function*](https://en.wikipedia.org/wiki/Window_function_(SQL)).

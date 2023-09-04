@@ -29,6 +29,7 @@ Important parameters:
 - `-o`, `--output=`: job's output file name. The default name is `slurm-<JOB ID>.out`
 
 ## [squeue](https://slurm.schedmd.com/squeue.html)
+- `--me` filter just my jobs
 - `-u <username>` filter just a specific user
 - `--start` print the expected start time and the nodes planed to run the task
 - `-w --nodelist` filter jobs running (but not planned) on specific nodes. The format for nodelist is `<name>[<range>]`, e.g., `n[05-06]`.

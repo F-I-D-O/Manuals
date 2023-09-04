@@ -1,8 +1,3 @@
-<!-- ---
-toc: true
---- -->
-
-
 # Commands
 ## Generating Build scripts
 General syntax is:
@@ -178,10 +173,22 @@ The typical structure of the `CMakeLists.txt` file is as follows:
 ## Typical Top section content 
 The typical content of the top section is:
 - minimum cmake version: `cmake_minimum_required(VERSION <version>)`
-- project name: `project(<name>)`
+- project name and version: `project(<name> VERSION <version>)`
 - language specification: `enable_language(<language>)`
 - language standard, e.g.: `set(CMAKE_CXX_STANDARD <version>)`
 - compile options: `add_compile_options(<option 1> <option 2> ...)`
+- cmake module inclusion: `include(<module name>)`
+
+### Language standards
+The language standard is set using the `set` command together with the `CMAKE_<LANG>_STANDARD` variable. Example:
+```cmake
+set(CMAKE_CXX_STANDARD 17)
+```
+This way, the standard is set for all targets and the compiler should be configured for that standard. However, if the compiler does not support the standard, the build script generation continues and the failure will appear later during the compilation. To avoid that, we can make the standard a requirement using the `set` command together with the `CMAKE_<LANG>_STANDARD_REQUIRED` variable. Example:
+```cmake
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+``` 
+
 
 ### Compile options
 Most of the compile options are now sets automatically based on the declarations in the `CMakeLists.txt` file. However, some notable exceptions exists. To set such options, we have to use the `add_compile_options` command:
@@ -203,7 +210,9 @@ add_link_options("/STACK: 10000000")
 ```
 
 
-## Searching for libraries
+## Dependency management
+There are many ways how to manage dependencies in CMake, for complete overview, see the [documentation](https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#guide:Using%20Dependencies%20Guide). 
+
 Although it is possible to hard-code the paths for includes and linking, it is usually better to initialize the paths automatically using a rich set of commands cmake offers.  It has the following advatages:
 - Hardcoding the paths is error-prone, while cmake commands usually deliver correct paths
 - It boost the productivity as we do not have to investigate where each library is installed
@@ -217,7 +226,7 @@ Most of the libraries have CMake support, so their CMake variables can be initia
 For packages without the CMake support, we have to use lower-level cmake commands like `find_path` or `find_libraries`. For convinience, we can put these command to our own `Find<name>` script taht can be used by multiple project or even shared. 
 
 
-### `find_package`
+### Standard way: `find_package`
 The [`find_package`](https://cmake.org/cmake/help/latest/command/find_package.html) command is the primary way of obtaining correct variables for a library including:
 - include paths
 - linking paths
@@ -230,7 +239,7 @@ There are two types of package (library) info search:
 Unless specified, the module mode is used. To force a speciic mode, we can use the `MODULE`/`CONFIG` parameters.
 
 
-#### Conig packages
+#### Config packages
 Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. 
 
 The configuration files are executed as follows:
@@ -244,7 +253,7 @@ Module packages are packages that are not cmake projects themselves, but are hoo
 They are located in e.g.: `CMake/share/cmake-3.22/Modules/Find<package name>.cmake`. 
 
 
-### `find_path`
+### Searching for include directories with `find_path`
 The [`find_path`](https://cmake.org/cmake/help/latest/command/find_path.html) command is intended to find the path (e.g., an include directory).
 A simple syntax is:
 ```cmake
@@ -261,7 +270,7 @@ Here:
 
 
 
-### `find_library`
+### Low level command: `find_library`
 The [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command is used to populate a variable with a result of a specific file search optimized for libraries. 
 
 The search algorithm works as follows:
@@ -372,6 +381,25 @@ if(MOSEK_FOUND)
 	set(MOSEK_INCLUDE_DIRS ${MOSEK_INCLUDE_DIR})
 endif()
 ```
+
+
+### Downolad dependencies during configuration and build them from source
+To download and build dependencies during the configuration, we can use the [`FetchContent`](https://cmake.org/cmake/help/latest/module/FetchContent.html) module. For details, see the [dependency management documentation](https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#fetchcontent-and-find-package-integration).
+
+The usual workflow is:
+1. Download the dependency using the `FetchContent_Declare` command
+    ```cmake
+    FetchContent_Declare(
+    <NAME>
+    <SPECIFICATION>
+    )
+    ```
+    - The specification can be either a URL or a git repository.
+2. Build the dependency using the `FetchContent_MakeAvailable` command:
+    ```cmake
+    FetchContent_MakeAvailable(<NAME>)
+    ```
+
 
 
 ## Setting include directories

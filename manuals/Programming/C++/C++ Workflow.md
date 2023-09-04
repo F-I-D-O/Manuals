@@ -104,6 +104,11 @@ Vcpkg has it s own `find_package` macro in the toolchain file. It executes the s
 # IDE
 
 ## Clion
+
+### Configuration
+#### Set default layout
+`Window` -> `Layouts` -> `Save changes in current layout`
+
 ### Toolchain configuration
 Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolchain and set:
 -   Name to whatever you want
@@ -342,6 +347,79 @@ In WSL, when combined with CLion, some find scripts does not work, because they 
 -   JNI
 -   Gurobi
     
+
+
+# Handling Case Insensitivity
+Windows builds are, in line with the OS, case insensitive. Moreover, the Visual Studio does some magic with names internally, so the build is case insensitive even on VS WSL builds.
+
+The case insensitivity can bring inconsistencies that later breake Unix builds. Therefore, it is desirable to have the build case sensitive even on Windows. Fortunatelly, we can toggle the case sensitivity at the OS level using this PowerShell command:
+
+```PowerShell
+Get-ChildItem <PROJECT ROOT PATH> -Recurse -Directory | ForEach-Object { fsutil.exe file setCaseSensitiveInfo $_.FullName enable }
+```
+
+Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:
+```
+git config core.ignorecase false
+```
+
+
+ # Compilation for a specific CPU
+ ## MSVC
+ MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.
+
+The command for the compiler is: `/arch:<set name> (see [MSVC documentation](https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170) for details).
+
+
+ ## GCC
+ In GCC, the [`march`](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html) option enables compilation for a specific hardware.
+ml) option enables compilation for a specific hardware.
+
+pects that you use vcpkg in a per-project configuration. To make it work, add: `-DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake`
+	- To change build options (`option` in `CMakeLists.txt`), run cmake with `-D <option name>=<option value> <build dir>`. Example: `cmake -D BUILD_TESTING=OFF .`
+
+    
+## Building
+For building, use:
+```bash
+cmake --build <build dir>
+```
+where build dir is the directory containing the build scripts (`CmakeFiles` folder).
+
+To list the build options:
+```
+cmake -L
+```
+
+### Specify the build type (Debug, Release)
+To build in release mode, or any other build mode except for the default, we need to specify the parameters for CMake. Unfortunately, these parameters depends on the build system:
+- **Single-configuration systems** (Unix, MinGW) 
+- **Multi-configuration systems** (Visual Studio)
+
+#### Single-configuration systems
+Single configuration systems have the build type hardcoded in the build scripts. Therefore, we need to specify the build type for CMake when we generate the build scripts:
+```bash
+cmake ../ -DCMAKE_BUILD_TYPE=Release
+```
+**By default, the build type is `Release`**.
+
+#### Multi-configuration systems
+In multi-configuration systems, the `-DCMAKE_BUILD_TYPE` parameter is ignored, because the build configuration is supposed to be determined when building the code (i.e., same build scripts for debug and for release). Therefore, we omit it, and instead specify the `--config` parameter when building the code:
+```bash
+cmake --build . --config Release
+```
+
+### Specify the target
+We can use the `--target` parameter for that:
+```cmake
+cmake --build . --target <TARGET NAME>
+```
+
+## Clean the source files
+Run:
+```
+cmake --build . --target clean
+```
 
 
 # Handling Case Insensitivity
