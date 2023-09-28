@@ -238,6 +238,16 @@ int(*a)[4] = new int[rows][4] // static column count
 int(*b)[cols] = new int[rows][cols] // does not compile unless cols is a constant!
 ```
 
+
+### Array to pointer implicit conversion
+When we use the array name in an expression, it can be implicitly converted to a pointer to the first element of the array. This is true for both static and dynamic arrays. Example:
+```cpp
+int a[3] = {1, 2, 5}
+int* ptr = a; // ptr points to the first element of a
+```
+This implicit conversion is called *array-to-pointer decay*.
+
+
 ### Mutli-dimensional dynamic arrays
 To simulate multi-dimensional dynamic arrays, we have two options:
 - use the flat syntax, as demonstrated on static arrays
@@ -278,6 +288,21 @@ a = std::make_unique<int[]>(size)
 ```
 
 
+## References and Pointers to arrays
+[cppreference](https://en.cppreference.com/w/cpp/language/pointer)
+
+The pointer to array is declared as `<type> (*<pointer_name>)[<size>]`:
+```cpp
+int a[5];
+int (*ptr)[5] = &a;
+```
+Analogously, the reference to array is declared as `<type> (&<reference_name>)[<size>]`:
+```cpp
+int a[5];
+int (&ref)[5] = a;
+```
+
+
 ## Function Type
 A function type consist from the function arguments and the return type. The function type is written as `return_type(arg_1_type, ..., arg_n_type)`. Example:
 
@@ -288,6 +313,8 @@ static_assert(std::is_same_v<decltype(foo), int(double, double)>) // TRUE
 ```
 
 ## Reference to Function and Pointer to Function Types
+[cppreference](https://en.cppreference.com/w/cpp/language/pointer)
+
 A refrence to function has a type `return_type(&)(arg_1_type, ..., arg_n_type)`. Example:
 
 ```cpp
@@ -577,7 +604,12 @@ Beware that **by default**, the deduced types are decayed, i.e., const and refer
 auto p = std::pair<int, constr std::string&>(...)
 ```
 
-There are also factory methods `make_pair`/`make_tuple`. Before C++17, argument deduction did not work for constructors, so there is a dedicated  method for creating tuples. However, now we can just call the constructor and the template arguments are deduced from the constructor arguments. Also, the `make_pair`/`make_tuple` functions can only produce tuples containing values, not references (even if we specify the reference type in the `make_pair`/`make_tuple` template argument, the returned tuple will be value-typed). **TLDR: from C++17, there is no reason to use `make_pair`/`make_tuple`**.
+Also, beware that the RVO does not apply for tuple members. **This means that if we store values types in the tuple, the types are copied/moved, and in conclusion, they have to by copyable/movable!** This is the reason why we frequently use smart pointers in tuples even though we would reurn directly by value if we returned a single value.
+
+##### Creating tuples with `std::make_pair`/`std::make_tuple`
+**TLDR: from C++17, there is no reason to use `make_pair`/`make_tuple`**.
+
+There are also factory methods `make_pair`/`make_tuple`. Before C++17, argument deduction did not work for constructors, so there is a dedicated  method for creating tuples. However, now we can just call the constructor and the template arguments are deduced from the constructor arguments. Also, the `make_pair`/`make_tuple` functions can only produce tuples containing values, not references (even if we specify the reference type in the `make_pair`/`make_tuple` template argument, the returned tuple will be value-typed). 
 
 
 #### Accessing tuple members
@@ -1283,6 +1315,13 @@ To remove a file or an empty directory, we can use [`std::filesystem::remove(<pa
 To remove a directory with all its content, we can use `std::filesystem::remove_all(<path>)` function listed on the same page of cppreference.
 
 
+### Other useful functions
+- [`std::filesystem::exists(<path>)`](https://en.cppreference.com/w/cpp/filesystem/exists)
+- [`std::filesystem::is_directory(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_directory)
+- [`std::filesystem::is_regular_file(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_regular_file)
+- [`std::filesystem::is_empty(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_empty)
+
+
 ## Simple line by line IO
 ### Input
 For input, we can use `std::ifstream`:
@@ -1811,6 +1850,26 @@ void load(T to_load){
 };
 ```
 
+## Constraint a Concept Argument
+Imagine that you have a concept `Loadable` that requires a method `load` to return a  type `T` restricted by a concept `Loadable_type`. One would expect to write the `loadable` concept like this:
+```c++
+template<typename L, Loadable_type LT>
+concept Loadable = 
+requires(L loadable) {
+	{loadable.load()} -> LT;
+};
+```
+However, this is not possible, as there is a rule that **concept cannot not have associated constraints**. The solution is to use an unrestricted template argument and constrain it inside the concept definition:
+```c++
+template<typename L, typename LT>
+concept Loadable =
+Loadable_type<LT> &&
+requires(L loadable) {
+	{loadable.load()} -> LT;
+};
+```
+
+
 ## Sources
 [https://en.cppreference.com/w/cpp/language/constraints](https://en.cppreference.com/w/cpp/language/constraints)
 
@@ -1827,27 +1886,25 @@ Therte are two ways how to create an interface in C++:
 
 While the polymorphism is easier to implement, the templating is more powerful and it has zero overhead. The most important thing is probably that despite these concepts can be used together in one application, not all "combinations" are allowed especialy when using tamplates and polymorphism in the same type.
 
-The interace can be created for type, using the tepmlate argument restiction, or for functions, using either templete argument restriction or polymorphism. However, we can use polymorphism even in case of templeta argument re## Polymorphism
-Polymorphism is a concept for abstriaction.
+**Note that in C++ polymorphism option work only for function argument restriction, but we cannot directly use it to constrain template arguments** (unlike in Java). 
 
-To demonstrate all possible options, imagine an interface that constraints a using which we can provide a sigle interface for multiple type sos that it must have the following two functions:
+To demonstrate all possible options, imagine an interface that constraints a type that it must have the following two functions:
 ```cpp
 int get_value();
 void set_value(int date);
 ```
-Inshare. In C++, to use the fpollowing sections we will demonstrate all ymorphism, **we need to work withe possible options:
+The following sections we will demonstrate how to achieve this using multiple techniques. 
+
 
 ## Interface using polymorfism
-Unlike in java, there are no `interface` types in C++. however, we can implement polymorfic interface using abstractinters or references**. Imagine that we have these two class and a method that can process the base class:
+Unlike in java, there are no `interface` types in C++. However, we can implement polymorfic interface using abstract class. The following class can be used as an interface:
 
-```cpp++
+```cpp
 class Value_interface{
 	virtual int get_value() = 0;
 	virtual void set_value(int date) = 0;
 }
 ```
-
-This system works in C++ because it supports multiple inheritance. Do not forget to use the `virtual` keyword, otherwise, the method cannot be overriden.
 
 To use this interface as a fuction argument or return value, follow this example:
 ```cpp
@@ -1855,28 +1912,13 @@ std::unique_ptr<Value_interface> increment(std::unique_ptr<Value_interface> orig
 	return orig_value->set_value(orig_value->get_value() + 1);
 }
 ```
+
+This system works in C++ because it supports multiple inheritance. Do not forget to use the `virtual` keyword, otherwise, the method cannot be overriden.
+
 Note that unlike in other languages, **in C++, the polymorphism cannot be directly use as a template (generic) interface.** Therefore, we cannot use the polymorfism alone to restrict a type.
 
 ## Using template argument restriction as an interface
-We can Base {
-};
-
-class Derived: public Base {
-};
-
-void process_base(Base* base) {
-}
-```
-
-Now we can use it lake this:
-```c++
-Derived* derived = new Derived(); 
-Base* base = derived; // we easilly can convert derived to base
-process_base(base);
-process_base(derived); // we can calso create an interface by restricting the templl the function thate arguments. Both classes and functions can be restricted in this way. The template parameters can be restricted using type traits and concepts, we will demostrate the system using concepts. The followinfg concept is analogous to the abstract class in the previous sectionccepts a base pointer with a derived pointer
-```
-
-We can do the same with smart pointers:
+To use template argument restriction as an interface, we can use concepts. The following concept impose the same requirements as the interface from the polymorphism section:
 
 ```cpp
 template<class V>
@@ -1909,27 +1951,12 @@ We cannot restrict template parameters by polymorphic interface directly, howeve
 ```cpp
 template<class V>
 concept Value_interface_concept = requires std::is_base_of<Value_interface,V>
-```++
-void process_base_sh(std::shared_ptr<Base> base) {
-}
-
-std::shared_ptr<Derived> derived_sh = std::make_shared<Derived>();
-std::shared_ptr<Base> base_sh = derived_sh;
-
-process_base_sh(base_sh);
-process_base_sh(derived_sh);
 ```
 
-Advanteges:
-- easy to implement
-- easy to undestand
-- similar to what people know from other languages
-## Templates as Interface
-Advantages
-- no need for type cast
-- all types check on compile time -> no runtime errors
-- zero overhead
-- no object slicing
+**Neverthless, as much as this combination can seem to be clear and elegent, it brings some problems.**. We can use concepts to imposed many interfaces on a single type, but with this solution, it can lead to a polymorphic hell. While there is no problem with two concepts that directly requires the same method to be present with abstract classes, this can be problematic.
+Moreover, we will lose the zero overhead advantage of the concepts, as the polymorphism will be used to implement the interface.
+
+
 
 ## The Conflict Between Templates and Polymorphism
 As described above, messing with polymorphism and templates together can be tricky. Some examples:
@@ -1945,12 +1972,6 @@ If the functin accepts `MyContainer<Animal>` we cannot call it with `MyContainer
 -   do not use polymorphism -> use templates for interfaces
 -   an [adapter](https://www.sciencedirect.com/science/article/pii/S0167642309000021) can be used
 
-## Deciding between template and polymorphism
-Frequently, we need some entity(class, function) to accept multiple objects through some interface. We have to decide, whether we use templates, or polymorphism for that interface. Some decision points:
-- We need to return the same type we enter to the class/function -> use templates
-- We have to access the interface (from outside) without knowing the exact type -> use polymorphism
-- We need to restrict the member/parametr type in the child -> use templates for the template parameter
-- if you need to fix the relation between method parameters/members or template arguments of thouse, you need to use templates 
 
 ## Polymorphic members and containers
 When we need to store various object in the same member or container, we can use both templates and polymorphism. However, both techniques has its limits, summarized in the table below:
@@ -2026,8 +2047,9 @@ std::vector vec{range.begin(), range.end()}; // in-place vector construction
 Note that the range algorithm cannot produce result without an input, i.e., **we always need a range or collection on which we want to apply our algorithm/adapter.**
 
 
-### Range functions
-- [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) - shuffles the elements in the range (formerly `std::random_shuffle`).
+### Useful range algorithms
+- [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) : shuffles the elements in the range (formerly `std::random_shuffle`).
+- [`std::adjacent_find`](https://en.cppreference.com/w/cpp/algorithm/adjacent_find) : finds the first two adjacent elements that are equal. Can be used to find duplicates if the range is sorted.
 
 ### Other Resources
 -   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library)
@@ -2160,6 +2182,8 @@ std::vector<int> out(ad.begin(), ad.end());
 
 The transform *view*  can be only constructed from an object satisfying [`ranges::input_range`](http://en.cppreference.com/w/cpp/ranges/input_range). If we want to use a general range (e.g., vector), we need to call the addapter, which has a same signature like the view constructor itself. The important thing here is that the adapter return type is not a `std::ranges::views::transform<<RANGE>>` but `std::ranges::views::transform<std::ranges::ref_view<RANGE>>>` ([`std::ranges::ref_view`](https://en.cppreference.com/w/cpp/ranges/ref_view)). Supporting various collections is therefore possible only with teplates, but not with inheritance.
 
+**Note that unlike in Java, it is not possible to use a member reference as a transformation function (e.g.: `&MyClass::to_sting()`).** We have to always use lambda functions, `std::bind` or similar to create the callable.
+
 ## Iterator Concepts
 [https://en.cppreference.com/w/cpp/iterator](https://en.cppreference.com/w/cpp/iterator)
 
@@ -2179,9 +2203,6 @@ The [boost.iterator library](https://www.boost.org/doc/libs/1_77_0/libs/iterator
 There are also two general (most powerfull) classes:
 - [iterator adapter](https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/iterator_adaptor.html)
 - iterator facade
-
-## Other	- number sequence
-	- generator
 
 
 ## Resources
@@ -2772,6 +2793,7 @@ However, the `system` calls are not portable, e.g., the quotes around the comman
 Another option is to use the Boost [Process](https://www.boost.org/doc/libs/1_82_0/doc/html/process.html) library. 
 
 
+
 # Unions and Variants
 The idea of a union is to store multiple types in the same memory location. Compared to the polymorphism, when we work with pointers and to templates, where the actual type is determined at compile time, the union actually has a shared memory for all the types.
 
@@ -2800,4 +2822,8 @@ std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
 More on variants:
 - [cppreference](https://en.cppreference.com/w/cpp/utility/variant)
 - [cppstories](https://www.cppstories.com/2018/06/variant/)
+
+
+
+
 

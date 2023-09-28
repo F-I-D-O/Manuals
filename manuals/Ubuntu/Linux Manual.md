@@ -359,7 +359,7 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 
 
 
-# String Modification
+# String Processing
 
 ## `sed`
 Sed is a multi purpose command for string modification.
@@ -393,6 +393,27 @@ If we need to specify delimiters, we use the `-d` parameter:
 ```bash
 cut -d, -f 1,5
 ```
+
+
+## AWK
+AWK is a powerful tool for text processing. It is a programming language, so it can be used for more complex tasks than `sed` or `cut`. The basic syntax is:
+```bash
+awk '<pattern> {<action>}'
+```
+Where `<pattern>` is a regex and `<action>` is a command. The `<action>` is executed only if the line matches the `<pattern>`. 
+
+
+
+### Pattern
+In the `awk`, `/` is used as a delimiter of the regex pattern. 
+
+
+### Action
+The `<action>` can be a sequence of commands, separated by `;`. We can use column values by using special column variables:
+- `$0`: the whole line
+- `$1`: the first column
+...
+
 
 ## Trim string
 ```bash
@@ -462,6 +483,17 @@ nabling SSH Access to Server
 ```bash
 df -h
 ```
+
+
+## piping parameters using `xargs`
+The [`xargs`](https://en.wikipedia.org/wiki/Xargs) command transfers the output of one command into call of another command with the output of the first command as parameters of the second command. This is usefull when the second command does not accept the output of the first command as input, but accepts the output as parameters.
+
+Example:
+```bash
+ls | xargs rm # remove all files in the current directory
+```
+
+
 
 
 # Upgrade

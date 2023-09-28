@@ -10,6 +10,11 @@ In general, it is easier to use plotly express, so we should use it if we are no
 
 
 # Plotly Express
+[documentation](https://plotly.com/python/plotly-express/)
+Plotly express modul is loaded as:
+```python
+import plotly.express as px
+```
 
 ## Common Parameters For All Types of Plots
 - `data_frame`: the dataframe to use. Mandatory, first positional parameter.
@@ -156,6 +161,7 @@ The most important parameters are:
 - `dtick`: the distance between the ticks
 - `tickvals`: the exact values of the ticks. This overrides the `dtick` parameter.
 - `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
+- `range`
 
 
 
@@ -202,6 +208,11 @@ fig.add_annotation(x=0.5, y=0.5, text="Title", xref="x5", yref="y5", showarrow=F
 ```
 
 Unfortunately, **there is no way how to set the `xref` and `yref` parameters automatically**. Therefore, we need to compute them manually for each annotation.
+
+
+
+## Markers
+[documentation](https://plotly.com/python/marker-style/)
 
 
 

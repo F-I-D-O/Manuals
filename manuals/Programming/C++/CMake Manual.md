@@ -8,10 +8,14 @@ Here `<dir>` is the `CMakeLists.txt` directory. The build scripts are build in c
 
 
 ### Toolchain file
-To work with package managers, a link to toolchain file has to be provided as an argument `-DCMAKE_TOOLCHAIN_FILE`. For `vcpkg`, the argument is as follows:
+To work with package managers, a link to toolchain file has to be provided as an argument. For `vcpkg`, the argument is as follows:
 
 ```bash
--DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake
+# new version
+cmake <dir> --toolchain <vcpkg location>/scripts/buildsystems/vcpkg.cmake
+
+# old version
+cmake <dir> -DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake
 ```
 
 Note that the toolchain is only loaded at the beginnning of the generation process. Once you forgot it, **you need to delete the build scripts diectory content to make this argument work** for subsequent cmake commands.

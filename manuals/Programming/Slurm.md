@@ -34,5 +34,12 @@ Important parameters:
 - `--start` print the expected start time and the nodes planed to run the task
 - `-w --nodelist` filter jobs running (but not planned) on specific nodes. The format for nodelist is `<name>[<range>]`, e.g., `n[05-06]`.
 
+
 ## [sinfo](https://slurm.schedmd.com/sinfo.html)
 Prints information about the computer cluster.
+
+
+## [scancel](https://slurm.schedmd.com/scancel.html)
+The `scancel` command cancels the execution of a job specified by the ID (firsta argument). 
+
+To instead cancel jobs by name, use the `--name` option. Note however, that **full name has to be specified and no wildcards are allowed**. To cancel all jobs with a certain name, we have to mess with various linux commands instead:

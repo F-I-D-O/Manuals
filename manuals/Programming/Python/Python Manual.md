@@ -249,6 +249,15 @@ We can use the `absolute` method of the `Path` object to get the *absolute* path
 
 
 ## Splitting paths and working with path parts
+To read the **file extension**, we can use the `suffix` property of the `Path` object. The property returns the extension **with the dot**.
+
+To change the extension, we can use the `with_suffix` method:
+```Python
+p = Path("C:/workspace/project/file.txt")
+p = p.with_suffix('.csv') # 'C:\\workspace\\project\\file.csv'
+```
+
+
 We can split the path into parts using the `parts` property:
 ```Python
 p = Path("C:/workspace/project/file.txt")

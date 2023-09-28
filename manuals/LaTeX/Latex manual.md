@@ -163,6 +163,11 @@ Notice the `label = none` option. Without it, the table numbering is raised agai
 # Math
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 
+To use math, we need the `amsmath` package. 
+
+The math commands only works in math mode which can be entered in one of the many math environments. 
+
+
 ## If/else variants
 For that, we use the `cases` environment. Example:
 ```latex
@@ -187,14 +192,27 @@ To override the footnote numbering (e.g. to repeat the same number twice), we ca
 
 
 # Bibliography
-There are two bibliography management systems in LaTeX: the older bibtex and newer and more powerfull biblatex. Unfortunatelly, the two systems are not compatible. This means that for each of them, we need to:
-- have the bibliography file in the right format
-- have the style in the right format (`.bst` for bibtex, `.bbx` for biblatex)
+See more on [SE](https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib).
 
-By default, we should use biblatex. Howevver, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as [there is no conversion tool](https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex)). The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
+For bibliography management, whole toolchain is usually needed, including:
+- a tool that generates the bibliography file (e.g. Zotero, Mendeley, ...)
+- a latex package that cares about the citations style (e.g. biblatex, natbib, or default style)
+- the real bibliography processer that generates and sorts the bibliography (e.g. bibtex, biber, ...)
+
+However, not all combinations of theses tools are possible. For understanding the pipeline and the possible combinations, see the following figure:
+
+![bibliography toolchain](LaTeX_Bibliography_processing.png "bibliography toolchain")
+
+When choosing what package to use in latex, we have to take care that we:
+- have the bibliography file in the right format (`.bib` for all pipelines, but the content differs)
+- have the style in the right format (`.bst` for default or natbib, `.bbx` for biblatex)
+
+By default, we should use the biblatex - Biber pipeline. Howevver, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as [there is no conversion tool](https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex)). The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
 
 
-## Biblatex
+## Latex document configuration
+
+### Biblatex styling
 Basic setup:
 ```latex
 \usepackage[style=numeric]{biblatex}
@@ -205,14 +223,34 @@ Basic setup:
 ```
 The style parameter is optional. The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
 
-## Bibtex
+### Default and natbib styling
 Basic setup:
 ```latex
 \bibliographystyle{plain}
 ...
 \bibliography{bibliography}
 ```
-Note that we do not to use any package for bibtex. Also note, that **the `\bibliographystyle` command is mandatory**. Finally, we do not need to specify the extension of the bibliography file.
+Note that we do not have to use any package to use basic cite commands. Also note, that **the `\bibliographystyle` command is mandatory**. Finally, we do not need to specify the extension of the bibliography file.
+
+#### Natbib
+The bibtex bibliography management system is quite old and does not support many features. To overcome this, we can use the `natbib` package:
+```latex
+\usepackage{natbib}
+```
+
+
+
+# Splitting the document into multiple files
+There are two ways to split the document into multiple files:
+- `\input{file}`
+- `\include{file}`
+
+The `\include` is intended for chapters or other large parts of the document. It has the following properties:
+- it starts a new page before and after the included file
+- it does not allow nesting
+- there is a special command `\includeonly{file1,file2,...}` which allows to include only the specified files. This is useful for large documents where we want to compile only a part of the document. Without this command we would need to search for the include command and comment it out.
+
+The `\input` command is intended for smaller parts of the document. Contrary to the `\include` command, there is no special behavior involved. Instead, the content of the file is simply pasted at the place of the `\input` command. 
 
 
 
