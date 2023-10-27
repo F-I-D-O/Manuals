@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>QGIS - Manuals</title>
+        <title>Overpass Manual - Manuals</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -409,13 +409,13 @@
                                 <a href=".." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                                <a href="./" class="nav-link">Overpass Manual</a>
                             </li>
                             <li class="navitem">
                                 <a href="../PowerPoint/" class="nav-link">PowerPoint</a>
                             </li>
                             <li class="navitem">
-                                <a href="./" class="nav-link">QGIS</a>
+                                <a href="../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../RCI%20cluster/" class="nav-link">RCI cluster</a>
@@ -426,14 +426,14 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Overpass Manual</a>
                             </li>
                             <li class="navitem">
                                 <a href="../PowerPoint/" class="nav-link">PowerPoint</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">QGIS</a>
+                            <li class="navitem">
+                                <a href="../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../RCI%20cluster/" class="nav-link">RCI cluster</a>
@@ -447,12 +447,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../PowerPoint/" class="nav-link">
+                                <a rel="prev" href=".." class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../RCI%20cluster/" class="nav-link">
+                                <a rel="next" href="../PowerPoint/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -474,22 +474,67 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#adding-layers" class="nav-link">Adding layers</a>
+            <li class="nav-item" data-level="1"><a href="#sources" class="nav-link">Sources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#count-the-number-of-features-in-area" class="nav-link">Count the number of features in area</a>
+            <li class="nav-item" data-level="1"><a href="#strucutre" class="nav-link">Strucutre</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#sets" class="nav-link">Sets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#out-statement" class="nav-link">out statement</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#postgis-layers" class="nav-link">Postgis Layers</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#invalid-layer" class="nav-link">Invalid layer</a>
+            <li class="nav-item" data-level="1"><a href="#area-specification" class="nav-link">Area specification</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#filtering" class="nav-link">Filtering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#selecting-multiple-data-sets" class="nav-link">Selecting Multiple Data Sets</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#union-utatement" class="nav-link">Union Utatement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#select-area-boundary" class="nav-link">Select Area Boundary</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#discover-the-full-name-of-an-area" class="nav-link">Discover the full name of an area</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filter-areas-with-duplicite-names" class="nav-link">Filter areas with duplicite names</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#select-area-by-id" class="nav-link">Select area by ID</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#specify-area-with-higher-level-area" class="nav-link">Specify area with higher level area</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#get-historical-data" class="nav-link">Get historical data</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -497,18 +542,96 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="adding-layers">Adding layers<a class="headerlink" href="#adding-layers" title="Permanent link">&para;</a></h1>
-<p><code>Layer</code> -&gt; <code>Add Layer</code></p>
-<h1 id="count-the-number-of-features-in-area">Count the number of features in area<a class="headerlink" href="#count-the-number-of-features-in-area" title="Permanent link">&para;</a></h1>
+<h1 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL">wiki/Overpass QL</a></li>
+</ul>
+<h1 id="strucutre">Strucutre<a class="headerlink" href="#strucutre" title="Permanent link">&para;</a></h1>
+<p>Every statement ents with <code>;</code>.</p>
+<h2 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h2>
+<p>Almost all statements works with sets of data. Unless specified, we work with a default set (<code>_</code>).</p>
+<p>To wrrito to a specific set, we can use <code>-&gt;.</code> operator: <code>&lt;statement&gt;-&gt;.&lt;set&gt;</code> writes the result of the <code>&lt;statement&gt;</code> to the <set>. The default set can be ommited: <code>&lt;statement&gt;</code> is equal to <code>&lt;statement&gt;-&gt;._</code>.</p>
+<h1 id="out-statement"><code>out</code> statement<a class="headerlink" href="#out-statement" title="Permanent link">&para;</a></h1>
+<p>All queries should contain an <code>out</code> statement that determines the output format.
+- <code>out</code> is used for data only request
+- <code>out geom</code> returns data with all elements associated with their geometry.</p>
+<p>Note that while the output format can be specified, we cannot filter the output (e.g., <a href="https://gis.stackexchange.com/questions/433800/exclude-filter-relation-members-by-type-or-role">we cannot filter the ralation members</a>).</p>
+<h1 id="area-specification">Area specification<a class="headerlink" href="#area-specification" title="Permanent link">&para;</a></h1>
+<p>We select an area by name as:</p>
+<pre><code>area[&quot;name&quot;=&quot;Letkov&quot;];
+</code></pre>
+<p>And then we used it as: </p>
+<pre><code>node(area);
+</code></pre>
+<p>If we need more areas in a query, we can store them in variable:</p>
+<pre><code>area[&quot;name&quot;=&quot;Letkov&quot;]-&gt;.let;
+</code></pre>
+<p>And:</p>
+<pre><code>node(area.let);
+</code></pre>
+<p><strong>Important note:</strong> If an area needs to be used repetadly, it has to be named, as the value of <code>area</code> (<code>area._</code>) is replaced by the output of any statement.</p>
+<h1 id="filtering">Filtering<a class="headerlink" href="#filtering" title="Permanent link">&para;</a></h1>
+<p>filters are specified in brackets:</p>
+<pre><code>rel[&quot;admin_level&quot;=8];
+</code></pre>
+<p>It is also possible to use a regex filtering, we just neeed to replace <code>=</code> with <code>~</code>:</p>
+<pre><code>rel[&quot;admin_level&quot;~&quot;.*&quot;];
+</code></pre>
+<h1 id="selecting-multiple-data-sets">Selecting Multiple Data Sets<a class="headerlink" href="#selecting-multiple-data-sets" title="Permanent link">&para;</a></h1>
+<p>Implicitely, all filters are aplied to a default dataset called <code>_</code>  and also written to it. Therefore, we cannot do:</p>
+<pre><code>rel[&quot;admin_level&quot;~&quot;.*&quot;];
+node;
+</code></pre>
+<p>because we are basically selecting nodes from a set of relations. Solutions:
+1) Union statement
+2) Named sets</p>
+<h2 id="union-utatement">Union Utatement<a class="headerlink" href="#union-utatement" title="Permanent link">&para;</a></h2>
+<p>Union statement is surounded by parantheses. We can achieve the intended behaviour by:</p>
+<pre><code>(
+rel[&quot;admin_level&quot;~&quot;.*&quot;];
+node;
+);
+</code></pre>
+<h1 id="select-area-boundary">Select Area Boundary<a class="headerlink" href="#select-area-boundary" title="Permanent link">&para;</a></h1>
+<p>Sometimes, it is usefull to check the boundary of the named area. However, the administrative level differ for various areas cities, countries, so the <code>admin_level</code> relation cannot be used for that. Luckilly, there is an option to use the <code>pivot</code> filter. Example:</p>
+<pre><code>area[&quot;name&quot;=&quot;Praha&quot;];
+node(pivot);
+out geom;
+</code></pre>
+<h2 id="discover-the-full-name-of-an-area">Discover the full name of an area<a class="headerlink" href="#discover-the-full-name-of-an-area" title="Permanent link">&para;</a></h2>
+<p>If we want to know the full name of the area while the above query return multiple results, we can do that in openstreet map:
+1. Move the map to see the area
+2. Click the button with cusor and question mark to select the exploration tool
+3. Click inside the area
+4. Scroll down to area relations
+5. Click on the proper region
+6. The <code>name</code> property is what we are looking for</p>
+<h2 id="filter-areas-with-duplicite-names">Filter areas with duplicite names<a class="headerlink" href="#filter-areas-with-duplicite-names" title="Permanent link">&para;</a></h2>
+<p>Sometimes, even the full name of the area is not specific enough. In that case, we can use two approaches:
+- select the area by the area relation id
+- specify the area by the higher level area (state, country)</p>
+<h3 id="select-area-by-id">Select area by ID<a class="headerlink" href="#select-area-by-id" title="Permanent link">&para;</a></h3>
 <ol>
-<li>select the right layer</li>
-<li>on the top panel, third row, select the tool <code>Select Features by area or single click</code></li>
-<li>select features</li>
-<li>Open the attribute table for layer. In the heder, there should be the number of selected features</li>
+<li>select the requested area</li>
+<li>copy the id and add 3 600 000 000 to it (start with 36 and fill zerose till there are 10 digits in total)</li>
+<li>replace <code>area["name"="&lt;NAME&gt;]</code> with <code>area(&lt;ID&gt;)</code>. <strong>Note that round brackets are used instead of square brackets!</strong></li>
 </ol>
-<h1 id="postgis-layers">Postgis Layers<a class="headerlink" href="#postgis-layers" title="Permanent link">&para;</a></h1>
-<h2 id="invalid-layer">Invalid layer<a class="headerlink" href="#invalid-layer" title="Permanent link">&para;</a></h2>
-<p>The layer can be marked as invalid because of a missing or invalid index column. <strong>Each Postgis layer needs an id column consisting of unique integer values</strong>.</p></div>
+<h3 id="specify-area-with-higher-level-area">Specify area with higher level area<a class="headerlink" href="#specify-area-with-higher-level-area" title="Permanent link">&para;</a></h3>
+<p>In this exaple, we select the Coo County, Illinois.</p>
+<pre><code>area[name=&quot;Illinois&quot;];
+rel[name=&quot;Cook County&quot;](area);
+map_to_area;
+node(pivot);
+out geom;
+</code></pre>
+<p><a href="https://dev.overpass-api.de/overpass-doc/en/full_data/area.html">more info</a></p>
+<h1 id="get-historical-data">Get historical data<a class="headerlink" href="#get-historical-data" title="Permanent link">&para;</a></h1>
+<p>To get historical data, prepend the query with a date statement. Example:</p>
+<pre><code>[date:&quot;2016-01-01T00:00:00Z&quot;];
+area[name=&quot;City of New York&quot;];
+node(pivot);
+out geom;
+</code></pre></div>
             </div>
         </div>
 

@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>QGIS - Manuals</title>
+        <title>PowerPoint - Manuals</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -412,10 +412,10 @@
                                 <a href="../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
                             </li>
                             <li class="navitem">
-                                <a href="../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="./" class="nav-link">PowerPoint</a>
                             </li>
                             <li class="navitem">
-                                <a href="./" class="nav-link">QGIS</a>
+                                <a href="../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../RCI%20cluster/" class="nav-link">RCI cluster</a>
@@ -429,11 +429,11 @@
                             <li class="navitem">
                                 <a href="../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../PowerPoint/" class="nav-link">PowerPoint</a>
-                            </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">QGIS</a>
+                                <a href="./" class="nav-link">PowerPoint</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../RCI%20cluster/" class="nav-link">RCI cluster</a>
@@ -447,12 +447,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../PowerPoint/" class="nav-link">
+                                <a rel="prev" href="../Overpass%20Manual/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../RCI%20cluster/" class="nav-link">
+                                <a rel="next" href="../QGIS/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -474,19 +474,40 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#adding-layers" class="nav-link">Adding layers</a>
+            <li class="nav-item" data-level="1"><a href="#slide-design" class="nav-link">Slide design</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#shareing-the-theme" class="nav-link">Shareing the theme</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#edit-the-master-slide" class="nav-link">Edit the master slide</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#edit-the-layout-slide" class="nav-link">Edit the layout slide</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#symbols" class="nav-link">Symbols</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#count-the-number-of-features-in-area" class="nav-link">Count the number of features in area</a>
+            <li class="nav-item" data-level="1"><a href="#tables" class="nav-link">Tables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#insert-table-from-csv" class="nav-link">Insert table from csv</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
             
-            <li class="nav-item" data-level="1"><a href="#postgis-layers" class="nav-link">Postgis Layers</a>
+            <li class="nav-item" data-level="1"><a href="#text-formatting" class="nav-link">Text formatting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#invalid-layer" class="nav-link">Invalid layer</a>
+            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -497,18 +518,39 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="adding-layers">Adding layers<a class="headerlink" href="#adding-layers" title="Permanent link">&para;</a></h1>
-<p><code>Layer</code> -&gt; <code>Add Layer</code></p>
-<h1 id="count-the-number-of-features-in-area">Count the number of features in area<a class="headerlink" href="#count-the-number-of-features-in-area" title="Permanent link">&para;</a></h1>
-<ol>
-<li>select the right layer</li>
-<li>on the top panel, third row, select the tool <code>Select Features by area or single click</code></li>
-<li>select features</li>
-<li>Open the attribute table for layer. In the heder, there should be the number of selected features</li>
-</ol>
-<h1 id="postgis-layers">Postgis Layers<a class="headerlink" href="#postgis-layers" title="Permanent link">&para;</a></h1>
-<h2 id="invalid-layer">Invalid layer<a class="headerlink" href="#invalid-layer" title="Permanent link">&para;</a></h2>
-<p>The layer can be marked as invalid because of a missing or invalid index column. <strong>Each Postgis layer needs an id column consisting of unique integer values</strong>.</p></div>
+<h1 id="slide-design">Slide design<a class="headerlink" href="#slide-design" title="Permanent link">&para;</a></h1>
+<p>Slide design should not be set separately for each slide but globaly for the whole presentation. This can be done by configuring the theme in the slide master view: <code>View</code> &gt; <code>Master Views</code> &gt; <code>Slide Master</code>. </p>
+<p>On the left, we can select a type of the slide to edit, while on the right, we edit the style for that style type. On the left, the top slide, larger than the others is the <em>master slide</em>. It represents the default design for the whole theme. </p>
+<h2 id="shareing-the-theme">Shareing the theme<a class="headerlink" href="#shareing-the-theme" title="Permanent link">&para;</a></h2>
+<p>The theme can be exported in the slide master view by clicking: <code>Edit theme</code> &gt; <code>Save current theme</code>. </p>
+<p>The theme can be imported in the slide master view by clicking: <code>Edit theme</code> &gt; <code>Browse for themes</code>. </p>
+<h2 id="edit-the-master-slide">Edit the master slide<a class="headerlink" href="#edit-the-master-slide" title="Permanent link">&para;</a></h2>
+<p>The master slide is the default design for the whole theme. We cannot add any content to it (it makes no sense, as this would be added to all slides.) However, we can set up some properties of predefined basic elements here:
+- <strong>Title</strong>: The title of the slide. 
+- <strong>Text</strong>: The text for different levels of indentation
+- <strong>Date</strong>
+- <strong>Slide number</strong>: page numbering.
+- <strong>Footer</strong>
+Note that the configuration here applies to all slides. Therefore, if we want to have for example date only on the first slide, we should not configure the date here, but on the first slide itself.</p>
+<p>To select which of the elements should be configured for all slides, click on <code>Master Layout</code> -&gt; <code>Master Layout</code> and select the elements to be configured.</p>
+<h2 id="edit-the-layout-slide">Edit the layout slide<a class="headerlink" href="#edit-the-layout-slide" title="Permanent link">&para;</a></h2>
+<h1 id="symbols">Symbols<a class="headerlink" href="#symbols" title="Permanent link">&para;</a></h1>
+<ul>
+<li>arrow: write <code>==&gt;</code> and press space.</li>
+</ul>
+<h1 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h1>
+<p>Tables are treated specially in PowerPoint. They can be created using the <code>Insert</code> &gt; <code>Table</code> menu. To edit the table style, we have to select it and go to the special <code>Table Design</code> tab. To edit the table layaut, add rows or columns, we have to select the table and go to the <code>Layout</code> tab.</p>
+<h2 id="insert-table-from-csv">Insert table from csv<a class="headerlink" href="#insert-table-from-csv" title="Permanent link">&para;</a></h2>
+<p>Unfortunately, csv text cannot be pasted directly into a PowerPoint table. However, there is a workaround:
+1. Copy the csv text into Excel.
+2. Select the cells in Excel and copy them.
+3. Paste in the powerpoint slide. </p>
+<p>This way a new table is created. </p>
+<h1 id="text-formatting">Text formatting<a class="headerlink" href="#text-formatting" title="Permanent link">&para;</a></h1>
+<h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
+<p>First, select the text to adjust, then:
+- subscript: <code>Ctrl</code> + <code>=</code>
+- superscript: <code>Ctrl</code> + <code>Shift</code> + <code>+</code></p></div>
             </div>
         </div>
 
