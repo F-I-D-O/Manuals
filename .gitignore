@@ -1,1 +1,3 @@
 site/
+*.lock
+manuals-backup

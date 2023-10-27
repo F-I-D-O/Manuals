@@ -2329,13 +2329,12 @@ std::unique_ptr<Value_interface> increment(std::unique_ptr<Value_interface> orig
 	return orig_value->set_value(orig_value->get_value() + 1);
 }
 ```
-
 This system works in C++ because it supports multiple inheritance. Do not forget to use the `virtual` keyword, otherwise, the method cannot be overriden.
-
 Note that unlike in other languages, **in C++, the polymorphism cannot be directly use as a template (generic) interface.** Therefore, we cannot use the polymorfism alone to restrict a type.
 
 
 ## Using template argument restriction as an interface
+To use template argument restriction as an interface, we can use concepts. The following concept impose the same requirements as the interface from the polymorphism section:
 To use template argument restriction as an interface, we can use concepts. The following concept impose the same requirements as the interface from the polymorphism section:
 
 ```cpp
