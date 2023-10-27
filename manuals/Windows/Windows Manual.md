@@ -65,6 +65,33 @@ Bluetooth Command Line Tools is a set off tools that enables command line intera
 
 
 
+# Standard folder structure
+In Windows, the standard folder structure is completely different for system and user instalation. Details are listed below, but the main difference is that the system instalations are stored in a single root folder for each application (similarly to Android), while the user instalations' files are distributed among multiple folders, depending on the type of the file (similarly to Linux).
+
+## User home folder
+The user home folder is located in `C:\Users\<username>` by default. It is aliased as `%userprofile%`. 
+
+## System instalation folders
+If an application is installed for all users, all its files are usually installed in a single folder per application. The location of the folder depends on the type of the application:
+- `C:\Program Files`: 64-bit applications
+- `C:\Program Files (x86)`: 32-bit applications
+
+If the application needs to store some data, they are usually stored in the `C:\ProgramData` (aliased as `%programdata%`) folder.
+
+
+## User instalation folders
+User instalations are stored in multiple folders, depending on the type of the file. All these folders are located in the user's home folder, which is `C:\Users\<username>` by default. The folders are:
+- `~\AppData\Local`: Program data and sometimes also executables
+- `~\AppData\Local\Promgrams`: program files and executables
+- `~\AppData\LocalLow`:
+- `~\AppData\Roaming` (aliased as `%appdata%`):
+
+## Start Menu folder
+The user specific shortcuts are stored in: `%appdata%\Microsoft\Windows\Start Menu\Programs`.
+
+The system wide shortcuts are stored in: `%programdata%\Microsoft\Windows\Start Menu\Programs`.
+
+
 
 
 # Sugarsync
@@ -129,6 +156,8 @@ Diskpart is a useful command line tool for work with diska, partitions, etc.
 
 Do not forgot to turn of the logging after the investigation!
 
+
+
 # SSH
 For ssh, we can use the standard `ssh` commannd available in PowerShell (check Linux manual for more info).
 
@@ -140,6 +169,31 @@ However, for more features, we can use more sophisticated programs
 It is best to use the portable version, so that nothing is stored in the Windows registry. Configurtation:
 - [copy the PuTTY credentials](): `.\kitty_portable-0.76.1.3.exe -convert-dir`
 - auto reconnect: `Connection` -> `auto reconnect on connection failure` and `auto reconnect on system wakeup`
+
+
+## WinSCP
+WinSCP is a graphical tool for file manipulation. Ii can be used both for local and remote files, and it supports various protocols (FTP, SFTP, SCP, WebDAV, etc.). 
+
+### Adding a new connection
+There is a simple `New Site` button on the left, which opens a straightforward dialog. The only complicated thing can be the SSH key. To add it, click on the `Advanced` button and go to the `SSH` -> `Authentication` tab. There, we can select the private key file.
+
+
+## SSH key agent
+To enable the ssh-agent on Windows, one extra step is needed: we need to start the ssh-agent service. To do that, open the services manager and start the `OpenSSH Authentication Agent` service.
+
+
+# Git
+Most of the git functionality is the same as in Linux, so check the Linux manual for more info. However, there are some important differences mostly resulting from the fact that Git is not a native Windows application, but it runs in MinGW. 
+
+## Git on Windows and SSH
+As the git on Windows runs in MinGW, it does not use the Windows SSH command. That can be problematic if we want to debug the SSH connection using the env variable or configuring an ssh key agent. To force git to use the Windows SSH, we need to set the `sshCommand` config variable to the path to the Windows SSH:
+```PowerShell
+git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
+```
+
+
+
+
 
 # Problems
 

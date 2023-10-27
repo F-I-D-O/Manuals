@@ -44,7 +44,7 @@ To check the type in the polymorphic way, including the subtypes:
 if isinstance(<VAR>, <TYPE>):
 # e.g.
 if isinstance(o, str):
-
+```
 
 # Conditions and boolean context
 
@@ -249,6 +249,15 @@ We can use the `absolute` method of the `Path` object to get the *absolute* path
 
 
 ## Splitting paths and working with path parts
+To read the **file extension**, we can use the `suffix` property of the `Path` object. The property returns the extension **with the dot**.
+
+To change the extension, we can use the `with_suffix` method:
+```Python
+p = Path("C:/workspace/project/file.txt")
+p = p.with_suffix('.csv') # 'C:\\workspace\\project\\file.csv'
+```
+
+
 We can split the path into parts using the `parts` property:
 ```Python
 p = Path("C:/workspace/project/file.txt")
@@ -421,6 +430,24 @@ Instead of using comparators, Python has a different concept of *key functions* 
 
 
 # I/O
+
+## CSV
+[Official Manual](https://docs.python.org/3/library/csv.html)
+
+The `csv` module provides a Python interface for working with CSV files. The basic usage is:
+```Python
+import csv
+
+with open('file.csv', 'r') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        # do something
+```
+
+Reader parameters:
+- `delimiter` - the delimiter character
+
+
 ## HDF5
 HDF5 is a binary file format for storing large amounts of data. The `h5py` module provides a Python interface for working with HDF5 files.
 

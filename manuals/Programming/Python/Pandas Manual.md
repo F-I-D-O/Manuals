@@ -141,7 +141,7 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 ## Useful filter functions
 - non null/nan values: `<column selection>.notnull()`
-- diltring using the string value: `<column selection>.str.<string function>`
+- filtring using the string value: `<column selection>.str.<string function>`
 
 
 
@@ -357,6 +357,8 @@ pd.concat([df1, df2])
 For reading csv files, we can use the [`read_csv`](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html) function. Important params:
 - `sep`: separator
 - `header`: row number to use as column names. If `None`, no header is used
+- `skiprows`: number of rows to skip from the beginning
+- `delim_whitespace`: if `True`, the whitespace is used as a separator. The `sep` parameter is ignored in that case. This is a way how to read a file with variable number of whitespaces between columns.
 
 
 For export, we can use the `to_csv` method for that:
@@ -458,11 +460,14 @@ There is no equivalent to the header parameter of the old `to_latex` function in
 
 
 
-
-
 ## Exporting to latex
 For the export, we use the [`to_latex`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html) function. Important parameters:
-
+- `convert_css`: if `True`, the css properties are converted to latex commands
+- `multirow_align`: the alignment of the multirow cells. Options are `t`, `c`, `b`
+- `hrules`: if set to `True`, the horizontal lines are added to the table, specifically to the top, bottom, and between the header and the body. Note that these hrules are realized as the `\toprule`, `\midrule`, and `\bottomrule` commands from the `booktabs` package, so the package has to be imported  .
+- `clines`: configuration for hlines between rows. It is a string composed of two parts divided by `;` (e.g.: `skip-last;data`). The parts are:
+    - whether to skip last row or not (`skip-last` or `all`)
+    - whether to draw the lines between indices or the whole rows (`index` or `data`)
 
 
 # Displaying the dataframe in console

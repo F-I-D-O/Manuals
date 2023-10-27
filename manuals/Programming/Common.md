@@ -7,11 +7,15 @@
 - **Sellect all**: `Ctrl` + `A`
 - **Format selection**: `Ctrl` + `F`
 - **Format File**: `Ctrl` + `Shift` + `F`
-- **Refacor->Rename**: `Ctrl` + `R` 
-- **Refacor->Change signature**: `Ctrl` + `W`
+- **Build**: `Ctrl` + `B`
+
+## Refactoring
+- **Rename**: `Ctrl` + `R` 
+- **Change signature**: `Ctrl` + `G`
 - **Text transform**: `Ctrl` + `T`
     - ` + U`: to upper case
-- **Build**: `Ctrl` + `B`
+- **Surround with**: `Ctrl` + `W`
+
 
 # Testing private methods
 An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.
@@ -27,3 +31,15 @@ The possible approaches are:
     - in C++ the `friend` keyword can be used to grant access to a class to another class. 
     - In Java, the `@VisibleForTesting` annotation can be used to mark a method as visible for testing. 
     - In Python, the `__test__` attribute can be used to mark a method as visible for testing.
+
+
+# Finding Duplicates
+For finding duplicates, there are two possible approaches:
+- **Using hash sets**: iteratively checking if the current element is in the set of already seen elements and adding it to the set if not. 
+- **Sorting**: sorting the collection and then for each element checking if the current element is the same as the previous one. 
+
+Comparison:
+| Approach | Time complexity (worst case asymptothic)| Time complexity (average expected) | Space complexity | allocation complexity |
+| --- | --- | --- | --- | --- |
+| Sets | *O(log n)* (both contains and add) | *O(1)* (both contains and add) | *O(n)* | *O(1)* |
+| Sorting | *O(n log n)* (sorting) | *O(n log n)* (sorting) + *O(n)* (duplicates check) | *0* or *O(n)* if we need to left the source collection unsorted | *0* or *O(1)* in case of new collection |

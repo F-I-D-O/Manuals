@@ -41,6 +41,8 @@ Usually, you need to clone some of the SUM projects to start working on the RCI 
     - Run `pip install --user packagename`
 
 # Specifics for C++ projects
+
+## Workflow options
 As linux binaries are usually not portable. They are not compatible with older linux versions due to the infamous `glibc` incompatibility. There are three solutions to this problem:
 
 | Method | Setup | Program Upgrade |
@@ -48,6 +50,13 @@ As linux binaries are usually not portable. They are not compatible with older l
 | Compile the code on the RCI | Setup the compilation on RCI. | Copy the source code to RCI and recompile after every change |
 | Use a [Singularity](https://en.wikipedia.org/wiki/Singularity_(software)) container | learn with singularity, create the container | Generate new container and copy it to the RCI |
 | Build a compatible binary using a [modified toolchain](https://crosstool-ng.github.io/docs/introduction/) | learn with a toolchain generator, configure and generate the right toolchain | Copy the updated binary
+
+
+## Building on RCI
+In general the workflow is the same as on a local machine. The difference is that we do not have root access, so for all needed tools, we have to either  load them via `ml` command, or, if not available, install them in the user space. Typically, we need to load:
+- git: `ml git`
+- GCC: `ml GCC`
+- CMake: `ml CMake`
 
 # Specific for projects with gurobi
 1. Load Gurobi with 

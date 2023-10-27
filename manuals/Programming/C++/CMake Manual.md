@@ -8,10 +8,14 @@ Here `<dir>` is the `CMakeLists.txt` directory. The build scripts are build in c
 
 
 ### Toolchain file
-To work with package managers, a link to toolchain file has to be provided as an argument `-DCMAKE_TOOLCHAIN_FILE`. For `vcpkg`, the argument is as follows:
+To work with package managers, a link to toolchain file has to be provided as an argument. For `vcpkg`, the argument is as follows:
 
 ```bash
--DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake
+# new version
+cmake <dir> --toolchain <vcpkg location>/scripts/buildsystems/vcpkg.cmake
+
+# old version
+cmake <dir> -DCMAKE_TOOLCHAIN_FILE=<vcpkg location>/scripts/buildsystems/vcpkg.cmake
 ```
 
 Note that the toolchain is only loaded at the beginnning of the generation process. Once you forgot it, **you need to delete the build scripts diectory content to make this argument work** for subsequent cmake commands.
@@ -19,10 +23,13 @@ Note that the toolchain is only loaded at the beginnning of the generation proce
 ### Usefull arguments
 - `-LH` to see cmake nonadvanced variables together with the description. 
 - `-LHA` to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.
-- To change build options (`option` in `CMakeLists.txt`), run cmake with `-D <option name>=<option value> <build dir>`. Example: 
+- `-D`: To change build options (`option` in `CMakeLists.txt`), run cmake with `-D <option name>=<option value> <build dir>`. Example: 
 ```cmake
 cmake -D BUILD_TESTING=OFF .
 ```
+
+### Legacy arguments
+- `-H`: to specify the source directory (where the `CMakeLists.txt` file is located). Now it is specified as the positional argument or using `-S`.
 
 
 ## Building
@@ -70,6 +77,7 @@ In multi-configuration systems, the `-DCMAKE_BUILD_TYPE` parameter is ignored, b
 ```bash
 cmake --build . --config Release
 ```
+
 
 
 ## Clean the source files
@@ -239,7 +247,7 @@ There are two types of package (library) info search:
 Unless specified, the module mode is used. To force a speciic mode, we can use the `MODULE`/`CONFIG` parameters.
 
 
-#### Conig packages
+#### Config packages
 Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. 
 
 The configuration files are executed as follows:
@@ -401,6 +409,15 @@ The usual workflow is:
     ```
 
 
+## Target definition
+The target definition is done using the `add_executable` command. The syntax is:
+```cmake
+add_executable(<target name> <source file 1> <source file 2> ...)
+```
+The target name is used to refer to the target in other commands. The target name is also used to name the output file. 
+
+The list of source files should contain all the source files that are needed to build the target. There are some automatic mechanisms that can be used to add the source files (discussed e.g. on [cmake forums](https://discourse.cmake.org/t/is-glob-still-considered-harmful-with-configure-depends/808/2)), but they are not recommended.
+
 
 ## Setting include directories
 To inlude the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command.
@@ -408,7 +425,9 @@ To inlude the headers, we need to use a `inlude_directories` (global), or better
 
 
 ## Linking configuration
-For linkink, use the `target_link_libraries` command.
+For linkink, use the [`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html) command.
+
+Make sure that you **always link against all the libraries that are needed for the target to work!** Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advenced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.
 
 
 

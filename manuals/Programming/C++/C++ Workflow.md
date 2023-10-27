@@ -109,6 +109,11 @@ Vcpkg has it s own `find_package` macro in the toolchain file. It executes the s
 #### Set default layout
 `Window` -> `Layouts` -> `Save changes in current layout`
 
+
+#### Set up new surround with template
+In Clion, there are two types of surround with templates: `surrond with` and `surround with live template`. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. 
+
+
 ### Toolchain configuration
 Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolchain and set:
 -   Name to whatever you want
@@ -349,19 +354,15 @@ In WSL, when combined with CLion, some find scripts does not work, because they 
     
 
 
-# Handling Case Insensitivity
-Windows builds are, in line with the OS, case insensitive. Moreover, the Visual Studio does some magic with names internally, so the build is case insensitive even on VS WSL builds.
+# Refactoring
+The refactoring of C++ code is a complex process, so the number of supported refactoring operations is limited. In Visual Studio, the only supported refactoring operation is renaming. In IntelliJ tools (CLion, ReSharper C++), there are more tools available, but still, the refactoring is not as powerful nor reliable as in Java or Python.
 
-The case insensitivity can bring inconsistencies that later breake Unix builds. Therefore, it is desirable to have the build case sensitive even on Windows. Fortunatelly, we can toggle the case sensitivity at the OS level using this PowerShell command:
+Other alternative is to implement the refactoring manually, with a help of some compiler tools like [clang Refactoring Engine](https://clang.llvm.org/docs/RefactoringEngine.html) ([example project](https://github.com/realincubus/clang-refactor)). 
 
-```PowerShell
-Get-ChildItem <PROJECT ROOT PATH> -Recurse -Directory | ForEach-Object { fsutil.exe file setCaseSensitiveInfo $_.FullName enable }
-```
 
-Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:
-```
-git config core.ignorecase false
-```
+## Changing Method Signature
+As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.
+
 
 
  # Compilation for a specific CPU

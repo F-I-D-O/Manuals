@@ -118,6 +118,14 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 - `-a`: show all connections. Without this, some connections can be skipped.
 
 # SSH
+The SSH is a protocol for secure communication between two computers. The basic usage is to connect to a remote computer:
+```bash
+ssh <username>@<address>
+```
+
+To close the connection, type `exit` to the console and press enter.
+
+
 ## SSH Tunneling
 An SSH tunnel can be created by the `ssh` command. The usuall syntax is following:
 ```bash
@@ -142,7 +150,7 @@ The connection can be canceled any time byping `exit` to the console.
 
 [More information](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
 
-## Debugging a SSH tunnel
+### Debugging a SSH tunnel
 This guide suppose that the tunnel creation comman run without any error message.
 1. If the tunnel seems to not work, first use a command line tool to be sure:
 	- web browser for HTTP tunnels (remote port 80)
@@ -150,7 +158,8 @@ This guide suppose that the tunnel creation comman run without any error message
 	- `telnet` for telnet tunnels (reote port 23)
 2. If the test is unsucessful, try to kill all ssh connections to the server by shutting down all applications with ssh connections tunnels, untill there will be only one connection at the server (the console). The number of ssh connections can be checked with: `sudo netstat -nap | grep :22`
 
-## Enabnling SSH Access to Server
+
+## Enabnling SSH Access on Server
 1.  install openssh:
 	- `sudo apt update`
     - `sudo apt install openssh-server`
@@ -170,7 +179,54 @@ This guide suppose that the tunnel creation comman run without any error message
 1n from now e  as a t euin.  check the ssh status with: `s th service ssh status`
 2.  check the ssh porot with `sudso netstat t-tpln`
 
-## Executing a long running process over SSH 
+
+## SSH Agent
+Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.
+
+An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is `ssh-agent`, the rest of the section is dedicated to this agent.
+
+### Listing keys
+To list the keys stored in the agent, run:
+```bash
+ssh-add -l
+```
+
+### Adding keys
+To add a key to the agent, run:
+```bash
+ssh-add <path to key>
+```
+
+### Debuging
+If the agent is running and the key is listed, the first thing to try is to connect via ssh to see whether it is an agent/ssh issue or an issue of the program using the SSH (like git, IDE, file manager...)
+
+
+## Configuration
+For configuration, we can use the `git config` command. There are three levels of configuration:
+- *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
+- *global*: the configuration is applied to all repositories of the current user. This configuration is set by the `--global` parameter.
+- *local*: the configuration is applied only to the current repository. This configuration is set by the `--local` parameter.
+
+To list the configuration, use the `-l`/`--list` parameter of the `git config` command. To list the configuration for a specific level, use the `--system`, `--global`, `--local` parameters.
+
+
+To see the default value of a configuration, search in the [git config documentation](https://git-scm.com/docs/git-config#_variables).
+
+
+## `known_hosts` file
+To know that a connection leads to the desired server and not to some impersonator, the server sends its public key to the client. The client then checks the public key against the list of keys previously set as valid. This list is stored in the `.ssh/known_hosts` file. The format of the file is:
+```
+<server address> <key type> <key>
+```
+Each line contains one server record. What is confusing here is that each server can have multiple records, due to:
+- different key type (e.g., RSA, ECDSA)
+- key for both host name and IP address (e.g., `github.com` and `140.82.121.3`)
+It is important to delete/updete all of these recorsds in case the server change its keys.
+
+More info is at this [SO answer](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh/20710#20710).
+
+
+## Screen: executing a long running process over SSH 
 When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
 
 A typical workflow can look like this:
@@ -359,7 +415,7 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 
 
 
-# String Modification
+# String Processing
 
 ## `sed`
 Sed is a multi purpose command for string modification.
@@ -394,11 +450,50 @@ If we need to specify delimiters, we use the `-d` parameter:
 cut -d, -f 1,5
 ```
 
+
+## AWK
+AWK is a powerful tool for text processing. It is a programming language, so it can be used for more complex tasks than `sed` or `cut`. The basic syntax is:
+```bash
+awk '<pattern> {<action>}'
+```
+Where `<pattern>` is a regex and `<action>` is a command. The `<action>` is executed only if the line matches the `<pattern>`. 
+
+
+
+### Pattern
+In the `awk`, `/` is used as a delimiter of the regex pattern. 
+
+
+### Action
+The `<action>` can be a sequence of commands, separated by `;`. We can use column values by using special column variables:
+- `$0`: the whole line
+- `$1`: the first column
+...
+
+
 ## Trim string
 ```bash
 <command with string output> | xargs
 ```
 
+
+# Processes
+- for checking all processes, we can use `htop`
+- for checking a specific process, we can use `ps`
+- to kill a process, we can use `kill`
+- to kill a process by name, we can use `pkill`
+- to get information about a process selected by name, we can use [`pgrep`](https://en.wikipedia.org/wiki/Pgrep)
+
+## pkill
+The `pkill` command kills a process by name. The syntax is:
+```bash
+pkill <process name>
+```
+important parameters:
+- `-f`: match the whole command line, not only the process name
+- `-9`: force kill
+
+## Process Info
 
 
 # Installing Java
@@ -456,6 +551,23 @@ nabling SSH Access to Server
 		2.  set `PasswordAuthentication yes`
 		3.  Now you can log in with the user and password you use in Ubuntu
 3.  keys: TODO
+
+
+## Free disk space
+```bash
+df -h
+```
+
+
+## piping parameters using `xargs`
+The [`xargs`](https://en.wikipedia.org/wiki/Xargs) command transfers the output of one command into call of another command with the output of the first command as parameters of the second command. This is usefull when the second command does not accept the output of the first command as input, but accepts the output as parameters.
+
+Example:
+```bash
+ls | xargs rm # remove all files in the current directory
+```
+
+
 
 
 # Upgrade

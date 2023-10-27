@@ -138,3 +138,17 @@ Finally, create a new Python project (either clean, or from existing code) and c
 ### Other Sources
 [Microsoft official documentation](https://docs.microsoft.com/en-us/visualstudio/python/debugging-mixed-mode-c-cpp-python-in-visual-studio?view=vs-2022)
 [Python tools for Visual Studio GitHub page](https://github.com/microsoft/PTVS)
+
+
+# Releasing libraries to PyPi
+
+## Steps
+1. add license headers: https://github.com/johann-petrak/licenseheaders
+2. check that setup.py contains all requirements - pipreqs
+3. release
+4. update the min version in dependencies
+
+## Release
+1. raise version
+2. run sdist
+3. upload to pypi: twine upload dist/*
