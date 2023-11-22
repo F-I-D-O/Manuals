@@ -80,12 +80,17 @@ appendWindowsPath = false
 
 # File System
 ## copy file
-The `cp` command is used to copy files. The most used options are:
+The `cp` command is used to copy files: `cp <source> <destination>`. The most used options are:
 - `-r`, `-R`: copy recursively
 - `-v`: verbose
 - `-f`: force
 - `-p`: preserve permissions and timestamps
 - `-a`: same as `-p -R` plus some other options
+
+For more sophisticated copying, use `rsync`: `rsync <source> <destination>`. The most used options are:
+- `-h`: human readable
+- `-a`: archive mode, equivalent to `-rlptgoD`
+- `--progress`: show progress
 
 
 ## Remove file
@@ -110,6 +115,18 @@ Important aspects:
 - to access a directory, the user has to have the `x` right on the directory.
 - to access a file, the user has to have the `x` right on all folders in the path to the file.
 
+## Compute directory size
+To compute the size of a directory, use the `du` command:`du <path>`. The most used options are:
+- `-h`: human readable
+- `-s`: summarize
+
+
+## Find files
+To find files, use the `find` command: `find <where> <options> <params>`. The most used options are:
+- `-name`: find by name. This option should be followed by a file name pattern.
+- `-path`: find by path. This option should be followed by a path pattern. 
+
+
 
 # Network
 ## [`netstat`](https://en.wikipedia.org/wiki/Netstat)
@@ -124,6 +141,11 @@ ssh <username>@<address>
 ```
 
 To close the connection, type `exit` to the console and press enter.
+
+If we do not want to establish a connection, but just run a single command, we can add the command at the end of the ssh command:
+```bash
+ssh <username>@<address> <command>
+```
 
 
 ## SSH Tunneling
@@ -241,6 +263,24 @@ Sometimes, the server does not detect the connection failure and do not allow yo
 7. read the ID from the output and exec `screen -rd <ID>`
 
 
+## Copying files over SSH using `scp`
+The `scp` command is used to copy files over SSH. The syntax is:
+```bash
+scp <source> <destination>
+```
+The `<source>` and `<destination>` can be either local or remote. The remote files are specified using the `<username>@<address>:<path>` syntax. 
+
+Note that **if the remote path contains spaces, double quoting is necessary**, one for local and one for remote:
+```bash
+scp <source> "<username>@<address>:'<path with spaces>'"
+```
+
+
+### Problems
+- `protocol error: filename does not match request`: This error is triggered if the path contains unexpected characters. Sometimes, it can be triggered even for correct path, if the local console does not match the remote console. In that case, the solution is to use the `-T` parameter to disable the security check.
+
+
+
 ## WSL configuration
 1.  port `22` can be used on Windows, so change port to `2222` in `sshd_config`
 2.  when loging from Windows use `127.0.0.1` as a host
@@ -260,11 +300,54 @@ Sometimes, the server does not detect the connection failure and do not allow yo
 - brackets needs spaces around them, otherwise, there will be a syntax error
 
 ## Working with I/O
-- `<command A> | <command B>` forward output of `<command A>` to th input of `<command B>`.
-- `<command> <<< $<variable>` forward `<variable>` to the input of `<command>`
-- `<command 1> | tee >(<command 2>) | <command 3>`: forward `<command 1>` to both `<command 2>` and `<command 3>`.
+
+### Output Forwarding
+Output forwarding is a process of redirecting the output of a command to an input of another command. The operator for that is the pipe `|`. The syntax is:
+```bash
+<command 1> | <command 2>
+```
 
 Note that the content of the pipe cannot be examined, the process on the right hand side consume it. Therefore, **it is not possible to simply branch on pipe content** while use it in the subsequent process.
+
+
+### Output Redirection
+Output redirection is a process of redirecting the output (stdout, stderr,..) from the console to a file. The syntax is:
+```bash
+<command> <operator> <file>
+```
+The possible operators and their effects are listed in the table (full explanation on [SO](https://askubuntu.com/a/731237/603617)) below:
+
+| Operator | Stdout | Stderr | Mode (in file) | 
+| --- | --- | --- | --- |
+| `>` | file | console | overwrite |
+| `>>` | file | console | append |
+| `&>` | file | file | overwrite |
+| `&>>` | file | file | append |
+| `2>` | console | file | overwrite |
+| `2>>` | console | file | append |
+| `\| tee` | both | console | overwrite |
+| `\| tee -a` | both | console | append |
+| `\|& tee` | both | both | overwrite |
+| `\|& tee -a` | both | both | append | 
+
+`tee` is actully a command, not an operator. It is used as follows:
+```bash
+<command> | tee <file>
+```
+
+We can also use `tee` to forward the output of a command to multiple commands:
+```bash
+<command 1> | tee >(<command 2>) | <command 3>
+```
+This forward `<command 1>` to both `<command 2>` and `<command 3>`.
+
+### Use bash variables as input
+Bash variables can be used as input of a command. Syntax:
+```bash
+<command> <<< $<variable>` 
+```
+
+
 
 ## Command Substitution
 When we need to use an output of a command instead of a constant or variable, we have to use command substtution:
@@ -417,7 +500,16 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 
 # String Processing
 
-## `sed`
+
+## Word count with `wc`
+The `wc` command counts words, lines, and characters. What is counted is determined by the parameters:
+- `-w`: words
+- `-l`: lines
+- `-c`: characters
+
+
+
+## String mofification with `sed`
 Sed is a multi purpose command for string modification.
 
 It can search and replace in string. The syntax is folowing:
@@ -539,18 +631,6 @@ pv <file> | <other comands>
 # or
 <other comands> | pv | <other comands>
 ```
-
-
-nabling SSH Access to Server
-1.  install openssh:
-	- `sudo apt update`
-    - `sudo apt install openssh-server`
-2.  configure access
-	- password:
-		1.  open `/etc/ssh/sshd_config`
-		2.  set `PasswordAuthentication yes`
-		3.  Now you can log in with the user and password you use in Ubuntu
-3.  keys: TODO
 
 
 ## Free disk space

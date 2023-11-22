@@ -216,8 +216,8 @@ c = a / b
 
 As the `pathlib` is the most modern approach, we will use it in the following examples. Appart from `pathlib` documentation, there is also a [cheat sheet available on github](https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf).
 
-
-## Computing relative path
+## Path editing
+### Computing relative path
 To prevent misetakes, it is better to compute relative paths beteen directories than to hard-code them. Fortunately, there are methods we can use for that.
 
 If the desired relative path is a child of the start path, we can simply use the `relative_to` method of the Path object:
@@ -235,7 +235,7 @@ rel = os.path.relpath(a, b) # rel = '../Workspaces/project/file.txt'
 ```
 
 
-## Get parent directory
+### Get parent directory
 We can use the `parent` property of the `Path` object:
 ```Python
 p = Path("C:/workspace/project/file.txt")
@@ -243,12 +243,12 @@ parent = p.parent # 'C:\\workspace\\project'
 ```
 
 
-## Absolute and canonical path
+### Absolute and canonical path
 We can use the `absolute` method of the `Path` object to get the *absolute* path. To get the *canonical* path, we can use the `resolve` method.
 
 
 
-## Splitting paths and working with path parts
+### Splitting paths and working with path parts
 To read the **file extension**, we can use the `suffix` property of the `Path` object. The property returns the extension **with the dot**.
 
 To change the extension, we can use the `with_suffix` method:
@@ -276,6 +276,16 @@ p = Path("C:/workspace/project/file.txt")
 index = p.parts.index('project') # 2
 p = Path(*p.parts[:index]) # 'C:\\workspace'
 ```
+
+### Changing path separators
+To change the path separators to forward slashes, we can use the `as_posix` and 
+method:
+```Python
+p = Path(r"C:\workspace\project\file.txt")
+p = p.as_posix() # 'C:/workspace/project/file.txt'
+```
+
+
 
 ## Geting and setting the working directory
 - `os.getcwd()` - get the current working directory
@@ -321,19 +331,22 @@ for root, dirs, files in os.walk(p):
 ```
 
 
-### Iterate only directories
-To get only directories, we can use the `glob` method with the  following filter:
-```Python
-p = Path("C:/workspace/project")
-for filepath in p.glob('*/') # iterate over all directories in the project directory
-```
-
-### Iterate only files
-There is no specific filter for files, but we can use the `is_file` method to filter out directories:
+### Iterate only directories/files
+There is no specific filter for files/directories, but we can use the `is_file` or `is_dir` method to filter out directories:
 ```Python
 p = Path("C:/workspace/project")
 for filepath in p.glob('*'):
     if filepath.is_file():
+        # do something
+```
+
+
+### Use more complex filters
+Unfortunately, the `glob` and `rglob` methods do not support more complex filters (like regex). However, we can easily apply the regex filter manually:
+```Python
+p = Path("C:/workspace/project")
+for filepath in p.glob('*'):
+    if not re.match(r'^config.yaml$', filepath.name):
         # do something
 ```
 
@@ -360,6 +373,37 @@ except:
 ``` 
 
 Other methods like `os.access` or using `tempfile` module are not reliable on Windows (see e.g.: https://github.com/python/cpython/issues/66305).
+
+
+## Deleting files and directories
+To delete a file, we can use the `unlink` method of the `Path` object:
+```Python
+p = Path("C:/workspace/project/file.txt")
+p.unlink()
+```
+
+for deleting directories, we can use the `rmdir` method:
+```Python
+p = Path("C:/workspace/project")
+p.rmdir()
+```
+
+However, the `rmdir` method can delete only empty directories. To delete a directory with content, we can use the `shutil` module:
+```Python
+p = Path("C:/workspace/project")
+shutil.rmtree(p)
+```
+
+### Deleting Windows read-only files (i.e. Access Denied error)
+On Windows, all the delete methods can fail because lot of files and directories are read-only. This is not a problem for most application, but it breaks Python delete methods. One way to solve this is to handle the error and change the attribute in the habdler. Example for shutil:
+```Python
+import os
+import stat
+import shutil
+
+p = Path("C:/workspace/project")
+shutil.rmtree(p, onerror=lambda func, path, _: (os.chmod(path, stat.S_IWRITE), func(path)))
+```
 
 
 

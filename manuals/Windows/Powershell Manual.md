@@ -1,3 +1,7 @@
+PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt. 
+
+The PowerShell script files have the `.ps1` extension. 
+
 
 # Important Aspects
 ## New PowerShell
@@ -35,11 +39,37 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 ## No Output for EXE file
 Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
 
-# SSH
-More details can be found in the [Linux Manual](https://docs.google.com/file/d/1G8q2ZhsJMKkeJQuGKA9IjpFLvMlAahKJ/edit)
--   `ssh` should be ready in PowerShell, if not, add it in -> `Apps & Features` -> `Optional features`
--   specifying port by `<addres>:<port>` is not supported in PowerShell, it is necessary to use the `-p` parameter
--   if we need something else than the default shell just append the command at the end of the script
+
+
+# Control Structures
+
+## Cycles
+
+### `foreach`
+The `foreach` cycle iterates over a collection. The syntax is:
+```PowerShell
+foreach ($item in $collection) {
+    # do something with $item
+}
+```
+
+
+# String Manipulation
+
+## Replace
+The `Replace` method replaces all occurences of a string with another string. The syntax is:
+```PowerShell
+$myString.Replace("oldString", "newString")
+```
+
+# `Select-String`
+The `Select-String` is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
+- `-Content <before>[, <after>]`: Select also `<before>` lines before the matched line and `<after>` lines after the matched line
+
+
+
+# Arrays
+To creante an array, use the `@()` operator: `a = @()` To add an element to an array, use the `+=` operator: `a += 1`. The arrays can be iterated over using the `foreach` loop.
 
 
 
@@ -59,9 +89,7 @@ By default, the netstat command translates IPs into names. Unfortunatelly, on Wi
 To display executable for all connection, just use the `-b` swith. For filtering out only some, you have to use the `-Context` parameter in the `Select-String` command, as the executable is printed one line below the connection: `netstat -b | sls <search pattern> -Context 0,1`
 
 
-# `Select-String`
-The `Select-String` is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
-- `-Content <before>[, <after>]`: Select also `<before>` lines before the matched line and `<after>` lines after the matched line
+
 
 
 
@@ -97,3 +125,20 @@ dir . | % { $newName = $_.Name -replace '^DSC_0(.*)', 'DSC_1$1'; rename-item -ne
 ## Count Lines in large file
 
 `switch -File FILE { default { ++$count } }`
+
+
+## Get Help
+[Mirosoft documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-help)
+
+To get help about a command, use the `Get-Help` (alias `man`) command. Example:
+```PowerShell
+Get-Help Get-ChildItem
+```
+If the output is the list of articles, it means that there is no help for the command. 
+
+
+## Translate alias to command
+To translate an alias to a command, use the `Get-Alias` command. Example:
+```PowerShell
+Get-Alias ls # returns Get-ChildItem
+```

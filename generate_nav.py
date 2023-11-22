@@ -31,8 +31,9 @@ def process_dir(nav: List, path: Path, order: Optional[List[str]] = None):
 
     # then process directories
     for item in path.glob("*/"):
-        if not order or item.name not in order:
-            add_item(nav, item)
+        if item.is_dir():
+            if not order or item.name not in order:
+                add_item(nav, item)
 
     # then process the rest
     for item in path.glob("*"):

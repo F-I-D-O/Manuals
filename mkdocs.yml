@@ -11,13 +11,12 @@ nav:
     - C++ Manual: Programming/C++/C++ Manual.md
     - C++ Workflow: Programming/C++/C++ Workflow.md
     - CMake Manual: Programming/C++/CMake Manual.md
+    - Google Test: Programming/C++/Google Test.md
   - Java:
     - Debugging Java: Programming/Java/Debugging Java.md
     - Java Programming Guide: Programming/Java/Java Programming Guide.md
     - Java Workflow: Programming/Java/Java Workflow.md
     - Maven: Programming/Java/Maven.md
-  - mosek:
-    - xml: []
   - Python:
     - Matplotlib Manual: Programming/Python/Matplotlib Manual.md
     - Pandas Manual: Programming/Python/Pandas Manual.md
@@ -30,28 +29,36 @@ nav:
     - htaccess: Programming/Web/htaccess.md
     - JavaScript: Programming/Web/JavaScript.md
     - Jekyll: Programming/Web/Jekyll.md
+    - mkdocs: Programming/Web/mkdocs.md
   - Common: Programming/Common.md
+  - Git: Programming/Git.md
   - Google API and Apps Script: Programming/Google API and Apps Script.md
   - Gurobi: Programming/Gurobi.md
   - JSON: Programming/JSON.md
   - Overpass Manual: Programming/Overpass Manual.md
   - PostgreSQL Manual: Programming/PostgreSQL Manual.md
-  - RCI cluster: Programming/RCI cluster.md
   - Regex: Programming/Regex.md
   - Ruby Workflow: Programming/Ruby Workflow.md
-  - Slurm: Programming/Slurm.md
   - SQL Manual: Programming/SQL Manual.md
 - LaTeX:
-  - package manuals: []
   - Latex manual: LaTeX/Latex manual.md
+  - LaTeX workflow: LaTeX/LaTeX workflow.md
 - Ubuntu:
   - Linux Manual: Ubuntu/Linux Manual.md
 - Windows:
   - Powershell Manual: Windows/Powershell Manual.md
+  - VSCode: Windows/VSCode.md
   - Windows Manual: Windows/Windows Manual.md
+- Cloud computing:
+  - Lmod: Cloud computing/Lmod.md
+  - RCI cluster: Cloud computing/RCI cluster.md
+  - Slurm: Cloud computing/Slurm.md
 - FFMpeg: FFMpeg.md
 - index: index.md
+- Overpass Manual: Overpass Manual.md
+- PowerPoint: PowerPoint.md
 - QGIS: QGIS.md
+- RCI cluster: RCI cluster.md
 site_name: Manuals
 theme:
   name: mkdocs

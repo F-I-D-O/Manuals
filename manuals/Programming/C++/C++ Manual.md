@@ -349,17 +349,73 @@ Aggregate types are:
 The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).
 
 ## Type Conversion
-[cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion)
+[cppreference: implicit conversion](https://en.cppreference.com/w/cpp/language/implicit_conversion)
 
-In some context, an implicit type conversion is aplied, so that operand(s) have compatible types. 
-
-This process can be tricky though, for example, the signess can be changed as a result of type promotion.
-
-Bellow, the promotions are sorted according to the target type.
+In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the `static_cast` operator. In some cases where the conversion is potentially dangerous, the `static_cast` is the only way to prevent compiler warnings.
 
 
-### Integral Promotion
+
+### Numeric Conversion
+There are two basic types of numeric conversion:
+- standard *implicit conversion* that can be of many types: this conversion is applied if we use an expression of type `T` in a context that expects a type `U`. Example:
+	```cpp
+	void print_int(int a){
+		std::cout << a << std::endl;
+	}
+
+	int main(){
+		short a = 5;
+		print_int(a); // a is implicitly converted to int
+	}
+	```
+- *usual arithmetic conversion* which is applied when we use two different types in an arithmetic binary operation. Example:
+	```cpp
+	int main(){
+		short a = 5;
+		int b = 2;
+		int c = a + b; // a is converted to int
+	}
+	```
+
+#### Implicit Numeric Conversion
+
+##### Integral Promotion
+Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:
 - `bool` is promoted to `int`: `false` -> `0`, `true` -> `1`
+
+
+##### Integral Conversion
+Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:
+ 
+
+#### Usual Arithmetic Conversion
+[cppreference](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
+
+This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. 
+
+The conversion has the following steps steps:
+1. lvalue to rvalue conversion of both operands
+1. special step for enum types
+1. special step for floating point types
+1. conversion of both operands to the common type
+
+The last step: the conversion of both operands to the common type is performed using the following rules:
+1. If both operands have the same type, no conversion is performed.
+1. If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser [integer conversion rank](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank) (size) is converted to the type of the operand with greater rank.
+1. otherwise, we have a mix of signed and unsigned types. The following rules are applied:
+	1. If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.
+	1. Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.
+	1. Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).
+
+Here **especially the rule 3.1 leads to many unexpected results** and hard to find bugs. Example:
+```cpp
+int main(){
+	unsigned int a = 10;
+	int b = -1;
+	auto c = b - a; // c is unsigned and the value is 4294967285
+}
+```
+To avoid this problem, **always use the `static_cast` operator if dealing with mixed signed/unsigned types**.
 
 
 ## Show the Type

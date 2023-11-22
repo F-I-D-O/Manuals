@@ -180,6 +180,19 @@ For that, we use the `cases` environment. Example:
 \end{equation}
 ```
 
+## Problem and similar environments
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Theorems)
+
+The environments for special math text blocks are not included in the `amsmath` package. Instead, we can define them manually using the `\newtheorem` command. Example:
+```latex
+\newtheorem{problem}{Problem}
+
+\begin{problem}
+    This is a problem.
+\end{problem}
+```
+
+
 
 # Footnotes
 The footnote is created using the `\footnote{}` command. 
@@ -223,6 +236,21 @@ Basic setup:
 ```
 The style parameter is optional. The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
 
+
+#### Handle overflowing URLs in bibliography
+Sometimes, the links overflow the bibliography. To fix this, we can use the following commands:
+```latex
+\setcounter{biburllcpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburlnumpenalty}{100}
+
+\biburlnumskip=0mu plus 1mu\relax
+\biburlucskip=0mu plus 1mu\relax
+\biburllcskip=0mu plus 1mu\relax
+```
+
+
+
 ### Default and natbib styling
 Basic setup:
 ```latex
@@ -252,6 +280,25 @@ The `\include` is intended for chapters or other large parts of the document. It
 
 The `\input` command is intended for smaller parts of the document. Contrary to the `\include` command, there is no special behavior involved. Instead, the content of the file is simply pasted at the place of the `\input` command. 
 
+
+
+# Speedup Techniques
+The compilation of large documents can be slow. There are several techniques to speed up the compilation:
+- split the document into multiple files and use `\includeonly` to include only the relevant files
+- precompiling the preamble
+- using draft mode
+
+## Precompiling the preamble
+The preamble is the part of the document before the `\begin{document}` command. It contains the document configuration, packages, etc. Because the included packages are usually large, the compilation of the preamble can be slow. To speed up the compilation, we can precompile the preamble and use the precompiled preamble in the main document. This can be done using the `mylatexformat` package. The usage is as follows:
+
+1. At the beginning of the preamble, add the following comment: `%&<format name>`. This will tell the compiler to use the specified format. The `<format name>` can be arbitrary, but it is recommended to use the same name as the main document.
+1. To spare some preamble content from being precompiled (dynamic content), add a command `\endofdump` after the content that should not be precompiled. 
+1. run the following command:
+    ```PowerShell
+    pdflatex --ini -jobname="<format name>" "&pdflatex" mylatexformat.ltx <format name>.tex
+    ```
+
+Afther this, the compilation of the main document should be faster. For more information, see the [package documentation](https://ctan.org/pkg/mylatexformat) or the [SO question](https://tex.stackexchange.com/questions/79493/ultrafast-pdflatex-with-precompiling/377033#377033).
 
 
 # Miscelaneous tasks

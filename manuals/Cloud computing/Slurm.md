@@ -49,6 +49,14 @@ squeue --me | awk '/smod_cha/ {print $1}' | xargs scancel
 ```
 
 
+## [sacctmgr](https://slurm.schedmd.com/sacctmgr.html)
+For viewing and modifying Slurm account information. The most important command for users is `show` (or `list`, which is equivalent). Baset on the parameter, it shows different information:
+- `show associations`: associations between users and accounts
+- `show qos`: quality of service: limits and priorities for each group-queue combination
+
+
+
+
 # Determining why the job was killed
 Usually, the error message is at the end of the output file. Message meaning:
 - `Detected 1 oom_kill event in ...`: oom stands for out of memory. The job was killed because it exceeded the memory limit.
