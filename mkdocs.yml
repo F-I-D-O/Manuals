@@ -58,7 +58,6 @@ nav:
 - Overpass Manual: Overpass Manual.md
 - PowerPoint: PowerPoint.md
 - QGIS: QGIS.md
-- RCI cluster: RCI cluster.md
 site_name: Manuals
 theme:
   name: mkdocs
