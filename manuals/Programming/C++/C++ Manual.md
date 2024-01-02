@@ -647,6 +647,7 @@ There are some considerations with these options:
 - 1 inserts the `value` into the map even if the `key` already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (`true` if the insertion happend).
 - 1 requires the value to be default *constructible* and *assignable*
 - 3 avoids the creation of temporary objects, it sends references to `key` and `value` directly to the map.  
+- 3 ignores the insertion if the key already exists.
 
 ### Tuples
 We have two standard class templates for tuples:

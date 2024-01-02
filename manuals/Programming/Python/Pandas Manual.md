@@ -1,3 +1,7 @@
+# Main principles
+Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns). 
+
+
 # Creating a DataFrame
 The `DataFrame` class has a constructor that supports multiple formats of input data as well as many configuration parameters. Therefore , for most formats of input data, we can create a dataframe using the constructor. However, we can also crete a dataframe using the `from_*` functions, and for some formats, these functions are the only way to create a dataframe.
 
@@ -56,7 +60,17 @@ df = pd.DataFrame([{'col1': 1, 'col2': 3}, {'col1': 2, 'col2': 4}])
 df = pd.DataFrame([[1, 3], [2, 4]], columns=['col1', 'col2'])
 ```
 
-## From 
+## Creating a zero or constant-filled dataframe
+To create a dataframe filled with a constant, we can use the dataframe constructor and pass the constant as the first (data) argument:
+```python
+df = pd.DataFrame(0, index=range(10), columns=['col1', 'col2'])
+```
+
+### Generating the index
+As displayed in the above example, we can generate a numerical index using the `range` function. However, there are more options:
+- date index with [`date_range`](https://pandas.pydata.org/docs/reference/api/pandas.date_range.html)
+    - `pd.date_range(<start date>, <end date>, freq=<frequency>)`
+
 
 
 # Obtaining info about dataset
@@ -211,29 +225,47 @@ df.loc[:, df.columns != '<column to skip>']
 ## Multi-index selection
 [documentation](https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical)
 
-When selecting from a dataframe with a multi-index, things get a bit more complicated. We can specify index levels using the `level` argument. Example:
+When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:
+- using `loc` with slices: simple, but verbose
+- using `loc` with `IndexSlice` object: more readable, but requires the `IndexSlice` object to be created first
+- using `xs` function, neat, but does not support all the features, e.g., it does not support ranges
+
+### Using `loc` 
+The general `loc` usage is the same as for a single index dataframe:
 ```Python
-df.loc[<row selection>, <column selection>, level=<level number>]
+df.loc[<row selection>, <column selection>]
 ```
+However, each selection is now a tuple, where each element of the tuple corresponds to one level of the multi-index:
+```Python
+df.loc[(<row selection level 1>, <row selection level 2>, ...), (<column selection level 1>, <column selection level 2>, ...)]
+```
+The `<row selection>` can be a specifica value, a list of values, or a slice. Note that we have to use the `slice` function, as pandas uses the standard slice syntax for something else. 
 
-If we want to specify more than one level, we can use a tuple:
+We can skip lower levels to select all values from those levels. However, we cannot skip upper levels. If we want to select all values from the upper level, we need to use the `slice(None)` for that level:
 ```python
-df.loc[(<row index level 1>, <row index level 2>, ...), (<col index level 1>, <col index level 2>, ...)]
+df.loc[(slice(None), slice(15, 30)), ...]
 ```
 
-If we select an upper level only, all lover level values are selected.
+Note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the [`sort_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html) function.
 
-For more complex cases where we wanto to select all from upper level but limit the lower level, we can use the [`slice`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers) function:
-```python
-df.loc[(slice(None), slice('15', '30')), ...]
-```
+[`pandas slicing documentation`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers) 
+
+
+
+#### Using `IndexSlice` for more readable syntax 
 We can obtain the same result with a more readable syntax using the [`IndexSlice`](https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html) object:
 ```python
 idx = pd.IndexSlice
-dft.loc[idx[:, '15':'30'], ...]
+dft.loc[idx[:, 15:30], ...]
 ```
 
-Also, note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the [`sort_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html) function.
+
+### Using `xs`
+The [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html) function can be used to select from a multi-index dataframe. However, slices (ranges) are not supported. Example:
+```python
+df.xs(15, level=1) # selects all rows with level 1 equal to 15
+```
+
 
 
 
@@ -275,6 +307,15 @@ df.rename(columns={'<old name 1>': '<new name 1>', '<old name 2>': '<new name 2>
 df.rename({'<old name 1>': '<new name 1>', '<old name 2>': '<new name 2>'}, axis='columns')
 ```
 
+### Rename a Series (column)
+The column name in the series object is actually the name of the series. To rename the series, we can use the [`rename`](https://pandas.pydata.org/docs/reference/api/pandas.Series.rename.html) function, or we can set the `name` property of the series:
+```Python
+s.rename('<new name>')
+# or equivalently
+s.name = '<new name>'
+```
+
+
 
 
 
@@ -283,8 +324,36 @@ df.rename({'<old name 1>': '<new name 1>', '<old name 2>': '<new name 2>'}, axis
 # Working with the index
 Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index. 
 
+## Selecting just a single index level from a multi-index
+If we want to select just a single index level, we can use the [`get_level_values`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.get_level_values.html) function:
+```python
+df.index.get_level_values(<level>)
+```
+Note however, that this function returns duplicated values when there are multiple values in other levels. To get unique values, we can use the [`unique`](https://pandas.pydata.org/docs/reference/api/pandas.Series.unique.html) function.
+
+There is also another method, that returns unique values: the level property:
+```python
+df.index.levels[<level>]
+```
+However, **this way, we can get outdated values**, as the values are not always updated when the index is changed. To get the updated values, we need to call the method [`remove_unused_levels`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.remove_unused_levels.html) after each change of the index.
+
+
 ## Changing the index
+
+### Using columns as a new index
 For that, we can use the [`set_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html) function.
+
+
+### Using an existing index to create a new index
+For that, we can use the [`reindex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html) function. The first parameter is the new index. Example:
+```python
+df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
+```
+Important parameters:
+- `fill_value`: the value to use for missing values. By default, the missing values are filled with `NaN`.
+
+To create more complicated indices, dedicated functions can be used:
+- [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables
 
 
 ## Renaming the index
@@ -307,6 +376,7 @@ For the aggregate function, we can use one of the prepared aggregation functions
 - `min`
 - `max`
 - `count`
+- [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html): cumulative sum
 
 Full example (sum):
 ```Python
@@ -320,16 +390,9 @@ df.groupby('col').size()
 ```
 
 ## Custom aggegate function
-Also, there is a general [`agg`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html) function that can be used to apply a custom aggregation function. Example:
-```Python
-df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
-```
-
-We can also use the `apply` method. This function takes a dataframe as an argument and returns a series. Example:
-```Python
-def agg_fn(df):
-    return pd.Series([df['col1'].sum(), df['col2'].mean()], index=['sum', 'mean'])
-```
+Also, there are more general aggregate functions:
+-  [`agg`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html) function that is usefull for applying different functions for different columns and
+- [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html) function that is usefull for applying a function to the whole dataframe.
 
 The difference between `agg` and `apply` is summarized in the following table:
 
@@ -339,6 +402,39 @@ property | agg | apply |
 | output | dataframe | series |
 | can use multiple aggregate functions | yes | no |
 | can be applied to dataframe | no | yes |
+
+
+### `agg`
+ Example:
+```Python
+df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
+```
+
+### `apply`
+The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html) function takes a custom function as an argument. That custom aggregation function:
+- takes a DataFrame/Series (depending on the source object) as the first argument
+- returns a Series, DataFrame, or a scalar
+
+The process works as follows:
+1. The dataframe is split into groups according to the `groupby` function.
+1. The custom function is applied to each group.
+1. The results are combined into a single dataframe.
+
+In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and compining aggreate results is done by the `apply` function.
+
+
+
+## Time aggregation
+We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the [`resample`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html) function. Example:
+```Python
+df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1D'))
+
+df.resample('1H').sum()
+```
+The aggregate function is applied to each group in case of multiple values in the same time slot (*downsampling*). In case of no values in the time slot (*upsampling*), the value is filled with `NaN`. We can use the [`ffill`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html) function to fill in the missing values. Example:
+```Python
+df.resample('1H').sum().ffill()
+```
 
 
 
@@ -440,18 +536,16 @@ For highlighting the min/max values, we can use the [`highlight_min`](https://pa
 
 
 ## Hiding some columns, rows, or indices
-For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Format:
-```python
-df.style.hide(<index name>) # hide the index with the given name
-```
+For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Important Parameters:
+- `axis`: 0 for hiding row indices (default), 1 for hiding column names
+- `level`: the level of the multi-index to hide (default is all levels)
+- `subset`: the columns or rows to hide (default is all columns or rows)
+
+When used without the `subset` parameter, the `hide` function hides the whole index. To hide just a selected row or column from the data, the subset parameter has to be used.
+
 By default, the `<index_name>` refers to the row index. **To hide a column**:
 ```python
 df.style.hide_columns(<column name>, axis=1)
-```
-
-To hide row index:
-```python
-df.style.hide(axis='index')
 ```
 
 
@@ -505,6 +599,11 @@ The tranformation often creates row-column combinations that do not exist in the
 - we can use the `dropna` parameter to drop the rows with missing values
 - we can change the data type of the columns with missing values prior to calling the `pivot_table` function. For example, the [pandas integer data types](https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer) support `NaN` values.
 
+
+## `to_datetime`
+The [`to_datetime`](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
+- `unit`: the unit of the input, e.g., `s` for seconds.
+- `origin`: the origin of the input, e.g., `unix` for unix timestamps. It can be also any specific `datetime` object.
 
 
 # Geopandas

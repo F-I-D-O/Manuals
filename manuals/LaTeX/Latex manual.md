@@ -18,7 +18,30 @@ LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, t
 | `]` | `{]}` |
 
 
+# Special characters
+
+## Non-breaking characters
+- `~`: non-breaking space
+- `\nobreakdash-`: non-breaking dash
+
+
 # Text formatting
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Fonts)
+
+## Fonts
+
+### Determining used font
+To determine the font (size, type) used in a particular place put the following command there:
+```latex
+\showthe\font
+```
+Then compile the document. The font information will be printed in the log (e.g.: `\OT1/cmr/m/n/10`).
+
+
+### Changing font size
+The default font size is `10pt`. To change the default font size, set the `documentclass` option `12pt` or `11pt` (other sizes are not avialable). See the [wiki](https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes) for more information.
+
+
 
 ## Subscript and superscript
 In math mode, the subscript and superscript are created using the `_` and `^` characters. In text mode, we need to use a special commands: `\textsubscript` and `\textsuperscript`. Example:
@@ -159,6 +182,97 @@ The `talltblr` environment is used as follows:
 Notice the `label = none` option. Without it, the table numbering is raised again, resulting in the table being numbered twice. 
 
 
+### Rotated text
+To rotate some text, we can use the `\rotatebox` command:
+```latex
+\rotatebox{90}{Rotated text}
+```
+
+
+
+## Algorithms
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Algorithms)
+There are two types of enviroments for, depending on the purpose:
+- `algorithm`: for pseudocode
+- `lstlisting`: for code in a specific language
+
+### Pseudocode
+The floating environment for pseudocode is `algorithm`. It is an equivalent of the `table` environment for tables. Same as with tables, there is also an inner environment for the pseudocode. The options for the inner environment are:
+- `algorithmic`: basic environment for pseudocode
+- `algorithmicx`: extension of the `algorithmic` environment, supports custom keywords
+- `algorithm2e`: 
+- `algpseudocodex`: extension of the `algorithmicx` package, various improvements
+- `pseudo`: a package for writing pseudocode directly, not using any special commands 
+
+Their properties are summarized in the following table:
+| Environment | Package | Updated | Custom keywords | 
+|--- | --- | --- | --- |
+| `algorithmic` | [`algorithms`](https://ctan.org/pkg/algorithms) | 2009 | no |
+| `algorithmicx` | [`algorithmicx`](https://ctan.org/pkg/algorithmicx) | 2005 | yes |
+| `algorithm2e` | [`algorithm2e`](https://ctan.org/pkg/algorithm2e) | 2017 | yes |
+| `algpseudocodex` | [`algpseudocodex`](https://ctan.org/pkg/algpseudocodex) | 2023 | yes | 
+| `program` | [`program`](https://ctan.org/pkg/program) | 2017 | no |
+| `pseudo` | [`pseudo`](https://ctan.org/pkg/pseudo) | 2023 | yes |
+
+If the algorithm requires a complex description and cannot be expressed using typical pseudocode, we can resort to using human language directly in the `algorithm` environment. There is such example at [SO](https://tex.stackexchange.com/questions/667417/how-do-i-create-this-algorithm-like-environment-in-which-i-can-write-full-senten)
+
+
+### Algoritmicx and Algpseudocodex 
+Normal code lines are written using the `\State` command:
+```latex
+\State $x \gets 0$
+```
+
+#### Conditions
+Conditions are written using the `\If`, `\ElseIf`, and `\Else` commands. Example:
+```latex
+\If{$x < 0$}
+    \State $x \gets 0$
+\ElsIf{$x > 100$}
+    \State $x \gets 100$
+\Else
+    \State $x \gets x$
+\EndIf
+```
+
+#### Loops
+For loop:
+```latex
+\For{$ i = 1, \dots, n $}
+     ...
+\EndFor
+```
+
+#### Boolean operators
+Boolean operators are not defined by default. Either use plain text, or define them (see the Additional keywords section below).
+
+
+#### Additional keywords
+We can define additional keywords using the `\algnonewcommand` command. The format is `\algnonewcommand<custom command>{<keyword>}`. Example:
+```latex
+\algnewcommand\Not{\textbf{not}}
+```
+
+#### Empty lines
+To add an empty line, use the `\State` command without any argument. 
+
+If the numbering is on and we want to skip the numbering for the empty line, we can use the `\Statex` command.
+
+#### Functions and procedures
+Functions and procedures are defined using the `\Function` and `\Procedure` commands. Example:
+```latex
+\Function{my_function}{a, b}
+    \State $x \gets a + b$
+    \State \Return $x$
+\EndFunction
+```
+
+We can call the function or procedure using the `\Call` command. Example:
+```latex
+\Call{my_function}{1, 2}
+```
+
+
 
 # Math
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
@@ -166,6 +280,21 @@ Notice the `label = none` option. Without it, the table numbering is raised agai
 To use math, we need the `amsmath` package. 
 
 The math commands only works in math mode which can be entered in one of the many math environments. 
+
+
+## Subscript and superscript
+Subscript and superscript are created using the `_` and `^` characters. If the subscript or superscript is longer than one character, we need to wrap it in curly braces. 
+
+There are aslo some special characters that result in superscript:
+- `'`: prime
+- `*`: star
+However, these characters alone works only in normal math text. If we want to use them in a subscript or superscript, we need to use the `^` and `_` characters. Example:
+```latex
+x* % correct print
+a_{x*} % inccorrect print - the star is not in superscript
+a_{x^*} % correct print
+```
+
 
 
 ## If/else variants
@@ -192,6 +321,25 @@ The environments for special math text blocks are not included in the `amsmath` 
 \end{problem}
 ```
 
+Some environments are already defined in the `amsthm` package, e.g., `proof`.
+
+
+## Math fonts
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics#Fonts)
+
+the default math font is typed as common math italic. To use a different font, we need to use special commands:
+- `\mathrm{}`: for normal font in math mode, e.g., for multi-letter subscripts and superscripts
+- `\mathbb{}`: for blackboard bold font, e.g., for special sets (R, N, ...). This font requires the `amsfonts` package.
+
+
+# Links
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Hyperlinks)
+
+For links, we need the `hyperref` package. Typical usage:
+```latex
+\url{https://www.google.com}
+\href{https://www.google.com}{Google}
+```
 
 
 # Footnotes
@@ -267,6 +415,65 @@ The bibtex bibliography management system is quite old and does not support many
 ```
 
 
+## Commands for citing
+There are multiple commands for citing, each resulting in a different output. The two most important variants are in-text citation and parenthetical citation:
+- In-text citation: the citation is part of the text.
+    - IEEE: *this was proven by Smith et al. [1]*
+    - APA: *this was proven by Smith et al., 2019*
+- Parenthetical citation: the citation is not part of the text.
+    - IEEE: *this has been proven before [1]*
+    - APA: *this has been proven before (Smith et al., 2019)*
+
+Unfortunately, the commands for these two variants are not consistent across the bibliography packages. The following table summarizes the commands for the two variants:
+| Package | In-text citation | Parenthetical citation | 
+| --- | --- | --- |
+| Biblatex | `\textcite{<key>}` | `\cite{<key>}` | 
+| Natbib | `\cite{<key>}` | `\citep{<key>}` |
+
+There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
+- [Natbib styles](https://www.overleaf.com/learn/latex/Natbib_citation_styles)
+
+
+# Custom commands
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Macros)
+
+Basic syntax for defining a new command is:
+```latex
+\newcommand{\<command name>}[<number of arguments>]{<command definition>}
+```
+
+The number of arguments is optional. If it is not specified, the command does not take any arguments.
+
+The command is then used as follows:
+```latex
+\<command name>{<argument 1>}{<argument 2>}...{<argument n>}
+```
+
+
+## Providing default values for arguments
+Latex support default values for the first argument. The syntax is:
+```latex
+\newcommand{\<command name>}[<number of arguments>][<default value>]{<command definition>}
+```
+
+The command can than be used both with and without the optional argument:
+```latex
+\newcommand{\mycommand}[2][0]{...}
+
+\mycommand{<argument 2>}
+\mycommand[<argument 1>]{<argument 2>}
+```
+Note that that **if we want to supply the optional argument, we use the square brackets.** 
+
+For two optional arguments, we have to use the `twoopt` package. Example:
+```latex
+\usepackage{twoopt}
+...
+\newcommandtwoopt{\mycommand}[2][default1][default2]{...}
+```
+
+Here again, both optioanl arguments, if supplied, must be supplied in the square brackets.
+
 
 # Splitting the document into multiple files
 There are two ways to split the document into multiple files:
@@ -287,6 +494,8 @@ The compilation of large documents can be slow. There are several techniques to 
 - split the document into multiple files and use `\includeonly` to include only the relevant files
 - precompiling the preamble
 - using draft mode
+
+
 
 ## Precompiling the preamble
 The preamble is the part of the document before the `\begin{document}` command. It contains the document configuration, packages, etc. Because the included packages are usually large, the compilation of the preamble can be slow. To speed up the compilation, we can precompile the preamble and use the precompiled preamble in the main document. This can be done using the `mylatexformat` package. The usage is as follows:

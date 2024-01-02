@@ -1,0 +1,1 @@
+- Move a column: hold `Shift` and drag the column to the new location

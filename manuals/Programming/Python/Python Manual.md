@@ -30,6 +30,16 @@ The format is specified after the `:` character (e.g., `f'{47:4}'` set the width
 
 The following are the most common options:
 
+To use the character `{` and `}` in the string, we have to escape them using double braces: `{{` and `}}`. 
+
+### String methods
+- `capitalize`: capitalize the first letter of the string
+- `lower`: convert the string to lowercase
+- `upper`: convert the string to uppercase
+- `strip`: remove leading and trailing whitespaces
+- `lstrip`: remove leading whitespaces
+- [`rstrip`](https://docs.python.org/3/library/stdtypes.html#str.rstrip): remove trailing whitespaces
+
 
 ## Checking the type
 To check the exact type:
@@ -122,6 +132,46 @@ message = f"Hello {a:0>4d}" # equivalent
 More formating optios can be found in the [Python string formatting cookbook](https://mkaz.blog/code/python-string-format-cookbook/).
 
 
+
+# Classes
+[Official Manual](https://docs.python.org/3/tutorial/classes.html)
+
+Classes in Python are defined using the `class` keyword:
+```Python
+class MyClass:
+    ...
+```
+Unlike in other languages, we only declare the function members, other members are declared in the constructor or even later.
+
+## Constructor
+The constructor is a special function named `__init__`. Usually, non-function members are declared in the constructor:
+```Python
+class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        self.c = 0
+        self.d = None
+```
+
+### Constructor overloading
+Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerfull mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.
+
+The most clean way is to use a class method as a constructor. Example:
+```Python
+class MyClass:
+    def __init__(self, a, b = 0):
+        self.a = a
+        self.b = b
+        self.c = 0
+        self.d = None
+
+    @classmethod
+    def from_a(cls, b):
+        return cls(0, b)
+```
+
+
 # Exceptions
 [documentation](https://docs.python.org/3/tutorial/errors.html)
 
@@ -169,8 +219,6 @@ The `datetime` object has the following attributes:
 We can also query the day of the week using the `weekday()` method. The day of the week is represented as an integer, where Monday is 0 and Sunday is 6.
 
 
-
-
 ## Intervals
 There is also a dedicated object for time interval named [`timedelta`](https://docs.python.org/3/library/datetime.html#timedelta-objects). It can be constructed from parts (seconds to days), all parts are optional.
 
@@ -187,6 +235,10 @@ d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
 interval = timedelta(hours=1)
 d2 = d + interval # '2022-05-20 19:00'
 ```
+
+
+## Converting to Unix timestamp
+To convert a `datetime` object to unix timestamp, we can use the `timestamp` method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that **the timestamp is computed based on the `datetime` object's timezone, or your local timezone if the `datetime` object has no timezone information.**
 
 
 
@@ -471,6 +523,34 @@ For sorting, you can use the `sorted` function.
 
 Instead of using comparators, Python has a different concept of *key functions* for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.
 
+
+## Slices
+Many Python data structures support slicing: selecting a subset of elements. The syntax is:
+```Python
+<object>[<start>:<end>:<step>]
+```
+The `start` and `end` are inclusive. 
+
+The `step` is optional and defaults to 1. The start is also optional and defaults to 0. 
+
+Instead of omitting the `start` and `end`, we can use the `None` keyword:
+```Python
+a = [1, 2, 3, 4, 5]
+a[None:3] # [1, 2, 3]
+```
+
+Sometimes, it is not possible to use the slice syntax:
+- when we need to use a variable for the step or,
+- when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.
+
+In such cases, we can use the `slice` object:
+```Python
+a[0:10:2] 
+s = slice(0, 10, 2)
+a[s] # equivalent
+```
+
+Here, the parameters can be ommited as well. We can select everything by using `slice(None)`, which is equivalent to `slice(None, None, None)`.
 
 
 # I/O

@@ -23,10 +23,13 @@ import plotly.express as px
 - `facet_col`: the name of the column to use as facet column.
 - `facet_row`: the name of the column to use as facet row.
 - `color_discrete_sequence`: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.
+- `title`: the title of the plot. 
 
 
 ## Histogram
 [documentation](https://plotly.com/python/histograms/)
+
+Note that the **Plotly histogram is only good for simple cases of small size**. See below for more details.
 
 Plotly express has [`histogram`](https://plotly.github.io/plotly.py-docs/generated/plotly.express.histogram.html) function for creating histograms. The basic syntax is:
 ```python
@@ -38,13 +41,17 @@ The y is then the number of occurences of each value in the x column.
 Important parameters:
 - `nbins`: number of bins. 
 
+### Plotly Histogram Limitations
+Plotly histogram is only good for simple cases of small size. This is because it first stores all data points in JSON and only computes the bins on the javascript size. As a result, the function is slow and the size of the Jupyter notebook cell can be enormous (hundreds of MBs).
 
-The plotly histogram is usually only good for simple cases or quick plotting. For more complex figures, it is better to generate the histogram manually (using numpy or pandas) and then plot it using the `px.bar` function.
+For more complex figures, it is better to generate the histogram manually (using numpy or pandas) and then plot it using the `px.bar` function.
 
 
 
 ## Bar Chart
-[documentation](https://plotly.github.io/plotly.py-docs/generated/plotly.express.bar.html)
+[documentation](https://plotly.com/python/bar-charts/)
+
+[reference](https://plotly.github.io/plotly.py-docs/generated/plotly.express.bar.html)
 
 For bar charts, we use the `px.bar` function. The basic syntax is:
 ```python
@@ -58,6 +65,29 @@ Important parameters:
 
 Unfortunately, **there is no way how to represent missing values** in the bar chart (they appear as `y = 0`).
 To mark the missing values, we can use annotations. 
+
+### Why bar charts with a lot of records appear transparent?
+If the number of records is large, the bar chart may appear transparent. This is because each bar has a border, which has a brighter color. To prevent this effect, we have to remove the border:
+```python
+fig.update_traces(marker_line_width=0)
+```
+
+### Numerical vs categorical color
+The values in the color column are interpreted as numerical (continuous) if the column is numeric and as categorical if the column is of any other type. Even if the color column contains only integers, it is still interpreted as numerical with all consequences (color bar instead of categorical colors, `color_discrete_sequence` parameter is ignored, etc.). To force the categorical interpretation, we can convert the column to a string. Example:
+```python
+px.bar(df, x="x", y="y", color=df["color"].astype(str))
+```
+
+## Scatter Plot
+[documentation](https://plotly.com/python/line-and-scatter/)
+
+For scatter plots, we use the [`scatter`](https://plotly.github.io/plotly.py-docs/generated/plotly.express.scatter.html) function. The basic syntax is:
+```python
+px.scatter(<dataframe>, <xcol name>, <y col name>)
+```
+
+Important parameters:
+
 
 
 ## Automatic Subplots: Facet plots
@@ -108,12 +138,27 @@ Some more complicated examples are in the [documentation](https://plotly.com/pyt
 
 
 ## Line Chart
-The line chart is created using the `go.Scatter` function. Example:
+[documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
+
+The line chart is created using the [`go.Scatter`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html) function. Example:
 ```python
 go.Scatter(x, y, ...)
 ```
 
-[documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
+Important parameters:
+- `mode`: the mode of the line. 
+    - Can be:
+        - `lines`,
+        - `markers`,
+        - `lines+markers`,
+        - `text`,
+        - `lines+text`,
+        - `markers+text`,
+        - `lines+markers+text`. 
+    - The default is `lines+markers` if  there are less than 20 data points and `lines` otherwise.
+- `line`: dictionary containing the line parameters. The most important parameters are:
+    - `color`: the color of the line
+    - `width`: the width of the line
 
 
 ## Create subplots
@@ -161,7 +206,22 @@ The most important parameters are:
 - `dtick`: the distance between the ticks
 - `tickvals`: the exact values of the ticks. This overrides the `dtick` parameter.
 - `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
-- `range`: e.g.: `range=[0, 1]` `
+- `range`: range of the axis, e.g.: `range=[0, 1]`. By default, the range is determined automatically as the range of the data plus some margin. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**.
+- `linecolor`: the color of the axis line
+- `mirror`: if `True`, the axis line will be mirrored to the other side of the plot
+
+### Drawing borders using axes
+The borders can be drawn using the axes. To draw a  black border around the plot, we can use the following code:
+```python
+fig.update_xaxes(linecolor="black", mirror=True)
+fig.update_yaxes(linecolor="black", mirror=True)
+```
+
+### Customizing datetime axes
+Unfortunately, we cannot treat the datetime axes as expected, i.e., using the datetime objects. For example, to set the tick interval, we cannot use the `datetime.timedelta` object. Instead, we need to use the number of milliseconds. Example:
+```python
+fig.update_xaxes(dtick=1000 * 60 * 60 * 24 * 7) # one week interval
+```
 
 
 
@@ -214,10 +274,38 @@ Unfortunately, **there is no way how to set the `xref` and `yref` parameters aut
 ## Markers
 [documentation](https://plotly.com/python/marker-style/)
 
+To style the markers, we can use the `update_traces` function. Example:
+```python
+fig.update_traces(marker=dict(size=10, line=dict(width=2, color='DarkSlateGrey')))
+```
+
+
 ### Adding a marker to a hard-coded location
 To add a marker to a hard-coded location, we can add it as a new trace. Note that we can add new traces even to a figure created using plotly express. 
 
 
+## Title
+[documentation](https://plotly.com/python/figure-labels/#align-plot-title)
+
+The title can be set using the plotly express functions or when creating the graph objects figure. To update the text or to customize the title layout, we can use the `update_layout` function with the `title` object parameter. Example:
+```python
+fig.update_layout(
+    title={
+        'x': 0.5,
+        'xanchor': 'center',
+        'y': 0.85,
+        'yanchor': 'top'
+    }
+)
+```
+Important parameters:
+- `x`, `y`: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
+- `xanchor`, `yanchor`: the position of the title relative to the x and y coordinates. Can be `left`, `center` or `right` for `xanchor` and `top`, `middle` or `bottom` for `yanchor`.
+
+
+## Other Layout Parameters (background, borders, etc.)
+- background color: `plot_bgcolor`
+- border: borders are best drawn by showing and mirroring the axes (see the axis section above).
 
 
 
@@ -230,7 +318,17 @@ To add a subscript or superscript to a text, we can use HTML tags. Example:
 fig.add_annotation(x=0.5, y=0.5, text="Title<sub>subscript</sub>", xref="x5", yref="y5", showarrow=False)
 ```
 
+## Bold and italic
+To add bold or italic text, we can use the HTML tags `<b>` and `<i>`. Example:
+```python
+fig.add_annotation(x=0.5, y=0.5, text="Title<b>bold</b><i>italic</i>", xref="x5", yref="y5", showarrow=False)
+```
 
+## Math symbols
+To add math symbols, we can use the LaTeX syntax. Example:
+```python
+fig.add_annotation(x=0.5, y=0.5, text=r"Title$ \alpha $ and $ \beta $", xref="x5", yref="y5", showarrow=False)
+```
 
 
 

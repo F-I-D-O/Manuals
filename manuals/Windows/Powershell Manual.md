@@ -40,6 +40,27 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
 
 
+# Command execution
+Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the `&` operator has to be used. Example:
+```PowerShell
+& "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
+```
+
+
+# I/O
+Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
+- `>`: redirect to file, overwrite if exists
+- `>>`: redirect to file, append if exists
+- `>&1`: redirect to standard output stream
+
+When using any of these operators, by default, the standard output stream is redirected. If we want to redirect the standard error stream, we have to prepend 2 to the operator. Example:
+```PowerShell
+dir > out.txt # redirect standard output stream to out.txt
+dir 2> err.txt # redirect standard error stream to err.txt
+```
+
+If we want both see the output and redirect it to a file, we can use the `Tee-Object` command which is the equivalent of the `tee` command from Linux
+
 
 # Control Structures
 

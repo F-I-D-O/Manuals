@@ -26,7 +26,9 @@ Parameters:
 - `-m` executes a module as a script, e.g. `python -m venv`. This is useful for executing scripts whithout knowing the path to the script.
 
 
-# Installing Packages
+# Pip
+
+## Installing Packages
 Normal packages are installed using: pip install `<package name>`.
 
 However, if a package uses a C/C++ backend and does not contain the compiled wheel on PyPy, this approach will fail on Windows. Instead, you have to download the wheel from [the Chris Gohlke page](https://www.lfd.uci.edu/~gohlke/pythonlibs/) and install it: `pip install <path to wheel>`. Also, you have to install the dependencies mentioned on that page.
@@ -40,13 +42,18 @@ There is no way how to uninstall more packages using some wildcard. To uninstall
 3.  uninstall all packages from the file: `pip uninstall -r packages.txt -y`
 
 
-## Troubleshooting
+## Troubleshooting package installation
 If the installation fails, check the following:
 1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
 2.  if you installed the package from a wheel, check the notes/requirement info on Chris Golthke page
 3.  Check the log. Specifically, no building should appear there whatsoever. If a build starts, it means that some dependency that should be installed as a prebuild wheel is missing. Possible reasons:
 	1.  you forget to install the dependency, go back to step 2
 	2.  the dependency version does not correspond with the version required by the package you are installing. Check the log for the required version.
+
+
+## Upgrading pip
+To upgrade pip, use `python -m pip install --upgrade pip`. Sometimes, this command end ith an error. There can be specific solutions to this, but what always seems to fix the pip is the [get-pip script](https://bootstrap.pypa.io/get-pip.py). Download the script and run it using `python get-pip.py`.
+
 
 # Pycharm
 ## Configuration
