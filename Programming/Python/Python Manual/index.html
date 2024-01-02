@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -310,6 +320,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#string-methods" class="nav-link">String methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#checking-the-type" class="nav-link">Checking the type</a>
@@ -341,6 +355,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#classes" class="nav-link">Classes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#constructor" class="nav-link">Constructor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#constructor-overloading" class="nav-link">Constructor overloading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
               </ul>
@@ -357,6 +384,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#intervals" class="nav-link">Intervals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -447,6 +478,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#slices" class="nav-link">Slices</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -581,6 +616,16 @@
 <p>Each variable can be formatted for that, Python has a <a href="https://docs.python.org/3/library/string.html#formatspec">string formatting mini language</a>. </p>
 <p>The format is specified after the <code>:</code> character (e.g., <code>f'{47:4}'</code> set the width of the number 47 to 4 characters). Most of the format specifiers have default values, so we can omit them (e.g., <code>f'{47:4}'</code> is equivalent to <code>f'{47:4d}'</code>).</p>
 <p>The following are the most common options:</p>
+<p>To use the character <code>{</code> and <code>}</code> in the string, we have to escape them using double braces: <code>{{</code> and <code>}}</code>. </p>
+<h3 id="string-methods">String methods<a class="headerlink" href="#string-methods" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>capitalize</code>: capitalize the first letter of the string</li>
+<li><code>lower</code>: convert the string to lowercase</li>
+<li><code>upper</code>: convert the string to uppercase</li>
+<li><code>strip</code>: remove leading and trailing whitespaces</li>
+<li><code>lstrip</code>: remove leading whitespaces</li>
+<li><a href="https://docs.python.org/3/library/stdtypes.html#str.rstrip"><code>rstrip</code></a>: remove trailing whitespaces</li>
+</ul>
 <h2 id="checking-the-type">Checking the type<a class="headerlink" href="#checking-the-type" title="Permanent link">&para;</a></h2>
 <p>To check the exact type:</p>
 <pre><code class="language-python">if type(&lt;VAR&gt;) is &lt;TYPE&gt;:
@@ -645,6 +690,36 @@ message = &quot;Hello user {:0&gt;4d}&quot;.format(a) # prints &quot;Hello user 
 message = f&quot;Hello {a:0&gt;4d}&quot; # equivalent
 </code></pre>
 <p>More formating optios can be found in the <a href="https://mkaz.blog/code/python-string-format-cookbook/">Python string formatting cookbook</a>.</p>
+<h1 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.python.org/3/tutorial/classes.html">Official Manual</a></p>
+<p>Classes in Python are defined using the <code>class</code> keyword:</p>
+<pre><code class="language-Python">class MyClass:
+    ...
+</code></pre>
+<p>Unlike in other languages, we only declare the function members, other members are declared in the constructor or even later.</p>
+<h2 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h2>
+<p>The constructor is a special function named <code>__init__</code>. Usually, non-function members are declared in the constructor:</p>
+<pre><code class="language-Python">class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        self.c = 0
+        self.d = None
+</code></pre>
+<h3 id="constructor-overloading">Constructor overloading<a class="headerlink" href="#constructor-overloading" title="Permanent link">&para;</a></h3>
+<p>Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerfull mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.</p>
+<p>The most clean way is to use a class method as a constructor. Example:</p>
+<pre><code class="language-Python">class MyClass:
+    def __init__(self, a, b = 0):
+        self.a = a
+        self.b = b
+        self.c = 0
+        self.d = None
+
+    @classmethod
+    def from_a(cls, b):
+        return cls(0, b)
+</code></pre>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.python.org/3/tutorial/errors.html">documentation</a></p>
 <p>Syntax:</p>
@@ -688,6 +763,8 @@ interval = d2 - d1 # 30 minutes
 interval = timedelta(hours=1)
 d2 = d + interval # '2022-05-20 19:00'
 </code></pre>
+<h2 id="converting-to-unix-timestamp">Converting to Unix timestamp<a class="headerlink" href="#converting-to-unix-timestamp" title="Permanent link">&para;</a></h2>
+<p>To convert a <code>datetime</code> object to unix timestamp, we can use the <code>timestamp</code> method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that <strong>the timestamp is computed based on the <code>datetime</code> object's timezone, or your local timezone if the <code>datetime</code> object has no timezone information.</strong></p>
 <h1 id="filesystem">Filesystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h1>
 <p>There are three ways commonlz used to work with filesystem in Python:
 - manipulate paths as strings
@@ -882,6 +959,25 @@ first = next(g) # 0
 <p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
 <p>For sorting, you can use the <code>sorted</code> function. </p>
 <p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
+<h2 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h2>
+<p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
+<pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]
+</code></pre>
+<p>The <code>start</code> and <code>end</code> are inclusive. </p>
+<p>The <code>step</code> is optional and defaults to 1. The start is also optional and defaults to 0. </p>
+<p>Instead of omitting the <code>start</code> and <code>end</code>, we can use the <code>None</code> keyword:</p>
+<pre><code class="language-Python">a = [1, 2, 3, 4, 5]
+a[None:3] # [1, 2, 3]
+</code></pre>
+<p>Sometimes, it is not possible to use the slice syntax:
+- when we need to use a variable for the step or,
+- when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.</p>
+<p>In such cases, we can use the <code>slice</code> object:</p>
+<pre><code class="language-Python">a[0:10:2] 
+s = slice(0, 10, 2)
+a[s] # equivalent
+</code></pre>
+<p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">CSV<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.python.org/3/library/csv.html">Official Manual</a></p>

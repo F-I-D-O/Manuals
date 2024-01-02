@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -304,13 +314,21 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#installing-packages" class="nav-link">Installing Packages</a>
+            <li class="nav-item" data-level="1"><a href="#pip" class="nav-link">Pip</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installing-packages" class="nav-link">Installing Packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#uninstalling-packages" class="nav-link">Uninstalling packages</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting-package-installation" class="nav-link">Troubleshooting package installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#upgrading-pip" class="nav-link">Upgrading pip</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -439,7 +457,8 @@
 <p>We execute python scripts from the command line as: <code>python &lt;path to the .py file&gt;</code>. </p>
 <p>Parameters:
 - <code>-m</code> executes a module as a script, e.g. <code>python -m venv</code>. This is useful for executing scripts whithout knowing the path to the script.</p>
-<h1 id="installing-packages">Installing Packages<a class="headerlink" href="#installing-packages" title="Permanent link">&para;</a></h1>
+<h1 id="pip">Pip<a class="headerlink" href="#pip" title="Permanent link">&para;</a></h1>
+<h2 id="installing-packages">Installing Packages<a class="headerlink" href="#installing-packages" title="Permanent link">&para;</a></h2>
 <p>Normal packages are installed using: pip install <code>&lt;package name&gt;</code>.</p>
 <p>However, if a package uses a C/C++ backend and does not contain the compiled wheel on PyPy, this approach will fail on Windows. Instead, you have to download the wheel from <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">the Chris Gohlke page</a> and install it: <code>pip install &lt;path to wheel&gt;</code>. Also, you have to install the dependencies mentioned on that page.</p>
 <h2 id="uninstalling-packages">Uninstalling packages<a class="headerlink" href="#uninstalling-packages" title="Permanent link">&para;</a></h2>
@@ -448,13 +467,15 @@
 1.  create a file with the list of all installed packages: <code>pip freeze &gt; packages.txt</code>
 2.  edit the file and remove all packages you want to keep
 3.  uninstall all packages from the file: <code>pip uninstall -r packages.txt -y</code></p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h2 id="troubleshooting-package-installation">Troubleshooting package installation<a class="headerlink" href="#troubleshooting-package-installation" title="Permanent link">&para;</a></h2>
 <p>If the installation fails, check the following:
 1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
 2.  if you installed the package from a wheel, check the notes/requirement info on Chris Golthke page
 3.  Check the log. Specifically, no building should appear there whatsoever. If a build starts, it means that some dependency that should be installed as a prebuild wheel is missing. Possible reasons:
     1.  you forget to install the dependency, go back to step 2
     2.  the dependency version does not correspond with the version required by the package you are installing. Check the log for the required version.</p>
+<h2 id="upgrading-pip">Upgrading pip<a class="headerlink" href="#upgrading-pip" title="Permanent link">&para;</a></h2>
+<p>To upgrade pip, use <code>python -m pip install --upgrade pip</code>. Sometimes, this command end ith an error. There can be specific solutions to this, but what always seems to fix the pip is the <a href="https://bootstrap.pypa.io/get-pip.py">get-pip script</a>. Download the script and run it using <code>python get-pip.py</code>.</p>
 <h1 id="pycharm">Pycharm<a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h1>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="settings-synchronization">Settings synchronization<a class="headerlink" href="#settings-synchronization" title="Permanent link">&para;</a></h3>

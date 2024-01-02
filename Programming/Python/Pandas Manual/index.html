@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -290,6 +300,11 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#main-principles" class="nav-link">Main principles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#creating-a-dataframe" class="nav-link">Creating a DataFrame</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#from-a-dictionary" class="nav-link">From a dictionary</a>
@@ -320,8 +335,12 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#from" class="nav-link">From</a>
+            <li class="nav-item" data-level="2"><a href="#creating-a-zero-or-constant-filled-dataframe" class="nav-link">Creating a zero or constant-filled dataframe</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#generating-the-index" class="nav-link">Generating the index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -414,6 +433,18 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#multi-index-selection" class="nav-link">Multi-index selection</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#using-loc" class="nav-link">Using loc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#using-indexslice-for-more-readable-syntax" class="nav-link">Using IndexSlice for more readable syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#using-xs" class="nav-link">Using xs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -432,6 +463,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#rename-a-column" class="nav-link">Rename a column</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#rename-a-series-column" class="nav-link">Rename a Series (column)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -439,8 +474,20 @@
             
             <li class="nav-item" data-level="1"><a href="#working-with-the-index" class="nav-link">Working with the index</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#selecting-just-a-single-index-level-from-a-multi-index" class="nav-link">Selecting just a single index level from a multi-index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#changing-the-index" class="nav-link">Changing the index</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#using-columns-as-a-new-index" class="nav-link">Using columns as a new index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#using-an-existing-index-to-create-a-new-index" class="nav-link">Using an existing index to create a new index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
@@ -453,6 +500,18 @@
             <li class="nav-item" data-level="1"><a href="#aggregation" class="nav-link">Aggregation</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#custom-aggegate-function" class="nav-link">Custom aggegate function</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#agg" class="nav-link">agg</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#apply_1" class="nav-link">apply</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#time-aggregation" class="nav-link">Time aggregation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -530,6 +589,10 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#to_datetime" class="nav-link">to_datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -578,6 +641,8 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="main-principles">Main principles<a class="headerlink" href="#main-principles" title="Permanent link">&para;</a></h1>
+<p>Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns). </p>
 <h1 id="creating-a-dataframe">Creating a DataFrame<a class="headerlink" href="#creating-a-dataframe" title="Permanent link">&para;</a></h1>
 <p>The <code>DataFrame</code> class has a constructor that supports multiple formats of input data as well as many configuration parameters. Therefore , for most formats of input data, we can create a dataframe using the constructor. However, we can also crete a dataframe using the <code>from_*</code> functions, and for some formats, these functions are the only way to create a dataframe.</p>
 <h2 id="from-a-dictionary">From a dictionary<a class="headerlink" href="#from-a-dictionary" title="Permanent link">&para;</a></h2>
@@ -615,7 +680,14 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <h2 id="from-a-list-of-lists">From a list of lists<a class="headerlink" href="#from-a-list-of-lists" title="Permanent link">&para;</a></h2>
 <pre><code class="language-python">df = pd.DataFrame([[1, 3], [2, 4]], columns=['col1', 'col2'])
 </code></pre>
-<h2 id="from">From<a class="headerlink" href="#from" title="Permanent link">&para;</a></h2>
+<h2 id="creating-a-zero-or-constant-filled-dataframe">Creating a zero or constant-filled dataframe<a class="headerlink" href="#creating-a-zero-or-constant-filled-dataframe" title="Permanent link">&para;</a></h2>
+<p>To create a dataframe filled with a constant, we can use the dataframe constructor and pass the constant as the first (data) argument:</p>
+<pre><code class="language-python">df = pd.DataFrame(0, index=range(10), columns=['col1', 'col2'])
+</code></pre>
+<h3 id="generating-the-index">Generating the index<a class="headerlink" href="#generating-the-index" title="Permanent link">&para;</a></h3>
+<p>As displayed in the above example, we can generate a numerical index using the <code>range</code> function. However, there are more options:
+- date index with <a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html"><code>date_range</code></a>
+    - <code>pd.date_range(&lt;start date&gt;, &lt;end date&gt;, freq=&lt;frequency&gt;)</code></p>
 <h1 id="obtaining-info-about-dataset">Obtaining info about dataset<a class="headerlink" href="#obtaining-info-about-dataset" title="Permanent link">&para;</a></h1>
 <p>For a DataFrame <code>df</code>:
 - column names: <code>df.columns</code>
@@ -714,21 +786,32 @@ sel['a'] =  ... # we possibly edit a temporary!
 </code></pre>
 <h2 id="multi-index-selection">Multi-index selection<a class="headerlink" href="#multi-index-selection" title="Permanent link">&para;</a></h2>
 <p><a href="https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical">documentation</a></p>
-<p>When selecting from a dataframe with a multi-index, things get a bit more complicated. We can specify index levels using the <code>level</code> argument. Example:</p>
-<pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;, level=&lt;level number&gt;]
+<p>When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:
+- using <code>loc</code> with slices: simple, but verbose
+- using <code>loc</code> with <code>IndexSlice</code> object: more readable, but requires the <code>IndexSlice</code> object to be created first
+- using <code>xs</code> function, neat, but does not support all the features, e.g., it does not support ranges</p>
+<h3 id="using-loc">Using <code>loc</code><a class="headerlink" href="#using-loc" title="Permanent link">&para;</a></h3>
+<p>The general <code>loc</code> usage is the same as for a single index dataframe:</p>
+<pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;]
 </code></pre>
-<p>If we want to specify more than one level, we can use a tuple:</p>
-<pre><code class="language-python">df.loc[(&lt;row index level 1&gt;, &lt;row index level 2&gt;, ...), (&lt;col index level 1&gt;, &lt;col index level 2&gt;, ...)]
+<p>However, each selection is now a tuple, where each element of the tuple corresponds to one level of the multi-index:</p>
+<pre><code class="language-Python">df.loc[(&lt;row selection level 1&gt;, &lt;row selection level 2&gt;, ...), (&lt;column selection level 1&gt;, &lt;column selection level 2&gt;, ...)]
 </code></pre>
-<p>If we select an upper level only, all lover level values are selected.</p>
-<p>For more complex cases where we wanto to select all from upper level but limit the lower level, we can use the <a href="https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers"><code>slice</code></a> function:</p>
-<pre><code class="language-python">df.loc[(slice(None), slice('15', '30')), ...]
+<p>The <code>&lt;row selection&gt;</code> can be a specifica value, a list of values, or a slice. Note that we have to use the <code>slice</code> function, as pandas uses the standard slice syntax for something else. </p>
+<p>We can skip lower levels to select all values from those levels. However, we cannot skip upper levels. If we want to select all values from the upper level, we need to use the <code>slice(None)</code> for that level:</p>
+<pre><code class="language-python">df.loc[(slice(None), slice(15, 30)), ...]
 </code></pre>
+<p>Note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html"><code>sort_index</code></a> function.</p>
+<p><a href="https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers"><code>pandas slicing documentation</code></a> </p>
+<h4 id="using-indexslice-for-more-readable-syntax">Using <code>IndexSlice</code> for more readable syntax<a class="headerlink" href="#using-indexslice-for-more-readable-syntax" title="Permanent link">&para;</a></h4>
 <p>We can obtain the same result with a more readable syntax using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html"><code>IndexSlice</code></a> object:</p>
 <pre><code class="language-python">idx = pd.IndexSlice
-dft.loc[idx[:, '15':'30'], ...]
+dft.loc[idx[:, 15:30], ...]
 </code></pre>
-<p>Also, note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html"><code>sort_index</code></a> function.</p>
+<h3 id="using-xs">Using <code>xs</code><a class="headerlink" href="#using-xs" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a> function can be used to select from a multi-index dataframe. However, slices (ranges) are not supported. Example:</p>
+<pre><code class="language-python">df.xs(15, level=1) # selects all rows with level 1 equal to 15
+</code></pre>
 <h1 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h1>
 <p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
 <pre><code class="language-python">df.sort_values(['col1', 'col2'])
@@ -753,10 +836,34 @@ result_df_5_nyc_mv.assign(instance_length = 5)
 # or equivalently
 df.rename({'&lt;old name 1&gt;': '&lt;new name 1&gt;', '&lt;old name 2&gt;': '&lt;new name 2&gt;'}, axis='columns')
 </code></pre>
+<h3 id="rename-a-series-column">Rename a Series (column)<a class="headerlink" href="#rename-a-series-column" title="Permanent link">&para;</a></h3>
+<p>The column name in the series object is actually the name of the series. To rename the series, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.rename.html"><code>rename</code></a> function, or we can set the <code>name</code> property of the series:</p>
+<pre><code class="language-Python">s.rename('&lt;new name&gt;')
+# or equivalently
+s.name = '&lt;new name&gt;'
+</code></pre>
 <h1 id="working-with-the-index">Working with the index<a class="headerlink" href="#working-with-the-index" title="Permanent link">&para;</a></h1>
 <p>Index of a dataframe <code>df</code> can be accessed by <code>df.index</code>. Standard range operation can be applied to index. </p>
+<h2 id="selecting-just-a-single-index-level-from-a-multi-index">Selecting just a single index level from a multi-index<a class="headerlink" href="#selecting-just-a-single-index-level-from-a-multi-index" title="Permanent link">&para;</a></h2>
+<p>If we want to select just a single index level, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.get_level_values.html"><code>get_level_values</code></a> function:</p>
+<pre><code class="language-python">df.index.get_level_values(&lt;level&gt;)
+</code></pre>
+<p>Note however, that this function returns duplicated values when there are multiple values in other levels. To get unique values, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unique.html"><code>unique</code></a> function.</p>
+<p>There is also another method, that returns unique values: the level property:</p>
+<pre><code class="language-python">df.index.levels[&lt;level&gt;]
+</code></pre>
+<p>However, <strong>this way, we can get outdated values</strong>, as the values are not always updated when the index is changed. To get the updated values, we need to call the method <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.remove_unused_levels.html"><code>remove_unused_levels</code></a> after each change of the index.</p>
 <h2 id="changing-the-index">Changing the index<a class="headerlink" href="#changing-the-index" title="Permanent link">&para;</a></h2>
+<h3 id="using-columns-as-a-new-index">Using columns as a new index<a class="headerlink" href="#using-columns-as-a-new-index" title="Permanent link">&para;</a></h3>
 <p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>set_index</code></a> function.</p>
+<h3 id="using-an-existing-index-to-create-a-new-index">Using an existing index to create a new index<a class="headerlink" href="#using-an-existing-index-to-create-a-new-index" title="Permanent link">&para;</a></h3>
+<p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html"><code>reindex</code></a> function. The first parameter is the new index. Example:</p>
+<pre><code class="language-python">df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
+</code></pre>
+<p>Important parameters:
+- <code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</p>
+<p>To create more complicated indices, dedicated functions can be used:
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</p>
 <h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html"><code>Index.rename</code></a> function can be used for that.</p>
 <h1 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h1>
@@ -772,7 +879,8 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 - <code>median</code>
 - <code>min</code>
 - <code>max</code>
-- <code>count</code></p>
+- <code>count</code>
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html"><code>cumsum</code></a>: cumulative sum</p>
 <p>Full example (sum):</p>
 <pre><code class="language-Python">df.groupby('col').sum()
 </code></pre>
@@ -781,13 +889,9 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').size()
 </code></pre>
 <h2 id="custom-aggegate-function">Custom aggegate function<a class="headerlink" href="#custom-aggegate-function" title="Permanent link">&para;</a></h2>
-<p>Also, there is a general <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that can be used to apply a custom aggregation function. Example:</p>
-<pre><code class="language-Python">df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
-</code></pre>
-<p>We can also use the <code>apply</code> method. This function takes a dataframe as an argument and returns a series. Example:</p>
-<pre><code class="language-Python">def agg_fn(df):
-    return pd.Series([df['col1'].sum(), df['col2'].mean()], index=['sum', 'mean'])
-</code></pre>
+<p>Also, there are more general aggregate functions:
+-  <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that is usefull for applying different functions for different columns and
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html"><code>apply</code></a> function that is usefull for applying a function to the whole dataframe.</p>
 <p>The difference between <code>agg</code> and <code>apply</code> is summarized in the following table:</p>
 <table>
 <thead>
@@ -820,6 +924,28 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 </tr>
 </tbody>
 </table>
+<h3 id="agg"><code>agg</code><a class="headerlink" href="#agg" title="Permanent link">&para;</a></h3>
+<p>Example:</p>
+<pre><code class="language-Python">df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
+</code></pre>
+<h3 id="apply_1"><code>apply</code><a class="headerlink" href="#apply_1" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html"><code>apply</code></a> function takes a custom function as an argument. That custom aggregation function:
+- takes a DataFrame/Series (depending on the source object) as the first argument
+- returns a Series, DataFrame, or a scalar</p>
+<p>The process works as follows:
+1. The dataframe is split into groups according to the <code>groupby</code> function.
+1. The custom function is applied to each group.
+1. The results are combined into a single dataframe.</p>
+<p>In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and compining aggreate results is done by the <code>apply</code> function.</p>
+<h2 id="time-aggregation">Time aggregation<a class="headerlink" href="#time-aggregation" title="Permanent link">&para;</a></h2>
+<p>We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html"><code>resample</code></a> function. Example:</p>
+<pre><code class="language-Python">df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1D'))
+
+df.resample('1H').sum()
+</code></pre>
+<p>The aggregate function is applied to each group in case of multiple values in the same time slot (<em>downsampling</em>). In case of no values in the time slot (<em>upsampling</em>), the value is filled with <code>NaN</code>. We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html"><code>ffill</code></a> function to fill in the missing values. Example:</p>
+<pre><code class="language-Python">df.resample('1H').sum().ffill()
+</code></pre>
 <h1 id="joins">Joins<a class="headerlink" href="#joins" title="Permanent link">&para;</a></h1>
 <h1 id="appending-one-dataframe-to-another">Appending one dataframe to another<a class="headerlink" href="#appending-one-dataframe-to-another" title="Permanent link">&para;</a></h1>
 <p>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function for that:</p>
@@ -889,14 +1015,13 @@ Important parameters:
 - <code>subset</code>: the columns in which the highlighting should be applied
 - <code>props</code>: the css properties to apply to the highlighted cells</p>
 <h2 id="hiding-some-columns-rows-or-indices">Hiding some columns, rows, or indices<a class="headerlink" href="#hiding-some-columns-rows-or-indices" title="Permanent link">&para;</a></h2>
-<p>For hiding some columns, rows, or indices, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html"><code>hide</code></a> function. Format:</p>
-<pre><code class="language-python">df.style.hide(&lt;index name&gt;) # hide the index with the given name
-</code></pre>
+<p>For hiding some columns, rows, or indices, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html"><code>hide</code></a> function. Important Parameters:
+- <code>axis</code>: 0 for hiding row indices (default), 1 for hiding column names
+- <code>level</code>: the level of the multi-index to hide (default is all levels)
+- <code>subset</code>: the columns or rows to hide (default is all columns or rows)</p>
+<p>When used without the <code>subset</code> parameter, the <code>hide</code> function hides the whole index. To hide just a selected row or column from the data, the subset parameter has to be used.</p>
 <p>By default, the <code>&lt;index_name&gt;</code> refers to the row index. <strong>To hide a column</strong>:</p>
 <pre><code class="language-python">df.style.hide_columns(&lt;column name&gt;, axis=1)
-</code></pre>
-<p>To hide row index:</p>
-<pre><code class="language-python">df.style.hide(axis='index')
 </code></pre>
 <h2 id="changing-the-header-column-labels">Changing the header (column labels)<a class="headerlink" href="#changing-the-header-column-labels" title="Permanent link">&para;</a></h2>
 <p>There is no equivalent to the header parameter of the old <code>to_latex</code> function in the new style system. Instead, it is necessary to change the column names of the dataframe. </p>
@@ -935,6 +1060,10 @@ Important parameters:
 - we can use the <code>fill_value</code> parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)
 - we can use the <code>dropna</code> parameter to drop the rows with missing values
 - we can change the data type of the columns with missing values prior to calling the <code>pivot_table</code> function. For example, the <a href="https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer">pandas integer data types</a> support <code>NaN</code> values.</p>
+<h2 id="to_datetime"><code>to_datetime</code><a class="headerlink" href="#to_datetime" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html"><code>to_datetime</code></a> function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
+- <code>unit</code>: the unit of the input, e.g., <code>s</code> for seconds.
+- <code>origin</code>: the origin of the input, e.g., <code>unix</code> for unix timestamps. It can be also any specific <code>datetime</code> object.</p>
 <h1 id="geopandas">Geopandas<a class="headerlink" href="#geopandas" title="Permanent link">&para;</a></h1>
 <p>Geopandas is a GIS addon to pandas, an equivalent to PostGIS. Unfortunately, <strong>it currently supports only one geometry column per table.</strong></p>
 <p><strong>Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!</strong> Use the <code>to_wkt</code> function instead.</p>

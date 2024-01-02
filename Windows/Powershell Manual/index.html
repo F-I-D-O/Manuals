@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="./" class="dropdown-item active">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -263,7 +273,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../Ubuntu/Linux%20Manual/" class="nav-link">
+                                <a rel="prev" href="../Excel%20Manual/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -312,6 +322,16 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#command-execution" class="nav-link">Command execution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -426,6 +446,20 @@ In sommand prompt or on Linux:</p>
 </code></pre>
 <h2 id="no-output-for-exe-file">No Output for EXE file<a class="headerlink" href="#no-output-for-exe-file" title="Permanent link">&para;</a></h2>
 <p>Some errors are unfortunatelly not reported by powershell (e.g. <a href="https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls">missing dll</a>). The solution is to run such program in cmd, which reports the error.</p>
+<h1 id="command-execution">Command execution<a class="headerlink" href="#command-execution" title="Permanent link">&para;</a></h1>
+<p>Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the <code>&amp;</code> operator has to be used. Example:</p>
+<pre><code class="language-PowerShell">&amp; &quot;C:\Program Files\Java\jdk1.8.0_181\bin\java.exe&quot; -version
+</code></pre>
+<h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
+<p>Output forwading is done using <code>|</code> (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
+- <code>&gt;</code>: redirect to file, overwrite if exists
+- <code>&gt;&gt;</code>: redirect to file, append if exists
+- <code>&gt;&amp;1</code>: redirect to standard output stream</p>
+<p>When using any of these operators, by default, the standard output stream is redirected. If we want to redirect the standard error stream, we have to prepend 2 to the operator. Example:</p>
+<pre><code class="language-PowerShell">dir &gt; out.txt # redirect standard output stream to out.txt
+dir 2&gt; err.txt # redirect standard error stream to err.txt
+</code></pre>
+<p>If we want both see the output and redirect it to a file, we can use the <code>Tee-Object</code> command which is the equivalent of the <code>tee</code> command from Linux</p>
 <h1 id="control-structures">Control Structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h1>
 <h2 id="cycles">Cycles<a class="headerlink" href="#cycles" title="Permanent link">&para;</a></h2>
 <h3 id="foreach"><code>foreach</code><a class="headerlink" href="#foreach" title="Permanent link">&para;</a></h3>

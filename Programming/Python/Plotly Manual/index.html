@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -298,9 +308,25 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#histogram" class="nav-link">Histogram</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#plotly-histogram-limitations" class="nav-link">Plotly Histogram Limitations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#bar-chart" class="nav-link">Bar Chart</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#why-bar-charts-with-a-lot-of-records-appear-transparent" class="nav-link">Why bar charts with a lot of records appear transparent?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#numerical-vs-categorical-color" class="nav-link">Numerical vs categorical color</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#scatter-plot" class="nav-link">Scatter Plot</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -348,6 +374,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#customize-axes" class="nav-link">Customize axes</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#drawing-borders-using-axes" class="nav-link">Drawing borders using axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#customizing-datetime-axes" class="nav-link">Customizing datetime axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#legend" class="nav-link">Legend</a>
@@ -374,12 +408,28 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#title" class="nav-link">Title</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-layout-parameters-background-borders-etc" class="nav-link">Other Layout Parameters (background, borders, etc.)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#text" class="nav-link">Text</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bold-and-italic" class="nav-link">Bold and italic</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#math-symbols" class="nav-link">Math symbols</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -418,18 +468,23 @@ Plotly express modul is loaded as:</p>
 <li><code>facet_col</code>: the name of the column to use as facet column.</li>
 <li><code>facet_row</code>: the name of the column to use as facet row.</li>
 <li><code>color_discrete_sequence</code>: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.</li>
+<li><code>title</code>: the title of the plot. </li>
 </ul>
 <h2 id="histogram">Histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/histograms/">documentation</a></p>
+<p>Note that the <strong>Plotly histogram is only good for simple cases of small size</strong>. See below for more details.</p>
 <p>Plotly express has <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.histogram.html"><code>histogram</code></a> function for creating histograms. The basic syntax is:</p>
 <pre><code class="language-python">px.histogram(&lt;dataframe&gt;, &lt;xcol name&gt;)
 </code></pre>
 <p>The y is then the number of occurences of each value in the x column. </p>
 <p>Important parameters:
 - <code>nbins</code>: number of bins. </p>
-<p>The plotly histogram is usually only good for simple cases or quick plotting. For more complex figures, it is better to generate the histogram manually (using numpy or pandas) and then plot it using the <code>px.bar</code> function.</p>
+<h3 id="plotly-histogram-limitations">Plotly Histogram Limitations<a class="headerlink" href="#plotly-histogram-limitations" title="Permanent link">&para;</a></h3>
+<p>Plotly histogram is only good for simple cases of small size. This is because it first stores all data points in JSON and only computes the bins on the javascript size. As a result, the function is slow and the size of the Jupyter notebook cell can be enormous (hundreds of MBs).</p>
+<p>For more complex figures, it is better to generate the histogram manually (using numpy or pandas) and then plot it using the <code>px.bar</code> function.</p>
 <h2 id="bar-chart">Bar Chart<a class="headerlink" href="#bar-chart" title="Permanent link">&para;</a></h2>
-<p><a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.bar.html">documentation</a></p>
+<p><a href="https://plotly.com/python/bar-charts/">documentation</a></p>
+<p><a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.bar.html">reference</a></p>
 <p>For bar charts, we use the <code>px.bar</code> function. The basic syntax is:</p>
 <pre><code class="language-python">px.bar(&lt;dataframe&gt;, &lt;xcol name&gt;, &lt;y col name&gt;)
 </code></pre>
@@ -439,6 +494,20 @@ Plotly express modul is loaded as:</p>
 - <code>bar_groupgap</code>: the gap between the bars from the same group (only for <code>barmode = group</code>).</p>
 <p>Unfortunately, <strong>there is no way how to represent missing values</strong> in the bar chart (they appear as <code>y = 0</code>).
 To mark the missing values, we can use annotations. </p>
+<h3 id="why-bar-charts-with-a-lot-of-records-appear-transparent">Why bar charts with a lot of records appear transparent?<a class="headerlink" href="#why-bar-charts-with-a-lot-of-records-appear-transparent" title="Permanent link">&para;</a></h3>
+<p>If the number of records is large, the bar chart may appear transparent. This is because each bar has a border, which has a brighter color. To prevent this effect, we have to remove the border:</p>
+<pre><code class="language-python">fig.update_traces(marker_line_width=0)
+</code></pre>
+<h3 id="numerical-vs-categorical-color">Numerical vs categorical color<a class="headerlink" href="#numerical-vs-categorical-color" title="Permanent link">&para;</a></h3>
+<p>The values in the color column are interpreted as numerical (continuous) if the column is numeric and as categorical if the column is of any other type. Even if the color column contains only integers, it is still interpreted as numerical with all consequences (color bar instead of categorical colors, <code>color_discrete_sequence</code> parameter is ignored, etc.). To force the categorical interpretation, we can convert the column to a string. Example:</p>
+<pre><code class="language-python">px.bar(df, x=&quot;x&quot;, y=&quot;y&quot;, color=df[&quot;color&quot;].astype(str))
+</code></pre>
+<h2 id="scatter-plot">Scatter Plot<a class="headerlink" href="#scatter-plot" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/line-and-scatter/">documentation</a></p>
+<p>For scatter plots, we use the <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.scatter.html"><code>scatter</code></a> function. The basic syntax is:</p>
+<pre><code class="language-python">px.scatter(&lt;dataframe&gt;, &lt;xcol name&gt;, &lt;y col name&gt;)
+</code></pre>
+<p>Important parameters:</p>
 <h2 id="automatic-subplots-facet-plots">Automatic Subplots: Facet plots<a class="headerlink" href="#automatic-subplots-facet-plots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/facet-plots/">Facet plots</a> can be created using the same plot function as for normal plotly express plots and supplying the <code>facet_col</code> and/or <code>facet_row</code> parameters. Example:</p>
 <pre><code class="language-python">fig = px.histogram(df, x=&quot;column&quot;, facet_row=&quot;&lt;col 1&gt;&quot;, facet_col=&quot;&lt;col 2&gt;&quot;)
@@ -470,10 +539,24 @@ fig.add_annotation(x=0.5, y=-0.12, text=&quot;Occupancy&quot;,  xref=&quot;paper
 </code></pre>
 <p>Some more complicated examples are in the <a href="https://plotly.com/python/bar-charts/#basic-bar-charts-with-plotlygraphobjects">documentation</a>.</p>
 <h2 id="line-chart">Line Chart<a class="headerlink" href="#line-chart" title="Permanent link">&para;</a></h2>
-<p>The line chart is created using the <code>go.Scatter</code> function. Example:</p>
+<p><a href="https://plotly.com/python/line-charts/#line-plot-with-goscatter">documentation</a></p>
+<p>The line chart is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html"><code>go.Scatter</code></a> function. Example:</p>
 <pre><code class="language-python">go.Scatter(x, y, ...)
 </code></pre>
-<p><a href="https://plotly.com/python/line-charts/#line-plot-with-goscatter">documentation</a></p>
+<p>Important parameters:
+- <code>mode</code>: the mode of the line. 
+    - Can be:
+        - <code>lines</code>,
+        - <code>markers</code>,
+        - <code>lines+markers</code>,
+        - <code>text</code>,
+        - <code>lines+text</code>,
+        - <code>markers+text</code>,
+        - <code>lines+markers+text</code>. 
+    - The default is <code>lines+markers</code> if  there are less than 20 data points and <code>lines</code> otherwise.
+- <code>line</code>: dictionary containing the line parameters. The most important parameters are:
+    - <code>color</code>: the color of the line
+    - <code>width</code>: the width of the line</p>
 <h2 id="create-subplots">Create subplots<a class="headerlink" href="#create-subplots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/subplots/">documentation and examples</a></p>
 <p>To create a figure with multiple subplots, we use the <code>make_subplots</code> function. Example:</p>
@@ -504,7 +587,18 @@ fig.show()
 - <code>dtick</code>: the distance between the ticks
 - <code>tickvals</code>: the exact values of the ticks. This overrides the <code>dtick</code> parameter.
 - <code>title_text</code>: the title of the axis. Note that <strong>this text is only used if the tickavls are set manually</strong>.
-- <code>range</code>: e.g.: <code>range=[0, 1]</code> `</p>
+- <code>range</code>: range of the axis, e.g.: <code>range=[0, 1]</code>. By default, the range is determined automatically as the range of the data plus some margin. Unfortunately, <strong>there is no way how to automatically set the range to match the data range exactly</strong>.
+- <code>linecolor</code>: the color of the axis line
+- <code>mirror</code>: if <code>True</code>, the axis line will be mirrored to the other side of the plot</p>
+<h3 id="drawing-borders-using-axes">Drawing borders using axes<a class="headerlink" href="#drawing-borders-using-axes" title="Permanent link">&para;</a></h3>
+<p>The borders can be drawn using the axes. To draw a  black border around the plot, we can use the following code:</p>
+<pre><code class="language-python">fig.update_xaxes(linecolor=&quot;black&quot;, mirror=True)
+fig.update_yaxes(linecolor=&quot;black&quot;, mirror=True)
+</code></pre>
+<h3 id="customizing-datetime-axes">Customizing datetime axes<a class="headerlink" href="#customizing-datetime-axes" title="Permanent link">&para;</a></h3>
+<p>Unfortunately, we cannot treat the datetime axes as expected, i.e., using the datetime objects. For example, to set the tick interval, we cannot use the <code>datetime.timedelta</code> object. Instead, we need to use the number of milliseconds. Example:</p>
+<pre><code class="language-python">fig.update_xaxes(dtick=1000 * 60 * 60 * 24 * 7) # one week interval
+</code></pre>
 <h2 id="legend">Legend<a class="headerlink" href="#legend" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/legend/">documentation</a>
 <a href="https://plotly.com/python/reference/layout/#layout-legend">reference</a></p>
@@ -537,13 +631,44 @@ The most important parameters are:
 <p>Unfortunately, <strong>there is no way how to set the <code>xref</code> and <code>yref</code> parameters automatically</strong>. Therefore, we need to compute them manually for each annotation.</p>
 <h2 id="markers">Markers<a class="headerlink" href="#markers" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/marker-style/">documentation</a></p>
+<p>To style the markers, we can use the <code>update_traces</code> function. Example:</p>
+<pre><code class="language-python">fig.update_traces(marker=dict(size=10, line=dict(width=2, color='DarkSlateGrey')))
+</code></pre>
 <h3 id="adding-a-marker-to-a-hard-coded-location">Adding a marker to a hard-coded location<a class="headerlink" href="#adding-a-marker-to-a-hard-coded-location" title="Permanent link">&para;</a></h3>
 <p>To add a marker to a hard-coded location, we can add it as a new trace. Note that we can add new traces even to a figure created using plotly express. </p>
+<h2 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/figure-labels/#align-plot-title">documentation</a></p>
+<p>The title can be set using the plotly express functions or when creating the graph objects figure. To update the text or to customize the title layout, we can use the <code>update_layout</code> function with the <code>title</code> object parameter. Example:</p>
+<pre><code class="language-python">fig.update_layout(
+    title={
+        'x': 0.5,
+        'xanchor': 'center',
+        'y': 0.85,
+        'yanchor': 'top'
+    }
+)
+</code></pre>
+<p>Important parameters:
+- <code>x</code>, <code>y</code>: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
+- <code>xanchor</code>, <code>yanchor</code>: the position of the title relative to the x and y coordinates. Can be <code>left</code>, <code>center</code> or <code>right</code> for <code>xanchor</code> and <code>top</code>, <code>middle</code> or <code>bottom</code> for <code>yanchor</code>.</p>
+<h2 id="other-layout-parameters-background-borders-etc">Other Layout Parameters (background, borders, etc.)<a class="headerlink" href="#other-layout-parameters-background-borders-etc" title="Permanent link">&para;</a></h2>
+<ul>
+<li>background color: <code>plot_bgcolor</code></li>
+<li>border: borders are best drawn by showing and mirroring the axes (see the axis section above).</li>
+</ul>
 <h1 id="text">Text<a class="headerlink" href="#text" title="Permanent link">&para;</a></h1>
 <p><a href="https://plotly.com/python/text-and-annotations">documentation</a></p>
 <h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
 <p>To add a subscript or superscript to a text, we can use HTML tags. Example:</p>
 <pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=&quot;Title&lt;sub&gt;subscript&lt;/sub&gt;&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
+</code></pre>
+<h2 id="bold-and-italic">Bold and italic<a class="headerlink" href="#bold-and-italic" title="Permanent link">&para;</a></h2>
+<p>To add bold or italic text, we can use the HTML tags <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code>. Example:</p>
+<pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=&quot;Title&lt;b&gt;bold&lt;/b&gt;&lt;i&gt;italic&lt;/i&gt;&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
+</code></pre>
+<h2 id="math-symbols">Math symbols<a class="headerlink" href="#math-symbols" title="Permanent link">&para;</a></h2>
+<p>To add math symbols, we can use the LaTeX syntax. Example:</p>
+<pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=r&quot;Title$ \alpha $ and $ \beta $&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
 </code></pre>
 <h1 id="exporting-the-figure">Exporting the Figure<a class="headerlink" href="#exporting-the-figure" title="Permanent link">&para;</a></h1>
 <p><a href="https://plotly.com/python/static-image-export/">documentation</a></p>

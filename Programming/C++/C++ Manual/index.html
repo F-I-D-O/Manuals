@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -1896,7 +1906,8 @@ a = map[1] // a == map[1] == &quot;&quot; unintuitively, the default value is in
 <p>There are some considerations with these options:
 - 1 inserts the <code>value</code> into the map even if the <code>key</code> already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (<code>true</code> if the insertion happend).
 - 1 requires the value to be default <em>constructible</em> and <em>assignable</em>
-- 3 avoids the creation of temporary objects, it sends references to <code>key</code> and <code>value</code> directly to the map.  </p>
+- 3 avoids the creation of temporary objects, it sends references to <code>key</code> and <code>value</code> directly to the map.<br />
+- 3 ignores the insertion if the key already exists.</p>
 <h3 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h3>
 <p>We have two standard class templates for tuples:
 - <a href="https://en.cppreference.com/w/cpp/utility/pair"><code>std::pair</code></a> for pairs

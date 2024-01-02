@@ -210,6 +210,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -246,7 +250,13 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../Midjourney/" class="nav-link">Midjourney</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Photopea/" class="nav-link">Photopea</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
@@ -290,13 +300,34 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#untrack-files-but-not-delete-them-locally" class="nav-link">Untrack files, but not delete them locally:</a>
+            <li class="nav-item" data-level="1"><a href="#configuration" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#reset-individual-files" class="nav-link">Reset individual files</a>
+            <li class="nav-item" data-level="1"><a href="#basic-tasks" class="nav-link">Basic Tasks</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#rewrite-remote-with-local-changes-without-merging" class="nav-link">Rewrite remote with local changes without merging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#go-back-to-branch" class="nav-link">Go back to branch:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#untrack-files-but-not-delete-them-locally" class="nav-link">Untrack files, but not delete them locally:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#reverting" class="nav-link">Reverting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#using-git-checkout" class="nav-link">Using git checkout</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -324,6 +355,14 @@
             
             <li class="nav-item" data-level="1"><a href="#merging" class="nav-link">Merging</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#resolving-conflicts" class="nav-link">Resolving Conflicts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#debugging-mergetool" class="nav-link">Debugging mergetool</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#merging-moved-files" class="nav-link">Merging Moved Files</a>
               <ul class="nav flex-column">
               </ul>
@@ -340,6 +379,15 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#pull-requests" class="nav-link">Pull Requests</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#update-pull-request" class="nav-link">Update pull request</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#repository-migration" class="nav-link">Repository Migration</a>
               <ul class="nav flex-column">
               </ul>
@@ -349,24 +397,40 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>Revert local changes (uncommited):</p>
-<pre><code>git checkout &lt;pathspec&gt;
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>The git configuration is stored in the <code>.gitconfig</code> file in the user's home directory. It can be edited by editing the file directly, or by calling <code>git config</code> command. </p>
+<p>To display the active configuration in the command line, call:</p>
+<pre><code>git config --list
 </code></pre>
-<p>Rewrite remote with local changes without merging</p>
+<p>We can also show whether the configuration results from the system, user or local configuration file:</p>
+<pre><code>git config --list --show-origin
+</code></pre>
+<h1 id="basic-tasks">Basic Tasks<a class="headerlink" href="#basic-tasks" title="Permanent link">&para;</a></h1>
+<h2 id="rewrite-remote-with-local-changes-without-merging">Rewrite remote with local changes without merging<a class="headerlink" href="#rewrite-remote-with-local-changes-without-merging" title="Permanent link">&para;</a></h2>
 <pre><code>git push -f
 </code></pre>
-<p>Go back to branch:</p>
+<h2 id="go-back-to-branch">Go back to branch:<a class="headerlink" href="#go-back-to-branch" title="Permanent link">&para;</a></h2>
 <pre><code>git revert --no-commit 0766c053..HEAD
 
 </code></pre>
-<h1 id="untrack-files-but-not-delete-them-locally">Untrack files, but not delete them locally:<a class="headerlink" href="#untrack-files-but-not-delete-them-locally" title="Permanent link">&para;</a></h1>
+<h2 id="untrack-files-but-not-delete-them-locally">Untrack files, but not delete them locally:<a class="headerlink" href="#untrack-files-but-not-delete-them-locally" title="Permanent link">&para;</a></h2>
 <pre><code>git rm --cached &lt;FILEPATH&gt;
 </code></pre>
 <p>usefull params:
 - <code>-r</code>: recursive - deletes content of directories
 - <code>-n</code> dry run</p>
-<h1 id="reset-individual-files">Reset individual files<a class="headerlink" href="#reset-individual-files" title="Permanent link">&para;</a></h1>
-<p>To reset an individual file, call: <code>git checkout &lt;filepath&gt;</code></p>
+<h1 id="reverting">Reverting<a class="headerlink" href="#reverting" title="Permanent link">&para;</a></h1>
+<p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:
+- <a href="https://git-scm.com/docs/git-checkout"><code>git checkout</code></a> for overwriting local files with version from a specified tree (also for switching branches) and
+- <a href="https://git-scm.com/docs/git-reset"><code>git reset</code></a></p>
+<p>The following table shows the differences between the commands:
+| Command | revrerts commits | overwrite local changes | 
+| --- | --- | --- |
+| <code>git checkout &lt;commit&gt;</code> | no | yes |
+| <code>git reset --soft &lt;commit&gt;</code> | yes | no |
+| <code>git reset --hard &lt;commit&gt;</code> | yes | yes |</p>
+<h3 id="using-git-checkout">Using <code>git checkout</code><a class="headerlink" href="#using-git-checkout" title="Permanent link">&para;</a></h3>
+<p>To reset an individual file, call: <code>git checkout &lt;filepath&gt;</code>, to reset all files, call: <code>git checkout .</code>. By default, the local files will be overwrtitten by the head. To specify a specific commit, put another positional argument before <code>&lt;filepath&gt;</code>: <code>git checkout &lt;commit&gt; &lt;filepath&gt;</code>. </p>
 <h1 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h1>
 <p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:
 - <code>**/</code> in any directory
@@ -413,6 +477,28 @@
 <pre><code>git merge &lt;params&gt; &lt;commit&gt;
 </code></pre>
 <p>Merge can be aborted at any time by calling <code>git merge --abort</code>. This resets the state of the repository.</p>
+<h2 id="resolving-conflicts">Resolving Conflicts<a class="headerlink" href="#resolving-conflicts" title="Permanent link">&para;</a></h2>
+<p>Sometimes, the same file is changed on the same line in both branches we are merging. This is called a conflict. In this case, the conflicting content is marked with conflict markers:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This is the content of the file in the current branch
+=======
+This is the content of the file in the branch we are merging
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-a
+</code></pre>
+<p>We can resolve the conflict manually by editing the file, but more often, we want to use a merge tool. To do that, we can call:</p>
+<pre><code>git mergetool
+</code></pre>
+<p>The mergetool should be first configured, as the default one (vimdiff) is not very user friendly. To configure the mergetool, we edit the git configuration. The appropriate section is <code>mergetool</code>. It has a lot of options, but for typical mergetool, is enough to set the name, as the <code>mergetool</code> command for that specific merge tool is preconfigured in recent versions of git. Example of the <code>.gitconfig</code> file configured for KDiff3:</p>
+<pre><code>...
+[mergetool &quot;kdiff3&quot;]
+...
+</code></pre>
+<p><a href="https://git-scm.com/docs/git-mergetool">More information on git mergetool</a></p>
+<h3 id="debugging-mergetool">Debugging mergetool<a class="headerlink" href="#debugging-mergetool" title="Permanent link">&para;</a></h3>
+<p>Sometimes, this error can occur after calling <code>git mergetool</code>:</p>
+<pre><code>git-mergetool--lib &quot;command not found&quot;
+</code></pre>
+<p>This means that the mergetool is misconfigured. Inspect the <code>mergetool</code> section in the <code>.gitconfig</code> file to find the error.</p>
 <h2 id="merging-moved-files">Merging Moved Files<a class="headerlink" href="#merging-moved-files" title="Permanent link">&para;</a></h2>
 <p>Sometimes, it's necessary to tweak the command to help it locate the moved files. What can help:</p>
 <ul>
@@ -425,6 +511,21 @@
 <p>Note that when the merge is reverted, the changes cannot be merged again, because they predates the revert!</p>
 <h1 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
 <p>On windows, run: <code>git update-git-for-windows</code></p>
+<h1 id="pull-requests">Pull Requests<a class="headerlink" href="#pull-requests" title="Permanent link">&para;</a></h1>
+<p>Pull requests are a way to propose changes to the repository. The principle is as follows:
+1. Create a branch for the changes
+2. Commit the changes to the branch and push it to the remote
+3. Create a pull request on the remote, that suggest to merge the branch into the master branch</p>
+<p>There are two possible scenarios:
+- We have the permission to create a branch in the repository: in this case, we can create the branch directly on the remote
+- We do not have the permission to create a branch in the repository: in this case, we have to:
+    1. Fork the repository
+    2. Clone the fork
+    3. Create the branch locally in the fork
+    4. Commit and push the changes to the fork
+    5. Create a pull request from the fork to the original repository</p>
+<h2 id="update-pull-request">Update pull request<a class="headerlink" href="#update-pull-request" title="Permanent link">&para;</a></h2>
+<p>If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.</p>
 <h1 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h1>
 <p>https://github.com/piceaTech/node-gitlab-2-github</p></div>
             </div>
