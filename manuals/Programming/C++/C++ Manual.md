@@ -574,7 +574,7 @@ auto upper = boost::to_upper(str);
 
 
 ## Date and time
-The date and time structure in C++ is std::tm. We can create it from the date and time string using [`std::get_time`](https://en.cppreference.com/w/cpp/io/manip/get_time) function:
+The date and time structure in C++ is [`std::tm`](https://en.cppreference.com/w/cpp/chrono/c/tm). We can create it from the date and time string using [`std::get_time`](https://en.cppreference.com/w/cpp/io/manip/get_time) function:
 ```cpp
 std::tm tm;
 std::istringstream ss("2011-Feb-18 23:12:34");

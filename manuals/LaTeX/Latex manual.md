@@ -9,6 +9,35 @@ The document structure is well documented [on wikibooks](https://en.wikibooks.or
 \end{document}
 ```
 
+Lot of content is usually put in the preamble, i.e., between the `\documentclass` and `\begin{document}` commands. The preamble usual content is:
+- loading packages with `\usepackage{<package>}`
+- providing new commands or redefining existing commands
+- configuring packages
+- supplying metadata for the document (title, author, etc.)
+
+## Title page
+The title page typically contains the title, authors, and potentially other metadata like date or keywords. The standard way how to create the title page is to first define the metadata and then use the `\maketitle` command. To print the whole title page. The metadata available for standard article class:
+- `\title{<title>}`
+- `\author{<author>}`
+- `\date{<date>}`. `\today` can be used to print the current date. This is the default value if we omit the `\date` command.
+
+A special non-numbered footnote can be added to most fields using the `\thanks{<text>}` command. 
+
+### Authors specification
+By default, all authors should be filled within a single `\author` command, separated by the `\and` command. If we need to specify the affiliations, we can do it inside the `\author` command. This way, each author have the affiliation printed right after/bellow the author name. 
+
+However, if there are many authors with shared affiliations, this approach is unsustainable. Instead, we can use the `authblk` package which lets us specify the authors and affiliations separately and connect them to authors using footnotes. Example:
+```latex
+\usepackage{authblk}
+
+\author[1]{Author 1}
+\author[2]{Author 2}
+\author[1]{Author 3}
+
+\affil[1]{Affiliation 1}
+\affil[2]{Affiliation 2}
+```
+
 # Escape characters
 LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:
 
@@ -75,6 +104,12 @@ Sources:
 The default placement differs between environments and also classes. For example for article class, the default placement for `figure` and `table` is `tbp` ([see SO](https://tex.stackexchange.com/questions/172782/what-are-the-default-placement-options-for-a-floating-figure-in-latex)).
 
 
+## Figures
+The float environment for figures is `figure`. The image itself is included using the `\includegraphics` command. 
+
+The mandatory argument of the `\includegraphics` command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main `.tex` file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.
+
+
 ## Tables
 The float environment for tables is `table`. However, the rows and columns are wrapped in another environment. The default inner enviroment is `tabular`, however, there are *many* other packages that extends the functionality. In practice, there are currently three inner environments to consider:
 - `tabular`: the default environment that is sufficient for simple tables
@@ -106,11 +141,26 @@ The usual way to create a table in the `tabular` environment is:
 ```
 
 
-
 ### Columns with automatic width: `tabulary`
 By default, laTeX does not support automatic width for columns, i.e., sizing the columns by their content. To enable this feature, we can use the `tabulary` package, which provides the `tabulary` environment (which is a replacement for the `tabular` environment). The columns with automatic width are specified by the `L`, `C`, `R` column types. 
 
 Note that the new column types can be combined with the standard column types. In that case, the standard columns will have width according to their content, and the rest of the space will be distributed among the new column types. 
+
+
+### Complex tables with `tabulararray` package
+The `tabulararray` package provides :
+- full control over the table, most features among all packages
+- separation of the table content and the table presentation 
+- simpler code for basic tasks like multirows and multicolumns, wrapping text in cells, etc.
+
+Notable features present in the `tabulararray` package missing in other packages:
+- footnotes in tables (otherwise, it requires a `threeparttable` environment wrapper)
+
+As other tabular packages, there are some incompatibilities related to the `tabulararray` package.  So far, I observed only incompatibilities with the `tabulararray` `talltblr` environment, not with the standard `tblr` environment. The following table summarizes the incompatibilities I found so far:
+- `cases`: Obviously, the `cases` environment uses table components internally. When using together with `talltblr`, the `cases` environment compilation results with the following error: `latex "\begin{cases}" package array empty preamble l' used`. The solution is to use the use the new `+cases` environment provided by the `tabulararray` package. As a bonus, the `+cases` environment also fixes some visual glitches. Steps:
+    1. enable the `+cases` environment by adding `\UseTblrLibrary{amsmath}` to the preamble
+    1. replace the `cases` environment with the `+cases` environment 
+- `tabular`: yes, the `talltblr` environment is incompatible with the default `tabular` environment. The solution is simple: replace all `tabular` environments with `tblr` environments.
 
 
 ### Configure the space between columns
@@ -129,6 +179,32 @@ However, in the `tblr` environment, the space between columns is configured usin
 }
 ```
 By default, the `leftsep` and `rightsep` are set to `6pt`.
+
+
+### Multirows and multicolumns
+Depending on the inner environment, the multirows and multicolumns are created using different commands. 
+
+#### `tabular` environment
+In the `tabular` environment, the multirows and multicolumns are created using the `\multicolumn` and `\multirow` commands. Example:
+```latex
+\begin{tabular}{cc}
+    \multicolumn{2}{c}{multi column} \\
+    \multirow{2}{*}{multi row} & 1 \\
+    & 2 \\
+\end{tabular}
+```
+
+#### `tabulararray` environment
+In the `tabulararray` environment, the multirows and multicolumns are created using the `\SetCell` command. Example:
+```latex
+\begin{tblr}{cc}
+    \SetCell[c=2]{c} multi column & \\
+    \SetCell[r=2]{c} multi row & 1 \\
+    & 2 \\
+\end{tblr}
+```
+
+Note that for multicolumns, **we need to add the column divider (`&`) after the `\SetCell` command for each column that is spanned by the multicolumn**. 
 
 ### Export google sheets to latex tables
 There is ann addon called [LatexKit](http://caenrigen.tech/LatexKit/) which can be used for that.
@@ -270,6 +346,27 @@ Functions and procedures are defined using the `\Function` and `\Procedure` comm
 We can call the function or procedure using the `\Call` command. Example:
 ```latex
 \Call{my_function}{1, 2}
+```
+
+#### Line numbering
+To add line numbering, add an optional argument to the algorithmic environment. The argument is the number determining the frequency of the line numbering. Example:
+```latex
+\begin{algorithmic}[3] % number every 3rd line
+    ... 
+\end{algorithmic}
+```
+
+
+## Centering of floats wider than text width
+If the float is wider than the text width, it is not centered, but instead it is left-aligned with the text and it overflows on the right side. To fix this, we can wrap the too-wide float content in the `\makebox` command. Example:
+```latex
+\begin{figure}[h]
+    \makebox[\textwidth]{
+        \includegraphics[width=1.2\textwidth]{my_image.png}
+    }
+    \caption{My figure}
+    \label{fig:my_figure}
+\end{figure}
 ```
 
 

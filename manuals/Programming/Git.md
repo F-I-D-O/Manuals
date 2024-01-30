@@ -1,3 +1,15 @@
+# Basics
+The structure of a single git repository is displayed in the following picture:
+![Git Repository Structure](Git%20Scheme.png)
+
+Explanation of the picture:
+- The **working tree** or working directory is the directory where the files are stored, typically the root directory of the project where the `.git` directory is located.
+- The **index** or staging area is a cache of all changes that are marked (*staged*) for the next commit. To stage a change, we need to call `git add` command. Only files in the index are committed when we call `git commit`.
+- The **HEAD** is a pointer to the last commit in the current branch. 
+
+The following scheme shows the operations that can be performed between the working tree, index, HEAD and the remote repository (blue arrows represent the typical workflow):
+![Git Operations](Git%20Operations.png)
+
 
 # Configuration
 The git configuration is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command. 
@@ -41,17 +53,31 @@ usefull params:
 # Reverting
 When we want to revert  something using git there are multiple options depending on the situation. The commands are:
 - [`git checkout`](https://git-scm.com/docs/git-checkout) for overwriting local files with version from a specified tree (also for switching branches) and
-- [`git reset`](https://git-scm.com/docs/git-reset)
+- [`git reset`](https://git-scm.com/docs/git-reset) for reverting commits and effectively rewriting the history.
+- [`git read-tree`](https://git-scm.com/docs/git-read-tree): similar to checkout, but does not require a cleanup before
 
 The following table shows the differences between the commands:
-| Command | revrerts commits | overwrite local changes | 
-| --- | --- | --- |
-| `git checkout <commit>` | no | yes |
-| `git reset --soft <commit>` | yes | no |
-| `git reset --hard <commit>` | yes | yes |
+| Command | revrerts commits | overwrite local changes |  delete files committed after `<commit>` |
+| --- | --- | --- | --- |
+| `git checkout <commit>` | no | yes | no |
+| `git read-tree -m -u <commit>` | no | yes | yes |
+| `git reset --soft <commit>` | yes | no | no |
+| `git reset --hard <commit>` | yes | yes | yes |
+
+To decide between the commands, the first consideration should be whether we want to preserve the history or not:
+- we want to reach a specific state in the history and commit the changes as a new commit -> use `git checkout` or `git read-tree`
+- we want to reach a specific state in the history and discard all changes after that point -> use `git reset`
+
+## Keep the history
+If we want to keep the history, there are still two options:
+- we want to revert the whole working tree and also delete all files that were committed after the specified commit -> use `git read-tree -m -u <commit>`
+- we want to revert the whole working tree, but keep all files that were committed after the specified commit -> use `git checkout <commit>`
+- we want to revert only some files -> use `git checkout <commit> <filepath>`
 
 ### Using `git checkout`
-To reset an individual file, call: `git checkout <filepath>`, to reset all files, call: `git checkout .`. By default, the local files will be overwrtitten by the head. To specify a specific commit, put another positional argument before `<filepath>`: `git checkout <commit> <filepath>`. 
+To reset an individual file, call: `git checkout <commit> <filepath>`, to reset all files, call: `git checkout <commit> .`. 
+
+If the `<commit>` parameter is ommited, the local files will be overwritten by the HEAD.  
 
 
 

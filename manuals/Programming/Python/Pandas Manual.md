@@ -208,7 +208,10 @@ For more, see the [dovumentation](https://pandas.pydata.org/pandas-docs/stable/u
 
 
 ## `iloc`
-The `iloc` method works similarly to the `loc` method, but it uses the position instead of the label.
+The `iloc` method works similarly to the `loc` method, but it uses the position instead of the label. To select more values, we can use the slice syntax
+```Python
+df.iloc[<start position>:<end position>:<step>,<collumn slicing...>]
+```
 
 Be aware that **if the `iloc` operator selects by single value (e.g.: `df.iloc[3]`), it returns the single row as series**. To get a dataframe slice, we need to use a list of values (e.g.: `df.iloc[[3]]`).
 
@@ -251,13 +254,21 @@ Note that for multi-index slicing, the index needs to be sorted. If it is not, w
 [`pandas slicing documentation`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers) 
 
 
-
 #### Using `IndexSlice` for more readable syntax 
 We can obtain the same result with a more readable syntax using the [`IndexSlice`](https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html) object:
 ```python
 idx = pd.IndexSlice
 dft.loc[idx[:, 15:30], ...]
 ```
+
+
+#### Handeling the `too many indexers` error
+Sometimes, when using the `loc` method, the selection can fail with the `too many indexers` error, because it is ambiguous whether we select by rows or by columns. In that case, we can either  
+- use the `axis` parameter to specify the axis to select from:
+    ```python
+    df.loc(axis=0)[<row selection>]
+    ```
+- or use the IndexSlice instead.
 
 
 ### Using `xs`
@@ -352,6 +363,8 @@ df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 Important parameters:
 - `fill_value`: the value to use for missing values. By default, the missing values are filled with `NaN`.
 
+
+### Creating index from scratch
 To create more complicated indices, dedicated functions can be used:
 - [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables
 
@@ -367,18 +380,10 @@ group = df.groupby(<columns>) # returns a groupby object grouped by the columns
 sel = group[<columns>] # we can select only some columns from the groupby object
 agg = sel.<aggregation function> # we apply an aggregation function to the selected columns
 ```
-we can skip the `sel` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
 
-For the aggregate function, we can use one of the prepared aggregation functions, for example:
-- `sum`
-- `mean`
-- `median`
-- `min`
-- `max`
-- `count`
-- [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html): cumulative sum
+We can skip the `sel` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
 
-Full example (sum):
+ull example (sum):
 ```Python
 df.groupby('col').sum()
 ```
@@ -388,6 +393,22 @@ To get a count, we can call the `size` function:
 ```Python
 df.groupby('col').size()
 ```
+
+Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the **aggregation does not have to actually aggregate the data, it can also transform it**.
+
+For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
+- `sum`
+- `mean`
+- `median`
+- `min`
+- `max`
+- `count`
+
+Transformation functions (value for each row):
+- [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html): cumulative sum
+- [`diff`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html): difference between the current and the previous row.
+    - the `periods` parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the `abs` function to get the absolute value.
+
 
 ## Custom aggegate function
 Also, there are more general aggregate functions:
@@ -446,6 +467,15 @@ We can use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.co
 ```python
 pd.concat([df1, df2])
 ```
+
+
+# Pandas Data Types
+
+## Categorical data
+Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
+- `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
+- `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
+
 
 # I/O
 
@@ -604,6 +634,10 @@ The tranformation often creates row-column combinations that do not exist in the
 The [`to_datetime`](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
 - `unit`: the unit of the input, e.g., `s` for seconds.
 - `origin`: the origin of the input, e.g., `unix` for unix timestamps. It can be also any specific `datetime` object.
+
+
+## `squeeze`
+The [`squeeze`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.squeeze.html) function removes the unnecessary dimension from a dataframe or series. It is usefull when we want to convert a dataframe with a single column to a series, or a series with a single value to a scalar.
 
 
 # Geopandas

@@ -1,7 +1,8 @@
-So far we have three LaTeX toolchains tah has proven to work well:
-- **Overleaf**: Cloud tool which is stable and very good for collaboration. 
-- **Texmaker + MiKTex**: Traditioanl desktop setup.
-- **VSCode + Latex Workshop + Tinytex**: Modern desktop setup. The main advantage is that VSCode has the best Copilot support from all the editors, which is a huge time saver.
+So far we have three LaTeX toolchains that has proven to work well:
+
+- **Overleaf**: Cloud tool that is stable and very good for collaboration. 
+- **Texmaker + MiKTex**: Traditional desktop setup.
+- **VSCode + Latex Workshop + MikTeX/Tinytex**: Modern desktop setup. The main advantage is that VSCode has the best Copilot support from all the editors, which is a huge time saver.
 
 # VSCode + Latex Workshop + MikTeX/Tinytex
 ## Installation
@@ -9,13 +10,11 @@ The installation of VSCode and [Latex Workshop](https://marketplace.visualstudio
 
 
 ### MikTeX
-The installation of MikTeX is straightforward. After the installation, do not forget to add the MikTeX bin dir to `PATH`.
+The installation of MikTeX is straightforward. MikTeX installs all the required packages on the fly, so there is no need to install them manually. 
 
-MikTeX installs all the required packages on the fly, so there is no need to install them manually. The only thing that we need to do manually is to install [Perl](https://www.perl.org) which is needed for the [latexmk](https://mg.readthedocs.io/latexmk.html) tool.
+The only thing that we need to do manually is to install [Perl](https://www.perl.org) which is needed for the [latexmk](https://mg.readthedocs.io/latexmk.html) tool. There are two Perl distributions for Windows: [ActivePerl](https://www.activestate.com/products/perl/) and [Strawberry Perl](https://strawberryperl.com). This LaTeX toolchain has been only tested with Strawberry Perl. The installation of Strawberry Perl is straightforward: there is an executable installer. Do not forget to add it to the `PATH` variable.
 
-There are two Perl distributions for Windows: [ActivePerl](https://www.activestate.com/products/perl/) and [Strawberry Perl](https://strawberryperl.com). This LaTeX toolchain has been only tested with Strawberry Perl.
-
-The installation of Strawberry Perl is straightforward: there is an executable installer, and the `PATH` variable is set automatically.
+Do not forget to restart VSCode after the installation of MikTeX and Perl.
 
 
 ### Tinytex

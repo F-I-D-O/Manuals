@@ -1,5 +1,35 @@
-# General Guides
-For PowerShell solutions/guides, check the [PoweShell manual](./Powershell%20Manual.md).
+# Terminals and Shells
+There are two main [terminal applications](https://en.wikipedia.org/wiki/Terminal_emulator) in Windows: 
+- [*Windows Console Host*](https://en.wikipedia.org/wiki/Windows_Console): an old terminal application present in Windows for years, and
+- [*Windows Terminal*](https://en.wikipedia.org/wiki/Windows_Terminal): a new terminal application that is still in development.
+
+To get the best experience similar to Linux, it is recommended to use the Windows Terminal. It is available in the [Microsoft Store](https://aka.ms/terminal).
+
+The simplest [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is the [command prompt](https://en.wikipedia.org/wiki/Cmd.exe) (`cmd.exe`). However, due to its limited functionality, it is better to use [PowerShell](https://en.wikipedia.org/wiki/PowerShell). For PowerShell solutions/guides, check the [PoweShell manual](./Powershell%20Manual.md).
+
+
+## Run a non-default terminal application
+It is not an easy task to manually tun a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:
+- Windows Terminal: `wt.exe`
+- Windows Console Host: `conhost.exe`
+
+
+## Windows Terminal
+The Windows Terminal is a new terminal application with many great features:
+- multiple tabs
+- smart text selection
+
+To configure Windows Terminal, click the `v` button in the top bar and select `Settings`. There are two kinds of settings:
+- Global settings sorted in categories in the left panel
+- Profile settings for each profile. The profiles are listed in the left panel. After selecting a profile, the settings are displayed in the right panel. Nonbasic settings are sorted in categories under the `Additonal settings` header. 
+
+
+### Windows terminal pass stdout to text editor instead displaying it
+This can happen if the output is too long or wide for the terminal. 
+
+If a command outputs a text in Windows console host but passes it to a text editor in Windows Terminal, the possible cause is the font size. The default size in Windows Terminal is 12, which is much larger than the 16 in Windows Console Host (default). To fix it, change the font size in Windows Terminal to 10 which corresponds to the 16 in Windows Console Host.
+
+
 
 # Keyboard Shortcuts
 - `Alt` + `Shift`: change input language
@@ -17,7 +47,7 @@ Solution: Forget the connection and connect to the network manually
 3. `Manually connect to a wireless network`
 4. Fill the credentials:
 	- Network name: SSID
-	- Security type: dpends, try WPA2 personal
+	- Security type: depends, try WPA2 personal
 	- Security key: password
 5. Click next
 6. Close the dialog 
@@ -127,6 +157,12 @@ wmic baseboard get product,Manufacturer,version,serialnumber
 - `/xo`: Excludes older files.
 - `/r:<n>`: Specifies the number of retries on failed copies. The default value of _n_ is 1,000,000 (one million retries).
 - `/w:<n>`: Specifies the wait time between retries, in seconds. The default value of _n_ is 30 (wait time 30 seconds).
+
+
+## User info
+Information about users can be obtained with the [`Get-LocalUser`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1) command. By default, the command lists all users. Some useful params:
+- `-Name`: Specifies the user account names of the users to get. 
+- `-SID`: Specifies the security identifier (SID) of the users to get. 
 
 
 # Installation

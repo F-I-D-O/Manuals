@@ -101,7 +101,9 @@ The key for the effectivity of Jupyter in Pycharm is using the *command mode*. T
 - `Ctrl` + `V`: paste cell
 - `Ctrl` + `Shift` + `Up`: move cell up
 - `Ctrl` + `Shift` + `Down`: move cell down
-- `Ctrl` + `-`: split cell
+
+Text mode shortcuts:
+- `Ctrl` + `Shift` + `-`: split cell on cursor position
 
 
 ## Web Browser Configuration

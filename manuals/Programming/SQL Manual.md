@@ -44,6 +44,14 @@ SELECT
 ```
 Inside the `OVER` statement, we can specify the order of the row numbering. Note however, that this does not order the result, for that, we use the `ORDER BY` statement. If we want the rown numbering to correspond with the row order in the result, we can left the `OVER` statement empty.
 
+
+## Select unique rows
+To select unique rows, we can use the `DISTINCT` keyword:
+```sql
+SELECT DISTINCT <column name> FROM ...
+```
+
+
 ## Count selecting rows
 The `count()` function can be used to count the selection. The standard syntax is:
 ```sql
@@ -55,6 +63,8 @@ To count distinct values in a selection we can use:
 ```sql
 SELECT count(DISTINCT <column name>) FROM...
 ```
+
+
 
 
 ## Select from another column if the specified column is NULL

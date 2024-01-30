@@ -303,11 +303,13 @@ We can use the `absolute` method of the `Path` object to get the *absolute* path
 ### Splitting paths and working with path parts
 To read the **file extension**, we can use the `suffix` property of the `Path` object. The property returns the extension **with the dot**.
 
-To change the extension, we can use the `with_suffix` method:
+To **change the extension**, we can use the `with_suffix` method:
 ```Python
 p = Path("C:/workspace/project/file.txt")
 p = p.with_suffix('.csv') # 'C:\\workspace\\project\\file.csv'
 ```
+
+To **remove the extension**, just use the `with_suffix` method with an empty string.
 
 
 We can split the path into parts using the `parts` property:
@@ -346,8 +348,9 @@ p = p.as_posix() # 'C:/workspace/project/file.txt'
 
 ## Iterating over files
 The `pathlib` module provides a convenient way to iterate over files in a directory. The particular methods are:
-- `glob` - iterate over files in a single directory
-- `rglob` - iterate over files in a directory and all its subdirectories
+- `iterdir` - iterate all files and directories in a directory
+- `glob` - iterate over files in a single directory, using a filter
+- `rglob` - iterate over files in a directory and all its subdirectories, using a filter
 
 In general, the files will be sorted alphabetically. 
 
@@ -482,6 +485,8 @@ def gen():
     yield 2
     yield 3
 ```
+
+The **length** of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using `len(list(<generator>))`
 
 
 ## Dictionary
@@ -733,11 +738,21 @@ ipython_vars = ['In', 'Out', 'exit', 'quit', 'get_ipython', 'ipython_vars']
 sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith('_') and x not in sys.modules and x not in ipython_vars], key=lambda x: x[1], reverse=True)
 ```
 
+# Plotting
+There are several libraries for plotting in Python. The most common are:
+- `matplotlib`
+- `plotly`
 
-# Matplotlib
+In the table below, we can see a comparison of the most common plotting libraries:
+| Functionality | Matplotlib | Plotly |
+| --- | --- | --- |
+| real 3D plots | no | yes |
+| detail legend styling (padding, round corners...) | yes | no |
+
+## Matplotlib
 [Official Manual](https://matplotlib.org/stable/contents.html)
 
-## Saving figures
+### Saving figures
 To save a figure, we can use the `savefig` function. The **`savefig` function has to be called before the `show` function, otherwise the figure will be empty**.
 
 

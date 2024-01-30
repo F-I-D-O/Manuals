@@ -24,6 +24,7 @@ import plotly.express as px
 - `facet_row`: the name of the column to use as facet row.
 - `color_discrete_sequence`: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.
 - `title`: the title of the plot. 
+- `hover_data`: the list of columns to show in the hover tooltip. Axes columns are shown automatically.
 
 
 ## Histogram
@@ -124,8 +125,44 @@ fig.add_annotation(x=0.5, y=-0.12, text="Occupancy",  xref="paper", yref="paper"
 ```
 
 
+## 3D Scatter Plot
+[documentation](https://plotly.com/python/3d-scatter-plots/)
+
+For 3D scatter plots, we use the [`scatter_3d`](https://plotly.github.io/plotly.py-docs/generated/plotly.express.scatter_3d.html) function. The basic syntax is:
+```python
+fig = px.scatter_3d(<dataframe>, <xcol name>, <y col name>, <z col name>)
+```
+
+
 
 # Plotly Graph Objects
+[documentation](https://plotly.com/python/graph-objects/)
+If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:
+- facet plots with more than one metric
+- plots with custom traces *behind* the plotly express traces
+
+To make the figure from scratch, we can use the [`make_subplots`](https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html) function from the `plotly.subplots` module. Example:
+```python
+from plotly.subplots import make_subplots
+fig = make_subplots(rows=2, cols=2)
+```
+Important parameters:
+- `rows`, `cols`: the number of rows and columns in the figure
+- `shared_xaxes`, `shared_yaxes`: configures the axes sharing. Possible values:
+    - `False (default)`: each subplot has its own axes
+    - `True`: only one axis per row (for `shared_xaxes`) or column (for `shared_yaxes`). 
+    - `row` or `col`: equivalent to `True`, applicable only to `shared_xaxes` or `shared_yaxes`, respectively.
+    - `all`: all subplots share the same axes
+- `horizontal_spacing`, `vertical_spacing`: the spacing between the subplots in relative units, values are in the range `[0, 1]`. The default is `0.2` for both, which means that the spacing is 20% of the figure width/height.
+- `subplot_titles`: the titles of the subplots. 
+
+
+## Common Parameters For All Types of Plots
+
+### Legend
+The name in the legend is determined by the `name` parameter of the trace. To share the legend between multiple traces, the following steps are needed:
+1. set the `name` parameter of all traces to the same value
+2. set the `showlegend` parameter of one trace to `True` and to `False` for all other traces
 
 
 ## Bar Chart
@@ -137,7 +174,22 @@ go.Bar(x, y, ...)
 Some more complicated examples are in the [documentation](https://plotly.com/python/bar-charts/#basic-bar-charts-with-plotlygraphobjects).
 
 
-## Line Chart
+### Stacked or grouped bars
+Unlike plotly express, the graph objects do not have the `color` parameter to set the column to use for determining the group to which the bar belongs. There are two options how to create stacked or grouped bars:
+- create a trace for each group manually and add them all to the figure
+- crete the figure with plotly express and then extract the traces from the figure
+    ```python
+    for trace in occ_fig.data:
+        fig.add_trace(trace, row=1, col=i + 1)
+    ```
+
+Also, to set the bar mode, we need to use the `update_layout` as the `go.Bar` function does not have the `barmode` parameter. Example:
+```python
+fig.update_layout(barmode="stack")
+```
+
+
+## Line Chart and Scatter
 [documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
 
 The line chart is created using the [`go.Scatter`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html) function. Example:
@@ -180,6 +232,25 @@ Importanta parameters:
 - `horizontal_spacing` and `vertical_spacing`: the spacing between the subplots.
 
 
+## 3D plots
+
+### 3D Scatter Plot
+[documentation](https://plotly.com/python/3d-scatter-plots/)
+
+The 3D scatter plot is created using the [`go.Scatter3d`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter3d.html) function. Example:
+```python
+go.Scatter3d(x, y, z, ...)
+```
+
+
+### 3D Surface Plot
+[documentation](https://plotly.com/python/3d-surface-plots/)
+
+The 3D surface plot is created using the [`go.Surface`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html) function. Example:
+```python
+go.Surface(z, ...)
+```
+
 
 
 # Customizing the Figure
@@ -191,10 +262,15 @@ The size and margins can be set using the `figure.update_layout` function. The s
 - `width`: the width of the figure in pixels
 - `height`: the height of the figure in pixels
 - `autosize`: needs to be `False` if we want to set the width and height manually
-- `margin`: dictionary containing the margins. The format is: `l`, `r`, `t`, `b`: the left, right, top and bottom margins in pixels
-- `pad`: the padding between the plot and the margins in pixels
+- `margin`: dictionary containing the margins (`l`, `r`, `t`, `b`) and one another property: `pad`. All properties are in pixels. 
+    - `l`, `r`, `t`, `b`: distance between the plot and the figure border. Note that titles are not included in the plot, so we have make space for the titles if we set margins manually.
+    - `pad`: distance between the plotting area (i.e., the plotting coordinates for data points) and the axis lines. Most of the time, this should be set to `0` (default)
+
+Unfortunately, **there is no way how to set the margins automatically** to fit all content like titles, annotations, etc.  
 
 [documentation](https://plotly.com/python/setting-graph-size/#adjusting-height-width--margins-with-graph-objects)
+
+[reference](https://plotly.com/python/reference/layout/#layout-margin)
 
 
 ## Customize axes
@@ -202,11 +278,18 @@ For customizing the axes, we can use the `figure.update_xaxes` and `figure.updat
 
 [axis reference](https://plotly.com/python/reference/layout/xaxis/)
 
-The most important parameters are:
+The range of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the `range` parameter, e.g.: `range=[0, 1]`. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**
+
+Another thing we usually want to customize are the ticks. Important tick parameters are:
 - `dtick`: the distance between the ticks
 - `tickvals`: the exact values of the ticks. This overrides the `dtick` parameter.
+- `ticks`: the position of the ticks. Can be `outside`, `inside` or `""` (no ticks, default).
+- `ticklen`: the length of the ticks in pixels
+- `tickformat`: the format of the tick labels. Depending on the axis datatype, we can use number formats (e.g., `".2f"` for two decimal places), datetime formats (e.g., `"%Y-%m-%d"` for dates) or scientific notation (e.g., `"e"` for scientific notation).
+    - for percentage, we can use `".0%"` for integer percentage and `".1%"` for one decimal place. Note that this way, the `%` sign is added automatically to each tick label. If we do not want this, we can either set the text manually using the `ticktext` parameter, or multiply the data by 100.
+
+Other important parameters are:
 - `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
-- `range`: range of the axis, e.g.: `range=[0, 1]`. By default, the range is determined automatically as the range of the data plus some margin. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**.
 - `linecolor`: the color of the axis line
 - `mirror`: if `True`, the axis line will be mirrored to the other side of the plot
 
@@ -224,9 +307,45 @@ fig.update_xaxes(dtick=1000 * 60 * 60 * 24 * 7) # one week interval
 ```
 
 
+### Tick markers and shared axes
+By default, only tick labels are shared between subplots with shared axes. To share the tick markers, we need to hide them manually and add them to the first subplot. Example:
+```python
+fig.update_yaxes(showticklabels=False)
+fig.update_yaxes(showticklabels=True, row=1, col=1)
+```
+
+
+### 3d axes
+[documentation](https://plotly.com/python/3d-axes/)
+
+Unfortunately, the customization of the 3d axes works differently than for the 2d axes. The `update_xaxes` and `update_yaxes` functions do not work for the 3d axes. Instead, we need to use the `update_layout` function with the `scene` parameter. Example:
+```python
+fig.update_layout(scene=dict(
+    xaxis=dict(
+        title="x",
+        titlefont_size=16,
+        tickfont_size=14,
+    ),
+    yaxis=dict(
+        title="y",
+        titlefont_size=16,
+        tickfont_size=14,
+    ),
+    zaxis=dict(
+        title="z",
+        titlefont_size=16,
+        tickfont_size=14,
+    ),
+))
+```
+
+**One thing that is not possible to customize idn 3D is the position of the axis**. The x and y axes are always in the bottom, while the z axis is always on the left.
+
+
 
 ## Legend
 [documentation](https://plotly.com/python/legend/)
+
 [reference](https://plotly.com/python/reference/layout/#layout-legend)
 
 The legend can be styled using the `figure.update_layout` function. 
@@ -234,17 +353,26 @@ The most important parameters are:
 - `legend_title_text`: the title of the legend
 - `legend`: dictionary containing many parameters
     - `orientation`: `h` or `v` for horizontal or vertical legend
-    - `x`, `y`: the position of the legend from the bottom left corner of the figure
+    - `x`, `y`: the position of the in normalized coordinates of the whole plot.
+    - 'xref', `yref`: the coordinate system of the x and y coordinates. Can be   
+        - `"container"`: the whole plot
+        - `"paper"` (default): the plotting area
     - `xanchor`, `yanchor`: the position of the legend box relative to the x and y coordinates
     - `title`: if string, the title of the legend (equivalent to the `legend_title_text` parameter). If dictionary, multiple legent title parameters can be set.
 
-Unfortunately, **there is no way how to customize the padding between the legend items and the legend box**. 
+Unfortunately, **there is no way how to customize the padding between the legend items and the legend box**. Also, **it is not possible to set the legend border to have rounded corners**. 
 
 ### Hide legend
 To hide the legend, we can use the `showlegend` parameter. Example:
 ```python
 fig.update_layout(showlegend=False)
 ``` 
+
+### Legend items order
+The order of the legend items is determined by the order of the traces in the figure. However, we can change the order using the `legend_traceorder` parameter. Example:
+```python
+fig.update_layout(legend_traceorder="reversed")
+```
 
 
 
@@ -279,6 +407,12 @@ To style the markers, we can use the `update_traces` function. Example:
 fig.update_traces(marker=dict(size=10, line=dict(width=2, color='DarkSlateGrey')))
 ```
 
+Marker parameters:
+- `size`: the size of the marker in pixels
+- `line`: dictionary containing border parameters
+    - `width`: the width of the border in pixels. The default is 0. This setting is ignored for 3d scatter plots, where the border width is always 1 (see [github issue](https://github.com/plotly/plotly.js/issues/3796))
+    - `color`: the color of the border
+- `color`: the color of the marker. To make the marker transparent, it is best to use the `rgba` format. Example: `rgba(255, 0, 0, 0.5)` for a red marker with 50% transparency.
 
 ### Adding a marker to a hard-coded location
 To add a marker to a hard-coded location, we can add it as a new trace. Note that we can add new traces even to a figure created using plotly express. 
@@ -301,6 +435,21 @@ fig.update_layout(
 Important parameters:
 - `x`, `y`: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
 - `xanchor`, `yanchor`: the position of the title relative to the x and y coordinates. Can be `left`, `center` or `right` for `xanchor` and `top`, `middle` or `bottom` for `yanchor`.
+
+
+### Individual subplot titles
+To set the title of an individual subplot, we can use the `subplot_titles` parameter of the `make_subplots` function. 
+
+
+## Z-Order of the Traces
+The z-order of the traces cannot be configured. Instead, the traces are drawn in the order they are added to the figure. 
+
+This simple rule has an exception: the webGL traces are always drawn on top of the standard traces. Because all plotly express traces are WebGL traces, they are drawn on top of the graph objects traces added later if those are not WebGL. To overcome this limitation, we have two options:
+- not combine plotly express and graph objects traces and convert everything to graph objects for figures with custom traces
+- use the webGL versions of the graph objects traces. Example:
+    ```python
+    fig.add_trace(go.Scattergl(...))
+    ```
 
 
 ## Other Layout Parameters (background, borders, etc.)

@@ -207,6 +207,17 @@ Normally, the SSH client process runs only while the SSH session is active, then
 
 An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is `ssh-agent`, the rest of the section is dedicated to this agent.
 
+To successfully use the agent, we need to:
+1.  start the agent, either manually or automatically on OS startup
+2.  add the keys to the agent (only once)
+
+### Starting the agent
+The agent can be started manually by running:
+```bash
+eval `ssh-agent`
+```
+We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the `ssh-agent` prints the necessary commands to the console. By using eval, the `ssh-agent` is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.
+
 ### Listing keys
 To list the keys stored in the agent, run:
 ```bash
@@ -257,6 +268,7 @@ A typical workflow can look like this:
 3. disconnect
 4. connect to the server again
 5. run `screen -r` to recconect to the session and see the results of the command.
+1. after the command is finished, exit the screen session with `exit`
 
 Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
 6. `screen -ls`
@@ -298,6 +310,48 @@ scp <source> "<username>@<address>:'<path with spaces>'"
 - It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error
 - Empty constructs are not allowed, i.e, empty function or loop results in an error
 - brackets needs spaces around them, otherwise, there will be a syntax error
+- space around `=`, which is typical in other languages, is not allowed in bash 
+- bash does not support any data structures, only arrays
+
+
+
+## Variables
+Variables can be defined as:
+```bash
+var=value
+```
+Note that **there must not be any spaces around `=`**. 
+
+We can also declare variables with a specific type, so that no other type can be assigned to it using the `declare` command:
+```bash
+declare -i var # integer
+declare -a var # array
+declare -r var # read only
+```
+
+To access the value of a variable, we use `$`:
+```bash
+echo $var
+```
+
+### List all variables
+To list all variables, we can use the declare command:
+```bash
+declare
+```
+However, this command also lists the functions. To list only the variables, we can use:
+```bash
+declare -p
+```
+which also prints the type and attributes of the variables.
+
+### Operations on variables
+There are many operations on variables, the most important are:
+- `${#<variable>}`: length of the variable
+- `${<variable>%%<pattern>}`: remove the longest suffix matching the pattern
+- `${<variable>##<pattern>}`: remove the longest prefix matching the pattern
+
+
 
 ## Working with I/O
 
@@ -369,6 +423,8 @@ We refer the arguments of a bash script as
 - `$1..$n` - the arguments of the script
 - `$@` - all the arguments of the script
 
+Sometimes, it is useful to throw away processed arguments. This can be done using the `shift` command `shift <n>`, where `<n>` is the number of arguments to be thrown away (default is 1). The remaining arguments are then shifted to the left, i.e., `$2` becomes `$1` and so on. 
+
 
 ## Conditions
 In general, condition in bash has the following syntax:
@@ -379,39 +435,52 @@ if <condition>
 fi
 ```
 
-The condition above uses the *exit code* of a command to determine the logical value. When testing that the command succeeded, we can use it like:
-```bash
-if <command> 
+The condition can have several formats:
+- **plain command**: the condition is true if the command returns 0
+	```bash
+	if grep -q "$text" $file 
+		then ...
+	fi
+	```
+- **`[ <condition> ] or test <condition>`**: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
+	```bash
+	if [ $var = 1 ]
 	then ...
+	fi
+	```
+- **`[[ <condition> ]]`**: The extended test construct. This is the recommended way of writing conditions, due to [several practical features](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash) (e.g., no need to quote variables, regex support, logical operators, etc.).
+	```bash
+	if [[ $var = 1 ]]
+	then ...
+	fi
+	```
+- **`(( <condition> ))`**: The arithmetic test construct. This is used for arithmetic conditions.
+	```bash
+	if (( $var == 1 ))
+	then ...
+	fi
+	```
+
+Note that if we want to use some arbitrary value (e. g. the *return value* of a command), or comparisons in the condition (similar to programming languages), we have to use one of the test constructs. 
+
+
+**Mind the spaces around the braces!**
+
+### String comparison
+Strings can be compared using the standard `=` operator or the `==` operator. 
+
+If we use the `[ ]` construct, we have to quote the variables, otherwise, the script will fail on empty strings or strings containing spaces:
+```bash
+if [ "$var" = "string" ]
+then ...
 fi
-```
-Example:
-```bash
-if grep -q "$text" $file 
-	then ...
+
+# or equivalently
+if [[ $var = "string" ]]
+then ...
 fi
 ```
 
-But if we want to use some arbitrary value (e. g. the *return value* of a command), or comparisons in the condition (simmilar to programming languages), we have to use the test command:
-
-```bash
-if test <comparison>
-then ...
-fi
-```
-The test command is also invoked if we use square brackets:
-```bash
-if [ <comparison> ]
-then ...
-fi
-```
-Example:
-```bash
-if [ $var = 1 ]
-then ...
-fi
-```
-The test command expects to compare to values. If we want to compare a result of some command, we need to usethe command substtitution.
 
 ## Loops
 
@@ -453,10 +522,65 @@ a = "normal string "\""quotted string"\"
 # or equivalently
 a = "normal string "'"'"quotted string"'"'
 ```
+
+### Multiline string literals
+There is no dedicated syntax for multiline string literals. However, we can use the *here document* syntax:
+```bash
+<target> << <delimiter> <content> 
+<delimiter>
+```
+
+For example, to store the command in a variable, we can use:
+```bash
+db_sql = $(cat << SQL
+CREATE DATABASE test_$name OWNER $name;
+grant all privileges on database test_$name to $name;
+SQL)
+```
+Note that the `<delimiter>` must be at the beginning of the line, otherwise, it will not work.
+
+## Functions
+Functions are defined as:
+```bash
+function_name() {
+	<command 1>
+	<command 2>
+	...
+}
+```
+For access the arguments of the function, we use the same syntax as for the script arguments (e.g., `$1` for the first argument).
+
+We can create local variables in the function using the `local` keyword:
+```bash
+function_name() {
+	local var1="value"
+	...
+}
 ```
 
 
+## Reading from command line
+To read from command line, we can use the `read` command. The syntax is:
+```bash
+read <variable>
+```
+where `<variable>` is the name of the variable to store the input. Important parameters:
+- `-p <prompt>`: prints	the `<prompt>` before reading the input
+- `-s`: do not echo the input (usefull for passwords)
 
+
+## Bash Script Header Content
+Usually, here are some special lines at the beginning of the bash script.
+
+First, we can specify the interpreter to be used:
+```bash
+#!/bin/bash
+```
+
+Then we can set the script to exit on error:
+```bash
+set -e
+```
 
 
 # Managing packages with `apt` and `dpkg`
@@ -499,6 +623,17 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 
 
 # String Processing
+
+
+## String filtering with `grep`
+The `grep` command is used to filter lines containing a pattern. The syntax is:
+```bash
+grep <pattern> <file>
+```
+The pattern can be a simple string, or a regex. The most used options are:
+- `-v`: invert the match, i.e., print only lines not matching the pattern
+- `-e`: use multiple patterns (e.g., `-e <pattern 1> -e <pattern 2>`)
+- `-i`: ignore case
 
 
 ## Word count with `wc`
@@ -586,6 +721,42 @@ important parameters:
 - `-9`: force kill
 
 ## Process Info
+
+
+# Users
+The users are listed in `/etc/passwd`. The file contains one line per user, each line has the following format:
+```
+<username>:<password>:<user ID>:<group ID>:<GECOS>:<home folder>:<shell>
+```
+The password is typically stored in `/etc/shadow` and is represented by `x`. [GECOS](https://en.wikipedia.org/wiki/Gecos_field) is some kind of a comment storing arbitrary information about the user.
+
+## Adding a user
+To add a user, we can use either the `useradd` binary directly, or the `adduser` wrapper script. Here we describe the `adduser` script. The basic syntax is `adduser <username>`. Important parameters:
+- `--gecos "<GECOS>"`: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.
+- `--shell <shell>`: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to `/usr/sbin/nologin`.
+
+Note that the `adduser` needs to be run as root. Otherwise it will fail with `bash: adduser: command not found`.
+
+
+## User Groups
+An important aspect of user management in Linux is the user groups. For example, by belonging to the `sudo` group, the user can execute commands with `sudo`. The groups are listed in `/etc/group`. The file contains one line per group, each line has the following format:
+```
+<group name>:<password>:<group ID>:<user list>
+```
+
+To see the groups of a user, we can use the `groups` command (no arguments needed).
+
+To manipulate groups and users, we need a root access. 
+To add a user to a group, we can use the `usermod` command:
+```bash
+usermod -a -G <group name> <username>
+```
+
+To remove a user from a group, we can use the same command:
+```bash
+usermod -G <group list> <username>
+```
+where `<group list>` is a comma separated list of groups the user should belong to.
 
 
 # Installing Java

@@ -434,40 +434,118 @@ For other diagnostic fields, see the [documentation](https://www.postgresql.org/
 
 
 # `psql`
-`psql` is a basic command line utitiltyfor manipulating postgres database. 
+[Documentation](https://www.postgresql.org/docs/current/app-psql.html)
 
-To connect:
+`psql` is a basic command line utitilty for manipulating postgres database. 
+
+To connect, type:
 ```bash
 psql -d <db name> 
 ```
-Then the psql commands can be executed. To execute command immediatelly, use the `-c ` parameter:
+Then the SQL commands can be executed. 
+
+Note that no matter what SQL commands you plan to execute, **you have to connect to a specific database**. Ommitting the `-d` parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.
+
+To execute command immediatelly without starting interactive session, use the `-c ` parameter:
 ```bash 
 psql -d <db name> -c "<command>"
 ```
-Do not forget to quote the command.
+Do not forget to quote the command. Also, note that certain SQL commands, such as `CREATE DATABASE` requires its own session. To combine them with other SQL commands, you can use multiple `-c` parameters:
+```bash
+psql -d <db name> -c "CREATE DATABASE <db name>" -c "<other command>"
+```
+
+Other useful parameters:
+- `-X`: do not read the `~/.psqlrc` file. This is useful when debuging the `psql` commands or running scripts, as it disables any customizations.
+- `-U <user name>`: connect as a different user. If not specified, the current user is used.
 
 
+## meta-commands
+The `psql` has its own set of commands, called *meta-commands*. These commands start with a backslash (`\`) and can be used inside SQL queries (either interactively, or in the -c argument). Example:
+```bash
+psql -d <db name> -c "\l+"
+``` 
+The above command lists all databases, including additional information.
 
-# Importing data from csv
-The prefered mathod depends on the characte of the data: 
-- data exactly match the table  in the database: use `psql` `COPY` command
+Note that the **meta-commands cannot be combined with SQL queries passed to the `-c` parameter**. As `-c` argument, we can use either:
+- a plain SQL query without any meta-commands
+- a single meta-command without any SQL query (like the example above)
+
+*(In* `\copy public.nodes FROM nodes.csv CSV HEADER`*, the string after `\copy` is a list of arguments, not an SQL query)*
+
+When we want to combine a meta-command with an SQL query, we need to use some of the workarounds:
+- use the `psql` interactive mode
+- use the `psql` `--file` parameter to execute a script from a file
+- pipe the commands to `psql` using `echo`:
+	```bash
+	echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata
+	```
+
+
+## Listing databases
+To list all databases, we can use the `-l` parameter:
+```bash
+psql -l
+```
+
+To get more information about the databases, we can use the `\l+` meta-command.
+
+# Importing data
+A simple SQL data (database dump) can be imported using the `psql` command:
+```bash
+psql -d <db name> -f <file name>
+```
+
+we can also import from stdin by omitting the `-f` parameter:
+```bash
+psql -d <db name> < <file name>
+
+# or
+<command> | psql -d <db name>
+```
+
+
+## Importing compressed SQL dump
+To import a compressed SQL dump we need to know how the dump was compressed. 
+- If it was compressed using the `pg_dump` with the `-Z` parameter, we use a `pg_restore` command:
+	```bash
+	pg_restore -d <db name> <file name>
+	```
+- If it was compressed using a compression tool, we need to pipe the output to the decompression tool and then to `psql`:
+	```bash
+	<decompression tool> < <file name> | psql -d <db name>
+	```
+
+
+## Importing data from csv
+The easiest way to import data from csv is to use the `psql` `\copy` meta-command:
+```bash
+psql -d <db name> -c "\copy <table name> FROM <file name> CSV HEADER"
+```
+The syntax of this command and its parameters is almost identical to the [`COPY`](https://www.postgresql.org/docs/current/sql-copy.html) command. Important parameters:
+- `CSV`: the file is in CSV format
+- `HEADER`: the first line of the file contains column names
+
+Except simplicity, the `\copy` command has another advantage over the `COPY` command: it has the same access rights as the user that is currently logged in. The `COPY` command, on the other hand, has the access rights of the user that started the database server. 
+
+The `COPY` command, however, has an advantage over the `\copy` command when we access a remote database. In that case, the `\copy` command would first download the whole file to the client and then upload it to the server. The `COPY` command, on the other hand, can be executed directly on the server, so the data are not downloaded to the client.
+
+
+### Importing data from csv with columns than are not in the db table
+The `COPY` (and `\copy`) command can be used to copy the input into a database table even if it contains only a subset of database table columns. However, it does not work the other way, i.e, all input columns have to be used. If only a subset of input columns needs to be used, or some of the input columns requires processing, we need to use some workaround. The prefered mathod depends on the characte of the data: 
 - data do not match the table, but they are small: 
 	1. load the data with pandas
 	2. process the data as needed
 	3. use `pandas.to_sql` to upload the data
 - data do not match the table and they are large:
-	1. preprocess the data with bach commands
-	2. use `psql` `COPY` to upload the data
+	1. preprocess the data with batch commands
+	2. use `COPY` (or `\copy`) to upload the data
 - data do not match the table and they are large *and dirty*: use the [`file_fdw`](https://www.postgresql.org/docs/current/file-fdw.html) module: 		
 	1. create a table for SQL mapping with tolerant column types (e.g., text for problematic columns)
 	2. select from the mapping to the real table
 
-## `psql COPY` command
-The `COPY` command can be used to copy the input into a database table. A subset of database column can be selected, but that is not true for the input, i.e, all input columns have to be used. If a subset of input columns needs to be used, or some columns requires processing, you need to perform some preprocessing.
 
-[`COPY` manual](https://www.postgresql.org/docs/current/sql-copy.html)
-
-# Importing data from a shapefile
+## Importing data from a shapefile
 There are multiple options:
 - `shp2psql`: simple tool that creates sql from a shapefile
 	- easy start, almost no configuration
@@ -480,7 +558,7 @@ There are multiple options:
 	- data can be viewed before import
 	- only suitable for creating new table, not for appending to an existing one
 
-# Importing data from GeoJSON
+## Importing data from GeoJSON
 For a single geometry stored in a GeoJSON file, the function [`ST_GeomFromGeoJSON`](http://postgis.net/docs/ST_GeomFromGeoJSON.html) can be used.
 - just copy the geometry part of the file
 - change the geometry type to match the type in db
@@ -489,7 +567,77 @@ For a single geometry stored in a GeoJSON file, the function [`ST_GeomFromGeoJSO
 For the whole document, the `ogr2ogr` tool can be used.
 
 
-# Lost Password to the Postgres Server
+# Exporting data
+The data can be exported to SQL using the `pg_dump` command. The simplest usage is:
+```bash
+pg_dump -f <output file name> <db name>
+```
+Important parameters:
+- `-s`: export only the schema, not the data
+
+If we need to further process the data, we can use the stdout as an output simply by omitting the `-f` parameter:
+```bash
+pg_dump <db name> | <command>
+```
+
+
+## Exporting the database server configuration
+To export the database server configuration, we can use the `pg_dumpall` command:
+```bash
+pg_dumpall -f <output file name>
+```
+
+
+## Compressing the SQL dump
+To compress the SQL dump, we have two options:
+- use the `pg_dump` command with the `-Z` parameter, e.g., `pg_dump <db name> -Z1 -f <output file name>` or
+- pipe the output to a compression tool, e.g., `pg_dump <db name> | gzip > <output file name>`
+
+
+## Exporting data to csv
+When exporting large data sets, it is not wise to export them as an SQL dump. To export data to csv, we can use either:
+- `psql` `\copy` command
+- `COPY` command in SQL
+
+The simplest way is to use the `\copy` command. However, it may be slow if we call psql from a client and we want to export the data to a file on the server, because the data are first sent to the client and then back to the server. 
+
+The `COPY` command is the fastest way to export data to the server. However, by default, it can be tricky to use, as the sql server needs to have write access to the file. To overcome this problem, we can use the following workaround:
+1. choose `STDOUT` as an output for the `COPY` command
+2. at the end of the command, add `\g <file name>` to redirect the output to a file.
+
+Example:
+```bash
+echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata
+```
+
+
+# Table and database statistics
+To show the size a table, run:
+```PostgreSQL
+SELECT pg_size_pretty(pg_total_relation_size('<table name>'));
+```
+
+# Managing the database
+
+## Creating new user
+For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
+- `-P` or `--pwprompt`: prompt for password. If not used, the user will be created without a password.
+
+
+## Deleting database
+To delete a database, we can use the [`dropdb`](https://www.postgresql.org/docs/current/app-dropdb.html) command: `dropdb <db name>`
+
+
+## Granting privileges
+
+### Grant all privileges for database schema
+To grant all privileges for a database schema to a user, we can use the following command:
+```SQL
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user name>;
+```
+
+
+## Lost Password to the Postgres Server
 The password for the db superuser is stored in db `postgres`. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
 1. find the `pg_hba.conf file` 
 	- usually located in `C:\Program Files\PostgreSQL\13\data`
