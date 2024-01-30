@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -1849,7 +1855,7 @@ std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quo
 auto upper = boost::to_upper(str);
 </code></pre>
 <h2 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h2>
-<p>The date and time structure in C++ is std::tm. We can create it from the date and time string using <a href="https://en.cppreference.com/w/cpp/io/manip/get_time"><code>std::get_time</code></a> function:</p>
+<p>The date and time structure in C++ is <a href="https://en.cppreference.com/w/cpp/chrono/c/tm"><code>std::tm</code></a>. We can create it from the date and time string using <a href="https://en.cppreference.com/w/cpp/io/manip/get_time"><code>std::get_time</code></a> function:</p>
 <pre><code class="language-cpp">std::tm tm;
 std::istringstream ss(&quot;2011-Feb-18 23:12:34&quot;);
 ss &gt;&gt; std::get_time(&amp;tm, &quot;%Y-%b-%d %H:%M:%S&quot;);

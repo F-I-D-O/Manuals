@@ -243,6 +243,9 @@
 </li>
                                 </ul>
                             </li>
+                            <li class="navitem">
+                                <a href="../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">FFMpeg</a>
                             </li>
@@ -264,6 +267,9 @@
                             <li class="navitem">
                                 <a href="../QGIS/" class="nav-link">QGIS</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../vscode/" class="nav-link">vscode</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -273,7 +279,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Cloud%20computing/Slurm/" class="nav-link">
+                                <a rel="prev" href="../Arxiv/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -312,18 +318,19 @@
 <p>First download <a href="https://www.gyan.dev/ffmpeg/builds/">binaries for Windows</a>.</p>
 <h1 id="converting-a-video-to-gif-image">Converting a Video to Gif Image<a class="headerlink" href="#converting-a-video-to-gif-image" title="Permanent link">&para;</a></h1>
 <p>Example:</p>
-<pre><code>ffmpeg -i .\screen_recording1618479593603.mp4 -r 15 -vf &quot;scale=512:-1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse&quot; -ss 00:00:03 -to 00:00:06 simod_showcase.gif
+<pre><code>ffmpeg -ss 00:00:03 -to 00:00:06 -i .\screen_recording1618479593603.mp4 -r 15 -vf &quot;scale=512:-1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse&quot; simod_showcase.gif
 </code></pre>
+<p>Used options:
+- <code>-ss 00:00:03</code>: start at 3 seconds
+- <code>-to 00:00:06</code>: end at 6 seconds
+- <code>-r 15</code>: set the frame rate to 15 fps
+- <code>-vf "scale=512:-1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse"</code>: set the size of the image to 512px width, and split the video into two streams: one for generating the palette, and one for using the palette</p>
+<p>Note that the order of the options is important. For example, if we put <code>-ss</code> after <code>-i</code>, then the video will be cut after the specified time, but the whole video will be loaded into memory before that.</p>
 <p>To change the speed, we can use an <code>-itsscale</code> inut option:</p>
 <pre><code>ffmpeg  -itsscale 0.2 -i .\screen_recording1618479593603.mp4 -r 15 -vf &quot;scale=838:-1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse&quot; -ss 00:00:00 -to 00:00:15 simod_showcase.gif
 </code></pre>
 <p>Detailed description on <a href="https://askubuntu.com/questions/648603/how-to-create-an-animated-gif-from-mp4-video-via-command-line">SE</a></p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
-</blockquote>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNjU3NDQxNjksNzMwOTk4MTE2XX0=
---></div>
+<p>A <strong>text</strong> can be then added to the video using online tools, e.g. <a href="https://ezgif.com/add-text">ezgif</a>.</p></div>
             </div>
         </div>
 

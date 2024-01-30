@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -302,6 +308,14 @@
             
             <li class="nav-item" data-level="1"><a href="#document-structure" class="nav-link">Document structure</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#title-page" class="nav-link">Title page</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#authors-specification" class="nav-link">Authors specification</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -350,6 +364,10 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#figures" class="nav-link">Figures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#tables" class="nav-link">Tables</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#column-types" class="nav-link">Column types</a>
@@ -364,8 +382,24 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#complex-tables-with-tabulararray-package" class="nav-link">Complex tables with tabulararray package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#configure-the-space-between-columns" class="nav-link">Configure the space between columns</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#multirows-and-multicolumns" class="nav-link">Multirows and multicolumns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#tabular-environment" class="nav-link">tabular environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#tabulararray-environment" class="nav-link">tabulararray environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#export-google-sheets-to-latex-tables" class="nav-link">Export google sheets to latex tables</a>
@@ -422,8 +456,16 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="4"><a href="#line-numbering" class="nav-link">Line numbering</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#centering-of-floats-wider-than-text-width" class="nav-link">Centering of floats wider than text width</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -546,6 +588,29 @@
     ...
 \end{document}
 </code></pre>
+<p>Lot of content is usually put in the preamble, i.e., between the <code>\documentclass</code> and <code>\begin{document}</code> commands. The preamble usual content is:
+- loading packages with <code>\usepackage{&lt;package&gt;}</code>
+- providing new commands or redefining existing commands
+- configuring packages
+- supplying metadata for the document (title, author, etc.)</p>
+<h2 id="title-page">Title page<a class="headerlink" href="#title-page" title="Permanent link">&para;</a></h2>
+<p>The title page typically contains the title, authors, and potentially other metadata like date or keywords. The standard way how to create the title page is to first define the metadata and then use the <code>\maketitle</code> command. To print the whole title page. The metadata available for standard article class:
+- <code>\title{&lt;title&gt;}</code>
+- <code>\author{&lt;author&gt;}</code>
+- <code>\date{&lt;date&gt;}</code>. <code>\today</code> can be used to print the current date. This is the default value if we omit the <code>\date</code> command.</p>
+<p>A special non-numbered footnote can be added to most fields using the <code>\thanks{&lt;text&gt;}</code> command. </p>
+<h3 id="authors-specification">Authors specification<a class="headerlink" href="#authors-specification" title="Permanent link">&para;</a></h3>
+<p>By default, all authors should be filled within a single <code>\author</code> command, separated by the <code>\and</code> command. If we need to specify the affiliations, we can do it inside the <code>\author</code> command. This way, each author have the affiliation printed right after/bellow the author name. </p>
+<p>However, if there are many authors with shared affiliations, this approach is unsustainable. Instead, we can use the <code>authblk</code> package which lets us specify the authors and affiliations separately and connect them to authors using footnotes. Example:</p>
+<pre><code class="language-latex">\usepackage{authblk}
+
+\author[1]{Author 1}
+\author[2]{Author 2}
+\author[1]{Author 3}
+
+\affil[1]{Affiliation 1}
+\affil[2]{Affiliation 2}
+</code></pre>
 <h1 id="escape-characters">Escape characters<a class="headerlink" href="#escape-characters" title="Permanent link">&para;</a></h1>
 <p>LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:</p>
 <table>
@@ -604,6 +669,9 @@
 - <a href="https://www.overleaf.com/learn/latex/Positioning_images_and_tables#The_figure_environment">Overleaf</a></p>
 <h3 id="default-placement">Default placement<a class="headerlink" href="#default-placement" title="Permanent link">&para;</a></h3>
 <p>The default placement differs between environments and also classes. For example for article class, the default placement for <code>figure</code> and <code>table</code> is <code>tbp</code> (<a href="https://tex.stackexchange.com/questions/172782/what-are-the-default-placement-options-for-a-floating-figure-in-latex">see SO</a>).</p>
+<h2 id="figures">Figures<a class="headerlink" href="#figures" title="Permanent link">&para;</a></h2>
+<p>The float environment for figures is <code>figure</code>. The image itself is included using the <code>\includegraphics</code> command. </p>
+<p>The mandatory argument of the <code>\includegraphics</code> command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main <code>.tex</code> file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.</p>
 <h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
 <p>The float environment for tables is <code>table</code>. However, the rows and columns are wrapped in another environment. The default inner enviroment is <code>tabular</code>, however, there are <em>many</em> other packages that extends the functionality. In practice, there are currently three inner environments to consider:
 - <code>tabular</code>: the default environment that is sufficient for simple tables
@@ -630,6 +698,18 @@
 <h3 id="columns-with-automatic-width-tabulary">Columns with automatic width: <code>tabulary</code><a class="headerlink" href="#columns-with-automatic-width-tabulary" title="Permanent link">&para;</a></h3>
 <p>By default, laTeX does not support automatic width for columns, i.e., sizing the columns by their content. To enable this feature, we can use the <code>tabulary</code> package, which provides the <code>tabulary</code> environment (which is a replacement for the <code>tabular</code> environment). The columns with automatic width are specified by the <code>L</code>, <code>C</code>, <code>R</code> column types. </p>
 <p>Note that the new column types can be combined with the standard column types. In that case, the standard columns will have width according to their content, and the rest of the space will be distributed among the new column types. </p>
+<h3 id="complex-tables-with-tabulararray-package">Complex tables with <code>tabulararray</code> package<a class="headerlink" href="#complex-tables-with-tabulararray-package" title="Permanent link">&para;</a></h3>
+<p>The <code>tabulararray</code> package provides :
+- full control over the table, most features among all packages
+- separation of the table content and the table presentation 
+- simpler code for basic tasks like multirows and multicolumns, wrapping text in cells, etc.</p>
+<p>Notable features present in the <code>tabulararray</code> package missing in other packages:
+- footnotes in tables (otherwise, it requires a <code>threeparttable</code> environment wrapper)</p>
+<p>As other tabular packages, there are some incompatibilities related to the <code>tabulararray</code> package.  So far, I observed only incompatibilities with the <code>tabulararray</code> <code>talltblr</code> environment, not with the standard <code>tblr</code> environment. The following table summarizes the incompatibilities I found so far:
+- <code>cases</code>: Obviously, the <code>cases</code> environment uses table components internally. When using together with <code>talltblr</code>, the <code>cases</code> environment compilation results with the following error: <code>latex "\begin{cases}" package array empty preamble l' used</code>. The solution is to use the use the new <code>+cases</code> environment provided by the <code>tabulararray</code> package. As a bonus, the <code>+cases</code> environment also fixes some visual glitches. Steps:
+    1. enable the <code>+cases</code> environment by adding <code>\UseTblrLibrary{amsmath}</code> to the preamble
+    1. replace the <code>cases</code> environment with the <code>+cases</code> environment 
+- <code>tabular</code>: yes, the <code>talltblr</code> environment is incompatible with the default <code>tabular</code> environment. The solution is simple: replace all <code>tabular</code> environments with <code>tblr</code> environments.</p>
 <h3 id="configure-the-space-between-columns">Configure the space between columns<a class="headerlink" href="#configure-the-space-between-columns" title="Permanent link">&para;</a></h3>
 <p>In most packages, the space between columns is configured using the <code>\tabcolsep</code> variable. Example:</p>
 <pre><code class="language-latex">\setlength{\tabcolsep}{10pt}
@@ -643,6 +723,25 @@
 }
 </code></pre>
 <p>By default, the <code>leftsep</code> and <code>rightsep</code> are set to <code>6pt</code>.</p>
+<h3 id="multirows-and-multicolumns">Multirows and multicolumns<a class="headerlink" href="#multirows-and-multicolumns" title="Permanent link">&para;</a></h3>
+<p>Depending on the inner environment, the multirows and multicolumns are created using different commands. </p>
+<h4 id="tabular-environment"><code>tabular</code> environment<a class="headerlink" href="#tabular-environment" title="Permanent link">&para;</a></h4>
+<p>In the <code>tabular</code> environment, the multirows and multicolumns are created using the <code>\multicolumn</code> and <code>\multirow</code> commands. Example:</p>
+<pre><code class="language-latex">\begin{tabular}{cc}
+    \multicolumn{2}{c}{multi column} \\
+    \multirow{2}{*}{multi row} &amp; 1 \\
+    &amp; 2 \\
+\end{tabular}
+</code></pre>
+<h4 id="tabulararray-environment"><code>tabulararray</code> environment<a class="headerlink" href="#tabulararray-environment" title="Permanent link">&para;</a></h4>
+<p>In the <code>tabulararray</code> environment, the multirows and multicolumns are created using the <code>\SetCell</code> command. Example:</p>
+<pre><code class="language-latex">\begin{tblr}{cc}
+    \SetCell[c=2]{c} multi column &amp; \\
+    \SetCell[r=2]{c} multi row &amp; 1 \\
+    &amp; 2 \\
+\end{tblr}
+</code></pre>
+<p>Note that for multicolumns, <strong>we need to add the column divider (<code>&amp;</code>) after the <code>\SetCell</code> command for each column that is spanned by the multicolumn</strong>. </p>
 <h3 id="export-google-sheets-to-latex-tables">Export google sheets to latex tables<a class="headerlink" href="#export-google-sheets-to-latex-tables" title="Permanent link">&para;</a></h3>
 <p>There is ann addon called <a href="http://caenrigen.tech/LatexKit/">LatexKit</a> which can be used for that.</p>
 <h3 id="footnotes-in-tables">Footnotes in tables<a class="headerlink" href="#footnotes-in-tables" title="Permanent link">&para;</a></h3>
@@ -750,6 +849,22 @@ There are two types of enviroments for, depending on the purpose:
 </code></pre>
 <p>We can call the function or procedure using the <code>\Call</code> command. Example:</p>
 <pre><code class="language-latex">\Call{my_function}{1, 2}
+</code></pre>
+<h4 id="line-numbering">Line numbering<a class="headerlink" href="#line-numbering" title="Permanent link">&para;</a></h4>
+<p>To add line numbering, add an optional argument to the algorithmic environment. The argument is the number determining the frequency of the line numbering. Example:</p>
+<pre><code class="language-latex">\begin{algorithmic}[3] % number every 3rd line
+    ... 
+\end{algorithmic}
+</code></pre>
+<h2 id="centering-of-floats-wider-than-text-width">Centering of floats wider than text width<a class="headerlink" href="#centering-of-floats-wider-than-text-width" title="Permanent link">&para;</a></h2>
+<p>If the float is wider than the text width, it is not centered, but instead it is left-aligned with the text and it overflows on the right side. To fix this, we can wrap the too-wide float content in the <code>\makebox</code> command. Example:</p>
+<pre><code class="language-latex">\begin{figure}[h]
+    \makebox[\textwidth]{
+        \includegraphics[width=1.2\textwidth]{my_image.png}
+    }
+    \caption{My figure}
+    \label{fig:my_figure}
+\end{figure}
 </code></pre>
 <h1 id="math">Math<a class="headerlink" href="#math" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">wiki</a></p>

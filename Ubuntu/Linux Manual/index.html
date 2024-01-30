@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -408,6 +414,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#ssh-agent" class="nav-link">SSH Agent</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#starting-the-agent" class="nav-link">Starting the agent</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#listing-keys" class="nav-link">Listing keys</a>
               <ul class="nav flex-column">
               </ul>
@@ -459,6 +469,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#list-all-variables" class="nav-link">List all variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#operations-on-variables" class="nav-link">Operations on variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#working-with-io" class="nav-link">Working with I/O</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#output-forwarding" class="nav-link">Output Forwarding</a>
@@ -485,6 +507,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#conditions" class="nav-link">Conditions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#string-comparison" class="nav-link">String comparison</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#loops" class="nav-link">Loops</a>
@@ -497,8 +523,29 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#strings-literals" class="nav-link">Strings literals</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#multiline-string-literals" class="nav-link">Multiline string literals</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#reading-from-command-line" class="nav-link">Reading from command line</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bash-script-header-content" class="nav-link">Bash Script Header Content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#managing-packages-with-apt-and-dpkg" class="nav-link">Managing packages with apt and dpkg</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#changing-package-repositories" class="nav-link">Changing package repositories</a>
               <ul class="nav flex-column">
               </ul>
@@ -508,6 +555,10 @@
             
             <li class="nav-item" data-level="1"><a href="#string-processing" class="nav-link">String Processing</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#string-filtering-with-grep" class="nav-link">String filtering with grep</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#word-count-with-wc" class="nav-link">Word count with wc</a>
               <ul class="nav flex-column">
               </ul>
@@ -546,6 +597,19 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#process-info" class="nav-link">Process Info</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#users" class="nav-link">Users</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#adding-a-user" class="nav-link">Adding a user</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#user-groups" class="nav-link">User Groups</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -764,6 +828,14 @@ appendWindowsPath = false
 <h2 id="ssh-agent">SSH Agent<a class="headerlink" href="#ssh-agent" title="Permanent link">&para;</a></h2>
 <p>Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.</p>
 <p>An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is <code>ssh-agent</code>, the rest of the section is dedicated to this agent.</p>
+<p>To successfully use the agent, we need to:
+1.  start the agent, either manually or automatically on OS startup
+2.  add the keys to the agent (only once)</p>
+<h3 id="starting-the-agent">Starting the agent<a class="headerlink" href="#starting-the-agent" title="Permanent link">&para;</a></h3>
+<p>The agent can be started manually by running:</p>
+<pre><code class="language-bash">eval `ssh-agent`
+</code></pre>
+<p>We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the <code>ssh-agent</code> prints the necessary commands to the console. By using eval, the <code>ssh-agent</code> is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.</p>
 <h3 id="listing-keys">Listing keys<a class="headerlink" href="#listing-keys" title="Permanent link">&para;</a></h3>
 <p>To list the keys stored in the agent, run:</p>
 <pre><code class="language-bash">ssh-add -l
@@ -797,7 +869,8 @@ It is important to delete/updete all of these recorsds in case the server change
 2. run the long running command
 3. disconnect
 4. connect to the server again
-5. run <code>screen -r</code> to recconect to the session and see the results of the command.</p>
+5. run <code>screen -r</code> to recconect to the session and see the results of the command.
+1. after the command is finished, exit the screen session with <code>exit</code></p>
 <p>Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
 6. <code>screen -ls</code>
 7. read the ID from the output and exec <code>screen -rd &lt;ID&gt;</code></p>
@@ -829,7 +902,35 @@ It is important to delete/updete all of these recorsds in case the server change
 <li>It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error</li>
 <li>Empty constructs are not allowed, i.e, empty function or loop results in an error</li>
 <li>brackets needs spaces around them, otherwise, there will be a syntax error</li>
+<li>space around <code>=</code>, which is typical in other languages, is not allowed in bash </li>
+<li>bash does not support any data structures, only arrays</li>
 </ul>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<p>Variables can be defined as:</p>
+<pre><code class="language-bash">var=value
+</code></pre>
+<p>Note that <strong>there must not be any spaces around <code>=</code></strong>. </p>
+<p>We can also declare variables with a specific type, so that no other type can be assigned to it using the <code>declare</code> command:</p>
+<pre><code class="language-bash">declare -i var # integer
+declare -a var # array
+declare -r var # read only
+</code></pre>
+<p>To access the value of a variable, we use <code>$</code>:</p>
+<pre><code class="language-bash">echo $var
+</code></pre>
+<h3 id="list-all-variables">List all variables<a class="headerlink" href="#list-all-variables" title="Permanent link">&para;</a></h3>
+<p>To list all variables, we can use the declare command:</p>
+<pre><code class="language-bash">declare
+</code></pre>
+<p>However, this command also lists the functions. To list only the variables, we can use:</p>
+<pre><code class="language-bash">declare -p
+</code></pre>
+<p>which also prints the type and attributes of the variables.</p>
+<h3 id="operations-on-variables">Operations on variables<a class="headerlink" href="#operations-on-variables" title="Permanent link">&para;</a></h3>
+<p>There are many operations on variables, the most important are:
+- <code>${#&lt;variable&gt;}</code>: length of the variable
+- <code>${&lt;variable&gt;%%&lt;pattern&gt;}</code>: remove the longest suffix matching the pattern
+- <code>${&lt;variable&gt;##&lt;pattern&gt;}</code>: remove the longest prefix matching the pattern</p>
 <h2 id="working-with-io">Working with I/O<a class="headerlink" href="#working-with-io" title="Permanent link">&para;</a></h2>
 <h3 id="output-forwarding">Output Forwarding<a class="headerlink" href="#output-forwarding" title="Permanent link">&para;</a></h3>
 <p>Output forwarding is a process of redirecting the output of a command to an input of another command. The operator for that is the pipe <code>|</code>. The syntax is:</p>
@@ -940,6 +1041,7 @@ echo resut is: $(cut -d, -f 7)
 - <code>$0</code> - the name of the script
 - <code>$1..$n</code> - the arguments of the script
 - <code>$@</code> - all the arguments of the script</p>
+<p>Sometimes, it is useful to throw away processed arguments. This can be done using the <code>shift</code> command <code>shift &lt;n&gt;</code>, where <code>&lt;n&gt;</code> is the number of arguments to be thrown away (default is 1). The remaining arguments are then shifted to the left, i.e., <code>$2</code> becomes <code>$1</code> and so on. </p>
 <h2 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h2>
 <p>In general, condition in bash has the following syntax:</p>
 <pre><code class="language-bash">if &lt;condition&gt; 
@@ -947,32 +1049,41 @@ echo resut is: $(cut -d, -f 7)
     else &lt;command&gt;
 fi
 </code></pre>
-<p>The condition above uses the <em>exit code</em> of a command to determine the logical value. When testing that the command succeeded, we can use it like:</p>
-<pre><code class="language-bash">if &lt;command&gt; 
+<p>The condition can have several formats:
+- <strong>plain command</strong>: the condition is true if the command returns 0
+    <code>bash
+    if grep -q "$text" $file 
+        then ...
+    fi</code>
+- <strong><code>[ &lt;condition&gt; ] or test &lt;condition&gt;</code></strong>: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
+    <code>bash
+    if [ $var = 1 ]
     then ...
-fi
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">if grep -q &quot;$text&quot; $file 
+    fi</code>
+- <strong><code>[[ &lt;condition&gt; ]]</code></strong>: The extended test construct. This is the recommended way of writing conditions, due to <a href="https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash">several practical features</a> (e.g., no need to quote variables, regex support, logical operators, etc.).
+    <code>bash
+    if [[ $var = 1 ]]
     then ...
+    fi</code>
+- <strong><code>(( &lt;condition&gt; ))</code></strong>: The arithmetic test construct. This is used for arithmetic conditions.
+    <code>bash
+    if (( $var == 1 ))
+    then ...
+    fi</code></p>
+<p>Note that if we want to use some arbitrary value (e. g. the <em>return value</em> of a command), or comparisons in the condition (similar to programming languages), we have to use one of the test constructs. </p>
+<p><strong>Mind the spaces around the braces!</strong></p>
+<h3 id="string-comparison">String comparison<a class="headerlink" href="#string-comparison" title="Permanent link">&para;</a></h3>
+<p>Strings can be compared using the standard <code>=</code> operator or the <code>==</code> operator. </p>
+<p>If we use the <code>[ ]</code> construct, we have to quote the variables, otherwise, the script will fail on empty strings or strings containing spaces:</p>
+<pre><code class="language-bash">if [ &quot;$var&quot; = &quot;string&quot; ]
+then ...
 fi
-</code></pre>
-<p>But if we want to use some arbitrary value (e. g. the <em>return value</em> of a command), or comparisons in the condition (simmilar to programming languages), we have to use the test command:</p>
-<pre><code class="language-bash">if test &lt;comparison&gt;
+
+# or equivalently
+if [[ $var = &quot;string&quot; ]]
 then ...
 fi
 </code></pre>
-<p>The test command is also invoked if we use square brackets:</p>
-<pre><code class="language-bash">if [ &lt;comparison&gt; ]
-then ...
-fi
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">if [ $var = 1 ]
-then ...
-fi
-</code></pre>
-<p>The test command expects to compare to values. If we want to compare a result of some command, we need to usethe command substtitution.</p>
 <h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">while condition
 do
@@ -1003,15 +1114,51 @@ str='string literal'
 # or equivalently
 a = &quot;normal string &quot;'&quot;'&quot;quotted string&quot;'&quot;'
 </code></pre>
-<pre><code>
-
-
-
-
-# Managing packages with `apt` and `dpkg`
-To **update the list** of possible updates:
-```bash
-sudo apt update
+<h3 id="multiline-string-literals">Multiline string literals<a class="headerlink" href="#multiline-string-literals" title="Permanent link">&para;</a></h3>
+<p>There is no dedicated syntax for multiline string literals. However, we can use the <em>here document</em> syntax:</p>
+<pre><code class="language-bash">&lt;target&gt; &lt;&lt; &lt;delimiter&gt; &lt;content&gt; 
+&lt;delimiter&gt;
+</code></pre>
+<p>For example, to store the command in a variable, we can use:</p>
+<pre><code class="language-bash">db_sql = $(cat &lt;&lt; SQL
+CREATE DATABASE test_$name OWNER $name;
+grant all privileges on database test_$name to $name;
+SQL)
+</code></pre>
+<p>Note that the <code>&lt;delimiter&gt;</code> must be at the beginning of the line, otherwise, it will not work.</p>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<p>Functions are defined as:</p>
+<pre><code class="language-bash">function_name() {
+    &lt;command 1&gt;
+    &lt;command 2&gt;
+    ...
+}
+</code></pre>
+<p>For access the arguments of the function, we use the same syntax as for the script arguments (e.g., <code>$1</code> for the first argument).</p>
+<p>We can create local variables in the function using the <code>local</code> keyword:</p>
+<pre><code class="language-bash">function_name() {
+    local var1=&quot;value&quot;
+    ...
+}
+</code></pre>
+<h2 id="reading-from-command-line">Reading from command line<a class="headerlink" href="#reading-from-command-line" title="Permanent link">&para;</a></h2>
+<p>To read from command line, we can use the <code>read</code> command. The syntax is:</p>
+<pre><code class="language-bash">read &lt;variable&gt;
+</code></pre>
+<p>where <code>&lt;variable&gt;</code> is the name of the variable to store the input. Important parameters:
+- <code>-p &lt;prompt&gt;</code>: prints the <code>&lt;prompt&gt;</code> before reading the input
+- <code>-s</code>: do not echo the input (usefull for passwords)</p>
+<h2 id="bash-script-header-content">Bash Script Header Content<a class="headerlink" href="#bash-script-header-content" title="Permanent link">&para;</a></h2>
+<p>Usually, here are some special lines at the beginning of the bash script.</p>
+<p>First, we can specify the interpreter to be used:</p>
+<pre><code class="language-bash">#!/bin/bash
+</code></pre>
+<p>Then we can set the script to exit on error:</p>
+<pre><code class="language-bash">set -e
+</code></pre>
+<h1 id="managing-packages-with-apt-and-dpkg">Managing packages with <code>apt</code> and <code>dpkg</code><a class="headerlink" href="#managing-packages-with-apt-and-dpkg" title="Permanent link">&para;</a></h1>
+<p>To <strong>update the list</strong> of possible updates:</p>
+<pre><code class="language-bash">sudo apt update
 </code></pre>
 <p>To perform the <strong>update</strong>:</p>
 <pre><code class="language-bash">sudo apt upgrade
@@ -1033,6 +1180,14 @@ sudo apt update
 1. change the mirror with the script: <code>apt-mirror-updater -c &lt;mirror URL&gt;</code></p>
 <p>Note that the <code>apt-mirror-updater</code> script can also measure the bandwidth, however, the result does not seem to be reliable.</p>
 <h1 id="string-processing">String Processing<a class="headerlink" href="#string-processing" title="Permanent link">&para;</a></h1>
+<h2 id="string-filtering-with-grep">String filtering with <code>grep</code><a class="headerlink" href="#string-filtering-with-grep" title="Permanent link">&para;</a></h2>
+<p>The <code>grep</code> command is used to filter lines containing a pattern. The syntax is:</p>
+<pre><code class="language-bash">grep &lt;pattern&gt; &lt;file&gt;
+</code></pre>
+<p>The pattern can be a simple string, or a regex. The most used options are:
+- <code>-v</code>: invert the match, i.e., print only lines not matching the pattern
+- <code>-e</code>: use multiple patterns (e.g., <code>-e &lt;pattern 1&gt; -e &lt;pattern 2&gt;</code>)
+- <code>-i</code>: ignore case</p>
 <h2 id="word-count-with-wc">Word count with <code>wc</code><a class="headerlink" href="#word-count-with-wc" title="Permanent link">&para;</a></h2>
 <p>The <code>wc</code> command counts words, lines, and characters. What is counted is determined by the parameters:
 - <code>-w</code>: words
@@ -1090,6 +1245,29 @@ sudo apt update
 - <code>-f</code>: match the whole command line, not only the process name
 - <code>-9</code>: force kill</p>
 <h2 id="process-info">Process Info<a class="headerlink" href="#process-info" title="Permanent link">&para;</a></h2>
+<h1 id="users">Users<a class="headerlink" href="#users" title="Permanent link">&para;</a></h1>
+<p>The users are listed in <code>/etc/passwd</code>. The file contains one line per user, each line has the following format:</p>
+<pre><code>&lt;username&gt;:&lt;password&gt;:&lt;user ID&gt;:&lt;group ID&gt;:&lt;GECOS&gt;:&lt;home folder&gt;:&lt;shell&gt;
+</code></pre>
+<p>The password is typically stored in <code>/etc/shadow</code> and is represented by <code>x</code>. <a href="https://en.wikipedia.org/wiki/Gecos_field">GECOS</a> is some kind of a comment storing arbitrary information about the user.</p>
+<h2 id="adding-a-user">Adding a user<a class="headerlink" href="#adding-a-user" title="Permanent link">&para;</a></h2>
+<p>To add a user, we can use either the <code>useradd</code> binary directly, or the <code>adduser</code> wrapper script. Here we describe the <code>adduser</code> script. The basic syntax is <code>adduser &lt;username&gt;</code>. Important parameters:
+- <code>--gecos "&lt;GECOS&gt;"</code>: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.
+- <code>--shell &lt;shell&gt;</code>: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to <code>/usr/sbin/nologin</code>.</p>
+<p>Note that the <code>adduser</code> needs to be run as root. Otherwise it will fail with <code>bash: adduser: command not found</code>.</p>
+<h2 id="user-groups">User Groups<a class="headerlink" href="#user-groups" title="Permanent link">&para;</a></h2>
+<p>An important aspect of user management in Linux is the user groups. For example, by belonging to the <code>sudo</code> group, the user can execute commands with <code>sudo</code>. The groups are listed in <code>/etc/group</code>. The file contains one line per group, each line has the following format:</p>
+<pre><code>&lt;group name&gt;:&lt;password&gt;:&lt;group ID&gt;:&lt;user list&gt;
+</code></pre>
+<p>To see the groups of a user, we can use the <code>groups</code> command (no arguments needed).</p>
+<p>To manipulate groups and users, we need a root access. 
+To add a user to a group, we can use the <code>usermod</code> command:</p>
+<pre><code class="language-bash">usermod -a -G &lt;group name&gt; &lt;username&gt;
+</code></pre>
+<p>To remove a user from a group, we can use the same command:</p>
+<pre><code class="language-bash">usermod -G &lt;group list&gt; &lt;username&gt;
+</code></pre>
+<p>where <code>&lt;group list&gt;</code> is a comma separated list of groups the user should belong to.</p>
 <h1 id="installing-java">Installing Java<a class="headerlink" href="#installing-java" title="Permanent link">&para;</a></h1>
 <h2 id="oracle-jdk">Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permanent link">&para;</a></h2>
 <ol>

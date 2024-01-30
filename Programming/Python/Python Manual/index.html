@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -560,10 +566,14 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#matplotlib" class="nav-link">Matplotlib</a>
+            <li class="nav-item" data-level="1"><a href="#plotting" class="nav-link">Plotting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#saving-figures" class="nav-link">Saving figures</a>
+            <li class="nav-item" data-level="2"><a href="#matplotlib" class="nav-link">Matplotlib</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#saving-figures" class="nav-link">Saving figures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -809,10 +819,11 @@ parent = p.parent # 'C:\\workspace\\project'
 <p>We can use the <code>absolute</code> method of the <code>Path</code> object to get the <em>absolute</em> path. To get the <em>canonical</em> path, we can use the <code>resolve</code> method.</p>
 <h3 id="splitting-paths-and-working-with-path-parts">Splitting paths and working with path parts<a class="headerlink" href="#splitting-paths-and-working-with-path-parts" title="Permanent link">&para;</a></h3>
 <p>To read the <strong>file extension</strong>, we can use the <code>suffix</code> property of the <code>Path</code> object. The property returns the extension <strong>with the dot</strong>.</p>
-<p>To change the extension, we can use the <code>with_suffix</code> method:</p>
+<p>To <strong>change the extension</strong>, we can use the <code>with_suffix</code> method:</p>
 <pre><code class="language-Python">p = Path(&quot;C:/workspace/project/file.txt&quot;)
 p = p.with_suffix('.csv') # 'C:\\workspace\\project\\file.csv'
 </code></pre>
+<p>To <strong>remove the extension</strong>, just use the <code>with_suffix</code> method with an empty string.</p>
 <p>We can split the path into parts using the <code>parts</code> property:</p>
 <pre><code class="language-Python">p = Path(&quot;C:/workspace/project/file.txt&quot;)
 parts = p.parts # ('C:\\', 'workspace', 'project', 'file.txt')
@@ -839,8 +850,9 @@ p = p.as_posix() # 'C:/workspace/project/file.txt'
 </ul>
 <h2 id="iterating-over-files">Iterating over files<a class="headerlink" href="#iterating-over-files" title="Permanent link">&para;</a></h2>
 <p>The <code>pathlib</code> module provides a convenient way to iterate over files in a directory. The particular methods are:
-- <code>glob</code> - iterate over files in a single directory
-- <code>rglob</code> - iterate over files in a directory and all its subdirectories</p>
+- <code>iterdir</code> - iterate all files and directories in a directory
+- <code>glob</code> - iterate over files in a single directory, using a filter
+- <code>rglob</code> - iterate over files in a directory and all its subdirectories, using a filter</p>
 <p>In general, the files will be sorted alphabetically. </p>
 <h3 id="single-directory-iteration">Single directory iteration<a class="headerlink" href="#single-directory-iteration" title="Permanent link">&para;</a></h3>
 <p>Using pathlib, we can iterate over files using a filter with the <code>glob</code> method:</p>
@@ -934,6 +946,7 @@ first = next(g) # 0
     yield 2
     yield 3
 </code></pre>
+<p>The <strong>length</strong> of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using <code>len(list(&lt;generator&gt;))</code></p>
 <h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Official Manual</a></p>
 <p>Disctionaries are initialized using curly braces (<code>{}</code>) and the <code>:</code> operator:</p>
@@ -1100,9 +1113,18 @@ ipython_vars = ['In', 'Out', 'exit', 'quit', 'get_ipython', 'ipython_vars']
 # Get a sorted list of the objects and their sizes
 sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith('_') and x not in sys.modules and x not in ipython_vars], key=lambda x: x[1], reverse=True)
 </code></pre>
-<h1 id="matplotlib">Matplotlib<a class="headerlink" href="#matplotlib" title="Permanent link">&para;</a></h1>
+<h1 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h1>
+<p>There are several libraries for plotting in Python. The most common are:
+- <code>matplotlib</code>
+- <code>plotly</code></p>
+<p>In the table below, we can see a comparison of the most common plotting libraries:
+| Functionality | Matplotlib | Plotly |
+| --- | --- | --- |
+| real 3D plots | no | yes |
+| detail legend styling (padding, round corners...) | yes | no |</p>
+<h2 id="matplotlib">Matplotlib<a class="headerlink" href="#matplotlib" title="Permanent link">&para;</a></h2>
 <p><a href="https://matplotlib.org/stable/contents.html">Official Manual</a></p>
-<h2 id="saving-figures">Saving figures<a class="headerlink" href="#saving-figures" title="Permanent link">&para;</a></h2>
+<h3 id="saving-figures">Saving figures<a class="headerlink" href="#saving-figures" title="Permanent link">&para;</a></h3>
 <p>To save a figure, we can use the <code>savefig</code> function. The <strong><code>savefig</code> function has to be called before the <code>show</code> function, otherwise the figure will be empty</strong>.</p>
 <h1 id="docstrings">Docstrings<a class="headerlink" href="#docstrings" title="Permanent link">&para;</a></h1>
 <p>For documenting Python code, we use docstrings, special comments soroudned by three quotation marks: <code>""" docstring """</code></p>

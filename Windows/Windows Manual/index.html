@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -300,8 +306,20 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#general-guides" class="nav-link">General Guides</a>
+            <li class="nav-item" data-level="1"><a href="#terminals-and-shells" class="nav-link">Terminals and Shells</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#run-a-non-default-terminal-application" class="nav-link">Run a non-default terminal application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#windows-terminal" class="nav-link">Windows Terminal</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#windows-terminal-pass-stdout-to-text-editor-instead-displaying-it" class="nav-link">Windows terminal pass stdout to text editor instead displaying it</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -414,6 +432,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#copy-multiple-filesdirs" class="nav-link">Copy multiple files/dirs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#user-info" class="nav-link">User info</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -551,8 +573,26 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="general-guides">General Guides<a class="headerlink" href="#general-guides" title="Permanent link">&para;</a></h1>
-<p>For PowerShell solutions/guides, check the <a href="../Powershell%20Manual/">PoweShell manual</a>.</p>
+<h1 id="terminals-and-shells">Terminals and Shells<a class="headerlink" href="#terminals-and-shells" title="Permanent link">&para;</a></h1>
+<p>There are two main <a href="https://en.wikipedia.org/wiki/Terminal_emulator">terminal applications</a> in Windows: 
+- <a href="https://en.wikipedia.org/wiki/Windows_Console"><em>Windows Console Host</em></a>: an old terminal application present in Windows for years, and
+- <a href="https://en.wikipedia.org/wiki/Windows_Terminal"><em>Windows Terminal</em></a>: a new terminal application that is still in development.</p>
+<p>To get the best experience similar to Linux, it is recommended to use the Windows Terminal. It is available in the <a href="https://aka.ms/terminal">Microsoft Store</a>.</p>
+<p>The simplest <a href="https://en.wikipedia.org/wiki/Shell_(computing)">shell</a> is the <a href="https://en.wikipedia.org/wiki/Cmd.exe">command prompt</a> (<code>cmd.exe</code>). However, due to its limited functionality, it is better to use <a href="https://en.wikipedia.org/wiki/PowerShell">PowerShell</a>. For PowerShell solutions/guides, check the <a href="../Powershell%20Manual/">PoweShell manual</a>.</p>
+<h2 id="run-a-non-default-terminal-application">Run a non-default terminal application<a class="headerlink" href="#run-a-non-default-terminal-application" title="Permanent link">&para;</a></h2>
+<p>It is not an easy task to manually tun a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:
+- Windows Terminal: <code>wt.exe</code>
+- Windows Console Host: <code>conhost.exe</code></p>
+<h2 id="windows-terminal">Windows Terminal<a class="headerlink" href="#windows-terminal" title="Permanent link">&para;</a></h2>
+<p>The Windows Terminal is a new terminal application with many great features:
+- multiple tabs
+- smart text selection</p>
+<p>To configure Windows Terminal, click the <code>v</code> button in the top bar and select <code>Settings</code>. There are two kinds of settings:
+- Global settings sorted in categories in the left panel
+- Profile settings for each profile. The profiles are listed in the left panel. After selecting a profile, the settings are displayed in the right panel. Nonbasic settings are sorted in categories under the <code>Additonal settings</code> header. </p>
+<h3 id="windows-terminal-pass-stdout-to-text-editor-instead-displaying-it">Windows terminal pass stdout to text editor instead displaying it<a class="headerlink" href="#windows-terminal-pass-stdout-to-text-editor-instead-displaying-it" title="Permanent link">&para;</a></h3>
+<p>This can happen if the output is too long or wide for the terminal. </p>
+<p>If a command outputs a text in Windows console host but passes it to a text editor in Windows Terminal, the possible cause is the font size. The default size in Windows Terminal is 12, which is much larger than the 16 in Windows Console Host (default). To fix it, change the font size in Windows Terminal to 10 which corresponds to the 16 in Windows Console Host.</p>
 <h1 id="keyboard-shortcuts">Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h1>
 <ul>
 <li><code>Alt</code> + <code>Shift</code>: change input language</li>
@@ -568,7 +608,7 @@
 <li><code>Manually connect to a wireless network</code></li>
 <li>Fill the credentials:<ul>
 <li>Network name: SSID</li>
-<li>Security type: dpends, try WPA2 personal</li>
+<li>Security type: depends, try WPA2 personal</li>
 <li>Security key: password</li>
 </ul>
 </li>
@@ -648,6 +688,10 @@
 - <code>/xo</code>: Excludes older files.
 - <code>/r:&lt;n&gt;</code>: Specifies the number of retries on failed copies. The default value of <em>n</em> is 1,000,000 (one million retries).
 - <code>/w:&lt;n&gt;</code>: Specifies the wait time between retries, in seconds. The default value of <em>n</em> is 30 (wait time 30 seconds).</p>
+<h2 id="user-info">User info<a class="headerlink" href="#user-info" title="Permanent link">&para;</a></h2>
+<p>Information about users can be obtained with the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1"><code>Get-LocalUser</code></a> command. By default, the command lists all users. Some useful params:
+- <code>-Name</code>: Specifies the user account names of the users to get. 
+- <code>-SID</code>: Specifies the security identifier (SID) of the users to get. </p>
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <h2 id="windows-11">Windows 11<a class="headerlink" href="#windows-11" title="Permanent link">&para;</a></h2>
 <p>Windows 11 can be installed only as an update of Windows 10.</p>

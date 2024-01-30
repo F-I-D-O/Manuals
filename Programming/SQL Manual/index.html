@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -313,6 +319,10 @@
             <li class="nav-item" data-level="1"><a href="#select" class="nav-link">SELECT</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#selecting-row-number" class="nav-link">Selecting row number</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#select-unique-rows" class="nav-link">Select unique rows</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -566,6 +576,10 @@ AS (&lt;sql that assigns data to var&gt;)
     ...
 </code></pre>
 <p>Inside the <code>OVER</code> statement, we can specify the order of the row numbering. Note however, that this does not order the result, for that, we use the <code>ORDER BY</code> statement. If we want the rown numbering to correspond with the row order in the result, we can left the <code>OVER</code> statement empty.</p>
+<h2 id="select-unique-rows">Select unique rows<a class="headerlink" href="#select-unique-rows" title="Permanent link">&para;</a></h2>
+<p>To select unique rows, we can use the <code>DISTINCT</code> keyword:</p>
+<pre><code class="language-sql">SELECT DISTINCT &lt;column name&gt; FROM ...
+</code></pre>
 <h2 id="count-selecting-rows">Count selecting rows<a class="headerlink" href="#count-selecting-rows" title="Permanent link">&para;</a></h2>
 <p>The <code>count()</code> function can be used to count the selection. The standard syntax is:</p>
 <pre><code class="language-sql">SELECT count(1) FROM ...

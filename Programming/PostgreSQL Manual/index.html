@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -461,30 +467,86 @@
             
             <li class="nav-item" data-level="1"><a href="#psql" class="nav-link">psql</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#meta-commands" class="nav-link">meta-commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#listing-databases" class="nav-link">Listing databases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#importing-data-from-csv" class="nav-link">Importing data from csv</a>
+            <li class="nav-item" data-level="1"><a href="#importing-data" class="nav-link">Importing data</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#psql-copy-command" class="nav-link">psql COPY command</a>
+            <li class="nav-item" data-level="2"><a href="#importing-compressed-sql-dump" class="nav-link">Importing compressed SQL dump</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-csv" class="nav-link">Importing data from csv</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#importing-data-from-csv-with-columns-than-are-not-in-the-db-table" class="nav-link">Importing data from csv with columns than are not in the db table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-a-shapefile" class="nav-link">Importing data from a shapefile</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-geojson" class="nav-link">Importing data from GeoJSON</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#importing-data-from-a-shapefile" class="nav-link">Importing data from a shapefile</a>
+            <li class="nav-item" data-level="1"><a href="#exporting-data" class="nav-link">Exporting data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#exporting-the-database-server-configuration" class="nav-link">Exporting the database server configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compressing-the-sql-dump" class="nav-link">Compressing the SQL dump</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exporting-data-to-csv" class="nav-link">Exporting data to csv</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#table-and-database-statistics" class="nav-link">Table and database statistics</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#importing-data-from-geojson" class="nav-link">Importing data from GeoJSON</a>
+            <li class="nav-item" data-level="1"><a href="#managing-the-database" class="nav-link">Managing the database</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#creating-new-user" class="nav-link">Creating new user</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+            <li class="nav-item" data-level="2"><a href="#deleting-database" class="nav-link">Deleting database</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#granting-privileges" class="nav-link">Granting privileges</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#grant-all-privileges-for-database-schema" class="nav-link">Grant all privileges for database schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -855,31 +917,82 @@ END IF
 <p>Note that this constract is not available in the SQL queries but only in a PL/pgSQL block.</p>
 <p>For other diagnostic fields, see the <a href="https://www.postgresql.org/docs/current/plpgsql-statements.html#PLPGSQL-STATEMENTS-DIAGNOSTICS">documentation</a>.</p>
 <h1 id="psql"><code>psql</code><a class="headerlink" href="#psql" title="Permanent link">&para;</a></h1>
-<p><code>psql</code> is a basic command line utitiltyfor manipulating postgres database. </p>
-<p>To connect:</p>
+<p><a href="https://www.postgresql.org/docs/current/app-psql.html">Documentation</a></p>
+<p><code>psql</code> is a basic command line utitilty for manipulating postgres database. </p>
+<p>To connect, type:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; 
 </code></pre>
-<p>Then the psql commands can be executed. To execute command immediatelly, use the <code>-c</code> parameter:</p>
+<p>Then the SQL commands can be executed. </p>
+<p>Note that no matter what SQL commands you plan to execute, <strong>you have to connect to a specific database</strong>. Ommitting the <code>-d</code> parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.</p>
+<p>To execute command immediatelly without starting interactive session, use the <code>-c</code> parameter:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;&lt;command&gt;&quot;
 </code></pre>
-<p>Do not forget to quote the command.</p>
-<h1 id="importing-data-from-csv">Importing data from csv<a class="headerlink" href="#importing-data-from-csv" title="Permanent link">&para;</a></h1>
-<p>The prefered mathod depends on the characte of the data: 
-- data exactly match the table  in the database: use <code>psql</code> <code>COPY</code> command
+<p>Do not forget to quote the command. Also, note that certain SQL commands, such as <code>CREATE DATABASE</code> requires its own session. To combine them with other SQL commands, you can use multiple <code>-c</code> parameters:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;CREATE DATABASE &lt;db name&gt;&quot; -c &quot;&lt;other command&gt;&quot;
+</code></pre>
+<p>Other useful parameters:
+- <code>-X</code>: do not read the <code>~/.psqlrc</code> file. This is useful when debuging the <code>psql</code> commands or running scripts, as it disables any customizations.
+- <code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.</p>
+<h2 id="meta-commands">meta-commands<a class="headerlink" href="#meta-commands" title="Permanent link">&para;</a></h2>
+<p>The <code>psql</code> has its own set of commands, called <em>meta-commands</em>. These commands start with a backslash (<code>\</code>) and can be used inside SQL queries (either interactively, or in the -c argument). Example:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\l+&quot;
+</code></pre>
+<p>The above command lists all databases, including additional information.</p>
+<p>Note that the <strong>meta-commands cannot be combined with SQL queries passed to the <code>-c</code> parameter</strong>. As <code>-c</code> argument, we can use either:
+- a plain SQL query without any meta-commands
+- a single meta-command without any SQL query (like the example above)</p>
+<p><em>(In</em> <code>\copy public.nodes FROM nodes.csv CSV HEADER</code><em>, the string after <code>\copy</code> is a list of arguments, not an SQL query)</em></p>
+<p>When we want to combine a meta-command with an SQL query, we need to use some of the workarounds:
+- use the <code>psql</code> interactive mode
+- use the <code>psql</code> <code>--file</code> parameter to execute a script from a file
+- pipe the commands to <code>psql</code> using <code>echo</code>:
+    <code>bash
+    echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata</code></p>
+<h2 id="listing-databases">Listing databases<a class="headerlink" href="#listing-databases" title="Permanent link">&para;</a></h2>
+<p>To list all databases, we can use the <code>-l</code> parameter:</p>
+<pre><code class="language-bash">psql -l
+</code></pre>
+<p>To get more information about the databases, we can use the <code>\l+</code> meta-command.</p>
+<h1 id="importing-data">Importing data<a class="headerlink" href="#importing-data" title="Permanent link">&para;</a></h1>
+<p>A simple SQL data (database dump) can be imported using the <code>psql</code> command:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -f &lt;file name&gt;
+</code></pre>
+<p>we can also import from stdin by omitting the <code>-f</code> parameter:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; &lt; &lt;file name&gt;
+
+# or
+&lt;command&gt; | psql -d &lt;db name&gt;
+</code></pre>
+<h2 id="importing-compressed-sql-dump">Importing compressed SQL dump<a class="headerlink" href="#importing-compressed-sql-dump" title="Permanent link">&para;</a></h2>
+<p>To import a compressed SQL dump we need to know how the dump was compressed. 
+- If it was compressed using the <code>pg_dump</code> with the <code>-Z</code> parameter, we use a <code>pg_restore</code> command:
+    <code>bash
+    pg_restore -d &lt;db name&gt; &lt;file name&gt;</code>
+- If it was compressed using a compression tool, we need to pipe the output to the decompression tool and then to <code>psql</code>:
+    <code>bash
+    &lt;decompression tool&gt; &lt; &lt;file name&gt; | psql -d &lt;db name&gt;</code></p>
+<h2 id="importing-data-from-csv">Importing data from csv<a class="headerlink" href="#importing-data-from-csv" title="Permanent link">&para;</a></h2>
+<p>The easiest way to import data from csv is to use the <code>psql</code> <code>\copy</code> meta-command:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\copy &lt;table name&gt; FROM &lt;file name&gt; CSV HEADER&quot;
+</code></pre>
+<p>The syntax of this command and its parameters is almost identical to the <a href="https://www.postgresql.org/docs/current/sql-copy.html"><code>COPY</code></a> command. Important parameters:
+- <code>CSV</code>: the file is in CSV format
+- <code>HEADER</code>: the first line of the file contains column names</p>
+<p>Except simplicity, the <code>\copy</code> command has another advantage over the <code>COPY</code> command: it has the same access rights as the user that is currently logged in. The <code>COPY</code> command, on the other hand, has the access rights of the user that started the database server. </p>
+<p>The <code>COPY</code> command, however, has an advantage over the <code>\copy</code> command when we access a remote database. In that case, the <code>\copy</code> command would first download the whole file to the client and then upload it to the server. The <code>COPY</code> command, on the other hand, can be executed directly on the server, so the data are not downloaded to the client.</p>
+<h3 id="importing-data-from-csv-with-columns-than-are-not-in-the-db-table">Importing data from csv with columns than are not in the db table<a class="headerlink" href="#importing-data-from-csv-with-columns-than-are-not-in-the-db-table" title="Permanent link">&para;</a></h3>
+<p>The <code>COPY</code> (and <code>\copy</code>) command can be used to copy the input into a database table even if it contains only a subset of database table columns. However, it does not work the other way, i.e, all input columns have to be used. If only a subset of input columns needs to be used, or some of the input columns requires processing, we need to use some workaround. The prefered mathod depends on the characte of the data: 
 - data do not match the table, but they are small: 
     1. load the data with pandas
     2. process the data as needed
     3. use <code>pandas.to_sql</code> to upload the data
 - data do not match the table and they are large:
-    1. preprocess the data with bach commands
-    2. use <code>psql</code> <code>COPY</code> to upload the data
+    1. preprocess the data with batch commands
+    2. use <code>COPY</code> (or <code>\copy</code>) to upload the data
 - data do not match the table and they are large <em>and dirty</em>: use the <a href="https://www.postgresql.org/docs/current/file-fdw.html"><code>file_fdw</code></a> module:     <br />
     1. create a table for SQL mapping with tolerant column types (e.g., text for problematic columns)
     2. select from the mapping to the real table</p>
-<h2 id="psql-copy-command"><code>psql COPY</code> command<a class="headerlink" href="#psql-copy-command" title="Permanent link">&para;</a></h2>
-<p>The <code>COPY</code> command can be used to copy the input into a database table. A subset of database column can be selected, but that is not true for the input, i.e, all input columns have to be used. If a subset of input columns needs to be used, or some columns requires processing, you need to perform some preprocessing.</p>
-<p><a href="https://www.postgresql.org/docs/current/sql-copy.html"><code>COPY</code> manual</a></p>
-<h1 id="importing-data-from-a-shapefile">Importing data from a shapefile<a class="headerlink" href="#importing-data-from-a-shapefile" title="Permanent link">&para;</a></h1>
+<h2 id="importing-data-from-a-shapefile">Importing data from a shapefile<a class="headerlink" href="#importing-data-from-a-shapefile" title="Permanent link">&para;</a></h2>
 <p>There are multiple options:
 - <code>shp2psql</code>: simple tool that creates sql from a shapefile
     - easy start, almost no configuration
@@ -891,13 +1004,56 @@ END IF
     - The db manger can be used to export data from <code>QGIS</code>
     - data can be viewed before import
     - only suitable for creating new table, not for appending to an existing one</p>
-<h1 id="importing-data-from-geojson">Importing data from GeoJSON<a class="headerlink" href="#importing-data-from-geojson" title="Permanent link">&para;</a></h1>
+<h2 id="importing-data-from-geojson">Importing data from GeoJSON<a class="headerlink" href="#importing-data-from-geojson" title="Permanent link">&para;</a></h2>
 <p>For a single geometry stored in a GeoJSON file, the function <a href="http://postgis.net/docs/ST_GeomFromGeoJSON.html"><code>ST_GeomFromGeoJSON</code></a> can be used.
 - just copy the geometry part of the file
 - change the geometry type to match the type in db
 - don't forget to surround the object with curly brackets</p>
 <p>For the whole document, the <code>ogr2ogr</code> tool can be used.</p>
-<h1 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server<a class="headerlink" href="#lost-password-to-the-postgres-server" title="Permanent link">&para;</a></h1>
+<h1 id="exporting-data">Exporting data<a class="headerlink" href="#exporting-data" title="Permanent link">&para;</a></h1>
+<p>The data can be exported to SQL using the <code>pg_dump</code> command. The simplest usage is:</p>
+<pre><code class="language-bash">pg_dump -f &lt;output file name&gt; &lt;db name&gt;
+</code></pre>
+<p>Important parameters:
+- <code>-s</code>: export only the schema, not the data</p>
+<p>If we need to further process the data, we can use the stdout as an output simply by omitting the <code>-f</code> parameter:</p>
+<pre><code class="language-bash">pg_dump &lt;db name&gt; | &lt;command&gt;
+</code></pre>
+<h2 id="exporting-the-database-server-configuration">Exporting the database server configuration<a class="headerlink" href="#exporting-the-database-server-configuration" title="Permanent link">&para;</a></h2>
+<p>To export the database server configuration, we can use the <code>pg_dumpall</code> command:</p>
+<pre><code class="language-bash">pg_dumpall -f &lt;output file name&gt;
+</code></pre>
+<h2 id="compressing-the-sql-dump">Compressing the SQL dump<a class="headerlink" href="#compressing-the-sql-dump" title="Permanent link">&para;</a></h2>
+<p>To compress the SQL dump, we have two options:
+- use the <code>pg_dump</code> command with the <code>-Z</code> parameter, e.g., <code>pg_dump &lt;db name&gt; -Z1 -f &lt;output file name&gt;</code> or
+- pipe the output to a compression tool, e.g., <code>pg_dump &lt;db name&gt; | gzip &gt; &lt;output file name&gt;</code></p>
+<h2 id="exporting-data-to-csv">Exporting data to csv<a class="headerlink" href="#exporting-data-to-csv" title="Permanent link">&para;</a></h2>
+<p>When exporting large data sets, it is not wise to export them as an SQL dump. To export data to csv, we can use either:
+- <code>psql</code> <code>\copy</code> command
+- <code>COPY</code> command in SQL</p>
+<p>The simplest way is to use the <code>\copy</code> command. However, it may be slow if we call psql from a client and we want to export the data to a file on the server, because the data are first sent to the client and then back to the server. </p>
+<p>The <code>COPY</code> command is the fastest way to export data to the server. However, by default, it can be tricky to use, as the sql server needs to have write access to the file. To overcome this problem, we can use the following workaround:
+1. choose <code>STDOUT</code> as an output for the <code>COPY</code> command
+2. at the end of the command, add <code>\g &lt;file name&gt;</code> to redirect the output to a file.</p>
+<p>Example:</p>
+<pre><code class="language-bash">echo &quot;COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'&quot; | psql -d opendata
+</code></pre>
+<h1 id="table-and-database-statistics">Table and database statistics<a class="headerlink" href="#table-and-database-statistics" title="Permanent link">&para;</a></h1>
+<p>To show the size a table, run:</p>
+<pre><code class="language-PostgreSQL">SELECT pg_size_pretty(pg_total_relation_size('&lt;table name&gt;'));
+</code></pre>
+<h1 id="managing-the-database">Managing the database<a class="headerlink" href="#managing-the-database" title="Permanent link">&para;</a></h1>
+<h2 id="creating-new-user">Creating new user<a class="headerlink" href="#creating-new-user" title="Permanent link">&para;</a></h2>
+<p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:
+- <code>-P</code> or <code>--pwprompt</code>: prompt for password. If not used, the user will be created without a password.</p>
+<h2 id="deleting-database">Deleting database<a class="headerlink" href="#deleting-database" title="Permanent link">&para;</a></h2>
+<p>To delete a database, we can use the <a href="https://www.postgresql.org/docs/current/app-dropdb.html"><code>dropdb</code></a> command: <code>dropdb &lt;db name&gt;</code></p>
+<h2 id="granting-privileges">Granting privileges<a class="headerlink" href="#granting-privileges" title="Permanent link">&para;</a></h2>
+<h3 id="grant-all-privileges-for-database-schema">Grant all privileges for database schema<a class="headerlink" href="#grant-all-privileges-for-database-schema" title="Permanent link">&para;</a></h3>
+<p>To grant all privileges for a database schema to a user, we can use the following command:</p>
+<pre><code class="language-SQL">GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO &lt;user name&gt;;
+</code></pre>
+<h2 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server<a class="headerlink" href="#lost-password-to-the-postgres-server" title="Permanent link">&para;</a></h2>
 <p>The password for the db superuser is stored in db <code>postgres</code>. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
 1. find the <code>pg_hba.conf file</code> 
     - usually located in <code>C:\Program Files\PostgreSQL\13\data</code>

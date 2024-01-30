@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -333,18 +339,19 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>So far we have three LaTeX toolchains tah has proven to work well:
-- <strong>Overleaf</strong>: Cloud tool which is stable and very good for collaboration. 
-- <strong>Texmaker + MiKTex</strong>: Traditioanl desktop setup.
-- <strong>VSCode + Latex Workshop + Tinytex</strong>: Modern desktop setup. The main advantage is that VSCode has the best Copilot support from all the editors, which is a huge time saver.</p>
+<p>So far we have three LaTeX toolchains that has proven to work well:</p>
+<ul>
+<li><strong>Overleaf</strong>: Cloud tool that is stable and very good for collaboration. </li>
+<li><strong>Texmaker + MiKTex</strong>: Traditional desktop setup.</li>
+<li><strong>VSCode + Latex Workshop + MikTeX/Tinytex</strong>: Modern desktop setup. The main advantage is that VSCode has the best Copilot support from all the editors, which is a huge time saver.</li>
+</ul>
 <h1 id="vscode-latex-workshop-miktextinytex">VSCode + Latex Workshop + MikTeX/Tinytex<a class="headerlink" href="#vscode-latex-workshop-miktextinytex" title="Permanent link">&para;</a></h1>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>The installation of VSCode and <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">Latex Workshop</a> (VSCode extension) is straightforward, so we cover only the installation of MikTeX/<a href="https://github.com/rstudio/tinytex">Tinytex</a> here.</p>
 <h3 id="miktex">MikTeX<a class="headerlink" href="#miktex" title="Permanent link">&para;</a></h3>
-<p>The installation of MikTeX is straightforward. After the installation, do not forget to add the MikTeX bin dir to <code>PATH</code>.</p>
-<p>MikTeX installs all the required packages on the fly, so there is no need to install them manually. The only thing that we need to do manually is to install <a href="https://www.perl.org">Perl</a> which is needed for the <a href="https://mg.readthedocs.io/latexmk.html">latexmk</a> tool.</p>
-<p>There are two Perl distributions for Windows: <a href="https://www.activestate.com/products/perl/">ActivePerl</a> and <a href="https://strawberryperl.com">Strawberry Perl</a>. This LaTeX toolchain has been only tested with Strawberry Perl.</p>
-<p>The installation of Strawberry Perl is straightforward: there is an executable installer, and the <code>PATH</code> variable is set automatically.</p>
+<p>The installation of MikTeX is straightforward. MikTeX installs all the required packages on the fly, so there is no need to install them manually. </p>
+<p>The only thing that we need to do manually is to install <a href="https://www.perl.org">Perl</a> which is needed for the <a href="https://mg.readthedocs.io/latexmk.html">latexmk</a> tool. There are two Perl distributions for Windows: <a href="https://www.activestate.com/products/perl/">ActivePerl</a> and <a href="https://strawberryperl.com">Strawberry Perl</a>. This LaTeX toolchain has been only tested with Strawberry Perl. The installation of Strawberry Perl is straightforward: there is an executable installer. Do not forget to add it to the <code>PATH</code> variable.</p>
+<p>Do not forget to restart VSCode after the installation of MikTeX and Perl.</p>
 <h3 id="tinytex">Tinytex<a class="headerlink" href="#tinytex" title="Permanent link">&para;</a></h3>
 <p><a href="https://yihui.org/tinytex/#installation">Official installation guide</a></p>
 <ol>

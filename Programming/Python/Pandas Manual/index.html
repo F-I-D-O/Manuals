@@ -244,6 +244,9 @@
                                 </ul>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
                             </li>
                             <li class="navitem">
@@ -263,6 +266,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
 
@@ -439,6 +445,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="4"><a href="#handeling-the-too-many-indexers-error" class="nav-link">Handeling the too many indexers error</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#using-xs" class="nav-link">Using xs</a>
@@ -488,6 +498,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#creating-index-from-scratch" class="nav-link">Creating index from scratch</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
@@ -525,6 +539,15 @@
             
             <li class="nav-item" data-level="1"><a href="#appending-one-dataframe-to-another" class="nav-link">Appending one dataframe to another</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -590,6 +613,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#to_datetime" class="nav-link">to_datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#squeeze" class="nav-link">squeeze</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -777,7 +804,9 @@ sel['a'] =  ... # we possibly edit a temporary!
 </code></pre>
 <p>For more, see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy">dovumentation</a>.</p>
 <h2 id="iloc"><code>iloc</code><a class="headerlink" href="#iloc" title="Permanent link">&para;</a></h2>
-<p>The <code>iloc</code> method works similarly to the <code>loc</code> method, but it uses the position instead of the label.</p>
+<p>The <code>iloc</code> method works similarly to the <code>loc</code> method, but it uses the position instead of the label. To select more values, we can use the slice syntax</p>
+<pre><code class="language-Python">df.iloc[&lt;start position&gt;:&lt;end position&gt;:&lt;step&gt;,&lt;collumn slicing...&gt;]
+</code></pre>
 <p>Be aware that <strong>if the <code>iloc</code> operator selects by single value (e.g.: <code>df.iloc[3]</code>), it returns the single row as series</strong>. To get a dataframe slice, we need to use a list of values (e.g.: <code>df.iloc[[3]]</code>).</p>
 <h2 id="selecting-all-columns-but-one">Selecting all columns but one<a class="headerlink" href="#selecting-all-columns-but-one" title="Permanent link">&para;</a></h2>
 <p>If we do not mind copying the dataframe, we can use the <code>drop</code> function. </p>
@@ -808,6 +837,12 @@ sel['a'] =  ... # we possibly edit a temporary!
 <pre><code class="language-python">idx = pd.IndexSlice
 dft.loc[idx[:, 15:30], ...]
 </code></pre>
+<h4 id="handeling-the-too-many-indexers-error">Handeling the <code>too many indexers</code> error<a class="headerlink" href="#handeling-the-too-many-indexers-error" title="Permanent link">&para;</a></h4>
+<p>Sometimes, when using the <code>loc</code> method, the selection can fail with the <code>too many indexers</code> error, because it is ambiguous whether we select by rows or by columns. In that case, we can either<br />
+- use the <code>axis</code> parameter to specify the axis to select from:
+    <code>python
+    df.loc(axis=0)[&lt;row selection&gt;]</code>
+- or use the IndexSlice instead.</p>
 <h3 id="using-xs">Using <code>xs</code><a class="headerlink" href="#using-xs" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a> function can be used to select from a multi-index dataframe. However, slices (ranges) are not supported. Example:</p>
 <pre><code class="language-python">df.xs(15, level=1) # selects all rows with level 1 equal to 15
@@ -862,6 +897,7 @@ s.name = '&lt;new name&gt;'
 </code></pre>
 <p>Important parameters:
 - <code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</p>
+<h3 id="creating-index-from-scratch">Creating index from scratch<a class="headerlink" href="#creating-index-from-scratch" title="Permanent link">&para;</a></h3>
 <p>To create more complicated indices, dedicated functions can be used:
 - <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</p>
 <h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
@@ -872,22 +908,26 @@ s.name = '&lt;new name&gt;'
 sel = group[&lt;columns&gt;] # we can select only some columns from the groupby object
 agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the selected columns
 </code></pre>
-<p>we can skip the <code>sel</code> step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.</p>
-<p>For the aggregate function, we can use one of the prepared aggregation functions, for example:
-- <code>sum</code>
-- <code>mean</code>
-- <code>median</code>
-- <code>min</code>
-- <code>max</code>
-- <code>count</code>
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html"><code>cumsum</code></a>: cumulative sum</p>
-<p>Full example (sum):</p>
+<p>We can skip the <code>sel</code> step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.</p>
+<p>ull example (sum):</p>
 <pre><code class="language-Python">df.groupby('col').sum()
 </code></pre>
 <p>Sums the results for each group (column by column)</p>
 <p>To get a count, we can call the <code>size</code> function:</p>
 <pre><code class="language-Python">df.groupby('col').size()
 </code></pre>
+<p>Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the <strong>aggregation does not have to actually aggregate the data, it can also transform it</strong>.</p>
+<p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
+- <code>sum</code>
+- <code>mean</code>
+- <code>median</code>
+- <code>min</code>
+- <code>max</code>
+- <code>count</code></p>
+<p>Transformation functions (value for each row):
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html"><code>cumsum</code></a>: cumulative sum
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html"><code>diff</code></a>: difference between the current and the previous row.
+    - the <code>periods</code> parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the <code>abs</code> function to get the absolute value.</p>
 <h2 id="custom-aggegate-function">Custom aggegate function<a class="headerlink" href="#custom-aggegate-function" title="Permanent link">&para;</a></h2>
 <p>Also, there are more general aggregate functions:
 -  <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that is usefull for applying different functions for different columns and
@@ -951,6 +991,11 @@ df.resample('1H').sum()
 <p>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function for that:</p>
 <pre><code class="language-python">pd.concat([df1, df2])
 </code></pre>
+<h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
+<h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
+<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
+- <code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.
+- <code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </p>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">csv<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
 <p>For reading csv files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function. Important params:
@@ -1064,6 +1109,8 @@ Important parameters:
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html"><code>to_datetime</code></a> function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
 - <code>unit</code>: the unit of the input, e.g., <code>s</code> for seconds.
 - <code>origin</code>: the origin of the input, e.g., <code>unix</code> for unix timestamps. It can be also any specific <code>datetime</code> object.</p>
+<h2 id="squeeze"><code>squeeze</code><a class="headerlink" href="#squeeze" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.squeeze.html"><code>squeeze</code></a> function removes the unnecessary dimension from a dataframe or series. It is usefull when we want to convert a dataframe with a single column to a series, or a series with a single value to a scalar.</p>
 <h1 id="geopandas">Geopandas<a class="headerlink" href="#geopandas" title="Permanent link">&para;</a></h1>
 <p>Geopandas is a GIS addon to pandas, an equivalent to PostGIS. Unfortunately, <strong>it currently supports only one geometry column per table.</strong></p>
 <p><strong>Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!</strong> Use the <code>to_wkt</code> function instead.</p>
