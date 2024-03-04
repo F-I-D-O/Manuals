@@ -54,7 +54,7 @@ To enable the variable even if you use `sudo`, you need to edit sudo config usin
 3.  logout and login again to load the new added varibales
 
 ## Enable the Variable Outside Bash
-If you need the variable outside bash, the above-mentioned approach won’t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for [PAM shells](https://en.wikipedia.org/wiki/Linux_PAM)  (see [this SO answer](https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible) why).
+If you need the variable outside bash, the above-mentioned approach wonâ€™t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for [PAM shells](https://en.wikipedia.org/wiki/Linux_PAM)  (see [this SO answer](https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible) why).
 
 Add the variable to `/etc/environment`. Note that it is not a script file, so you can use only simple variable assignments.
 
@@ -133,175 +133,6 @@ To find files, use the `find` command: `find <where> <options> <params>`. The mo
 The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:
 - `-n`: do not translate IP and ports into human readable names
 - `-a`: show all connections. Without this, some connections can be skipped.
-
-# SSH
-The SSH is a protocol for secure communication between two computers. The basic usage is to connect to a remote computer:
-```bash
-ssh <username>@<address>
-```
-
-To close the connection, type `exit` to the console and press enter.
-
-If we do not want to establish a connection, but just run a single command, we can add the command at the end of the ssh command:
-```bash
-ssh <username>@<address> <command>
-```
-
-
-## SSH Tunneling
-An SSH tunnel can be created by the `ssh` command. The usuall syntax is following:
-```bash
-ssh -L <local port>:<remote machine>:<remote port> <ssh server username>@<ssh server address>
-```
-
-The `-L` argument stands for *local port forwarding*, i.e., we forward a local port to some remote port.
-
-Example:
-```bash
-ssh -L 1111:localhost:5432 fiedler@its.fel.cvut.cz
-```
-The *local port* (here `1111`) is arbitrary, we can use any free port. The aplications using the tunnel should then be configured as:
-- host=`localhost`
-- port:=`1111`
-
-The *remote machine* is the address of the machine we want to access relative to the *ssh server*. If the ssh server is running on the computer we want to access through the tunnel, we can use `localhost`. Analogously, the *remote port* is the port we wan to use on the remote machine (here `5432` is a PostgreSQL db port).
-
-The `ssh server username` and `ssh server address` are then the username/address of the remote machine. On top of that, we need  password or priveta key to validate our identity. Note that the credential here are the credential for the server, not the credentials of the service we are accessing through the ssh connection. Those credentials has to be usually supplied by the application accessing the service through the ssh tunnel.
-
-The connection can be canceled any time byping `exit` to the console.
-
-[More information](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
-
-### Debugging a SSH tunnel
-This guide suppose that the tunnel creation comman run without any error message.
-1. If the tunnel seems to not work, first use a command line tool to be sure:
-	- web browser for HTTP tunnels (remote port 80)
-	- `psql` for postgeSQL tunnels (remote port 5432)
-	- `telnet` for telnet tunnels (reote port 23)
-2. If the test is unsucessful, try to kill all ssh connections to the server by shutting down all applications with ssh connections tunnels, untill there will be only one connection at the server (the console). The number of ssh connections can be checked with: `sudo netstat -nap | grep :22`
-
-
-## Enabnling SSH Access on Server
-1.  install openssh:
-	- `sudo apt update`
-    - `sudo apt install openssh-server`
-2.  configure access
-	- password:
-		1.  open `/etc/ssh/sshd_config`
-		2.  set `PasswordAuothentication yes`
-		3.  after restrat you can log in with the user and password used in Ubuntu
-	- keys: TODO
-3. restart the ssh server: `sudo service ssh restart`
-
-###  WSL configuration
-1. port `22` can be used on Windows, so change the port to `2222` in `sshd_config`
-2. when loging from Windows use `127.0.0.1` as a host
-
-### Debugging
-1n from now e  as a t euin.  check the ssh status with: `s th service ssh status`
-2.  check the ssh porot with `sudso netstat t-tpln`
-
-
-## SSH Agent
-Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.
-
-An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is `ssh-agent`, the rest of the section is dedicated to this agent.
-
-To successfully use the agent, we need to:
-1.  start the agent, either manually or automatically on OS startup
-2.  add the keys to the agent (only once)
-
-### Starting the agent
-The agent can be started manually by running:
-```bash
-eval `ssh-agent`
-```
-We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the `ssh-agent` prints the necessary commands to the console. By using eval, the `ssh-agent` is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.
-
-### Listing keys
-To list the keys stored in the agent, run:
-```bash
-ssh-add -l
-```
-
-### Adding keys
-To add a key to the agent, run:
-```bash
-ssh-add <path to key>
-```
-
-### Debuging
-If the agent is running and the key is listed, the first thing to try is to connect via ssh to see whether it is an agent/ssh issue or an issue of the program using the SSH (like git, IDE, file manager...)
-
-
-## Configuration
-For configuration, we can use the `git config` command. There are three levels of configuration:
-- *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
-- *global*: the configuration is applied to all repositories of the current user. This configuration is set by the `--global` parameter.
-- *local*: the configuration is applied only to the current repository. This configuration is set by the `--local` parameter.
-
-To list the configuration, use the `-l`/`--list` parameter of the `git config` command. To list the configuration for a specific level, use the `--system`, `--global`, `--local` parameters.
-
-
-To see the default value of a configuration, search in the [git config documentation](https://git-scm.com/docs/git-config#_variables).
-
-
-## `known_hosts` file
-To know that a connection leads to the desired server and not to some impersonator, the server sends its public key to the client. The client then checks the public key against the list of keys previously set as valid. This list is stored in the `.ssh/known_hosts` file. The format of the file is:
-```
-<server address> <key type> <key>
-```
-Each line contains one server record. What is confusing here is that each server can have multiple records, due to:
-- different key type (e.g., RSA, ECDSA)
-- key for both host name and IP address (e.g., `github.com` and `140.82.121.3`)
-It is important to delete/updete all of these recorsds in case the server change its keys.
-
-More info is at this [SO answer](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh/20710#20710).
-
-
-## Screen: executing a long running process over SSH 
-When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
-
-A typical workflow can look like this:
-1. execute `screen` to start the screen session
-2. run the long running command
-3. disconnect
-4. connect to the server again
-5. run `screen -r` to recconect to the session and see the results of the command.
-1. after the command is finished, exit the screen session with `exit`
-
-Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
-6. `screen -ls`
-7. read the ID from the output and exec `screen -rd <ID>`
-
-
-## Copying files over SSH using `scp`
-The `scp` command is used to copy files over SSH. The syntax is:
-```bash
-scp <source> <destination>
-```
-The `<source>` and `<destination>` can be either local or remote. The remote files are specified using the `<username>@<address>:<path>` syntax. 
-
-Note that **if the remote path contains spaces, double quoting is necessary**, one for local and one for remote:
-```bash
-scp <source> "<username>@<address>:'<path with spaces>'"
-```
-
-
-### Problems
-- `protocol error: filename does not match request`: This error is triggered if the path contains unexpected characters. Sometimes, it can be triggered even for correct path, if the local console does not match the remote console. In that case, the solution is to use the `-T` parameter to disable the security check.
-
-
-
-## WSL configuration
-1.  port `22` can be used on Windows, so change port to `2222` in `sshd_config`
-2.  when loging from Windows use `127.0.0.1` as a host
-
-
-## Debugging
-1.  check the ssh status with: `service ssh status`
-2.  check the ssh port with `sudo netstat -tpln`
-
 
 
 
@@ -583,6 +414,56 @@ set -e
 ```
 
 
+## Calling a script from another script in the same directory
+To call a script *b* from script *a* in the same directory, it is not wise to use the relative path, it is evaluated from the current directory, not from the directory of the script. To be sure that we can call script *a* from anywhere, we need to change the working directory to the directory of the scripts first:
+```bash
+cd "$(dirname "$0")"
+./B.sh
+```
+
+
+# Root Access
+Some commands require root privilages. The basic way how to run a command as root, we can use the `sudo` command:
+```bash
+sudo <command>
+```
+A password of the current user is required to run the command. Also, the user has have the right to run `sudo`.
+
+The password is usually required only once per some time period (e.g., 15 minutes). 
+
+For some operations (e.g., browsing folders requiring root access), we have to run multiple commands as root. In this case, we have to switch the shell user to root. 
+
+Resources:
+- [SO](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386)
+
+## Changing shell user
+To change the shell user, we can use the `su` command:
+```bash
+su <username>
+```
+If we omit the username, the root user is used. Note that the **password of the target user is required**. To change the shell user without the password of the target user, we can use the `sudo` command:
+```bash
+sudo su <username>
+```
+This way, the password of the current user is required.
+
+The `su` command can be used the same way as the `sudo` command, i.e., we can pass the command:
+```bash
+su <username> -c "<command>"
+```
+
+To **exit** the shell user, we can use the `exit` command.
+
+
+### Changing shell user in a script
+In a script, we cannot change the shell user for the remaining commands in the script. If we do that, the script will execute a new shell, and the remaining commands will be executed in the old shell. 
+
+To execute commands as a different user, we have several options. Every option pass the commands as a parameter to the change user command (e.g., `su -c "<command>"`). The options are:
+1. for each command, create a new change user command 
+2. create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)
+3. move commands to a separate script and execute the script as a different user
+
+
 # Managing packages with `apt` and `dpkg`
 To **update the list** of possible updates:
 ```bash
@@ -594,14 +475,27 @@ To perform the **update**:
 sudo apt upgrade
 ```
 
-To find the location of an **installed package**:
+To **list installed** packages:
+```bash
+apt list --installed
+```
+We can filter the list using the `grep` command.
+
+To **find the install location** of a package:
 ```bash
 dpkg -L <package>
 ```
+Unfortunately, it is not possible to easily search for the user who installed the package.
 
 To **search** for a package:
 ```bash
 apt-cache search <package>
+```
+We can limit the search to check only names of the packages using the `--names-only` parameter.
+
+To **remove** a package:
+```bash
+sudo apt remove <package>
 ```
 
 
@@ -705,7 +599,8 @@ The `<action>` can be a sequence of commands, separated by `;`. We can use colum
 
 
 # Processes
-- for checking all processes, we can use `htop`
+- for checking **all processes**, we can use `htop`
+- to get a **path to executable** of a process by PID, we can use `pwdx <PID>`
 - for checking a specific process, we can use `ps`
 - to kill a process, we can use `kill`
 - to kill a process by name, we can use `pkill`
@@ -757,6 +652,72 @@ To remove a user from a group, we can use the same command:
 usermod -G <group list> <username>
 ```
 where `<group list>` is a comma separated list of groups the user should belong to.
+
+
+
+
+## File ownership
+Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
+- *owner*: the user owner
+- *group*: the group owner
+- *other*: all other users
+
+To change the owner of a file, we can use the `chown` command. The syntax is:
+```bash
+chown <user>:<group> <file>
+```
+We can skip the `:<group>` part, in which case the group is not changed.
+
+The `chown` command can also be used to change the owner of a directory. In this case, the `-R` parameter is used to change the owner recursively.
+
+
+
+
+
+## Disable access to shell for a user
+To disable access to shell for a user, we have to configure his/her shell to `/usr/sbin/nologin` or similar. 
+
+- For new users, we can use the `--shell` parameter of the `adduser` command.
+- For existing users, we can use the `usermod` command:
+```bash
+usermod --shell /usr/sbin/nologin <username>
+```
+
+
+Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the `-N` parameter, which tells the client not to execute any command after login.
+
+
+# Managing services with systemd
+The [systemd](https://en.wikipedia.org/wiki/Systemd) is a system and service manager for Linux. It is used to manage services, devices, and other aspects of the system. 
+
+The main command to manage services is `systemctl`. The general syntax is:
+```bash
+sudo systemctl <action> <service name>
+```
+The most used actions are:
+- `start`: start the service
+- `stop`: stop the service
+- `restart`: restart the service
+- `status`: get the status of the service
+- `reload`: reload the configuration of the service
+
+
+## Get the status of a service
+To get the status of a service, we can use the `status` action:
+```bash
+sudo systemctl status <service name>
+```
+The statuses can be:
+- `active (running)`: the service is running
+- `active (exited)`: the service has finished
+- `active (waiting)`: the service is not running, but it is waiting for some event
+- TODO: add more statuses
+
+## Listing services
+To list all services, we can use one of the following commands:
+- `list-units` to list all units ever run on the server or
+- `list-units-files` to list all units, including the ones that have never been run
+
 
 
 # Installing Java
@@ -831,3 +792,37 @@ ls | xargs rm # remove all files in the current directory
 2. shutdown WSL: `wsl --shutdown`
 3. backup the distro: `wsl --export <disto name> <backup folder path>/<backup name>.tar`
 
+
+
+# vim
+Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:
+- **normal mode**: for navigation and file manipulation
+- **insert mode**: for text editing
+- **visual mode**: for text selection
+
+## Normal Mode
+In normal mode, we can:
+- navigate the file using arrow keys or `hjkl` (left, down, up, right)
+- enter global commands using `:` (e.g., `:q` for quit)
+- edit file content using special commands (e.g., `dd` for delete line)
+
+### Global Commands
+- `:q`: quit
+- `:w`: save
+- `:wq`: save and quit
+- `:q!`: quit without saving
+
+### File Editing Commands
+- `dd`: delete line
+
+## Insert Mode
+Insert mode is the normal text mode we know from other editors. To enter insert mode, press `i`. To exit insert mode, press `esc`.
+
+## Visual Mode
+Visual mode is used for text selection. To enter visual mode, press `v`. To exit visual mode, press `esc`.
+
+
+## Copy text to cliboard
+Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:
+1. select the text using mouse or keyboard
+2. press enter to copy the text to the clipboard

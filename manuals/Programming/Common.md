@@ -17,7 +17,9 @@
 - **Surround with**: `Ctrl` + `W`
 
 
-# Testing private methods
+# Tests
+
+## Testing private methods
 An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.
 
 The possible approaches are:
@@ -43,3 +45,8 @@ Comparison:
 | --- | --- | --- | --- | --- |
 | Sets | *O(log n)* (both contains and add) | *O(1)* (both contains and add) | *O(n)* | *O(1)* |
 | Sorting | *O(n log n)* (sorting) | *O(n log n)* (sorting) + *O(n)* (duplicates check) | *0* or *O(n)* if we need to left the source collection unsorted | *0* or *O(1)* in case of new collection |
+
+
+# IntelliJ Config
+## Compact tabs
+- **Settings** -> **Appearance & Behavior** -> **New UI** and select `Compact mode`

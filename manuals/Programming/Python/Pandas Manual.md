@@ -156,6 +156,7 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 ## Useful filter functions
 - non null/nan values: `<column selection>.notnull()`
 - filtring using the string value: `<column selection>.str.<string function>`
+- filtering dates: `<column selection>.dt.<date function>`
 
 
 
@@ -328,10 +329,6 @@ s.name = '<new name>'
 
 
 
-
-
-
-
 # Working with the index
 Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index. 
 
@@ -365,6 +362,15 @@ Important parameters:
 
 
 ### Creating index from scratch
+To create an index from scratch, we just assign the index to the dataframe `index` property:
+```python
+df.index = pd.Index([1, 2, 3, 4, 5])
+```
+We can also assign a range directly to the index:
+```python
+df.index = range(5)
+```
+
 To create more complicated indices, dedicated functions can be used:
 - [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables
 
@@ -383,7 +389,7 @@ agg = sel.<aggregation function> # we apply an aggregation function to the selec
 
 We can skip the `sel` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
 
-ull example (sum):
+Example (sum):
 ```Python
 df.groupby('col').sum()
 ```
@@ -396,6 +402,11 @@ df.groupby('col').size()
 
 Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the **aggregation does not have to actually aggregate the data, it can also transform it**.
 
+in the groupby object, the columns used for grouping are omitted. To keep them, we can use the `group_keys` parameter of the `groupby` function.
+
+
+
+## Aggregate functions
 For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
 - `sum`
 - `mean`
@@ -413,16 +424,17 @@ Transformation functions (value for each row):
 ## Custom aggegate function
 Also, there are more general aggregate functions:
 -  [`agg`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html) function that is usefull for applying different functions for different columns and
-- [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html) function that is usefull for applying a function to the whole dataframe.
+- [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html): the most flexible function that can be used for custom aggregation and transformation operations.
 
-The difference between `agg` and `apply` is summarized in the following table:
+These two functions have different interfaces for the custom aggregation functions they call. These are summarized in the following table:
 
 property | agg | apply |
 | --- | --- | --- |
-| applied to | each specified column | whole dataframe |
-| output | dataframe | series |
+| can just transform the data | no | yes |
+| can use data from one column in another column | no | yes |
+| applied to | each specified column | the whole dataframe representing single group |
+| output | dataframe | scalar, series, or dataframe |
 | can use multiple aggregate functions | yes | no |
-| can be applied to dataframe | no | yes |
 
 
 ### `agg`
@@ -432,9 +444,12 @@ df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
 ```
 
 ### `apply`
-The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html) function takes a custom function as an argument. That custom aggregation function:
+The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html) function takes a custom function as an argument. That custom aggregation function:
 - takes a DataFrame/Series (depending on the source object) as the first argument
+    - this dataframe/series contains the data for the group (all columns)
 - returns a Series, DataFrame, or a scalar
+    - when a scalar is returned, the result is a series with the scalar value for each group
+    - we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.
 
 The process works as follows:
 1. The dataframe is split into groups according to the `groupby` function.
@@ -460,6 +475,23 @@ df.resample('1H').sum().ffill()
 
 
 # Joins
+Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:
+- [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html): the most general function that has the behavior known from SQL
+- [`join`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html): a more specialized function, 
+
+The following table lists the most important differences between the two functions:
+
+property | merge | join |
+| --- | --- | --- |
+| default join type | inner | left |
+| join right table via | column (default) or index (`right_index=True`) | index |
+| join left table via | column (default) or index (`left_index=True`) | index, or column (`on=key_or_keys`) |
+
+There is also a static [`pd.merge`](https://pandas.pydata.org/docs/reference/api/pandas.merge.html) function. All `merge` and `join` methods are just wrappers around this function.
+
+The indexes are lost after the join (if not used for the join). To keep an index, we can store it as a column before the join.
+
+
 
 
 # Appending one dataframe to another
@@ -492,6 +524,17 @@ For export, we can use the `to_csv` method for that:
 df.to_csv(<file name> [, <other params>])
 ```
 
+
+## Json
+For exporting to json, we can use the [`to_json`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html) function. 
+
+By default, the data are exported as a list of columns. To export the data as a list of rows, we can use the `orient` parameter:
+```python
+df.to_json(<file name>, orient='records')
+```
+
+Other important parameters:
+- `indent`: the number of spaces to use for indentation
 
 
 ## Insert dataframe into db

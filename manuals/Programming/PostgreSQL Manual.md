@@ -458,6 +458,7 @@ psql -d <db name> -c "CREATE DATABASE <db name>" -c "<other command>"
 Other useful parameters:
 - `-X`: do not read the `~/.psqlrc` file. This is useful when debuging the `psql` commands or running scripts, as it disables any customizations.
 - `-U <user name>`: connect as a different user. If not specified, the current user is used.
+- `-p`<port number>: specify the port number.  (default is 5432)
 
 
 ## meta-commands
@@ -480,15 +481,6 @@ When we want to combine a meta-command with an SQL query, we need to use some of
 	```bash
 	echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata
 	```
-
-
-## Listing databases
-To list all databases, we can use the `-l` parameter:
-```bash
-psql -l
-```
-
-To get more information about the databases, we can use the `\l+` meta-command.
 
 # Importing data
 A simple SQL data (database dump) can be imported using the `psql` command:
@@ -612,12 +604,35 @@ echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH 
 
 
 # Table and database statistics
-To show the size a table, run:
+To show the **table size**, run:
 ```PostgreSQL
 SELECT pg_size_pretty(pg_total_relation_size('<table name>'));
 ```
 
-# Managing the database
+To show the **version** of the PostgreSQL server, run:
+```PostgreSQL
+SELECT version();
+```
+
+To list all **extensions** for a database, run:
+```PostgreSQL
+psql -d <db name> -c "\dx"
+```
+
+
+## Listing databases
+To list all databases, we can use the `-l` parameter:
+```bash
+psql -l
+```
+
+To get more information about the databases, we can use the `\l+` meta-command.
+
+
+
+# Managing the database clusters
+As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.
+
 
 ## Creating new user
 For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
@@ -637,7 +652,50 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user name>;
 ```
 
 
-## Lost Password to the Postgres Server
+## Upgrading the database cluster
+With PostgreSQL version 9.3 and later, we can upgrade easily even between major versions using the [`pg_upgrade`](https://www.postgresql.org/docs/current/pgupgrade.html) command. We can even skip versions, e.g., upgrade from 12 to 16. 
+
+The process is described in the pg_upgrade manual, however, usually, most of the steps are not necessary as they apply only to very specific cases. On top of that, some aspects important for the upgrade are not mentioned in the manual.
+
+The steps for a typical ubuntu/debian installation are:
+1. stop the new cluster using `systemctl stop postgresql@<version>-main`
+2. run the `pg_upgrade` command with `--check` to check the compatibility
+3. stop the old cluster using `systemctl stop postgresql`
+4. run the `pg_upgrade` command without `--check` to perform the upgrade
+5. apply all actions recommended by the `pg_upgrade` output
+1. change the `port` in the `/etc/postgresql/<version>/main/postgresql.conf` file of the new cluster to the original port (usually 5432)
+6. start the new cluster using `systemctl start postgresql@<version>-main` an check if the connection works
+
+The standard `pg_upgrade` command looks like this:
+```bash
+sudo -u postgres pg_upgrade --link -j <number of cores> -b <old bin dir> -d <old data dir> -D <new data dir> -o 'config_file=<old conf file>' -O 'config_file=<new conf file>'
+```
+Description:
+- `--link`: links the old data directory to the new one instead of copying the data. Fastest migration method.
+- `<old bin dir>`: The `bin` directory of the old cluster.
+	- usually `/usr/lib/postgresql/<old version>/bin`
+- `<old/new data dir>`: The `data` directory of the cluster.
+	- usually `/var/lib/postgresql/<old/new version>/main`.
+	- Can be found using `pg_lsclusters`
+- `<old/new conf file>`: The path to the `postgresql.conf` file.
+	- usually `/etc/postgresql/<old/new version>/main/postgresql.conf`
+
+## Upgrading extensions
+Some PostgreSQL extensions uses separate libraries. These are installed fro each version of the PostgreSQL server separately. If a library is not foun on the new cluster, it is detected by the `pg_upgrade` command automaticly. In that case, you have to install the library according to the instructions of the library provider.
+
+
+## Managing access to the database
+To manage access to the database, we can use the `pg_hba.conf` file. 
+
+This file is located in the `data` directory of the PostgreSQL installation. Unfortunately, the location of the `data` directory is not standardized, and the variants are many. However, there is a remedy, just execute the following SQL command:
+```SQL
+SHOW hba_file
+```
+
+[Documentation](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html)
+
+
+### Lost Password to the Postgres Server
 The password for the db superuser is stored in db `postgres`. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
 1. find the `pg_hba.conf file` 
 	- usually located in `C:\Program Files\PostgreSQL\13\data`
@@ -650,6 +708,12 @@ The password for the db superuser is stored in db `postgres`. In order to log th
 5. restore the `pg_hba.conf` file from backup
 6. restart the postgreSQL service again
 7. test if the new password works
+
+
+## Garbage collection and optimization
+There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.  
+
+
 
 # DataGrip
 ## Import Formats

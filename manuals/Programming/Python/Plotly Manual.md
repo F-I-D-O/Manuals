@@ -291,6 +291,7 @@ Another thing we usually want to customize are the ticks. Important tick paramet
 Other important parameters are:
 - `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
 - `linecolor`: the color of the axis line
+- `gridcolor`: the color of the grid lines
 - `mirror`: if `True`, the axis line will be mirrored to the other side of the plot
 
 ### Drawing borders using axes

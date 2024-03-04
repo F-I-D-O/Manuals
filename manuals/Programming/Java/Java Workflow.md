@@ -50,6 +50,11 @@ If there is a serious problem, one way to solve it can be to delete the Netbeans
 
 # Idea
 ## Configuration
+Configuration is done in `File` -> `Settings`. 
+
+A lot of configuration we do in Idea Settings only applies to the current project. Therefore, it is a good idea to check whether the settings is not present in the template for new projects, so that we do not have to set it up for every new project. The settings template is located in `File` -> `New Project Setup`. 
+
+
 ### Settings synchronization
 1. Log in into JetBrains Toolbox or to the App
 1. Click on the gear icon on the top-right and choose Sync
@@ -58,7 +63,14 @@ If there is a serious problem, one way to solve it can be to delete the Netbeans
 
 [More on Jetbrains](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html)
 
-## Project configuration
+
+### Maven configuration
+By default, Idea uses the bundled Maven, which is almost never desired. It is best to swich to the system Maven, which we should done in:
+- `File` -> `Settings` -> `Build, Execution, Deployment` -> `Build Tools` -> `Maven` -> `Maven home directory` for existing projects
+- `File` -> `New Project Setup` -> `Maven` -> `Maven home directory` for new projects
+
+
+### JDK configuration
 The correct JDK has to be set up in various places:
 - compielr has to be at least target jdk, set it in: `File` -> `Settings` -> `Build, Execution, Deployment` -> `Compiler` -> `Java Compiler` -> `Project bytecode version` and `Per-module bytecode version`
 - language level should be the same as target jdk: `File` -> `Project Structure...` -> `Modules` -> `Language Level`
@@ -68,7 +80,15 @@ The correct JDK has to be set up in various places:
 Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:
 
 
+## Developing the whole project stack at once
+If we are developing a whole stack of projects at once, it is best if we can navigate between them easily. However, it is not possible to open multiple projects in the same window in Idea (like in Netbeans). Instead, we need to open the project on the top of the stack and then add the other projects as modules. To add a module, click `File` -> `Project Structure` -> `Modules` and add the module.
 
+
+## Running Maven Goals
+To run a maven goal:
+1. Open the `Maven` tab on the right
+1. Right click on the goal 
+1. Choose `Run` or `Debug`
 
 
 # Set Java version for project
@@ -124,6 +144,10 @@ The old way is to use separate properties:
 For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: 
 1. Right click on project -> `Properties` -> `Sources`
 2. In the bottom, change the `Source/Binary Format`
+
+
+## Setting Java version in IDEA
+In idea, an extra step is sometimes necessary: to set the Java Language Level in the project settings: `File` -> `Project Structure...` -> `Modules` -> `Language Level`. The language level has to be lower or equal to the target version set in the maven configuration.
 
 
 ## Setting Java version used for executing Maven

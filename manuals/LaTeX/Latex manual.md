@@ -38,6 +38,29 @@ However, if there are many authors with shared affiliations, this approach is un
 \affil[2]{Affiliation 2}
 ```
 
+
+### Keywords
+Keywords are not part of the standard article class. If we need to include them when using the standard article class, we can provide the command ourselves. Example:
+```latex
+\providecommand{\keywords}[1]{\textbf{\textit{Index terms---}} #1}
+...
+\keywords{keyword1, keyword2, ...}
+```
+
+
+
+## Appendices
+Appendicies are started with the command `appendix`. Then, each chapter started with the `\chapter` command is considered an appendix. 
+
+
+## Book class structuring
+Appart from sections and chapters, the book class also supports top level parts for marking special areas of the document. The parts are:
+- `\frontmatter`: the front matter of the document, i.e., the title page, abstract, table of contents, etc. The page numbering is in roman numerals.
+- `\mainmatter`: the main matter of the document, i.e., the main content. The page numbering is in arabic numerals, and the page numbering is reset to 1.
+- `\backmatter`: the back matter of the document, i.e., the bibliography, appendices, etc. The page numbering is in arabic numerals. Chapters are not numbered.
+
+
+
 # Escape characters
 LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:
 
@@ -54,7 +77,7 @@ LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, t
 - `\nobreakdash-`: non-breaking dash
 
 
-# Text formatting
+# Text and paragramph formatting
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Fonts)
 
 ## Fonts
@@ -70,7 +93,14 @@ Then compile the document. The font information will be printed in the log (e.g.
 ### Changing font size
 The default font size is `10pt`. To change the default font size, set the `documentclass` option `12pt` or `11pt` (other sizes are not avialable). See the [wiki](https://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes) for more information.
 
-
+The size can be also changed for a specific part of the document. We can use some [predefined sizes](https://en.wikibooks.org/wiki/LaTeX/Fonts#Sizing_text) e.g.:
+```latex
+Normal {\tiny tiny} normal
+```
+or we can use the `\fontsize` command to set arbitrary size. Example:
+```latex
+{\fontsize{<size>}{<line spacing>}\selectfont <text>}
+```
 
 ## Subscript and superscript
 In math mode, the subscript and superscript are created using the `_` and `^` characters. In text mode, we need to use a special commands: `\textsubscript` and `\textsuperscript`. Example:
@@ -78,6 +108,98 @@ In math mode, the subscript and superscript are created using the `_` and `^` ch
 H\textsubscript{2}O
 ```
 
+## Alignment
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment)
+
+By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
+- environments: `flushleft` for left alignment, `flushright` for right alignment, or
+- commands: `\raggedright` for **left** alignment, `\raggedleft` for **right** alignment.
+
+
+## Lists
+The list enviroments have the following syntax:
+```latex
+\begin{<list type>}
+    \item <item 1>
+    \item <item 2>
+    ...
+\end{<list type>}
+```
+
+The following list types are available:
+- `itemize`: bullet points
+- `enumerate`: numbered list
+- `description`: description list. Items can have a label, which is specified as an optional argument of the `\item` command. 
+
+More typoes of lists like questions or checklists can be created using external packages.
+
+
+## Units, numbers, and currency
+Units are usually typeset with a small space between the number and the unit. Normal space should be avoidedas it is too wide. Also, we sometimes want a special separator in large numbers. For these purposes, the best practice is to use the [`siunitx`](https://ctan.org/pkg/siunitx) package. 
+
+Eith `siunitx`, the units are typeset using the `\SI` command. Example:
+```latex
+\SI{10}{\meter}
+```
+
+The numbers should be typeset using the `\num` command. Example:
+```latex
+\num{1000000}
+```
+
+The currecnies that have the currency sign before the number are also typeset using the `\SI` command, but we need to use the optional argument for prefix:
+```latex
+\SI{10}[\$]{}
+```
+
+
+
+### Supported units
+- `\s`: second
+- `\km`: kilometer
+- `\km\per\hour`: kilometer per hour
+- `\percent`: percent
+
+
+
+# Boxes
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Boxes)
+
+Everythign in LaTeX is a box. Each character is a box, stored in a larger box for each word, and analogically for each line, paragraph, etc. Most of the time we just set properties for the boxes, but sometimes we need to create a box manually to format or position the content. The following table presents the most common box commands:
+
+| Command | paragraph | witdth | 
+| --- | --- | --- |
+| `\parbox` | single | fixed |
+| `\pbox` | single | flexible |
+| `\minipage` | multiple | fixed |
+
+The first two parameters are shared for these commands:
+- `pos`: the position of the box, e.g., `t` for top, `b` for bottom, `c` for center. **The position refers to the part of the box that is aligned with the surrounding text.**
+- `height`: the height of the box. 
+
+The `parbox` and `minipage` share another two parameters that follows:
+- `contentpos`: the position of the content inside the box, e.g., `t` for top, `b` for bottom, `c` for center. 
+- `width`: the width of the box.
+
+
+## Make a box wider than the text width
+To make a box wider than the text width, we can use the `\adjustwidth` command from the [`changepage`](https://ctan.org/pkg/changepage) package. Example:
+```latex
+\begin{adjustwidth}{-1cm}{-1cm}
+    ... content
+\end{adjustwidth}
+```
+The box above will be 1cm wider on each side than the text width.
+
+
+# Horizontal and vertical spacing
+Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. 
+
+To adjust the spacing in a single place, we can use the following commands:
+- `\hspace{<length>}`: horizontal space
+- `\vspace{<length>}`: vertical space
+
+Note that we can use negative values for the `<length>` parameter, so we can use these commands to relatively positioning.
 
 
 # Floats
@@ -96,6 +218,8 @@ Any float takes the position as a first argument. The following positions are av
 
 The placement algorithm then iterate pages starting from the page where the float is placed. For each page, it tries to find a place for the float according to the float specifiers (in the same order as they appear in the float position argument). In case of success, the procedure stops and place the float. If the procedure fails for all pages, the float is placed at the end. 
 
+Note that by specifying the float position, we only add constraints to the placement algorithm, but do not guarantee the placement. **By omitting the float position, we can accually make the float appear closer to the place where it is defined.**
+
 Sources:
 - [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures)
 - [Overleaf](https://www.overleaf.com/learn/latex/Positioning_images_and_tables#The_figure_environment)
@@ -108,6 +232,27 @@ The default placement differs between environments and also classes. For example
 The float environment for figures is `figure`. The image itself is included using the `\includegraphics` command. 
 
 The mandatory argument of the `\includegraphics` command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main `.tex` file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.
+
+
+### Subfigures
+For more images in one float, we can use the `subfigure` environment from the [`subcaption`](https://ctan.org/pkg/subcaption) package. The `subfigure` environment is used as follows:
+```latex
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{image1.png}
+        \caption{Image 1}
+        \label{fig:image1}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{image2.png}
+        \caption{Image 2}
+        \label{fig:image2}
+    \end{subfigure}
+    \caption{My figure}
+    \label{fig:my_figure}
+\end{figure}
+```
 
 
 ## Tables
@@ -163,7 +308,50 @@ As other tabular packages, there are some incompatibilities related to the `tabu
 - `tabular`: yes, the `talltblr` environment is incompatible with the default `tabular` environment. The solution is simple: replace all `tabular` environments with `tblr` environments.
 
 
-### Configure the space between columns
+### Styling
+
+#### Table grid (visual lines)
+Usually, tables contain some horizontal and vertical lines to separate the cells. Unfortunately, the way how to create these lines differs completely between horizontal and vertical lines.
+
+##### Horizontal lines
+For horizontal lines, we can:
+- use various commands to create a line in a specific row:
+    - `\hline`: creates a line in the current row
+- specify the lines outside the data with the `tabularray` package:
+    
+##### Specify the lines outside the data with the `tabularray` package
+The format is `hline{<list of rows>} = {<line style>}`. Example:
+```latex
+\begin{tblr}{
+    colspec={|c|c|c|},
+    hline{1,Z} = {1pt, solid},
+}
+...
+\end{tblr}
+```
+The `<list of rows>` can be specified as:
+- single row: `hline{1} = {1pt, solid}`
+- multiple rows: `hline{1,3,5} = {1pt, solid}`
+- range of rows: `hline{1-Z} = {1pt, solid}`
+
+Rows are numbered from 1. The `Z` character is used to specify the last row.
+
+
+#### Styling the specific rows or columns
+With the `tabularray` package, we can style the table header differently than the rest of the table. In fact, we can style each specific row or column differently. for that, we use the `row` and `column` keys. Example
+```latex
+\begin{tblr}{
+    colspec={|c|c|c|},
+    row{1} = {bg=gray9, fg=white},
+    column{1} = {bg=gray9, fg=white},
+}
+```
+
+The syntax is the same for both keys: `row{<row number>} = {<style>}`. For the `<row number>` specification, see the grid section. The `<style>` specification is a list of key-value pairs. The keys are the following:
+- `font`: the font style
+
+
+#### Configure the space between columns
 In most packages, the space between columns is configured using the `\tabcolsep` variable. Example:
 ```latex
 \setlength{\tabcolsep}{10pt}
@@ -179,6 +367,24 @@ However, in the `tblr` environment, the space between columns is configured usin
 }
 ```
 By default, the `leftsep` and `rightsep` are set to `6pt`.
+
+
+#### Define table styles with `tabularray` package
+The `tabularray` package provides a way to define table styles. First, we define the new environment with the `\NewTblrEnviron` command. Later, we use the `SetTblrInner` and `SetTblrOuter` commands to define the style. Example:
+```latex
+\NewTblrEnviron{mytblr}{
+    \SetTblrInner{rowsep=1pt}
+    \SetTblrOuter{hspan=minimal}
+}
+``` 
+
+#### Rotated text
+To rotate some text, we can use the `\rotatebox` command:
+```latex
+\rotatebox{90}{Rotated text}
+```
+
+
 
 
 ### Multirows and multicolumns
@@ -370,6 +576,35 @@ If the float is wider than the text width, it is not centered, but instead it is
 ```
 
 
+# Boxes
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Boxes)
+
+Everythign in LaTeX is a box. Each character is a box, stored in a larger box for each word, and analogically for each line, paragraph, etc. Most of the time we just set properties for the boxes, but sometimes we need to create a box manually to format or position the content. The following table presents the most common box commands:
+
+| Command | paragraph | witdth | 
+| --- | --- | --- |
+| `\parbox` | single | fixed |
+| `\pbox` | single | flexible |
+| `\minipage` | multiple | fixed |
+
+The first two parameters are shared for these commands:
+- `pos`: the position of the box, e.g., `t` for top, `b` for bottom, `c` for center. **The position refers to the part of the box that is aligned with the surrounding text.**
+- `height`: the height of the box. 
+
+The `parbox` and `minipage` share another two parameters that follows:
+- `contentpos`: the position of the content inside the box, e.g., `t` for top, `b` for bottom, `c` for center. 
+- `width`: the width of the box.
+
+
+## Make a box wider than the text width
+To make a box wider than the text width, we can use the `\adjustwidth` command from the [`changepage`](https://ctan.org/pkg/changepage) package. Example:
+```latex
+\begin{adjustwidth}{-1cm}{-1cm}
+    ... content
+\end{adjustwidth}
+```
+The box above will be 1cm wider on each side than the text width.
+
 
 # Math
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
@@ -377,6 +612,12 @@ If the float is wider than the text width, it is not centered, but instead it is
 To use math, we need the `amsmath` package. 
 
 The math commands only works in math mode which can be entered in one of the many math environments. 
+
+
+## Common math constructs
+The following table lists the most common math constructs:
+- **fractions**: `\frac{<numerator>}{<denominator>}`
+- **binomial coefficients**: `\binom{n}{k}`
 
 
 ## Subscript and superscript
@@ -406,10 +647,25 @@ For that, we use the `cases` environment. Example:
 \end{equation}
 ```
 
+
+## Equations and similar environments
+The following environments are available for equations:
+- `equation`: for single equations
+- `align`: for multiple equations aligned at a specific character
+- `alignat`: for multiple equations aligned at multiple characters
+- `aligned`: for multiple equations inside another math environment (e.g., `equation`)
+- `gather`: for multiple equations not aligned, each line numbered separately
+<!-- - `multline`: for multiple equations with a single equation number -->
+
+The new line is created using the `\\` command. Nothe that **the `\\` command is not allowed in the `equation` environment**.
+
+To align the equations in the `align` and `alignat` environments, we use the `&` character. 
+
+
 ## Problem and similar environments
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Theorems)
 
-The environments for special math text blocks are not included in the `amsmath` package. Instead, we can define them manually using the `\newtheorem` command. Example:
+The environments for special math text blocks are not included in the `amsmath` package. We can define them manually using the `\newtheorem` command. Example:
 ```latex
 \newtheorem{problem}{Problem}
 
@@ -417,9 +673,22 @@ The environments for special math text blocks are not included in the `amsmath` 
     This is a problem.
 \end{problem}
 ```
+Here, the first argument of the `\newtheorem` command is the name of the environment, and the second argument is the name of the environment in the output. There can be also an optional third argument, which is the name of the counter that is used for numbering the environment. For example, if we want to use another environment for propositions with the same numbering as the problems, we can use the following command:
+```latex
+\newtheorem{proposition}[problem]{Proposition}
+```
 
 Some environments are already defined in the `amsthm` package, e.g., `proof`.
 
+### Common environments names and their meaning
+- `theorem`: a statement to be proved
+- `lemma`: a minor theorem, with a limited applicability outside the context of the main theorem
+- `corollary`: a theorem that follows directly from another theorem
+- `proposition`: a less important theorem, usually used for something elementary, obvious, so that it does not require a proof
+- [`premise`](https://proofwiki.org/wiki/Definition:Premise): a statement that is assumed to be true and it represents a fact that is used in the proof of the theorem. For example: "We only consider sets where half of the numbers are even..." 
+- [`assumption`](https://proofwiki.org/wiki/Definition:Assumption): a statement that is assumed to be true and it represents a condition under which the theorem is true. For example: "Assuming half of the numbers in the set are even..."
+
+More can be fount on [proofwiki](https://proofwiki.org/wiki/Category:Theorems)
 
 ## Math fonts
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics#Fonts)
@@ -427,6 +696,26 @@ Some environments are already defined in the `amsthm` package, e.g., `proof`.
 the default math font is typed as common math italic. To use a different font, we need to use special commands:
 - `\mathrm{}`: for normal font in math mode, e.g., for multi-letter subscripts and superscripts
 - `\mathbb{}`: for blackboard bold font, e.g., for special sets (R, N, ...). This font requires the `amsfonts` package.
+
+
+### Bold math font
+To use a bold font, we can use the `\bm` command from the `bm` package:
+```latex
+\usepackage{bm}
+
+\begin{equation}
+    \bm{a} = \bm{b} + \bm{c}
+\end{equation}
+```
+
+
+### Correct size of braces
+To size any type of braces correctly, if the content is larger than the braces, we can use the `\left` and `\right` commands. Example:
+```latex
+\left( \frac{a}{b} \right)
+```
+
+
 
 
 # Links
@@ -448,6 +737,11 @@ To override the footnote numbering (e.g. to repeat the same number twice), we ca
 \setcounter{footnote}{1} # set the footnote counter to 1
 ```
 
+## Disallow footnote splitting
+To disallow footnote splitting, we can increase the `\interfootnotelinepenalty` command. Example:
+```latex
+\interfootnotelinepenalty=10000
+```
 
 # Bibliography
 See more on [SE](https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib).
@@ -522,13 +816,34 @@ There are multiple commands for citing, each resulting in a different output. Th
     - APA: *this has been proven before (Smith et al., 2019)*
 
 Unfortunately, the commands for these two variants are not consistent across the bibliography packages. The following table summarizes the commands for the two variants:
-| Package | In-text citation | Parenthetical citation | 
-| --- | --- | --- |
-| Biblatex | `\textcite{<key>}` | `\cite{<key>}` | 
-| Natbib | `\cite{<key>}` | `\citep{<key>}` |
+| Package | In-text citation | Parenthetical citation | Full citation |
+| --- | --- | --- | --- |
+| Biblatex | `\textcite{<key>}` | `\cite{<key>}` | `\fullcite{<key>}` |
+| Natbib | `\cite{<key>}` | `\citep{<key>}` | `\bibentry{<key>}` (requires the [`bibentry`](https://ctan.org/pkg/bibentry) package) |
 
 There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
 - [Natbib styles](https://www.overleaf.com/learn/latex/Natbib_citation_styles)
+
+
+## Bibliography entries
+There are many types of bibliography entries, each of them with different fields. to make things even more complicated, these entries does not match the entry types in Zotero. To make it easier, many use-cases are covered in the table below:
+
+| Use-case | Biblatex | Zotero |
+| --- | --- | --- |
+| Book | `@book` | `Book` |
+| Book chapter | `@incollection` | `Book Section` |
+| Conference paper | `@inproceedings` | `Conference Paper` |
+| Journal article | `@article` | `Journal Article` |
+| Report | `@report` | `Report` |
+| Thesis | `@thesis` | `Thesis` |
+| Web page | `@online` | `Web Page` |
+| Legal document | `@legal` | Unavailable. Use `Report` instead. |
+
+Other sources:
+- [Biblatex documentation](https://mirrors.nic.cz/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf)
+- [Zotero documentation](https://www.zotero.org/support/kb/item_types_and_fields)
+- [Zotero legal types](https://www.zotero.org/support/kb/legal_citations)
+
 
 
 # Custom commands

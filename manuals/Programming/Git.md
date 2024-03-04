@@ -50,6 +50,14 @@ usefull params:
 - `-n` dry run
 
 
+## Add remote
+
+```
+git remote add origin <URL>
+```
+Where `origin` is the name of the remote and `<URL>` is is the link we use to clone the repository.
+
+
 # Reverting
 When we want to revert  something using git there are multiple options depending on the situation. The commands are:
 - [`git checkout`](https://git-scm.com/docs/git-checkout) for overwriting local files with version from a specified tree (also for switching branches) and
@@ -78,6 +86,16 @@ If we want to keep the history, there are still two options:
 To reset an individual file, call: `git checkout <commit> <filepath>`, to reset all files, call: `git checkout <commit> .`. 
 
 If the `<commit>` parameter is ommited, the local files will be overwritten by the HEAD.  
+
+
+## Drop the history
+Dropping the history can be useful in many cases. For example, we may commit some changes to the master, but then we realize that they belong to a branch. A simple solution is to create a branch, and then reset the master to the previous commit.
+
+Note that if the wrong history was already pushed to the remote, we need to fix the history on the remote as well. This is done by force pushing:
+
+```
+git push -f
+```
 
 
 
