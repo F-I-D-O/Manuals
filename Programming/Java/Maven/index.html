@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -306,8 +317,16 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
+            <li class="nav-item" data-level="1"><a href="#maven-packages-artifacts" class="nav-link">Maven Packages: Artifacts</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#list-locally-installed-artifacts" class="nav-link">List locally installed artifacts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#debugging-missing-artifacts" class="nav-link">Debugging missing Artifacts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -322,6 +341,10 @@
             
             <li class="nav-item" data-level="1"><a href="#tests" class="nav-link">Tests</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#test-configuration" class="nav-link">Test configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#run-a-single-tests-file" class="nav-link">Run a single tests file</a>
               <ul class="nav flex-column">
               </ul>
@@ -359,12 +382,96 @@
             </li>
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#project-publishing" class="nav-link">Project Publishing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#cleanup" class="nav-link">Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#add-license-information" class="nav-link">Add license information:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#updating-poms" class="nav-link">Updating poms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#deploying-the-project-to-maven-central" class="nav-link">Deploying the project to Maven Central</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#deploying-artifacts-to-ossrh" class="nav-link">Deploying artifacts to OSSRH</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#required-metadata" class="nav-link">Required metadata</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#javadoc-and-sources-setup" class="nav-link">Javadoc and sources setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#signing-the-artifacts-with-gpg" class="nav-link">Signing the artifacts with GPG</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="5"><a href="#storing-the-gpg-passphrase" class="nav-link">Storing the GPG passphrase</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#required-plugins-and-configuration" class="nav-link">Required plugins and configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#setting-up-user-authentication-for-the-ossrh" class="nav-link">Setting up user authentication for the OSSRH</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#creating-maven-plugins" class="nav-link">Creating maven plugins</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#testing-a-maven-plugin" class="nav-link">Testing a maven plugin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#debugging-a-maven-plugin-in-intellij-idea" class="nav-link">Debugging a maven plugin in IntelliJ IDEA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#make-the-plugin-runnable-from-any-directory" class="nav-link">Make the plugin runnable from any directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h1>
+<p>Maven is a dependency management and build tool for Java. </p>
+<p>The project configuration for Maven is stored in a single file called <code>pom.xml</code>. Both the project dependencies and the build configuration are stored in this file.</p>
+<p>The maven is executed using the as <code>mvn &lt;goal&gt;</code>. Typical goals are
+- <code>compile</code>: compile the project
+- <code>test</code>: run tests
+- <code>package</code>: package the project into a jar or war file
+- <code>install</code>: install the project into the local maven repository
+- <code>deploy</code>: deploy the project to a remote repository</p>
+<h1 id="maven-packages-artifacts">Maven Packages: Artifacts<a class="headerlink" href="#maven-packages-artifacts" title="Permanent link">&para;</a></h1>
+<p>All Maven dependencies and plugins installed in local system repositories can be either:
+- downloaded from a remote repository
+- installed from a local file or project</p>
+<p>Note that if we want the artifact to be downloaded from a remote repository, we do not have to take any action. It will be downloaded automatically when needed.</p>
+<p>By default, Maven searches for artifacts in the <a href="https://central.sonatype.com/">Maven Central repository</a>. If we want to use a different repository, we have to add it manually.</p>
+<h2 id="list-locally-installed-artifacts">List locally installed artifacts<a class="headerlink" href="#list-locally-installed-artifacts" title="Permanent link">&para;</a></h2>
+<p>There is no built-in command to list all locally installed artifacts. However, we can use the <a href="https://github.com/F-I-D-O/info-maven-plugin">info plugin</a>:</p>
+<pre><code class="language-bash">mvn ninja.fido:info-maven-plugin:list
+</code></pre>
+<h2 id="debugging-missing-artifacts">Debugging missing Artifacts<a class="headerlink" href="#debugging-missing-artifacts" title="Permanent link">&para;</a></h2>
 <p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
 - check that the dependencies are on the maven central.
 - if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency</p>
@@ -391,6 +498,29 @@
 </code></pre>
 <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
 <p>Tests are usually executed with the Maven Surefire plugin using the <code>test</code> goal.</p>
+<h2 id="test-configuration">Test configuration<a class="headerlink" href="#test-configuration" title="Permanent link">&para;</a></h2>
+<p>Tests are run using the <a href="https://maven.apache.org/surefire/maven-surefire-plugin/">Maven Surefire plugin</a>. Usually, the default configuration is enough. However, if we want to customize the test execution, we can add the plugin to our pom and configure it:</p>
+<pre><code class="language-XML">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.0.0-M5&lt;/version&gt;
+            &lt;configuration&gt;
+                ... configuration ...
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+    ... other plugins ...
+&lt;/build&gt;
+</code></pre>
+<p>For example, to exclude some tests, the following configuration can be used:</p>
+<pre><code class="language-XML">&lt;configuration&gt;
+    &lt;excludes&gt;
+        &lt;exclude&gt;**/IncompleteTest.java&lt;/exclude&gt;
+    &lt;/excludes&gt;
+&lt;/configuration&gt;
+</code></pre>
 <h2 id="run-a-single-tests-file">Run a single tests file<a class="headerlink" href="#run-a-single-tests-file" title="Permanent link">&para;</a></h2>
 <p>To run a single test file, use:</p>
 <pre><code>mvn test -Dtest=&quot;&lt;TEST CLASS NAME&gt;&quot;
@@ -456,7 +586,210 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <li>If the name works, but pattern does not, it can be caused by an old version of the surefire plugin that use a different patten syntax.</li>
 </ol>
 <h2 id="uncompilable-source-code">uncompilable  source code<a class="headerlink" href="#uncompilable-source-code" title="Permanent link">&para;</a></h2>
-<p>Try to clean and compile again</p></div>
+<p>Try to clean and compile again</p>
+<h1 id="project-publishing">Project Publishing<a class="headerlink" href="#project-publishing" title="Permanent link">&para;</a></h1>
+<p>This section s focused on Maven projects but most of the steps should apply to all Java projects.</p>
+<p>Steps:
+1. Cleanup
+1. Add License to all files
+1. Test
+1. Update Changelog
+1. Update pom of the project and related projects
+1. Install Locally
+1. Deploy</p>
+<h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h2>
+<p>The following cleanup steps should be done:
+- clean garbage/IDE files
+    - check that they are in gitignore
+    - remove already tracked files by <code>git rm -r --cached &lt;path&gt;</code>
+- remove unused imports
+    - In Netbeans: <code>Refactor</code> -&gt; <code>Inspect and Transform</code> -&gt; <code>browse</code> -&gt; <code>imports</code> -&gt; <code>organize imports</code></p>
+<h2 id="add-license-information">Add license information:<a class="headerlink" href="#add-license-information" title="Permanent link">&para;</a></h2>
+<p>There is a nice program called <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> that can be used for that. Unfortunatelly, <strong>the program is currently broken and a <a href="https://github.com/F-I-D-O/licenseheaders">fork</a> must be used</strong>. Syntax:</p>
+<pre><code class="language-bash">licenseheaders -t &lt;license type&gt; -o &quot;&lt;Owner&gt;&quot; -cy -n &lt;Software name&gt; -u &quot;&lt;link to github&gt;&quot; 
+</code></pre>
+<p>A full path to a license template has to be given.</p>
+<h2 id="updating-poms">Updating poms<a class="headerlink" href="#updating-poms" title="Permanent link">&para;</a></h2>
+<p>In general, it is desirable to update the version of each related project from SNAPSHOT to the release version and then test the whole setup.</p>
+<p>In complex setups, we need to:
+1. Change the version of the parent project
+2. Change the version of the project's dependencies
+3. Change the version of the project itself
+4. Update the versions of projects in parent pom
+5. Update the versions of projects in the dependency section of each related project (if this is not done by the parent pom)</p>
+<p>If we fullfill all these steps, we can deploy the project. Both SNAPSHOTs and releases can be deployed using the <code>deploy</code> goal. The repository is chosen based on the version of the artifact (SNAPSHOT or release).</p>
+<h2 id="deploying-the-project-to-maven-central">Deploying the project to Maven Central<a class="headerlink" href="#deploying-the-project-to-maven-central" title="Permanent link">&para;</a></h2>
+<p>Deploying to Maven Central has many advantages: it is free, reliable, and every maven user can get our artifact without any additional configuration. However, it is also a bit complicated due to security requirements and high quality standards. </p>
+<p>The process is usually as follows:
+1. namespace (groupId) registration
+2. deploying of artifacts to the namespace</p>
+<p>Note that <strong>for one group id registration, we can deploy multiple artifacts, as long as the registered group id is equal to, or a prefix of, the group id of the artifact</strong>.</p>
+<p>The whole process is described in detail in the <a href="https://central-stage.sonatype.org/register/central-portal/">Central Repository Documentation</a>. As of 2024-02-15, there is an ongoing migration from OSSRH to the new Central Portal. Because of that, we will describe the current (OSSRH) process only briefly, as it is likely to change in the future. Also, we will describe only the process for deploying artifacts, as the namespace registration in OSSRH is not possible anymore.</p>
+<p><strong>To see your currently registered namespaces, go to the <a href="https://issues.sonatype.org/secure/ViewProfile.jspa">your profile at sonatype Jira portal</a> and look insides the issues listed on right in the Activity Stream.</strong></p>
+<h3 id="deploying-artifacts-to-ossrh">Deploying artifacts to OSSRH<a class="headerlink" href="#deploying-artifacts-to-ossrh" title="Permanent link">&para;</a></h3>
+<p>Requirements:
+- required metadata in the pom 
+- javadoc and sources must be supplied
+- all files must be signed with GPG
+- various plugins and configuration need to be set up in the pom
+- user authentication for the OSSRH must be set up in the <code>settings.xml</code> file</p>
+<h4 id="required-metadata">Required metadata<a class="headerlink" href="#required-metadata" title="Permanent link">&para;</a></h4>
+<p><a href="https://central.sonatype.org/pages/requirements">Official documentation</a> (at the end)</p>
+<p>The following metadata must be present in the pom:
+- project tags:
+    - <code>name</code>
+    - <code>description</code>
+    - <code>url</code>
+- license information:
+    <code>XML
+    &lt;licenses&gt;
+        &lt;license&gt;
+            &lt;name&gt;MIT License&lt;/name&gt;
+            &lt;url&gt;https://opensource.org/licenses/MIT&lt;/url&gt;
+        &lt;/license&gt;
+    &lt;/licenses&gt;
+- developer information:</code>XML
+    <developers>
+        <developer>
+            <name>Full Name</name>
+            <email>user email</email>
+            <url>user url</url>
+        </developer>
+    </developers>
+    <code>- scm information:</code>XML
+    <scm>
+        <connection>scm:git:git://github.com/simpligility/ossrh-demo.git</connection>
+        <developerConnection>scm:git:ssh://github.com:simpligility/ossrh-demo.git</developerConnection>
+        <url>http://github.com/simpligility/ossrh-demo/tree/master</url>
+    </scm>
+    ```</p>
+<h4 id="javadoc-and-sources-setup">Javadoc and sources setup<a class="headerlink" href="#javadoc-and-sources-setup" title="Permanent link">&para;</a></h4>
+<p>The following configuration is suitable for deploying with sources and javadoc:</p>
+<pre><code class="language-XML">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2.1&lt;/version&gt;
+    &lt;executions&gt;
+    &lt;execution&gt;
+        &lt;id&gt;attach-sources&lt;/id&gt;
+        &lt;goals&gt;
+        &lt;goal&gt;jar-no-fork&lt;/goal&gt;
+        &lt;/goals&gt;
+    &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.9.1&lt;/version&gt;
+    &lt;executions&gt;
+    &lt;execution&gt;
+        &lt;id&gt;attach-javadocs&lt;/id&gt;
+        &lt;goals&gt;
+        &lt;goal&gt;jar&lt;/goal&gt;
+        &lt;/goals&gt;
+    &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<h4 id="signing-the-artifacts-with-gpg">Signing the artifacts with GPG<a class="headerlink" href="#signing-the-artifacts-with-gpg" title="Permanent link">&para;</a></h4>
+<p>To sign the artifacts with GPG, we need to  add the gp plugin to the pom:</p>
+<pre><code class="language-XML">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.5&lt;/version&gt;
+    &lt;executions&gt;
+    &lt;execution&gt;
+        &lt;id&gt;sign-artifacts&lt;/id&gt;
+        &lt;phase&gt;verify&lt;/phase&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;sign&lt;/goal&gt;
+        &lt;/goals&gt;
+    &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>For this plugin to work, the GPG must be installed and available in the system path.</p>
+<h5 id="storing-the-gpg-passphrase">Storing the GPG passphrase<a class="headerlink" href="#storing-the-gpg-passphrase" title="Permanent link">&para;</a></h5>
+<p>To make our life easier, we can store the GPG passphrase in the <code>settings.xml</code> file. The following configuration must be present in the <code>profiles</code> section:</p>
+<pre><code class="language-XML">&lt;profile&gt;
+    &lt;id&gt;ossrh&lt;/id&gt;
+    &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+    &lt;/activation&gt;
+    &lt;properties&gt;
+        &lt;gpg.executable&gt;gpg&lt;/gpg.executable&gt; &lt;!-- this should not be needed as gpg is default... --&gt;
+        &lt;gpg.passphrase&gt;F1D06949&lt;/gpg.passphrase&gt;
+    &lt;/properties&gt;
+&lt;/profile&gt;
+</code></pre>
+<h4 id="required-plugins-and-configuration">Required plugins and configuration<a class="headerlink" href="#required-plugins-and-configuration" title="Permanent link">&para;</a></h4>
+<p>For the deployment to OSSRH, we need to use several plugins and add some configuration to the pom. First, we need to set up the distribution management:</p>
+<pre><code class="language-XML">&lt;distributionManagement&gt;
+    &lt;snapshotRepository&gt;
+        &lt;id&gt;ossrh&lt;/id&gt;
+        &lt;url&gt;&lt;SNAPSHOT URL&gt;&lt;/url&gt;
+    &lt;/snapshotRepository&gt;
+    &lt;repository&gt;
+        &lt;id&gt;ossrh&lt;/id&gt;
+        &lt;url&gt;&lt;RELEASE URL&gt;&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/distributionManagement&gt; 
+</code></pre>
+<p>The <SNAPSHOT URL> and <RELEASE URL> are links to the repo we have received after the namespace registration approval. Note that we need to use the original URLs, even if they do not match the links in the documentation. The current (2024-02-15) URLs are:
+- https://s01.oss.sonatype.org/content/repositories/snapshots
+- https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</p>
+<p>Next, we need a staging plugin to deploy the artifacts to the OSSRH staging repository. The plugin is configured as follows:</p>
+<pre><code class="language-XML">&lt;plugin&gt;
+    &lt;groupId&gt;org.sonatype.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;nexus-staging-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;&lt;latest version here&gt;&lt;/version&gt;
+    &lt;extensions&gt;true&lt;/extensions&gt;
+    &lt;configuration&gt;
+        &lt;serverId&gt;ossrh&lt;/serverId&gt;
+        &lt;nexusUrl&gt;&lt;REPO ROOT URL&gt;&lt;/nexusUrl&gt;
+        &lt;autoReleaseAfterClose&gt;true&lt;/autoReleaseAfterClose&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>Here, the <code>&lt;REPO ROOT URL&gt;</code> is the root URL of the repositories above, e.g., for recent versions, it is <code>https://s01.oss.sonatype.org/</code>.</p>
+<h4 id="setting-up-user-authentication-for-the-ossrh">Setting up user authentication for the OSSRH<a class="headerlink" href="#setting-up-user-authentication-for-the-ossrh" title="Permanent link">&para;</a></h4>
+<p>The following configuration must be present in the <code>settings.xml</code> file:</p>
+<pre><code class="language-XML">&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;ossrh&lt;/id&gt;
+        &lt;username&gt;your username&lt;/username&gt;
+        &lt;password&gt;your password&lt;/password&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;
+</code></pre>
+<h1 id="creating-maven-plugins">Creating maven plugins<a class="headerlink" href="#creating-maven-plugins" title="Permanent link">&para;</a></h1>
+<p><a href="https://maven.apache.org/guides/plugin/guide-java-plugin-development.html">Official guide</a></p>
+<p>Maven plugins can be created as maven projects. Specifics <code>pom</code> configuration:
+- The packaging is <code>maven-plugin</code>
+- The name of the plugin is <code>&lt;artifactId&gt;-maven-plugin</code>
+- among the dependencies, there should be <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code></p>
+<p>To use a cclass method as an entry point for a plugin goal, we annotate it with <code>@Mojo(name = "&lt;goal name&gt;")</code>.</p>
+<h2 id="testing-a-maven-plugin">Testing a maven plugin<a class="headerlink" href="#testing-a-maven-plugin" title="Permanent link">&para;</a></h2>
+<p>The best way to test the plugin is to run it separately, even if it should be later bound to a lifecycle phase. To run the plugin, we use the following syntax:</p>
+<pre><code>mvn &lt;group id&gt;:&lt;artifact id&gt;:&lt;goal name&gt;
+# Example:
+mvn com.test:example-maven-plugin:example
+</code></pre>
+<p>This is indeed very verbose. To shorten it, we can add a special configuration to the system <code>settings.xml</code> file:</p>
+<pre><code class="language-XML">&lt;pluginGroups&gt;
+    &lt;pluginGroup&gt;com.test&lt;/pluginGroup&gt;
+&lt;/pluginGroups&gt;
+</code></pre>
+<p>Now, we can run the plugin using:</p>
+<pre><code>mvn example:example
+</code></pre>
+<h2 id="debugging-a-maven-plugin-in-intellij-idea">Debugging a maven plugin in IntelliJ IDEA<a class="headerlink" href="#debugging-a-maven-plugin-in-intellij-idea" title="Permanent link">&para;</a></h2>
+<p>Maven plugins can be easily debugged in IntelliJ IDEA. However, it is important to understand that unlike maven plugins are run from the local repository, not from the project source code. Therefore, <strong>we need to install the plugin after each change</strong>.</p>
+<h2 id="make-the-plugin-runnable-from-any-directory">Make the plugin runnable from any directory<a class="headerlink" href="#make-the-plugin-runnable-from-any-directory" title="Permanent link">&para;</a></h2>
+<p>Normally, the goals can be run only from project directories (where the <code>pom.xml</code> is present). To make the plugin runnable from any directory, we need to annotate the goal with <code>@requiresProject = false</code>:</p>
+<pre><code class="language-Java">@Mojo(name = &quot;example&quot;, requiresProject = false)
+</code></pre></div>
             </div>
         </div>
 

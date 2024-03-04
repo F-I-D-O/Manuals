@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -266,6 +274,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
@@ -513,6 +524,10 @@
             
             <li class="nav-item" data-level="1"><a href="#aggregation" class="nav-link">Aggregation</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#aggregate-functions" class="nav-link">Aggregate functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#custom-aggegate-function" class="nav-link">Custom aggegate function</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#agg" class="nav-link">agg</a>
@@ -554,6 +569,10 @@
             <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#csv" class="nav-link">csv</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#json" class="nav-link">Json</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -768,6 +787,7 @@ sf = s[s &lt;= 10] # now we have a Series with values from df['col'] less than 1
 <ul>
 <li>non null/nan values: <code>&lt;column selection&gt;.notnull()</code></li>
 <li>filtring using the string value: <code>&lt;column selection&gt;.str.&lt;string function&gt;</code></li>
+<li>filtering dates: <code>&lt;column selection&gt;.dt.&lt;date function&gt;</code></li>
 </ul>
 <h1 id="selection">Selection<a class="headerlink" href="#selection" title="Permanent link">&para;</a></h1>
 <p>If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see <a href="#filtration">filtration</a>), we can use these methods:
@@ -898,6 +918,12 @@ s.name = '&lt;new name&gt;'
 <p>Important parameters:
 - <code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</p>
 <h3 id="creating-index-from-scratch">Creating index from scratch<a class="headerlink" href="#creating-index-from-scratch" title="Permanent link">&para;</a></h3>
+<p>To create an index from scratch, we just assign the index to the dataframe <code>index</code> property:</p>
+<pre><code class="language-python">df.index = pd.Index([1, 2, 3, 4, 5])
+</code></pre>
+<p>We can also assign a range directly to the index:</p>
+<pre><code class="language-python">df.index = range(5)
+</code></pre>
 <p>To create more complicated indices, dedicated functions can be used:
 - <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</p>
 <h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
@@ -909,7 +935,7 @@ sel = group[&lt;columns&gt;] # we can select only some columns from the groupby 
 agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the selected columns
 </code></pre>
 <p>We can skip the <code>sel</code> step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.</p>
-<p>ull example (sum):</p>
+<p>Example (sum):</p>
 <pre><code class="language-Python">df.groupby('col').sum()
 </code></pre>
 <p>Sums the results for each group (column by column)</p>
@@ -917,6 +943,8 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').size()
 </code></pre>
 <p>Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the <strong>aggregation does not have to actually aggregate the data, it can also transform it</strong>.</p>
+<p>in the groupby object, the columns used for grouping are omitted. To keep them, we can use the <code>group_keys</code> parameter of the <code>groupby</code> function.</p>
+<h2 id="aggregate-functions">Aggregate functions<a class="headerlink" href="#aggregate-functions" title="Permanent link">&para;</a></h2>
 <p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
 - <code>sum</code>
 - <code>mean</code>
@@ -931,8 +959,8 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <h2 id="custom-aggegate-function">Custom aggegate function<a class="headerlink" href="#custom-aggegate-function" title="Permanent link">&para;</a></h2>
 <p>Also, there are more general aggregate functions:
 -  <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that is usefull for applying different functions for different columns and
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html"><code>apply</code></a> function that is usefull for applying a function to the whole dataframe.</p>
-<p>The difference between <code>agg</code> and <code>apply</code> is summarized in the following table:</p>
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a>: the most flexible function that can be used for custom aggregation and transformation operations.</p>
+<p>These two functions have different interfaces for the custom aggregation functions they call. These are summarized in the following table:</p>
 <table>
 <thead>
 <tr>
@@ -943,24 +971,29 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 </thead>
 <tbody>
 <tr>
+<td>can just transform the data</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>can use data from one column in another column</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
 <td>applied to</td>
 <td>each specified column</td>
-<td>whole dataframe</td>
+<td>the whole dataframe representing single group</td>
 </tr>
 <tr>
 <td>output</td>
 <td>dataframe</td>
-<td>series</td>
+<td>scalar, series, or dataframe</td>
 </tr>
 <tr>
 <td>can use multiple aggregate functions</td>
 <td>yes</td>
 <td>no</td>
-</tr>
-<tr>
-<td>can be applied to dataframe</td>
-<td>no</td>
-<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -969,9 +1002,12 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
 </code></pre>
 <h3 id="apply_1"><code>apply</code><a class="headerlink" href="#apply_1" title="Permanent link">&para;</a></h3>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html"><code>apply</code></a> function takes a custom function as an argument. That custom aggregation function:
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a> function takes a custom function as an argument. That custom aggregation function:
 - takes a DataFrame/Series (depending on the source object) as the first argument
-- returns a Series, DataFrame, or a scalar</p>
+    - this dataframe/series contains the data for the group (all columns)
+- returns a Series, DataFrame, or a scalar
+    - when a scalar is returned, the result is a series with the scalar value for each group
+    - we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.</p>
 <p>The process works as follows:
 1. The dataframe is split into groups according to the <code>groupby</code> function.
 1. The custom function is applied to each group.
@@ -987,6 +1023,38 @@ df.resample('1H').sum()
 <pre><code class="language-Python">df.resample('1H').sum().ffill()
 </code></pre>
 <h1 id="joins">Joins<a class="headerlink" href="#joins" title="Permanent link">&para;</a></h1>
+<p>Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html"><code>merge</code></a>: the most general function that has the behavior known from SQL
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html"><code>join</code></a>: a more specialized function, </p>
+<p>The following table lists the most important differences between the two functions:</p>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>merge</th>
+<th>join</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default join type</td>
+<td>inner</td>
+<td>left</td>
+</tr>
+<tr>
+<td>join right table via</td>
+<td>column (default) or index (<code>right_index=True</code>)</td>
+<td>index</td>
+</tr>
+<tr>
+<td>join left table via</td>
+<td>column (default) or index (<code>left_index=True</code>)</td>
+<td>index, or column (<code>on=key_or_keys</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>There is also a static <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html"><code>pd.merge</code></a> function. All <code>merge</code> and <code>join</code> methods are just wrappers around this function.</p>
+<p>The indexes are lost after the join (if not used for the join). To keep an index, we can store it as a column before the join.</p>
 <h1 id="appending-one-dataframe-to-another">Appending one dataframe to another<a class="headerlink" href="#appending-one-dataframe-to-another" title="Permanent link">&para;</a></h1>
 <p>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function for that:</p>
 <pre><code class="language-python">pd.concat([df1, df2])
@@ -1006,6 +1074,13 @@ df.resample('1H').sum()
 <p>For export, we can use the <code>to_csv</code> method for that:</p>
 <pre><code class="language-python">df.to_csv(&lt;file name&gt; [, &lt;other params&gt;])
 </code></pre>
+<h2 id="json">Json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
+<p>For exporting to json, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"><code>to_json</code></a> function. </p>
+<p>By default, the data are exported as a list of columns. To export the data as a list of rows, we can use the <code>orient</code> parameter:</p>
+<pre><code class="language-python">df.to_json(&lt;file name&gt;, orient='records')
+</code></pre>
+<p>Other important parameters:
+- <code>indent</code>: the number of spaces to use for indentation</p>
 <h2 id="insert-dataframe-into-db">Insert dataframe into db<a class="headerlink" href="#insert-dataframe-into-db" title="Permanent link">&para;</a></h2>
 <p>We can use the <code>to_sql</code> method for that:</p>
 <pre><code class="language-python">df.to_sql(&lt;table name&gt;, &lt;sql alchemy engine&gt; [, &lt;other params&gt;])

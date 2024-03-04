@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -266,6 +274,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
@@ -471,10 +482,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#listing-databases" class="nav-link">Listing databases</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -522,10 +529,14 @@
             
             <li class="nav-item" data-level="1"><a href="#table-and-database-statistics" class="nav-link">Table and database statistics</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#listing-databases" class="nav-link">Listing databases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#managing-the-database" class="nav-link">Managing the database</a>
+            <li class="nav-item" data-level="1"><a href="#managing-the-database-clusters" class="nav-link">Managing the database clusters</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#creating-new-user" class="nav-link">Creating new user</a>
               <ul class="nav flex-column">
@@ -543,7 +554,23 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+            <li class="nav-item" data-level="2"><a href="#upgrading-the-database-cluster" class="nav-link">Upgrading the database cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#upgrading-extensions" class="nav-link">Upgrading extensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#managing-access-to-the-database" class="nav-link">Managing access to the database</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#garbage-collection-and-optimization" class="nav-link">Garbage collection and optimization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -932,7 +959,8 @@ END IF
 </code></pre>
 <p>Other useful parameters:
 - <code>-X</code>: do not read the <code>~/.psqlrc</code> file. This is useful when debuging the <code>psql</code> commands or running scripts, as it disables any customizations.
-- <code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.</p>
+- <code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.
+- <code>-p</code><port number>: specify the port number.  (default is 5432)</p>
 <h2 id="meta-commands">meta-commands<a class="headerlink" href="#meta-commands" title="Permanent link">&para;</a></h2>
 <p>The <code>psql</code> has its own set of commands, called <em>meta-commands</em>. These commands start with a backslash (<code>\</code>) and can be used inside SQL queries (either interactively, or in the -c argument). Example:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\l+&quot;
@@ -948,11 +976,6 @@ END IF
 - pipe the commands to <code>psql</code> using <code>echo</code>:
     <code>bash
     echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata</code></p>
-<h2 id="listing-databases">Listing databases<a class="headerlink" href="#listing-databases" title="Permanent link">&para;</a></h2>
-<p>To list all databases, we can use the <code>-l</code> parameter:</p>
-<pre><code class="language-bash">psql -l
-</code></pre>
-<p>To get more information about the databases, we can use the <code>\l+</code> meta-command.</p>
 <h1 id="importing-data">Importing data<a class="headerlink" href="#importing-data" title="Permanent link">&para;</a></h1>
 <p>A simple SQL data (database dump) can be imported using the <code>psql</code> command:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -f &lt;file name&gt;
@@ -1039,10 +1062,22 @@ END IF
 <pre><code class="language-bash">echo &quot;COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'&quot; | psql -d opendata
 </code></pre>
 <h1 id="table-and-database-statistics">Table and database statistics<a class="headerlink" href="#table-and-database-statistics" title="Permanent link">&para;</a></h1>
-<p>To show the size a table, run:</p>
+<p>To show the <strong>table size</strong>, run:</p>
 <pre><code class="language-PostgreSQL">SELECT pg_size_pretty(pg_total_relation_size('&lt;table name&gt;'));
 </code></pre>
-<h1 id="managing-the-database">Managing the database<a class="headerlink" href="#managing-the-database" title="Permanent link">&para;</a></h1>
+<p>To show the <strong>version</strong> of the PostgreSQL server, run:</p>
+<pre><code class="language-PostgreSQL">SELECT version();
+</code></pre>
+<p>To list all <strong>extensions</strong> for a database, run:</p>
+<pre><code class="language-PostgreSQL">psql -d &lt;db name&gt; -c &quot;\dx&quot;
+</code></pre>
+<h2 id="listing-databases">Listing databases<a class="headerlink" href="#listing-databases" title="Permanent link">&para;</a></h2>
+<p>To list all databases, we can use the <code>-l</code> parameter:</p>
+<pre><code class="language-bash">psql -l
+</code></pre>
+<p>To get more information about the databases, we can use the <code>\l+</code> meta-command.</p>
+<h1 id="managing-the-database-clusters">Managing the database clusters<a class="headerlink" href="#managing-the-database-clusters" title="Permanent link">&para;</a></h1>
+<p>As a first step, it is always good to know which clusters are installed and running. To show this information, use the <code>pg_lsclusters</code> command.</p>
 <h2 id="creating-new-user">Creating new user<a class="headerlink" href="#creating-new-user" title="Permanent link">&para;</a></h2>
 <p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:
 - <code>-P</code> or <code>--pwprompt</code>: prompt for password. If not used, the user will be created without a password.</p>
@@ -1053,7 +1088,38 @@ END IF
 <p>To grant all privileges for a database schema to a user, we can use the following command:</p>
 <pre><code class="language-SQL">GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO &lt;user name&gt;;
 </code></pre>
-<h2 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server<a class="headerlink" href="#lost-password-to-the-postgres-server" title="Permanent link">&para;</a></h2>
+<h2 id="upgrading-the-database-cluster">Upgrading the database cluster<a class="headerlink" href="#upgrading-the-database-cluster" title="Permanent link">&para;</a></h2>
+<p>With PostgreSQL version 9.3 and later, we can upgrade easily even between major versions using the <a href="https://www.postgresql.org/docs/current/pgupgrade.html"><code>pg_upgrade</code></a> command. We can even skip versions, e.g., upgrade from 12 to 16. </p>
+<p>The process is described in the pg_upgrade manual, however, usually, most of the steps are not necessary as they apply only to very specific cases. On top of that, some aspects important for the upgrade are not mentioned in the manual.</p>
+<p>The steps for a typical ubuntu/debian installation are:
+1. stop the new cluster using <code>systemctl stop postgresql@&lt;version&gt;-main</code>
+2. run the <code>pg_upgrade</code> command with <code>--check</code> to check the compatibility
+3. stop the old cluster using <code>systemctl stop postgresql</code>
+4. run the <code>pg_upgrade</code> command without <code>--check</code> to perform the upgrade
+5. apply all actions recommended by the <code>pg_upgrade</code> output
+1. change the <code>port</code> in the <code>/etc/postgresql/&lt;version&gt;/main/postgresql.conf</code> file of the new cluster to the original port (usually 5432)
+6. start the new cluster using <code>systemctl start postgresql@&lt;version&gt;-main</code> an check if the connection works</p>
+<p>The standard <code>pg_upgrade</code> command looks like this:</p>
+<pre><code class="language-bash">sudo -u postgres pg_upgrade --link -j &lt;number of cores&gt; -b &lt;old bin dir&gt; -d &lt;old data dir&gt; -D &lt;new data dir&gt; -o 'config_file=&lt;old conf file&gt;' -O 'config_file=&lt;new conf file&gt;'
+</code></pre>
+<p>Description:
+- <code>--link</code>: links the old data directory to the new one instead of copying the data. Fastest migration method.
+- <code>&lt;old bin dir&gt;</code>: The <code>bin</code> directory of the old cluster.
+    - usually <code>/usr/lib/postgresql/&lt;old version&gt;/bin</code>
+- <code>&lt;old/new data dir&gt;</code>: The <code>data</code> directory of the cluster.
+    - usually <code>/var/lib/postgresql/&lt;old/new version&gt;/main</code>.
+    - Can be found using <code>pg_lsclusters</code>
+- <code>&lt;old/new conf file&gt;</code>: The path to the <code>postgresql.conf</code> file.
+    - usually <code>/etc/postgresql/&lt;old/new version&gt;/main/postgresql.conf</code></p>
+<h2 id="upgrading-extensions">Upgrading extensions<a class="headerlink" href="#upgrading-extensions" title="Permanent link">&para;</a></h2>
+<p>Some PostgreSQL extensions uses separate libraries. These are installed fro each version of the PostgreSQL server separately. If a library is not foun on the new cluster, it is detected by the <code>pg_upgrade</code> command automaticly. In that case, you have to install the library according to the instructions of the library provider.</p>
+<h2 id="managing-access-to-the-database">Managing access to the database<a class="headerlink" href="#managing-access-to-the-database" title="Permanent link">&para;</a></h2>
+<p>To manage access to the database, we can use the <code>pg_hba.conf</code> file. </p>
+<p>This file is located in the <code>data</code> directory of the PostgreSQL installation. Unfortunately, the location of the <code>data</code> directory is not standardized, and the variants are many. However, there is a remedy, just execute the following SQL command:</p>
+<pre><code class="language-SQL">SHOW hba_file
+</code></pre>
+<p><a href="https://www.postgresql.org/docs/current/auth-pg-hba-conf.html">Documentation</a></p>
+<h3 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server<a class="headerlink" href="#lost-password-to-the-postgres-server" title="Permanent link">&para;</a></h3>
 <p>The password for the db superuser is stored in db <code>postgres</code>. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
 1. find the <code>pg_hba.conf file</code> 
     - usually located in <code>C:\Program Files\PostgreSQL\13\data</code>
@@ -1066,6 +1132,8 @@ END IF
 5. restore the <code>pg_hba.conf</code> file from backup
 6. restart the postgreSQL service again
 7. test if the new password works</p>
+<h2 id="garbage-collection-and-optimization">Garbage collection and optimization<a class="headerlink" href="#garbage-collection-and-optimization" title="Permanent link">&para;</a></h2>
+<p>There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb`</a> command.  </p>
 <h1 id="datagrip">DataGrip<a class="headerlink" href="#datagrip" title="Permanent link">&para;</a></h1>
 <h2 id="import-formats">Import Formats<a class="headerlink" href="#import-formats" title="Permanent link">&para;</a></h2>
 <p>DataGrip can handle imports only from separator baset files (csv, tsv).</p>

@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -354,13 +365,25 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#project-configuration_1" class="nav-link">Project configuration</a>
+            <li class="nav-item" data-level="3"><a href="#maven-configuration" class="nav-link">Maven configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#jdk-configuration" class="nav-link">JDK configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#compilation" class="nav-link">Compilation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#developing-the-whole-project-stack-at-once" class="nav-link">Developing the whole project stack at once</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#running-maven-goals" class="nav-link">Running Maven Goals</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -374,6 +397,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#setting-java-version-in-netbeans" class="nav-link">Setting Java version in Netbeans</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-idea" class="nav-link">Setting Java version in IDEA</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -457,6 +484,8 @@
 <p>If there is a serious problem, one way to solve it can be to delete the Netbeans cache located in <code>~\AppData\Local\NetBeans\Cache</code>.</p>
 <h1 id="idea">Idea<a class="headerlink" href="#idea" title="Permanent link">&para;</a></h1>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Configuration is done in <code>File</code> -&gt; <code>Settings</code>. </p>
+<p>A lot of configuration we do in Idea Settings only applies to the current project. Therefore, it is a good idea to check whether the settings is not present in the template for new projects, so that we do not have to set it up for every new project. The settings template is located in <code>File</code> -&gt; <code>New Project Setup</code>. </p>
 <h3 id="settings-synchronization">Settings synchronization<a class="headerlink" href="#settings-synchronization" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Log in into JetBrains Toolbox or to the App</li>
@@ -465,12 +494,23 @@
 <li>Resatart Ida to update all the settings</li>
 </ol>
 <p><a href="https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html">More on Jetbrains</a></p>
-<h2 id="project-configuration_1">Project configuration<a class="headerlink" href="#project-configuration_1" title="Permanent link">&para;</a></h2>
+<h3 id="maven-configuration">Maven configuration<a class="headerlink" href="#maven-configuration" title="Permanent link">&para;</a></h3>
+<p>By default, Idea uses the bundled Maven, which is almost never desired. It is best to swich to the system Maven, which we should done in:
+- <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Build Tools</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for existing projects
+- <code>File</code> -&gt; <code>New Project Setup</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for new projects</p>
+<h3 id="jdk-configuration">JDK configuration<a class="headerlink" href="#jdk-configuration" title="Permanent link">&para;</a></h3>
 <p>The correct JDK has to be set up in various places:
 - compielr has to be at least target jdk, set it in: <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Project bytecode version</code> and <code>Per-module bytecode version</code>
 - language level should be the same as target jdk: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code></p>
 <h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h2>
 <p>Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:</p>
+<h2 id="developing-the-whole-project-stack-at-once">Developing the whole project stack at once<a class="headerlink" href="#developing-the-whole-project-stack-at-once" title="Permanent link">&para;</a></h2>
+<p>If we are developing a whole stack of projects at once, it is best if we can navigate between them easily. However, it is not possible to open multiple projects in the same window in Idea (like in Netbeans). Instead, we need to open the project on the top of the stack and then add the other projects as modules. To add a module, click <code>File</code> -&gt; <code>Project Structure</code> -&gt; <code>Modules</code> and add the module.</p>
+<h2 id="running-maven-goals">Running Maven Goals<a class="headerlink" href="#running-maven-goals" title="Permanent link">&para;</a></h2>
+<p>To run a maven goal:
+1. Open the <code>Maven</code> tab on the right
+1. Right click on the goal 
+1. Choose <code>Run</code> or <code>Debug</code></p>
 <h1 id="set-java-version-for-project">Set Java version for project<a class="headerlink" href="#set-java-version-for-project" title="Permanent link">&para;</a></h1>
 <p>There are two options to set:
 - <em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.
@@ -509,6 +549,8 @@
 <p>For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: 
 1. Right click on project -&gt; <code>Properties</code> -&gt; <code>Sources</code>
 2. In the bottom, change the <code>Source/Binary Format</code></p>
+<h2 id="setting-java-version-in-idea">Setting Java version in IDEA<a class="headerlink" href="#setting-java-version-in-idea" title="Permanent link">&para;</a></h2>
+<p>In idea, an extra step is sometimes necessary: to set the Java Language Level in the project settings: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code>. The language level has to be lower or equal to the target version set in the maven configuration.</p>
 <h2 id="setting-java-version-used-for-executing-maven">Setting Java version used for executing Maven<a class="headerlink" href="#setting-java-version-used-for-executing-maven" title="Permanent link">&para;</a></h2>
 <p>If the Maven is executed from command line, edit the <code>JAVA_HOME</code> system property.</p>
 <p>If the Maven is executed from Netbeans, edit <code>Project Properties</code> -&gt; <code>Build</code> -&gt; <code>Compile</code> -&gt; <code>Java Platform</code></p>

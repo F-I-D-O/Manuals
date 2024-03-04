@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../../Programming/Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Programming/Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -390,79 +401,6 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ssh" class="nav-link">SSH</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#ssh-tunneling" class="nav-link">SSH Tunneling</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#debugging-a-ssh-tunnel" class="nav-link">Debugging a SSH tunnel</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#enabnling-ssh-access-on-server" class="nav-link">Enabnling SSH Access on Server</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#wsl-configuration" class="nav-link">WSL configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#debugging" class="nav-link">Debugging</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#ssh-agent" class="nav-link">SSH Agent</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#starting-the-agent" class="nav-link">Starting the agent</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#listing-keys" class="nav-link">Listing keys</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#adding-keys" class="nav-link">Adding keys</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#debuging" class="nav-link">Debuging</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#known_hosts-file" class="nav-link">known_hosts file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#screen-executing-a-long-running-process-over-ssh" class="nav-link">Screen: executing a long running process over SSH</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#copying-files-over-ssh-using-scp" class="nav-link">Copying files over SSH using scp</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#problems" class="nav-link">Problems</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#wsl-configuration_1" class="nav-link">WSL configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#debugging_1" class="nav-link">Debugging</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
             <li class="nav-item" data-level="1"><a href="#bash" class="nav-link">Bash</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#general-remarks" class="nav-link">General Remarks</a>
@@ -541,6 +479,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#calling-a-script-from-another-script-in-the-same-directory" class="nav-link">Calling a script from another script in the same directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#root-access" class="nav-link">Root Access</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#changing-shell-user" class="nav-link">Changing shell user</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#changing-shell-user-in-a-script" class="nav-link">Changing shell user in a script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -613,6 +568,27 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#file-ownership" class="nav-link">File ownership</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#disable-access-to-shell-for-a-user" class="nav-link">Disable access to shell for a user</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#managing-services-with-systemd" class="nav-link">Managing services with systemd</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get-the-status-of-a-service" class="nav-link">Get the status of a service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#listing-services" class="nav-link">Listing services</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -667,6 +643,35 @@
             </li>
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#vim" class="nav-link">vim</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#normal-mode" class="nav-link">Normal Mode</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#global-commands" class="nav-link">Global Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#file-editing-commands" class="nav-link">File Editing Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#insert-mode" class="nav-link">Insert Mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visual-mode" class="nav-link">Visual Mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#copy-text-to-cliboard" class="nav-link">Copy text to cliboard</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -710,7 +715,7 @@
 2.  disable the safe path mechanism for <code>sudo</code>, i.e., comment the line: <code>Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin</code>
 3.  logout and login again to load the new added varibales</p>
 <h2 id="enable-the-variable-outside-bash">Enable the Variable Outside Bash<a class="headerlink" href="#enable-the-variable-outside-bash" title="Permanent link">&para;</a></h2>
-<p>If you need the variable outside bash, the above-mentioned approach won’t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for <a href="https://en.wikipedia.org/wiki/Linux_PAM">PAM shells</a>  (see <a href="https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible">this SO answer</a> why).</p>
+<p>If you need the variable outside bash, the above-mentioned approach wonâ€™t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for <a href="https://en.wikipedia.org/wiki/Linux_PAM">PAM shells</a>  (see <a href="https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible">this SO answer</a> why).</p>
 <p>Add the variable to <code>/etc/environment</code>. Note that it is not a script file, so you can use only simple variable assignments.</p>
 <h2 id="enable-variable-on-a-device-without-root-access">Enable Variable on a Device Without Root Access<a class="headerlink" href="#enable-variable-on-a-device-without-root-access" title="Permanent link">&para;</a></h2>
 <p>Without root access, we can only edit the user config files. put the necessary config into:
@@ -768,134 +773,6 @@ appendWindowsPath = false
 <p>The <a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a> command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:
 - <code>-n</code>: do not translate IP and ports into human readable names
 - <code>-a</code>: show all connections. Without this, some connections can be skipped.</p>
-<h1 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h1>
-<p>The SSH is a protocol for secure communication between two computers. The basic usage is to connect to a remote computer:</p>
-<pre><code class="language-bash">ssh &lt;username&gt;@&lt;address&gt;
-</code></pre>
-<p>To close the connection, type <code>exit</code> to the console and press enter.</p>
-<p>If we do not want to establish a connection, but just run a single command, we can add the command at the end of the ssh command:</p>
-<pre><code class="language-bash">ssh &lt;username&gt;@&lt;address&gt; &lt;command&gt;
-</code></pre>
-<h2 id="ssh-tunneling">SSH Tunneling<a class="headerlink" href="#ssh-tunneling" title="Permanent link">&para;</a></h2>
-<p>An SSH tunnel can be created by the <code>ssh</code> command. The usuall syntax is following:</p>
-<pre><code class="language-bash">ssh -L &lt;local port&gt;:&lt;remote machine&gt;:&lt;remote port&gt; &lt;ssh server username&gt;@&lt;ssh server address&gt;
-</code></pre>
-<p>The <code>-L</code> argument stands for <em>local port forwarding</em>, i.e., we forward a local port to some remote port.</p>
-<p>Example:</p>
-<pre><code class="language-bash">ssh -L 1111:localhost:5432 fiedler@its.fel.cvut.cz
-</code></pre>
-<p>The <em>local port</em> (here <code>1111</code>) is arbitrary, we can use any free port. The aplications using the tunnel should then be configured as:
-- host=<code>localhost</code>
-- port:=<code>1111</code></p>
-<p>The <em>remote machine</em> is the address of the machine we want to access relative to the <em>ssh server</em>. If the ssh server is running on the computer we want to access through the tunnel, we can use <code>localhost</code>. Analogously, the <em>remote port</em> is the port we wan to use on the remote machine (here <code>5432</code> is a PostgreSQL db port).</p>
-<p>The <code>ssh server username</code> and <code>ssh server address</code> are then the username/address of the remote machine. On top of that, we need  password or priveta key to validate our identity. Note that the credential here are the credential for the server, not the credentials of the service we are accessing through the ssh connection. Those credentials has to be usually supplied by the application accessing the service through the ssh tunnel.</p>
-<p>The connection can be canceled any time byping <code>exit</code> to the console.</p>
-<p><a href="https://linuxize.com/post/how-to-setup-ssh-tunneling/">More information</a></p>
-<h3 id="debugging-a-ssh-tunnel">Debugging a SSH tunnel<a class="headerlink" href="#debugging-a-ssh-tunnel" title="Permanent link">&para;</a></h3>
-<p>This guide suppose that the tunnel creation comman run without any error message.
-1. If the tunnel seems to not work, first use a command line tool to be sure:
-    - web browser for HTTP tunnels (remote port 80)
-    - <code>psql</code> for postgeSQL tunnels (remote port 5432)
-    - <code>telnet</code> for telnet tunnels (reote port 23)
-2. If the test is unsucessful, try to kill all ssh connections to the server by shutting down all applications with ssh connections tunnels, untill there will be only one connection at the server (the console). The number of ssh connections can be checked with: <code>sudo netstat -nap | grep :22</code></p>
-<h2 id="enabnling-ssh-access-on-server">Enabnling SSH Access on Server<a class="headerlink" href="#enabnling-ssh-access-on-server" title="Permanent link">&para;</a></h2>
-<ol>
-<li>install openssh:<ul>
-<li><code>sudo apt update</code></li>
-<li><code>sudo apt install openssh-server</code></li>
-</ul>
-</li>
-<li>configure access<ul>
-<li>password:<ol>
-<li>open <code>/etc/ssh/sshd_config</code></li>
-<li>set <code>PasswordAuothentication yes</code></li>
-<li>after restrat you can log in with the user and password used in Ubuntu</li>
-</ol>
-</li>
-<li>keys: TODO</li>
-</ul>
-</li>
-<li>restart the ssh server: <code>sudo service ssh restart</code></li>
-</ol>
-<h3 id="wsl-configuration">WSL configuration<a class="headerlink" href="#wsl-configuration" title="Permanent link">&para;</a></h3>
-<ol>
-<li>port <code>22</code> can be used on Windows, so change the port to <code>2222</code> in <code>sshd_config</code></li>
-<li>when loging from Windows use <code>127.0.0.1</code> as a host</li>
-</ol>
-<h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
-<p>1n from now e  as a t euin.  check the ssh status with: <code>s th service ssh status</code>
-2.  check the ssh porot with <code>sudso netstat t-tpln</code></p>
-<h2 id="ssh-agent">SSH Agent<a class="headerlink" href="#ssh-agent" title="Permanent link">&para;</a></h2>
-<p>Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.</p>
-<p>An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is <code>ssh-agent</code>, the rest of the section is dedicated to this agent.</p>
-<p>To successfully use the agent, we need to:
-1.  start the agent, either manually or automatically on OS startup
-2.  add the keys to the agent (only once)</p>
-<h3 id="starting-the-agent">Starting the agent<a class="headerlink" href="#starting-the-agent" title="Permanent link">&para;</a></h3>
-<p>The agent can be started manually by running:</p>
-<pre><code class="language-bash">eval `ssh-agent`
-</code></pre>
-<p>We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the <code>ssh-agent</code> prints the necessary commands to the console. By using eval, the <code>ssh-agent</code> is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.</p>
-<h3 id="listing-keys">Listing keys<a class="headerlink" href="#listing-keys" title="Permanent link">&para;</a></h3>
-<p>To list the keys stored in the agent, run:</p>
-<pre><code class="language-bash">ssh-add -l
-</code></pre>
-<h3 id="adding-keys">Adding keys<a class="headerlink" href="#adding-keys" title="Permanent link">&para;</a></h3>
-<p>To add a key to the agent, run:</p>
-<pre><code class="language-bash">ssh-add &lt;path to key&gt;
-</code></pre>
-<h3 id="debuging">Debuging<a class="headerlink" href="#debuging" title="Permanent link">&para;</a></h3>
-<p>If the agent is running and the key is listed, the first thing to try is to connect via ssh to see whether it is an agent/ssh issue or an issue of the program using the SSH (like git, IDE, file manager...)</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>For configuration, we can use the <code>git config</code> command. There are three levels of configuration:
-- <em>system</em>: the configuration is applied to all users on the system. This configuration is set during the installation of git.
-- <em>global</em>: the configuration is applied to all repositories of the current user. This configuration is set by the <code>--global</code> parameter.
-- <em>local</em>: the configuration is applied only to the current repository. This configuration is set by the <code>--local</code> parameter.</p>
-<p>To list the configuration, use the <code>-l</code>/<code>--list</code> parameter of the <code>git config</code> command. To list the configuration for a specific level, use the <code>--system</code>, <code>--global</code>, <code>--local</code> parameters.</p>
-<p>To see the default value of a configuration, search in the <a href="https://git-scm.com/docs/git-config#_variables">git config documentation</a>.</p>
-<h2 id="known_hosts-file"><code>known_hosts</code> file<a class="headerlink" href="#known_hosts-file" title="Permanent link">&para;</a></h2>
-<p>To know that a connection leads to the desired server and not to some impersonator, the server sends its public key to the client. The client then checks the public key against the list of keys previously set as valid. This list is stored in the <code>.ssh/known_hosts</code> file. The format of the file is:</p>
-<pre><code>&lt;server address&gt; &lt;key type&gt; &lt;key&gt;
-</code></pre>
-<p>Each line contains one server record. What is confusing here is that each server can have multiple records, due to:
-- different key type (e.g., RSA, ECDSA)
-- key for both host name and IP address (e.g., <code>github.com</code> and <code>140.82.121.3</code>)
-It is important to delete/updete all of these recorsds in case the server change its keys.</p>
-<p>More info is at this <a href="https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh/20710#20710">SO answer</a>.</p>
-<h2 id="screen-executing-a-long-running-process-over-ssh">Screen: executing a long running process over SSH<a class="headerlink" href="#screen-executing-a-long-running-process-over-ssh" title="Permanent link">&para;</a></h2>
-<p>When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the <code>screen</code> command, which is especially usefull for long running processes.</p>
-<p>A typical workflow can look like this:
-1. execute <code>screen</code> to start the screen session
-2. run the long running command
-3. disconnect
-4. connect to the server again
-5. run <code>screen -r</code> to recconect to the session and see the results of the command.
-1. after the command is finished, exit the screen session with <code>exit</code></p>
-<p>Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
-6. <code>screen -ls</code>
-7. read the ID from the output and exec <code>screen -rd &lt;ID&gt;</code></p>
-<h2 id="copying-files-over-ssh-using-scp">Copying files over SSH using <code>scp</code><a class="headerlink" href="#copying-files-over-ssh-using-scp" title="Permanent link">&para;</a></h2>
-<p>The <code>scp</code> command is used to copy files over SSH. The syntax is:</p>
-<pre><code class="language-bash">scp &lt;source&gt; &lt;destination&gt;
-</code></pre>
-<p>The <code>&lt;source&gt;</code> and <code>&lt;destination&gt;</code> can be either local or remote. The remote files are specified using the <code>&lt;username&gt;@&lt;address&gt;:&lt;path&gt;</code> syntax. </p>
-<p>Note that <strong>if the remote path contains spaces, double quoting is necessary</strong>, one for local and one for remote:</p>
-<pre><code class="language-bash">scp &lt;source&gt; &quot;&lt;username&gt;@&lt;address&gt;:'&lt;path with spaces&gt;'&quot;
-</code></pre>
-<h3 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>protocol error: filename does not match request</code>: This error is triggered if the path contains unexpected characters. Sometimes, it can be triggered even for correct path, if the local console does not match the remote console. In that case, the solution is to use the <code>-T</code> parameter to disable the security check.</li>
-</ul>
-<h2 id="wsl-configuration_1">WSL configuration<a class="headerlink" href="#wsl-configuration_1" title="Permanent link">&para;</a></h2>
-<ol>
-<li>port <code>22</code> can be used on Windows, so change port to <code>2222</code> in <code>sshd_config</code></li>
-<li>when loging from Windows use <code>127.0.0.1</code> as a host</li>
-</ol>
-<h2 id="debugging_1">Debugging<a class="headerlink" href="#debugging_1" title="Permanent link">&para;</a></h2>
-<ol>
-<li>check the ssh status with: <code>service ssh status</code></li>
-<li>check the ssh port with <code>sudo netstat -tpln</code></li>
-</ol>
 <h1 id="bash">Bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h1>
 <h2 id="general-remarks">General Remarks<a class="headerlink" href="#general-remarks" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1156,6 +1033,38 @@ SQL)
 <p>Then we can set the script to exit on error:</p>
 <pre><code class="language-bash">set -e
 </code></pre>
+<h2 id="calling-a-script-from-another-script-in-the-same-directory">Calling a script from another script in the same directory<a class="headerlink" href="#calling-a-script-from-another-script-in-the-same-directory" title="Permanent link">&para;</a></h2>
+<p>To call a script <em>b</em> from script <em>a</em> in the same directory, it is not wise to use the relative path, it is evaluated from the current directory, not from the directory of the script. To be sure that we can call script <em>a</em> from anywhere, we need to change the working directory to the directory of the scripts first:</p>
+<pre><code class="language-bash">cd &quot;$(dirname &quot;$0&quot;)&quot;
+./B.sh
+</code></pre>
+<h1 id="root-access">Root Access<a class="headerlink" href="#root-access" title="Permanent link">&para;</a></h1>
+<p>Some commands require root privilages. The basic way how to run a command as root, we can use the <code>sudo</code> command:</p>
+<pre><code class="language-bash">sudo &lt;command&gt;
+</code></pre>
+<p>A password of the current user is required to run the command. Also, the user has have the right to run <code>sudo</code>.</p>
+<p>The password is usually required only once per some time period (e.g., 15 minutes). </p>
+<p>For some operations (e.g., browsing folders requiring root access), we have to run multiple commands as root. In this case, we have to switch the shell user to root. </p>
+<p>Resources:
+- <a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386">SO</a></p>
+<h2 id="changing-shell-user">Changing shell user<a class="headerlink" href="#changing-shell-user" title="Permanent link">&para;</a></h2>
+<p>To change the shell user, we can use the <code>su</code> command:</p>
+<pre><code class="language-bash">su &lt;username&gt;
+</code></pre>
+<p>If we omit the username, the root user is used. Note that the <strong>password of the target user is required</strong>. To change the shell user without the password of the target user, we can use the <code>sudo</code> command:</p>
+<pre><code class="language-bash">sudo su &lt;username&gt;
+</code></pre>
+<p>This way, the password of the current user is required.</p>
+<p>The <code>su</code> command can be used the same way as the <code>sudo</code> command, i.e., we can pass the command:</p>
+<pre><code class="language-bash">su &lt;username&gt; -c &quot;&lt;command&gt;&quot;
+</code></pre>
+<p>To <strong>exit</strong> the shell user, we can use the <code>exit</code> command.</p>
+<h3 id="changing-shell-user-in-a-script">Changing shell user in a script<a class="headerlink" href="#changing-shell-user-in-a-script" title="Permanent link">&para;</a></h3>
+<p>In a script, we cannot change the shell user for the remaining commands in the script. If we do that, the script will execute a new shell, and the remaining commands will be executed in the old shell. </p>
+<p>To execute commands as a different user, we have several options. Every option pass the commands as a parameter to the change user command (e.g., <code>su -c "&lt;command&gt;"</code>). The options are:
+1. for each command, create a new change user command 
+2. create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)
+3. move commands to a separate script and execute the script as a different user</p>
 <h1 id="managing-packages-with-apt-and-dpkg">Managing packages with <code>apt</code> and <code>dpkg</code><a class="headerlink" href="#managing-packages-with-apt-and-dpkg" title="Permanent link">&para;</a></h1>
 <p>To <strong>update the list</strong> of possible updates:</p>
 <pre><code class="language-bash">sudo apt update
@@ -1163,11 +1072,20 @@ SQL)
 <p>To perform the <strong>update</strong>:</p>
 <pre><code class="language-bash">sudo apt upgrade
 </code></pre>
-<p>To find the location of an <strong>installed package</strong>:</p>
+<p>To <strong>list installed</strong> packages:</p>
+<pre><code class="language-bash">apt list --installed
+</code></pre>
+<p>We can filter the list using the <code>grep</code> command.</p>
+<p>To <strong>find the install location</strong> of a package:</p>
 <pre><code class="language-bash">dpkg -L &lt;package&gt;
 </code></pre>
+<p>Unfortunately, it is not possible to easily search for the user who installed the package.</p>
 <p>To <strong>search</strong> for a package:</p>
 <pre><code class="language-bash">apt-cache search &lt;package&gt;
+</code></pre>
+<p>We can limit the search to check only names of the packages using the <code>--names-only</code> parameter.</p>
+<p>To <strong>remove</strong> a package:</p>
+<pre><code class="language-bash">sudo apt remove &lt;package&gt;
 </code></pre>
 <h2 id="changing-package-repositories">Changing package repositories<a class="headerlink" href="#changing-package-repositories" title="Permanent link">&para;</a></h2>
 <p>If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:</p>
@@ -1231,7 +1149,8 @@ SQL)
 </code></pre>
 <h1 id="processes">Processes<a class="headerlink" href="#processes" title="Permanent link">&para;</a></h1>
 <ul>
-<li>for checking all processes, we can use <code>htop</code></li>
+<li>for checking <strong>all processes</strong>, we can use <code>htop</code></li>
+<li>to get a <strong>path to executable</strong> of a process by PID, we can use <code>pwdx &lt;PID&gt;</code></li>
 <li>for checking a specific process, we can use <code>ps</code></li>
 <li>to kill a process, we can use <code>kill</code></li>
 <li>to kill a process by name, we can use <code>pkill</code></li>
@@ -1268,6 +1187,49 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <pre><code class="language-bash">usermod -G &lt;group list&gt; &lt;username&gt;
 </code></pre>
 <p>where <code>&lt;group list&gt;</code> is a comma separated list of groups the user should belong to.</p>
+<h2 id="file-ownership">File ownership<a class="headerlink" href="#file-ownership" title="Permanent link">&para;</a></h2>
+<p>Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
+- <em>owner</em>: the user owner
+- <em>group</em>: the group owner
+- <em>other</em>: all other users</p>
+<p>To change the owner of a file, we can use the <code>chown</code> command. The syntax is:</p>
+<pre><code class="language-bash">chown &lt;user&gt;:&lt;group&gt; &lt;file&gt;
+</code></pre>
+<p>We can skip the <code>:&lt;group&gt;</code> part, in which case the group is not changed.</p>
+<p>The <code>chown</code> command can also be used to change the owner of a directory. In this case, the <code>-R</code> parameter is used to change the owner recursively.</p>
+<h2 id="disable-access-to-shell-for-a-user">Disable access to shell for a user<a class="headerlink" href="#disable-access-to-shell-for-a-user" title="Permanent link">&para;</a></h2>
+<p>To disable access to shell for a user, we have to configure his/her shell to <code>/usr/sbin/nologin</code> or similar. </p>
+<ul>
+<li>For new users, we can use the <code>--shell</code> parameter of the <code>adduser</code> command.</li>
+<li>For existing users, we can use the <code>usermod</code> command:</li>
+</ul>
+<pre><code class="language-bash">usermod --shell /usr/sbin/nologin &lt;username&gt;
+</code></pre>
+<p>Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the <code>-N</code> parameter, which tells the client not to execute any command after login.</p>
+<h1 id="managing-services-with-systemd">Managing services with systemd<a class="headerlink" href="#managing-services-with-systemd" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Systemd">systemd</a> is a system and service manager for Linux. It is used to manage services, devices, and other aspects of the system. </p>
+<p>The main command to manage services is <code>systemctl</code>. The general syntax is:</p>
+<pre><code class="language-bash">sudo systemctl &lt;action&gt; &lt;service name&gt;
+</code></pre>
+<p>The most used actions are:
+- <code>start</code>: start the service
+- <code>stop</code>: stop the service
+- <code>restart</code>: restart the service
+- <code>status</code>: get the status of the service
+- <code>reload</code>: reload the configuration of the service</p>
+<h2 id="get-the-status-of-a-service">Get the status of a service<a class="headerlink" href="#get-the-status-of-a-service" title="Permanent link">&para;</a></h2>
+<p>To get the status of a service, we can use the <code>status</code> action:</p>
+<pre><code class="language-bash">sudo systemctl status &lt;service name&gt;
+</code></pre>
+<p>The statuses can be:
+- <code>active (running)</code>: the service is running
+- <code>active (exited)</code>: the service has finished
+- <code>active (waiting)</code>: the service is not running, but it is waiting for some event
+- TODO: add more statuses</p>
+<h2 id="listing-services">Listing services<a class="headerlink" href="#listing-services" title="Permanent link">&para;</a></h2>
+<p>To list all services, we can use one of the following commands:
+- <code>list-units</code> to list all units ever run on the server or
+- <code>list-units-files</code> to list all units, including the ones that have never been run</p>
 <h1 id="installing-java">Installing Java<a class="headerlink" href="#installing-java" title="Permanent link">&para;</a></h1>
 <h2 id="oracle-jdk">Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1321,7 +1283,36 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <li>check the WSL distro name: <code>wsl -l -v</code></li>
 <li>shutdown WSL: <code>wsl --shutdown</code></li>
 <li>backup the distro: <code>wsl --export &lt;disto name&gt; &lt;backup folder path&gt;/&lt;backup name&gt;.tar</code></li>
-</ol></div>
+</ol>
+<h1 id="vim">vim<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h1>
+<p>Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:
+- <strong>normal mode</strong>: for navigation and file manipulation
+- <strong>insert mode</strong>: for text editing
+- <strong>visual mode</strong>: for text selection</p>
+<h2 id="normal-mode">Normal Mode<a class="headerlink" href="#normal-mode" title="Permanent link">&para;</a></h2>
+<p>In normal mode, we can:
+- navigate the file using arrow keys or <code>hjkl</code> (left, down, up, right)
+- enter global commands using <code>:</code> (e.g., <code>:q</code> for quit)
+- edit file content using special commands (e.g., <code>dd</code> for delete line)</p>
+<h3 id="global-commands">Global Commands<a class="headerlink" href="#global-commands" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>:q</code>: quit</li>
+<li><code>:w</code>: save</li>
+<li><code>:wq</code>: save and quit</li>
+<li><code>:q!</code>: quit without saving</li>
+</ul>
+<h3 id="file-editing-commands">File Editing Commands<a class="headerlink" href="#file-editing-commands" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>dd</code>: delete line</li>
+</ul>
+<h2 id="insert-mode">Insert Mode<a class="headerlink" href="#insert-mode" title="Permanent link">&para;</a></h2>
+<p>Insert mode is the normal text mode we know from other editors. To enter insert mode, press <code>i</code>. To exit insert mode, press <code>esc</code>.</p>
+<h2 id="visual-mode">Visual Mode<a class="headerlink" href="#visual-mode" title="Permanent link">&para;</a></h2>
+<p>Visual mode is used for text selection. To enter visual mode, press <code>v</code>. To exit visual mode, press <code>esc</code>.</p>
+<h2 id="copy-text-to-cliboard">Copy text to cliboard<a class="headerlink" href="#copy-text-to-cliboard" title="Permanent link">&para;</a></h2>
+<p>Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:
+1. select the text using mouse or keyboard
+2. press enter to copy the text to the clipboard</p></div>
             </div>
         </div>
 

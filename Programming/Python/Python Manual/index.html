@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -306,7 +317,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data types</a>
+            <li class="nav-item" data-level="1"><a href="#basic-data-types" class="nav-link">Basic Data types</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#numbers" class="nav-link">Numbers</a>
               <ul class="nav flex-column">
@@ -369,6 +380,31 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#built-in-data-structures-and-generators" class="nav-link">Built-in data structures and generators</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generator" class="nav-link">Generator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dictionary" class="nav-link">Dictionary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#comprehensions" class="nav-link">Comprehensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#slices" class="nav-link">Slices</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -464,31 +500,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#built-in-data-structures-and-generators" class="nav-link">Built-in data structures and generators</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#generator" class="nav-link">Generator</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#dictionary" class="nav-link">Dictionary</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#comprehensions" class="nav-link">Comprehensions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#slices" class="nav-link">Slices</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -600,6 +611,19 @@
             
             <li class="nav-item" data-level="1"><a href="#working-with-gis" class="nav-link">Working with GIS</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#geocoding" class="nav-link">Geocoding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#complex-data-structures" class="nav-link">Complex data structures</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#kdtree" class="nav-link">KDTree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -607,7 +631,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="data-types">Data types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h1>
+<h1 id="basic-data-types">Basic Data types<a class="headerlink" href="#basic-data-types" title="Permanent link">&para;</a></h1>
 <h2 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h2>
 <p>Python has the following numeric types:
 - <code>int</code> - integer
@@ -730,6 +754,67 @@ message = f&quot;Hello {a:0&gt;4d}&quot; # equivalent
     def from_a(cls, b):
         return cls(0, b)
 </code></pre>
+<h1 id="built-in-data-structures-and-generators">Built-in data structures and generators<a class="headerlink" href="#built-in-data-structures-and-generators" title="Permanent link">&para;</a></h1>
+<p>Python has several built-in data structures, most notably <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>. These are less efficient then comparable structures in other languages, but they are very convenient to use.</p>
+<p>Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.</p>
+<h2 id="generator">Generator<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h2>
+<p><a href="https://wiki.python.org/moin/Generators">Python wiki</a></p>
+<p>Generators are mostly used in the iteration, we can iterte them the same way as lists. </p>
+<p>To get the first item of the generator, we can use the <code>next</code> function:</p>
+<pre><code class="language-Python">g = (x for x in range(10))
+first = next(g) # 0
+</code></pre>
+<p>To create a generator function (a function that returns a generator), we can use the <code>yield</code> keyword. The following function returns a generator that yields the numbers 1, 2, and 3:</p>
+<pre><code class="language-Python">def gen():
+    yield 1
+    yield 2
+    yield 3
+</code></pre>
+<p>The <strong>length</strong> of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using <code>len(list(&lt;generator&gt;))</code></p>
+<h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Official Manual</a></p>
+<p>Disctionaries are initialized using curly braces (<code>{}</code>) and the <code>:</code> operator:</p>
+<pre><code class="language-Python">d = {
+    'key1': 'value1',
+    'key2': 'value2',
+    ...
+}
+</code></pre>
+<p>Two dictionaries can be merged using the <code>|</code> operator:</p>
+<pre><code class="language-Python">d3 = d1 | d2 
+</code></pre>
+<h2 id="comprehensions">Comprehensions<a class="headerlink" href="#comprehensions" title="Permanent link">&para;</a></h2>
+<p>In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:</p>
+<pre><code class="language-Python">&lt;struct var&gt; = 
+    &lt;op. brace&gt; &lt;member var expr.&gt; for &lt;member var&gt; in &lt;iterable&gt;&lt;cl. brace&gt;
+</code></pre>
+<p>As for literals, we use square braces (<code>[]</code>) for lists, curly braces (<code>{}</code>) for sets, and curly braces with colons for dictionaries. In contrast, we get a generator expression when using round braces (<code>()</code>), not a tuple.</p>
+<p>We can also use the <code>if</code> keyword to filter the elements:</p>
+<pre><code class="language-Python">a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
+</code></pre>
+<h2 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
+<p>For sorting, you can use the <code>sorted</code> function. </p>
+<p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
+<h2 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h2>
+<p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
+<pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]
+</code></pre>
+<p>The <code>start</code> and <code>end</code> are inclusive. </p>
+<p>The <code>step</code> is optional and defaults to 1. The start is also optional and defaults to 0. </p>
+<p>Instead of omitting the <code>start</code> and <code>end</code>, we can use the <code>None</code> keyword:</p>
+<pre><code class="language-Python">a = [1, 2, 3, 4, 5]
+a[None:3] # [1, 2, 3]
+</code></pre>
+<p>Sometimes, it is not possible to use the slice syntax:
+- when we need to use a variable for the step or,
+- when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.</p>
+<p>In such cases, we can use the <code>slice</code> object:</p>
+<pre><code class="language-Python">a[0:10:2] 
+s = slice(0, 10, 2)
+a[s] # equivalent
+</code></pre>
+<p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.python.org/3/tutorial/errors.html">documentation</a></p>
 <p>Syntax:</p>
@@ -930,67 +1015,6 @@ import shutil
 p = Path(&quot;C:/workspace/project&quot;)
 shutil.rmtree(p, onerror=lambda func, path, _: (os.chmod(path, stat.S_IWRITE), func(path)))
 </code></pre>
-<h1 id="built-in-data-structures-and-generators">Built-in data structures and generators<a class="headerlink" href="#built-in-data-structures-and-generators" title="Permanent link">&para;</a></h1>
-<p>Python has several built-in data structures, most notably <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>. These are less efficient then comparable structures in other languages, but they are very convenient to use.</p>
-<p>Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.</p>
-<h2 id="generator">Generator<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h2>
-<p><a href="https://wiki.python.org/moin/Generators">Python wiki</a></p>
-<p>Generators are mostly used in the iteration, we can iterte them the same way as lists. </p>
-<p>To get the first item of the generator, we can use the <code>next</code> function:</p>
-<pre><code class="language-Python">g = (x for x in range(10))
-first = next(g) # 0
-</code></pre>
-<p>To create a generator function (a function that returns a generator), we can use the <code>yield</code> keyword. The following function returns a generator that yields the numbers 1, 2, and 3:</p>
-<pre><code class="language-Python">def gen():
-    yield 1
-    yield 2
-    yield 3
-</code></pre>
-<p>The <strong>length</strong> of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using <code>len(list(&lt;generator&gt;))</code></p>
-<h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Official Manual</a></p>
-<p>Disctionaries are initialized using curly braces (<code>{}</code>) and the <code>:</code> operator:</p>
-<pre><code class="language-Python">d = {
-    'key1': 'value1',
-    'key2': 'value2',
-    ...
-}
-</code></pre>
-<p>Two dictionaries can be merged using the <code>|</code> operator:</p>
-<pre><code class="language-Python">d3 = d1 | d2 
-</code></pre>
-<h2 id="comprehensions">Comprehensions<a class="headerlink" href="#comprehensions" title="Permanent link">&para;</a></h2>
-<p>In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:</p>
-<pre><code class="language-Python">&lt;struct var&gt; = 
-    &lt;op. brace&gt; &lt;member var expr.&gt; for &lt;member var&gt; in &lt;iterable&gt;&lt;cl. brace&gt;
-</code></pre>
-<p>As for literals, we use square braces (<code>[]</code>) for lists, curly braces (<code>{}</code>) for sets, and curly braces with colons for dictionaries. In contrast, we get a generator expression when using round braces (<code>()</code>), not a tuple.</p>
-<p>We can also use the <code>if</code> keyword to filter the elements:</p>
-<pre><code class="language-Python">a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
-</code></pre>
-<h2 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
-<p>For sorting, you can use the <code>sorted</code> function. </p>
-<p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
-<h2 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h2>
-<p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
-<pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]
-</code></pre>
-<p>The <code>start</code> and <code>end</code> are inclusive. </p>
-<p>The <code>step</code> is optional and defaults to 1. The start is also optional and defaults to 0. </p>
-<p>Instead of omitting the <code>start</code> and <code>end</code>, we can use the <code>None</code> keyword:</p>
-<pre><code class="language-Python">a = [1, 2, 3, 4, 5]
-a[None:3] # [1, 2, 3]
-</code></pre>
-<p>Sometimes, it is not possible to use the slice syntax:
-- when we need to use a variable for the step or,
-- when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.</p>
-<p>In such cases, we can use the <code>slice</code> object:</p>
-<pre><code class="language-Python">a[0:10:2] 
-s = slice(0, 10, 2)
-a[s] # equivalent
-</code></pre>
-<p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">CSV<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.python.org/3/library/csv.html">Official Manual</a></p>
@@ -1146,8 +1170,14 @@ for i in tqdm(range(100)):
 <pre><code class="language-Python">sqlalchemy_engine.execute(&quot;&lt;sql&gt;&quot;)
 </code></pre>
 <h1 id="working-with-gis">Working with GIS<a class="headerlink" href="#working-with-gis" title="Permanent link">&para;</a></h1>
-<p>when working with gis data, we usually change the <code>pandas</code> library for its GIS extension called <a href="https://geopandas.org/en/stable/"><code>geopandas</code></a>.</p>
-<p>For more,, see the pandas manual.</p></div>
+<p>When working with gis data, we usually change the <code>pandas</code> library for its GIS extension called <a href="https://geopandas.org/en/stable/"><code>geopandas</code></a>.</p>
+<p>For more, see the pandas manual.</p>
+<h2 id="geocoding">Geocoding<a class="headerlink" href="#geocoding" title="Permanent link">&para;</a></h2>
+<p>For geocoding, we can use the <a href="https://geocoder.readthedocs.io/">Geocoder</a> library. </p>
+<h1 id="complex-data-structures">Complex data structures<a class="headerlink" href="#complex-data-structures" title="Permanent link">&para;</a></h1>
+<h2 id="kdtree">KDTree<a class="headerlink" href="#kdtree" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">documentation</a></p>
+<p>KDTree can be found in the <code>scipy</code> library. </p></div>
             </div>
         </div>
 

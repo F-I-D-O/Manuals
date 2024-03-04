@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -315,13 +326,26 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
+            <li class="nav-item" data-level="1"><a href="#tests" class="nav-link">Tests</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#intellij-config" class="nav-link">IntelliJ Config</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#compact-tabs" class="nav-link">Compact tabs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -351,7 +375,8 @@
 </li>
 <li><strong>Surround with</strong>: <code>Ctrl</code> + <code>W</code></li>
 </ul>
-<h1 id="testing-private-methods">Testing private methods<a class="headerlink" href="#testing-private-methods" title="Permanent link">&para;</a></h1>
+<h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
+<h2 id="testing-private-methods">Testing private methods<a class="headerlink" href="#testing-private-methods" title="Permanent link">&para;</a></h2>
 <p>An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.</p>
 <p>The possible approaches are:
 - <strong>Makeing the method public</strong>: Only recommended if the method should be exposed, i.e., its functionality is not limited to the class itself.
@@ -372,7 +397,12 @@
 | Approach | Time complexity (worst case asymptothic)| Time complexity (average expected) | Space complexity | allocation complexity |
 | --- | --- | --- | --- | --- |
 | Sets | <em>O(log n)</em> (both contains and add) | <em>O(1)</em> (both contains and add) | <em>O(n)</em> | <em>O(1)</em> |
-| Sorting | <em>O(n log n)</em> (sorting) | <em>O(n log n)</em> (sorting) + <em>O(n)</em> (duplicates check) | <em>0</em> or <em>O(n)</em> if we need to left the source collection unsorted | <em>0</em> or <em>O(1)</em> in case of new collection |</p></div>
+| Sorting | <em>O(n log n)</em> (sorting) | <em>O(n log n)</em> (sorting) + <em>O(n)</em> (duplicates check) | <em>0</em> or <em>O(n)</em> if we need to left the source collection unsorted | <em>0</em> or <em>O(1)</em> in case of new collection |</p>
+<h1 id="intellij-config">IntelliJ Config<a class="headerlink" href="#intellij-config" title="Permanent link">&para;</a></h1>
+<h2 id="compact-tabs">Compact tabs<a class="headerlink" href="#compact-tabs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Settings</strong> -&gt; <strong>Appearance &amp; Behavior</strong> -&gt; <strong>New UI</strong> and select <code>Compact mode</code></li>
+</ul></div>
             </div>
         </div>
 

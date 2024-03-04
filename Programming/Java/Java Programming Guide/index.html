@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="./" class="dropdown-item active">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -279,7 +290,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Debugging%20Java/" class="nav-link">
+                                <a rel="prev" href="../Jackson/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -305,6 +316,25 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#primitive-types" class="nav-link">Primitive types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#classes" class="nav-link">Classes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#record-class" class="nav-link">Record class</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             
             <li class="nav-item" data-level="1"><a href="#strings" class="nav-link">Strings</a>
               <ul class="nav flex-column">
@@ -382,6 +412,20 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#file-system" class="nav-link">File System</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#iterating-over-files-in-a-directory" class="nav-link">Iterating over files in a directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#date-and-time" class="nav-link">Date and Time</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -477,11 +521,19 @@
             
             <li class="nav-item" data-level="1"><a href="#reflection" class="nav-link">Reflection</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#get-class-object" class="nav-link">Get class object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#test-if-a-class-is-a-superclass-or-interface-of-another-class" class="nav-link">Test if a class is a superclass or interface of another class</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#get-field-by-name" class="nav-link">Get field by name</a>
+            <li class="nav-item" data-level="2"><a href="#get-field-or-method-by-name" class="nav-link">Get field or method by name</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#call-method-using-method-object" class="nav-link">Call method using Method object</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -503,94 +555,6 @@
             
             <li class="nav-item" data-level="1"><a href="#jackson" class="nav-link">Jackson</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#ignore-specific-fields" class="nav-link">Ignore specific fields</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#represent-a-class-by-a-single-member" class="nav-link">Represent a class by a single member</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#deserialization" class="nav-link">Deserialization</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#multiple-setters" class="nav-link">Multiple Setters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#update-existing-instance" class="nav-link">Update existing instance</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#updating-polymorphic-types" class="nav-link">Updating polymorphic types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#read-just-part-of-the-file" class="nav-link">Read just part of the file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#check-that-some-node-is-present" class="nav-link">Check that some node is present</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#interface-or-abstract-class" class="nav-link">Interface or abstract class</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#custom-deserializer" class="nav-link">Custom deserializer</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#custom-deserializer_1" class="nav-link">Custom deserializer</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#creating-a-custom-deserializer-for-class" class="nav-link">Creating a custom deserializer for class</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#registering-the-deserializer" class="nav-link">Registering the deserializer</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#custom-deserializer-with-generic-types" class="nav-link">Custom deserializer with generic types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#custom-deserializer-with-inheritance" class="nav-link">Custom deserializer with inheritance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#serialization" class="nav-link">Serialization</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#appending-to-an-existing-file" class="nav-link">Appending to an existing file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#complex-member-filters" class="nav-link">Complex member filters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#flatting-the-hierarchy" class="nav-link">Flatting the hierarchy</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#custom-serializer" class="nav-link">Custom serializer</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#annotations" class="nav-link">Annotations</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#multiple-objects" class="nav-link">Multiple objects</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -598,6 +562,39 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="primitive-types">Primitive types<a class="headerlink" href="#primitive-types" title="Permanent link">&para;</a></h1>
+<p>Java has the following primitive types:
+- <strong>Integer types</strong>: <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>
+- <strong>Floating point types</strong>: <code>float</code>, <code>double</code>
+- <strong>Character type</strong>: <code>char</code>
+- <strong>Boolean type</strong>: <code>boolean</code></p>
+<h1 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h1>
+<p>Arrays in Java are objects, and they are created using the <code>new</code> keyword. The syntax is:</p>
+<pre><code class="language-Java">int[] myArray = new int[10];
+</code></pre>
+<p>The array is then filled with zeros. The length of the array is fixed and cannot be changed. The array can be initialized using the following syntax:</p>
+<pre><code class="language-Java">int[] myArray = {1, 2, 3, 4, 5};
+</code></pre>
+<p>For working with arrays, the static methods from []<code>java.util.Arrays</code>](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) class can be used. Some of the most important methods are:
+- <code>copyOf</code> and <code>copyOfRange</code> for copying arrays
+- <code>fill</code> for filling arrays with a specific value</p>
+<h1 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h1>
+<p>In java, there are the following types of classes:
+- <strong>Standard class</strong>: similar to classes in other languages.
+- <strong>Record class</strong>: a simple aggregate of values. </p>
+<h2 id="record-class">Record class<a class="headerlink" href="#record-class" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.10">official specification</a></p>
+<p>Record class is a simple aggregate class. It is designed to replace the standard class in cases where the class is used only to hold the data (POJO). It is defined using the <code>record</code> keyword like this:</p>
+<pre><code class="language-Java">record MyRecord(int par1, String par2){
+   ...
+}
+</code></pre>
+<p>The advantage over the standard class is that the record class automatically declare data members for all parameters of the record header, and it generates the following methods:
+- <code>equals</code>
+- <code>hashCode</code>
+- <code>toString</code>
+- <code>getters</code> for all parameters
+- <code>constructor</code> that accepts all parameters</p>
 <h1 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h1>
 <p>Classical string literals has to be enclosed in quotes (<code>"my string"</code>). They cannot contain some characters (newline, <code>"</code>). The backslash (<code>\</code>) character is reserved for Java escape sequences  and need to be ecaped as <code>\\</code>.</p>
 <p>In addition, since Java 15, there are text blocks, enclosed in three quotes:</p>
@@ -793,6 +790,17 @@ processMyClass(MyClass&lt;?&gt; myClass){...};
     GREEN
 }
 </code></pre>
+<p>If we need to add some additional members to the enum, we need to end the list of enum items with a semicolon first:</p>
+<pre><code class="language-Java">public enum Semaphore{
+    RED,
+    ORAGNGE,
+    GREEN;
+
+    public void doSomething(){
+        ...
+    }
+}
+</code></pre>
 <h2 id="iterating-over-enum-items">Iterating over enum items<a class="headerlink" href="#iterating-over-enum-items" title="Permanent link">&para;</a></h2>
 <p>we can iterate over enum items using the <code>values</code> method:</p>
 <pre><code class="language-Java">for(Semaphore s: Semaphore.values()){
@@ -815,6 +823,26 @@ for(E item: enumClass.getEnumConstants()){
 E genEnumInst = Enum.valueOf(enumClass, &quot;RED&quot;);
 </code></pre>
 <p>Note that here <code>E</code> has to be a properly typed enum (<code>Enum&lt;E&gt;</code>), not the raw enum (<code>Enum</code>).</p>
+<h1 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h1>
+<p>The modern class for working with paths is the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html"><code>Path</code></a> class from the <code>java.nio.file</code> package. </p>
+<p>Other important class is the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class, which contains static methods for working with files and directories. Important methods:
+- <code>exists</code>
+- <code>isDirectory</code>
+- <code>isRegularFile</code>
+-  methods for iterating over files (see next section)</p>
+<h2 id="iterating-over-files-in-a-directory">Iterating over files in a directory<a class="headerlink" href="#iterating-over-files-in-a-directory" title="Permanent link">&para;</a></h2>
+<p>We can iterate the files in a directory using the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class:
+- <code>Files.list</code>: flat list of files
+- <code>Files.walk</code>: recursive list of files</p>
+<p>Both methods return a <code>Stream&lt;Path&gt;</code> object.</p>
+<h1 id="date-and-time">Date and Time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.baeldung.com/java-8-date-time-intro">Baeldung tutorial</a></p>
+<p>The following classes are intended for working with date and time in Java:
+- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html"><code>LocalDate</code></a>: date without time
+- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html"><code>LocalTime</code></a>: time without date
+- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a>: date and time</p>
+<p>The <code>LocalDateTime</code> als has its timezone/localization aware counterpart:
+- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html"><code>ZonedDateTime</code></a>: date and time with timezone</p>
 <h1 id="lambda-expressions">Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikipedia.org/wiki/Anonymous_function#Java">wiki</a></p>
 <p>An important thing about lambda expressions in Java is that we can only use them to create types satisfying some functional interface. This means that:
@@ -1005,14 +1033,26 @@ switch(list){
 int a = it.nextInt();
 </code></pre>
 <h1 id="reflection">Reflection<a class="headerlink" href="#reflection" title="Permanent link">&para;</a></h1>
-<p>Reflection is a toolset for working with Java types. Its methods can be accessed from a class object associated with all classes. </p>
-<p>The class object represents the type and it can be accessed either by <code>MyClass.class</code> or by calling the <code>MyClass.getClass</code> method. The type of the class object is Class&lt;&gt;</p>
+<p>Reflection is a toolset for working with Java types dynamically. </p>
+<h2 id="get-class-object">Get class object<a class="headerlink" href="#get-class-object" title="Permanent link">&para;</a></h2>
+<p>To obtain the class object, we can use:
+- the <code>forName</code> method of the <code>Class</code> class:
+    <code>Java
+    Class&lt;?&gt; c = Class.forName("java.lang.String");</code>
+    - This way, we can load classes dynamically at runtime.
+- <code>myString.getClass()</code> if we have an instance or
+- <code>String.class</code> if we know the class at compile time.
+ from an object of the class (e.g.,. The method can be then iterated using the <code>getDeclaredMethods</code> method of the <code>Class</code> class.</p>
 <h2 id="test-if-a-class-is-a-superclass-or-interface-of-another-class">Test if a class is a superclass or interface of another class<a class="headerlink" href="#test-if-a-class-is-a-superclass-or-interface-of-another-class" title="Permanent link">&para;</a></h2>
 <p>It can be tested simply as:</p>
 <pre><code class="language-Java">ClassA.isAssignableFrom(ClassB)
 </code></pre>
-<h2 id="get-field-by-name">Get field by name<a class="headerlink" href="#get-field-by-name" title="Permanent link">&para;</a></h2>
-<pre><code class="language-Java">Field field = MyClass().getDeclaredField(&quot;fieldName&quot;);
+<h2 id="get-field-or-method-by-name">Get field or method by name<a class="headerlink" href="#get-field-or-method-by-name" title="Permanent link">&para;</a></h2>
+<pre><code class="language-Java">Field field = myClass.getDeclaredField(&quot;fieldName&quot;);
+Method method = myClass.getMethod(&quot;methodName&quot;);
+</code></pre>
+<h2 id="call-method-using-method-object">Call method using Method object<a class="headerlink" href="#call-method-using-method-object" title="Permanent link">&para;</a></h2>
+<pre><code class="language-Java">method.invoke(myObject, &lt;PARAMS&gt;);
 </code></pre>
 <h1 id="sql">SQL<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h1>
 <p>Java has a build in support for SQL in package <code>java.sql</code>. The typical operation:
@@ -1036,217 +1076,7 @@ while(result.next()){
 }
 </code></pre>
 <h1 id="jackson">Jackson<a class="headerlink" href="#jackson" title="Permanent link">&para;</a></h1>
-<p><a href="https://github.com/FasterXML/jackson-docs">Documentation</a></p>
-<p>Jackson is a (de)serialization library primarily focused to the JSON format. It supports annotations for automatic serialization and deserialization of Java objects.</p>
-<h2 id="ignore-specific-fields">Ignore specific fields<a class="headerlink" href="#ignore-specific-fields" title="Permanent link">&para;</a></h2>
-<p>If you want to ignore specific fields during serialization or deserialization, you can use the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonIgnoreProperties.html"><code>@JsonIgnoreProperties</code> annotation</a>. Use it as a class or type annotation. Example:</p>
-<pre><code class="language-Java">@JsonIgnoreProperties({ &quot;par1&quot;, &quot;par2&quot; })
-public class ConfigModel {
-    // &quot;par1&quot; and &quot;par2&quot; will be ignored 
-}
-</code></pre>
-<p>This annotation can also prevent the "Unrecognized field" error during deserialization, as the ignored fields does not have to be present as Java class members.</p>
-<h2 id="represent-a-class-by-a-single-member">Represent a class by a single member<a class="headerlink" href="#represent-a-class-by-a-single-member" title="Permanent link">&para;</a></h2>
-<p>If we want the java class to be represented by a single value in the <strong>serialized</strong> file, we can achieve that by adding the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.8/com/fasterxml/jackson/annotation/JsonValue.html"><code>@JsonValue</code></a> annotation above the member or method that should represent the class. Note, however, that this only works for simple values, because the member serializers are not called, the members is serialized as a simple value instead. <strong>If you want to represent a class by a single but complex member, use a custom serializer instead</strong>. </p>
-<p>An equivalent annotation for <strong>deserialization</strong> is the <code>@JsonCreator</code> annotation which should be placed above a constructor or factory method.</p>
-<h2 id="deserialization">Deserialization<a class="headerlink" href="#deserialization" title="Permanent link">&para;</a></h2>
-<p>The standard usage is:</p>
-<pre><code class="language-Java">ObjectMapper mapper = new ObjectMapper();
-// ... configure mapper
-
-File file = new File(&lt;PATH TO FILE&gt;);
-
-Instance instance = mapper.readValue(file, Instance.class);
-</code></pre>
-<p>By default, new objects are created for all members in the object hierarchy that are either present in the serialized file.</p>
-<p>New objects are created using the setter, if exists, otherwise, the costructor is called.</p>
-<h3 id="multiple-setters">Multiple Setters<a class="headerlink" href="#multiple-setters" title="Permanent link">&para;</a></h3>
-<p>If there are multiple setters, we need to specify the one that should be used for deserialization by marking it with the <code>@JsonSetter</code> annotation.</p>
-<h3 id="update-existing-instance">Update existing instance<a class="headerlink" href="#update-existing-instance" title="Permanent link">&para;</a></h3>
-<p>You can update an existing instance using the <a href="https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html#readerForUpdating-java.lang.Object-"><code>readerForUpdating</code></a> method:</p>
-<pre><code class="language-Java">ObjectReader or = mapper.readerForUpdating(instance); // special reader
-or.readValue(file) // we can use the method we already know on the object reader
-</code></pre>
-<p>Note that <strong>by default, the update is shalow</strong>. Only the <code>instance</code> object itself is updated, but its members are brand new objects. If you want to keep all objects from an existing object hierarchy, you need to use the <code>@JsonMerge</code> annotation.
-You should put this annotation above any member of the root object you want to update instead of replacing it. <strong>The <code>@JsonUpgrade</code> annotation is recursive</strong>: the members of the member annotated with <code>@JsonUpgrade</code> are updated as well and so on.</p>
-<h4 id="updating-polymorphic-types">Updating polymorphic types<a class="headerlink" href="#updating-polymorphic-types" title="Permanent link">&para;</a></h4>
-<p>For updating polymorpic type, the rule is that the exact type has to match. Also, you need jackson-databind version 2.14.0 or greater.</p>
-<h3 id="read-just-part-of-the-file">Read just part of the file<a class="headerlink" href="#read-just-part-of-the-file" title="Permanent link">&para;</a></h3>
-<p>For reading just part of the file, use the <code>at</code> selector taht is available in the <code>ObjectReader</code> class. We need to first obtain the reader from a mapper, and then use the selector:</p>
-<pre><code class="language-Java">ObjectReader reader = mapper.readerFor(Instance.class);
-Instance instance = reader.at(&quot;data&quot;).readValue(file)
-</code></pre>
-<p>Note that if the path parameter of the <code>at</code> method is incorrect, the method throws an exception with the message: "no content to map due to end-of-input".</p>
-<h3 id="check-that-some-node-is-present">Check that some node is present<a class="headerlink" href="#check-that-some-node-is-present" title="Permanent link">&para;</a></h3>
-<p>To check for presence of a node, we should use the <code>JsonPointer</code> class:</p>
-<pre><code class="language-Java">JsonPointer jsonPointer = Json.createPointer(&quot;&lt;JSON PATH&gt;&quot;);
-boolean found = jsonPointer.containsValue(jsonStructure);
-</code></pre>
-<p>We can also use the <code>JsonPointer</code> in the <code>at</code> method:</p>
-<pre><code class="language-Java">JsonPointer jsonPointer = Json.createPointer(&quot;&lt;JSON PATH&gt;&quot;);
-boolean found = jsonPointer.containsValue(jsonStructure);
-
-if(found){
-    Instance instance = reader.at(jsonPointer).readValue(file, Instance.class)
-}
-</code></pre>
-<h3 id="interface-or-abstract-class">Interface or abstract class<a class="headerlink" href="#interface-or-abstract-class" title="Permanent link">&para;</a></h3>
-<p>When serializing interface or abstract class, it is important to include the implementation type into serialization. Otherwise, the deserialization fails, because it cannot determine the concreate type. To serialize the concrete type, we can use the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.4/com/fasterxml/jackson/annotation/JsonTypeInfo.html"><code>@JsonRypeInfo</code></a> and <code>JsonSubTypes</code> annotations:</p>
-<pre><code class="language-Java">@JsonTypeInfo(
-    use = JsonTypeInfo.Id.CLASS, // what value should we store, here the class name
-    include = JsonTypeInfo.As.PROPERTY, // serialize as a property of the JSON object
-    property = &quot;type&quot; // property name
-)
-public interface Interface  {
-    ...
-}
-
-</code></pre>
-<p>Te above code will work, the full class name will be serialized in the file, however. If we want to use a shorter syntax, i.e., some codename for the class, we need to specify a mapping between this codename and the conreate class:</p>
-<pre><code class="language-Java">@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME, // what value should we store, here a custom name
-    include = JsonTypeInfo.As.PROPERTY, // serialize as a property of the JSON object
-    property = &quot;type&quot; // property name
-)
-@JsonSubTypes({
-    @JsonSubTypes.Type(value = Implementation.class, name = &quot;Implementation name&quot;)
-})
-public interface Interface  {
-    ...
-}
-</code></pre>
-<h4 id="custom-deserializer">Custom deserializer<a class="headerlink" href="#custom-deserializer" title="Permanent link">&para;</a></h4>
-<p>An alternative to <code>@JsonTypeInfo</code> is to use a custom deserializer: 
-https://stackoverflow.com/questions/44122782/jackson-deserialize-based-on-type</p>
-<h3 id="custom-deserializer_1">Custom deserializer<a class="headerlink" href="#custom-deserializer_1" title="Permanent link">&para;</a></h3>
-<p>If our architecture is so complex or specific that none of the Jackson annotations can help us to achieve the desired behavior, we can use a custom deserializer. For that we need to:
-1. Implement a custom deserializer by extending the <code>JsonDeserializer</code> class
-1. Registering the deserializer in the <code>ObjectMapper</code></p>
-<h4 id="creating-a-custom-deserializer-for-class">Creating a custom deserializer for class<a class="headerlink" href="#creating-a-custom-deserializer-for-class" title="Permanent link">&para;</a></h4>
-<p>The only method we need to implement is the:</p>
-<pre><code class="language-Java">T deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-</code></pre>
-<p>where T is the type of the object we are deserializing. </p>
-<p>To get the Jaksons representation of the JSON tree, we can call:</p>
-<pre><code class="language-Java">JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-</code></pre>
-<p>We can get all the fields by calling using the <code>node.fields()</code> method. For arrays, there is a method <code>node.elements()</code>;</p>
-<h4 id="registering-the-deserializer">Registering the deserializer<a class="headerlink" href="#registering-the-deserializer" title="Permanent link">&para;</a></h4>
-<pre><code class="language-Java">ObjectMapper mapper = new ObjectMapper();
-SimpleModule module = new SimpleModule();
-module.addDeserializer(OurClass.class, new OurClassDeserializer());
-mapper.registerModule(module);
-</code></pre>
-<h4 id="custom-deserializer-with-generic-types">Custom deserializer with generic types<a class="headerlink" href="#custom-deserializer-with-generic-types" title="Permanent link">&para;</a></h4>
-<p>When we need a custom deserializer for a generic class, we need to use a wildcard to cover multiple values of generic argument:</p>
-<pre><code class="language-Java">public class OurDeserializer extends JsonDeserializer&lt;OurGenericClass&lt;?&gt;&gt;{
-    ...
-}
-</code></pre>
-<p>If we also need to get the generic argument type from JSON, we need to implement the <code>ContextualDeserializer</code> interface. This is discribed in a <a href="https://stackoverflow.com/questions/36159677/how-to-create-a-custom-deserializer-in-jackson-for-a-generic-type">SO answer</a>.</p>
-<h4 id="custom-deserializer-with-inheritance">Custom deserializer with inheritance<a class="headerlink" href="#custom-deserializer-with-inheritance" title="Permanent link">&para;</a></h4>
-<p>We can have a common deserializer for both parent and child class, or multiple child classes. However, it is necessary to 
-- make the deserializer generic and
-- register the deserializer for all classes, not just for the parent.</p>
-<p>Example:</p>
-<pre><code class="language-java">public class PolymorphicDeserializer&lt;T extends Parent&gt; extends JsonDeserializer&lt;T&gt;
-
-    @Override
-    public T deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-        ...
-    }
-}
-
-module.addDeserializer(ChildA.class, new PolymorphicDeserializer&lt;&gt;());
-module.addDeserializer(ChildB.class, new ProcedureParameterDeserializer&lt;&gt;());
-
-</code></pre>
-<h2 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Permanent link">&para;</a></h2>
-<p>Standard serialization:</p>
-<pre><code class="language-Java">// compressed
-mapper.writer().writeValue(file, object);
-
-//  or with indents, etc.
-mapper.writerWithDefaultPrettyPrinter().writeValue(file, object); 
-</code></pre>
-<p>By default, new objects are created for all members in the object hierarchy that are either:
-- public value mebers (fields)
-- public getters: public methods with name <code>get&lt;NAME&gt;</code>, where <code>&lt;NAME&gt;</code> is a name of some value member</p>
-<p>Other getters with different name are called only if there is an annotation above them. A special annotation dedicated for this is <code>@JsonProperty</code>.</p>
-<h3 id="appending-to-an-existing-file">Appending to an existing file<a class="headerlink" href="#appending-to-an-existing-file" title="Permanent link">&para;</a></h3>
-<p>To append to an existing file, we need to create an output stream in the append mode and then use it in jackson:</p>
-<pre><code class="language-Java">ObjectMapper mapper = ...
-JsonGenerator generator = mapper.getFactory().createGenerator(new FileOutputStream(new File(&lt;FILENAME&gt;), true));
-mapper.writeValue(generator, output);
-</code></pre>
-<h3 id="complex-member-filters">Complex member filters<a class="headerlink" href="#complex-member-filters" title="Permanent link">&para;</a></h3>
-<p>Insted of adding annotations to each member we want to ignore, we can also apply some more compex filters, to do that, we need to:
-1. add a <code>@JsonFilter("&lt;FILTER NAME&gt;")</code> annotation to all classes for which we want to use the filter
-2. create the filter
-3. pass a set of all filters we want to use to the writer we are using for serialization</p>
-<p>The example below keeps only members inherited from <code>MyClass</code>:</p>
-<pre><code class="language-Java">// object on which we apply the filter
-@JsonFilter(&quot;myFilter&quot;)
-class targetClass{
-    ...
-}
-
-// filter
-PropertyFilter filter = new SimpleBeanPropertyFilter() {
-    @Override
-    public void serializeAsField(
-        Object pojo, JsonGenerator jgen, SerializerProvider provider, PropertyWriter writer
-    ) throws Exception {
-        if(writer.getType().isTypeOrSubTypeOf(MyClass.class)){
-            writer.serializeAsField(pojo, jgen, provider);
-        }
-    }
-
-};
-
-FilterProvider filters = new SimpleFilterProvider().addFilter(&quot;myFilter&quot;, filter);
-
-// use a writer created with filters
-mapper.writer(filters).writeValue(generator, output);
-...
-</code></pre>
-<h3 id="flatting-the-hierarchy">Flatting the hierarchy<a class="headerlink" href="#flatting-the-hierarchy" title="Permanent link">&para;</a></h3>
-<p>When we desire to simplify the object hierarchy, we can use the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.4/com/fasterxml/jackson/annotation/JsonUnwrapped.html"><code>@JsonUnwrapped</code></a> annotation above a member of a class. With this annotation, the annotated member object will be skipped while all its members will be serialized into its parent.</p>
-<h3 id="custom-serializer">Custom serializer<a class="headerlink" href="#custom-serializer" title="Permanent link">&para;</a></h3>
-<p>If the serialization requirements are too complex to be expressed using Jackson annotations, we can use a custom serialzier:</p>
-<pre><code class="language-Java">public class MyCustomSerializer extends JsonSerializer&lt;MyClass&gt; {
-    @Override
-    public void serialize(MyClass myClass, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        ...
-    }
-}
-</code></pre>
-<p>Analogously to custom deserializer, we can register custom serializer either in the object mapper:</p>
-<pre><code class="language-Java">SimpleModule module = new SimpleModule();
-module.addSerializer(MyClass.class, new MyCustomSerializer());
-mapper.registerModule(module);
-</code></pre>
-<p>or by annotating the class:</p>
-<pre><code class="language-Java">@JsonSerialize(using = MyCustomSerializer.class)
-public class MyClass{
-    ...
-}
-</code></pre>
-<p>You can call standard serializers from custom serializers using the <code>SerializerProvider</code> and <code>JsonGenerator</code> instances supplied as a parameters of the <code>serialize</code> method. For example the standard serialized value of som inner/member object class can be obtained using:</p>
-<pre><code class="language-Java">serializerProvider.defaultSerializeValue(myInnerInstance, jsonGenerator);
-</code></pre>
-<h2 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h2>
-<h3 id="multiple-objects">Multiple objects<a class="headerlink" href="#multiple-objects" title="Permanent link">&para;</a></h3>
-<p>If there are multiple objects involved in the (de)serializetion, we can use the <code>@JsonCreator</code> and <code>@JsonProperty</code> annotations to split the work:</p>
-<pre><code class="language-Java">@JsonCreator
-public ConfigModel(
-    @JsonProperty(&quot;first&quot;) ClassA instanceA,
-    @JsonProperty(&quot;second&quot;) ClassB instanceB
-) {
-    ...
-}
-</code></pre>
-<p>in the above examples, the <code>first</code> and <code>second</code> are keys mapping the objects in the serialized file from which <code>instanceA</code> and <code>instanceB</code> should be created.</p></div>
+<p>Described in the Jackson manual.</p></div>
             </div>
         </div>
 

@@ -73,6 +73,10 @@
 </li>
             
 <li>
+    <a href="../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
     <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
 </li>
             
@@ -122,6 +126,10 @@
             
 <li>
     <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
@@ -268,6 +276,9 @@
                                 <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                         </ul>
@@ -330,6 +341,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#add-remote" class="nav-link">Add remote</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -341,6 +356,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#drop-the-history" class="nav-link">Drop the history</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -443,6 +462,10 @@
 <p>usefull params:
 - <code>-r</code>: recursive - deletes content of directories
 - <code>-n</code> dry run</p>
+<h2 id="add-remote">Add remote<a class="headerlink" href="#add-remote" title="Permanent link">&para;</a></h2>
+<pre><code>git remote add origin &lt;URL&gt;
+</code></pre>
+<p>Where <code>origin</code> is the name of the remote and <code>&lt;URL&gt;</code> is is the link we use to clone the repository.</p>
 <h1 id="reverting">Reverting<a class="headerlink" href="#reverting" title="Permanent link">&para;</a></h1>
 <p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:
 - <a href="https://git-scm.com/docs/git-checkout"><code>git checkout</code></a> for overwriting local files with version from a specified tree (also for switching branches) and
@@ -466,6 +489,11 @@
 <h3 id="using-git-checkout">Using <code>git checkout</code><a class="headerlink" href="#using-git-checkout" title="Permanent link">&para;</a></h3>
 <p>To reset an individual file, call: <code>git checkout &lt;commit&gt; &lt;filepath&gt;</code>, to reset all files, call: <code>git checkout &lt;commit&gt; .</code>. </p>
 <p>If the <code>&lt;commit&gt;</code> parameter is ommited, the local files will be overwritten by the HEAD.  </p>
+<h2 id="drop-the-history">Drop the history<a class="headerlink" href="#drop-the-history" title="Permanent link">&para;</a></h2>
+<p>Dropping the history can be useful in many cases. For example, we may commit some changes to the master, but then we realize that they belong to a branch. A simple solution is to create a branch, and then reset the master to the previous commit.</p>
+<p>Note that if the wrong history was already pushed to the remote, we need to fix the history on the remote as well. This is done by force pushing:</p>
+<pre><code>git push -f
+</code></pre>
 <h1 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h1>
 <p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:
 - <code>**/</code> in any directory
