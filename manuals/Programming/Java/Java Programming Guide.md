@@ -690,3 +690,81 @@ while(result.next()){
 
 # Jackson
 Described in the Jackson manual.
+
+
+
+# Dependency injection with Guice
+Dependency injection is a design pattern that allows interaction between objects without wiring them manually. It works best in large applications with many independent components. When we want to use Singletons in our application, it is time to consider using a dependency injection.
+
+Guice is very convenient as it has many features that make using DI even easier. For example, any component can be used in DI by simply annotating the constructor with `@Inject`. Note that there can be only one constructor annotated with `@Inject` in a class.
+
+To mark a component that should be used as a singleton, we annotate the class with `@Singleton` annotation.
+
+
+
+
+## Assisted injection
+If the class has a constructor with some parameters that are not provided by the Guice, we can use the *assisted injection*
+Assisted Injection is a mechanism to automatically generate factories for classes that have a constructor with mixed Guice and non-Guice parameters. 
+Instead of a factory class, we provide only a factory interface:
+```Java
+public interface MyFactory {
+    MyClass create(String param1, int param2);
+}
+```
+This factory can than be used to create the object:
+```Java
+class MyClass{
+    @Inject
+    MyClass(
+        <parameters provided by Guice>,
+        @Assisted String param1,
+        @Assisted int param2
+    ){
+        ...
+    }
+}
+```
+
+The non-Guice parameters are assigned using the parameters of the factory's `create` method. The matching is determined by the parameter type. If the parameter type is not unique, among all @Assisted parameters, we have to provide the `@Assisted` annotation with the `value` parameter:
+```Java
+public interface MyFactory {
+    MyClass create(@Assisted("param1") String param1, @Assisted("param2") String param2);
+}
+
+class MyClass{
+    @Inject
+    MyClass(
+        <parameters provided by Guice>,
+        @Assisted("param1") String param1,
+        @Assisted("param2") String param2
+    ){
+        ...
+    }
+}
+```
+
+
+# Progress bar
+For the progress bar, there is a good library called [`progressbar`](https://github.com/ctongfei/progressbar)
+
+The usage is simple, just wrap any iterable, iterator, stream or similar object with the `ProgressBar.wrap` method:
+```Java
+ArrayList<Integer> list =  ...
+for(int i: ProgressBar.wrap(list, "Processing")){
+    ...
+}
+
+// or with a stream
+Stream<Integer> stream = ...
+progressStream = ProgressBar.wrap(stream, "Processing");
+progressStream.forEach(i -> ...);
+
+// or with an iterator
+Iterator<Integer> iterator = ...
+progressIterator = ProgressBar.wrap(iterator, "Processing");
+while(iterator.hasNext()){
+    ...
+}
+```
+

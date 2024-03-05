@@ -509,6 +509,16 @@ Sometimes, it can be usefull to treat a column as a categorical variable instead
 - `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
 
 
+## Datetime
+Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:
+```python
+df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
+print(df)
+# output:
+# '2021-01-01'
+# '2021-01-01'
+```
+
 # I/O
 
 ## csv
