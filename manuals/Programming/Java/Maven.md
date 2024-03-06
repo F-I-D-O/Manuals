@@ -60,6 +60,23 @@ A single argument can be passed using the `<compilerArgument>` property. For mor
 ```
 
 
+
+# Dependencies
+Maven dependencies are defined in the `pom.xml` file, in the `<dependencies>` section. Each dependency has the following structure:
+```XML
+<dependency>
+	<groupId>org.apache.maven</groupId>
+	<artifactId>maven-core</artifactId>
+	<version>3.0</version>
+	<scope>compile</scope>
+</dependency> 
+```
+The dependencies are automatically downloaded if we run a maven goal that requires them (e.g., `compile`, `test`, `install`). If we want to download them manually, we can use the `dependency:resolve` goal.
+
+To list all dependencies of a project, we can use the `dependency:list` goal.
+
+
+
 # Tests
 Tests are usually executed with the Maven Surefire plugin using the `test` goal.
 

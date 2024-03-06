@@ -362,3 +362,33 @@ for(String fieldName: object.fieldNames()){
     ...
 }
 ```
+
+
+
+# CSV with Jackson
+[documentation](https://github.com/FasterXML/jackson-dataformats-text/tree/2.17/csv)
+
+To read a CSV file with Jackson, we need to use the `CsvMapper` class. The basic usage is:
+```Java
+CsvMapper mapper = new CsvMapper(); 
+
+// iterator construction
+MappingIterator<<row type>> it = mapper....readValues(new File("path/to/file.csv");
+
+// iterator usage
+while(it.hasNext()){
+    <row type> row = it.next();
+    ...
+}
+```
+Here the `<row type` is the target type that should represent a single row. Depending on it, there will be different code in place of `mapper...`. For example, to get a list of strings for each row, we can use:
+```Java
+MappingIterator<List<String>> it = mapper.readerForListOf(String.class)...
+```
+
+## Use the header
+If the CSV file has a header, we can use it to load each row into a map of key-value pairs:
+```Java
+CsvSchema schema = CsvSchema.emptySchema().withHeader();
+MappingIterator<Map<String, String>> it = mapper.readerForMapOf(String.class).with(schema).readValues(new File("path/to/file.csv"));
+```

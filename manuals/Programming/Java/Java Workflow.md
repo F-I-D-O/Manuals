@@ -91,6 +91,14 @@ To run a maven goal:
 1. Choose `Run` or `Debug`
 
 
+## Troubleshooting
+
+### Idea does not detect manually installed Maven artifact
+Sometimes, idea cannot recognize installed maven artifact and marks it as missing (red). 
+
+Fix: right click on the project or pom file -> `Maven` -> `Reload project`
+
+
 # Set Java version for project
 There are two options to set:
 - *source* version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to **compile** the source code.
