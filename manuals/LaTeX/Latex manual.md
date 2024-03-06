@@ -102,18 +102,72 @@ or we can use the `\fontsize` command to set arbitrary size. Example:
 {\fontsize{<size>}{<line spacing>}\selectfont <text>}
 ```
 
+
+### Font color
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Colors)
+
+To change the font color, we need to use the [`xcolor`](https://ctan.org/pkg/xcolor) package. 
+
+First, we need to define the color using the `\definecolor` command. Example:
+```latex
+\definecolor{my_color}{RGB}{255,0,0} # RGB color
+\definecolor{my_color}{HTML}{FF0000} # HTML color
+\definecolor{my_color}{cmyk}{0,1,1,0} # CMYK color
+```
+
+Then, we can use various commands to change the font color:
+- `\textcolor{<color>}{<text>}`: change the color of the text
+- `{\color{<color>}<text>}`: change the color of the text. Can span multiple paragraphs.
+
+note that other commands that have color options usually depend on the `xcolor` package, and accept the same color definitions.
+
+
+## Horizontal and vertical spacing
+Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. 
+
+To adjust the spacing in a single place, we can use the following commands:
+- `\hspace{<length>}`: horizontal space
+- `\vspace{<length>}`: vertical space
+
+Note that we can use negative values for the `<length>` parameter, so we can use these commands to relatively positioning.
+
+
+## Horizontal and vertical alignment
+
+
+### Horizontal alignment
+[wiki](https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment)
+
+By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
+- environments: `flushleft` for left alignment, `flushright` for right alignment, or
+- commands: `\raggedright` for **left** alignment, `\raggedleft` for **right** alignment.
+
+
+### Vertical alignment
+By default, the text starts from the top of the page. To align the text to the bottom of the page, we can use the `vfill` command. Example:
+```latex
+Some text
+\vfill
+Some text at the bottom
+```
+
+
+Note that the `vfill` works only if there is something before it, it does not work if it is the first command on the page. To make it work, we can use the `null` command. Example:
+```latex
+\null
+\vfill
+Some text at the bottom
+```
+
+
+
 ## Subscript and superscript
 In math mode, the subscript and superscript are created using the `_` and `^` characters. In text mode, we need to use a special commands: `\textsubscript` and `\textsuperscript`. Example:
 ```latex
 H\textsubscript{2}O
 ```
 
-## Alignment
-[wiki](https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment)
 
-By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
-- environments: `flushleft` for left alignment, `flushright` for right alignment, or
-- commands: `\raggedright` for **left** alignment, `\raggedleft` for **right** alignment.
 
 
 ## Lists
@@ -192,14 +246,7 @@ To make a box wider than the text width, we can use the `\adjustwidth` command f
 The box above will be 1cm wider on each side than the text width.
 
 
-# Horizontal and vertical spacing
-Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. 
 
-To adjust the spacing in a single place, we can use the following commands:
-- `\hspace{<length>}`: horizontal space
-- `\vspace{<length>}`: vertical space
-
-Note that we can use negative values for the `<length>` parameter, so we can use these commands to relatively positioning.
 
 
 # Floats
@@ -253,7 +300,12 @@ For more images in one float, we can use the `subfigure` environment from the [`
     \label{fig:my_figure}
 \end{figure}
 ```
-
+If the figures are not of the same height, they will be aligned at the bottom. To align them at the top, we can use the `T` option for the `subfigure` environment. Example:
+```latex
+\begin{subfigure}[T]{0.3\textwidth}
+    ...
+\end{subfigure}
+```
 
 ## Tables
 The float environment for tables is `table`. However, the rows and columns are wrapped in another environment. The default inner enviroment is `tabular`, however, there are *many* other packages that extends the functionality. In practice, there are currently three inner environments to consider:

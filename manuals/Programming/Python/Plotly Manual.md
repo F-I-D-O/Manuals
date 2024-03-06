@@ -243,7 +243,13 @@ go.Scatter3d(x, y, z, ...)
 ```
 
 
-### 3D Surface Plot
+### Surface Plot types
+There are multiple types of plots that may be considered as surface plots in plotly:
+- [**3D surface**](https://plotly.com/python/3d-surface-plots/) (`go.Surface`): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). 
+- [**3D mesh**](https://plotly.com/python/3d-mesh/) (`go.Mesh3d`): a surface plot defined by vertices (points) and faces (connections between the points). 
+- [**Tri-surface**](https://plotly.com/python/trisurf/) (`figure_factory.create_trisurf`): a surface plot created by a triangulation of the data points
+
+#### 3D Surface Plot
 [documentation](https://plotly.com/python/3d-surface-plots/)
 
 The 3D surface plot is created using the [`go.Surface`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html) function. Example:

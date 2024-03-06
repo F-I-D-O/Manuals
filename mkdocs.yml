@@ -14,6 +14,7 @@ nav:
     - Google Test: Programming/C++/Google Test.md
   - Java:
     - Debugging Java: Programming/Java/Debugging Java.md
+    - Jackson: Programming/Java/Jackson.md
     - Java Programming Guide: Programming/Java/Java Programming Guide.md
     - Java Workflow: Programming/Java/Java Workflow.md
     - Maven: Programming/Java/Maven.md
@@ -26,6 +27,7 @@ nav:
     - Python Workflow: Programming/Python/Python Workflow.md
   - Web:
     - CSS Manual: Programming/Web/CSS Manual.md
+    - css: Programming/Web/css.md
     - htaccess: Programming/Web/htaccess.md
     - JavaScript: Programming/Web/JavaScript.md
     - Jekyll: Programming/Web/Jekyll.md
@@ -62,6 +64,7 @@ nav:
 - Photopea: Photopea.md
 - PowerPoint: PowerPoint.md
 - QGIS: QGIS.md
+- Security: Security.md
 - vscode: vscode.md
 site_name: Manuals
 theme:
