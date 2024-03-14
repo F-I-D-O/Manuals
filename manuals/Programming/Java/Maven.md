@@ -32,6 +32,15 @@ All Maven dependencies should work out of the box. If some dependencies cannot b
 - check that the dependencies are on the maven central.
 - if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency
 
+
+
+# Variables
+Variables in the `pom.xml` file can be used using the `${variable}` syntax. 
+
+To use some environment variables, we can use the `${env.variable}`.
+
+
+
 # Compilation
 [reference](https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html)
 
@@ -71,10 +80,47 @@ Maven dependencies are defined in the `pom.xml` file, in the `<dependencies>` se
 	<scope>compile</scope>
 </dependency> 
 ```
+The `scope` property is optional and the default value is `compile`. 
+
 The dependencies are automatically downloaded if we run a maven goal that requires them (e.g., `compile`, `test`, `install`). If we want to download them manually, we can use the `dependency:resolve` goal.
 
 To list all dependencies of a project, we can use the `dependency:list` goal.
 
+
+## Using dependencies distributed as a jar
+Sometimes, we possess a jar file that is not present in any maven repository. We can still install it to the local repository as a new artifact using the `install:install-file` goal:
+```bash
+mvn install:install-file -Dfile=<PATH TO JAR> -DgroupId=<GROUP ID> -DartifactId=<ARTEIFACT ID> -Dversion=<VERSION> -Dpackaging=jar
+```
+Here the `<PATH TO JAR>` is a path to the jar library. The `<GROUP ID>`, `<ARTEIFACT ID>`, and `<VERSION>` can have arbitrary values, they just have to correspond with the values specified in the pom dependency.
+
+Be careful with PowerShell: in PowerShell, program parameters starting with minus and containing dot need to be quoted, for example: `'-DgroupId=com.example.app'` instead of `-DgroupId=com.example.app`
+
+
+## Using dependencies distributed as a zip
+Sometimes, the dependency is distributed as a zip file containing sources.
+Typically, the manual for such a library tells us to modify the classpath to include the sources. However, Maven handles the classpath automatically, so it is not wise to modify it manually. The best way to use it is to unpack the zip and add the sources to the project during compilation. For that, we can use the `build-helper-maven-plugin` plugin:
+```XML
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>build-helper-maven-plugin</artifactId>
+	<version>3.2.0</version>
+	<executions>
+		<execution>
+			<id>add-lib-sources</id>
+			<phase>generate-sources</phase>
+			<goals>
+				<goal>add-source</goal>
+			</goals>
+			<configuration>
+				<sources>
+					<source>path/to/lib/folder</source>
+				</sources>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
 
 
 # Tests
@@ -133,19 +179,30 @@ runs all tests within the `input` package.
 
 
 # Execute Programs from Maven
-For executing programs, Maven has the exec target. Mostly, you need to exacute java programs from maven. Basic example:
+For executing programs, Maven has the `exec` plugin. This plugin has two goals: 
+- `exec:java`: for Java programs
+- `exec:exec`: for any program
+
+However, the `exec:java` goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the `exec:java` goal, it is not possible to:
+- pass JVM arguments like `-Xmx`
+- set the library path using `-Djava.library.path`
+
+## `exec:java`
+Basic example:
 ```
 mvn exec:java  -Dexec.mainClass=test.Main
 ```
 Other usefull arguments:
  - `-Dexec.args="arg1 arg2 arg3"`
  
-If you want to pass the arguments like `Xmx` to jvm, you cannot use the `java` subgoal of the exec command. That is because with the `java` subgoal, Maven uses the same jvm it is running in to execute the program. To conigure jvm, we need to start a new instance. That is possible with the `exec` subgoal:
-
+## `exec:exec`
+Basic example>
 ```
 mvn exec:exec -Dexec.executable="java" -Dexec.args="Xmx30g -classpath %classpath test.Main"
 ```
-**Note that here, the `-Dexec.args` parameter is used both for vm and runtime arguments.**
+The `-classpath %classpath` argument is obligatory and it is used to pass the project classpath to the program. 
+
+**Note that here, the `-Dexec.args` parameter is used both for vm and program arguments.**
 
 We can also use `-Dexec.mainClass` with `exec:exec`, but we need to refer it in the `-classpath` argument. The following three maven commands run the same Java program:
 ```
@@ -155,6 +212,10 @@ mvn exec:exec -Dexec.executable="java" -Dexec.args="-classpath %classpath test.M
 
 mvn exec:exec -Dexec.executable="java" -Dexec.mainClass=test.Main -Dexec.args="-classpath %classpath ${exec.mainClass}"
 ```
+
+## Configure the exec plugin in the pom
+We can add a configuration of the exec plugin to the `pom.xml`, so we do not have to type the arguments or the main class every time we run the program. However, this way, we have to supply all program arguments in the `pom.xml` file. **It is not possible to pass some parameters from the command line and some from the `pom.xml` file configuration.** Note that when using the `exec:ecec` goal, this includes the JVM arguments as well.
+
 
 
 
@@ -412,6 +473,20 @@ The following configuration must be present in the `settings.xml` file:
 		<password>your password</password>
 	</server>
 </servers>
+```
+
+
+# Profiles
+Maven profiles can be used to supply different configurations in a single `pom.xml` file. This can be used for example to:
+- support different build environments (e.g., development, testing, production)
+- support different build targets (e.g., different Java versions)
+- support different build configurations (e.g., optional dependencies)
+
+Profiles are defined in the `profiles` section of the `pom.xml` file. Each profile has a unique id and can contain any configuration that can be present in the `pom.xml` file. 
+
+To manually activate a profile, we can use the `-P` argument of the `mvn` command:
+```
+mvn <goal> -P <profile id>
 ```
 
 

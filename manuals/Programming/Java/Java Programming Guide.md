@@ -254,6 +254,7 @@ processMyClass(MyClass<?> myClass){...};
 
 
 # Collections
+
 ## Set
 From java 9, sets can be simply initialized as:
 ```Java
@@ -261,6 +262,9 @@ Set<int> nums = Set.of(1,2,3);
 ```
 Note that this method returns an immutable set. In the earlier versions of Java, the `Collections.singleton` method can be used. 
 
+
+## Sorting
+Some collections can be sorted using the `sort` member method. It is a **stable** sort, which use the natural order of the elements by default, but it can be customized using a comparator. The comparator interface expects two elements and should return a negative number if the first element is smaller, a positive number if the first element is greater, and zero if the elements are equal. 
 
 
 # Enums
@@ -646,8 +650,9 @@ ClassA.isAssignableFrom(ClassB)
 ## Get field or method by name
 ```Java
 Field field = myClass.getDeclaredField("fieldName");
-Method method = myClass.getMethod("methodName");
+Method method = myClass.getMethod("methodName", <PARAM TYPES>);
 ```
+Here, the `<PARAM TYPES>` is a list of classes that represent the types of the method parameters, e.g., `String.class, MyClass.class` for a method that accepts a string and an instance of `MyClass`.
 
 ## Call method using Method object
 ```Java

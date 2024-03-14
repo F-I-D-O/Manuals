@@ -24,8 +24,7 @@ To enable all warnings use the `-Xlint` argument. To enable/disable specific war
 
 
 # Maven
--   Download maven from the official website and extract the archive somewhere (e.g. `C:/`)
--   Add absolute path to `<mavendir>/bin` to `PATH`
+Described in the [Maven](./Maven.md) manual.
 
     
 # Netbeans
@@ -77,7 +76,13 @@ The correct JDK has to be set up in various places:
     
 
 ## Compilation
-Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:
+Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain plugins, we can compile using the maven tab on the right.
+
+
+## Running Projects
+To add or edit run configurations, click on the run configuration dropdown left of the run button and choose `Edit Configurations...`.
+
+If the required configuration field is not present, it may be necessary to activate it by clicking on `Modify options` and choosing the desired option.
 
 
 ## Developing the whole project stack at once
@@ -85,10 +90,18 @@ If we are developing a whole stack of projects at once, it is best if we can nav
 
 
 ## Running Maven Goals
-To run a maven goal:
-1. Open the `Maven` tab on the right
-1. Right click on the goal 
-1. Choose `Run` or `Debug`
+Maven goals can be run from a dedicated tab on the right. The goals in the tab are divided into two categories:
+- `Lifecycle` goals are the most common goals, which are used to build the project
+- `Plugins` goals are the goals of the plugins used in the project
+
+To run the goal, just double-click on it. 
+
+If the run need some special configuration, right-click on the goal and choose `Modify Run Configuration...`
+
+If the plugin is missing from the list, it may be necessary to reload the plugins. Click the `Reload All Maven Projects` button in the top left corner of the maven tab.
+
+### Maven goal configuration
+To run a maven goal with a specific profile, add the profile name to the `Profiles` field.
 
 
 ## Troubleshooting
@@ -97,6 +110,10 @@ To run a maven goal:
 Sometimes, idea cannot recognize installed maven artifact and marks it as missing (red). 
 
 Fix: right click on the project or pom file -> `Maven` -> `Reload project`
+
+
+### Idea does not see environment variables
+These may be new environment variables, which were not present when Idea was started. Restart Idea to see the new environment variables.
 
 
 # Set Java version for project
@@ -209,15 +226,86 @@ Gurobi is a commercial project not contained in any public maven repositories. I
 ### Potential problems
 - `unsatisfied linker error`: Check if the gurobi version in the error log matches the gurobi version installed.
 
+
+
+# Make part of the project optional
+Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:
+- not essential for the project to work
+- dependent on some external library, which can be cumbersome to install
+
+The required steps are usually:
+1. Create a maven profile for the optional part of the project
+2. Move optional dependencies to the profile
+3. Move optional source files outside the `src/main/java` directory
+3. Use the `build-helper-maven-plugin` in the profile to add the optional source files to the project
+4. At runtime, load the optional part of the project using the reflection
+
+We now describe these steps in detail.
+
+## Maven profiles and optional dependencies
+A maven profile belongs to the `profiles` section of the `pom.xml` file. The structure is simple:
+```xml
+<profiles>
+	<profile>
+		<id>optional</id>
+		<dependencies>
+			<!-- optional dependencies -->
+		</dependencies>
+		<build>
+			<plugins>
+				<!-- optional plugins -->
+			</plugins>
+		</build>
+	</profile>
+```
+
+## Moving optional source files outside the `src/main/java` directory
+The optional source files can be moved anywhere, but a logical place is to create a new directory under `src/main`, e.g., `src/main/<lib>-optional`. 
+
+Then we need to tell maven to include these files in the project if the optional profile is activated. This is done using the `build-helper-maven-plugin` in the optional profile:
+```xml
+<profiles>
+	<profile>
+		<id>optional</id>
+		<build>
+			<plugins>
+				build-helper-maven-plugin here
+			</plugins>
+		</build>
+	</profile>
+</profiles>
+```
+For the `build-helper-maven-plugin` configuration, see the [Maven manual](Maven.md#using-dependencies-distributed-as-a-zip).
+
+
+## Loading the optional part of the project at runtime
+First, we should check if the optional part of the project is present at runtime:
+```java
+public static boolean libAvailable(){
+	try {
+		Class.forName("com.example.lib");
+		return true;
+	} catch (ClassNotFoundException e) {
+		return false;
+	}
+}
+```
+
+Then, we can load the optional part of the project using reflection:
+```java
+if(libAvailable()){
+	Class<?> libClass = Class.forName("com.example.lib");
+	Object lib = libClass.newInstance();
+	Method method = libClass.getMethod("someMethod");
+	method.invoke(lib);
+}
+else{
+	// handle missing library
+}
+```
+
 # Archive
 
 ## AIC maven repo access
 
 To Access the AIC maven repo, copy maven settings from another computer (located in ~/.m2)
-
-> Written with [StackEdit](https://stackedit.io/).
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzk0MzE5ODgsODQ2NDIwNDY4LC0xNT
-E3MzY3OTY5LDExMzQzNzcwNTcsLTczMDI5NjAyNyw3MzA5OTgx
-MTZdfQ==
--->
