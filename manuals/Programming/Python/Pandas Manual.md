@@ -91,6 +91,11 @@ Iteration without modifying the dataframe. From the fastest to the slowest.
 ### List Comprehensions
 
 ### Apply
+The [`apply`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) function can be used to apply a function to each row or column of the dataframe. For iterating over rows, we need to set the `axis` parameter to 1. Example:
+```python
+df['new_col'] = df.apply(lambda row: row['col1'] + row['col2'], axis=1)
+```
+
 
 ### itertuples()
 https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.htm
@@ -111,7 +116,9 @@ https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.item
 Iterates over columns
 
 ## Iteration with modification
-When doing some modifications, we need to copy the dataframe and do the modifications on the copy.
+For modification, the best strategy is to:
+1. select what we want to modify (see [selection](#selection))
+1. modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.
 
 
 

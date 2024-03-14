@@ -245,17 +245,43 @@ go.Scatter3d(x, y, z, ...)
 
 ### Surface Plot types
 There are multiple types of plots that may be considered as surface plots in plotly:
-- [**3D surface**](https://plotly.com/python/3d-surface-plots/) (`go.Surface`): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). 
-- [**3D mesh**](https://plotly.com/python/3d-mesh/) (`go.Mesh3d`): a surface plot defined by vertices (points) and faces (connections between the points). 
-- [**Tri-surface**](https://plotly.com/python/trisurf/) (`figure_factory.create_trisurf`): a surface plot created by a triangulation of the data points
+- [**3D surface**](https://plotly.com/python/3d-surface-plots/) (`go.Surface`): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). The surface is plotted for all combinations of x and y, which makes this function suitable only for cases where the surface is defined for all combinations of x and y.
+- [**3D mesh**](https://plotly.com/python/3d-mesh/) (`go.Mesh3d`): a surface plot defined by vertices (points) and faces (connections between the points). The connections are defined by triangles, which can be either defined manually or computed automatically using a triangulation algorithm. 
+- [**Tri-surface**](https://plotly.com/python/trisurf/) (`figure_factory.create_trisurf`): a surface plot created by a triangulation of the data points. It accepts triangles in a single argument. I have to further investigate, how it differs from the 3D mesh plot.
 
 #### 3D Surface Plot
 [documentation](https://plotly.com/python/3d-surface-plots/)
 
-The 3D surface plot is created using the [`go.Surface`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html) function. Example:
+The 3D surface plot is created using the [`go.Surface`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html) function. 
+
+
+#### 3D Mesh Plot
+[documentation](https://plotly.com/python/3d-mesh/)
+
+The 3D mesh plot is created using the [`go.Mesh3d`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Mesh3d.html) function. Example:
 ```python
-go.Surface(z, ...)
+x = [1, 1, 1]
+y = [1, 2, 1]
+z = [0, 0, 1]
+
+fig.add_trace(go.Mesh3d(x=x, y=y, z=z))
 ```
+
+This way, the triangulation is used to compute the connections between the points. If we want to use a different triangulation, we can use the `i`, `j` and `k` parameters. These parameters define the indices (in the source data used for `x`, `y`, and `z`) of the vertices that form the triangles. For example, `i[0]`, `j[0]` and `k[0]` define the vertices of the first triangle. Example code:
+```python
+x = [1, 1, 1]
+y = [1, 2, 1]
+z = [0, 0, 1]
+i = [0]
+j = [1]
+k = [2]
+
+fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
+```
+
+Note that here, the `i`, `j` and `k` parameters are redundant, as there is only one possible triangulation of the three points. However, for more complex surfaces, there can be multiple valid triangulations, and the `i`, `j` and `k` parameters can be used to select the triangulation manually.
+
+
 
 
 
