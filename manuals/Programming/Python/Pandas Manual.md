@@ -169,9 +169,9 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 # Selection
 If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see [filtration](#filtration)), we can use these methods:
-- [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html): select by label, works for both rows and columns
+- [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html): select by index, works for both rows and columns
 - [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html): select by position, works for both rows and columns
-- `[]`: select by label, works only for columns
+- `[]`: select by index, works only for columns
 
 There are also other methods that works for selection but does not work for setting values, such as:
 - [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html): select by label, works for both rows and columns
