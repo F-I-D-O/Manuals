@@ -2,11 +2,11 @@ In plotly, we have two options:
 - plot quickly with plotly express
 - full control using graph objects
 
-Note that thes options can hardly be mixed. For example, we cannot use plotly express to create a figure and then add a subplot to it. Similarly, we cannot use the `make_subplots` function to create a figure and then add a plotly express plot to it.
+Note that these options can hardly be mixed. For example, we cannot use plotly express to create a figure and then add a subplot to it. Similarly, we cannot use the `make_subplots` function to create a figure and then add a plotly express plot to it.
 
 
 In general, it is easier to use plotly express, so we should use it if we are not affected by its limitations. **The plotly express cannot**
-- create **custom subplots**. Howwever, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.
+- create **custom subplots**. However, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.
 
 
 # Plotly Express
@@ -234,6 +234,20 @@ Importanta parameters:
 
 ## 3D plots
 
+### Common Parameters
+
+
+#### Setting color of the plots with continuous color scale
+If the plot type is continuous (e.g., surface plot, cone plot), we cannot set a color for the whole trace as a continuous color scale is used. However, we can set the colorscale using the `colorscale` parameter. Example:
+```python
+fig.add_trace(go.Surface(z=z, colorscale="Viridis"))
+```
+The color scale can be also set manually as a list of colors. This way, we can overcome the limitation of the continuous color scale and set the color of the whole trace. Example:
+```python
+fig.add_trace(go.Surface(z=z, colorscale=[[0, "red"], [1, "red"]]))
+```
+
+
 ### 3D Scatter Plot
 [documentation](https://plotly.com/python/3d-scatter-plots/)
 
@@ -243,7 +257,7 @@ go.Scatter3d(x, y, z, ...)
 ```
 
 
-### Surface Plot types
+### Surface Plots
 There are multiple types of plots that may be considered as surface plots in plotly:
 - [**3D surface**](https://plotly.com/python/3d-surface-plots/) (`go.Surface`): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). The surface is plotted for all combinations of x and y, which makes this function suitable only for cases where the surface is defined for all combinations of x and y.
 - [**3D mesh**](https://plotly.com/python/3d-mesh/) (`go.Mesh3d`): a surface plot defined by vertices (points) and faces (connections between the points). The connections are defined by triangles, which can be either defined manually or computed automatically using a triangulation algorithm. 
@@ -281,6 +295,10 @@ fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
 
 Note that here, the `i`, `j` and `k` parameters are redundant, as there is only one possible triangulation of the three points. However, for more complex surfaces, there can be multiple valid triangulations, and the `i`, `j` and `k` parameters can be used to select the triangulation manually.
 
+
+
+# Cone Plots
+[documentation](https://plotly.com/python/cone-plot/)
 
 
 
@@ -383,7 +401,7 @@ fig.update_layout(scene=dict(
 
 The legend can be styled using the `figure.update_layout` function. 
 The most important parameters are:
-- `legend_title_text`: the title of the legend
+- `legend_title`: the title of the legend
 - `legend`: dictionary containing many parameters
     - `orientation`: `h` or `v` for horizontal or vertical legend
     - `x`, `y`: the position of the in normalized coordinates of the whole plot.
@@ -391,7 +409,9 @@ The most important parameters are:
         - `"container"`: the whole plot
         - `"paper"` (default): the plotting area
     - `xanchor`, `yanchor`: the position of the legend box relative to the x and y coordinates
-    - `title`: if string, the title of the legend (equivalent to the `legend_title_text` parameter). If dictionary, multiple legent title parameters can be set.
+    - `title`: if string, the title of the legend (equivalent to the `legend_title` parameter). If dictionary, multiple legend title parameters can be set.
+    - `bordercolor`: the color of the legend border
+    - `borderwidth`: the width of the legend border
 
 Unfortunately, **there is no way how to customize the padding between the legend items and the legend box**. Also, **it is not possible to set the legend border to have rounded corners**. 
 
@@ -406,6 +426,12 @@ The order of the legend items is determined by the order of the traces in the fi
 ```python
 fig.update_layout(legend_traceorder="reversed")
 ```
+
+### Legend position
+The coordinates of the legend are normalized with respect to each axis.
+By default, the legend `x` and `y` coordinates are set so that the legend is outside the plot, in the top right corner. 
+If the legend is positioned inside the plot, the plot expands to the whole width, but if the legend is positioned outside the plot, the plot width is smaller to leave space for the legend.
+
 
 
 
