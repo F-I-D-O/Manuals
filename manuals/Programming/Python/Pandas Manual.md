@@ -176,6 +176,15 @@ If we want to select a part of the dataframe (a set of rows and columns) indepen
 There are also other methods that works for selection but does not work for setting values, such as:
 - [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html): select by label, works for both rows and columns
 
+The return type of the selection is determined by the number of selected rows and columns. For a single row or column, the result is a series, for multiple rows and columns, the result is a dataframe. If we want to get a dataframe for a single row or column, we can use the `[]` operator with a list of values:
+```python
+df[['col1']]
+# or 
+df.loc[['row1']]
+# or
+df.iloc[[0]]
+```
+
 
 ## `loc`
 The operator `loc` has has many possible input parameters, the most common syntax is 
@@ -409,7 +418,7 @@ df.groupby('col').size()
 
 Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the **aggregation does not have to actually aggregate the data, it can also transform it**.
 
-in the groupby object, the columns used for grouping are omitted. To keep them, we can use the `group_keys` parameter of the `groupby` function.
+In the groupby object, the columns used for grouping are omitted if each group is aggregated to exactly one row. To keep them, we can use the `group_keys` parameter of the `groupby` function.
 
 
 
@@ -501,11 +510,14 @@ The indexes are lost after the join (if not used for the join). To keep an index
 
 
 
-# Appending one dataframe to another
-We can use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) function for that:
+# Appending data
+In pandas, there is a [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) function that can be used to concatenate data:
 ```python
 pd.concat([df1, df2])
 ```
+It can concatenate dataframes or series and it can concatenate vertically (by rows, default) or horizontally (by columns)
+
+By default, the indices from both input parameters are preserved. to reset the index, we can use the `ignore_index` parameter.
 
 
 # Pandas Data Types

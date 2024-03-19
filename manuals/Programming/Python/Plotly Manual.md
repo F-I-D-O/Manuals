@@ -7,6 +7,7 @@ Note that these options can hardly be mixed. For example, we cannot use plotly e
 
 In general, it is easier to use plotly express, so we should use it if we are not affected by its limitations. **The plotly express cannot**
 - create **custom subplots**. However, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.
+- **z-order** of the traces. For example, we need to first plot a trace using graph objects. Then it is much easier to plot the rest of the traces using graph objects as well.
 
 
 # Plotly Express
@@ -26,6 +27,17 @@ import plotly.express as px
 - `title`: the title of the plot. 
 - `hover_data`: the list of columns to show in the hover tooltip. Axes columns are shown automatically.
 
+
+### Automatic color assignment
+If we use the color parameter of a graph, plotly express plots a trace for each color value and assigns a color to the trace. To customize this color, we can use two parameters:
+- `color_discrete_sequence`: list of the colors to be used
+- `color_discrete_map`: dictionary mapping the color values to the colors. 
+
+With the `color_discrete_sequence` parameter, plotly express iterates through the list of colors and assigns the colors to the color values in the order they appear in the data. If the number of colors is less than the number of color values, the colors are reused. If the number of colors is greater, the colors are truncated. Therefore, this parameter is useful only if:
+- the number of colors is equal to the number of color values
+- the number of colors is greater than the number of color values and we use categorical colors, so the truncation does not matter.
+
+The `color_discrete_map` parameter is more flexible. We can manually assign the colors to the color values, to use the color scale optimally. 
 
 ## Histogram
 [documentation](https://plotly.com/python/histograms/)
@@ -88,6 +100,17 @@ px.scatter(<dataframe>, <xcol name>, <y col name>)
 ```
 
 Important parameters:
+
+
+## Line Chart
+[documentation](https://plotly.com/python/line-charts/)
+
+[reference](https://plotly.github.io/plotly.py-docs/generated/plotly.express.line.html)
+
+For line charts in plotly express, we use the `px.line` function. The basic syntax is:
+```python
+px.line(<dataframe>, <xcol name>, <y col name>)
+```
 
 
 
@@ -189,10 +212,10 @@ fig.update_layout(barmode="stack")
 ```
 
 
-## Line Chart and Scatter
-[documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
+## Line, Scatter and Shape Plots
+[line plot documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
 
-The line chart is created using the [`go.Scatter`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html) function. Example:
+Line plots, scatter plots and shapes, all of that can be created by the [`go.Scatter`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html) function. Example:
 ```python
 go.Scatter(x, y, ...)
 ```
@@ -211,6 +234,12 @@ Important parameters:
 - `line`: dictionary containing the line parameters. The most important parameters are:
     - `color`: the color of the line
     - `width`: the width of the line
+
+
+### Shapes
+[documentation](https://plotly.com/python/shapes/)
+
+The shapes can be created by supplying the coordinates of the shape to the `go.Scatter` function and setting the `fill` parameter to `"toself"`. 
 
 
 ## Create subplots
@@ -297,7 +326,7 @@ Note that here, the `i`, `j` and `k` parameters are redundant, as there is only 
 
 
 
-# Cone Plots
+## Cone Plots
 [documentation](https://plotly.com/python/cone-plot/)
 
 
@@ -433,6 +462,23 @@ By default, the legend `x` and `y` coordinates are set so that the legend is out
 If the legend is positioned inside the plot, the plot expands to the whole width, but if the legend is positioned outside the plot, the plot width is smaller to leave space for the legend.
 
 
+### Legend items text
+The legend item text is determined by the `name` parameter of the trace. Therefore, to customize the legend item text, we need to set the `name` parameter of the trace. For normal single trace functions, this is simple:
+```python
+fig.add_trace(go.Scatter(x=x, y=y, name="Custom name"))
+```
+
+However, it can be complicated for plotly express functions that plot multiple traces at once, as these determine the `name` parameter automatically from data. For example, when we use the `color` parameter, the `name` parameter is set to the color value. To overcome this, we have two options:
+- set the `name` parameter manually for each trace after the figure is created
+- change the data so that the `name` parameter is set automatically to the desired value. 
+
+The first approach is usually preferable as we do not mix the data and appearance. To change the `name` parameter, we can use the `update_traces` function:
+```python
+for trace in fig.data:
+    trace.name = process_name(trace.name)
+```
+
+
 
 
 ## Adding Figure Annotations
@@ -443,7 +489,8 @@ Important parameters:
 - `text`: the text of the annotation
 - `xref`, `yref`: the coordinate system of the x and y coordinates. Can be `"paper"` or `"data"`.
 - `showarrow`: if `True`, an arrow will be added to the annotation
-- `textangle`: the angle of the text in degrees
+- `textangle`: the angle of the text in degrees,
+- `bgcolor`: the background color of the annotation
 
 
 **By default** the annotation is meant to annotate the data. Therefore, **the `x` and `y` coordinates use the coordinate system of the data** (x and y axes). To align the annotation with respect to the whole figure, we need to set the `xref` and `yref` parameters to `"paper"`. In this case, the `x` and `y` coordinates are in the range `[0, 1]` and the origin is the bottom left corner of the figure.
@@ -475,6 +522,18 @@ Marker parameters:
 
 ### Adding a marker to a hard-coded location
 To add a marker to a hard-coded location, we can add it as a new trace. Note that we can add new traces even to a figure created using plotly express. 
+
+
+## Lines
+Lines can be styled using the line parameter of the plotting functions or using the `update_traces` function. Important parameters:
+- `color`: the color of the line
+- `width`: the width of the line in pixels
+- `dash`: the dash pattern. Can be
+    - `"solid"` (default)
+    - `"dot"`: dense dashed line
+    - `"dash"`: sparse dashed line
+    - ... 
+    
 
 
 ## Title
@@ -557,3 +616,11 @@ It can be cause by kaleido. The solution si to install an older version, specifi
 
 https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4
 
+
+# Colors
+[documentation](https://plotly.com/python/discrete-color/)
+
+For colors in plotly, we can use the color scales supplied by plotly express. These are:
+- `px.colors.sequential`: sequential color scales
+- `px.colors.diverging`: diverging color scales
+- `px.colors.qualitative`: qualitative color scales
