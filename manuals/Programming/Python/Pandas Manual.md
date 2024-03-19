@@ -295,6 +295,13 @@ df.xs(15, level=1) # selects all rows with level 1 equal to 15
 ```
 
 
+## Select row with a maximum value in a column
+To get the index of the row with the maximum value in a column, we can use the `idxmax` function:
+```python
+df['col'].idxmax()
+```
+Then we can use the `loc` method to get the row.
+
 
 
 # Sorting

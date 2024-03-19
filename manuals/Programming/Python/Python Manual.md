@@ -652,6 +652,13 @@ for a in ... # ok
 
 # Numpy
 
+## Initialization
+We can create the new array as:
+- zero-filled: `np.zeros(<shape>, <dtype>)`
+- ones-filled: `np.ones(<shape>, <dtype>)`
+- empty: `np.empty(<shape>, <dtype>)`
+- filled with a constant: [`np.full(<shape>, <value>, <dtype>)`](https://numpy.org/doc/stable/reference/generated/numpy.full.html)
+
 ## Sorting
 for sorting, we use the [`sort`](https://numpy.org/doc/stable/reference/generated/numpy.sort.html) function.
 
@@ -686,6 +693,17 @@ if result: # pattern matches
 
 The 0th group is the whole match, as usual.
 
+
+# Lambda functions
+Lambda functions in python have the following syntax:
+```Python
+lambda <input parameters>: <return value>
+```
+Example:
+```Python
+f = lambda x: x**2
+```
+Only a single expression can be used in the lambda function, so we need standard functions for more complex logic (temporary variables, loops, etc.).
 
 
 # Decorators
@@ -803,4 +821,11 @@ For geocoding, we can use the [Geocoder](https://geocoder.readthedocs.io/) libra
 [documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html)
 
 KDTree can be found in the `scipy` library. 
+
+# Geometry
+There are various libraries for working with geometry in Python:
+- [`scipy.spatial`](https://scikit-spatial.readthedocs.io/en/stable/index.html): for basic geometry operations
+- `shapely`
+- `geopandas`: for gis data
+
 
