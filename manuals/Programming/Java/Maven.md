@@ -39,7 +39,31 @@ Variables in the `pom.xml` file can be used using the `${variable}` syntax.
 
 To use some environment variables, we can use the `${env.variable}`.
 
-
+Note that contrary to all expectations, **maven goals do not fail if a variable is not defined**. Instead, the variable is replaced with an empty string. This can lead to unexpected behavior, so it is usually preferable to fail. For that, we can use the [enforcer plugin](https://maven.apache.org/enforcer/) with the `requireProperty` rule:
+```XML
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-enforcer-plugin</artifactId>
+	<version>3.4.1</version>
+	<executions>
+	<execution>
+		<id>enforce-property</id>
+		<goals>
+			<goal>enforce</goal>
+		</goals>
+		<configuration>
+			<rules>
+				<requireProperty>
+					<property>basedir</property>
+					<message>You must set a basedir property!</message>
+				</requireProperty>
+			</rules>
+			<fail>true</fail>
+		</configuration>
+	</execution>
+	</executions>
+</plugin>
+```
 
 # Compilation
 [reference](https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html)

@@ -98,7 +98,7 @@ df['new_col'] = df.apply(lambda row: row['col1'] + row['col2'], axis=1)
 
 
 ### itertuples()
-https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.htm
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.html
 
 Returns dataframe rows as pandas named tuples with index as the first member of the tuple.
 
@@ -187,7 +187,7 @@ df.iloc[[0]]
 
 
 ## `loc`
-The operator `loc` has has many possible input parameters, the most common syntax is 
+The operator [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) has many possible input parameters, the most common syntax is 
 ```Python
 df.loc[<row selection>, <column selection>]
 ```
@@ -301,6 +301,13 @@ To get the index of the row with the maximum value in a column, we can use the `
 df['col'].idxmax()
 ```
 Then we can use the `loc` method to get the row.
+
+
+## Selecting a single value (cell, scalar)
+When we select a single value from a dataframe, the result is sometimes a series, especially when we use a filtration. To get a scalar, we can use the `item()` method:
+```python
+df.loc[<row>, <column>].item()
+```
 
 
 
