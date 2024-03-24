@@ -270,6 +270,18 @@ Here, the parameters can be ommited as well. We can select everything by using `
 
 
 
+## Named tuples
+Apart from the standard tuple, Python has a named tuple class that can be created using the [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) function. In named tuple, each member has a name and can be accessed using the dot operator:
+```Python
+from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+print(p.x) # 1
+```
+
+
+
 # Exceptions
 [documentation](https://docs.python.org/3/tutorial/errors.html)
 

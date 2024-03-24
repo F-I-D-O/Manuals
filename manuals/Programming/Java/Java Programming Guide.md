@@ -54,11 +54,16 @@ My long
 "text block"
 """
 ```
-The properties of textt blocks:
+The properties of text blocks:
 - can be used as standard string literals
 - can contain newlines, quotes, and some other symbols that have to be escaped in standard string literals.
 
 The new line after opening triple quoute is obligatory. **Note that backslash (`\`) is still interpreted as Java escape character, so we need to escape it using `\\`**. 
+
+There are no fstrings in Java, the best way for using variables in strings is to use the `String.format` method:
+```Java
+String s = String.format("My string with %s and %d", "text", 5);
+```
 
 
 
@@ -338,6 +343,12 @@ We can iterate the files in a directory using the [`Files`](https://docs.oracle.
 - `Files.walk`: recursive list of files
 
 Both methods return a `Stream<Path>` object.
+
+
+## Creating a directory
+The directory can be created from any `Path` object using the `Files.createDirectory` method. 
+
+We can also create a directory from a `File` object using the `mkdir` and `mkdirs` methods. 
 
 
 # Date and Time

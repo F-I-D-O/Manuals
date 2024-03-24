@@ -59,6 +59,28 @@ public class ConfigModel {
 
 This annotation can also prevent the "Unrecognized field" error during deserialization, as the ignored fields does not have to be present as Java class members.
 
+we can achieve the same by field annotations, specifically the [`@JsonIgnore`](https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonIgnore.html) annotation. Example:
+```Java
+public class ConfigModel {
+    @JsonIgnore
+    public String par1;
+    @JsonIgnore
+    public int par2;
+}
+```
+
+
+## Include only specific fields
+If the fields to be (de)serialized are only a minority of all fields, we can use a reverse approach: the `@JsonIncludeProperties` annotation. For example:
+```Java
+@JsonIncludeProperties({ "par1", "par2" })
+public class ConfigModel {
+    // only "par1" and "par2" will be (de)serialized
+}
+```
+
+Note that unlike for ignoring, there is no field annotation for including only specific fields. The `@JsonInclude` annotation serves a different purpose.
+
 
 ## Represent a class by a single member
 If we want the java class to be represented by a single value in the **serialized** file, we can achieve that by adding the [`@JsonValue`](https://fasterxml.github.io/jackson-annotations/javadoc/2.8/com/fasterxml/jackson/annotation/JsonValue.html) annotation above the member or method that should represent the class. Note, however, that this only works for simple values, because the member serializers are not called, the members is serialized as a simple value instead. **If you want to represent a class by a single but complex member, use a custom serializer instead**. 
@@ -283,7 +305,7 @@ mapper.writer(filters).writeValue(generator, output);
 ### Flatting the hierarchy
 When we desire to simplify the object hierarchy, we can use the [`@JsonUnwrapped`](https://fasterxml.github.io/jackson-annotations/javadoc/2.4/com/fasterxml/jackson/annotation/JsonUnwrapped.html) annotation above a member of a class. With this annotation, the annotated member object will be skipped while all its members will be serialized into its parent.
 
-## Custom serializer
+### Custom serializer
 If the serialization requirements are too complex to be expressed using Jackson annotations, we can use a custom serialzier:
 ```Java
 public class MyCustomSerializer extends JsonSerializer<MyClass> {
