@@ -529,6 +529,20 @@ By default, the indices from both input parameters are preserved. to reset the i
 
 # Pandas Data Types
 
+
+## Object
+If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the `object` type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
+- we round a column with mix of floats and ints: fail (`loop of ufunc does not support argument 0 of type float which has no callable rint method`)
+- we need to apply string functions, but the column contains numbers as well
+
+The solution is usually:
+1. fill the missing values with the `fillna` function
+2. convert the column to `str` type using the `astype` function
+3. apply string functions to clear the data
+4. convert the column to the desired type
+
+
+
 ## Categorical data
 Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
 - `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
@@ -544,6 +558,8 @@ print(df)
 # '2021-01-01'
 # '2021-01-01'
 ```
+
+
 
 # I/O
 
