@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -368,13 +372,29 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
+            <li class="nav-item" data-level="3"><a href="#font-color" class="nav-link">Font color</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#alignment" class="nav-link">Alignment</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#horizontal-and-vertical-spacing" class="nav-link">Horizontal and vertical spacing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#horizontal-and-vertical-alignment" class="nav-link">Horizontal and vertical alignment</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#horizontal-alignment" class="nav-link">Horizontal alignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#vertical-alignment" class="nav-link">Vertical alignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -399,11 +419,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#horizontal-and-vertical-spacing" class="nav-link">Horizontal and vertical spacing</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -788,15 +803,45 @@
 <p>or we can use the <code>\fontsize</code> command to set arbitrary size. Example:</p>
 <pre><code class="language-latex">{\fontsize{&lt;size&gt;}{&lt;line spacing&gt;}\selectfont &lt;text&gt;}
 </code></pre>
-<h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
-<p>In math mode, the subscript and superscript are created using the <code>_</code> and <code>^</code> characters. In text mode, we need to use a special commands: <code>\textsubscript</code> and <code>\textsuperscript</code>. Example:</p>
-<pre><code class="language-latex">H\textsubscript{2}O
+<h3 id="font-color">Font color<a class="headerlink" href="#font-color" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikibooks.org/wiki/LaTeX/Colors">wiki</a></p>
+<p>To change the font color, we need to use the <a href="https://ctan.org/pkg/xcolor"><code>xcolor</code></a> package. </p>
+<p>First, we need to define the color using the <code>\definecolor</code> command. Example:</p>
+<pre><code class="language-latex">\definecolor{my_color}{RGB}{255,0,0} # RGB color
+\definecolor{my_color}{HTML}{FF0000} # HTML color
+\definecolor{my_color}{cmyk}{0,1,1,0} # CMYK color
 </code></pre>
-<h2 id="alignment">Alignment<a class="headerlink" href="#alignment" title="Permanent link">&para;</a></h2>
+<p>Then, we can use various commands to change the font color:
+- <code>\textcolor{&lt;color&gt;}{&lt;text&gt;}</code>: change the color of the text
+- <code>{\color{&lt;color&gt;}&lt;text&gt;}</code>: change the color of the text. Can span multiple paragraphs.</p>
+<p>note that other commands that have color options usually depend on the <code>xcolor</code> package, and accept the same color definitions.</p>
+<h2 id="horizontal-and-vertical-spacing">Horizontal and vertical spacing<a class="headerlink" href="#horizontal-and-vertical-spacing" title="Permanent link">&para;</a></h2>
+<p>Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. </p>
+<p>To adjust the spacing in a single place, we can use the following commands:
+- <code>\hspace{&lt;length&gt;}</code>: horizontal space
+- <code>\vspace{&lt;length&gt;}</code>: vertical space</p>
+<p>Note that we can use negative values for the <code>&lt;length&gt;</code> parameter, so we can use these commands to relatively positioning.</p>
+<h2 id="horizontal-and-vertical-alignment">Horizontal and vertical alignment<a class="headerlink" href="#horizontal-and-vertical-alignment" title="Permanent link">&para;</a></h2>
+<h3 id="horizontal-alignment">Horizontal alignment<a class="headerlink" href="#horizontal-alignment" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment">wiki</a></p>
 <p>By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
 - environments: <code>flushleft</code> for left alignment, <code>flushright</code> for right alignment, or
 - commands: <code>\raggedright</code> for <strong>left</strong> alignment, <code>\raggedleft</code> for <strong>right</strong> alignment.</p>
+<h3 id="vertical-alignment">Vertical alignment<a class="headerlink" href="#vertical-alignment" title="Permanent link">&para;</a></h3>
+<p>By default, the text starts from the top of the page. To align the text to the bottom of the page, we can use the <code>vfill</code> command. Example:</p>
+<pre><code class="language-latex">Some text
+\vfill
+Some text at the bottom
+</code></pre>
+<p>Note that the <code>vfill</code> works only if there is something before it, it does not work if it is the first command on the page. To make it work, we can use the <code>null</code> command. Example:</p>
+<pre><code class="language-latex">\null
+\vfill
+Some text at the bottom
+</code></pre>
+<h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
+<p>In math mode, the subscript and superscript are created using the <code>_</code> and <code>^</code> characters. In text mode, we need to use a special commands: <code>\textsubscript</code> and <code>\textsuperscript</code>. Example:</p>
+<pre><code class="language-latex">H\textsubscript{2}O
+</code></pre>
 <h2 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h2>
 <p>The list enviroments have the following syntax:</p>
 <pre><code class="language-latex">\begin{&lt;list type&gt;}
@@ -870,12 +915,6 @@
 \end{adjustwidth}
 </code></pre>
 <p>The box above will be 1cm wider on each side than the text width.</p>
-<h1 id="horizontal-and-vertical-spacing">Horizontal and vertical spacing<a class="headerlink" href="#horizontal-and-vertical-spacing" title="Permanent link">&para;</a></h1>
-<p>Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. </p>
-<p>To adjust the spacing in a single place, we can use the following commands:
-- <code>\hspace{&lt;length&gt;}</code>: horizontal space
-- <code>\vspace{&lt;length&gt;}</code>: vertical space</p>
-<p>Note that we can use negative values for the <code>&lt;length&gt;</code> parameter, so we can use these commands to relatively positioning.</p>
 <h1 id="floats">Floats<a class="headerlink" href="#floats" title="Permanent link">&para;</a></h1>
 <p>The following environments are floats:
 - <code>figure</code>
@@ -915,6 +954,11 @@
     \caption{My figure}
     \label{fig:my_figure}
 \end{figure}
+</code></pre>
+<p>If the figures are not of the same height, they will be aligned at the bottom. To align them at the top, we can use the <code>T</code> option for the <code>subfigure</code> environment. Example:</p>
+<pre><code class="language-latex">\begin{subfigure}[T]{0.3\textwidth}
+    ...
+\end{subfigure}
 </code></pre>
 <h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
 <p>The float environment for tables is <code>table</code>. However, the rows and columns are wrapped in another environment. The default inner enviroment is <code>tabular</code>, however, there are <em>many</em> other packages that extends the functionality. In practice, there are currently three inner environments to consider:

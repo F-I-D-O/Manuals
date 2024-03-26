@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -379,12 +383,32 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#running-projects" class="nav-link">Running Projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#developing-the-whole-project-stack-at-once" class="nav-link">Developing the whole project stack at once</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#running-maven-goals" class="nav-link">Running Maven Goals</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#maven-goal-configuration" class="nav-link">Maven goal configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting_1" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-detect-manually-installed-maven-artifact" class="nav-link">Idea does not detect manually installed Maven artifact</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-see-environment-variables" class="nav-link">Idea does not see environment variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -423,6 +447,23 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#make-part-of-the-project-optional" class="nav-link">Make part of the project optional</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#maven-profiles-and-optional-dependencies" class="nav-link">Maven profiles and optional dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#moving-optional-source-files-outside-the-srcmainjava-directory" class="nav-link">Moving optional source files outside the src/main/java directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loading-the-optional-part-of-the-project-at-runtime" class="nav-link">Loading the optional part of the project at runtime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#archive" class="nav-link">Archive</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#aic-maven-repo-access" class="nav-link">AIC maven repo access</a>
@@ -453,10 +494,7 @@
 <p>By default, all warnings are disabled and only a summary of the warnings is displayed in the output (i.e., all warning types encountered, without specific lines where they occur).</p>
 <p>To enable all warnings use the <code>-Xlint</code> argument. To enable/disable specific warnings, use <code>-Xlint:&lt;warning name&gt;</code> and <code>-Xlint:-&lt;warning name&gt;</code>, respectively.</p>
 <h1 id="maven">Maven<a class="headerlink" href="#maven" title="Permanent link">&para;</a></h1>
-<ul>
-<li>Download maven from the official website and extract the archive somewhere (e.g. <code>C:/</code>)</li>
-<li>Add absolute path to <code>&lt;mavendir&gt;/bin</code> to <code>PATH</code></li>
-</ul>
+<p>Described in the <a href="../Maven/">Maven</a> manual.</p>
 <h1 id="netbeans">Netbeans<a class="headerlink" href="#netbeans" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Install the latest version of Apache Netbeans</li>
@@ -503,14 +541,27 @@
 - compielr has to be at least target jdk, set it in: <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Project bytecode version</code> and <code>Per-module bytecode version</code>
 - language level should be the same as target jdk: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code></p>
 <h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h2>
-<p>Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain pluginns, we need to:</p>
+<p>Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain plugins, we can compile using the maven tab on the right.</p>
+<h2 id="running-projects">Running Projects<a class="headerlink" href="#running-projects" title="Permanent link">&para;</a></h2>
+<p>To add or edit run configurations, click on the run configuration dropdown left of the run button and choose <code>Edit Configurations...</code>.</p>
+<p>If the required configuration field is not present, it may be necessary to activate it by clicking on <code>Modify options</code> and choosing the desired option.</p>
 <h2 id="developing-the-whole-project-stack-at-once">Developing the whole project stack at once<a class="headerlink" href="#developing-the-whole-project-stack-at-once" title="Permanent link">&para;</a></h2>
 <p>If we are developing a whole stack of projects at once, it is best if we can navigate between them easily. However, it is not possible to open multiple projects in the same window in Idea (like in Netbeans). Instead, we need to open the project on the top of the stack and then add the other projects as modules. To add a module, click <code>File</code> -&gt; <code>Project Structure</code> -&gt; <code>Modules</code> and add the module.</p>
 <h2 id="running-maven-goals">Running Maven Goals<a class="headerlink" href="#running-maven-goals" title="Permanent link">&para;</a></h2>
-<p>To run a maven goal:
-1. Open the <code>Maven</code> tab on the right
-1. Right click on the goal 
-1. Choose <code>Run</code> or <code>Debug</code></p>
+<p>Maven goals can be run from a dedicated tab on the right. The goals in the tab are divided into two categories:
+- <code>Lifecycle</code> goals are the most common goals, which are used to build the project
+- <code>Plugins</code> goals are the goals of the plugins used in the project</p>
+<p>To run the goal, just double-click on it. </p>
+<p>If the run need some special configuration, right-click on the goal and choose <code>Modify Run Configuration...</code></p>
+<p>If the plugin is missing from the list, it may be necessary to reload the plugins. Click the <code>Reload All Maven Projects</code> button in the top left corner of the maven tab.</p>
+<h3 id="maven-goal-configuration">Maven goal configuration<a class="headerlink" href="#maven-goal-configuration" title="Permanent link">&para;</a></h3>
+<p>To run a maven goal with a specific profile, add the profile name to the <code>Profiles</code> field.</p>
+<h2 id="troubleshooting_1">Troubleshooting<a class="headerlink" href="#troubleshooting_1" title="Permanent link">&para;</a></h2>
+<h3 id="idea-does-not-detect-manually-installed-maven-artifact">Idea does not detect manually installed Maven artifact<a class="headerlink" href="#idea-does-not-detect-manually-installed-maven-artifact" title="Permanent link">&para;</a></h3>
+<p>Sometimes, idea cannot recognize installed maven artifact and marks it as missing (red). </p>
+<p>Fix: right click on the project or pom file -&gt; <code>Maven</code> -&gt; <code>Reload project</code></p>
+<h3 id="idea-does-not-see-environment-variables">Idea does not see environment variables<a class="headerlink" href="#idea-does-not-see-environment-variables" title="Permanent link">&para;</a></h3>
+<p>These may be new environment variables, which were not present when Idea was started. Restart Idea to see the new environment variables.</p>
 <h1 id="set-java-version-for-project">Set Java version for project<a class="headerlink" href="#set-java-version-for-project" title="Permanent link">&para;</a></h1>
 <p>There are two options to set:
 - <em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.
@@ -594,17 +645,72 @@
 <ul>
 <li><code>unsatisfied linker error</code>: Check if the gurobi version in the error log matches the gurobi version installed.</li>
 </ul>
+<h1 id="make-part-of-the-project-optional">Make part of the project optional<a class="headerlink" href="#make-part-of-the-project-optional" title="Permanent link">&para;</a></h1>
+<p>Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:
+- not essential for the project to work
+- dependent on some external library, which can be cumbersome to install</p>
+<p>The required steps are usually:
+1. Create a maven profile for the optional part of the project
+2. Move optional dependencies to the profile
+3. Move optional source files outside the <code>src/main/java</code> directory
+3. Use the <code>build-helper-maven-plugin</code> in the profile to add the optional source files to the project
+4. At runtime, load the optional part of the project using the reflection</p>
+<p>We now describe these steps in detail.</p>
+<h2 id="maven-profiles-and-optional-dependencies">Maven profiles and optional dependencies<a class="headerlink" href="#maven-profiles-and-optional-dependencies" title="Permanent link">&para;</a></h2>
+<p>A maven profile belongs to the <code>profiles</code> section of the <code>pom.xml</code> file. The structure is simple:</p>
+<pre><code class="language-xml">&lt;profiles&gt;
+    &lt;profile&gt;
+        &lt;id&gt;optional&lt;/id&gt;
+        &lt;dependencies&gt;
+            &lt;!-- optional dependencies --&gt;
+        &lt;/dependencies&gt;
+        &lt;build&gt;
+            &lt;plugins&gt;
+                &lt;!-- optional plugins --&gt;
+            &lt;/plugins&gt;
+        &lt;/build&gt;
+    &lt;/profile&gt;
+</code></pre>
+<h2 id="moving-optional-source-files-outside-the-srcmainjava-directory">Moving optional source files outside the <code>src/main/java</code> directory<a class="headerlink" href="#moving-optional-source-files-outside-the-srcmainjava-directory" title="Permanent link">&para;</a></h2>
+<p>The optional source files can be moved anywhere, but a logical place is to create a new directory under <code>src/main</code>, e.g., <code>src/main/&lt;lib&gt;-optional</code>. </p>
+<p>Then we need to tell maven to include these files in the project if the optional profile is activated. This is done using the <code>build-helper-maven-plugin</code> in the optional profile:</p>
+<pre><code class="language-xml">&lt;profiles&gt;
+    &lt;profile&gt;
+        &lt;id&gt;optional&lt;/id&gt;
+        &lt;build&gt;
+            &lt;plugins&gt;
+                build-helper-maven-plugin here
+            &lt;/plugins&gt;
+        &lt;/build&gt;
+    &lt;/profile&gt;
+&lt;/profiles&gt;
+</code></pre>
+<p>For the <code>build-helper-maven-plugin</code> configuration, see the <a href="../Maven/#using-dependencies-distributed-as-a-zip">Maven manual</a>.</p>
+<h2 id="loading-the-optional-part-of-the-project-at-runtime">Loading the optional part of the project at runtime<a class="headerlink" href="#loading-the-optional-part-of-the-project-at-runtime" title="Permanent link">&para;</a></h2>
+<p>First, we should check if the optional part of the project is present at runtime:</p>
+<pre><code class="language-java">public static boolean libAvailable(){
+    try {
+        Class.forName(&quot;com.example.lib&quot;);
+        return true;
+    } catch (ClassNotFoundException e) {
+        return false;
+    }
+}
+</code></pre>
+<p>Then, we can load the optional part of the project using reflection:</p>
+<pre><code class="language-java">if(libAvailable()){
+    Class&lt;?&gt; libClass = Class.forName(&quot;com.example.lib&quot;);
+    Object lib = libClass.newInstance();
+    Method method = libClass.getMethod(&quot;someMethod&quot;);
+    method.invoke(lib);
+}
+else{
+    // handle missing library
+}
+</code></pre>
 <h1 id="archive">Archive<a class="headerlink" href="#archive" title="Permanent link">&para;</a></h1>
 <h2 id="aic-maven-repo-access">AIC maven repo access<a class="headerlink" href="#aic-maven-repo-access" title="Permanent link">&para;</a></h2>
-<p>To Access the AIC maven repo, copy maven settings from another computer (located in ~/.m2)</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
-</blockquote>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzk0MzE5ODgsODQ2NDIwNDY4LC0xNT
-E3MzY3OTY5LDExMzQzNzcwNTcsLTczMDI5NjAyNyw3MzA5OTgx
-MTZdfQ==
---></div>
+<p>To Access the AIC maven repo, copy maven settings from another computer (located in ~/.m2)</p></div>
             </div>
         </div>
 

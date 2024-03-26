@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -323,6 +327,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#include-only-specific-fields" class="nav-link">Include only specific fields</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#represent-a-class-by-a-single-member" class="nav-link">Represent a class by a single member</a>
               <ul class="nav flex-column">
               </ul>
@@ -393,15 +401,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#custom-serializer" class="nav-link">Custom serializer</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#custom-serializer" class="nav-link">Custom serializer</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#annotations" class="nav-link">Annotations</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#multiple-objects" class="nav-link">Multiple objects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#default-serializers-and-deserializers" class="nav-link">Default Serializers and Deserializers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#java-8-date-and-time-deserialization" class="nav-link">Java 8 Date and Time (de)serialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -417,6 +433,15 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#iterating-over-json-object" class="nav-link">Iterating over JSON object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#csv-with-jackson" class="nav-link">CSV with Jackson</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#use-the-header" class="nav-link">Use the header</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -469,6 +494,22 @@ public class ConfigModel {
 }
 </code></pre>
 <p>This annotation can also prevent the "Unrecognized field" error during deserialization, as the ignored fields does not have to be present as Java class members.</p>
+<p>we can achieve the same by field annotations, specifically the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonIgnore.html"><code>@JsonIgnore</code></a> annotation. Example:</p>
+<pre><code class="language-Java">public class ConfigModel {
+    @JsonIgnore
+    public String par1;
+    @JsonIgnore
+    public int par2;
+}
+</code></pre>
+<h2 id="include-only-specific-fields">Include only specific fields<a class="headerlink" href="#include-only-specific-fields" title="Permanent link">&para;</a></h2>
+<p>If the fields to be (de)serialized are only a minority of all fields, we can use a reverse approach: the <code>@JsonIncludeProperties</code> annotation. For example:</p>
+<pre><code class="language-Java">@JsonIncludeProperties({ &quot;par1&quot;, &quot;par2&quot; })
+public class ConfigModel {
+    // only &quot;par1&quot; and &quot;par2&quot; will be (de)serialized
+}
+</code></pre>
+<p>Note that unlike for ignoring, there is no field annotation for including only specific fields. The <code>@JsonInclude</code> annotation serves a different purpose.</p>
 <h2 id="represent-a-class-by-a-single-member">Represent a class by a single member<a class="headerlink" href="#represent-a-class-by-a-single-member" title="Permanent link">&para;</a></h2>
 <p>If we want the java class to be represented by a single value in the <strong>serialized</strong> file, we can achieve that by adding the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.8/com/fasterxml/jackson/annotation/JsonValue.html"><code>@JsonValue</code></a> annotation above the member or method that should represent the class. Note, however, that this only works for simple values, because the member serializers are not called, the members is serialized as a simple value instead. <strong>If you want to represent a class by a single but complex member, use a custom serializer instead</strong>. </p>
 <p>An equivalent annotation for <strong>deserialization</strong> is the <code>@JsonCreator</code> annotation which should be placed above a constructor or factory method.</p>
@@ -635,7 +676,7 @@ mapper.writer(filters).writeValue(generator, output);
 </code></pre>
 <h3 id="flatting-the-hierarchy">Flatting the hierarchy<a class="headerlink" href="#flatting-the-hierarchy" title="Permanent link">&para;</a></h3>
 <p>When we desire to simplify the object hierarchy, we can use the <a href="https://fasterxml.github.io/jackson-annotations/javadoc/2.4/com/fasterxml/jackson/annotation/JsonUnwrapped.html"><code>@JsonUnwrapped</code></a> annotation above a member of a class. With this annotation, the annotated member object will be skipped while all its members will be serialized into its parent.</p>
-<h2 id="custom-serializer">Custom serializer<a class="headerlink" href="#custom-serializer" title="Permanent link">&para;</a></h2>
+<h3 id="custom-serializer">Custom serializer<a class="headerlink" href="#custom-serializer" title="Permanent link">&para;</a></h3>
 <p>If the serialization requirements are too complex to be expressed using Jackson annotations, we can use a custom serialzier:</p>
 <pre><code class="language-Java">public class MyCustomSerializer extends JsonSerializer&lt;MyClass&gt; {
     @Override
@@ -670,6 +711,29 @@ public ConfigModel(
 }
 </code></pre>
 <p>in the above examples, the <code>first</code> and <code>second</code> are keys mapping the objects in the serialized file from which <code>instanceA</code> and <code>instanceB</code> should be created.</p>
+<h2 id="default-serializers-and-deserializers">Default Serializers and Deserializers<a class="headerlink" href="#default-serializers-and-deserializers" title="Permanent link">&para;</a></h2>
+<p>By default, Jackson can serialize and deserialize many types of objects: 
+- all primitive types
+- all primitive wrappers
+- <code>String</code>
+- <code>BigInteger</code>
+- <code>BigDecimal</code>
+- and many others</p>
+<h3 id="java-8-date-and-time-deserialization">Java 8 Date and Time (de)serialization<a class="headerlink" href="#java-8-date-and-time-deserialization" title="Permanent link">&para;</a></h3>
+<p>Among the types that are not covered in basic Jakson package are the Java 8 types for date and time. To (de)serialize them, we have two options:
+- use the <a href="https://github.com/FasterXML/jackson-modules-java8"><code>jackson-datatype-jsr310</code></a> module that adds support for the ISO-8601 format for date and time
+- use custom serializers and deserializers if we need a different format</p>
+<p>To use the <code>jackson-datatype-jsr310</code> module, we need to add it to the dependencies:</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;
+    &lt;artifactId&gt;jackson-datatype-jsr310&lt;/artifactId&gt;
+    &lt;version&gt;2.12.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>and then register the module in the object mapper:</p>
+<pre><code class="language-Java">ObjectMapper mapper = new ObjectMapper();
+mapper.registerModule(new JavaTimeModule());
+</code></pre>
 <h1 id="object-mapper-with-tree-model">Object mapper with tree model<a class="headerlink" href="#object-mapper-with-tree-model" title="Permanent link">&para;</a></h1>
 <p><a href="https://jenkov.com/tutorials/java-json/jackson-jsonnode.html">Jenkov tutorial on JsonNode</a></p>
 <p>To get the tree model, we can use the <code>readTree</code> method of the <code>ObjectMapper</code> class:</p>
@@ -696,6 +760,28 @@ for(String fieldName: object.fieldNames()){
     JsonNode value = object.get(fieldName);
     ...
 }
+</code></pre>
+<h1 id="csv-with-jackson">CSV with Jackson<a class="headerlink" href="#csv-with-jackson" title="Permanent link">&para;</a></h1>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-text/tree/2.17/csv">documentation</a></p>
+<p>To read a CSV file with Jackson, we need to use the <code>CsvMapper</code> class. The basic usage is:</p>
+<pre><code class="language-Java">CsvMapper mapper = new CsvMapper(); 
+
+// iterator construction
+MappingIterator&lt;&lt;row type&gt;&gt; it = mapper....readValues(new File(&quot;path/to/file.csv&quot;);
+
+// iterator usage
+while(it.hasNext()){
+    &lt;row type&gt; row = it.next();
+    ...
+}
+</code></pre>
+<p>Here the <code>&lt;row type</code> is the target type that should represent a single row. Depending on it, there will be different code in place of <code>mapper...</code>. For example, to get a list of strings for each row, we can use:</p>
+<pre><code class="language-Java">MappingIterator&lt;List&lt;String&gt;&gt; it = mapper.readerForListOf(String.class)...
+</code></pre>
+<h2 id="use-the-header">Use the header<a class="headerlink" href="#use-the-header" title="Permanent link">&para;</a></h2>
+<p>If the CSV file has a header, we can use it to load each row into a map of key-value pairs:</p>
+<pre><code class="language-Java">CsvSchema schema = CsvSchema.emptySchema().withHeader();
+MappingIterator&lt;Map&lt;String, String&gt;&gt; it = mapper.readerForMapOf(String.class).with(schema).readValues(new File(&quot;path/to/file.csv&quot;));
 </code></pre></div>
             </div>
         </div>

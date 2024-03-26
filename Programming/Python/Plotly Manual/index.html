@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -321,6 +325,10 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#common-parameters-for-all-types-of-plots" class="nav-link">Common Parameters For All Types of Plots</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#automatic-color-assignment" class="nav-link">Automatic color assignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#histogram" class="nav-link">Histogram</a>
@@ -344,6 +352,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#scatter-plot" class="nav-link">Scatter Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#line-chart" class="nav-link">Line Chart</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -388,8 +400,12 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#line-chart-and-scatter" class="nav-link">Line Chart and Scatter</a>
+            <li class="nav-item" data-level="2"><a href="#line-scatter-and-shape-plots" class="nav-link">Line, Scatter and Shape Plots</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#shapes" class="nav-link">Shapes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#create-subplots" class="nav-link">Create subplots</a>
@@ -398,14 +414,34 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#3d-plots" class="nav-link">3D plots</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#common-parameters" class="nav-link">Common Parameters</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#setting-color-of-the-plots-with-continuous-color-scale" class="nav-link">Setting color of the plots with continuous color scale</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#3d-scatter-plot_1" class="nav-link">3D Scatter Plot</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#3d-surface-plot" class="nav-link">3D Surface Plot</a>
+            <li class="nav-item" data-level="3"><a href="#surface-plots" class="nav-link">Surface Plots</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#3d-surface-plot" class="nav-link">3D Surface Plot</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="4"><a href="#3d-mesh-plot" class="nav-link">3D Mesh Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cone-plots" class="nav-link">Cone Plots</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -447,6 +483,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#legend-position" class="nav-link">Legend position</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#legend-items-text" class="nav-link">Legend items text</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#adding-figure-annotations" class="nav-link">Adding Figure Annotations</a>
@@ -463,6 +507,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#lines" class="nav-link">Lines</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#title" class="nav-link">Title</a>
@@ -509,6 +557,11 @@
             </li>
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#colors" class="nav-link">Colors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -517,9 +570,10 @@
 <p>In plotly, we have two options:
 - plot quickly with plotly express
 - full control using graph objects</p>
-<p>Note that thes options can hardly be mixed. For example, we cannot use plotly express to create a figure and then add a subplot to it. Similarly, we cannot use the <code>make_subplots</code> function to create a figure and then add a plotly express plot to it.</p>
+<p>Note that these options can hardly be mixed. For example, we cannot use plotly express to create a figure and then add a subplot to it. Similarly, we cannot use the <code>make_subplots</code> function to create a figure and then add a plotly express plot to it.</p>
 <p>In general, it is easier to use plotly express, so we should use it if we are not affected by its limitations. <strong>The plotly express cannot</strong>
-- create <strong>custom subplots</strong>. Howwever, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.</p>
+- create <strong>custom subplots</strong>. However, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.
+- <strong>z-order</strong> of the traces. For example, we need to first plot a trace using graph objects. Then it is much easier to plot the rest of the traces using graph objects as well.</p>
 <h1 id="plotly-express">Plotly Express<a class="headerlink" href="#plotly-express" title="Permanent link">&para;</a></h1>
 <p><a href="https://plotly.com/python/plotly-express/">documentation</a>
 Plotly express modul is loaded as:</p>
@@ -536,6 +590,14 @@ Plotly express modul is loaded as:</p>
 <li><code>title</code>: the title of the plot. </li>
 <li><code>hover_data</code>: the list of columns to show in the hover tooltip. Axes columns are shown automatically.</li>
 </ul>
+<h3 id="automatic-color-assignment">Automatic color assignment<a class="headerlink" href="#automatic-color-assignment" title="Permanent link">&para;</a></h3>
+<p>If we use the color parameter of a graph, plotly express plots a trace for each color value and assigns a color to the trace. To customize this color, we can use two parameters:
+- <code>color_discrete_sequence</code>: list of the colors to be used
+- <code>color_discrete_map</code>: dictionary mapping the color values to the colors. </p>
+<p>With the <code>color_discrete_sequence</code> parameter, plotly express iterates through the list of colors and assigns the colors to the color values in the order they appear in the data. If the number of colors is less than the number of color values, the colors are reused. If the number of colors is greater, the colors are truncated. Therefore, this parameter is useful only if:
+- the number of colors is equal to the number of color values
+- the number of colors is greater than the number of color values and we use categorical colors, so the truncation does not matter.</p>
+<p>The <code>color_discrete_map</code> parameter is more flexible. We can manually assign the colors to the color values, to use the color scale optimally. </p>
 <h2 id="histogram">Histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/histograms/">documentation</a></p>
 <p>Note that the <strong>Plotly histogram is only good for simple cases of small size</strong>. See below for more details.</p>
@@ -574,6 +636,12 @@ To mark the missing values, we can use annotations. </p>
 <pre><code class="language-python">px.scatter(&lt;dataframe&gt;, &lt;xcol name&gt;, &lt;y col name&gt;)
 </code></pre>
 <p>Important parameters:</p>
+<h2 id="line-chart">Line Chart<a class="headerlink" href="#line-chart" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/line-charts/">documentation</a></p>
+<p><a href="https://plotly.github.io/plotly.py-docs/generated/plotly.express.line.html">reference</a></p>
+<p>For line charts in plotly express, we use the <code>px.line</code> function. The basic syntax is:</p>
+<pre><code class="language-python">px.line(&lt;dataframe&gt;, &lt;xcol name&gt;, &lt;y col name&gt;)
+</code></pre>
 <h2 id="automatic-subplots-facet-plots">Automatic Subplots: Facet plots<a class="headerlink" href="#automatic-subplots-facet-plots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/facet-plots/">Facet plots</a> can be created using the same plot function as for normal plotly express plots and supplying the <code>facet_col</code> and/or <code>facet_row</code> parameters. Example:</p>
 <pre><code class="language-python">fig = px.histogram(df, x=&quot;column&quot;, facet_row=&quot;&lt;col 1&gt;&quot;, facet_col=&quot;&lt;col 2&gt;&quot;)
@@ -641,9 +709,9 @@ fig = make_subplots(rows=2, cols=2)
 <p>Also, to set the bar mode, we need to use the <code>update_layout</code> as the <code>go.Bar</code> function does not have the <code>barmode</code> parameter. Example:</p>
 <pre><code class="language-python">fig.update_layout(barmode=&quot;stack&quot;)
 </code></pre>
-<h2 id="line-chart-and-scatter">Line Chart and Scatter<a class="headerlink" href="#line-chart-and-scatter" title="Permanent link">&para;</a></h2>
-<p><a href="https://plotly.com/python/line-charts/#line-plot-with-goscatter">documentation</a></p>
-<p>The line chart is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html"><code>go.Scatter</code></a> function. Example:</p>
+<h2 id="line-scatter-and-shape-plots">Line, Scatter and Shape Plots<a class="headerlink" href="#line-scatter-and-shape-plots" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/line-charts/#line-plot-with-goscatter">line plot documentation</a></p>
+<p>Line plots, scatter plots and shapes, all of that can be created by the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html"><code>go.Scatter</code></a> function. Example:</p>
 <pre><code class="language-python">go.Scatter(x, y, ...)
 </code></pre>
 <p>Important parameters:
@@ -660,6 +728,9 @@ fig = make_subplots(rows=2, cols=2)
 - <code>line</code>: dictionary containing the line parameters. The most important parameters are:
     - <code>color</code>: the color of the line
     - <code>width</code>: the width of the line</p>
+<h3 id="shapes">Shapes<a class="headerlink" href="#shapes" title="Permanent link">&para;</a></h3>
+<p><a href="https://plotly.com/python/shapes/">documentation</a></p>
+<p>The shapes can be created by supplying the coordinates of the shape to the <code>go.Scatter</code> function and setting the <code>fill</code> parameter to <code>"toself"</code>. </p>
 <h2 id="create-subplots">Create subplots<a class="headerlink" href="#create-subplots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/subplots/">documentation and examples</a></p>
 <p>To create a figure with multiple subplots, we use the <code>make_subplots</code> function. Example:</p>
@@ -674,16 +745,49 @@ fig.show()
 - <code>x_title</code> and <code>y_title</code>: the titles of the x and y axes. 
 - <code>horizontal_spacing</code> and <code>vertical_spacing</code>: the spacing between the subplots.</p>
 <h2 id="3d-plots">3D plots<a class="headerlink" href="#3d-plots" title="Permanent link">&para;</a></h2>
+<h3 id="common-parameters">Common Parameters<a class="headerlink" href="#common-parameters" title="Permanent link">&para;</a></h3>
+<h4 id="setting-color-of-the-plots-with-continuous-color-scale">Setting color of the plots with continuous color scale<a class="headerlink" href="#setting-color-of-the-plots-with-continuous-color-scale" title="Permanent link">&para;</a></h4>
+<p>If the plot type is continuous (e.g., surface plot, cone plot), we cannot set a color for the whole trace as a continuous color scale is used. However, we can set the colorscale using the <code>colorscale</code> parameter. Example:</p>
+<pre><code class="language-python">fig.add_trace(go.Surface(z=z, colorscale=&quot;Viridis&quot;))
+</code></pre>
+<p>The color scale can be also set manually as a list of colors. This way, we can overcome the limitation of the continuous color scale and set the color of the whole trace. Example:</p>
+<pre><code class="language-python">fig.add_trace(go.Surface(z=z, colorscale=[[0, &quot;red&quot;], [1, &quot;red&quot;]]))
+</code></pre>
 <h3 id="3d-scatter-plot_1">3D Scatter Plot<a class="headerlink" href="#3d-scatter-plot_1" title="Permanent link">&para;</a></h3>
 <p><a href="https://plotly.com/python/3d-scatter-plots/">documentation</a></p>
 <p>The 3D scatter plot is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter3d.html"><code>go.Scatter3d</code></a> function. Example:</p>
 <pre><code class="language-python">go.Scatter3d(x, y, z, ...)
 </code></pre>
-<h3 id="3d-surface-plot">3D Surface Plot<a class="headerlink" href="#3d-surface-plot" title="Permanent link">&para;</a></h3>
+<h3 id="surface-plots">Surface Plots<a class="headerlink" href="#surface-plots" title="Permanent link">&para;</a></h3>
+<p>There are multiple types of plots that may be considered as surface plots in plotly:
+- <a href="https://plotly.com/python/3d-surface-plots/"><strong>3D surface</strong></a> (<code>go.Surface</code>): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). The surface is plotted for all combinations of x and y, which makes this function suitable only for cases where the surface is defined for all combinations of x and y.
+- <a href="https://plotly.com/python/3d-mesh/"><strong>3D mesh</strong></a> (<code>go.Mesh3d</code>): a surface plot defined by vertices (points) and faces (connections between the points). The connections are defined by triangles, which can be either defined manually or computed automatically using a triangulation algorithm. 
+- <a href="https://plotly.com/python/trisurf/"><strong>Tri-surface</strong></a> (<code>figure_factory.create_trisurf</code>): a surface plot created by a triangulation of the data points. It accepts triangles in a single argument. I have to further investigate, how it differs from the 3D mesh plot.</p>
+<h4 id="3d-surface-plot">3D Surface Plot<a class="headerlink" href="#3d-surface-plot" title="Permanent link">&para;</a></h4>
 <p><a href="https://plotly.com/python/3d-surface-plots/">documentation</a></p>
-<p>The 3D surface plot is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html"><code>go.Surface</code></a> function. Example:</p>
-<pre><code class="language-python">go.Surface(z, ...)
+<p>The 3D surface plot is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Surface.html"><code>go.Surface</code></a> function. </p>
+<h4 id="3d-mesh-plot">3D Mesh Plot<a class="headerlink" href="#3d-mesh-plot" title="Permanent link">&para;</a></h4>
+<p><a href="https://plotly.com/python/3d-mesh/">documentation</a></p>
+<p>The 3D mesh plot is created using the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Mesh3d.html"><code>go.Mesh3d</code></a> function. Example:</p>
+<pre><code class="language-python">x = [1, 1, 1]
+y = [1, 2, 1]
+z = [0, 0, 1]
+
+fig.add_trace(go.Mesh3d(x=x, y=y, z=z))
 </code></pre>
+<p>This way, the triangulation is used to compute the connections between the points. If we want to use a different triangulation, we can use the <code>i</code>, <code>j</code> and <code>k</code> parameters. These parameters define the indices (in the source data used for <code>x</code>, <code>y</code>, and <code>z</code>) of the vertices that form the triangles. For example, <code>i[0]</code>, <code>j[0]</code> and <code>k[0]</code> define the vertices of the first triangle. Example code:</p>
+<pre><code class="language-python">x = [1, 1, 1]
+y = [1, 2, 1]
+z = [0, 0, 1]
+i = [0]
+j = [1]
+k = [2]
+
+fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
+</code></pre>
+<p>Note that here, the <code>i</code>, <code>j</code> and <code>k</code> parameters are redundant, as there is only one possible triangulation of the three points. However, for more complex surfaces, there can be multiple valid triangulations, and the <code>i</code>, <code>j</code> and <code>k</code> parameters can be used to select the triangulation manually.</p>
+<h2 id="cone-plots">Cone Plots<a class="headerlink" href="#cone-plots" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/cone-plot/">documentation</a></p>
 <h1 id="customizing-the-figure">Customizing the Figure<a class="headerlink" href="#customizing-the-figure" title="Permanent link">&para;</a></h1>
 <p>The figure object can be custommized in many ways.</p>
 <h2 id="size-and-margins">Size and margins<a class="headerlink" href="#size-and-margins" title="Permanent link">&para;</a></h2>
@@ -754,7 +858,7 @@ fig.update_yaxes(showticklabels=True, row=1, col=1)
 <p><a href="https://plotly.com/python/reference/layout/#layout-legend">reference</a></p>
 <p>The legend can be styled using the <code>figure.update_layout</code> function. 
 The most important parameters are:
-- <code>legend_title_text</code>: the title of the legend
+- <code>legend_title</code>: the title of the legend
 - <code>legend</code>: dictionary containing many parameters
     - <code>orientation</code>: <code>h</code> or <code>v</code> for horizontal or vertical legend
     - <code>x</code>, <code>y</code>: the position of the in normalized coordinates of the whole plot.
@@ -762,7 +866,9 @@ The most important parameters are:
         - <code>"container"</code>: the whole plot
         - <code>"paper"</code> (default): the plotting area
     - <code>xanchor</code>, <code>yanchor</code>: the position of the legend box relative to the x and y coordinates
-    - <code>title</code>: if string, the title of the legend (equivalent to the <code>legend_title_text</code> parameter). If dictionary, multiple legent title parameters can be set.</p>
+    - <code>title</code>: if string, the title of the legend (equivalent to the <code>legend_title</code> parameter). If dictionary, multiple legend title parameters can be set.
+    - <code>bordercolor</code>: the color of the legend border
+    - <code>borderwidth</code>: the width of the legend border</p>
 <p>Unfortunately, <strong>there is no way how to customize the padding between the legend items and the legend box</strong>. Also, <strong>it is not possible to set the legend border to have rounded corners</strong>. </p>
 <h3 id="hide-legend">Hide legend<a class="headerlink" href="#hide-legend" title="Permanent link">&para;</a></h3>
 <p>To hide the legend, we can use the <code>showlegend</code> parameter. Example:</p>
@@ -772,6 +878,21 @@ The most important parameters are:
 <p>The order of the legend items is determined by the order of the traces in the figure. However, we can change the order using the <code>legend_traceorder</code> parameter. Example:</p>
 <pre><code class="language-python">fig.update_layout(legend_traceorder=&quot;reversed&quot;)
 </code></pre>
+<h3 id="legend-position">Legend position<a class="headerlink" href="#legend-position" title="Permanent link">&para;</a></h3>
+<p>The coordinates of the legend are normalized with respect to each axis.
+By default, the legend <code>x</code> and <code>y</code> coordinates are set so that the legend is outside the plot, in the top right corner. 
+If the legend is positioned inside the plot, the plot expands to the whole width, but if the legend is positioned outside the plot, the plot width is smaller to leave space for the legend.</p>
+<h3 id="legend-items-text">Legend items text<a class="headerlink" href="#legend-items-text" title="Permanent link">&para;</a></h3>
+<p>The legend item text is determined by the <code>name</code> parameter of the trace. Therefore, to customize the legend item text, we need to set the <code>name</code> parameter of the trace. For normal single trace functions, this is simple:</p>
+<pre><code class="language-python">fig.add_trace(go.Scatter(x=x, y=y, name=&quot;Custom name&quot;))
+</code></pre>
+<p>However, it can be complicated for plotly express functions that plot multiple traces at once, as these determine the <code>name</code> parameter automatically from data. For example, when we use the <code>color</code> parameter, the <code>name</code> parameter is set to the color value. To overcome this, we have two options:
+- set the <code>name</code> parameter manually for each trace after the figure is created
+- change the data so that the <code>name</code> parameter is set automatically to the desired value. </p>
+<p>The first approach is usually preferable as we do not mix the data and appearance. To change the <code>name</code> parameter, we can use the <code>update_traces</code> function:</p>
+<pre><code class="language-python">for trace in fig.data:
+    trace.name = process_name(trace.name)
+</code></pre>
 <h2 id="adding-figure-annotations">Adding Figure Annotations<a class="headerlink" href="#adding-figure-annotations" title="Permanent link">&para;</a></h2>
 <p>For adding annotations to the whole Figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation"><code>add_annotation</code></a> function. </p>
 <p>Important parameters:
@@ -779,7 +900,8 @@ The most important parameters are:
 - <code>text</code>: the text of the annotation
 - <code>xref</code>, <code>yref</code>: the coordinate system of the x and y coordinates. Can be <code>"paper"</code> or <code>"data"</code>.
 - <code>showarrow</code>: if <code>True</code>, an arrow will be added to the annotation
-- <code>textangle</code>: the angle of the text in degrees</p>
+- <code>textangle</code>: the angle of the text in degrees,
+- <code>bgcolor</code>: the background color of the annotation</p>
 <p><strong>By default</strong> the annotation is meant to annotate the data. Therefore, <strong>the <code>x</code> and <code>y</code> coordinates use the coordinate system of the data</strong> (x and y axes). To align the annotation with respect to the whole figure, we need to set the <code>xref</code> and <code>yref</code> parameters to <code>"paper"</code>. In this case, the <code>x</code> and <code>y</code> coordinates are in the range <code>[0, 1]</code> and the origin is the bottom left corner of the figure.</p>
 <h3 id="annotations-in-facet-plots">Annotations in facet plots<a class="headerlink" href="#annotations-in-facet-plots" title="Permanent link">&para;</a></h3>
 <p>When using facet plots, the annotations are added to the whole figure. Therefore, the <code>x</code> and <code>y</code> coordinates are in the range <code>[0, 1]</code> and the origin is the bottom left corner of the figure. To align the annotation with respect to the subplot, we need to set the <code>xref</code> and <code>yref</code> parameters to the x and y axes of the subplot. Example:</p>
@@ -799,6 +921,15 @@ The most important parameters are:
 - <code>color</code>: the color of the marker. To make the marker transparent, it is best to use the <code>rgba</code> format. Example: <code>rgba(255, 0, 0, 0.5)</code> for a red marker with 50% transparency.</p>
 <h3 id="adding-a-marker-to-a-hard-coded-location">Adding a marker to a hard-coded location<a class="headerlink" href="#adding-a-marker-to-a-hard-coded-location" title="Permanent link">&para;</a></h3>
 <p>To add a marker to a hard-coded location, we can add it as a new trace. Note that we can add new traces even to a figure created using plotly express. </p>
+<h2 id="lines">Lines<a class="headerlink" href="#lines" title="Permanent link">&para;</a></h2>
+<p>Lines can be styled using the line parameter of the plotting functions or using the <code>update_traces</code> function. Important parameters:
+- <code>color</code>: the color of the line
+- <code>width</code>: the width of the line in pixels
+- <code>dash</code>: the dash pattern. Can be
+    - <code>"solid"</code> (default)
+    - <code>"dot"</code>: dense dashed line
+    - <code>"dash"</code>: sparse dashed line
+    - ... </p>
 <h2 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/figure-labels/#align-plot-title">documentation</a></p>
 <p>The title can be set using the plotly express functions or when creating the graph objects figure. To update the text or to customize the title layout, we can use the <code>update_layout</code> function with the <code>title</code> object parameter. Example:</p>
@@ -851,7 +982,13 @@ The most important parameters are:
 <p>The margins of the figure should be set for the figure itself, not for the export.</p>
 <h2 id="export-hangs-out">Export hangs out<a class="headerlink" href="#export-hangs-out" title="Permanent link">&para;</a></h2>
 <p>It can be cause by kaleido. The solution si to install an older version, specifically <code>0.1.0.post1</code>.</p>
-<p>https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4</p></div>
+<p>https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4</p>
+<h1 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h1>
+<p><a href="https://plotly.com/python/discrete-color/">documentation</a></p>
+<p>For colors in plotly, we can use the color scales supplied by plotly express. These are:
+- <code>px.colors.sequential</code>: sequential color scales
+- <code>px.colors.diverging</code>: diverging color scales
+- <code>px.colors.qualitative</code>: qualitative color scales</p></div>
             </div>
         </div>
 

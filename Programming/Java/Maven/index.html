@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -330,9 +334,27 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#compilation" class="nav-link">Compilation</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#passing-arguments-to-javac" class="nav-link">Passing arguments to javac</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#using-dependencies-distributed-as-a-jar" class="nav-link">Using dependencies distributed as a jar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#using-dependencies-distributed-as-a-zip" class="nav-link">Using dependencies distributed as a zip</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -358,6 +380,18 @@
             
             <li class="nav-item" data-level="1"><a href="#execute-programs-from-maven" class="nav-link">Execute Programs from Maven</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#execjava" class="nav-link">exec:java</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#execexec" class="nav-link">exec:exec</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#configure-the-exec-plugin-in-the-pom" class="nav-link">Configure the exec plugin in the pom</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -432,6 +466,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#profiles" class="nav-link">Profiles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#creating-maven-plugins" class="nav-link">Creating maven plugins</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#testing-a-maven-plugin" class="nav-link">Testing a maven plugin</a>
@@ -475,6 +514,33 @@
 <p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
 - check that the dependencies are on the maven central.
 - if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency</p>
+<h1 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
+<p>Variables in the <code>pom.xml</code> file can be used using the <code>${variable}</code> syntax. </p>
+<p>To use some environment variables, we can use the <code>${env.variable}</code>.</p>
+<p>Note that contrary to all expectations, <strong>maven goals do not fail if a variable is not defined</strong>. Instead, the variable is replaced with an empty string. This can lead to unexpected behavior, so it is usually preferable to fail. For that, we can use the <a href="https://maven.apache.org/enforcer/">enforcer plugin</a> with the <code>requireProperty</code> rule:</p>
+<pre><code class="language-XML">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.4.1&lt;/version&gt;
+    &lt;executions&gt;
+    &lt;execution&gt;
+        &lt;id&gt;enforce-property&lt;/id&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;enforce&lt;/goal&gt;
+        &lt;/goals&gt;
+        &lt;configuration&gt;
+            &lt;rules&gt;
+                &lt;requireProperty&gt;
+                    &lt;property&gt;basedir&lt;/property&gt;
+                    &lt;message&gt;You must set a basedir property!&lt;/message&gt;
+                &lt;/requireProperty&gt;
+            &lt;/rules&gt;
+            &lt;fail&gt;true&lt;/fail&gt;
+        &lt;/configuration&gt;
+    &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
 <h1 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h1>
 <p><a href="https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html">reference</a></p>
 <p>Compilation is handeled by the Maven compiler plugin. Usually, typing <code>mvn compile</code> is enough to compile the project.</p>
@@ -495,6 +561,47 @@
     &lt;arg&gt;-Xlint&lt;/arg&gt;
 &lt;/compilerArgs&gt;
 
+</code></pre>
+<h1 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h1>
+<p>Maven dependencies are defined in the <code>pom.xml</code> file, in the <code>&lt;dependencies&gt;</code> section. Each dependency has the following structure:</p>
+<pre><code class="language-XML">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-core&lt;/artifactId&gt;
+    &lt;version&gt;3.0&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt; 
+</code></pre>
+<p>The <code>scope</code> property is optional and the default value is <code>compile</code>. </p>
+<p>The dependencies are automatically downloaded if we run a maven goal that requires them (e.g., <code>compile</code>, <code>test</code>, <code>install</code>). If we want to download them manually, we can use the <code>dependency:resolve</code> goal.</p>
+<p>To list all dependencies of a project, we can use the <code>dependency:list</code> goal.</p>
+<h2 id="using-dependencies-distributed-as-a-jar">Using dependencies distributed as a jar<a class="headerlink" href="#using-dependencies-distributed-as-a-jar" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we possess a jar file that is not present in any maven repository. We can still install it to the local repository as a new artifact using the <code>install:install-file</code> goal:</p>
+<pre><code class="language-bash">mvn install:install-file -Dfile=&lt;PATH TO JAR&gt; -DgroupId=&lt;GROUP ID&gt; -DartifactId=&lt;ARTEIFACT ID&gt; -Dversion=&lt;VERSION&gt; -Dpackaging=jar
+</code></pre>
+<p>Here the <code>&lt;PATH TO JAR&gt;</code> is a path to the jar library. The <code>&lt;GROUP ID&gt;</code>, <code>&lt;ARTEIFACT ID&gt;</code>, and <code>&lt;VERSION&gt;</code> can have arbitrary values, they just have to correspond with the values specified in the pom dependency.</p>
+<p>Be careful with PowerShell: in PowerShell, program parameters starting with minus and containing dot need to be quoted, for example: <code>'-DgroupId=com.example.app'</code> instead of <code>-DgroupId=com.example.app</code></p>
+<h2 id="using-dependencies-distributed-as-a-zip">Using dependencies distributed as a zip<a class="headerlink" href="#using-dependencies-distributed-as-a-zip" title="Permanent link">&para;</a></h2>
+<p>Sometimes, the dependency is distributed as a zip file containing sources.
+Typically, the manual for such a library tells us to modify the classpath to include the sources. However, Maven handles the classpath automatically, so it is not wise to modify it manually. The best way to use it is to unpack the zip and add the sources to the project during compilation. For that, we can use the <code>build-helper-maven-plugin</code> plugin:</p>
+<pre><code class="language-XML">&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.2.0&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;add-lib-sources&lt;/id&gt;
+            &lt;phase&gt;generate-sources&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;add-source&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;sources&gt;
+                    &lt;source&gt;path/to/lib/folder&lt;/source&gt;
+                &lt;/sources&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
 </code></pre>
 <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
 <p>Tests are usually executed with the Maven Surefire plugin using the <code>test</code> goal.</p>
@@ -537,15 +644,24 @@
 </code></pre>
 <p>runs all tests within the <code>input</code> package.</p>
 <h1 id="execute-programs-from-maven">Execute Programs from Maven<a class="headerlink" href="#execute-programs-from-maven" title="Permanent link">&para;</a></h1>
-<p>For executing programs, Maven has the exec target. Mostly, you need to exacute java programs from maven. Basic example:</p>
+<p>For executing programs, Maven has the <code>exec</code> plugin. This plugin has two goals: 
+- <code>exec:java</code>: for Java programs
+- <code>exec:exec</code>: for any program</p>
+<p>However, the <code>exec:java</code> goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the <code>exec:java</code> goal, it is not possible to:
+- pass JVM arguments like <code>-Xmx</code>
+- set the library path using <code>-Djava.library.path</code></p>
+<h2 id="execjava"><code>exec:java</code><a class="headerlink" href="#execjava" title="Permanent link">&para;</a></h2>
+<p>Basic example:</p>
 <pre><code>mvn exec:java  -Dexec.mainClass=test.Main
 </code></pre>
 <p>Other usefull arguments:
  - <code>-Dexec.args="arg1 arg2 arg3"</code></p>
-<p>If you want to pass the arguments like <code>Xmx</code> to jvm, you cannot use the <code>java</code> subgoal of the exec command. That is because with the <code>java</code> subgoal, Maven uses the same jvm it is running in to execute the program. To conigure jvm, we need to start a new instance. That is possible with the <code>exec</code> subgoal:</p>
+<h2 id="execexec"><code>exec:exec</code><a class="headerlink" href="#execexec" title="Permanent link">&para;</a></h2>
+<p>Basic example&gt;</p>
 <pre><code>mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;Xmx30g -classpath %classpath test.Main&quot;
 </code></pre>
-<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and runtime arguments.</strong></p>
+<p>The <code>-classpath %classpath</code> argument is obligatory and it is used to pass the project classpath to the program. </p>
+<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and program arguments.</strong></p>
 <p>We can also use <code>-Dexec.mainClass</code> with <code>exec:exec</code>, but we need to refer it in the <code>-classpath</code> argument. The following three maven commands run the same Java program:</p>
 <pre><code>mvn exec:java  -Dexec.mainClass=test.Main
 
@@ -553,6 +669,8 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;-classpath %c
 
 mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dexec.args=&quot;-classpath %classpath ${exec.mainClass}&quot;
 </code></pre>
+<h2 id="configure-the-exec-plugin-in-the-pom">Configure the exec plugin in the pom<a class="headerlink" href="#configure-the-exec-plugin-in-the-pom" title="Permanent link">&para;</a></h2>
+<p>We can add a configuration of the exec plugin to the <code>pom.xml</code>, so we do not have to type the arguments or the main class every time we run the program. However, this way, we have to supply all program arguments in the <code>pom.xml</code> file. <strong>It is not possible to pass some parameters from the command line and some from the <code>pom.xml</code> file configuration.</strong> Note that when using the <code>exec:ecec</code> goal, this includes the JVM arguments as well.</p>
 <h1 id="https-certificates">HTTPS certificates<a class="headerlink" href="#https-certificates" title="Permanent link">&para;</a></h1>
 <p>Sometimes, it can happen that maven cannot connect to a repository with this error:</p>
 <pre><code>PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
@@ -762,6 +880,15 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
         &lt;password&gt;your password&lt;/password&gt;
     &lt;/server&gt;
 &lt;/servers&gt;
+</code></pre>
+<h1 id="profiles">Profiles<a class="headerlink" href="#profiles" title="Permanent link">&para;</a></h1>
+<p>Maven profiles can be used to supply different configurations in a single <code>pom.xml</code> file. This can be used for example to:
+- support different build environments (e.g., development, testing, production)
+- support different build targets (e.g., different Java versions)
+- support different build configurations (e.g., optional dependencies)</p>
+<p>Profiles are defined in the <code>profiles</code> section of the <code>pom.xml</code> file. Each profile has a unique id and can contain any configuration that can be present in the <code>pom.xml</code> file. </p>
+<p>To manually activate a profile, we can use the <code>-P</code> argument of the <code>mvn</code> command:</p>
+<pre><code>mvn &lt;goal&gt; -P &lt;profile id&gt;
 </code></pre>
 <h1 id="creating-maven-plugins">Creating maven plugins<a class="headerlink" href="#creating-maven-plugins" title="Permanent link">&para;</a></h1>
 <p><a href="https://maven.apache.org/guides/plugin/guide-java-plugin-development.html">Official guide</a></p>

@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -468,6 +472,14 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#select-row-with-a-maximum-value-in-a-column" class="nav-link">Select row with a maximum value in a column</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#selecting-a-single-value-cell-scalar" class="nav-link">Selecting a single value (cell, scalar)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -552,14 +564,22 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#appending-one-dataframe-to-another" class="nav-link">Appending one dataframe to another</a>
+            <li class="nav-item" data-level="1"><a href="#appending-data" class="nav-link">Appending data</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#object" class="nav-link">Object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#datetime" class="nav-link">Datetime</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -746,8 +766,11 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <h3 id="vector-operations">Vector operations<a class="headerlink" href="#vector-operations" title="Permanent link">&para;</a></h3>
 <h3 id="list-comprehensions">List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Permanent link">&para;</a></h3>
 <h3 id="apply">Apply<a class="headerlink" href="#apply" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"><code>apply</code></a> function can be used to apply a function to each row or column of the dataframe. For iterating over rows, we need to set the <code>axis</code> parameter to 1. Example:</p>
+<pre><code class="language-python">df['new_col'] = df.apply(lambda row: row['col1'] + row['col2'], axis=1)
+</code></pre>
 <h3 id="itertuples">itertuples()<a class="headerlink" href="#itertuples" title="Permanent link">&para;</a></h3>
-<p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.htm</p>
+<p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.itertuples.html</p>
 <p>Returns dataframe rows as pandas named tuples with index as the first member of the tuple.</p>
 <h3 id="iterrows">iterrows()<a class="headerlink" href="#iterrows" title="Permanent link">&para;</a></h3>
 <p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html</p>
@@ -759,7 +782,9 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html
 Iterates over columns</p>
 <h2 id="iteration-with-modification">Iteration with modification<a class="headerlink" href="#iteration-with-modification" title="Permanent link">&para;</a></h2>
-<p>When doing some modifications, we need to copy the dataframe and do the modifications on the copy.</p>
+<p>For modification, the best strategy is to:
+1. select what we want to modify (see <a href="#selection">selection</a>)
+1. modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.</p>
 <h1 id="filtration">Filtration<a class="headerlink" href="#filtration" title="Permanent link">&para;</a></h1>
 <pre><code class="language-python">filtered = df[df['max_delay'] == x]
 </code></pre>
@@ -791,13 +816,20 @@ sf = s[s &lt;= 10] # now we have a Series with values from df['col'] less than 1
 </ul>
 <h1 id="selection">Selection<a class="headerlink" href="#selection" title="Permanent link">&para;</a></h1>
 <p>If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see <a href="#filtration">filtration</a>), we can use these methods:
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a>: select by label, works for both rows and columns
+- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a>: select by index, works for both rows and columns
 - <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code>iloc</code></a>: select by position, works for both rows and columns
-- <code>[]</code>: select by label, works only for columns</p>
+- <code>[]</code>: select by index, works only for columns</p>
 <p>There are also other methods that works for selection but does not work for setting values, such as:
 - <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a>: select by label, works for both rows and columns</p>
+<p>The return type of the selection is determined by the number of selected rows and columns. For a single row or column, the result is a series, for multiple rows and columns, the result is a dataframe. If we want to get a dataframe for a single row or column, we can use the <code>[]</code> operator with a list of values:</p>
+<pre><code class="language-python">df[['col1']]
+# or 
+df.loc[['row1']]
+# or
+df.iloc[[0]]
+</code></pre>
 <h2 id="loc"><code>loc</code><a class="headerlink" href="#loc" title="Permanent link">&para;</a></h2>
-<p>The operator <code>loc</code> has has many possible input parameters, the most common syntax is </p>
+<p>The operator <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a> has many possible input parameters, the most common syntax is </p>
 <pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;]
 </code></pre>
 <p>each selection has the form of <code>&lt;start label&gt;:&lt;end label&gt;</code>. For the whole column, we therefore use:</p>
@@ -866,6 +898,15 @@ dft.loc[idx[:, 15:30], ...]
 <h3 id="using-xs">Using <code>xs</code><a class="headerlink" href="#using-xs" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a> function can be used to select from a multi-index dataframe. However, slices (ranges) are not supported. Example:</p>
 <pre><code class="language-python">df.xs(15, level=1) # selects all rows with level 1 equal to 15
+</code></pre>
+<h2 id="select-row-with-a-maximum-value-in-a-column">Select row with a maximum value in a column<a class="headerlink" href="#select-row-with-a-maximum-value-in-a-column" title="Permanent link">&para;</a></h2>
+<p>To get the index of the row with the maximum value in a column, we can use the <code>idxmax</code> function:</p>
+<pre><code class="language-python">df['col'].idxmax()
+</code></pre>
+<p>Then we can use the <code>loc</code> method to get the row.</p>
+<h2 id="selecting-a-single-value-cell-scalar">Selecting a single value (cell, scalar)<a class="headerlink" href="#selecting-a-single-value-cell-scalar" title="Permanent link">&para;</a></h2>
+<p>When we select a single value from a dataframe, the result is sometimes a series, especially when we use a filtration. To get a scalar, we can use the <code>item()</code> method:</p>
+<pre><code class="language-python">df.loc[&lt;row&gt;, &lt;column&gt;].item()
 </code></pre>
 <h1 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h1>
 <p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
@@ -943,7 +984,7 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').size()
 </code></pre>
 <p>Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the <strong>aggregation does not have to actually aggregate the data, it can also transform it</strong>.</p>
-<p>in the groupby object, the columns used for grouping are omitted. To keep them, we can use the <code>group_keys</code> parameter of the <code>groupby</code> function.</p>
+<p>In the groupby object, the columns used for grouping are omitted if each group is aggregated to exactly one row. To keep them, we can use the <code>group_keys</code> parameter of the <code>groupby</code> function.</p>
 <h2 id="aggregate-functions">Aggregate functions<a class="headerlink" href="#aggregate-functions" title="Permanent link">&para;</a></h2>
 <p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
 - <code>sum</code>
@@ -1055,15 +1096,34 @@ df.resample('1H').sum()
 </table>
 <p>There is also a static <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html"><code>pd.merge</code></a> function. All <code>merge</code> and <code>join</code> methods are just wrappers around this function.</p>
 <p>The indexes are lost after the join (if not used for the join). To keep an index, we can store it as a column before the join.</p>
-<h1 id="appending-one-dataframe-to-another">Appending one dataframe to another<a class="headerlink" href="#appending-one-dataframe-to-another" title="Permanent link">&para;</a></h1>
-<p>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function for that:</p>
+<h1 id="appending-data">Appending data<a class="headerlink" href="#appending-data" title="Permanent link">&para;</a></h1>
+<p>In pandas, there is a <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function that can be used to concatenate data:</p>
 <pre><code class="language-python">pd.concat([df1, df2])
 </code></pre>
+<p>It can concatenate dataframes or series and it can concatenate vertically (by rows, default) or horizontally (by columns)</p>
+<p>By default, the indices from both input parameters are preserved. to reset the index, we can use the <code>ignore_index</code> parameter.</p>
 <h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
+<h2 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h2>
+<p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
+- we round a column with mix of floats and ints: fail (<code>loop of ufunc does not support argument 0 of type float which has no callable rint method</code>)
+- we need to apply string functions, but the column contains numbers as well</p>
+<p>The solution is usually:
+1. fill the missing values with the <code>fillna</code> function
+2. convert the column to <code>str</code> type using the <code>astype</code> function
+3. apply string functions to clear the data
+4. convert the column to the desired type</p>
 <h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
 <p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
 - <code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.
 - <code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </p>
+<h2 id="datetime">Datetime<a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h2>
+<p>Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:</p>
+<pre><code class="language-python">df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
+print(df)
+# output:
+# '2021-01-01'
+# '2021-01-01'
+</code></pre>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">csv<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
 <p>For reading csv files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function. Important params:

@@ -167,6 +167,10 @@
 </li>
                                     
 <li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
     <a href="../../JSON/" class="dropdown-item">JSON</a>
 </li>
                                     
@@ -407,6 +411,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#named-tuples" class="nav-link">Named tuples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -539,6 +547,10 @@
             
             <li class="nav-item" data-level="1"><a href="#numpy" class="nav-link">Numpy</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#initialization" class="nav-link">Initialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#sorting_1" class="nav-link">Sorting</a>
               <ul class="nav flex-column">
               </ul>
@@ -555,6 +567,11 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#lambda-functions" class="nav-link">Lambda functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -624,6 +641,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#geometry" class="nav-link">Geometry</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -815,6 +837,14 @@ s = slice(0, 10, 2)
 a[s] # equivalent
 </code></pre>
 <p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
+<h2 id="named-tuples">Named tuples<a class="headerlink" href="#named-tuples" title="Permanent link">&para;</a></h2>
+<p>Apart from the standard tuple, Python has a named tuple class that can be created using the <a href="https://docs.python.org/3/library/collections.html#collections.namedtuple"><code>collections.namedtuple</code></a> function. In named tuple, each member has a name and can be accessed using the dot operator:</p>
+<pre><code class="language-Python">from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+print(p.x) # 1
+</code></pre>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.python.org/3/tutorial/errors.html">documentation</a></p>
 <p>Syntax:</p>
@@ -1074,6 +1104,12 @@ a: int
 for a in ... # ok
 </code></pre>
 <h1 id="numpy">Numpy<a class="headerlink" href="#numpy" title="Permanent link">&para;</a></h1>
+<h2 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h2>
+<p>We can create the new array as:
+- zero-filled: <code>np.zeros(&lt;shape&gt;, &lt;dtype&gt;)</code>
+- ones-filled: <code>np.ones(&lt;shape&gt;, &lt;dtype&gt;)</code>
+- empty: <code>np.empty(&lt;shape&gt;, &lt;dtype&gt;)</code>
+- filled with a constant: <a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html"><code>np.full(&lt;shape&gt;, &lt;value&gt;, &lt;dtype&gt;)</code></a></p>
 <h2 id="sorting_1">Sorting<a class="headerlink" href="#sorting_1" title="Permanent link">&para;</a></h2>
 <p>for sorting, we use the <a href="https://numpy.org/doc/stable/reference/generated/numpy.sort.html"><code>sort</code></a> function.</p>
 <p>There is no way how to set the sorting order, we have to use a trick for that:</p>
@@ -1098,6 +1134,14 @@ if result: # pattern matches
     group = result.group(&lt;group index&gt;)) # print the first group
 </code></pre>
 <p>The 0th group is the whole match, as usual.</p>
+<h1 id="lambda-functions">Lambda functions<a class="headerlink" href="#lambda-functions" title="Permanent link">&para;</a></h1>
+<p>Lambda functions in python have the following syntax:</p>
+<pre><code class="language-Python">lambda &lt;input parameters&gt;: &lt;return value&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-Python">f = lambda x: x**2
+</code></pre>
+<p>Only a single expression can be used in the lambda function, so we need standard functions for more complex logic (temporary variables, loops, etc.).</p>
 <h1 id="decorators">Decorators<a class="headerlink" href="#decorators" title="Permanent link">&para;</a></h1>
 <p>Decorators are a special type of function that can be used to modify other functions. </p>
 <p>When we write an annotation with the name of a function above another function, the annotated function is <em>decorated</em>. It means that when we call the annotated function, a <em>wrapper</em> function is called instead. The wrapper function is the function returned by the <em>decorater</em>: the function with the same name as the annotation.</p>
@@ -1177,7 +1221,12 @@ for i in tqdm(range(100)):
 <h1 id="complex-data-structures">Complex data structures<a class="headerlink" href="#complex-data-structures" title="Permanent link">&para;</a></h1>
 <h2 id="kdtree">KDTree<a class="headerlink" href="#kdtree" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html">documentation</a></p>
-<p>KDTree can be found in the <code>scipy</code> library. </p></div>
+<p>KDTree can be found in the <code>scipy</code> library. </p>
+<h1 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Permanent link">&para;</a></h1>
+<p>There are various libraries for working with geometry in Python:
+- <a href="https://scikit-spatial.readthedocs.io/en/stable/index.html"><code>scipy.spatial</code></a>: for basic geometry operations
+- <code>shapely</code>
+- <code>geopandas</code>: for gis data</p></div>
             </div>
         </div>
 
