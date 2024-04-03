@@ -108,10 +108,12 @@ Something like `unresolved external symbol...`.
     
 [https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error](https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error)
 
+
+
 # Runtime errors
 **First, identify the exception context**. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the `Exception Settings` and check the exception type there.
 
-If the causo of the exception is not clear from the context, it may be usefull to **check the exception details** Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:
+If the cause of the exception is not clear from the context, it may be usefull to **check the exception details** Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:
 
 ```cpp
 (<exception type>*) <exception address>
@@ -119,6 +121,19 @@ If the causo of the exception is not clear from the context, it may be usefull t
 where `<exception type>` is the type of the exception (e.g. `std::exception`) and `<exception address>` is the address from the exception dialog.
 
 Finally, if the cause of the exception is still unclear, look at the exception type, and proceed to the respective section below, if there is one. 
+
+
+## Error codes
+Error codes are the only thing visible when the exception is not caught and no debugger is attached. Unfortunately, the error codes are platform-specific, and mostly undocumented even for operating system facilities and standard libraries. 
+
+
+### Windows Error Codes
+On windows, many error codes can be emitted by the system or standard libraries:
+- `0x0` to `0x3e7f`: [Win32 error codes](https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes): Errors emitted by Windows high-level functionalities
+- `0xC0000000` to `0xCFFFFFFF`: [NT status codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref): Standardized 32-bit error codes used in Windows kernel, drivers, and protocols. Notable examples:
+  - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation
+
+
 
 ## Improve debugger experience with natvis
 [Natvis](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022) is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:

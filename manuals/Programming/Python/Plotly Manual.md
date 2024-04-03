@@ -326,8 +326,10 @@ Note that here, the `i`, `j` and `k` parameters are redundant, as there is only 
 
 
 
-## Cone Plots
+### Cone Plots
 [documentation](https://plotly.com/python/cone-plot/)
+
+[reference](https://plotly.com/python/reference/cone/)
 
 
 
@@ -481,7 +483,10 @@ for trace in fig.data:
 
 
 
-## Adding Figure Annotations
+## Figure Annotations
+[documentation](https://plotly.com/python/text-and-annotations/)
+
+
 For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. 
 
 Important parameters:
