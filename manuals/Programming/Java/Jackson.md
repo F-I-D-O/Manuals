@@ -350,6 +350,35 @@ public ConfigModel(
 in the above examples, the `first` and `second` are keys mapping the objects in the serialized file from which `instanceA` and `instanceB` should be created.
 
 
+## Default Serializers and Deserializers
+By default, Jackson can serialize and deserialize many types of objects: 
+- all primitive types
+- all primitive wrappers
+- `String`
+- `BigInteger`
+- `BigDecimal`
+- and many others
+
+### Java 8 Date and Time (de)serialization
+Among the types that are not covered in basic Jakson package are the Java 8 types for date and time. To (de)serialize them, we have two options:
+- use the [`jackson-datatype-jsr310`](https://github.com/FasterXML/jackson-modules-java8) module that adds support for the ISO-8601 format for date and time
+- use custom serializers and deserializers if we need a different format
+
+To use the `jackson-datatype-jsr310` module, we need to add it to the dependencies:
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jsr310</artifactId>
+    <version>2.12.0</version>
+</dependency>
+```
+and then register the module in the object mapper:
+```Java
+ObjectMapper mapper = new ObjectMapper();
+mapper.registerModule(new JavaTimeModule());
+```
+
+
 
 # Object mapper with tree model
 [Jenkov tutorial on JsonNode](https://jenkov.com/tutorials/java-json/jackson-jsonnode.html)
