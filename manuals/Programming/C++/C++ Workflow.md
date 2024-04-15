@@ -438,14 +438,5 @@ git config core.ignorecase false
 ```
 
 
- # Compilation for a specific CPU
- ## MSVC
- MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.
 
-The command for the compiler is: `/arch:<set name> (see [MSVC documentation](https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170) for details).
-
-
- ## GCC
- In GCC, the [`march`](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html) option enables compilation for a specific hardware.
-ml) option enables compilation for a specific hardware.
 
