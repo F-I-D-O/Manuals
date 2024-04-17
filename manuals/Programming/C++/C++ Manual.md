@@ -517,8 +517,12 @@ std::string s = "hello"; // s stores a copy of the string literal "hello"
 
 
 ### [String Literals](https://en.cppreference.com/w/cpp/language/string_literal)
- The standard string literal is writen as `"literal"`. However, we need to escape some characters in such literals, therefore, a *raw string* literal is sometimes more desirable: `R"(literal)"` If our literal contains `(` or `)`, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
- `R"lit(literal)lit"`.
+ The standard string literal is writen as `"literal"`. However, we need to escape some **special characters** in such literals, therefore, a *raw string* literal is sometimes more desirable: `R"(literal)"`.
+ 
+ If our literal contains `(` or `)`, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
+ `R"lit(literal)lit"`. 
+ 
+ Raw string literals also useful for **multi-line string literals**.
 
 ### Formatting strings
 The usage of modern string formating is either
@@ -571,6 +575,10 @@ Unfortunatelly, the STL has case changing functions only for characters, so we n
 
 auto upper = boost::to_upper(str);
 ``` 
+
+
+### Building strings
+Unlike other languages, in C++, strings are mutable, so we can build them using the `+` operator without performance penalty. Alternatively, we can use the `std::stringstream` class.
 
 
 ## Date and time
@@ -2837,6 +2845,7 @@ std::set_terminate(&terminate_handler_with_stacktrace);
 
 To create the stacktrace, we can use one of the stacktrace libraries:
 - [stacktrace](https://en.cppreference.com/w/cpp/header/stacktrace) header from the standard library if the compiler supports it (C++ 23)
+	- as of 2024-04, only MSVC supports this functionality
 - [cpptrace](https://github.com/jeremy-rifkin/cpptrace)
 - [boost stacktrace](https://github.com/boostorg/stacktrace/)
 
@@ -2868,6 +2877,21 @@ To save performance in case of an intensive logging, we can set an extended flus
 ```cpp
 spdlog::flush_every(std::chrono::seconds(5));
 ```
+
+## Colors
+By default, the logger uses colors for different log levels. However, this capability is lost when:
+- using custom sinks or
+- using custom formatters
+
+To keep the colors, we need to a) use the color sink and b) explicitly set the usage of the color in the formatter:
+```cpp
+auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+
+auto logger = std::make_shared<spdlog::logger>("console", console_sink);
+logger->set_pattern("[%^%l%$] %v");
+```
+Here `%^` and `%$` are the color start and end markers. 
+
 
 
 # Type Aliases

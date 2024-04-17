@@ -12,17 +12,24 @@ Therefore, it is best to install the [new PowerShell](https://github.com/PowerSh
 ## Quick Edit / Insert Mode
 PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit `enter`.
 
-## Arguments starting with `-` 
+## Arguments starting with `-` and containing `.`
 If a program argument starts with `-`, **and** contains `.` it needs to be wrapped by `'`. Otherwise, the argument will be split on the dot. Example:
-In sommand prompt or on Linux:
 ```
 mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
 ```
 
 In Powershell, this needs to be converted to:
-```
+```PowerShell
 mvn exec:java '-Dexec.mainClass=com.example.MyExample' '-Dfile.encoding=UTF-8'
-``` 
+```
+
+The problem may arise if the argument or its part needs to be quotted as well. Then:
+- for first level of quoting, use `"` (double quotes)
+- for second level of quoting, use `''` (two single quotes)
+Example:
+```PowerShell
+mvn exec:exec '-Dexec.executable="java"' '-Dexec.args="-Xmx30g -Djava.library.path=''C:\Program Files\HDF_Group\HDF5\1.14.3\bin'' -classpath %classpath cz.cvut.fel.aic.simod.OnDemandVehiclesSimulation"'
+```
 
 ## Escaping `"` and `'` in Arguments
 Double quotes `"` contained in arguments can be preserved by escaping with backslash: `\"`. Example for that can be passing an argument list to some executable:
