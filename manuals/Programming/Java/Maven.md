@@ -27,6 +27,13 @@ mvn ninja.fido:info-maven-plugin:list
 ```
 
 
+## Install artifacts from a remote repository manually
+If we want to install an artifact from a remote repository manually, we can use the `dependency:get` goal. The syntax is as follows:
+```bash
+mvn dependency:get -Dartifact=<GROUP ID>:<ARTIFACT ID>:<VERSION>
+```
+
+
 ## Debugging missing Artifacts
 All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
 - check that the dependencies are on the maven central.
@@ -211,6 +218,8 @@ However, the `exec:java` goal is not very flexible. It uses the same JVM as the 
 - pass JVM arguments like `-Xmx`
 - set the library path using `-Djava.library.path`
 
+Note that when working with PowerShell, we typically encounter the problem with arguments that start with `-` and contain a dot. For guide how to solve this, refer to the [PowerShell manual](../../Windows/Powershell%20Manual.md).
+
 ## `exec:java`
 Basic example:
 ```
@@ -220,13 +229,20 @@ Other usefull arguments:
  - `-Dexec.args="arg1 arg2 arg3"`
  
 ## `exec:exec`
-Basic example>
+Basic example:
 ```
 mvn exec:exec -Dexec.executable="java" -Dexec.args="Xmx30g -classpath %classpath test.Main"
 ```
 The `-classpath %classpath` argument is obligatory and it is used to pass the project classpath to the program. 
 
-**Note that here, the `-Dexec.args` parameter is used both for vm and program arguments.**
+**Note that here, the `-Dexec.args` parameter is used both for vm and program arguments.** The order is:
+1. JVM arguments, classpath
+2. main class
+3. program arguments
+Example:
+```
+mvn exec:exec -Dexec.executable="java" -Dexec.args="-Xmx30g -classpath %classpath test.Main arg1 arg2"
+```
 
 We can also use `-Dexec.mainClass` with `exec:exec`, but we need to refer it in the `-classpath` argument. The following three maven commands run the same Java program:
 ```
@@ -513,6 +529,19 @@ To manually activate a profile, we can use the `-P` argument of the `mvn` comman
 mvn <goal> -P <profile id>
 ```
 
+Note that **the profile needs to be selected for all relevant goals, not just for the compilation**. For example, if we have and optional dependency in the profile, we need to select the profile for `compile`, but also for `exec`, `install`, etc, otherwise the dependency will not be found at runtime.
+
+## Displaying active profiles
+To display the active profiles, use the following command:
+```
+mvn help:active-profiles
+```
+
+Note that again, this will only show the profiles that are activated in the `settings.xml` file or the profiles that are activated by default. To test an optional profile, we need to activate it even for the `help:active-profiles` goal:
+```
+mvn help:active-profiles -P <profile id>
+```
+
 
 # Creating maven plugins
 
@@ -554,4 +583,12 @@ Maven plugins can be easily debugged in IntelliJ IDEA. However, it is important 
 Normally, the goals can be run only from project directories (where the `pom.xml` is present). To make the plugin runnable from any directory, we need to annotate the goal with `@requiresProject = false`:
 ```Java
 @Mojo(name = "example", requiresProject = false)
+```
+
+
+# Various useful tasks
+## Displaying the classpath
+To display the classpath, use the following command:
+```
+mvn dependency:build-classpath
 ```

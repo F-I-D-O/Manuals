@@ -239,6 +239,13 @@ For sorting, you can use the `sorted` function.
 
 Instead of using comparators, Python has a different concept of *key functions* for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.
 
+## Complex sorting using tuples
+If we need to apply some complex sorting, we can use tuples as the key function return value. The tuples have comparison operator defined, the implementation is as follows:
+- elements are compared one by one
+- on first non-equal element, the comparison result is returned
+
+This way, we can implement a complex sorting that would normaly require several conditions by storing the condition results in the tuple.
+
 
 ## Slices
 Many Python data structures support slicing: selecting a subset of elements. The syntax is:

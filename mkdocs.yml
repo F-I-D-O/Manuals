@@ -36,6 +36,7 @@ nav:
   - Git: Programming/Git.md
   - Google API and Apps Script: Programming/Google API and Apps Script.md
   - Gurobi: Programming/Gurobi.md
+  - HDF: Programming/HDF.md
   - JSON: Programming/JSON.md
   - Overpass Manual: Programming/Overpass Manual.md
   - PostgreSQL Manual: Programming/PostgreSQL Manual.md

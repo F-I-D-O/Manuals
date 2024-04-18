@@ -114,6 +114,32 @@ Therefore, we need to handle the exception using the try cache block or add `thr
 When deciding between `try/catch` and `throws`, the rule of thumb is to use the `try/cache` if we can handle the exception and `throws` if we want to leave it for the caller. The problem arises when the method we are in implements an interface that does not have the `throws` declaration we need. Then the only solution is to use `try/cache` with a cache that does not handle the exception, and indicate the problem to the caller differently, e.g, by returning a `null` pointer.
 
 
+
+# Logging
+Java has a built-in logging mechanism in the `java.util.logging` package. Apart from that, there are many other logging libraries. In this section, we focus on the [SLF4J library](https://www.slf4j.org/) which is an abstraction. With SLF4J, we can switch between different logging libraries without changing the code.
+
+To use SLF4J, we need to add the following dependency to the `pom.xml` file:
+```xml
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version><version></version>
+</dependency>
+```
+
+Additionally, we need to add a backend of our choice. For example, we can use the `logback` library:
+```xml
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version><version></version>
+</dependency>
+```
+
+The SLF4J library detects the available backend automatically. 
+
+
+
 # Genericity
 [Oracle official tutorial for Java 8](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
 

@@ -100,6 +100,8 @@ If the run need some special configuration, right-click on the goal and choose `
 
 If the plugin is missing from the list, it may be necessary to reload the plugins. Click the `Reload All Maven Projects` button in the top left corner of the maven tab.
 
+If the goal we want to run is neither a `Lifecycle` goal nor a `Plugin` goal (e.g., `exec`), we can run it by creating a run configuration and selecting maven type. Than, we select the maven goal by inserting it as a first argument in the `Command line` field.
+
 ### Maven goal configuration
 To run a maven goal with a specific profile, add the profile name to the `Profiles` field.
 

@@ -53,10 +53,11 @@ cmake -L
 
 
 ### Specify the target
-We can use the `--target` parameter for that:
+By default, all targets are built. We can use the `--target` to specify a single target:
 ```cmake
 cmake --build . --target <TARGET NAME>
 ```
+There is also a special target `all` that builds all targets, which is equivalent to not specifying the `--target` argument.
 
 
 ## Specify the build type (Debug, Release)
