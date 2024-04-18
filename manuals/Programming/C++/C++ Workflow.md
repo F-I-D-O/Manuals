@@ -76,7 +76,14 @@ The toolchain file is executed early on, so it is safe to assume that the enviro
 1. [Update vcpkg](#update)
 2. `vcpkg update` to get a list of available updates
 3. `vcpkg upgrade --no-dry-run` to actually perform the upgrade
-	- you can supply the name of the package (e.g., zlib:x64-windows) as an argument to upgrade just one package
+
+All packages are upgraded by default. To upgrade just one package, supply the name of the package (e.g., zlib:x64-windows) as an argument to `upgrade ` command.
+
+### Upgrade packages matching a pattern
+For libraries that are divided into many interdependent packages (like boost), it is useful to upgrade all packages that match a pattern at once. Unfortunately, the `upgrade` command does not support the pattern matching. The following command can be used to upgrade all packages that match a pattern in PowerShell:
+```PowerShell
+vcpkg update | sls -pattern "boost-\w+" | foreach-object { vcpkg upgrade $_.Matches.Value --no-dry-run }
+```
 
 ## Package Features
 Some libraries have optional features, which are not installed by default, but we can install them explicitely. For example `llvm`. After `vcpkg install llvm` and typing `vcpkg search llvm`:
@@ -295,8 +302,7 @@ With boost, we should install only the necessary components. Then to include boo
 	- with all compiled components listed
 - `target_include_directories(<YOUR TARGET NAME> PUBLIC ${Boost_INCLUDE_DIRS}) `
 
-
-
+Sometimes, it may be usefull to find out which boost components require linking. The list in the boost documentation, both for [Unix](https://www.boost.org/doc/libs/1_85_0/more/getting_started/unix-variants.html#header-only-libraries) and [Windows](https://www.boost.org/doc/libs/1_85_0/more/getting_started/windows.html#header-only-libraries).
 
 ### JNI
 for JNI, a `JAVA_HOME` system property needs to be set to the absolute path to the JDK, e.g., `C:\Program Files\Java\jdk-15.0.1`

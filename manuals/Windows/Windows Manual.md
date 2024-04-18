@@ -179,8 +179,43 @@ Can be installed from bootable USB created by a tool downloaded from the officia
 ### we couldn’t create a partition or locate an existing one
 Ensure that the boot priority of the drive where the Windows should be installed is right behind the installation USB priority.
 
+
+# Configuration
+## Right Click Menu
+Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.
+
+### Share with Skype
+1. in an elevated PowerShell, run:
+	```PowerShell
+	REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype
+	```
+2. restart the Explorer
+
+### PowerToys modules
+These can be removed by deactivating the specific modules in the PowerToys settings.
+
+### Edit with Notepad
+Just Uninstall the Notepad. Yes, it can be done.
+
+### Scan with Microsoft Defender
+The following commands removes four entries from the registry that are related to this icon:
+```PowerShell
+REG DELETE "HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP"
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}"
+REG DELETE "HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP"
+REG DELETE "HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP"
+```
+
+[Source](https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html)
+
+### Translate with Deepl
+Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.
+
+
+
+
 # Diskpart
-Diskpart is a useful command line tool for work with diska, partitions, etc.
+Diskpart is a useful command line tool for work with disks, partitions, etc.
 
 ## Find out wheteher a disk is MBR or GPT
 
