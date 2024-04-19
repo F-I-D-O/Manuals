@@ -1371,7 +1371,7 @@ Mowever, to do that, all members and base classes have to have the operator `==`
 
 The comparability can be checked with a `std::equality_comparable<T>` concept
 ```cpp
-ic_assert(std::equality_comparable<My_class>);
+staic_assert(std::equality_comparable<My_class>);
 ``` 
 
 
