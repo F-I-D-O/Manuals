@@ -6,6 +6,13 @@ cmake <dir>
 ```
 Here `<dir>` is the `CMakeLists.txt` directory. The build scripts are build in current directory.
 
+We can set any cache variable using the `-D` argument. Example:
+```bash
+cmake <dir> -D <variable name>=<variable value>
+# or equivalently
+cmake <dir> -D<variable name>=<variable value>
+```
+
 
 ### Toolchain file
 To work with package managers, a link to toolchain file has to be provided as an argument. For `vcpkg`, the argument is as follows:
@@ -184,7 +191,7 @@ The typical content of the top section is:
 - minimum cmake version: `cmake_minimum_required(VERSION <version>)`
 - project name and version: `project(<name> VERSION <version>)`
 - language specification: `enable_language(<language>)`
-- language standard, e.g.: `set(CMAKE_CXX_STANDARD <version>)`
+- cmake variables setup, e.g.: `set(CMAKE_CXX_STANDARD <version>)`
 - compile options: `add_compile_options(<option 1> <option 2> ...)`
 - cmake module inclusion: `include(<module name>)`
 
@@ -442,6 +449,24 @@ foreach(dir ${dirs})
   message(STATUS "dir='${dir}'")
 endforeach()
 ```
+
+
+
+# CMake Cache
+The [CMake cache](https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20Cache.html) is an essential part of the CMake build system. It stores variables that are used to configure the build scripts. The cache is stored in the `CMakeCache.txt` file in the build directory.
+
+The Cmake cache can be filled in the following ways:
+- by the [`set`](https://cmake.org/cmake/help/latest/command/set.html) command in the `CMakeLists.txt` file with the `CACHE` option
+- by the `-D` command line argument: `cmake -D<variable name>=<variable value> <dir>`
+- by the cmake GUI
+- by using the `-C` option: `cmake -C <cache file> <dir>`
+
+The rule is that once a cache variable is set, it is not changed when the `cmake` command is run again (that is why it is called cache :) ). 
+
+Moreover, the cache variables are not overwritten by the `set` command in the `CMakeLists.txt` file. In other words, the `set` command in the `CMakeLists.txt` is only used to set the default value of the variable. If the variable is already set in the cache, the `set` command is ignored.
+
+However, the cache variables can be still overridden from the `CMakeLists.txt` if the `set` command is used without the `CACHE` option (by normal variables).
+
 
 
 

@@ -91,8 +91,15 @@ $myString.Replace("oldString", "newString")
 ```
 
 # `Select-String`
-The `Select-String` is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
+The [`Select-String`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string) is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
 - `-Content <before>[, <after>]`: Select also `<before>` lines before the matched line and `<after>` lines after the matched line
+- `-Pattern`: If we want to use a regular expression for searching, not a plain string
+
+## Selecting the matched string
+If we use the `Select-String` with the `-Pattern` parameter, the matching lines are returned with the matching string highlighted. If we want to get only the matching string, we have to access the `Matches.Value` property for each line. Example:
+```PowerShell
+Select-String -Pattern "pattern" | ForEach-Object { $_.Matches.Value }
+```
 
 
 
