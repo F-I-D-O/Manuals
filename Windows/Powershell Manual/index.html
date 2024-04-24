@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -331,7 +335,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#arguments-starting-with-" class="nav-link">Arguments starting with -</a>
+            <li class="nav-item" data-level="2"><a href="#arguments-starting-with-and-containing" class="nav-link">Arguments starting with - and containing .</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -380,6 +384,10 @@
             
             <li class="nav-item" data-level="1"><a href="#select-string" class="nav-link">Select-String</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#selecting-the-matched-string" class="nav-link">Selecting the matched string</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -450,13 +458,18 @@
 <p>Therefore, it is best to install the <a href="https://github.com/PowerShell/PowerShell">new PowerShell</a> first.</p>
 <h2 id="quick-edit-insert-mode">Quick Edit / Insert Mode<a class="headerlink" href="#quick-edit-insert-mode" title="Permanent link">&para;</a></h2>
 <p>PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit <code>enter</code>.</p>
-<h2 id="arguments-starting-with-">Arguments starting with <code>-</code><a class="headerlink" href="#arguments-starting-with-" title="Permanent link">&para;</a></h2>
-<p>If a program argument starts with <code>-</code>, <strong>and</strong> contains <code>.</code> it needs to be wrapped by <code>'</code>. Otherwise, the argument will be split on the dot. Example:
-In sommand prompt or on Linux:</p>
+<h2 id="arguments-starting-with-and-containing">Arguments starting with <code>-</code> and containing <code>.</code><a class="headerlink" href="#arguments-starting-with-and-containing" title="Permanent link">&para;</a></h2>
+<p>If a program argument starts with <code>-</code>, <strong>and</strong> contains <code>.</code> it needs to be wrapped by <code>'</code>. Otherwise, the argument will be split on the dot. Example:</p>
 <pre><code>mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
 </code></pre>
 <p>In Powershell, this needs to be converted to:</p>
-<pre><code>mvn exec:java '-Dexec.mainClass=com.example.MyExample' '-Dfile.encoding=UTF-8'
+<pre><code class="language-PowerShell">mvn exec:java '-Dexec.mainClass=com.example.MyExample' '-Dfile.encoding=UTF-8'
+</code></pre>
+<p>The problem may arise if the argument or its part needs to be quotted as well. Then:
+- for first level of quoting, use <code>"</code> (double quotes)
+- for second level of quoting, use <code>''</code> (two single quotes)
+Example:</p>
+<pre><code class="language-PowerShell">mvn exec:exec '-Dexec.executable=&quot;java&quot;' '-Dexec.args=&quot;-Xmx30g -Djava.library.path=''C:\Program Files\HDF_Group\HDF5\1.14.3\bin'' -classpath %classpath cz.cvut.fel.aic.simod.OnDemandVehiclesSimulation&quot;'
 </code></pre>
 <h2 id="escaping-and-in-arguments">Escaping <code>"</code> and <code>'</code> in Arguments<a class="headerlink" href="#escaping-and-in-arguments" title="Permanent link">&para;</a></h2>
 <p>Double quotes <code>"</code> contained in arguments can be preserved by escaping with backslash: <code>\"</code>. Example for that can be passing an argument list to some executable:</p>
@@ -495,8 +508,13 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 <pre><code class="language-PowerShell">$myString.Replace(&quot;oldString&quot;, &quot;newString&quot;)
 </code></pre>
 <h1 id="select-string"><code>Select-String</code><a class="headerlink" href="#select-string" title="Permanent link">&para;</a></h1>
-<p>The <code>Select-String</code> is the <code>grep</code> equivalent for PowerShell. The alias for the comand is <code>sls</code>. Parameters:
-- <code>-Content &lt;before&gt;[, &lt;after&gt;]</code>: Select also <code>&lt;before&gt;</code> lines before the matched line and <code>&lt;after&gt;</code> lines after the matched line</p>
+<p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string"><code>Select-String</code></a> is the <code>grep</code> equivalent for PowerShell. The alias for the comand is <code>sls</code>. Parameters:
+- <code>-Content &lt;before&gt;[, &lt;after&gt;]</code>: Select also <code>&lt;before&gt;</code> lines before the matched line and <code>&lt;after&gt;</code> lines after the matched line
+- <code>-Pattern</code>: If we want to use a regular expression for searching, not a plain string</p>
+<h2 id="selecting-the-matched-string">Selecting the matched string<a class="headerlink" href="#selecting-the-matched-string" title="Permanent link">&para;</a></h2>
+<p>If we use the <code>Select-String</code> with the <code>-Pattern</code> parameter, the matching lines are returned with the matching string highlighted. If we want to get only the matching string, we have to access the <code>Matches.Value</code> property for each line. Example:</p>
+<pre><code class="language-PowerShell">Select-String -Pattern &quot;pattern&quot; | ForEach-Object { $_.Matches.Value }
+</code></pre>
 <h1 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h1>
 <p>To creante an array, use the <code>@()</code> operator: <code>a = @()</code> To add an element to an array, use the <code>+=</code> operator: <code>a += 1</code>. The arrays can be iterated over using the <code>foreach</code> loop.</p>
 <h1 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h1>

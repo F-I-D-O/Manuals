@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -327,6 +331,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#install-artifacts-from-a-remote-repository-manually" class="nav-link">Install artifacts from a remote repository manually</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#debugging-missing-artifacts" class="nav-link">Debugging missing Artifacts</a>
               <ul class="nav flex-column">
               </ul>
@@ -468,6 +476,10 @@
             
             <li class="nav-item" data-level="1"><a href="#profiles" class="nav-link">Profiles</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#displaying-active-profiles" class="nav-link">Displaying active profiles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -482,6 +494,15 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#make-the-plugin-runnable-from-any-directory" class="nav-link">Make the plugin runnable from any directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#various-useful-tasks" class="nav-link">Various useful tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#displaying-the-classpath" class="nav-link">Displaying the classpath</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -509,6 +530,10 @@
 <h2 id="list-locally-installed-artifacts">List locally installed artifacts<a class="headerlink" href="#list-locally-installed-artifacts" title="Permanent link">&para;</a></h2>
 <p>There is no built-in command to list all locally installed artifacts. However, we can use the <a href="https://github.com/F-I-D-O/info-maven-plugin">info plugin</a>:</p>
 <pre><code class="language-bash">mvn ninja.fido:info-maven-plugin:list
+</code></pre>
+<h2 id="install-artifacts-from-a-remote-repository-manually">Install artifacts from a remote repository manually<a class="headerlink" href="#install-artifacts-from-a-remote-repository-manually" title="Permanent link">&para;</a></h2>
+<p>If we want to install an artifact from a remote repository manually, we can use the <code>dependency:get</code> goal. The syntax is as follows:</p>
+<pre><code class="language-bash">mvn dependency:get -Dartifact=&lt;GROUP ID&gt;:&lt;ARTIFACT ID&gt;:&lt;VERSION&gt;
 </code></pre>
 <h2 id="debugging-missing-artifacts">Debugging missing Artifacts<a class="headerlink" href="#debugging-missing-artifacts" title="Permanent link">&para;</a></h2>
 <p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
@@ -650,6 +675,7 @@ Typically, the manual for such a library tells us to modify the classpath to inc
 <p>However, the <code>exec:java</code> goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the <code>exec:java</code> goal, it is not possible to:
 - pass JVM arguments like <code>-Xmx</code>
 - set the library path using <code>-Djava.library.path</code></p>
+<p>Note that when working with PowerShell, we typically encounter the problem with arguments that start with <code>-</code> and contain a dot. For guide how to solve this, refer to the <a href="../../../Windows/Powershell%20Manual/">PowerShell manual</a>.</p>
 <h2 id="execjava"><code>exec:java</code><a class="headerlink" href="#execjava" title="Permanent link">&para;</a></h2>
 <p>Basic example:</p>
 <pre><code>mvn exec:java  -Dexec.mainClass=test.Main
@@ -657,11 +683,17 @@ Typically, the manual for such a library tells us to modify the classpath to inc
 <p>Other usefull arguments:
  - <code>-Dexec.args="arg1 arg2 arg3"</code></p>
 <h2 id="execexec"><code>exec:exec</code><a class="headerlink" href="#execexec" title="Permanent link">&para;</a></h2>
-<p>Basic example&gt;</p>
+<p>Basic example:</p>
 <pre><code>mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;Xmx30g -classpath %classpath test.Main&quot;
 </code></pre>
 <p>The <code>-classpath %classpath</code> argument is obligatory and it is used to pass the project classpath to the program. </p>
-<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and program arguments.</strong></p>
+<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and program arguments.</strong> The order is:
+1. JVM arguments, classpath
+2. main class
+3. program arguments
+Example:</p>
+<pre><code>mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;-Xmx30g -classpath %classpath test.Main arg1 arg2&quot;
+</code></pre>
 <p>We can also use <code>-Dexec.mainClass</code> with <code>exec:exec</code>, but we need to refer it in the <code>-classpath</code> argument. The following three maven commands run the same Java program:</p>
 <pre><code>mvn exec:java  -Dexec.mainClass=test.Main
 
@@ -890,6 +922,14 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <p>To manually activate a profile, we can use the <code>-P</code> argument of the <code>mvn</code> command:</p>
 <pre><code>mvn &lt;goal&gt; -P &lt;profile id&gt;
 </code></pre>
+<p>Note that <strong>the profile needs to be selected for all relevant goals, not just for the compilation</strong>. For example, if we have and optional dependency in the profile, we need to select the profile for <code>compile</code>, but also for <code>exec</code>, <code>install</code>, etc, otherwise the dependency will not be found at runtime.</p>
+<h2 id="displaying-active-profiles">Displaying active profiles<a class="headerlink" href="#displaying-active-profiles" title="Permanent link">&para;</a></h2>
+<p>To display the active profiles, use the following command:</p>
+<pre><code>mvn help:active-profiles
+</code></pre>
+<p>Note that again, this will only show the profiles that are activated in the <code>settings.xml</code> file or the profiles that are activated by default. To test an optional profile, we need to activate it even for the <code>help:active-profiles</code> goal:</p>
+<pre><code>mvn help:active-profiles -P &lt;profile id&gt;
+</code></pre>
 <h1 id="creating-maven-plugins">Creating maven plugins<a class="headerlink" href="#creating-maven-plugins" title="Permanent link">&para;</a></h1>
 <p><a href="https://maven.apache.org/guides/plugin/guide-java-plugin-development.html">Official guide</a></p>
 <p>Maven plugins can be created as maven projects. Specifics <code>pom</code> configuration:
@@ -916,6 +956,11 @@ mvn com.test:example-maven-plugin:example
 <h2 id="make-the-plugin-runnable-from-any-directory">Make the plugin runnable from any directory<a class="headerlink" href="#make-the-plugin-runnable-from-any-directory" title="Permanent link">&para;</a></h2>
 <p>Normally, the goals can be run only from project directories (where the <code>pom.xml</code> is present). To make the plugin runnable from any directory, we need to annotate the goal with <code>@requiresProject = false</code>:</p>
 <pre><code class="language-Java">@Mojo(name = &quot;example&quot;, requiresProject = false)
+</code></pre>
+<h1 id="various-useful-tasks">Various useful tasks<a class="headerlink" href="#various-useful-tasks" title="Permanent link">&para;</a></h1>
+<h2 id="displaying-the-classpath">Displaying the classpath<a class="headerlink" href="#displaying-the-classpath" title="Permanent link">&para;</a></h2>
+<p>To display the classpath, use the following command:</p>
+<pre><code>mvn dependency:build-classpath
 </code></pre></div>
             </div>
         </div>

@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -476,6 +480,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#cmake-cache" class="nav-link">CMake Cache</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
@@ -495,6 +504,11 @@
 <pre><code class="language-bash">cmake &lt;dir&gt;
 </code></pre>
 <p>Here <code>&lt;dir&gt;</code> is the <code>CMakeLists.txt</code> directory. The build scripts are build in current directory.</p>
+<p>We can set any cache variable using the <code>-D</code> argument. Example:</p>
+<pre><code class="language-bash">cmake &lt;dir&gt; -D &lt;variable name&gt;=&lt;variable value&gt;
+# or equivalently
+cmake &lt;dir&gt; -D&lt;variable name&gt;=&lt;variable value&gt;
+</code></pre>
 <h3 id="toolchain-file">Toolchain file<a class="headerlink" href="#toolchain-file" title="Permanent link">&para;</a></h3>
 <p>To work with package managers, a link to toolchain file has to be provided as an argument. For <code>vcpkg</code>, the argument is as follows:</p>
 <pre><code class="language-bash"># new version
@@ -525,9 +539,10 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <pre><code>cmake -L
 </code></pre>
 <h3 id="specify-the-target">Specify the target<a class="headerlink" href="#specify-the-target" title="Permanent link">&para;</a></h3>
-<p>We can use the <code>--target</code> parameter for that:</p>
+<p>By default, all targets are built. We can use the <code>--target</code> to specify a single target:</p>
 <pre><code class="language-cmake">cmake --build . --target &lt;TARGET NAME&gt;
 </code></pre>
+<p>There is also a special target <code>all</code> that builds all targets, which is equivalent to not specifying the <code>--target</code> argument.</p>
 <h2 id="specify-the-build-type-debug-release">Specify the build type (Debug, Release)<a class="headerlink" href="#specify-the-build-type-debug-release" title="Permanent link">&para;</a></h2>
 <p>In CMake, we use a specific build type string instead of compiler and linker flags:
 - <code>Debug</code> - Debug build
@@ -625,7 +640,7 @@ endif()
 - minimum cmake version: <code>cmake_minimum_required(VERSION &lt;version&gt;)</code>
 - project name and version: <code>project(&lt;name&gt; VERSION &lt;version&gt;)</code>
 - language specification: <code>enable_language(&lt;language&gt;)</code>
-- language standard, e.g.: <code>set(CMAKE_CXX_STANDARD &lt;version&gt;)</code>
+- cmake variables setup, e.g.: <code>set(CMAKE_CXX_STANDARD &lt;version&gt;)</code>
 - compile options: <code>add_compile_options(&lt;option 1&gt; &lt;option 2&gt; ...)</code>
 - cmake module inclusion: <code>include(&lt;module name&gt;)</code></p>
 <h3 id="language-standards">Language standards<a class="headerlink" href="#language-standards" title="Permanent link">&para;</a></h3>
@@ -826,6 +841,16 @@ foreach(dir ${dirs})
   message(STATUS &quot;dir='${dir}'&quot;)
 endforeach()
 </code></pre>
+<h1 id="cmake-cache">CMake Cache<a class="headerlink" href="#cmake-cache" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20Cache.html">CMake cache</a> is an essential part of the CMake build system. It stores variables that are used to configure the build scripts. The cache is stored in the <code>CMakeCache.txt</code> file in the build directory.</p>
+<p>The Cmake cache can be filled in the following ways:
+- by the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code>set</code></a> command in the <code>CMakeLists.txt</code> file with the <code>CACHE</code> option
+- by the <code>-D</code> command line argument: <code>cmake -D&lt;variable name&gt;=&lt;variable value&gt; &lt;dir&gt;</code>
+- by the cmake GUI
+- by using the <code>-C</code> option: <code>cmake -C &lt;cache file&gt; &lt;dir&gt;</code></p>
+<p>The rule is that once a cache variable is set, it is not changed when the <code>cmake</code> command is run again (that is why it is called cache :) ). </p>
+<p>Moreover, the cache variables are not overwritten by the <code>set</code> command in the <code>CMakeLists.txt</code> file. In other words, the <code>set</code> command in the <code>CMakeLists.txt</code> is only used to set the default value of the variable. If the variable is already set in the cache, the <code>set</code> command is ignored.</p>
+<p>However, the cache variables can be still overridden from the <code>CMakeLists.txt</code> if the <code>set</code> command is used without the <code>CACHE</code> option (by normal variables).</p>
 <h1 id="cmake-directory-structure">CMake Directory Structure<a class="headerlink" href="#cmake-directory-structure" title="Permanent link">&para;</a></h1>
 <h2 id="system-find_xxxcmake-files">System Find_XXX.cmake files<a class="headerlink" href="#system-find_xxxcmake-files" title="Permanent link">&para;</a></h2>
 <p>The system find scripts are located in the <code>CMake/share/cmake-&lt;version&gt;/Modules/</code> directory.</p></div>

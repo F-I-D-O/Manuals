@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -397,6 +401,14 @@
             
             <li class="nav-item" data-level="1"><a href="#runtime-errors" class="nav-link">Runtime errors</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#error-codes" class="nav-link">Error codes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#windows-error-codes" class="nav-link">Windows Error Codes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#improve-debugger-experience-with-natvis" class="nav-link">Improve debugger experience with natvis</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#natvis-expressions" class="nav-link">Natvis expressions</a>
@@ -476,6 +488,15 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#intallisense-false-errors" class="nav-link">IntalliSense false errors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#running-the-debugger" class="nav-link">Running the debugger</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#clion" class="nav-link">Clion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -603,11 +624,18 @@ Get_type&lt;&lt;TYPE TO GET&gt;&gt; my_type{};
 <p><a href="https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error">https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error</a></p>
 <h1 id="runtime-errors">Runtime errors<a class="headerlink" href="#runtime-errors" title="Permanent link">&para;</a></h1>
 <p><strong>First, identify the exception context</strong>. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the <code>Exception Settings</code> and check the exception type there.</p>
-<p>If the causo of the exception is not clear from the context, it may be usefull to <strong>check the exception details</strong> Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:</p>
+<p>If the cause of the exception is not clear from the context, it may be usefull to <strong>check the exception details</strong> Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:</p>
 <pre><code class="language-cpp">(&lt;exception type&gt;*) &lt;exception address&gt;
 </code></pre>
 <p>where <code>&lt;exception type&gt;</code> is the type of the exception (e.g. <code>std::exception</code>) and <code>&lt;exception address&gt;</code> is the address from the exception dialog.</p>
 <p>Finally, if the cause of the exception is still unclear, look at the exception type, and proceed to the respective section below, if there is one. </p>
+<h2 id="error-codes">Error codes<a class="headerlink" href="#error-codes" title="Permanent link">&para;</a></h2>
+<p>Error codes are the only thing visible when the exception is not caught and no debugger is attached. Unfortunately, the error codes are platform-specific, and mostly undocumented even for operating system facilities and standard libraries. </p>
+<h3 id="windows-error-codes">Windows Error Codes<a class="headerlink" href="#windows-error-codes" title="Permanent link">&para;</a></h3>
+<p>On windows, many error codes can be emitted by the system or standard libraries:
+- <code>0x0</code> to <code>0x3e7f</code>: <a href="https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes">Win32 error codes</a>: Errors emitted by Windows high-level functionalities
+- <code>0xC0000000</code> to <code>0xCFFFFFFF</code>: <a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref">NT status codes</a>: Standardized 32-bit error codes used in Windows kernel, drivers, and protocols. Notable examples:
+  - <a href="https://learn.microsoft.com/en-us/shows/inside/c0000005"><code>0xC0000005</code></a>: Access violation</p>
 <h2 id="improve-debugger-experience-with-natvis">Improve debugger experience with natvis<a class="headerlink" href="#improve-debugger-experience-with-natvis" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022">Natvis</a> is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:</p>
 <pre><code class="language-XML">  &lt;Type Name=&quot;My_class&quot;&gt;
@@ -712,6 +740,14 @@ Basic usage:</p>
 <p>If the refactoring options like change signature are not present, try to send the Resharper bug reports :), or create a new project.</p>
 <h2 id="intallisense-false-errors">IntalliSense false errors<a class="headerlink" href="#intallisense-false-errors" title="Permanent link">&para;</a></h2>
 <p>Sometimes, the errors disappears by deleting the <code>.suo</code> file located in <code>&lt;project dir&gt;/.vs/&lt;project name&gt;/&lt;VS version&gt;</code></p>
+<h1 id="running-the-debugger">Running the debugger<a class="headerlink" href="#running-the-debugger" title="Permanent link">&para;</a></h1>
+<h2 id="clion">Clion<a class="headerlink" href="#clion" title="Permanent link">&para;</a></h2>
+<p>Unlike in Visual Studio, the Clion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.</p>
+<p>To debug multiple targets at once:
+1. Open the <code>Run/Debug Configurations</code> dialog
+2. Add a new configuration of type <code>Compound</code>
+3. Add the configurations you want to run together using the <code>+</code> button
+4. Debug the compound configuration</p>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
 <p>There are multiple <a href="https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing">profiler options for C++</a>, but not all the tools are easy to use or maintained.</p>
 <h2 id="cpu-profiling">CPU Profiling<a class="headerlink" href="#cpu-profiling" title="Permanent link">&para;</a></h2>

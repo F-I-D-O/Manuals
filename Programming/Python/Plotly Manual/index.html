@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -438,10 +442,10 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#cone-plots" class="nav-link">Cone Plots</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#cone-plots" class="nav-link">Cone Plots</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -493,7 +497,7 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#adding-figure-annotations" class="nav-link">Adding Figure Annotations</a>
+            <li class="nav-item" data-level="2"><a href="#figure-annotations" class="nav-link">Figure Annotations</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#annotations-in-facet-plots" class="nav-link">Annotations in facet plots</a>
               <ul class="nav flex-column">
@@ -786,8 +790,9 @@ k = [2]
 fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
 </code></pre>
 <p>Note that here, the <code>i</code>, <code>j</code> and <code>k</code> parameters are redundant, as there is only one possible triangulation of the three points. However, for more complex surfaces, there can be multiple valid triangulations, and the <code>i</code>, <code>j</code> and <code>k</code> parameters can be used to select the triangulation manually.</p>
-<h2 id="cone-plots">Cone Plots<a class="headerlink" href="#cone-plots" title="Permanent link">&para;</a></h2>
+<h3 id="cone-plots">Cone Plots<a class="headerlink" href="#cone-plots" title="Permanent link">&para;</a></h3>
 <p><a href="https://plotly.com/python/cone-plot/">documentation</a></p>
+<p><a href="https://plotly.com/python/reference/cone/">reference</a></p>
 <h1 id="customizing-the-figure">Customizing the Figure<a class="headerlink" href="#customizing-the-figure" title="Permanent link">&para;</a></h1>
 <p>The figure object can be custommized in many ways.</p>
 <h2 id="size-and-margins">Size and margins<a class="headerlink" href="#size-and-margins" title="Permanent link">&para;</a></h2>
@@ -893,7 +898,8 @@ If the legend is positioned inside the plot, the plot expands to the whole width
 <pre><code class="language-python">for trace in fig.data:
     trace.name = process_name(trace.name)
 </code></pre>
-<h2 id="adding-figure-annotations">Adding Figure Annotations<a class="headerlink" href="#adding-figure-annotations" title="Permanent link">&para;</a></h2>
+<h2 id="figure-annotations">Figure Annotations<a class="headerlink" href="#figure-annotations" title="Permanent link">&para;</a></h2>
+<p><a href="https://plotly.com/python/text-and-annotations/">documentation</a></p>
 <p>For adding annotations to the whole Figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation"><code>add_annotation</code></a> function. </p>
 <p>Important parameters:
 - <code>x</code>, <code>y</code>: the x and y coordinates of the annotation

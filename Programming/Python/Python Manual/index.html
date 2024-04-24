@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -404,6 +408,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#complex-sorting-using-tuples" class="nav-link">Complex sorting using tuples</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -818,6 +826,11 @@ first = next(g) # 0
 <p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
 <p>For sorting, you can use the <code>sorted</code> function. </p>
 <p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
+<h2 id="complex-sorting-using-tuples">Complex sorting using tuples<a class="headerlink" href="#complex-sorting-using-tuples" title="Permanent link">&para;</a></h2>
+<p>If we need to apply some complex sorting, we can use tuples as the key function return value. The tuples have comparison operator defined, the implementation is as follows:
+- elements are compared one by one
+- on first non-equal element, the comparison result is returned</p>
+<p>This way, we can implement a complex sorting that would normaly require several conditions by storing the condition results in the tuple.</p>
 <h2 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h2>
 <p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
 <pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]

@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -359,6 +363,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#update-package" class="nav-link">Update package</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#upgrade-packages-matching-a-pattern" class="nav-link">Upgrade packages matching a pattern</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#package-features" class="nav-link">Package Features</a>
@@ -660,11 +668,13 @@
 <ol>
 <li><a href="#update">Update vcpkg</a></li>
 <li><code>vcpkg update</code> to get a list of available updates</li>
-<li><code>vcpkg upgrade --no-dry-run</code> to actually perform the upgrade<ul>
-<li>you can supply the name of the package (e.g., zlib:x64-windows) as an argument to upgrade just one package</li>
-</ul>
-</li>
+<li><code>vcpkg upgrade --no-dry-run</code> to actually perform the upgrade</li>
 </ol>
+<p>All packages are upgraded by default. To upgrade just one package, supply the name of the package (e.g., zlib:x64-windows) as an argument to <code>upgrade</code> command.</p>
+<h3 id="upgrade-packages-matching-a-pattern">Upgrade packages matching a pattern<a class="headerlink" href="#upgrade-packages-matching-a-pattern" title="Permanent link">&para;</a></h3>
+<p>For libraries that are divided into many interdependent packages (like boost), it is useful to upgrade all packages that match a pattern at once. Unfortunately, the <code>upgrade</code> command does not support the pattern matching. The following command can be used to upgrade all packages that match a pattern in PowerShell:</p>
+<pre><code class="language-PowerShell">vcpkg update | sls -pattern &quot;boost-\w+&quot; | foreach-object { vcpkg upgrade $_.Matches.Value --no-dry-run }
+</code></pre>
 <h2 id="package-features">Package Features<a class="headerlink" href="#package-features" title="Permanent link">&para;</a></h2>
 <p>Some libraries have optional features, which are not installed by default, but we can install them explicitely. For example <code>llvm</code>. After <code>vcpkg install llvm</code> and typing <code>vcpkg search llvm</code>:</p>
 <pre><code>llvm                 10.0.0#6         The LLVM Compiler Infrastructure
@@ -853,6 +863,7 @@ we can find it be examining the compiler executable stored in <code>C:\Program F
 - <code>find_package(Boost REQUIRED)</code>
     - with all compiled components listed
 - <code>target_include_directories(&lt;YOUR TARGET NAME&gt; PUBLIC ${Boost_INCLUDE_DIRS})</code></p>
+<p>Sometimes, it may be usefull to find out which boost components require linking. The list in the boost documentation, both for <a href="https://www.boost.org/doc/libs/1_85_0/more/getting_started/unix-variants.html#header-only-libraries">Unix</a> and <a href="https://www.boost.org/doc/libs/1_85_0/more/getting_started/windows.html#header-only-libraries">Windows</a>.</p>
 <h3 id="jni">JNI<a class="headerlink" href="#jni" title="Permanent link">&para;</a></h3>
 <p>for JNI, a <code>JAVA_HOME</code> system property needs to be set to the absolute path to the JDK, e.g., <code>C:\Program Files\Java\jdk-15.0.1</code></p>
 <h2 id="gurobi">Gurobi<a class="headerlink" href="#gurobi" title="Permanent link">&para;</a></h2>
@@ -956,14 +967,7 @@ ml) option enables compilation for a specific hardware.</p>
 </code></pre>
 <p>Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:</p>
 <pre><code>git config core.ignorecase false
-</code></pre>
-<p># Compilation for a specific CPU
- ## MSVC
- MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.</p>
-<p>The command for the compiler is: `/arch:<set name> (see <a href="https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170">MSVC documentation</a> for details).</p>
-<p>## GCC
- In GCC, the <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html"><code>march</code></a> option enables compilation for a specific hardware.
-ml) option enables compilation for a specific hardware.</p></div>
+</code></pre></div>
             </div>
         </div>
 

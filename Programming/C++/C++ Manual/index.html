@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -503,6 +507,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#change-the-case" class="nav-link">change the case</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#building-strings" class="nav-link">Building strings</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1218,6 +1226,10 @@
             
             <li class="nav-item" data-level="1"><a href="#logging" class="nav-link">Logging</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#colors" class="nav-link">Colors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1831,8 +1843,10 @@ Reference wrapper is a class template that can be used to store references in co
 std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quot;hello&quot;
 </code></pre>
 <h3 id="string-literals"><a href="https://en.cppreference.com/w/cpp/language/string_literal">String Literals</a><a class="headerlink" href="#string-literals" title="Permanent link">&para;</a></h3>
-<p>The standard string literal is writen as <code>"literal"</code>. However, we need to escape some characters in such literals, therefore, a <em>raw string</em> literal is sometimes more desirable: <code>R"(literal)"</code> If our literal contains <code>(</code> or <code>)</code>, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
- <code>R"lit(literal)lit"</code>.</p>
+<p>The standard string literal is writen as <code>"literal"</code>. However, we need to escape some <strong>special characters</strong> in such literals, therefore, a <em>raw string</em> literal is sometimes more desirable: <code>R"(literal)"</code>.</p>
+<p>If our literal contains <code>(</code> or <code>)</code>, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
+ <code>R"lit(literal)lit"</code>. </p>
+<p>Raw string literals also useful for <strong>multi-line string literals</strong>.</p>
 <h3 id="formatting-strings">Formatting strings<a class="headerlink" href="#formatting-strings" title="Permanent link">&para;</a></h3>
 <p>The usage of modern string formating is either
 - <a href="https://en.cppreference.com/w/cpp/utility/format/format"><code>std::format</code></a> from the <code>&lt;format&gt;</code> header if the compiler supports <a href="https://en.cppreference.com/w/cpp/utility/format">C++20 string formatting</a> (<a href="https://en.cppreference.com/w/cpp/compiler_support">compiler support</a>) or
@@ -1869,6 +1883,8 @@ std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quo
 
 auto upper = boost::to_upper(str);
 </code></pre>
+<h3 id="building-strings">Building strings<a class="headerlink" href="#building-strings" title="Permanent link">&para;</a></h3>
+<p>Unlike other languages, in C++, strings are mutable, so we can build them using the <code>+</code> operator without performance penalty. Alternatively, we can use the <code>std::stringstream</code> class.</p>
 <h2 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h2>
 <p>The date and time structure in C++ is <a href="https://en.cppreference.com/w/cpp/chrono/c/tm"><code>std::tm</code></a>. We can create it from the date and time string using <a href="https://en.cppreference.com/w/cpp/io/manip/get_time"><code>std::get_time</code></a> function:</p>
 <pre><code class="language-cpp">std::tm tm;
@@ -2494,7 +2510,7 @@ Type t = T(f()) // no move constructor call, copy elision
 </code></pre>
 <p>Mowever, to do that, all members and base classes have to have the operator <code>==</code> defined, otherwise the default operator will be implicitely deleted.</p>
 <p>The comparability can be checked with a <code>std::equality_comparable&lt;T&gt;</code> concept</p>
-<pre><code class="language-cpp">ic_assert(std::equality_comparable&lt;My_class&gt;);
+<pre><code class="language-cpp">staic_assert(std::equality_comparable&lt;My_class&gt;);
 </code></pre>
 <h1 id="const-vs-non-const">Const vs non-const<a class="headerlink" href="#const-vs-non-const" title="Permanent link">&para;</a></h1>
 <p>The <code>const</code> keyword makes the object non-mutable. This means that:
@@ -3611,6 +3627,7 @@ std::set_terminate(&amp;terminate_handler_with_stacktrace);
 </code></pre>
 <p>To create the stacktrace, we can use one of the stacktrace libraries:
 - <a href="https://en.cppreference.com/w/cpp/header/stacktrace">stacktrace</a> header from the standard library if the compiler supports it (C++ 23)
+    - as of 2024-04, only MSVC supports this functionality
 - <a href="https://github.com/jeremy-rifkin/cpptrace">cpptrace</a>
 - <a href="https://github.com/boostorg/stacktrace/">boost stacktrace</a></p>
 <h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h1>
@@ -3633,6 +3650,17 @@ spdlog::set_default_logger(logger);
 <p>To save performance in case of an intensive logging, we can set an extended flushing period:</p>
 <pre><code class="language-cpp">spdlog::flush_every(std::chrono::seconds(5));
 </code></pre>
+<h2 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h2>
+<p>By default, the logger uses colors for different log levels. However, this capability is lost when:
+- using custom sinks or
+- using custom formatters</p>
+<p>To keep the colors, we need to a) use the color sink and b) explicitly set the usage of the color in the formatter:</p>
+<pre><code class="language-cpp">auto console_sink = std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;();
+
+auto logger = std::make_shared&lt;spdlog::logger&gt;(&quot;console&quot;, console_sink);
+logger-&gt;set_pattern(&quot;[%^%l%$] %v&quot;);
+</code></pre>
+<p>Here <code>%^</code> and <code>%$</code> are the color start and end markers. </p>
 <h1 id="type-aliases">Type Aliases<a class="headerlink" href="#type-aliases" title="Permanent link">&para;</a></h1>
 <p>Type aliases are short names bound to some other types. We can introduce it either with <code>typedef</code> or with <code>using</code> keyword. Examples (equvalent):</p>
 <pre><code class="language-cpp">typedef int number;

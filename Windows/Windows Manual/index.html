@@ -175,6 +175,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -474,6 +478,35 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#right-click-menu" class="nav-link">Right Click Menu</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#share-with-skype" class="nav-link">Share with Skype</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#powertoys-modules" class="nav-link">PowerToys modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#edit-with-notepad" class="nav-link">Edit with Notepad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#scan-with-microsoft-defender" class="nav-link">Scan with Microsoft Defender</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#translate-with-deepl" class="nav-link">Translate with Deepl</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#diskpart" class="nav-link">Diskpart</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#find-out-wheteher-a-disk-is-mbr-or-gpt" class="nav-link">Find out wheteher a disk is MBR or GPT</a>
@@ -718,8 +751,32 @@
 4. Fill in the licence key</p>
 <h3 id="we-couldnt-create-a-partition-or-locate-an-existing-one">we couldn’t create a partition or locate an existing one<a class="headerlink" href="#we-couldnt-create-a-partition-or-locate-an-existing-one" title="Permanent link">&para;</a></h3>
 <p>Ensure that the boot priority of the drive where the Windows should be installed is right behind the installation USB priority.</p>
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<h2 id="right-click-menu">Right Click Menu<a class="headerlink" href="#right-click-menu" title="Permanent link">&para;</a></h2>
+<p>Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.</p>
+<h3 id="share-with-skype">Share with Skype<a class="headerlink" href="#share-with-skype" title="Permanent link">&para;</a></h3>
+<ol>
+<li>in an elevated PowerShell, run:
+    <code>PowerShell
+    REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype</code></li>
+<li>restart the Explorer</li>
+</ol>
+<h3 id="powertoys-modules">PowerToys modules<a class="headerlink" href="#powertoys-modules" title="Permanent link">&para;</a></h3>
+<p>These can be removed by deactivating the specific modules in the PowerToys settings.</p>
+<h3 id="edit-with-notepad">Edit with Notepad<a class="headerlink" href="#edit-with-notepad" title="Permanent link">&para;</a></h3>
+<p>Just Uninstall the Notepad. Yes, it can be done.</p>
+<h3 id="scan-with-microsoft-defender">Scan with Microsoft Defender<a class="headerlink" href="#scan-with-microsoft-defender" title="Permanent link">&para;</a></h3>
+<p>The following commands removes four entries from the registry that are related to this icon:</p>
+<pre><code class="language-PowerShell">REG DELETE &quot;HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP&quot;
+REG DELETE &quot;HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}&quot;
+REG DELETE &quot;HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP&quot;
+REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
+</code></pre>
+<p><a href="https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html">Source</a></p>
+<h3 id="translate-with-deepl">Translate with Deepl<a class="headerlink" href="#translate-with-deepl" title="Permanent link">&para;</a></h3>
+<p>Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.</p>
 <h1 id="diskpart">Diskpart<a class="headerlink" href="#diskpart" title="Permanent link">&para;</a></h1>
-<p>Diskpart is a useful command line tool for work with diska, partitions, etc.</p>
+<p>Diskpart is a useful command line tool for work with disks, partitions, etc.</p>
 <h2 id="find-out-wheteher-a-disk-is-mbr-or-gpt">Find out wheteher a disk is MBR or GPT<a class="headerlink" href="#find-out-wheteher-a-disk-is-mbr-or-gpt" title="Permanent link">&para;</a></h2>
 <h1 id="open-command-promp-from-the-windows-10-usb">Open Command Promp from the Windows 10 USB<a class="headerlink" href="#open-command-promp-from-the-windows-10-usb" title="Permanent link">&para;</a></h1>
 <ol>
