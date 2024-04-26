@@ -418,7 +418,16 @@ int main(){
 To avoid this problem, **always use the `static_cast` operator if dealing with mixed signed/unsigned types**.
 
 
-## Show the Type
+## Show the Type at Runtime
+It may be useful to show the type of a variable at runtime:
+- for debugging purposes
+- for logging
+- to compare the types of two variables
+
+Note however, that in C++, there is no reflection support. Therefore, **we cannot retrieve the name of the type at runtime in a reliable way**. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.
+
+
+### Resolved complicated types
 Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:
 
 ```cpp
@@ -455,6 +464,9 @@ std::cout << type_name<std::remove_pointer_t<typename std::vector<std::string>::
 
 [Source on SO](https://stackoverflow.com/a/56766138/1827955)
 
+
+### Show the user-provided types (std::type_info)
+If we want to show the type of a variable provided by the user (e.g., by a function accepting `std::any`), we can use the [`typeid`](https://en.cppreference.com/w/cpp/language/typeid) operator which returns a [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) object.  
 
 
 # Standard Library Types
