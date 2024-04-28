@@ -428,14 +428,14 @@ The list of source files should contain all the source files that are needed to 
 
 
 ## Setting include directories
-To inlude the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command.
+To include the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command.
 
 
 
 ## Linking configuration
-For linkink, use the [`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html) command.
+For linking, use the [`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html) command.
 
-Make sure that you **always link against all the libraries that are needed for the target to work!** Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advenced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.
+Make sure that you **always link against all the libraries that are needed for the target to work!** Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advanced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.
 
 
 

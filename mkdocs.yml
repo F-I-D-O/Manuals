@@ -38,6 +38,7 @@ nav:
   - Gurobi: Programming/Gurobi.md
   - HDF: Programming/HDF.md
   - JSON: Programming/JSON.md
+  - Native Libraries: Programming/Native Libraries.md
   - Overpass Manual: Programming/Overpass Manual.md
   - PostgreSQL Manual: Programming/PostgreSQL Manual.md
   - Regex: Programming/Regex.md

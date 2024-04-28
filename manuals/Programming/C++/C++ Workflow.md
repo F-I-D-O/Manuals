@@ -289,12 +289,14 @@ go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz co
 # Installing Library Dependencies
 
 ## Vcpkg Libraries
--   type `vcpkg list`, if the library you need is not listed, continue to the next steps
--   type `vcpkg search <library simple name>` and inspect the result to determine the exact name of the package you need
--   if the library is not listed, check the presence in [vcpkg repo](https://repology.org/projects/?inrepo=vcpkg)
--   if the library is in repo, but search does not find it, [update vcpkg](#update)
--   type `vcpkg install <exact name>` to install the package
--   at the end of the installation log, there will be a cmake command needed to integrate the library, put it to the appropriate place to your `CMakeList.txt file`
+1. type `vcpkg list`, if the library you need is not listed, continue to the next steps
+1. type `vcpkg search <library simple name>` and inspect the result to determine the exact name of the package you need
+	- if the library is not listed, check the presence in [vcpkg repo](https://repology.org/projects/?inrepo=vcpkg)
+	- if the library is in repo, but search does not find it, [update vcpkg](#update)
+1. type `vcpkg install <exact name>` to install the package
+1. at the end of the installation log, there will be a cmake command needed to integrate the library, put it to the appropriate place to your `CMakeList.txt file`
+
+To display the cmake commands for the installed libraries, just run `vcpkg install <exact name>` again.
     
 ### Boost
 With boost, we should install only the necessary components. Then to include boost, we need:
