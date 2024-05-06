@@ -254,10 +254,11 @@ The launch settings determins the launch configuration, most importantly, the ru
 		- `name`: the display name in Visual Studio
 		- `args`: json array with arguments as strings
 			- arguments with spaces have to be quoted with escaped quotes
-		- `cwd`: the working directory
 3.  Select the launch configuration in the drop-down menu next to the play button
 
-[`launch.vs.json` reference](https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170)
+If the configuration is not visible in the drop-down menu, double-check the `launch.vs.json` file. The file is not validated, so it is easy to make a typo. If there is any problem, insted of an error, the launch configuration is not available. The following problems are common:
+- syntax error in the json (should be marked by red squiggly line)
+- typo in the target name
 
 ##### Other launch.vs.json options
 - `cwd`: the working directory

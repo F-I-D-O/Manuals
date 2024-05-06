@@ -50,6 +50,14 @@ The reasoning behind excluding the unsigned overflows from GCC are described [he
 It is also possible to do an ad-hoc overflow check in the code, the possible solutions are described in [this SO question](https://stackoverflow.com/questions/199333/how-do-i-detect-unsigned-integer-overflow)
 
 
+### Characters
+Characters in C++ are represented by the `char` type, which is an integer type. This type can be signed or unsigned, and it is at least 8 bits long. 
+
+Useful functions for working with characters are:
+- [`std::isspace`](https://en.cppreference.com/w/cpp/string/byte/isspace): checks if the character is a whitespace (space, tab, newline, etc.)
+- [`std::toupper`](https://en.cppreference.com/w/cpp/string/byte/toupper): converts the character to upper case
+
+
 ## Pointers
 [cppreference](https://en.cppreference.com/w/cpp/language/pointer)
 
@@ -593,6 +601,13 @@ auto upper = boost::to_upper(str);
 Unlike other languages, in C++, strings are mutable, so we can build them using the `+` operator without performance penalty. Alternatively, we can use the `std::stringstream` class.
 
 
+### Testting for whitespace
+To test if a string contains only whitespace characters, we can use the `std::all_of` algorithm:
+```cpp
+std::all_of(str.begin(), str.end(), [](char c){return std::isspace(c);})
+```
+
+
 ## Date and time
 The date and time structure in C++ is [`std::tm`](https://en.cppreference.com/w/cpp/chrono/c/tm). We can create it from the date and time string using [`std::get_time`](https://en.cppreference.com/w/cpp/io/manip/get_time) function:
 ```cpp
@@ -600,6 +615,7 @@ std::tm tm;
 std::istringstream ss("2011-Feb-18 23:12:34");
 ss >> std::get_time(&tm, "%Y-%b-%d %H:%M:%S");
 ```
+
 
 
 ## Collections
@@ -701,7 +717,12 @@ auto tuple = std::tuple<int, std::string, float>(0, "hello", 1.5);
 auto hello = std::get<1>(tuple);
 ```
 
-#### Structured binding - unpacking tuples into variables
+#### Unpacking tuples into variables
+There are two scenarios of unpacking tuples into variables:
+- unpacking into **new variables**: for that, we use structured binding. 
+- unpacking into **existing variables**: for that, we use `std::tie` function.
+
+##### Structured binding 
 If we don't need the whole tuple objects, but only its members, we can use a [*structured binding*](https://en.cppreference.com/w/cpp/language/structured_binding). Example:
 ```cpp
 std::pair<int, int> get_data();
@@ -710,6 +731,17 @@ void main(){
 	const auto& [x, y] = get_data();
 }
 ```
+
+##### `std::tie`
+If we want to unpack the tuple into existing variables, we can use the [`std::tie`](https://en.cppreference.com/w/cpp/utility/tuple/tie) function:
+```cpp
+std::pair<int, int> get_data();
+
+void main(){
+	int x, y;
+	std::tie(x, y) = get_data();
+}
+```	
 
 #### Unpacking tuples to constructor params with `std::make_from_tuple`
 We cannot use structured binding to unpack tuple directly into function arguments. For normal functions, this is not a problem, as we can first use structured binding into local variables, and then we use those variables to call the function. However, it is a problem for parent/member initializer calls, as we cannot introduce any variables there. Luckily, there is a [`std::make_from_tuple`](https://en.cppreference.com/w/cpp/utility/make_from_tuple) template function prepared for this purpose. Example:
@@ -1556,7 +1588,7 @@ This function fails if the parent directory does not exist. To create the parent
 ### Removing files and directories
 To remove a file or an empty directory, we can use [`std::filesystem::remove(<path>)`](https://en.cppreference.com/w/cpp/filesystem/remove) function.
 
-To remove a directory with all its content, we can use `std::filesystem::remove_all(<path>)` function listed on the same page of cppreference.
+To remove a content of a directory we can use `std::filesystem::remove_all(<path>)` function listed on the same page of cppreference.
 
 
 ### Other useful functions
@@ -2590,8 +2622,8 @@ std::vector vec{range.begin(), range.end()}; // in-place vector construction
 - *range*: the object we iterate over (Iterable in Java)
 - *iterator*: the object which does the real work (Iterator in Java)
 
-Usually, a range is composed from two iterators:
-- *begin*: points to the begining of the range, returne by `<range_object>.begin()`
+Usually, a range is composed of two iterators:
+- *begin*: points to the beginning of the range, returned by `<range_object>.begin()`
 - *end*: points to the end of the object, returned by  `<range_object>.end()` 
 
 Each iterator implements the dereference (`*`) operator that acces the element of the range the iterator is pointing to.
@@ -2617,7 +2649,7 @@ Also note that some STL algorithms are principially non-modifying, e.g., `std::r
 
 In C++ 20 there is a new range library that provides functional operations for iterators. It is similar to functional addon in Java 8.
 
-As explained in the beginning of thi chapter, there are two ways how to use the STL ranges:
+As explained in the beginning of this chapter, there are two ways how to use the STL ranges:
 - using the [range algorithms](https://en.cppreference.com/w/cpp/ranges) (`ranges::<alg name>`) that are invoked eagerly.
 - using the [range adaptors](https://en.cppreference.com/w/cpp/ranges/views) (`ranges::views::<adaptor name>`) that are invoked lazily.
 
@@ -2630,10 +2662,40 @@ Note that due to the lazy nature of the adaptors, **the underlying range has to 
 
 A custom view can be created so that it can be chained with STL views. However, it has to satisfy the [view concept](https://en.cppreference.com/w/cpp/ranges/view), and more importantly, it should satisfy the view semantic, i.e., it should be cheap to copy and move (without copying the underlying data).
 
+
+### Projections
+Unlike in Java, we cannot refer to member functions when lambda functions are required. However, we can use these member functions when the algorithm or adaptor has a *projection* parameter. Example:
+```cpp
+struct Data {
+	int a;
+	std::string b;
+	...
+};
+
+std::vector<Data> data = get_data();
+
+std::sort(data, {}, &Data::b);
+```
+The trick here is that we can only provide the member that we want to use for sorting, but the sorting logic (`first < second`...) is handeled by a standard comparator (the second argument initialized with `{}`).
+
+We can have even more complicated projections that are not just references to member functions:
+```cpp
+std::vector<My_class> objects = get_objects();
+std::vector<unsigned> indexes = get_indexes(objects);
+auto proj = [&objects](std::size_t i) -> const std::string& { 
+	return objects[i].get_name(); 
+};
+std::ranges::sort(indexes, {}, proj) // sort indexes using the property of objects
+```
+
+
 ### Useful range algorithms
+Note that the most frequently used algorithms have a separate section in the Iterators chapter.
+
 - [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) : shuffles the elements in the range (formerly `std::random_shuffle`).
 - [`std::adjacent_find`](https://en.cppreference.com/w/cpp/algorithm/adjacent_find) : finds the first two adjacent elements that are equal. Can be used to find duplicates if the range is sorted.
 - [`std::ranges::unique`](https://en.cppreference.com/w/cpp/ranges/unique): moves the duplicates to the end of the range and returns the iterator to the first duplicate. Only consecutive duplicates are found.
+- [`std::ranges::min`](https://en.cppreference.com/w/cpp/ranges/min) : finds the smallest element in the range. We can use either natural sorting, or a comparator, pr a projection.
 
 ### Other Resources
 -   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library)
@@ -3431,6 +3493,17 @@ More on variants:
 - [cppstories](https://www.cppstories.com/2018/06/variant/)
 
 
+# Jinja-like Templating
+For working with Jinja-like templates, we can use the [Inja](https://github.com/pantor/inja) template engine. 
+
+
+## Exceptions
+There are the following exceptions types:
+- `ParserError` thrown on `parse_template` method
+- `RenderError` thrown on `write` method
+
+### Render Errors
+- `empty expression`: this signalize that some expression is empty. Unfortunatelly, the line number is incorrect (it is always 1). Look for empty conditions, loops, etc. (e.g., `{% if %}`, `{% for %}`, `{% else if %}`).
 
 
 
