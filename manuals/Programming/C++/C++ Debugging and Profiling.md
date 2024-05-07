@@ -113,7 +113,9 @@ Something like `unresolved external symbol...`.
 # Runtime errors
 **First, identify the exception context**. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the `Exception Settings` and check the exception type there.
 
-If the cause of the exception is not clear from the context, it may be usefull to **check the exception details** Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:
+If the cause of the exception is not clear from the context, it may be usefull to **check the exception details**. First, look at the exception message. The easiest way is to catch the exception in the code and print the message. In Google Test, there is a catch-all handler, just run the test without the `--gtest_break_on_failure` flag. 
+
+If the message is not enough, look at the exception content in the debugger. Unfortunately, it is not possible to inspect unhandled exception object easily. To do so, add the following watch:
 
 ```cpp
 (<exception type>*) <exception address>
