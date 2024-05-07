@@ -207,6 +207,13 @@ The currecnies that have the currency sign before the number are also typeset us
 ```
 
 
+## Quotes
+The quotes are typeset using the `csquotes` package. The quotes are typeset using the `\enquote` command. Example:
+```latex
+\enquote{This is a quote}
+```
+
+
 
 ### Supported units
 - `\s`: second

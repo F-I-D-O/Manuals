@@ -2606,7 +2606,7 @@ On the other hand, the interface using concepts has the following adventages:
 - we can save memory because we don't need the vtable pointers
 
 
-# Iterators and ranges
+# Iterators, STL algorithms, and ranges
 If we want to iterate over elements in some programming language, we need to fullfill some interface. In Java, this interface is called `Iterable`. Also, there is usually some interface that formalize the underlying work, in Java, for example, it is called `Iterator`. 
 
 In C++, however, the interface for iteration is not handled by polymorphism. Instead, it is handled using type traits and concepts. On top of that, there are multiple interfaces for iteration:
@@ -2670,7 +2670,7 @@ when deciding which interface to use, we can use the following rules:
 1. Otherwise, **if you need to preserve the original range as it is or you need to compose multiple operations, use the STL range adaptors**. 
 1. Otherwise, **use the STL range algorithms**.
 
-Note that the in this guide, we do not consider the legacy algorithms. With the availability of the STL algorithms, there is no reason to use the legacy algorithms, except for the backward compatibility or for the algorithms that are not yet implemented in the STL.
+Note that the in this guide, we do not consider the legacy STL algorithms. With the availability of the STL *range* algorithms, there is no reason to use the legacy algorithms, except for the backward compatibility or for the algorithms that are not yet implemented in the STL.
 
 Also note that some STL algorithms are principially non-modifying, e.g., `std::ranges::find` or `std::ranges::count`. These algorithms logically do not have the adaptor equivalent.
 
@@ -2729,6 +2729,7 @@ Note that the most frequently used algorithms have a separate section in the Ite
 
 - [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) : shuffles the elements in the range (formerly `std::random_shuffle`).
 - [`std::adjacent_find`](https://en.cppreference.com/w/cpp/algorithm/adjacent_find) : finds the first two adjacent elements that are equal. Can be used to find duplicates if the range is sorted.
+- [`std::ranges::unique`](https://en.cppreference.com/w/cpp/ranges/unique): moves the duplicates to the end of the range and returns the iterator to the first duplicate. Only consecutive duplicates are found.
 - [`std::ranges::min`](https://en.cppreference.com/w/cpp/algorithm/ranges/min) : finds the smallest element in the range. We can use either natural sorting, or a comparator, or a projection. If the range is empty, the behavior is undefined.
 - [`std::ranges::min_element`](https://en.cppreference.com/w/cpp/algorithm/ranges/min_element) : finds the smallest element in the range. Unlike `std::ranges::min`, this function returns an iterator to the smallest element. 
 - [`std::ranges::empty`](https://en.cppreference.com/w/cpp/algorithm/ranges/empty) : checks whether the range is empty. 
