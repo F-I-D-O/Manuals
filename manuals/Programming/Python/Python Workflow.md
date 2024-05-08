@@ -55,6 +55,15 @@ If the installation fails, check the following:
 To upgrade pip, use `python -m pip install --upgrade pip`. Sometimes, this command end ith an error. There can be specific solutions to this, but what always seems to fix the pip is the [get-pip script](https://bootstrap.pypa.io/get-pip.py). Download the script and run it using `python get-pip.py`.
 
 
+## Local packages
+A useful method how to develop and test packages is to have them installed locally. This way, each change in the source code is immediately reflected in the package and also in the code that uses the package. To install a package locally, use `pip install -e <path to the package>`.
+
+Note that the package needs to be properly initialized first, i.e.:
+- at least one `__init__.py` file in the package root (optionally others in subpackages)
+- a `setup.py` file in the parent directory of the package root
+
+
+
 # Pycharm
 ## Configuration
 ### Settings synchronization

@@ -687,6 +687,16 @@ a = np.array([1, 2, 3, 4, 5])
 a[::-1].sort() # sort in reverse order
 ```
 
+## Export to CSV
+To export the numpy array to CSV, we can use the [`savetxt`](https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html) function:
+```Python
+np.savetxt('file.csv', a, delimiter=',')
+```
+By default, the function saves values in the mathematical float format, even if the values are integers. To save the values as integers, we can use the `fmt` parameter:
+```Python
+np.savetxt('file.csv', a, delimiter=',', fmt='%i')
+```
+
 
 ## Usefull array properties:
 - `size`: number of array items

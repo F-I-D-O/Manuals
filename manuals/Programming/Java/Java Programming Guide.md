@@ -42,9 +42,10 @@ The advantage over the standard class is that the record class automatically dec
 - `constructor` that accepts all parameters
 
 
+# Standard Types
 
 
-# Strings
+## Strings
 Classical string literals has to be enclosed in quotes (`"my string"`). They cannot contain some characters (newline, `"`). The backslash (`\`) character is reserved for Java escape sequences  and need to be ecaped as `\\`.
 
 In addition, since Java 15, there are text blocks, enclosed in three quotes:
@@ -65,6 +66,33 @@ There are no fstrings in Java, the best way for using variables in strings is to
 String s = String.format("My string with %s and %d", "text", 5);
 ```
 
+## Collections
+Java has a rich set of collections. Still, many are missing, notably some tuple class. Also, the typical tuple unpacking known from Python or C++ is not possible in Java and we have to use a verbose way of 1) creating a temporary object for all values, 2) accessing the values using the getters.
+
+### List
+List initialization in Java is complicated compared to other languages. we can initialize the list as:
+```Java
+List a = List.of(1, 2, 3);
+```
+However, this method returns an **immutable** list. If we need a mutable list, we have to pass the list to the `ArrayList` constructor:
+```Java
+List a = new ArrayList<>(List.of(1, 2, 3));
+```
+but with such a complicated syntax, we can use an input array directly:
+```Java
+List a = new ArrayList<>(Arrays.asList(1, 2, 3));
+```
+
+### Set
+From java 9, sets can be simply initialized as:
+```Java
+Set<int> nums = Set.of(1,2,3);
+```
+Note that this method returns an immutable set. In the earlier versions of Java, the `Collections.singleton` method can be used. 
+
+
+### Sorting
+Some collections can be sorted using the `sort` member method. It is a **stable** sort, which use the natural order of the elements by default, but it can be customized using a comparator. The comparator interface expects two elements and should return a negative number if the first element is smaller, a positive number if the first element is greater, and zero if the elements are equal. 
 
 
 # Overloading 
@@ -284,18 +312,7 @@ processMyClass(MyClass<?> myClass){...};
 
 
 
-# Collections
 
-## Set
-From java 9, sets can be simply initialized as:
-```Java
-Set<int> nums = Set.of(1,2,3);
-```
-Note that this method returns an immutable set. In the earlier versions of Java, the `Collections.singleton` method can be used. 
-
-
-## Sorting
-Some collections can be sorted using the `sort` member method. It is a **stable** sort, which use the natural order of the elements by default, but it can be customized using a comparator. The comparator interface expects two elements and should return a negative number if the first element is smaller, a positive number if the first element is greater, and zero if the elements are equal. 
 
 
 # Enums

@@ -578,10 +578,14 @@ For reading csv files, we can use the [`read_csv`](https://pandas.pydata.org/doc
 - `delim_whitespace`: if `True`, the whitespace is used as a separator. The `sep` parameter is ignored in that case. This is a way how to read a file with variable number of whitespaces between columns.
 
 
-For export, we can use the `to_csv` method for that:
+For export, we can use the [`to_csv`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html) method:
 ```python
 df.to_csv(<file name> [, <other params>])
 ```
+
+Useful parameters:
+- `index`: if `False`, the index is not exported
+- `index_label`: the name of the index column
 
 
 ## Json
