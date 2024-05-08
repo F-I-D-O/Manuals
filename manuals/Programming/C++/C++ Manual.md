@@ -573,10 +573,31 @@ The most common format specifications are:
  
 
 ### Spliting the string into tokens
-If we want to split the string on patern, the easiest way is to use the split view from the ranges library:
+Unfortunately, the STL does not provide a simple way to split the string into tokens like Python's `split` method or PHP's `explode` function. It is not even planned for the future.  
+
+If we want to split a string on a character or pattern, the easiest way is to use the [split view](https://en.cppreference.com/w/cpp/ranges/split_view) from the ranges library, which has a [`std::ranges::subrange`](https://en.cppreference.com/w/cpp/ranges/subrange) as its element type: 
 ```cpp
-auto parts = std::ranges::views::split(str, "-");
+// get a range of character subranges
+auto parts = std::ranges::views::split(str, '-');
+
+// iterate over the parts
+for (auto part : parts) {
+	std::cout << part << std::endl; // prints the part
+
+	// convert part to string
+	std::string s(part.begin(), part.end());
+
+	// convert part to string (C++23)
+	std::string s(std::from_range, part);
+}
 ```
+The last [string constructor](https://en.cppreference.com/w/cpp/string/basic_string/basic_string) is only available in C++23, and moreover, it requires the [`stl::from_range`](https://en.cppreference.com/w/cpp/ranges/from_range) tag. The `std::string_view` is equiped with a range constructor which does not require the tag in C++23. However, it is explicit, so its usage is limited:
+
+```cpp
+std::string_view s(part) // invalid
+std::string_view s = std::string_view(part) // valid in C++23
+```
+
 
 ### Converting string to int
 There are simple functions for converting `std::string` to numbers, named `std::stoi`, `std::stoul`, etc. See [cppreference](https://en.cppreference.com/w/cpp/string/basic_string) for details.
@@ -1639,6 +1660,16 @@ Here, the `std::istreambuf_iterator<char>` is created using initialization inste
 For csv output, we can usually use the general line-by-line approach.
 
 
+## YAML
+For YAML, we can use the [yaml-cpp](https://github.com/jbeder/yaml-cpp/) library.
+
+To test whether a `YAML::Node` **contains a certain key**, we may use the `[]` operator, as it does not create a new node (unlike the stl containers):
+```cpp
+YAML::Node node;
+if (node["key"]) {
+	// do something
+}
+```
 
 
 
@@ -2582,10 +2613,10 @@ In C++, however, the interface for iteration is not handled by polymorphism. Ins
 - legacy iteration, e.g., `for (auto it = v.begin(); it != v.end(); ++it)`
 - STL algorithms, e.g., `std::find(v.begin(), v.end(), 42)`
 - STL range algorithms, e.g., `std::ranges::find(v, 42)`
-- STL range adaptors, e.g., `std::ranges::views::filter(v, [](int x){return x > 0;})`
+- STL range views, e.g., `std::ranges::views::filter(v, [](int x){return x > 0;})`
 
 The following table summarizes the differences between the interfaces:
-|---| Plain iteration | STL algorithms | STL range algorithms | STL range adaptors |
+|---| Plain iteration | STL algorithms | STL range algorithms | STL range views |
 |---|---|---|---|---|
 | **Interface** | type traits | type traits | concepts | concepts |
 | **Iteration** | eager | eager | eager | lazy |
@@ -2644,23 +2675,27 @@ Note that the in this guide, we do not consider the legacy STL algorithms. With 
 Also note that some STL algorithms are principially non-modifying, e.g., `std::ranges::find` or `std::ranges::count`. These algorithms logically do not have the adaptor equivalent.
 
 
-## STL ranges
+## STL ranges and views
 [https://en.cppreference.com/w/cpp/ranges](https://en.cppreference.com/w/cpp/ranges)
 
 In C++ 20 there is a new range library that provides functional operations for iterators. It is similar to functional addon in Java 8.
 
 As explained in the beginning of this chapter, there are two ways how to use the STL ranges:
 - using the [range algorithms](https://en.cppreference.com/w/cpp/ranges) (`ranges::<alg name>`) that are invoked eagerly.
-- using the [range adaptors](https://en.cppreference.com/w/cpp/ranges/views) (`ranges::views::<adaptor name>`) that are invoked lazily.
+- using the [range views](https://en.cppreference.com/w/cpp/ranges/views) (`ranges::views::<view name>`) that are invoked lazily.
 
-Note that the range algorithms and adaptors cannot produce result without an input, i.e., **we always need a range or collection on which we want to apply our algorithm/adapter.**
+Note that the range algorithms and adaptors cannot produce result without an input, i.e., **we always need a range or collection on which we want to apply our algorithm/view.**
 
-### STL range adaptors
-The difference of range adaptors to range algorithms is that the range adapters are lazy, i.e., they do not produce any result until they are iterated over. This is similar to the Python generators. The advantage is that we can chain multiple adaptors together and the result is computed only when we iterate over the final adaptor.
+### STL range views
+The difference of range view to range algorithms is that the views are lazy, i.e., they do not produce any result until they are iterated over. This is similar to the Python generators. The advantage is that we can chain multiple views together and the result is computed only when we iterate over the final view.
 
-Note that due to the lazy nature of the adaptors, **the underlying range has to be alive during the whole iteration**. Therefore, we cannot use the adaptors on temporaries, e.g., we cannot use the adaptors directly in the constructor of a vector, or we cannot use the adaptors on a temporary range returned by a function.
+Note that due to the lazy nature of the views, **the underlying range has to be alive during the whole iteration**. Therefore, we cannot use the views on temporaries, e.g., we cannot useviews directly in the constructor of a vector, or we cannot use the views on a temporary range returned by a function.
 
 A custom view can be created so that it can be chained with STL views. However, it has to satisfy the [view concept](https://en.cppreference.com/w/cpp/ranges/view), and more importantly, it should satisfy the view semantic, i.e., it should be cheap to copy and move (without copying the underlying data).
+
+#### Usefull views
+- [`std::views::iota`](https://en.cppreference.com/w/cpp/ranges/iota_view): generates a sequence of numbers
+- [`std::views::filter`](https://en.cppreference.com/w/cpp/ranges/filter_view): filters the elements of the range
 
 
 ### Projections
@@ -2695,12 +2730,13 @@ Note that the most frequently used algorithms have a separate section in the Ite
 - [`std::shuffle`](https://en.cppreference.com/w/cpp/algorithm/random_shuffle) : shuffles the elements in the range (formerly `std::random_shuffle`).
 - [`std::adjacent_find`](https://en.cppreference.com/w/cpp/algorithm/adjacent_find) : finds the first two adjacent elements that are equal. Can be used to find duplicates if the range is sorted.
 - [`std::ranges::unique`](https://en.cppreference.com/w/cpp/ranges/unique): moves the duplicates to the end of the range and returns the iterator to the first duplicate. Only consecutive duplicates are found.
-- [`std::ranges::min`](https://en.cppreference.com/w/cpp/ranges/min) : finds the smallest element in the range. We can use either natural sorting, or a comparator, pr a projection.
+- [`std::ranges::min`](https://en.cppreference.com/w/cpp/algorithm/ranges/min) : finds the smallest element in the range. We can use either natural sorting, or a comparator, or a projection. If the range is empty, the behavior is undefined.
+- [`std::ranges::min_element`](https://en.cppreference.com/w/cpp/algorithm/ranges/min_element) : finds the smallest element in the range. Unlike `std::ranges::min`, this function returns an iterator to the smallest element. 
+- [`std::ranges::empty`](https://en.cppreference.com/w/cpp/algorithm/ranges/empty) : checks whether the range is empty. 
+
 
 ### Other Resources
--   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library)
-
-
+-   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library) 
 
 
 
@@ -2730,7 +2766,7 @@ Most likely, the compiler will complain that `boost::range_iterator<R>::type` do
  
 Note that **`<RANGE CLASS>::iterator` and `<RANGE CLASS>::const_iterator` has to be accessible (public).**
 
-## Sequence Range
+## Sequences
 The `iota` algortihm/adapter is used to create a sequence:
 ```cpp
 auto range = std::views::iota(0, 10);
@@ -2738,7 +2774,7 @@ auto vec = std::vector(range.begin(), range.end());
 ```
 Note that we cannot pass the view directly to the vector, as the vector does not have a range constructor.
 
-## Zip range
+## Zip
 The classical Python like zip iteration is available using the [zip adapator](https://en.cppreference.com/w/cpp/ranges/zip_view), which is not yet supported in MSVC.
 
 However, boost provides a similar functionality `boost::combine`.
@@ -2755,7 +2791,7 @@ for(const auto& [a, b]: boost::combine(va, vb)){
 Each argument of combine must satisfy [boost::SinglePassRange](https://www.boost.org/doc/libs/1_80_0/libs/range/doc/html/range/concepts/single_pass_range.html)
 
 
-## Enumerating range
+## Enumerating
 There is no function in standard library equivalent to the python enumerate. We can use a similar boost solution:
 ```cpp
 #include <boost/range/adaptor/indexed.hpp>
@@ -2822,7 +2858,7 @@ Transformation alg/views transforms an input range according to a callable. As w
 - range algorithm: [`std::ranges::transform`](https://en.cppreference.com/w/cpp/algorithm/ranges/transform) with a support for projections
 - range view: [`std::ranges::views::transform`](https://en.cppreference.com/w/cpp/ranges/transform_view) - a lazy variant
 
-The algorithms (but not the view) also supports binary transformations, i.e., create an output range using two input ranges.
+The algorithms (but not the view) also supports **binary transformations**, i.e., create an output range using two input ranges.
 
 Transform view example:
 ```c++
@@ -2834,6 +2870,19 @@ std::vector<int> out(ad.begin(), ad.end());
 The transform *view*  can be only constructed from an object satisfying [`ranges::input_range`](http://en.cppreference.com/w/cpp/ranges/input_range). If we want to use a general range (e.g., vector), we need to call the addapter, which has a same signature like the view constructor itself. The important thing here is that the adapter return type is not a `std::ranges::views::transform<<RANGE>>` but `std::ranges::views::transform<std::ranges::ref_view<RANGE>>>` ([`std::ranges::ref_view`](https://en.cppreference.com/w/cpp/ranges/ref_view)). Supporting various collections is therefore possible only with teplates, but not with inheritance.
 
 **Note that unlike in Java, it is not possible to use a member reference as a transformation function (e.g.: `&MyClass::to_sting()`).** We have to always use lambda functions, `std::bind` or similar to create the callable.
+
+
+## Aggregating (sum, product, etc.)
+These operations can be done using the [`std::accumulate`](https://en.cppreference.com/w/cpp/algorithm/accumulate) algorithm. This algorithm is about to be replaced by the `std::ranges::fold` algorithm, but it is not yet implemented in Clang. Examples:
+```cpp
+// default accumulation -> sum
+std::vector<int> vec{1, 2, 3, 4, 5};
+int sum = std::accumulate(vec.begin(), vec.end(), 0);
+
+// product
+int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies<int>());
+```
+
 
 ## Iterator Concepts
 [https://en.cppreference.com/w/cpp/iterator](https://en.cppreference.com/w/cpp/iterator)
