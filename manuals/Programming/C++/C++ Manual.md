@@ -336,6 +336,61 @@ int foo(double a, double b);
 static_assert(std::is_same_v<decltype(foo)*, int(*)(double, double)>); // TRUE
 ```
 
+## Enumerations
+[cppreference](https://en.cppreference.com/w/cpp/language/enum)
+
+C++ supports simple enumerations, which are a set of named integer constants. The enumeration can be defined as:
+```cpp
+enum Color {red, green, blue}; // global scope
+
+enum class Color {red, green, blue}; // scoped, preferred
+```
+
+There is no support for enum members like in Python, but we can use a wrapper class for that:
+```cpp
+class Color{
+public:
+	enum Value {red, green, blue};
+
+	Color(Value v): value(v){} // non-explicit constructor for easy initialization
+
+	Value get_value() const {return value;}
+
+	std::string to_string() const{
+		switch(value){
+			case Value::red: return "red";
+			case Value::green: return "green";
+			case Value::blue: return "blue";
+		}
+	}
+
+private:
+	Value value;
+}
+
+Color get_color(){
+	return Color::red; // this works due to the non-explicit constructor
+}
+
+int main(){
+	Color c = get_color();
+	std::cout << c.to_string() << std::endl;
+
+	switch(c.get_value()){
+		case Color::red: std::cout << "red" << std::endl;
+		case Color::green: std::cout << "green" << std::endl;
+		case Color::blue: std::cout << "blue" << std::endl;
+	}
+}
+```
+
+For more complex code requireing automatic conversion to string and more, we can consider the [magic_enum library](https://github.com/Neargye/magic_enum). It supports the following features:
+- enum to string conversion
+- string to enum conversion
+- enum iteration
+- sequence of possible values
+
+
 ## Complete and Incomplete Types
 In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?
 - The `void` type is always incomplete
@@ -1088,9 +1143,28 @@ class My_class{
 
 
 # Classes and structs
-The only difference between a `class` and a `struct` is that in class, all members are private by default.
+The only difference between a `class` and a `struct` is that in class, all 
+members are private by default.
+
+## Class Constants
+Class constants can be defined in two ways:
+- `static constexpr` member variable if the constant type supports `constexpr` specifier, or
+- `static const` member variable 
+
+In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:
+```cpp
+// in the header file
+class My_class{
+	static const int a;
+}
+
+// in the cpp file
+const int My_class::a = 5;
+```
 
 ## Friend declaration
+[cppreference](https://en.cppreferececom/friend)
+
 Sometimes, we need to provide an access to privat e members of a class to some other classes. In java, for example, we can put both classes to the same package and set the members as package private (no specifier). In C++, there is an even stronger concept of friend classes.
 
 We put a `friend` declaration to the body of a class whose *private* members should be accessible from some other class. The declaratiton can look as follows:
@@ -1102,8 +1176,7 @@ Class To_be_accesssed {
 Now the `Has_access` class has access to the `To_be_accesssed`'s private members.
 
 Note that the **friend relation is not transitive, nor symetric, and it is not inherited.**
-  
-[cppreference](https://en.cppreferececomfriend)
+
 
 ### Template friends
 If we want a template to be a friend, we can modify the code above:
@@ -1668,6 +1741,13 @@ To test whether a `YAML::Node` **contains a certain key**, we may use the `[]` o
 YAML::Node node;
 if (node["key"]) {
 	// do something
+}
+```
+The **iteration** over the keys is done using `YAML::const_iterator`:
+```cpp
+for (YAML::const_iterator it = node.begin(); it != node.end(); ++it) {
+	std::string key = it->first.as<std::string>();
+	YAML::Node value = it->second;
 }
 ```
 
@@ -2607,7 +2687,7 @@ On the other hand, the interface using concepts has the following adventages:
 
 
 # Iterators, STL algorithms, and ranges
-If we want to iterate over elements in some programming language, we need to fullfill some interface. In Java, this interface is called `Iterable`. Also, there is usually some interface that formalize the underlying work, in Java, for example, it is called `Iterator`. 
+If we want to iterate over elements in some programming language, we need to fulfill some interface. In Java, this interface is called `Iterable`. Also, there is usually some interface that formalize the underlying work, in Java, for example, it is called `Iterator`. 
 
 In C++, however, the interface for iteration is not handled by polymorphism. Instead, it is handled using type traits and concepts. On top of that, there are multiple interfaces for iteration:
 - legacy iteration, e.g., `for (auto it = v.begin(); it != v.end(); ++it)`
@@ -2884,12 +2964,35 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies<int>())
 ```
 
 
-## Iterator Concepts
-[https://en.cppreference.com/w/cpp/iterator](https://en.cppreference.com/w/cpp/iterator)
+## Implementing a custom range
+There are different requirements for different types of ranges. Moreover, there are different requirements for the [range-based for loop (for each)](https://en.cppreference.com/w/cpp/language/range-for), or the legacy STL algorithms. 
 
-C++ 20 has some new iterator concepts, providing various interfaces. However, [range-based for loop (for each)](https://en.cppreference.com/w/cpp/language/range-for) does not require any of the new concepts, nor the legacy iterators, its requirements are smaller.
+Here we focus on requirements for ranges. Not however, that the range requirements are more strict than the requirements for the range-based for loop or the legacy STL algorithms. Therefore, the described approach should work for all three cases.
+
+Usually, we proceed as follows:
+1. Choose the right range (Iterable) concept for your range from the [STL range concepts](https://en.cppreference.com/w/cpp/ranges).
+	- The most common is the [`std::ranges::input_range`](https://en.cppreference.com/w/cpp/ranges/input_range) concept.
+1. Implement the range concept for the range.
+	- Either, we can do it by using the interface of the undelying range we usein our class (i.e, we just forward the calls to the methods of `std::vector` or `std::unordered_map`) or
+	- implement the interface from scratch. For that, we also need to implement the iterator class that fulfills the corresponding [iterator concept](https://en.cppreference.com/w/cpp/iterator) (e.g., [`std::input_iterator`](https://en.cppreference.com/w/cpp/named_req/InputIterator) for the `std::ranges::input_range`).
 
 
+### Implementing an input range
+The input range is the most common range type. The only requirement for the input range is that it has to have the `begin` and `end` methods that return the input iterator. Example:
+```cpp
+class My_range {
+	private:
+		std::vector<int> data;
+	public:
+		My_range(std::vector<int> data): data(data) {}
+		auto begin() {return data.begin();}
+		auto end() {return data.end();}
+
+		// usually, we also want a const version of the range
+		auto begin() const {return data.begin();}
+		auto end() const {return data.end();}
+};
+```
 
 ## Boost Iterator Templates
 The [boost.iterator library](https://www.boost.org/doc/libs/1_77_0/libs/iterator/doc/index.html) provides some templates to implement iteratores easily, typically using some existing iterators and modifying just a small part of it:
@@ -3524,14 +3627,20 @@ The declaration of `std::variant` is similar to the declaration of `std::tuple`:
 ```cpp
 std::variant<int, double> v;
 ```
-The `std::variant` can store any of the types specified in the template parameters. The type of the stored value can be obtained using the `std::variant::index` method. The value can be accessed using the `std::get_if` method, which returns a pointer to the stored value. Example:
+The `std::variant` can store any of the types specified in the template parameters. 
+
+The **type** of the stored value can be obtained using:
+- [`std::holds_alternative`](https://en.cppreference.com/w/cpp/utility/variant/holds_alternative) method that returns a boolean value if the variant stores the type specified in the template parameter or
+- [`std::variant::index`](https://en.cppreference.com/w/cpp/utility/variant/index) method that returns the index of the stored value.
+
+The **value** can be accessed using the `std::get_if` method, which returns a pointer to the stored value. Example:
 ```cpp
 std::variant<int, double> v = 1;
 std::cout << v.index() << std::endl; // prints 0
 std::cout << *std::get_if<int>(&v) << std::endl; // prints 1
 ```
 
-A realy usefull feature of `std::variant` is the `std::visit` method, which allows us to call a function on the stored value. The function is selected based on the type of the stored value. Example:
+A really usefull feature of `std::variant` is the `std::visit` method, which allows us to call a function on the stored value. The function is selected based on the type of the stored value. Example:
 ```cpp
 std::variant<int, double> v = 1;
 std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
