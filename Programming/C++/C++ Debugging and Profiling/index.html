@@ -624,7 +624,8 @@ Get_type&lt;&lt;TYPE TO GET&gt;&gt; my_type{};
 <p><a href="https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error">https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error</a></p>
 <h1 id="runtime-errors">Runtime errors<a class="headerlink" href="#runtime-errors" title="Permanent link">&para;</a></h1>
 <p><strong>First, identify the exception context</strong>. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the <code>Exception Settings</code> and check the exception type there.</p>
-<p>If the cause of the exception is not clear from the context, it may be usefull to <strong>check the exception details</strong> Unfortunatelly, it is not possible to inspect unhandeled exception object easily in Visual Studio. to do so, add the following watch:</p>
+<p>If the cause of the exception is not clear from the context, it may be usefull to <strong>check the exception details</strong>. First, look at the exception message. The easiest way is to catch the exception in the code and print the message. In Google Test, there is a catch-all handler, just run the test without the <code>--gtest_break_on_failure</code> flag. </p>
+<p>If the message is not enough, look at the exception content in the debugger. Unfortunately, it is not possible to inspect unhandled exception object easily. To do so, add the following watch:</p>
 <pre><code class="language-cpp">(&lt;exception type&gt;*) &lt;exception address&gt;
 </code></pre>
 <p>where <code>&lt;exception type&gt;</code> is the type of the exception (e.g. <code>std::exception</code>) and <code>&lt;exception address&gt;</code> is the address from the exception dialog.</p>

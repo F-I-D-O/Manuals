@@ -563,6 +563,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#export-to-csv" class="nav-link">Export to CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#usefull-array-properties" class="nav-link">Usefull array properties:</a>
               <ul class="nav flex-column">
               </ul>
@@ -1128,6 +1132,13 @@ for a in ... # ok
 <p>There is no way how to set the sorting order, we have to use a trick for that:</p>
 <pre><code class="language-Python">a = np.array([1, 2, 3, 4, 5])
 a[::-1].sort() # sort in reverse order
+</code></pre>
+<h2 id="export-to-csv">Export to CSV<a class="headerlink" href="#export-to-csv" title="Permanent link">&para;</a></h2>
+<p>To export the numpy array to CSV, we can use the <a href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html"><code>savetxt</code></a> function:</p>
+<pre><code class="language-Python">np.savetxt('file.csv', a, delimiter=',')
+</code></pre>
+<p>By default, the function saves values in the mathematical float format, even if the values are integers. To save the values as integers, we can use the <code>fmt</code> parameter:</p>
+<pre><code class="language-Python">np.savetxt('file.csv', a, delimiter=',', fmt='%i')
 </code></pre>
 <h2 id="usefull-array-properties">Usefull array properties:<a class="headerlink" href="#usefull-array-properties" title="Permanent link">&para;</a></h2>
 <ul>

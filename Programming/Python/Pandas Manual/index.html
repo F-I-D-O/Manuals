@@ -1135,9 +1135,12 @@ print(df)
 - <code>header</code>: row number to use as column names. If <code>None</code>, no header is used
 - <code>skiprows</code>: number of rows to skip from the beginning
 - <code>delim_whitespace</code>: if <code>True</code>, the whitespace is used as a separator. The <code>sep</code> parameter is ignored in that case. This is a way how to read a file with variable number of whitespaces between columns.</p>
-<p>For export, we can use the <code>to_csv</code> method for that:</p>
+<p>For export, we can use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html"><code>to_csv</code></a> method:</p>
 <pre><code class="language-python">df.to_csv(&lt;file name&gt; [, &lt;other params&gt;])
 </code></pre>
+<p>Useful parameters:
+- <code>index</code>: if <code>False</code>, the index is not exported
+- <code>index_label</code>: the name of the index column</p>
 <h2 id="json">Json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>For exporting to json, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"><code>to_json</code></a> function. </p>
 <p>By default, the data are exported as a list of columns. To export the data as a list of rows, we can use the <code>orient</code> parameter:</p>

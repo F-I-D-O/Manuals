@@ -823,9 +823,10 @@ llvm[target-arm]                      Build with ARM backend.
         - <code>name</code>: the display name in Visual Studio
         - <code>args</code>: json array with arguments as strings
             - arguments with spaces have to be quoted with escaped quotes
-        - <code>cwd</code>: the working directory
 3.  Select the launch configuration in the drop-down menu next to the play button</p>
-<p><a href="https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170"><code>launch.vs.json</code> reference</a></p>
+<p>If the configuration is not visible in the drop-down menu, double-check the <code>launch.vs.json</code> file. The file is not validated, so it is easy to make a typo. If there is any problem, insted of an error, the launch configuration is not available. The following problems are common:
+- syntax error in the json (should be marked by red squiggly line)
+- typo in the target name</p>
 <h5 id="other-launchvsjson-options">Other launch.vs.json options<a class="headerlink" href="#other-launchvsjson-options" title="Permanent link">&para;</a></h5>
 <ul>
 <li><code>cwd</code>: the working directory</li>
@@ -850,14 +851,17 @@ we can find it be examining the compiler executable stored in <code>C:\Program F
 <p>go to <code>./vs</code> and look for file named <code>CmakeWorkspaceSettings</code>. It most likelz contains a line with <code>disable = true</code>. Just delete the file, or the specific line.</p>
 <h1 id="installing-library-dependencies">Installing Library Dependencies<a class="headerlink" href="#installing-library-dependencies" title="Permanent link">&para;</a></h1>
 <h2 id="vcpkg-libraries">Vcpkg Libraries<a class="headerlink" href="#vcpkg-libraries" title="Permanent link">&para;</a></h2>
-<ul>
+<ol>
 <li>type <code>vcpkg list</code>, if the library you need is not listed, continue to the next steps</li>
-<li>type <code>vcpkg search &lt;library simple name&gt;</code> and inspect the result to determine the exact name of the package you need</li>
+<li>type <code>vcpkg search &lt;library simple name&gt;</code> and inspect the result to determine the exact name of the package you need<ul>
 <li>if the library is not listed, check the presence in <a href="https://repology.org/projects/?inrepo=vcpkg">vcpkg repo</a></li>
 <li>if the library is in repo, but search does not find it, <a href="#update">update vcpkg</a></li>
+</ul>
+</li>
 <li>type <code>vcpkg install &lt;exact name&gt;</code> to install the package</li>
 <li>at the end of the installation log, there will be a cmake command needed to integrate the library, put it to the appropriate place to your <code>CMakeList.txt file</code></li>
-</ul>
+</ol>
+<p>To display the cmake commands for the installed libraries, just run <code>vcpkg install &lt;exact name&gt;</code> again.</p>
 <h3 id="boost">Boost<a class="headerlink" href="#boost" title="Permanent link">&para;</a></h3>
 <p>With boost, we should install only the necessary components. Then to include boost, we need:
 - <code>find_package(Boost REQUIRED)</code>

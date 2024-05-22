@@ -830,10 +830,10 @@ endif()
 <p>The target name is used to refer to the target in other commands. The target name is also used to name the output file. </p>
 <p>The list of source files should contain all the source files that are needed to build the target. There are some automatic mechanisms that can be used to add the source files (discussed e.g. on <a href="https://discourse.cmake.org/t/is-glob-still-considered-harmful-with-configure-depends/808/2">cmake forums</a>), but they are not recommended.</p>
 <h2 id="setting-include-directories">Setting include directories<a class="headerlink" href="#setting-include-directories" title="Permanent link">&para;</a></h2>
-<p>To inlude the headers, we need to use a <code>inlude_directories</code> (global), or better <code>target_include_directories</code> command.</p>
+<p>To include the headers, we need to use a <code>inlude_directories</code> (global), or better <code>target_include_directories</code> command.</p>
 <h2 id="linking-configuration">Linking configuration<a class="headerlink" href="#linking-configuration" title="Permanent link">&para;</a></h2>
-<p>For linkink, use the <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code></a> command.</p>
-<p>Make sure that you <strong>always link against all the libraries that are needed for the target to work!</strong> Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advenced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.</p>
+<p>For linking, use the <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code></a> command.</p>
+<p>Make sure that you <strong>always link against all the libraries that are needed for the target to work!</strong> Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advanced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.</p>
 <h2 id="include-directories">Include directories<a class="headerlink" href="#include-directories" title="Permanent link">&para;</a></h2>
 <p>All the global include directories are stored in the <code>INCLUDE_DIRECTORIES</code> property, to print them, add this to the <code>CMakeLists.txt</code> file:</p>
 <pre><code class="language-cmake">get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)

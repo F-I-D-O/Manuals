@@ -357,6 +357,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#local-packages" class="nav-link">Local packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -501,6 +505,11 @@
     2.  the dependency version does not correspond with the version required by the package you are installing. Check the log for the required version.</p>
 <h2 id="upgrading-pip">Upgrading pip<a class="headerlink" href="#upgrading-pip" title="Permanent link">&para;</a></h2>
 <p>To upgrade pip, use <code>python -m pip install --upgrade pip</code>. Sometimes, this command end ith an error. There can be specific solutions to this, but what always seems to fix the pip is the <a href="https://bootstrap.pypa.io/get-pip.py">get-pip script</a>. Download the script and run it using <code>python get-pip.py</code>.</p>
+<h2 id="local-packages">Local packages<a class="headerlink" href="#local-packages" title="Permanent link">&para;</a></h2>
+<p>A useful method how to develop and test packages is to have them installed locally. This way, each change in the source code is immediately reflected in the package and also in the code that uses the package. To install a package locally, use <code>pip install -e &lt;path to the package&gt;</code>.</p>
+<p>Note that the package needs to be properly initialized first, i.e.:
+- at least one <code>__init__.py</code> file in the package root (optionally others in subpackages)
+- a <code>setup.py</code> file in the parent directory of the package root</p>
 <h1 id="pycharm">Pycharm<a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h1>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="settings-synchronization">Settings synchronization<a class="headerlink" href="#settings-synchronization" title="Permanent link">&para;</a></h3>

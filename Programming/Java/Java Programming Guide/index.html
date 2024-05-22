@@ -344,8 +344,28 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#strings" class="nav-link">Strings</a>
+            <li class="nav-item" data-level="1"><a href="#standard-types" class="nav-link">Standard Types</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#collections" class="nav-link">Collections</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#list" class="nav-link">List</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#set" class="nav-link">Set</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -400,19 +420,6 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#difference-between-myclass-myclassobject-and-myclass" class="nav-link">Difference between MyClass, MyClass&lt;Object&gt;, and MyClass&lt;?&gt;</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#collections" class="nav-link">Collections</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#set" class="nav-link">Set</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -630,7 +637,8 @@
 - <code>toString</code>
 - <code>getters</code> for all parameters
 - <code>constructor</code> that accepts all parameters</p>
-<h1 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h1>
+<h1 id="standard-types">Standard Types<a class="headerlink" href="#standard-types" title="Permanent link">&para;</a></h1>
+<h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
 <p>Classical string literals has to be enclosed in quotes (<code>"my string"</code>). They cannot contain some characters (newline, <code>"</code>). The backslash (<code>\</code>) character is reserved for Java escape sequences  and need to be ecaped as <code>\\</code>.</p>
 <p>In addition, since Java 15, there are text blocks, enclosed in three quotes:</p>
 <pre><code class="language-Java">&quot;&quot;&quot;
@@ -645,6 +653,25 @@ My long
 <p>There are no fstrings in Java, the best way for using variables in strings is to use the <code>String.format</code> method:</p>
 <pre><code class="language-Java">String s = String.format(&quot;My string with %s and %d&quot;, &quot;text&quot;, 5);
 </code></pre>
+<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<p>Java has a rich set of collections. Still, many are missing, notably some tuple class. Also, the typical tuple unpacking known from Python or C++ is not possible in Java and we have to use a verbose way of 1) creating a temporary object for all values, 2) accessing the values using the getters.</p>
+<h3 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+<p>List initialization in Java is complicated compared to other languages. we can initialize the list as:</p>
+<pre><code class="language-Java">List a = List.of(1, 2, 3);
+</code></pre>
+<p>However, this method returns an <strong>immutable</strong> list. If we need a mutable list, we have to pass the list to the <code>ArrayList</code> constructor:</p>
+<pre><code class="language-Java">List a = new ArrayList&lt;&gt;(List.of(1, 2, 3));
+</code></pre>
+<p>but with such a complicated syntax, we can use an input array directly:</p>
+<pre><code class="language-Java">List a = new ArrayList&lt;&gt;(Arrays.asList(1, 2, 3));
+</code></pre>
+<h3 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<p>From java 9, sets can be simply initialized as:</p>
+<pre><code class="language-Java">Set&lt;int&gt; nums = Set.of(1,2,3);
+</code></pre>
+<p>Note that this method returns an immutable set. In the earlier versions of Java, the <code>Collections.singleton</code> method can be used. </p>
+<h3 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h3>
+<p>Some collections can be sorted using the <code>sort</code> member method. It is a <strong>stable</strong> sort, which use the natural order of the elements by default, but it can be customized using a comparator. The comparator interface expects two elements and should return a negative number if the first element is smaller, a positive number if the first element is greater, and zero if the elements are equal. </p>
 <h1 id="overloading">Overloading<a class="headerlink" href="#overloading" title="Permanent link">&para;</a></h1>
 <p>When calling an oveladed method with a null argument, we receive a compilation error: <code>reference to &lt;METHOD&gt; is ambiguous</code>. A solution to this problem is to cast the null pointer to the desired type:</p>
 <pre><code class="language-Java">public set(string s){
@@ -831,14 +858,6 @@ processMyClass(MyClass&lt;?&gt; myClass){...};
 </tr>
 </tbody>
 </table>
-<h1 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h1>
-<h2 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>
-<p>From java 9, sets can be simply initialized as:</p>
-<pre><code class="language-Java">Set&lt;int&gt; nums = Set.of(1,2,3);
-</code></pre>
-<p>Note that this method returns an immutable set. In the earlier versions of Java, the <code>Collections.singleton</code> method can be used. </p>
-<h2 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h2>
-<p>Some collections can be sorted using the <code>sort</code> member method. It is a <strong>stable</strong> sort, which use the natural order of the elements by default, but it can be customized using a comparator. The comparator interface expects two elements and should return a negative number if the first element is smaller, a positive number if the first element is greater, and zero if the elements are equal. </p>
 <h1 id="enums">Enums<a class="headerlink" href="#enums" title="Permanent link">&para;</a></h1>
 <p>Java enumerations are declared using the <code>enum</code> keyword:</p>
 <pre><code class="language-Java">public enum Semaphore{
