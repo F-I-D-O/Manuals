@@ -1011,6 +1011,8 @@ std::function<int(int)> addf = add; // does not compile
 addf(1) // does not compile
 ```
 
+Also, the default parameters need to be values, not references or pointers. For references and pointers, we should use function overloading.
+
 ### Default Parameters and Inheritance
 TLDR: do not use default parameters in virtual functions.
 
@@ -1367,14 +1369,27 @@ Sometimes, a normal constructor can lead to unexpected results, especially if it
 ```cpp
 class My_string {
 public:
-	 String(std::string string); // convert from std::string
-   String(int length);   // construct empty string with a preallocated size
+	String(std::string string); // convert from std::string
+   	String(int length);   // construct empty string with a preallocated size
 };
 
 String s = 10;   // surprise: empty string of size 10 istead of "10"
 ```    
 
 To prevent these surprising conversion, we can mark the constructor `explicit`. The `explicit` keyword before the constructor name prevents the assigment using this constructor. The explicit constructor has to be explicitelly called.    
+
+
+### Call one constructor from another
+We can call one constructor from another using the *[delegating constructor](https://en.cppreference.com/w/cpp/language/constructor#Delegating_constructor)*. The syntax is:
+```cpp
+class My_class{
+public:
+	My_class(int a, int b): a(a), b(b){}
+	My_class(int a): My_class(a, 0){} // delegating constructor
+}
+```
+This way, we can call another constructor of the same class, or of the base class. 
+
 
 ## Copy Constructor
 [cppreference](https://en.cppreference.com/w/cpp/language/copy_constructor)
@@ -1759,6 +1774,7 @@ Inheritance in C++ is similar to other languages, here are the important points:
 - Multiple inheritance is possible.
 - No interfaces. Instead, you can use abstract class with no data members.
 - Virtual functions without implementation needs `= 0` at the end of the declaration (e.g.: `virtual void print() = 0;`)
+- a type is polymorphic if it has at least one virtual function. I.e., the inheritance itself does not make the type polymorphic.
 
 ## Polymorphism
 Polymorphism is a concept for abstraction using which we can provide a single interface for multiple types that share the same parent. In C++, to use the polymorphism, **we need to work with pointers or references**. Imagine that we have these two class and a method that can process the base class:
@@ -1846,7 +1862,7 @@ There are two ways how to call a hideen function:
 
 
 ## Constructors
-Parent constructor is allways called from a child. By default, an empty construcor is called. Alternatively, we can call another constructor in the initializer. When we do not call the parent  constructor in the child's initializer and the parenhas no empty constructor, a compilation error is raised.
+Parent constructor is always called from a child. By default, an empty constructor is called. Alternatively, we can call another constructor in the initializer. When we do not call the parent constructor in the child's initializer and the parent has no empty constructor, a compilation error is raised.
 
 ### Enablinging Parent Constructors in Child
 Implicitly, all methods from parent classes are visible in child, with exception of constructors. Constructors can be inherited manually with a `using` declaration, but only all at once.
@@ -1869,7 +1885,7 @@ Base* base = (Base) child;
 delete base;
 ```
 
-But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, **the best approach for the base class** is to**herefore to: 
+But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, **the best approach for the base class** is to: 
 - declare the **virtual destrucor** as default
 - declare the **default constructor**. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.
 - declare the **copy and move operations as protected**. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  
@@ -3632,8 +3648,13 @@ The `std::variant` can store any of the types specified in the template paramete
 The **type** of the stored value can be obtained using:
 - [`std::holds_alternative`](https://en.cppreference.com/w/cpp/utility/variant/holds_alternative) method that returns a boolean value if the variant stores the type specified in the template parameter or
 - [`std::variant::index`](https://en.cppreference.com/w/cpp/utility/variant/index) method that returns the index of the stored value.
+	- this method can be used also in a **switch statement** as the index is integral
 
-The **value** can be accessed using the `std::get_if` method, which returns a pointer to the stored value. Example:
+The **value** can be accessed using:
+- the [`std::get`](https://en.cppreference.com/w/cpp/utility/variant/get) function, if we know the type stored in the variant or
+- the [`std::get_if`](https://en.cppreference.com/w/cpp/utility/variant/get_if) function if we are guesing the type.
+
+Both functions return a pointer to the stored value. Example:
 ```cpp
 std::variant<int, double> v = 1;
 std::cout << v.index() << std::endl; // prints 0

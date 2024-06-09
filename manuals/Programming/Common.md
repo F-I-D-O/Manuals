@@ -17,6 +17,35 @@
 - **Surround with**: `Ctrl` + `W`
 
 
+
+# Command Line Interface (CLI)
+This chapter should guide you on how to design CLI in a user-friendly and predictable way. Mostly, it follows the [POSIX standard](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html), with the [GNU long option extensions](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html).
+
+There are two main types of CLI arguments:
+- **Options**: (e.g., `--help`, `-h`) are used to change the behavior of the program. They are usually optional and can be in any order.
+- **Operands**: (e.g., `file.txt`) are the input data for the program. They are usually required and their order is important.
+
+All operands should be placed after all options. 
+
+
+## Options
+Options can be of two types:
+- **Short options**: (e.g., `-h`) are one character long and are prefixed with a single dash.
+- **Long options**: (e.g., `--help`) are multi-characcter and are prefixed with two dashes.
+
+Options can have arguments:
+- **Short options** and their arguments are separated by a space or can be concatenated, e.g., `-o file.txt` or `-ofile.txt`. The first variant is strongly recommended.
+- **Long options** and their arguments are separated by a space or can be concatenated with an equal sign, e.g., `--output file.txt` or `--output=file.txt`. 
+
+Also, short options can be grouped, e.g., `-h -v -o file.txt` can be written as `-hvo file.txt`.
+
+
+## Multiple values in one option or operand
+If an option or operand contains multiple values (e.g., a list of files), the values should be separated by a comma, e.g., `--files file1.txt,file2.txt,file3.txt`.
+
+
+
+
 # Tests
 
 ## Testing private methods
