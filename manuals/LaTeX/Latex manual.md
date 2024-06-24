@@ -287,6 +287,12 @@ The float environment for figures is `figure`. The image itself is included usin
 
 The mandatory argument of the `\includegraphics` command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main `.tex` file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.
 
+Optional arguments of the `\includegraphics` command are the following:
+- `width`: the width of the image.
+    - example: `\includegraphics[width=0.5\textwidth]{image.png}`
+- `scale`: the scale of the image with respect to the original size.
+    - example: `\includegraphics[scale=0.5]{image.png}`
+
 
 ### Subfigures
 For more images in one float, we can use the `subfigure` environment from the [`subcaption`](https://ctan.org/pkg/subcaption) package. The `subfigure` environment is used as follows:
@@ -877,11 +883,24 @@ There are multiple commands for citing, each resulting in a different output. Th
 Unfortunately, the commands for these two variants are not consistent across the bibliography packages. The following table summarizes the commands for the two variants:
 | Package | In-text citation | Parenthetical citation | Full citation |
 | --- | --- | --- | --- |
-| Biblatex | `\textcite{<key>}` | `\cite{<key>}` | `\fullcite{<key>}` |
+| Biblatex | `\textcite{<key>}` | `\cite{<key>}` (`\parencite` for APA) | `\fullcite{<key>}` |
 | Natbib | `\cite{<key>}` | `\citep{<key>}` | `\bibentry{<key>}` (requires the [`bibentry`](https://ctan.org/pkg/bibentry) package) |
 
 There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
 - [Natbib styles](https://www.overleaf.com/learn/latex/Natbib_citation_styles)
+
+### Adittional details for citation (page number, chapter, ... )
+To add additional details to the citation, we can use the optional argument of the citation command:
+```latex
+\cite[page~123]{key}
+```
+
+
+### Adding a reference to the bibliography without citing it
+For this, we use the `\nocite` command. Example:
+```latex
+\nocite{key}
+```
 
 
 ## Bibliography entries
@@ -905,10 +924,10 @@ Other sources:
 
 
 
-# Custom commands
+# Custom commands and variables
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Macros)
 
-Basic syntax for defining a new command is:
+Basic syntax for defining a new command or variable is:
 ```latex
 \newcommand{\<command name>}[<number of arguments>]{<command definition>}
 ```

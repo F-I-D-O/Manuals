@@ -160,6 +160,8 @@ Existing natvis files are stored in `<VS Installation Folder>\Common7\Packages\D
 
 
 ## Debugger manual
+Be aware that in **CLion debugger, the program does not terminate on unhandled exceptions by default.** 
+
 ### Address breakpoints
 Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.
 
@@ -167,7 +169,7 @@ To set an address breakpoint, we nned to first find the address of the variable.
 - use the `&` operator on the variable in the watch window
 - use the `&` operator on the variable in the immediate window
 
-The addres should have a format `0x0000000000000000`.
+The address should have a format `0x0000000000000000`.
 
 
 

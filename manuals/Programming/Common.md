@@ -45,6 +45,13 @@ If an option or operand contains multiple values (e.g., a list of files), the va
 
 
 
+# Exceptions
+Exceptions should be used to handle erroneus situations that are expected to happen. Exceptions should **not** be used for:
+- **Flow control**, e.g., parse float from input, catch exception and try integer, then catch exception and try string... 
+- **Unexpected situations**, e.g., a method should always return a positive number, but it returns a negative one. For this we should use assertions, not exceptions.
+
+There are many types of exceptions, encapsulating different types of error description data. However, to begin with, it is not important to use some specific exception type. Using some general exception class is always much better than not using exceptions at all.
+
 
 # Tests
 

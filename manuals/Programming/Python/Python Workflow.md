@@ -169,4 +169,5 @@ Finally, create a new Python project (either clean, or from existing code) and c
 ## Release
 1. raise version
 2. run sdist
-3. upload to pypi: twine upload dist/*
+	- in Pycharm: `Tools` -> `Run setup.py task` -> `sdist`
+3. upload to pypi: `twine upload dist/*`

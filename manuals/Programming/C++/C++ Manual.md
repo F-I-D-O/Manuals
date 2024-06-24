@@ -591,7 +591,9 @@ std::string s = "hello"; // s stores a copy of the string literal "hello"
 ```
 
 
-### [String Literals](https://en.cppreference.com/w/cpp/language/string_literal)
+### String Literals
+[cppreference]](https://en.cppreference.com/w/cpp/language/string_literal)
+
  The standard string literal is writen as `"literal"`. However, we need to escape some **special characters** in such literals, therefore, a *raw string* literal is sometimes more desirable: `R"(literal)"`.
  
  If our literal contains `(` or `)`, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
@@ -3070,7 +3072,45 @@ Standard runtime error can be thrown using the [`std::runtime_error`](https://en
 throw std::runtime_error("message");
 ```
 
-Always catch exception by reference!
+Always catch exception by reference! 
+
+Note that unlike in Java or Python, there is no default exception handler in C++. Therefore, if an exception is not caught and, in conclusion, the program is terminated, there is no useful information about the exception in the standard output. Instead, we only receive the exit code. For this reason, it is a good practice to catch all exceptions in the main function and print the error message. Example:
+```cpp
+int main() {
+	try {
+		<the code of the whole program here>
+	} catch(...) {
+		const std::exception_ptr& eptr = std::current_exception()
+		if (!eptr) {
+        	throw std::bad_exception();
+		}
+
+		/*char* message;*/
+		std::string message;
+		try {
+			std::rethrow_exception(eptr);
+		}
+		catch (const std::exception& e) {
+			message = e.what();
+		}
+		catch (const std::string& e) {
+			message = e;
+		}
+		catch (const char* e) {
+			message = e;
+		}
+		catch(const GRBException& ex) {
+			message = fmt::format("{}: {}", ex.getErrorCode(), ex.getMessage());
+		}
+		catch (...) {
+			message = "Unknown error";
+		}
+
+		spdlog::error(message);
+		return message;
+	}
+}
+```
 
 
 ## Rethrowing Exceptions
@@ -3670,6 +3710,12 @@ std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
 More on variants:
 - [cppreference](https://en.cppreference.com/w/cpp/utility/variant)
 - [cppstories](https://www.cppstories.com/2018/06/variant/)
+
+
+# Command Line Interface
+For CLI, please follow the [CLI manual](../Common.md#command-line-interface). Here we focus on setting up the [TCLAP](http://tclap.sourceforge.net/manual.html) library.
+
+TCLAP use
 
 
 # Jinja-like Templating

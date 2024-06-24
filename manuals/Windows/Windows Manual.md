@@ -279,6 +279,12 @@ git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 ```
 
 
+# Dual Boot
+
+## Make Windows Work after Linux Uninstall if the Bootloader is Grub
+1. Get rid of the Grub bootloader
+2. Set the Windows bootloader as the primary partition
+	- it is the small partition at the beginning of the main disk
 
 
 
