@@ -133,6 +133,10 @@
 </li>
             
 <li>
+    <a href="../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
     <a href="../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
@@ -159,10 +163,6 @@
 </li>
                                     
 <li>
-    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
-</li>
-                                    
-<li>
     <a href="../Gurobi/" class="dropdown-item">Gurobi</a>
 </li>
                                     
@@ -176,10 +176,6 @@
                                     
 <li>
     <a href="../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
-</li>
-                                    
-<li>
-    <a href="../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
 <li>
@@ -243,6 +239,19 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -259,35 +268,52 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
                             </li>
                             <li class="navitem">
-                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="navitem">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Midjourney/" class="nav-link">Midjourney</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Photopea/" class="nav-link">Photopea</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                         </ul>
 
@@ -331,6 +357,24 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#options" class="nav-link">Options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#multiple-values-in-one-option-or-operand" class="nav-link">Multiple values in one option or operand</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -383,6 +427,27 @@
 </li>
 <li><strong>Surround with</strong>: <code>Ctrl</code> + <code>W</code></li>
 </ul>
+<h1 id="command-line-interface-cli">Command Line Interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Permanent link">&para;</a></h1>
+<p>This chapter should guide you on how to design CLI in a user-friendly and predictable way. Mostly, it follows the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">POSIX standard</a>, with the <a href="https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html">GNU long option extensions</a>.</p>
+<p>There are two main types of CLI arguments:
+- <strong>Options</strong>: (e.g., <code>--help</code>, <code>-h</code>) are used to change the behavior of the program. They are usually optional and can be in any order.
+- <strong>Operands</strong>: (e.g., <code>file.txt</code>) are the input data for the program. They are usually required and their order is important.</p>
+<p>All operands should be placed after all options. </p>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<p>Options can be of two types:
+- <strong>Short options</strong>: (e.g., <code>-h</code>) are one character long and are prefixed with a single dash.
+- <strong>Long options</strong>: (e.g., <code>--help</code>) are multi-characcter and are prefixed with two dashes.</p>
+<p>Options can have arguments:
+- <strong>Short options</strong> and their arguments are separated by a space or can be concatenated, e.g., <code>-o file.txt</code> or <code>-ofile.txt</code>. The first variant is strongly recommended.
+- <strong>Long options</strong> and their arguments are separated by a space or can be concatenated with an equal sign, e.g., <code>--output file.txt</code> or <code>--output=file.txt</code>. </p>
+<p>Also, short options can be grouped, e.g., <code>-h -v -o file.txt</code> can be written as <code>-hvo file.txt</code>.</p>
+<h2 id="multiple-values-in-one-option-or-operand">Multiple values in one option or operand<a class="headerlink" href="#multiple-values-in-one-option-or-operand" title="Permanent link">&para;</a></h2>
+<p>If an option or operand contains multiple values (e.g., a list of files), the values should be separated by a comma, e.g., <code>--files file1.txt,file2.txt,file3.txt</code>.</p>
+<h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
+<p>Exceptions should be used to handle erroneus situations that are expected to happen. Exceptions should <strong>not</strong> be used for:
+- <strong>Flow control</strong>, e.g., parse float from input, catch exception and try integer, then catch exception and try string... 
+- <strong>Unexpected situations</strong>, e.g., a method should always return a positive number, but it returns a negative one. For this we should use assertions, not exceptions.</p>
+<p>There are many types of exceptions, encapsulating different types of error description data. However, to begin with, it is not important to use some specific exception type. Using some general exception class is always much better than not using exceptions at all.</p>
 <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
 <h2 id="testing-private-methods">Testing private methods<a class="headerlink" href="#testing-private-methods" title="Permanent link">&para;</a></h2>
 <p>An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.</p>

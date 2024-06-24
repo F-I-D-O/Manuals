@@ -133,6 +133,10 @@
 </li>
             
 <li>
+    <a href="../../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
     <a href="../../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
@@ -159,10 +163,6 @@
 </li>
                                     
 <li>
-    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
-</li>
-                                    
-<li>
     <a href="../../Gurobi/" class="dropdown-item">Gurobi</a>
 </li>
                                     
@@ -176,10 +176,6 @@
                                     
 <li>
     <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
-</li>
-                                    
-<li>
-    <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
 <li>
@@ -243,6 +239,19 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -259,35 +268,52 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
                             </li>
                             <li class="navitem">
-                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                         </ul>
 
@@ -653,12 +679,13 @@ Get_type&lt;&lt;TYPE TO GET&gt;&gt; my_type{};
 <h3 id="existing-visualisations">Existing visualisations<a class="headerlink" href="#existing-visualisations" title="Permanent link">&para;</a></h3>
 <p>Existing natvis files are stored in <code>&lt;VS Installation Folder&gt;\Common7\Packages\Debugger\Visualizers</code> folder. The STL visualizations are in <code>stl.natvis</code></p>
 <h2 id="debugger-manual">Debugger manual<a class="headerlink" href="#debugger-manual" title="Permanent link">&para;</a></h2>
+<p>Be aware that in <strong>CLion debugger, the program does not terminate on unhandled exceptions by default.</strong> </p>
 <h3 id="address-breakpoints">Address breakpoints<a class="headerlink" href="#address-breakpoints" title="Permanent link">&para;</a></h3>
 <p>Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.</p>
 <p>To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:
 - use the <code>&amp;</code> operator on the variable in the watch window
 - use the <code>&amp;</code> operator on the variable in the immediate window</p>
-<p>The addres should have a format <code>0x0000000000000000</code>.</p>
+<p>The address should have a format <code>0x0000000000000000</code>.</p>
 <h2 id="memory-errors">Memory Errors<a class="headerlink" href="#memory-errors" title="Permanent link">&para;</a></h2>
 <p>These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:
 - <em>Read Access Violation</em>

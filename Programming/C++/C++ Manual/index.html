@@ -133,6 +133,10 @@
 </li>
             
 <li>
+    <a href="../../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
     <a href="../../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
@@ -159,10 +163,6 @@
 </li>
                                     
 <li>
-    <a href="../../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
-</li>
-                                    
-<li>
     <a href="../../Gurobi/" class="dropdown-item">Gurobi</a>
 </li>
                                     
@@ -176,10 +176,6 @@
                                     
 <li>
     <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
-</li>
-                                    
-<li>
-    <a href="../../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
 <li>
@@ -243,6 +239,19 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -259,35 +268,52 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
                             </li>
                             <li class="navitem">
-                                <a href="../../../FFMpeg/" class="nav-link">FFMpeg</a>
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Midjourney/" class="nav-link">Midjourney</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../Photopea/" class="nav-link">Photopea</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                         </ul>
 
@@ -766,6 +792,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#explicit-constructor" class="nav-link">Explicit constructor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#call-one-constructor-from-another" class="nav-link">Call one constructor from another</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1463,6 +1493,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#command-line-interface" class="nav-link">Command Line Interface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#jinja-like-templating" class="nav-link">Jinja-like Templating</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#exceptions_1" class="nav-link">Exceptions</a>
@@ -1964,7 +1999,8 @@ Reference wrapper is a class template that can be used to store references in co
 <pre><code class="language-cpp">std::string_view sv = &quot;hello&quot;; // sv is a view of the string literal &quot;hello&quot;
 std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quot;hello&quot;
 </code></pre>
-<h3 id="string-literals"><a href="https://en.cppreference.com/w/cpp/language/string_literal">String Literals</a><a class="headerlink" href="#string-literals" title="Permanent link">&para;</a></h3>
+<h3 id="string-literals">String Literals<a class="headerlink" href="#string-literals" title="Permanent link">&para;</a></h3>
+<p>[cppreference]](https://en.cppreference.com/w/cpp/language/string_literal)</p>
 <p>The standard string literal is writen as <code>"literal"</code>. However, we need to escape some <strong>special characters</strong> in such literals, therefore, a <em>raw string</em> literal is sometimes more desirable: <code>R"(literal)"</code>.</p>
 <p>If our literal contains <code>(</code> or <code>)</code>, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
  <code>R"lit(literal)lit"</code>. </p>
@@ -2298,6 +2334,7 @@ std::function&lt;int(int)&gt; addf = add; // does not compile
 
 addf(1) // does not compile
 </code></pre>
+<p>Also, the default parameters need to be values, not references or pointers. For references and pointers, we should use function overloading.</p>
 <h3 id="default-parameters-and-inheritance">Default Parameters and Inheritance<a class="headerlink" href="#default-parameters-and-inheritance" title="Permanent link">&para;</a></h3>
 <p>TLDR: do not use default parameters in virtual functions.</p>
 <p>The default parameters are resolved at compile time. Therefore, the value does not depend on the actual type of the object, but on the declared type of the variable. This have following consequences:
@@ -2565,13 +2602,22 @@ Default member initializer | yes, if we use direct initialization | yes</p>
 <p>Sometimes, a normal constructor can lead to unexpected results, especially if it has only a single argument:</p>
 <pre><code class="language-cpp">class My_string {
 public:
-     String(std::string string); // convert from std::string
-   String(int length);   // construct empty string with a preallocated size
+    String(std::string string); // convert from std::string
+    String(int length);   // construct empty string with a preallocated size
 };
 
 String s = 10;   // surprise: empty string of size 10 istead of &quot;10&quot;
 </code></pre>
 <p>To prevent these surprising conversion, we can mark the constructor <code>explicit</code>. The <code>explicit</code> keyword before the constructor name prevents the assigment using this constructor. The explicit constructor has to be explicitelly called.    </p>
+<h3 id="call-one-constructor-from-another">Call one constructor from another<a class="headerlink" href="#call-one-constructor-from-another" title="Permanent link">&para;</a></h3>
+<p>We can call one constructor from another using the <em><a href="https://en.cppreference.com/w/cpp/language/constructor#Delegating_constructor">delegating constructor</a></em>. The syntax is:</p>
+<pre><code class="language-cpp">class My_class{
+public:
+    My_class(int a, int b): a(a), b(b){}
+    My_class(int a): My_class(a, 0){} // delegating constructor
+}
+</code></pre>
+<p>This way, we can call another constructor of the same class, or of the base class. </p>
 <h2 id="copy-constructor">Copy Constructor<a class="headerlink" href="#copy-constructor" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/copy_constructor">cppreference</a></p>
 <p>A copy constructor is called if an object is initialized from another object unless the move constructor is called as a better fit or the call is optimized out by <a href="https://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>. Some examples:
@@ -2870,7 +2916,8 @@ if (node[&quot;key&quot;]) {
 - To enable overiding, a member function needs to be declared as <code>virtual</code>. Otherwise, it will be just hidden in a child with a function with the same name, and the <code>override</code> specifier cannot be used (see Shadowing).
 - Multiple inheritance is possible.
 - No interfaces. Instead, you can use abstract class with no data members.
-- Virtual functions without implementation needs <code>= 0</code> at the end of the declaration (e.g.: <code>virtual void print() = 0;</code>)</p>
+- Virtual functions without implementation needs <code>= 0</code> at the end of the declaration (e.g.: <code>virtual void print() = 0;</code>)
+- a type is polymorphic if it has at least one virtual function. I.e., the inheritance itself does not make the type polymorphic.</p>
 <h2 id="polymorphism">Polymorphism<a class="headerlink" href="#polymorphism" title="Permanent link">&para;</a></h2>
 <p>Polymorphism is a concept for abstraction using which we can provide a single interface for multiple types that share the same parent. In C++, to use the polymorphism, <strong>we need to work with pointers or references</strong>. Imagine that we have these two class and a method that can process the base class:</p>
 <pre><code class="language-c++">class Base {
@@ -2942,7 +2989,7 @@ int main()
         return 0;
     }</code></p>
 <h2 id="constructors">Constructors<a class="headerlink" href="#constructors" title="Permanent link">&para;</a></h2>
-<p>Parent constructor is allways called from a child. By default, an empty construcor is called. Alternatively, we can call another constructor in the initializer. When we do not call the parent  constructor in the child's initializer and the parenhas no empty constructor, a compilation error is raised.</p>
+<p>Parent constructor is always called from a child. By default, an empty constructor is called. Alternatively, we can call another constructor in the initializer. When we do not call the parent constructor in the child's initializer and the parent has no empty constructor, a compilation error is raised.</p>
 <h3 id="enablinging-parent-constructors-in-child">Enablinging Parent Constructors in Child<a class="headerlink" href="#enablinging-parent-constructors-in-child" title="Permanent link">&para;</a></h3>
 <p>Implicitly, all methods from parent classes are visible in child, with exception of constructors. Constructors can be inherited manually with a <code>using</code> declaration, but only all at once.
 To enable only some constructors, we need to repeat them manually as child constructors and call parent construcors from them.</p>
@@ -2958,10 +3005,10 @@ public:
 Base* base = (Base) child;
 delete base;
 </code></pre>
-<p>But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, <strong>the best approach for the base class</strong> is to<strong>herefore to: 
-- declare the </strong>virtual destrucor<strong> as default
-- declare the </strong>default constructor<strong>. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.
-- declare the </strong>copy and move operations as protected**. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  </p>
+<p>But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, <strong>the best approach for the base class</strong> is to: 
+- declare the <strong>virtual destrucor</strong> as default
+- declare the <strong>default constructor</strong>. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.
+- declare the <strong>copy and move operations as protected</strong>. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  </p>
 <h3 id="initializing-base-class-members">Initializing base class members<a class="headerlink" href="#initializing-base-class-members" title="Permanent link">&para;</a></h3>
 <p>The base class members cannot be initialized in the child constructor initializer. Instead, we need to create a constructor in the base class and call it from the child constructor initializer.</p>
 <h2 id="slicing">Slicing<a class="headerlink" href="#slicing" title="Permanent link">&para;</a></h2>
@@ -3865,7 +3912,43 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies&lt;int&
 <p>Standard runtime error can be thrown using the <a href="https://en.cppreference.com/w/cpp/error/runtime_error"><code>std::runtime_error</code></a> class:</p>
 <pre><code class="language-cpp">throw std::runtime_error(&quot;message&quot;);
 </code></pre>
-<p>Always catch exception by reference!</p>
+<p>Always catch exception by reference! </p>
+<p>Note that unlike in Java or Python, there is no default exception handler in C++. Therefore, if an exception is not caught and, in conclusion, the program is terminated, there is no useful information about the exception in the standard output. Instead, we only receive the exit code. For this reason, it is a good practice to catch all exceptions in the main function and print the error message. Example:</p>
+<pre><code class="language-cpp">int main() {
+    try {
+        &lt;the code of the whole program here&gt;
+    } catch(...) {
+        const std::exception_ptr&amp; eptr = std::current_exception()
+        if (!eptr) {
+            throw std::bad_exception();
+        }
+
+        /*char* message;*/
+        std::string message;
+        try {
+            std::rethrow_exception(eptr);
+        }
+        catch (const std::exception&amp; e) {
+            message = e.what();
+        }
+        catch (const std::string&amp; e) {
+            message = e;
+        }
+        catch (const char* e) {
+            message = e;
+        }
+        catch(const GRBException&amp; ex) {
+            message = fmt::format(&quot;{}: {}&quot;, ex.getErrorCode(), ex.getMessage());
+        }
+        catch (...) {
+            message = &quot;Unknown error&quot;;
+        }
+
+        spdlog::error(message);
+        return message;
+    }
+}
+</code></pre>
 <h2 id="rethrowing-exceptions">Rethrowing Exceptions<a class="headerlink" href="#rethrowing-exceptions" title="Permanent link">&para;</a></h2>
 <p>We can rethrow an exception like this:</p>
 <pre><code class="language-cpp">catch(const std::exception&amp; ex){
@@ -4305,8 +4388,12 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
 <p>The <code>std::variant</code> can store any of the types specified in the template parameters. </p>
 <p>The <strong>type</strong> of the stored value can be obtained using:
 - <a href="https://en.cppreference.com/w/cpp/utility/variant/holds_alternative"><code>std::holds_alternative</code></a> method that returns a boolean value if the variant stores the type specified in the template parameter or
-- <a href="https://en.cppreference.com/w/cpp/utility/variant/index"><code>std::variant::index</code></a> method that returns the index of the stored value.</p>
-<p>The <strong>value</strong> can be accessed using the <code>std::get_if</code> method, which returns a pointer to the stored value. Example:</p>
+- <a href="https://en.cppreference.com/w/cpp/utility/variant/index"><code>std::variant::index</code></a> method that returns the index of the stored value.
+    - this method can be used also in a <strong>switch statement</strong> as the index is integral</p>
+<p>The <strong>value</strong> can be accessed using:
+- the <a href="https://en.cppreference.com/w/cpp/utility/variant/get"><code>std::get</code></a> function, if we know the type stored in the variant or
+- the <a href="https://en.cppreference.com/w/cpp/utility/variant/get_if"><code>std::get_if</code></a> function if we are guesing the type.</p>
+<p>Both functions return a pointer to the stored value. Example:</p>
 <pre><code class="language-cpp">std::variant&lt;int, double&gt; v = 1;
 std::cout &lt;&lt; v.index() &lt;&lt; std::endl; // prints 0
 std::cout &lt;&lt; *std::get_if&lt;int&gt;(&amp;v) &lt;&lt; std::endl; // prints 1
@@ -4318,6 +4405,9 @@ std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }
 <p>More on variants:
 - <a href="https://en.cppreference.com/w/cpp/utility/variant">cppreference</a>
 - <a href="https://www.cppstories.com/2018/06/variant/">cppstories</a></p>
+<h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h1>
+<p>For CLI, please follow the <a href="../../Common/#command-line-interface">CLI manual</a>. Here we focus on setting up the <a href="http://tclap.sourceforge.net/manual.html">TCLAP</a> library.</p>
+<p>TCLAP use</p>
 <h1 id="jinja-like-templating">Jinja-like Templating<a class="headerlink" href="#jinja-like-templating" title="Permanent link">&para;</a></h1>
 <p>For working with Jinja-like templates, we can use the <a href="https://github.com/pantor/inja">Inja</a> template engine. </p>
 <h2 id="exceptions_1">Exceptions<a class="headerlink" href="#exceptions_1" title="Permanent link">&para;</a></h2>

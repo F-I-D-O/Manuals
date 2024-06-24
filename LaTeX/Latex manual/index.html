@@ -133,6 +133,10 @@
 </li>
             
 <li>
+    <a href="../../Programming/Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
     <a href="../../Programming/Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
@@ -159,10 +163,6 @@
 </li>
                                     
 <li>
-    <a href="../../Programming/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
-</li>
-                                    
-<li>
     <a href="../../Programming/Gurobi/" class="dropdown-item">Gurobi</a>
 </li>
                                     
@@ -176,10 +176,6 @@
                                     
 <li>
     <a href="../../Programming/Native%20Libraries/" class="dropdown-item">Native Libraries</a>
-</li>
-                                    
-<li>
-    <a href="../../Programming/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
 <li>
@@ -243,6 +239,19 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -259,35 +268,52 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
                             </li>
                             <li class="navitem">
-                                <a href="../../FFMpeg/" class="nav-link">FFMpeg</a>
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="navitem">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Midjourney/" class="nav-link">Midjourney</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Overpass%20Manual/" class="nav-link">Overpass Manual</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../Photopea/" class="nav-link">Photopea</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../../QGIS/" class="nav-link">QGIS</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                         </ul>
 
@@ -671,6 +697,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#commands-for-citing" class="nav-link">Commands for citing</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#adittional-details-for-citation-page-number-chapter" class="nav-link">Adittional details for citation (page number, chapter, ... )</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#adding-a-reference-to-the-bibliography-without-citing-it" class="nav-link">Adding a reference to the bibliography without citing it</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#bibliography-entries" class="nav-link">Bibliography entries</a>
@@ -680,7 +714,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#custom-commands" class="nav-link">Custom commands</a>
+            <li class="nav-item" data-level="1"><a href="#custom-commands-and-variables" class="nav-link">Custom commands and variables</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#providing-default-values-for-arguments" class="nav-link">Providing default values for arguments</a>
               <ul class="nav flex-column">
@@ -949,6 +983,11 @@ Some text at the bottom
 <h2 id="figures">Figures<a class="headerlink" href="#figures" title="Permanent link">&para;</a></h2>
 <p>The float environment for figures is <code>figure</code>. The image itself is included using the <code>\includegraphics</code> command. </p>
 <p>The mandatory argument of the <code>\includegraphics</code> command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main <code>.tex</code> file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.</p>
+<p>Optional arguments of the <code>\includegraphics</code> command are the following:
+- <code>width</code>: the width of the image.
+    - example: <code>\includegraphics[width=0.5\textwidth]{image.png}</code>
+- <code>scale</code>: the scale of the image with respect to the original size.
+    - example: <code>\includegraphics[scale=0.5]{image.png}</code></p>
 <h3 id="subfigures">Subfigures<a class="headerlink" href="#subfigures" title="Permanent link">&para;</a></h3>
 <p>For more images in one float, we can use the <code>subfigure</code> environment from the <a href="https://ctan.org/pkg/subcaption"><code>subcaption</code></a> package. The <code>subfigure</code> environment is used as follows:</p>
 <pre><code class="language-latex">\begin{figure}[h]
@@ -1400,10 +1439,18 @@ a_{x^*} % correct print
 <p>Unfortunately, the commands for these two variants are not consistent across the bibliography packages. The following table summarizes the commands for the two variants:
 | Package | In-text citation | Parenthetical citation | Full citation |
 | --- | --- | --- | --- |
-| Biblatex | <code>\textcite{&lt;key&gt;}</code> | <code>\cite{&lt;key&gt;}</code> | <code>\fullcite{&lt;key&gt;}</code> |
+| Biblatex | <code>\textcite{&lt;key&gt;}</code> | <code>\cite{&lt;key&gt;}</code> (<code>\parencite</code> for APA) | <code>\fullcite{&lt;key&gt;}</code> |
 | Natbib | <code>\cite{&lt;key&gt;}</code> | <code>\citep{&lt;key&gt;}</code> | <code>\bibentry{&lt;key&gt;}</code> (requires the <a href="https://ctan.org/pkg/bibentry"><code>bibentry</code></a> package) |</p>
 <p>There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
 - <a href="https://www.overleaf.com/learn/latex/Natbib_citation_styles">Natbib styles</a></p>
+<h3 id="adittional-details-for-citation-page-number-chapter">Adittional details for citation (page number, chapter, ... )<a class="headerlink" href="#adittional-details-for-citation-page-number-chapter" title="Permanent link">&para;</a></h3>
+<p>To add additional details to the citation, we can use the optional argument of the citation command:</p>
+<pre><code class="language-latex">\cite[page~123]{key}
+</code></pre>
+<h3 id="adding-a-reference-to-the-bibliography-without-citing-it">Adding a reference to the bibliography without citing it<a class="headerlink" href="#adding-a-reference-to-the-bibliography-without-citing-it" title="Permanent link">&para;</a></h3>
+<p>For this, we use the <code>\nocite</code> command. Example:</p>
+<pre><code class="language-latex">\nocite{key}
+</code></pre>
 <h2 id="bibliography-entries">Bibliography entries<a class="headerlink" href="#bibliography-entries" title="Permanent link">&para;</a></h2>
 <p>There are many types of bibliography entries, each of them with different fields. to make things even more complicated, these entries does not match the entry types in Zotero. To make it easier, many use-cases are covered in the table below:</p>
 <table>
@@ -1461,9 +1508,9 @@ a_{x^*} % correct print
 - <a href="https://mirrors.nic.cz/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf">Biblatex documentation</a>
 - <a href="https://www.zotero.org/support/kb/item_types_and_fields">Zotero documentation</a>
 - <a href="https://www.zotero.org/support/kb/legal_citations">Zotero legal types</a></p>
-<h1 id="custom-commands">Custom commands<a class="headerlink" href="#custom-commands" title="Permanent link">&para;</a></h1>
+<h1 id="custom-commands-and-variables">Custom commands and variables<a class="headerlink" href="#custom-commands-and-variables" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Macros">wiki</a></p>
-<p>Basic syntax for defining a new command is:</p>
+<p>Basic syntax for defining a new command or variable is:</p>
 <pre><code class="language-latex">\newcommand{\&lt;command name&gt;}[&lt;number of arguments&gt;]{&lt;command definition&gt;}
 </code></pre>
 <p>The number of arguments is optional. If it is not specified, the command does not take any arguments.</p>
