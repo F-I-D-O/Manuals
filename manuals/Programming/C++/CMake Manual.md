@@ -428,7 +428,9 @@ The list of source files should contain all the source files that are needed to 
 
 
 ## Setting include directories
-To include the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command.
+To include the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command. The difference:
+- **target specification**: `target_include_directories` specifies the include directories for a specific target, while `include_directories` specifies the include directories for all targets in the current directory.
+- **mode specification**: `target_include_directories` specifies the mode of the include directories (e.g., `PUBLIC`, `PRIVATE`, `INTERFACE`), while `include_directories` behaves simillar to `PRIVATE`. Therefore, for libraries, the `target_include_directories` has to be used.
 
 
 
