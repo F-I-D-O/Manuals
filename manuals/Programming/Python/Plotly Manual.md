@@ -26,6 +26,7 @@ import plotly.express as px
 - `color_discrete_sequence`: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.
 - `title`: the title of the plot. 
 - `hover_data`: the list of columns to show in the hover tooltip. Axes columns are shown automatically.
+- `text`: text labels for the data points. 
 
 
 ### Automatic color assignment
@@ -128,23 +129,15 @@ fig.update_xaxes(matches=None)
 fig.update_yaxes(matches=None)
 ```
 
-### Removing the column name from the row/column annotations
-For each row and column, a label is added to the subplot. This label has a format of `<column name> = <value>`. To remove the column name, we can use the `for_each_annotation` function. Example:
-```python
-fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
-```
-
-
 ### Sharing the axes titles between rows and columns
-Unfortunately, the axes titles cannot be easily shared between rows and columns. The only way is to delete the titles and add shared titles manually using the `add_annotation` function. Example:
+Unfortunately, the axes titles cannot be easily shared between rows and columns. The only way is configure the axis text manually. Example:
 ```python
-# shared y axis title
-fig.for_each_yaxis(lambda y: y.update(title = ''))
-fig.add_annotation(x=-0.05, y=0.5, text="Vehicle hours", textangle=-90, xref="paper", yref="paper", showarrow=False)
+# remove y axis titles except for the first subplot
+for i in range(1, 4):
+    fig.update_yaxes(title_text='', row=1, col=i)
+# set the text of the first y axis
+fig.update_yaxes(title_text="Comp. time relative to IH", row=1, col=1)
 
-# shared x axis title
-fig.for_each_xaxis(lambda y: y.update(title = ''))
-fig.add_annotation(x=0.5, y=-0.12, text="Occupancy",  xref="paper", yref="paper", showarrow=False)
 ```
 
 
@@ -370,7 +363,7 @@ Another thing we usually want to customize are the ticks. Important tick paramet
     - for percentage, we can use `".0%"` for integer percentage and `".1%"` for one decimal place. Note that this way, the `%` sign is added automatically to each tick label. If we do not want this, we can either set the text manually using the `ticktext` parameter, or multiply the data by 100.
 
 Other important parameters are:
-- `title_text`: the title of the axis. Note that **this text is only used if the tickavls are set manually**.
+- `title_text`: the title of the axis. 
 - `linecolor`: the color of the axis line
 - `gridcolor`: the color of the grid lines
 - `mirror`: if `True`, the axis line will be mirrored to the other side of the plot
@@ -559,8 +552,15 @@ Important parameters:
 - `x`, `y`: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
 - `xanchor`, `yanchor`: the position of the title relative to the x and y coordinates. Can be `left`, `center` or `right` for `xanchor` and `top`, `middle` or `bottom` for `yanchor`.
 
+### Subplot titles
 
-### Individual subplot titles
+#### Automatic subplot titles (facet plots)
+When using facet plots, the subplot titles are generated automatically as `<facet column name>=<facet column value>`. Usually, we want to remove the column name and keep only the value. To do this, we can use the `for_each_annotation` function. Example:
+```python
+fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
+``` 
+
+#### Individual subplot titles
 To set the title of an individual subplot, we can use the `subplot_titles` parameter of the `make_subplots` function. 
 
 

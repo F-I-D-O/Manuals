@@ -121,6 +121,9 @@ Be aware that in string, we use only one pair of curly braces (see [variable ref
 message(STATUS "dir=$ENV{dir}")
 ```
 
+### Built-in variables
+- `CMAKE_CURRENT_SOURCE_DIR` - the directory where the currently processed `CMakeLists.txt` file is located.
+
 
 ### Print all variables
 To print all variables, the following function can be used:
