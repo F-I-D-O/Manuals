@@ -448,4 +448,83 @@ git config core.ignorecase false
 
 
 
+# Installation and Publishing
+Here, we describe how to make some library or executable available in the system (*installation*) and how to distribute it to other users (*publishing*).
 
+## Vcpkg
+Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
+1. Crate the port
+2. Test the port by installing it locally (*installation*)
+3. Submit the port to the vcpkg repository (*publishing*) 
+
+### Create the Port
+The usual port contain these files:
+- `portfile.cmake`: the main file containing the calls to cmake functions that install the package
+- `vcpkg.json`: metadata file containing the package name, version, dependencies, etc.
+
+A simple `portfile.cmake` can look like this:
+```cmake
+
+# download the source code
+vcpkg_from_github(
+	OUT_SOURCE_PATH SOURCE_PATH
+	REPO <reo owner>/<repo name>
+	REF <branch name>
+	SHA512 <hash of the files>
+)
+
+# configure the source code
+vcpkg_cmake_configure(
+	SOURCE_PATH <path to source dir>
+)
+
+# build the source code and install it
+vcpkg_cmake_install()
+
+# fix the cmake generaed files for vcpkg
+vcpkg_cmake_config_fixup(PACKAGE_NAME <package name>)
+```
+
+Explanation:
+- [`vcpkg_from_github`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github): downloads the source code from the github repository
+	- the `<path to source dir>` is the directory where the `CMakeLists.txt` file is located. It is usually the directory where the source code is downloaded, so we can set it to `${SOURCE_PATH}`
+	- the `<hash of the files>` can be easily obtained by:
+		1.  setting the `<hash of files> to 0
+		2.  running the `vcpkg install <port name>`
+		3.  copying the hash from the error message
+- [`vcpkg_cmake_configure`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure): configures the source code using cmake (wraps the `cmake` command)
+- [`vcpkg_cmake_install`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install): builds and installs the source code (wraps the `cmake --build . --target install` command)
+	- the majority of code is in the subroutine [`vcpkg_cmake_build`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build)
+	- **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the `ADD_BIN_TO_PATH` option in the `vcpkg_cmake_install` function**. This is needed as the automatic dll copy to the output dir (`VCPKG_APPLOCAL_DEPS`) is disabelled by the `vcpkg_cmake_build` function. This option solve the problem by prepending the `PATH` environment variable with the path to the vcpkg installed libraries (`<vcpkg root>/installed/<triplet>/bin` for release and `<vcpkg root>/installed/<triplet>/debug/bin` for debug).
+
+
+The `vcpkg.json` file can look like this:
+```json
+{
+	{
+    "name": "fconfig",
+    "version-string": "0.1.0",
+    "description": "C++ implementation of the fconfig configuration system",
+    "homepage": "https://github.com/F-I-D-O/Future-Config",
+    "dependencies": [
+        {
+            "name" : "vcpkg-cmake",
+            "host" : true
+        },
+        "yaml-cpp",
+        "spdlog",
+        "inja"
+    ]
+}
+}
+```
+
+The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
+
+### Installation
+To install the port locally, run:
+```bash
+vcpkg install <port name>
+```
+
+If the port installation is failing and the reason is not clear from stdout, check the logs located in `<vcpkg root>/buildtrees/<port name>/`
