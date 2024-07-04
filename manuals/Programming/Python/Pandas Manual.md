@@ -161,6 +161,7 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 
 ## Useful filter functions
+- null values: `<column selection>.isnull()`
 - non null/nan values: `<column selection>.notnull()`
 - filtring using the string value: `<column selection>.str.<string function>`
 - filtering dates: `<column selection>.dt.<date function>`
@@ -524,14 +525,14 @@ The indexes are lost after the join (if not used for the join). To keep an index
 
 
 
-# Appending data
+# Appending and Concatenating data
 In pandas, there is a [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) function that can be used to concatenate data:
 ```python
 pd.concat([df1, df2])
 ```
 It can concatenate dataframes or series and it can concatenate vertically (by rows, default) or horizontally (by columns)
 
-By default, the indices from both input parameters are preserved. to reset the index, we can use the `ignore_index` parameter.
+By default, the indices from both input parameters are preserved. To reset the index, we can use the `ignore_index` parameter. Alternatively, to preserve one of the indices, we can set the index of the other dataframe to the index of the first dataframe before the concatenation using the `set_index` function.
 
 
 # Pandas Data Types

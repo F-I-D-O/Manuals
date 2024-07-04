@@ -361,6 +361,7 @@ Another thing we usually want to customize are the ticks. Important tick paramet
 - `ticklen`: the length of the ticks in pixels
 - `tickformat`: the format of the tick labels. Depending on the axis datatype, we can use number formats (e.g., `".2f"` for two decimal places), datetime formats (e.g., `"%Y-%m-%d"` for dates) or scientific notation (e.g., `"e"` for scientific notation).
     - for percentage, we can use `".0%"` for integer percentage and `".1%"` for one decimal place. Note that this way, the `%` sign is added automatically to each tick label. If we do not want this, we can either set the text manually using the `ticktext` parameter, or multiply the data by 100.
+- `tickangle`: the angle of the tick labels in degrees
 
 Other important parameters are:
 - `title_text`: the title of the axis. 
@@ -415,6 +416,25 @@ fig.update_layout(scene=dict(
 ```
 
 **One thing that is not possible to customize idn 3D is the position of the axis**. The x and y axes are always in the bottom, while the z axis is always on the left.
+
+
+### Change position of the axis title
+Unfortunately, there is no way how to change the position of the axis title. The solution is to hide the title and add a new annotation with the title text. Example:
+```python
+fig.update_xaxes(title_text="")
+fig.add_annotation(
+    text="Comp. time relative to IH",
+    xref="paper",
+    yref="paper",
+    x=-0.09,
+    y=0.5,
+    showarrow=False,
+    font=dict(
+        size=14,
+    ),
+    textangle=270,
+)
+```
 
 
 

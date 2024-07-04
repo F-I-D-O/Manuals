@@ -535,6 +535,11 @@ To rotate some text, we can use the `\rotatebox` command:
 \rotatebox{90}{Rotated text}
 ```
 
+If we need to limit the width of the rotated text, we can use the `\parbox` command. Example:
+```latex
+\rotatebox{90}{\parbox{2cm}{Rotated text}}
+```
+
 
 
 ## Algorithms
