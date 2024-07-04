@@ -53,6 +53,42 @@ Normal commands are executed by just typing them. However, if the command contai
 & "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
 ```
 
+# Variables
+Variables are defined by the `$` sign. Example:
+```PowerShell
+$myVar = "Hello, World!"
+```
+To print the variable, just type its name. Example:
+```PowerShell
+$myVar
+```
+## Environment variables
+They are accessed by the `$env:` prefix. Example:
+```PowerShell
+$env:PATH
+```
+
+## Operations on Variables
+The variables can be used in expressions. Example:
+```PowerShell
+$myVar = 5
+$myVar + 3
+```
+
+### String Operations
+Strings can be concatenated using the `+` operator. Examples:
+```PowerShell
+$myVar = "Hello, " + "World!"
+
+# append to a path:
+$env:PATH += ";C:\Program Files\Java\jdk1.8.0_181\bin"
+
+# prepend to a path:
+$env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
+```
+
+
+
 
 # I/O
 Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
@@ -129,10 +165,7 @@ To display executable for all connection, just use the `-b` swith. For filtering
 
 
 # Usefull Commands
-## Print system variable
-```
-echo $env:PATH
-```
+
 
 
 ## File Encoding Conversion

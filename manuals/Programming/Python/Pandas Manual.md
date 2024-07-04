@@ -318,10 +318,16 @@ for sorting the dataframe, we can use the [`sort_values`](https://pandas.pydata.
 df.sort_values(['col1', 'col2'])
 ```
 
-If we want to use a custom sorting function, we can use the `key` argument. The key function should satisfy the classical python sorting interface (see Python manual) and additionaly, it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. Example key function:
+If we want to use a custom sorting function, we can use the `key` argument. The key function should
+- satisfy the classical python sorting interface (see [Python manual](Python%20Manual.md)) and
+- it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. 
+
+Example:
 ```python
-def key_fn(l: list):
+def key_fn(column: list):
     return [len(x) for x in l]
+
+df.sort_values('col', key=key_fn)
 ```
 
 
