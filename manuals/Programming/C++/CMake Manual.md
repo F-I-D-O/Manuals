@@ -1,5 +1,14 @@
+CMake is 
+- a cross-platform build system generator that generates build scripts for various build systems (e.g., make, ninja, Visual Studio, Xcode)
+- a name of the language used to write the configuration files for the build system generator and other related scripts.
+
+CMake can run in two modes:
+- **project mode**: is the standard mode. This mode is used when the project is configured using the `cmake` command. Therefore, the `CMakeLists.txt` file is executed in this mode.
+- **script mode**: is used when the `cmake` command is run with the `-P` option. In this mode, the `CMakeLists.txt` file is not executed, but the script specified by the `-P` option is executed.
+
+
 # Commands
-## Generating Build scripts
+## Configuration: Generating Build scripts
 General syntax is:
 ```bash
 cmake <dir>
@@ -94,6 +103,19 @@ Run:
 cmake --build . --target clean
 ```
 
+## Install
+To install the project, run:
+```bash
+cmake --install <build dir>
+```
+
+Note that the project needs to be built first
+
+Usually, we want to use a different directory when testing the installation. To do that, we need to configure the project with the `CMAKE_INSTALL_PREFIX` variable. Example:
+```bash
+cmake -DCMAKE_INSTALL_PREFIX=<test install dir> <source dir>
+```
+
 
 
 # Syntax
@@ -180,6 +202,9 @@ The syntax for a basic condition expression is:
 
 
 # CMakeLists.txt
+The `CMakeLists.txt` file is the main configuration file for any CMake project. This file is executed during the [configuration step](#configuration-generating-build-scripts) (when the `cmake` command is run without arguments specifying another step).
+ It contains commands written in the CMake language that are used to configure the build process.
+
 The typical structure of the `CMakeLists.txt` file is as follows:
 1. Top section contains project wide setting like name, minimum cmake version, and the language specification.
 
@@ -414,10 +439,16 @@ The usual workflow is:
     )
     ```
     - The specification can be either a URL or a git repository.
-2. Build the dependency using the `FetchContent_MakeAvailable` command:
+2. Configure the dependency using the [`FetchContent_MakeAvailable`](https://cmake.org/cmake/help/latest/module/FetchContent.html#command:fetchcontent_makeavailable) command:
     ```cmake
     FetchContent_MakeAvailable(<NAME>)
     ```
+    - If the dependency is a CMake project, the `FetchContent_MakeAvailable` command will automatically configure the project by calling the `add_subdirectory` command with the path to the downloaded source code.
+
+Both the dependency source code and the build directory are stored in the build directory in `_deps` folder. This directory contains:
+- `<NAME>-src` - the source code of the dependency
+- `<NAME>-build` - the build directory of the dependency
+
 
 
 ## Target definition
@@ -455,9 +486,36 @@ foreach(dir ${dirs})
 endforeach()
 ```
 
+## Installation Configuration
+
+### Specific configuration for frequentlly used libraries
+- for google test, we want to prevent the installation of the `gtest` targets. To do that, turn it off before the gtets config in the `CMakeLists.txt` file:
+    ```cmake
+    # GOOGLE TEST
+    # do not install gtest
+    set(INSTALL_GTEST OFF)
+
+    include(FetchContent)
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+    )
+    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    ```
 
 
-# CMake Cache
+## Multiple `CMakeLists.txt` files in subdirectories
+The configuration can be modularized by splitting the `CMakeLists.txt` file into multiple files, each in a separate directory. Then, these files can be executed using the `add_subdirectory` command in the main `CMake_lists.txt` file or one of the `CMakeLists.txt` files already added by the `add_subdirectory` command.
+
+The order of execution follows the order of the `add_subdirectory` commands, i.e., the processing of the `CMakeLists.txt` containing the `add_subdirectory` command is paused until the added `CMakeLists.txt` file is processed.
+
+### Variables scope
+The variable scope for multiple `CMakeLists.txt` files is hierarchical. This means that the variables defined in the parent `CMakeLists.txt` file are visible in the child `CMakeLists.txt` file, but not vice versa.
+
+
+# CMake Variables and Cache
 The [CMake cache](https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20Cache.html) is an essential part of the CMake build system. It stores variables that are used to configure the build scripts. The cache is stored in the `CMakeCache.txt` file in the build directory.
 
 The Cmake cache can be filled in the following ways:
@@ -472,9 +530,39 @@ Moreover, the cache variables are not overwritten by the `set` command in the `C
 
 However, the cache variables can be still overridden from the `CMakeLists.txt` if the `set` command is used without the `CACHE` option (by normal variables).
 
+## The `option` command
+The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a cache variable that can be set by the user. The syntax is:
+```cmake
+option(<option name> <option description> <default value>)
+```
+The behavior of the `option` command is as follows:
+- If variable is already set (either a cache variable or a normal variable), the `option` command is ignored.
+- Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.
+
 
 
 
 # CMake Directory Structure
 ## System Find_XXX.cmake files
 The system find scripts are located in the `CMake/share/cmake-<version>/Modules/` directory.
+
+
+# Debugging CMake 
+
+## Debugging CMake using CLion CMake debugger
+[documentation](https://www.jetbrains.com/help/clion/cmake-debug.html)
+
+In CLion, we can debug the CMake configuration process by:
+1. opening the `CMakeLists.txt` file
+1. setting the breakpoint(s)
+1. starting the debugging process
+    - by clicking on the play button which is located on the first line of the `CMakeLists.txt` file on the left side of the editor window.
+    - or by clicking on the debug button in the main toolbar
+
+
+## Getting a a complete output of the CMake configuration
+We can get the complete output of the CMake configuration by running the `cmake` command with the `--trace` option. This can be especially useful when investigating included scripts, as the debuggers usually cannot step into CMake calls. Usually, the output is very long, so it is recommended to redirect it to a file:
+```powershell
+cmake --trace <dir> *> cmake_trace.txt
+```
+If we want to also expand the variables, we can use the `--trace-expand` option.

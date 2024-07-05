@@ -90,7 +90,9 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 
 
 
-# I/O
+# Pipes and Redirection
+[redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
+
 Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
 - `>`: redirect to file, overwrite if exists
 - `>>`: redirect to file, append if exists
@@ -103,6 +105,13 @@ dir 2> err.txt # redirect standard error stream to err.txt
 ```
 
 If we want both see the output and redirect it to a file, we can use the `Tee-Object` command which is the equivalent of the `tee` command from Linux
+
+In new PowerShell, we have even more options:
+- `3>`: redirect Warning stream
+- `4>`: redirect Verbose stream
+- `5>`: redirect Debug stream
+- `6>`: redirect Information stream
+- `*>`: redirect all streams
 
 
 # Control Structures
