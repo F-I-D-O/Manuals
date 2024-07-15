@@ -2,6 +2,9 @@ PowerShell is the new command line interface for Windows that replaces the old c
 
 The PowerShell script files have the `.ps1` extension. 
 
+In addition to system commands, PowerShell can also execute native PowerShell commands called cmdlets
+
+[cmdlets](https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands)
 
 # Important Aspects
 ## New PowerShell
@@ -91,6 +94,8 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 
 
 # Pipes and Redirection
+[pipe documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines)
+
 [redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
 
 Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
@@ -114,9 +119,53 @@ In new PowerShell, we have even more options:
 - `*>`: redirect all streams
 
 
+# Operators
+
+## Comparison Operators
+- `-eq`: equal
+- `-ne`: not equal
+- `-gt`: greater than
+- `-lt`: less than
+- `-ge`: greater or equal
+- `-le`: less or equal
+
+## Logical Operators
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators)
+
+- `-and`: logical and
+- `-or`: logical or
+- `-not`: logical not
+
+
 # Control Structures
 
-## Cycles
+## Conditions
+
+### `if`
+The `if` statement is used for conditional execution. The syntax is:
+```PowerShell
+if ($condition) {
+    # do something
+}
+elseif ($anotherCondition) {
+    # do something else
+}
+else {
+    # do something else
+}
+```
+
+The `if` structure is also available as a cmdlet `If`. Example:
+```PowerShell
+If ($condition) { "True" } Else { "False" }
+```
+The `If` cmdlet is also available as an alias `if` and `?`.
+
+
+
+
+
+## Loops
 
 ### `foreach`
 The `foreach` cycle iterates over a collection. The syntax is:
@@ -126,6 +175,15 @@ foreach ($item in $collection) {
 }
 ```
 
+The foreach structure is also available as a cmdlet `ForEach-Object`. In this case, we access the current item using the `$_` variable. Example:
+```PowerShell
+Get-ChildItem | ForEach-Object { $_.Name }
+```
+The above command lists the names of all files in the current directory.
+
+The alias for the `ForEach-Object` cmdlet is `foreach` and `%`.
+
+
 
 # String Manipulation
 
@@ -133,6 +191,12 @@ foreach ($item in $collection) {
 The `Replace` method replaces all occurences of a string with another string. The syntax is:
 ```PowerShell
 $myString.Replace("oldString", "newString")
+```
+
+## Match
+To test if a string matches a regular expression, use the `Match` method. The syntax is:
+```PowerShell
+$myString -match "pattern"
 ```
 
 # `Select-String`
@@ -146,6 +210,12 @@ If we use the `Select-String` with the `-Pattern` parameter, the matching lines 
 Select-String -Pattern "pattern" | ForEach-Object { $_.Matches.Value }
 ```
 
+
+# `Select-Object`
+The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object) selects the specified properties of an object. Example:
+```PowerShell
+Get-Process | Select-Object -Property Name, Id
+```
 
 
 # Arrays
@@ -170,6 +240,37 @@ To display executable for all connection, just use the `-b` swith. For filtering
 
 
 
+# System Information
+[CIM documentation](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets)
+
+[WMI classes](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-classes)
+
+There are several interfaces for getting system information in PowerShell:
+- Using the [*Common Information Model* (CIM)](https://en.wikipedia.org/wiki/Common_Information_Model_(computing))
+- Using the [*`Windows Management Instrumentation` (WMI)*](https://en.wikipedia.org/wiki/Windows_Management_Instrumentation) 
+- By reading from the [*registry*](https://en.wikipedia.org/wiki/Windows_Registry)
+
+## CIM and WMI
+Because the CIM and WMI interfaces are very similar, we will discuss them together. The main difference is that the CIM is the newer interface, which is more powerful and more user-friendly. The CIM is also cross-platform, while the WMI is Windows-only.
+
+The advantage of the CIM and WMI interfaces is that they are clear and object-oriented. The information can be queried using database-like operations. The disadvantage is that they are slow.
+
+The main command for getting system information is:
+- [`Get-CimInstance`](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance): for CIM
+- [`Get-WmiObject`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject): for WMI
+
+For both commands, we need to specify the class of the object we want to get using the `-ClassName` (CIM) or `-Class` (WMI) parameter. The classes are the same for both interfaces. Typical classes are:
+- `Win32_ComputerSystem`: information about the computer
+- `Win32_OperatingSystem`: information about the operating system
+- [`Win32_InstalledWin32Program`](https://learn.microsoft.com/en-us/windows/win32/wmisdk/win32-installedwin32program): information about installed programs
+- [`Win32_Product`](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/aa394378(v=vs.85)): information about programs installed using the MSI installer
+    - contains more information than `Win32_InstalledWin32Program`
+
+
+## Windows Registry
+To access the Windows registry, we use the same commands that are used for file system:
+- [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key
+ - [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
 
 
 
