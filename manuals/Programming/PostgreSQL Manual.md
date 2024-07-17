@@ -67,6 +67,11 @@ If we want to also keep the array index, we can use the `WITH ORDINALITY` expres
 ## hstore
 A specific feature of PostgreSQL is the [`hstore`](https://www.postgresql.org/docs/current/hstore.html) column type. It enables to store structured data in a single column. It can be used to dump variables that we do not plan to utilize in the database (i.e., in the SELECT, JOIN statements) frequently. 
 
+This data type requires the `hstore` extension to be enabled in the database. To enable it, use the following command:
+```SQL
+CREATE EXTENSION hstore;
+```
+
 When we, exceptionally, want to access a variable from a hstore column, we can use the following syntax:
 ```SQL
 SELECT <COLUMN NAME>-><VARIABLE NAME> AS ...
@@ -302,6 +307,15 @@ We can use it for example to retrieve the value of a column that has maximum val
 
 
 # PostGis
+PolsGIS is an extension for PostgreSQL that adds support for spatial data. 
+
+To enable the extension, we need to:
+1. install the extension
+	- e.g., using the bundeled stack builder application
+1. enable the extension in the database
+	```SQL
+	CREATE EXTENSION postgis;
+	```
 
 ## Geometry columns
 Postgis features can be utilized with geometry and geography column types. To add a new geometry column:
@@ -603,7 +617,7 @@ echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH 
 ```
 
 
-# Table and database statistics
+# Information and statistics
 To show the **table size**, run:
 ```PostgreSQL
 SELECT pg_size_pretty(pg_total_relation_size('<table name>'));
@@ -619,8 +633,13 @@ To list all **extensions** for a database, run:
 psql -d <db name> -c "\dx"
 ```
 
+To check if a **specific table** exists, run:
+```PostgreSQL
+SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '<schema_name>' AND table_name = '<table_name>');
+```
 
-## Listing databases
+
+## Databases
 To list all databases, we can use the `-l` parameter:
 ```bash
 psql -l
@@ -628,10 +647,25 @@ psql -l
 
 To get more information about the databases, we can use the `\l+` meta-command.
 
+To check if a specific database exists, we can use the following query:
+```SQL
+SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '<db name>');
+```
+
 
 
 # Managing the database clusters
 As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.
+
+## Starting, stopping, and restarting the cluster
+
+Sometimes it is needed to restart the cluster. There are two commands:
+- `pg_ctl restart`: restarts the cluster
+- `pg_ctl reload`: reloads the configuration of the cluster
+
+Always check which one is needed in each case. For both commands, the path to the `data` directory of the cluster is needed. We can specify it in two ways:
+- using the `-D` parameter of the `pg_ctl` command
+- setting the `PGDATA` environment variable
 
 
 ## Creating new user
@@ -710,6 +744,21 @@ The password for the db superuser is stored in db `postgres`. In order to log th
 7. test if the new password works
 
 
+## Configuration
+The configuration of the PostgreSQL server is stored in the `<postgres data dir>/postgresql.conf` file. 
+
+### Logging
+[Documentation](https://www.postgresql.org/docs/current/runtime-config-logging.html)
+
+The logs are stored in the `<postgres data dir>/log` directory. 
+
+By default, only errors are logged. To logg statements, we need to change the `log_statement` parameter. Valid values are:
+- `none`: no statements are logged
+- `ddl`: only DDL statements are logged
+- `mod`: only statements that modify the database are logged
+- `all`: all statements are logged
+
+
 ## Garbage collection and optimization
 There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.  
 
@@ -738,6 +787,12 @@ There is no UI available currently, use Navicat or console
 
 ## Duplicate table
 Drag the table in the database explorer and drop it to the location you want it to copy to.
+
+## Known issues and workarounds
+### DataGrip displays objects that were deleted
+Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
+1. right-click on database connection (root object in the database explorer)
+1. click on `Diagnostics` -> `Force refresh`
 
 
 

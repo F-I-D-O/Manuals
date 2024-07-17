@@ -1,10 +1,91 @@
+# Introduction
 PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt. 
 
 The PowerShell script files have the `.ps1` extension. 
 
-In addition to system commands, PowerShell can also execute native PowerShell commands called cmdlets
+In addition to system commands, PowerShell can also execute native PowerShell commands called [cmdlets](https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands).
 
-[cmdlets](https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands)
+## Script Blocks
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks)
+
+A basic unit of execution in PowerShell is a script block. A script block can be:
+- a piece of code enclosed in curly braces `{}`.
+- a function 
+- a script
+
+A script block can have parameters. The parameters are defined using the `param` keyword. Example:
+```PowerShell
+$myFunction = {
+    param($param1, $param2)
+    # do something
+}
+
+# or in a function
+function MyFunction {
+    param($param1, $param2)
+    # do something
+}
+
+# or in a script
+param($param1, $param2)
+```
+
+## Parameter blocks
+The parameter block defines the parameters of the script block. By default (`param()`), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:
+```PowerShell
+$myFunction = {
+    param($param1, $param2)
+    # do something
+}
+```
+
+Parameters can be typed. Example:
+```PowerShell
+$myFunction = {
+    param([int]$param1, [string]$param2, [switch]$param3)
+    # do something
+}
+```
+
+Parameters can be mandatory. Example:
+```PowerShell
+$myFunction = {
+    param(
+        [Parameter(Mandatory)][int]$param1, 
+        [Parameter(Mandatory)][string]$param2, 
+        [switch]$param3
+    )
+    # do something
+}
+```
+
+We can also validate the parameters. Example:
+```PowerShell
+$myFunction = {
+    param(
+        [Parameter(Mandatory)][ValidateRange(0, 100)][int]$param1, 
+        [Parameter(Mandatory)][ValidateSet("a", "b", "c")][string]$param2, 
+        [Parameter(Mandatory)][ValidateScript({$_ -eq "a" -or $_ -eq "b"})][string]$param3
+    )
+    # do something
+}
+```
+Also with custom error message:
+```PowerShell
+$myFunction = {
+    param(
+        [Parameter(Mandatory)][ValidateScript({ Test-Path $_ }, ErrorMessage="Path does not exists: {0}")][string]$path
+    )
+    # do something
+}
+```
+
+The advanced usage of parameters is described in the [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters).
+
+
+
+
+
 
 # Important Aspects
 ## New PowerShell
@@ -90,35 +171,6 @@ $env:PATH += ";C:\Program Files\Java\jdk1.8.0_181\bin"
 $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 ```
 
-
-
-
-# Pipes and Redirection
-[pipe documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines)
-
-[redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
-
-Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
-- `>`: redirect to file, overwrite if exists
-- `>>`: redirect to file, append if exists
-- `>&1`: redirect to standard output stream
-
-When using any of these operators, by default, the standard output stream is redirected. If we want to redirect the standard error stream, we have to prepend 2 to the operator. Example:
-```PowerShell
-dir > out.txt # redirect standard output stream to out.txt
-dir 2> err.txt # redirect standard error stream to err.txt
-```
-
-If we want both see the output and redirect it to a file, we can use the `Tee-Object` command which is the equivalent of the `tee` command from Linux
-
-In new PowerShell, we have even more options:
-- `3>`: redirect Warning stream
-- `4>`: redirect Verbose stream
-- `5>`: redirect Debug stream
-- `6>`: redirect Information stream
-- `*>`: redirect all streams
-
-
 # Operators
 
 ## Comparison Operators
@@ -184,13 +236,70 @@ The above command lists the names of all files in the current directory.
 The alias for the `ForEach-Object` cmdlet is `foreach` and `%`.
 
 
+# Outputs
+There are many output streams in PowerShell. We can use:
+- `Write-Output`: for standard output
+- `Write-Error`: for standard error
+- `Write-Warning`: for warnings
+- `Write-Verbose`: for verbose output
+- [`Write-Debug`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-debug): for debug output
+- `Write-Information`: for information output
+- [`Write-Host`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host): for writing directly to the console. No output stream is used.
+
+By default, only the standard and error output streams are displayed. To display the other streams, we have several options:
+- manually set the `$VerbosePreference`, `$DebugPreference`, `$WarningPreference`, `$InformationPreference` variables to `Continue` (default is `SilentlyContinue`), or
+- make the function or script we are running an *Advanced Function or Script* and use the `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` parameters
+
+
+# Pipes and Redirection
+[pipe documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines)
+
+[redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
+
+Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
+- `>`: redirect to file, overwrite if exists
+- `>>`: redirect to file, append if exists
+- `>&1`: redirect to standard output stream
+
+When using any of these operators, by default, the standard output stream is redirected. If we want to redirect the standard error stream, we have to prepend 2 to the operator. Example:
+```PowerShell
+dir > out.txt # redirect standard output stream to out.txt
+dir 2> err.txt # redirect standard error stream to err.txt
+```
+
+If we want both see the output and redirect it to a file, we can use the `Tee-Object` command which is the equivalent of the `tee` command from Linux
+
+In new PowerShell, we have even more options:
+- `3>`: redirect Warning stream
+- `4>`: redirect Verbose stream
+- `5>`: redirect Debug stream
+- `6>`: redirect Information stream
+- `*>`: redirect all streams
+
+
+
+
+
 
 # String Manipulation
 
 ## Replace
+For replacing a substring in a string, we have two options:
+- `Replace` method
+- `-replace` operator
+
 The `Replace` method replaces all occurences of a string with another string. The syntax is:
 ```PowerShell
 $myString.Replace("oldString", "newString")
+```
+
+The `-replace` operator uses regular expressions for replacing. The syntax is:
+```PowerShell
+$myString -replace "pattern", "newString"
+```
+Multiple replacements can be done using chained `-replace` operators. Example:
+```PowerShell
+$myString -replace "pattern1", "newString1" -replace "pattern2", "newString2"
 ```
 
 ## Match
@@ -272,6 +381,46 @@ To access the Windows registry, we use the same commands that are used for file 
 - [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key
  - [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
 
+
+
+# Advanced Script blocks
+Any script block can be made an advanced script block. Advanced script blocks are run similarly to the compiled cmdlets. To make a script block an advanced script block, we have to use the `[CmdletBinding()]` attribute at the beginning of the script block. 
+
+Example:
+```PowerShell
+function MyFunction {
+    [CmdletBinding()]
+    # do something
+}
+```
+
+The advanced functions and scripts have the following features:
+- parameters are not available as `$args` (have to be parsed using the `param` block)
+- builtin parameters like `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` are parsed automatically
+- support for pipeline input
+
+
+# Elevation
+Some commands may require administrator privileges. Therefore, it is wise to check if the script is running with administrator privileges so that the execution is not interrupted. To check if the script is running with administrator privileges, use the following code:
+```PowerShell
+$myWindowsID=[Security.Principal.WindowsIdentity]::GetCurrent()
+$myWindowsPrincipal=new-object Security.Principal.WindowsPrincipal($myWindowsID)
+if (!$myWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        Write-Host "This script requires elevated privileges. Please run it as an administrator."
+        exit
+    }
+```
+
+Another solution may be to restart the script with administrator privileges. However, this has several limitations:
+- when the script is run with administrator privileges a new terminal window is opened
+- parameters are not passed automatically to the new script. We can manually pass them using the `-ArgumentList` parameter. However, this is problematic for non-string parameters, especially in an advanced script block. 
+
+To restart the script with administrator privileges, use the following code:
+```PowerShell
+$argString = $args -join ' '
+Start-Process "pwsh" -Verb RunAs -ArgumentList "-noexit -File `"$PSCommandPath`" $argString"
+exit
+```
 
 
 # Usefull Commands

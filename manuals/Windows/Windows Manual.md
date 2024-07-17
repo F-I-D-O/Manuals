@@ -9,7 +9,7 @@ The simplest [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is the [co
 
 
 ## Run a non-default terminal application
-It is not an easy task to manually tun a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:
+It is not an easy task to manually run a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:
 - Windows Terminal: `wt.exe`
 - Windows Console Host: `conhost.exe`
 

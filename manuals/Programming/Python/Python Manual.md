@@ -833,6 +833,34 @@ When working with PostgreSQL databases, we usually use either
 Simple query:
 ```Python
 sqlalchemy_engine.execute("<sql>")
+
+# which is an equivalent to
+with sqlalchemy_engine.connect() as conn:
+    conn.execute("<sql>")
+```
+
+### Executing statements without transaction
+By default, sqlalchemy executes sql statements in a transaction. However, some statements (e.g., `CREATE DATABASE`) cannot be executed in a transaction. To execute such statements, we have to use the `execution_options` method:
+```Python
+with sqlalchemy_engine.connect() as conn:
+    conn.execution_options(isolation_level="AUTOCOMMIT")
+    conn.execute("<sql>")
+```
+
+## Executing multiple statements at once
+To execute multiple statements at once, for example when executing a script, it is best to use the `execute` method of the psycopg2 connection object. Moreover, to safely handle errors, it is best to catch the exceptions and manually rollback the transaction in case of an error:
+```Python
+conn = psycopg2.connect(<connection string>)
+cursor = conn.cursor()
+try:
+    cursor.execute(<sql>)
+    conn.commit()
+except Exception as e:
+    conn.rollback()
+    raise e
+finally:
+    cursor.close()
+    conn.close()
 ```
 
 
