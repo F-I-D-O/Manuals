@@ -173,13 +173,19 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 
 # Operators
 
-## Comparison Operators
+## Comparison and String Operators
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators)
+
+Equality operators:
 - `-eq`: equal
 - `-ne`: not equal
 - `-gt`: greater than
 - `-lt`: less than
 - `-ge`: greater or equal
 - `-le`: less or equal
+
+Matching operators:
+- `-match`: match
 
 ## Logical Operators
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators)
