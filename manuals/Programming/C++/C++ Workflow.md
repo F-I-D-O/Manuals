@@ -100,8 +100,17 @@ llvm[target-arm]                      Build with ARM backend.
 Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use `vcpkg install llvm[target-arm]`. Sometimes, a new build of the main package is required, in that case, we need to type `vcpkg install llvm[target-arm] --recurse`.
 
 ## Directory Structure
-### Module Installation Scripts
-They are located in the `ports` directory. There is no special way how to update just the port dir, so update the whole vcpkg by `git pull` in case you need to update the list of available packages.
+vcpkg has the following directory structure:
+- `buildtrees`: contains the build directories for each installed package. Each build directory contains the build logs.
+- `installed`: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:
+	- `bin`: contains the shared libraries
+	- `debug`: contains the debug version of everything in a similar structure as the triplet directory
+	- `examples`: contains example binaries
+	- `include`: contains the header files
+	- `lib`: contains the static libraries
+	- `share`: contains the cmake scripts and other files needed for the integration of the package into a cmake project
+	- `tools`: contains the executables installed with vcpkg packages
+- `ports`: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by `git pull` in case you need to update the list of available packages.
 
 ### Modules
 Vcpkg has it s own `find_package` macro in the toolchain file. It executes the script: `vcpkg/installed/<tripplet>/share/<package name>/vcpkg-cmake-wrapper.cmake`, if exists. Then, it executes the cmake scripts in that directory using the standard `find_package`, like a cmake config package.
@@ -496,6 +505,8 @@ Explanation:
 - [`vcpkg_cmake_install`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install): builds and installs the source code (wraps the `cmake --build . --target install` command)
 	- the majority of code is in the subroutine [`vcpkg_cmake_build`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build)
 	- **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the `ADD_BIN_TO_PATH` option in the `vcpkg_cmake_install` function**. This is needed as the automatic dll copy to the output dir (`VCPKG_APPLOCAL_DEPS`) is disabelled by the `vcpkg_cmake_build` function. This option solve the problem by prepending the `PATH` environment variable with the path to the vcpkg installed libraries (`<vcpkg root>/installed/<triplet>/bin` for release and `<vcpkg root>/installed/<triplet>/debug/bin` for debug).
+- [`vcpkg_cmake_config_fixup`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup): fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the `CMakeConfig.cmake` and `CMakeConfigVersion.cmake` files.
+	- the `<package name>` is the name of the package, usually the same as the port name
 
 
 The `vcpkg.json` file can look like this:
@@ -527,4 +538,11 @@ To install the port locally, run:
 vcpkg install <port name>
 ```
 
+For this command to work, the port has to be located in `<vcpkg root>/ports/<port name>`. If we want to install the port from an alternative location, we can use the `--overlay-ports` option.  For example, if we have the port stored in the `C:/custom_ports/our_new_port` directory, we can install it by:
+```bash
+vcpkg install our_new_port --overlay-ports=C:/custom_ports
+```
+
 If the port installation is failing and the reason is not clear from stdout, check the logs located in `<vcpkg root>/buildtrees/<port name>/`
+
+
