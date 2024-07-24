@@ -351,6 +351,19 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#script-blocks" class="nav-link">Script Blocks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#parameter-blocks" class="nav-link">Parameter blocks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#important-aspects" class="nav-link">Important Aspects</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#new-powershell" class="nav-link">New PowerShell</a>
@@ -381,14 +394,47 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
+            <li class="nav-item" data-level="1"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#environment-variables" class="nav-link">Environment variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#operations-on-variables" class="nav-link">Operations on Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#string-operations" class="nav-link">String Operations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#operators" class="nav-link">Operators</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#comparison-and-string-operators" class="nav-link">Comparison and String Operators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#logical-operators" class="nav-link">Logical Operators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#control-structures" class="nav-link">Control Structures</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#cycles" class="nav-link">Cycles</a>
+            <li class="nav-item" data-level="2"><a href="#conditions" class="nav-link">Conditions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#if" class="nav-link">if</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loops" class="nav-link">Loops</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#foreach" class="nav-link">foreach</a>
               <ul class="nav flex-column">
@@ -399,9 +445,23 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#outputs" class="nav-link">Outputs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#pipes-and-redirection" class="nav-link">Pipes and Redirection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#string-manipulation" class="nav-link">String Manipulation</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#replace" class="nav-link">Replace</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#match" class="nav-link">Match</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -414,6 +474,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#select-object" class="nav-link">Select-Object</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -439,12 +504,31 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#usefull-commands" class="nav-link">Usefull Commands</a>
+            <li class="nav-item" data-level="1"><a href="#system-information" class="nav-link">System Information</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#print-system-variable" class="nav-link">Print system variable</a>
+            <li class="nav-item" data-level="2"><a href="#cim-and-wmi" class="nav-link">CIM and WMI</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#windows-registry" class="nav-link">Windows Registry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#advanced-script-blocks" class="nav-link">Advanced Script blocks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#elevation" class="nav-link">Elevation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#usefull-commands" class="nav-link">Usefull Commands</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#file-encoding-conversion" class="nav-link">File Encoding Conversion</a>
               <ul class="nav flex-column">
               </ul>
@@ -476,8 +560,73 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
 <p>PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt. </p>
 <p>The PowerShell script files have the <code>.ps1</code> extension. </p>
+<p>In addition to system commands, PowerShell can also execute native PowerShell commands called <a href="https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands">cmdlets</a>.</p>
+<h2 id="script-blocks">Script Blocks<a class="headerlink" href="#script-blocks" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks">documentation</a></p>
+<p>A basic unit of execution in PowerShell is a script block. A script block can be:
+- a piece of code enclosed in curly braces <code>{}</code>.
+- a function 
+- a script</p>
+<p>A script block can have parameters. The parameters are defined using the <code>param</code> keyword. Example:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param($param1, $param2)
+    # do something
+}
+
+# or in a function
+function MyFunction {
+    param($param1, $param2)
+    # do something
+}
+
+# or in a script
+param($param1, $param2)
+</code></pre>
+<h2 id="parameter-blocks">Parameter blocks<a class="headerlink" href="#parameter-blocks" title="Permanent link">&para;</a></h2>
+<p>The parameter block defines the parameters of the script block. By default (<code>param()</code>), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param($param1, $param2)
+    # do something
+}
+</code></pre>
+<p>Parameters can be typed. Example:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param([int]$param1, [string]$param2, [switch]$param3)
+    # do something
+}
+</code></pre>
+<p>Parameters can be mandatory. Example:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param(
+        [Parameter(Mandatory)][int]$param1, 
+        [Parameter(Mandatory)][string]$param2, 
+        [switch]$param3
+    )
+    # do something
+}
+</code></pre>
+<p>We can also validate the parameters. Example:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param(
+        [Parameter(Mandatory)][ValidateRange(0, 100)][int]$param1, 
+        [Parameter(Mandatory)][ValidateSet(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)][string]$param2, 
+        [Parameter(Mandatory)][ValidateScript({$_ -eq &quot;a&quot; -or $_ -eq &quot;b&quot;})][string]$param3
+    )
+    # do something
+}
+</code></pre>
+<p>Also with custom error message:</p>
+<pre><code class="language-PowerShell">$myFunction = {
+    param(
+        [Parameter(Mandatory)][ValidateScript({ Test-Path $_ }, ErrorMessage=&quot;Path does not exists: {0}&quot;)][string]$path
+    )
+    # do something
+}
+</code></pre>
+<p>The advanced usage of parameters is described in the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters">documentation</a>.</p>
 <h1 id="important-aspects">Important Aspects<a class="headerlink" href="#important-aspects" title="Permanent link">&para;</a></h1>
 <h2 id="new-powershell">New PowerShell<a class="headerlink" href="#new-powershell" title="Permanent link">&para;</a></h2>
 <p>The PowerShell Integrated in Windows is version 5. You can recognize it by the iconical blue background color. This old version has some important limitations (e. g. <a href="https://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">it cannot pass arguments containing arguments with spaces</a>).</p>
@@ -510,7 +659,96 @@ Example:</p>
 <p>Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the <code>&amp;</code> operator has to be used. Example:</p>
 <pre><code class="language-PowerShell">&amp; &quot;C:\Program Files\Java\jdk1.8.0_181\bin\java.exe&quot; -version
 </code></pre>
-<h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
+<h1 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
+<p>Variables are defined by the <code>$</code> sign. Example:</p>
+<pre><code class="language-PowerShell">$myVar = &quot;Hello, World!&quot;
+</code></pre>
+<p>To print the variable, just type its name. Example:</p>
+<pre><code class="language-PowerShell">$myVar
+</code></pre>
+<h2 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h2>
+<p>They are accessed by the <code>$env:</code> prefix. Example:</p>
+<pre><code class="language-PowerShell">$env:PATH
+</code></pre>
+<h2 id="operations-on-variables">Operations on Variables<a class="headerlink" href="#operations-on-variables" title="Permanent link">&para;</a></h2>
+<p>The variables can be used in expressions. Example:</p>
+<pre><code class="language-PowerShell">$myVar = 5
+$myVar + 3
+</code></pre>
+<h3 id="string-operations">String Operations<a class="headerlink" href="#string-operations" title="Permanent link">&para;</a></h3>
+<p>Strings can be concatenated using the <code>+</code> operator. Examples:</p>
+<pre><code class="language-PowerShell">$myVar = &quot;Hello, &quot; + &quot;World!&quot;
+
+# append to a path:
+$env:PATH += &quot;;C:\Program Files\Java\jdk1.8.0_181\bin&quot;
+
+# prepend to a path:
+$env:PATH = &quot;C:\Program Files\Java\jdk1.8.0_181\bin;&quot; + $env:PATH
+</code></pre>
+<h1 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h1>
+<h2 id="comparison-and-string-operators">Comparison and String Operators<a class="headerlink" href="#comparison-and-string-operators" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators">documentation</a></p>
+<p>Equality operators:
+- <code>-eq</code>: equal
+- <code>-ne</code>: not equal
+- <code>-gt</code>: greater than
+- <code>-lt</code>: less than
+- <code>-ge</code>: greater or equal
+- <code>-le</code>: less or equal</p>
+<p>Matching operators:
+- <code>-match</code>: match</p>
+<h2 id="logical-operators">Logical Operators<a class="headerlink" href="#logical-operators" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators">documentation</a></p>
+<ul>
+<li><code>-and</code>: logical and</li>
+<li><code>-or</code>: logical or</li>
+<li><code>-not</code>: logical not</li>
+</ul>
+<h1 id="control-structures">Control Structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h1>
+<h2 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h2>
+<h3 id="if"><code>if</code><a class="headerlink" href="#if" title="Permanent link">&para;</a></h3>
+<p>The <code>if</code> statement is used for conditional execution. The syntax is:</p>
+<pre><code class="language-PowerShell">if ($condition) {
+    # do something
+}
+elseif ($anotherCondition) {
+    # do something else
+}
+else {
+    # do something else
+}
+</code></pre>
+<p>The <code>if</code> structure is also available as a cmdlet <code>If</code>. Example:</p>
+<pre><code class="language-PowerShell">If ($condition) { &quot;True&quot; } Else { &quot;False&quot; }
+</code></pre>
+<p>The <code>If</code> cmdlet is also available as an alias <code>if</code> and <code>?</code>.</p>
+<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
+<h3 id="foreach"><code>foreach</code><a class="headerlink" href="#foreach" title="Permanent link">&para;</a></h3>
+<p>The <code>foreach</code> cycle iterates over a collection. The syntax is:</p>
+<pre><code class="language-PowerShell">foreach ($item in $collection) {
+    # do something with $item
+}
+</code></pre>
+<p>The foreach structure is also available as a cmdlet <code>ForEach-Object</code>. In this case, we access the current item using the <code>$_</code> variable. Example:</p>
+<pre><code class="language-PowerShell">Get-ChildItem | ForEach-Object { $_.Name }
+</code></pre>
+<p>The above command lists the names of all files in the current directory.</p>
+<p>The alias for the <code>ForEach-Object</code> cmdlet is <code>foreach</code> and <code>%</code>.</p>
+<h1 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h1>
+<p>There are many output streams in PowerShell. We can use:
+- <code>Write-Output</code>: for standard output
+- <code>Write-Error</code>: for standard error
+- <code>Write-Warning</code>: for warnings
+- <code>Write-Verbose</code>: for verbose output
+- <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-debug"><code>Write-Debug</code></a>: for debug output
+- <code>Write-Information</code>: for information output
+- <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host"><code>Write-Host</code></a>: for writing directly to the console. No output stream is used.</p>
+<p>By default, only the standard and error output streams are displayed. To display the other streams, we have several options:
+- manually set the <code>$VerbosePreference</code>, <code>$DebugPreference</code>, <code>$WarningPreference</code>, <code>$InformationPreference</code> variables to <code>Continue</code> (default is <code>SilentlyContinue</code>), or
+- make the function or script we are running an <em>Advanced Function or Script</em> and use the <code>-Verbose</code>, <code>-Debug</code>, <code>-WarningAction</code>, <code>-InformationAction</code> parameters</p>
+<h1 id="pipes-and-redirection">Pipes and Redirection<a class="headerlink" href="#pipes-and-redirection" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines">pipe documentation</a></p>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection">redirection documentation</a></p>
 <p>Output forwading is done using <code>|</code> (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
 - <code>&gt;</code>: redirect to file, overwrite if exists
 - <code>&gt;&gt;</code>: redirect to file, append if exists
@@ -520,18 +758,29 @@ Example:</p>
 dir 2&gt; err.txt # redirect standard error stream to err.txt
 </code></pre>
 <p>If we want both see the output and redirect it to a file, we can use the <code>Tee-Object</code> command which is the equivalent of the <code>tee</code> command from Linux</p>
-<h1 id="control-structures">Control Structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h1>
-<h2 id="cycles">Cycles<a class="headerlink" href="#cycles" title="Permanent link">&para;</a></h2>
-<h3 id="foreach"><code>foreach</code><a class="headerlink" href="#foreach" title="Permanent link">&para;</a></h3>
-<p>The <code>foreach</code> cycle iterates over a collection. The syntax is:</p>
-<pre><code class="language-PowerShell">foreach ($item in $collection) {
-    # do something with $item
-}
-</code></pre>
+<p>In new PowerShell, we have even more options:
+- <code>3&gt;</code>: redirect Warning stream
+- <code>4&gt;</code>: redirect Verbose stream
+- <code>5&gt;</code>: redirect Debug stream
+- <code>6&gt;</code>: redirect Information stream
+- <code>*&gt;</code>: redirect all streams</p>
 <h1 id="string-manipulation">String Manipulation<a class="headerlink" href="#string-manipulation" title="Permanent link">&para;</a></h1>
 <h2 id="replace">Replace<a class="headerlink" href="#replace" title="Permanent link">&para;</a></h2>
+<p>For replacing a substring in a string, we have two options:
+- <code>Replace</code> method
+- <code>-replace</code> operator</p>
 <p>The <code>Replace</code> method replaces all occurences of a string with another string. The syntax is:</p>
 <pre><code class="language-PowerShell">$myString.Replace(&quot;oldString&quot;, &quot;newString&quot;)
+</code></pre>
+<p>The <code>-replace</code> operator uses regular expressions for replacing. The syntax is:</p>
+<pre><code class="language-PowerShell">$myString -replace &quot;pattern&quot;, &quot;newString&quot;
+</code></pre>
+<p>Multiple replacements can be done using chained <code>-replace</code> operators. Example:</p>
+<pre><code class="language-PowerShell">$myString -replace &quot;pattern1&quot;, &quot;newString1&quot; -replace &quot;pattern2&quot;, &quot;newString2&quot;
+</code></pre>
+<h2 id="match">Match<a class="headerlink" href="#match" title="Permanent link">&para;</a></h2>
+<p>To test if a string matches a regular expression, use the <code>Match</code> method. The syntax is:</p>
+<pre><code class="language-PowerShell">$myString -match &quot;pattern&quot;
 </code></pre>
 <h1 id="select-string"><code>Select-String</code><a class="headerlink" href="#select-string" title="Permanent link">&para;</a></h1>
 <p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string"><code>Select-String</code></a> is the <code>grep</code> equivalent for PowerShell. The alias for the comand is <code>sls</code>. Parameters:
@@ -540,6 +789,10 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 <h2 id="selecting-the-matched-string">Selecting the matched string<a class="headerlink" href="#selecting-the-matched-string" title="Permanent link">&para;</a></h2>
 <p>If we use the <code>Select-String</code> with the <code>-Pattern</code> parameter, the matching lines are returned with the matching string highlighted. If we want to get only the matching string, we have to access the <code>Matches.Value</code> property for each line. Example:</p>
 <pre><code class="language-PowerShell">Select-String -Pattern &quot;pattern&quot; | ForEach-Object { $_.Matches.Value }
+</code></pre>
+<h1 id="select-object"><code>Select-Object</code><a class="headerlink" href="#select-object" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object"><code>Select-Object</code></a> selects the specified properties of an object. Example:</p>
+<pre><code class="language-PowerShell">Get-Process | Select-Object -Property Name, Id
 </code></pre>
 <h1 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h1>
 <p>To creante an array, use the <code>@()</code> operator: <code>a = @()</code> To add an element to an array, use the <code>+=</code> operator: <code>a += 1</code>. The arrays can be iterated over using the <code>foreach</code> loop.</p>
@@ -553,10 +806,59 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 - remove the redirection to <code>localhost</code> in the <code>hosts</code> file </p>
 <h3 id="display-executable-for-connection">Display executable for connection<a class="headerlink" href="#display-executable-for-connection" title="Permanent link">&para;</a></h3>
 <p>To display executable for all connection, just use the <code>-b</code> swith. For filtering out only some, you have to use the <code>-Context</code> parameter in the <code>Select-String</code> command, as the executable is printed one line below the connection: <code>netstat -b | sls &lt;search pattern&gt; -Context 0,1</code></p>
-<h1 id="usefull-commands">Usefull Commands<a class="headerlink" href="#usefull-commands" title="Permanent link">&para;</a></h1>
-<h2 id="print-system-variable">Print system variable<a class="headerlink" href="#print-system-variable" title="Permanent link">&para;</a></h2>
-<pre><code>echo $env:PATH
+<h1 id="system-information">System Information<a class="headerlink" href="#system-information" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets">CIM documentation</a></p>
+<p><a href="https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-classes">WMI classes</a></p>
+<p>There are several interfaces for getting system information in PowerShell:
+- Using the <a href="https://en.wikipedia.org/wiki/Common_Information_Model_(computing)"><em>Common Information Model</em> (CIM)</a>
+- Using the <a href="https://en.wikipedia.org/wiki/Windows_Management_Instrumentation"><em><code>Windows Management Instrumentation</code> (WMI)</em></a> 
+- By reading from the <a href="https://en.wikipedia.org/wiki/Windows_Registry"><em>registry</em></a></p>
+<h2 id="cim-and-wmi">CIM and WMI<a class="headerlink" href="#cim-and-wmi" title="Permanent link">&para;</a></h2>
+<p>Because the CIM and WMI interfaces are very similar, we will discuss them together. The main difference is that the CIM is the newer interface, which is more powerful and more user-friendly. The CIM is also cross-platform, while the WMI is Windows-only.</p>
+<p>The advantage of the CIM and WMI interfaces is that they are clear and object-oriented. The information can be queried using database-like operations. The disadvantage is that they are slow.</p>
+<p>The main command for getting system information is:
+- <a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance"><code>Get-CimInstance</code></a>: for CIM
+- <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject"><code>Get-WmiObject</code></a>: for WMI</p>
+<p>For both commands, we need to specify the class of the object we want to get using the <code>-ClassName</code> (CIM) or <code>-Class</code> (WMI) parameter. The classes are the same for both interfaces. Typical classes are:
+- <code>Win32_ComputerSystem</code>: information about the computer
+- <code>Win32_OperatingSystem</code>: information about the operating system
+- <a href="https://learn.microsoft.com/en-us/windows/win32/wmisdk/win32-installedwin32program"><code>Win32_InstalledWin32Program</code></a>: information about installed programs
+- <a href="https://learn.microsoft.com/en-us/previous-versions/windows/desktop/legacy/aa394378(v=vs.85)"><code>Win32_Product</code></a>: information about programs installed using the MSI installer
+    - contains more information than <code>Win32_InstalledWin32Program</code></p>
+<h2 id="windows-registry">Windows Registry<a class="headerlink" href="#windows-registry" title="Permanent link">&para;</a></h2>
+<p>To access the Windows registry, we use the same commands that are used for file system:
+- <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty"><code>Get-ItemProperty</code></a>: to get the value of a registry key
+ - <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem"><code>Get-ChilItem</code></a> to get a list of child keys</p>
+<h1 id="advanced-script-blocks">Advanced Script blocks<a class="headerlink" href="#advanced-script-blocks" title="Permanent link">&para;</a></h1>
+<p>Any script block can be made an advanced script block. Advanced script blocks are run similarly to the compiled cmdlets. To make a script block an advanced script block, we have to use the <code>[CmdletBinding()]</code> attribute at the beginning of the script block. </p>
+<p>Example:</p>
+<pre><code class="language-PowerShell">function MyFunction {
+    [CmdletBinding()]
+    # do something
+}
 </code></pre>
+<p>The advanced functions and scripts have the following features:
+- parameters are not available as <code>$args</code> (have to be parsed using the <code>param</code> block)
+- builtin parameters like <code>-Verbose</code>, <code>-Debug</code>, <code>-WarningAction</code>, <code>-InformationAction</code> are parsed automatically
+- support for pipeline input</p>
+<h1 id="elevation">Elevation<a class="headerlink" href="#elevation" title="Permanent link">&para;</a></h1>
+<p>Some commands may require administrator privileges. Therefore, it is wise to check if the script is running with administrator privileges so that the execution is not interrupted. To check if the script is running with administrator privileges, use the following code:</p>
+<pre><code class="language-PowerShell">$myWindowsID=[Security.Principal.WindowsIdentity]::GetCurrent()
+$myWindowsPrincipal=new-object Security.Principal.WindowsPrincipal($myWindowsID)
+if (!$myWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        Write-Host &quot;This script requires elevated privileges. Please run it as an administrator.&quot;
+        exit
+    }
+</code></pre>
+<p>Another solution may be to restart the script with administrator privileges. However, this has several limitations:
+- when the script is run with administrator privileges a new terminal window is opened
+- parameters are not passed automatically to the new script. We can manually pass them using the <code>-ArgumentList</code> parameter. However, this is problematic for non-string parameters, especially in an advanced script block. </p>
+<p>To restart the script with administrator privileges, use the following code:</p>
+<pre><code class="language-PowerShell">$argString = $args -join ' '
+Start-Process &quot;pwsh&quot; -Verb RunAs -ArgumentList &quot;-noexit -File `&quot;$PSCommandPath`&quot; $argString&quot;
+exit
+</code></pre>
+<h1 id="usefull-commands">Usefull Commands<a class="headerlink" href="#usefull-commands" title="Permanent link">&para;</a></h1>
 <h2 id="file-encoding-conversion">File Encoding Conversion<a class="headerlink" href="#file-encoding-conversion" title="Permanent link">&para;</a></h2>
 <p><code>gc [INPUT PATH] | Out-File -en [ENCODING] [OUTPUT PATH]</code></p>
 <p>example: </p>

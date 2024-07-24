@@ -594,7 +594,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#appending-data" class="nav-link">Appending data</a>
+            <li class="nav-item" data-level="1"><a href="#appending-and-concatenating-data" class="nav-link">Appending and Concatenating data</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -840,6 +840,7 @@ sf = s[s &lt;= 10] # now we have a Series with values from df['col'] less than 1
 </code></pre>
 <h2 id="useful-filter-functions">Useful filter functions<a class="headerlink" href="#useful-filter-functions" title="Permanent link">&para;</a></h2>
 <ul>
+<li>null values: <code>&lt;column selection&gt;.isnull()</code></li>
 <li>non null/nan values: <code>&lt;column selection&gt;.notnull()</code></li>
 <li>filtring using the string value: <code>&lt;column selection&gt;.str.&lt;string function&gt;</code></li>
 <li>filtering dates: <code>&lt;column selection&gt;.dt.&lt;date function&gt;</code></li>
@@ -942,9 +943,14 @@ dft.loc[idx[:, 15:30], ...]
 <p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
 <pre><code class="language-python">df.sort_values(['col1', 'col2'])
 </code></pre>
-<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should satisfy the classical python sorting interface (see Python manual) and additionaly, it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. Example key function:</p>
-<pre><code class="language-python">def key_fn(l: list):
+<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should
+- satisfy the classical python sorting interface (see <a href="../Python%20Manual/">Python manual</a>) and
+- it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. </p>
+<p>Example:</p>
+<pre><code class="language-python">def key_fn(column: list):
     return [len(x) for x in l]
+
+df.sort_values('col', key=key_fn)
 </code></pre>
 <h1 id="working-with-columns">Working with columns<a class="headerlink" href="#working-with-columns" title="Permanent link">&para;</a></h1>
 <h2 id="adding-a-column">Adding a column<a class="headerlink" href="#adding-a-column" title="Permanent link">&para;</a></h2>
@@ -1126,12 +1132,12 @@ df.resample('1H').sum()
 </table>
 <p>There is also a static <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html"><code>pd.merge</code></a> function. All <code>merge</code> and <code>join</code> methods are just wrappers around this function.</p>
 <p>The indexes are lost after the join (if not used for the join). To keep an index, we can store it as a column before the join.</p>
-<h1 id="appending-data">Appending data<a class="headerlink" href="#appending-data" title="Permanent link">&para;</a></h1>
+<h1 id="appending-and-concatenating-data">Appending and Concatenating data<a class="headerlink" href="#appending-and-concatenating-data" title="Permanent link">&para;</a></h1>
 <p>In pandas, there is a <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>concat</code></a> function that can be used to concatenate data:</p>
 <pre><code class="language-python">pd.concat([df1, df2])
 </code></pre>
 <p>It can concatenate dataframes or series and it can concatenate vertically (by rows, default) or horizontally (by columns)</p>
-<p>By default, the indices from both input parameters are preserved. to reset the index, we can use the <code>ignore_index</code> parameter.</p>
+<p>By default, the indices from both input parameters are preserved. To reset the index, we can use the <code>ignore_index</code> parameter. Alternatively, to preserve one of the indices, we can set the index of the other dataframe to the index of the first dataframe before the concatenation using the <code>set_index</code> function.</p>
 <h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
 <h2 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h2>
 <p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:

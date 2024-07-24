@@ -401,10 +401,6 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#module-installation-scripts" class="nav-link">Module Installation Scripts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="3"><a href="#modules" class="nav-link">Modules</a>
               <ul class="nav flex-column">
               </ul>
@@ -601,6 +597,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#installation-and-publishing" class="nav-link">Installation and Publishing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#vcpkg_1" class="nav-link">Vcpkg</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#create-the-port" class="nav-link">Create the Port</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#installation_1" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -713,8 +726,17 @@ llvm[target-arm]                      Build with ARM backend.
 </code></pre>
 <p>Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use <code>vcpkg install llvm[target-arm]</code>. Sometimes, a new build of the main package is required, in that case, we need to type <code>vcpkg install llvm[target-arm] --recurse</code>.</p>
 <h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
-<h3 id="module-installation-scripts">Module Installation Scripts<a class="headerlink" href="#module-installation-scripts" title="Permanent link">&para;</a></h3>
-<p>They are located in the <code>ports</code> directory. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</p>
+<p>vcpkg has the following directory structure:
+- <code>buildtrees</code>: contains the build directories for each installed package. Each build directory contains the build logs.
+- <code>installed</code>: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:
+    - <code>bin</code>: contains the shared libraries
+    - <code>debug</code>: contains the debug version of everything in a similar structure as the triplet directory
+    - <code>examples</code>: contains example binaries
+    - <code>include</code>: contains the header files
+    - <code>lib</code>: contains the static libraries
+    - <code>share</code>: contains the cmake scripts and other files needed for the integration of the package into a cmake project
+    - <code>tools</code>: contains the executables installed with vcpkg packages
+- <code>ports</code>: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</p>
 <h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
 <p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
 <h1 id="ide">IDE<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h1>
@@ -997,7 +1019,79 @@ ml) option enables compilation for a specific hardware.</p>
 </code></pre>
 <p>Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:</p>
 <pre><code>git config core.ignorecase false
-</code></pre></div>
+</code></pre>
+<h1 id="installation-and-publishing">Installation and Publishing<a class="headerlink" href="#installation-and-publishing" title="Permanent link">&para;</a></h1>
+<p>Here, we describe how to make some library or executable available in the system (<em>installation</em>) and how to distribute it to other users (<em>publishing</em>).</p>
+<h2 id="vcpkg_1">Vcpkg<a class="headerlink" href="#vcpkg_1" title="Permanent link">&para;</a></h2>
+<p>Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
+1. Crate the port
+2. Test the port by installing it locally (<em>installation</em>)
+3. Submit the port to the vcpkg repository (<em>publishing</em>) </p>
+<h3 id="create-the-port">Create the Port<a class="headerlink" href="#create-the-port" title="Permanent link">&para;</a></h3>
+<p>The usual port contain these files:
+- <code>portfile.cmake</code>: the main file containing the calls to cmake functions that install the package
+- <code>vcpkg.json</code>: metadata file containing the package name, version, dependencies, etc.</p>
+<p>A simple <code>portfile.cmake</code> can look like this:</p>
+<pre><code class="language-cmake">
+# download the source code
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO &lt;reo owner&gt;/&lt;repo name&gt;
+    REF &lt;branch name&gt;
+    SHA512 &lt;hash of the files&gt;
+)
+
+# configure the source code
+vcpkg_cmake_configure(
+    SOURCE_PATH &lt;path to source dir&gt;
+)
+
+# build the source code and install it
+vcpkg_cmake_install()
+
+# fix the cmake generaed files for vcpkg
+vcpkg_cmake_config_fixup(PACKAGE_NAME &lt;package name&gt;)
+</code></pre>
+<p>Explanation:
+- <a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github"><code>vcpkg_from_github</code></a>: downloads the source code from the github repository
+    - the <code>&lt;path to source dir&gt;</code> is the directory where the <code>CMakeLists.txt</code> file is located. It is usually the directory where the source code is downloaded, so we can set it to <code>${SOURCE_PATH}</code>
+    - the <code>&lt;hash of the files&gt;</code> can be easily obtained by:
+        1.  setting the <code>&lt;hash of files&gt; to 0
+        2.  running the</code>vcpkg install <port name><code>3.  copying the hash from the error message
+- [</code>vcpkg_cmake_configure<code>](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure): configures the source code using cmake (wraps the</code>cmake<code>command)
+- [</code>vcpkg_cmake_install<code>](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install): builds and installs the source code (wraps the</code>cmake --build . --target install<code>command)
+    - the majority of code is in the subroutine [</code>vcpkg_cmake_build<code>](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build)
+    - **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the</code>ADD_BIN_TO_PATH<code>option in the</code>vcpkg_cmake_install<code>function**. This is needed as the automatic dll copy to the output dir (</code>VCPKG_APPLOCAL_DEPS<code>) is disabelled by the</code>vcpkg_cmake_build<code>function. This option solve the problem by prepending the</code>PATH<code>environment variable with the path to the vcpkg installed libraries (</code><vcpkg root>/installed/<triplet>/bin<code>for release and</code><vcpkg root>/installed/<triplet>/debug/bin<code>for debug).
+- [</code>vcpkg_cmake_config_fixup<code>](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup): fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the</code>CMakeConfig.cmake<code>and</code>CMakeConfigVersion.cmake<code>files.
+    - the</code><package name>` is the name of the package, usually the same as the port name</p>
+<p>The <code>vcpkg.json</code> file can look like this:</p>
+<pre><code class="language-json">{
+    {
+    &quot;name&quot;: &quot;fconfig&quot;,
+    &quot;version-string&quot;: &quot;0.1.0&quot;,
+    &quot;description&quot;: &quot;C++ implementation of the fconfig configuration system&quot;,
+    &quot;homepage&quot;: &quot;https://github.com/F-I-D-O/Future-Config&quot;,
+    &quot;dependencies&quot;: [
+        {
+            &quot;name&quot; : &quot;vcpkg-cmake&quot;,
+            &quot;host&quot; : true
+        },
+        &quot;yaml-cpp&quot;,
+        &quot;spdlog&quot;,
+        &quot;inja&quot;
+    ]
+}
+}
+</code></pre>
+<p>The dependencies with the <code>host</code> key set to <code>true</code> are the dependencies that are required for the build, but not for the runtime. </p>
+<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
+<p>To install the port locally, run:</p>
+<pre><code class="language-bash">vcpkg install &lt;port name&gt;
+</code></pre>
+<p>For this command to work, the port has to be located in <code>&lt;vcpkg root&gt;/ports/&lt;port name&gt;</code>. If we want to install the port from an alternative location, we can use the <code>--overlay-ports</code> option.  For example, if we have the port stored in the <code>C:/custom_ports/our_new_port</code> directory, we can install it by:</p>
+<pre><code class="language-bash">vcpkg install our_new_port --overlay-ports=C:/custom_ports
+</code></pre>
+<p>If the port installation is failing and the reason is not clear from stdout, check the logs located in <code>&lt;vcpkg root&gt;/buildtrees/&lt;port name&gt;/</code></p></div>
             </div>
         </div>
 

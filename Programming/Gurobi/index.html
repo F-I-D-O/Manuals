@@ -351,6 +351,11 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#running-gurobi-cli" class="nav-link">Running Gurobi CLI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#parallel-execution" class="nav-link">Parallel Execution</a>
               <ul class="nav flex-column">
               </ul>
@@ -360,18 +365,15 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="running-gurobi-cli">Running Gurobi CLI<a class="headerlink" href="#running-gurobi-cli" title="Permanent link">&para;</a></h1>
+<p>There are two gurobi command line tools: 
+- <a href="https://www.gurobi.com/documentation/current/refman/grb_command_line_tool.html"><code>gurobi_cl</code></a>: for solving the optimization problems passed as a file
+- <code>gurobi</code>: for running the interactive shell (ipython-like)</p>
 <h1 id="parallel-execution">Parallel Execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h1>
 <p>The gurobi solver solves a problem in parallel by default, trying multiple solution methods at the same time (see the <a href="https://www.gurobi.com/documentation/9.5/refman/concurrent_optimizer.html">official description</a>).</p>
 <p>It is also possible to run multiple problems in parallel (<a href="https://support.gurobi.com/hc/en-us/community/posts/360055837711-Solving-different-models-in-parallel-C-OpenMP-">source</a>), but each problem should be run in its own gurobi environment. Also, each environment should be configured to use only a single thread (e.g., in C++: <code>env.set(GRB_IntParam_Threads, 1);</code> ). </p>
 <p>The problem with this approach is that the CPU is usually not the bottleneck of the computation, the bottleneck is the memory (<a href="https://groups.google.com/g/gurobi/c/JcUxe0YibZQ">source</a>). Therefore, solving multiple problems in parallel does not guarantee any speed up, it could be actually slower.</p>
-<p>The performance could be most likely improved when running the problems in parallel on multiple machines (not multiple cores of the same machine). <a href="https://support.gurobi.com/hc/en-us/community/posts/360077591892-Solving-thousands-of-QP-parallelly-on-a-machine-">Some advised to use MPI</a> for that.</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
-</blockquote>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU1NzQwNzcwLC0xMTgxMjAzMjQ4LDczMD
-k5ODExNl19
---></div>
+<p>The performance could be most likely improved when running the problems in parallel on multiple machines (not multiple cores of the same machine). <a href="https://support.gurobi.com/hc/en-us/community/posts/360077591892-Solving-thousands-of-QP-parallelly-on-a-machine-">Some advised to use MPI</a> for that.</p></div>
             </div>
         </div>
 

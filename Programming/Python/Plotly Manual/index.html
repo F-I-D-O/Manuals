@@ -395,10 +395,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#removing-the-column-name-from-the-rowcolumn-annotations" class="nav-link">Removing the column name from the row/column annotations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="3"><a href="#sharing-the-axes-titles-between-rows-and-columns" class="nav-link">Sharing the axes titles between rows and columns</a>
               <ul class="nav flex-column">
               </ul>
@@ -501,6 +497,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#change-position-of-the-axis-title" class="nav-link">Change position of the axis title</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#legend_1" class="nav-link">Legend</a>
@@ -545,8 +545,16 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#title" class="nav-link">Title</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#individual-subplot-titles" class="nav-link">Individual subplot titles</a>
+            <li class="nav-item" data-level="3"><a href="#subplot-titles" class="nav-link">Subplot titles</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#automatic-subplot-titles-facet-plots" class="nav-link">Automatic subplot titles (facet plots)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#individual-subplot-titles" class="nav-link">Individual subplot titles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -619,6 +627,7 @@ Plotly express modul is loaded as:</p>
 <li><code>color_discrete_sequence</code>: the list of colors in hexadecimal format to use for the color column. If the number of colors is less than the number of categories, the colors are reused. If the number of colors is greater, the colors are truncated.</li>
 <li><code>title</code>: the title of the plot. </li>
 <li><code>hover_data</code>: the list of columns to show in the hover tooltip. Axes columns are shown automatically.</li>
+<li><code>text</code>: text labels for the data points. </li>
 </ul>
 <h3 id="automatic-color-assignment">Automatic color assignment<a class="headerlink" href="#automatic-color-assignment" title="Permanent link">&para;</a></h3>
 <p>If we use the color parameter of a graph, plotly express plots a trace for each color value and assigns a color to the trace. To customize this color, we can use two parameters:
@@ -682,19 +691,14 @@ To mark the missing values, we can use annotations. </p>
 <pre><code class="language-python">fig.update_xaxes(matches=None)
 fig.update_yaxes(matches=None)
 </code></pre>
-<h3 id="removing-the-column-name-from-the-rowcolumn-annotations">Removing the column name from the row/column annotations<a class="headerlink" href="#removing-the-column-name-from-the-rowcolumn-annotations" title="Permanent link">&para;</a></h3>
-<p>For each row and column, a label is added to the subplot. This label has a format of <code>&lt;column name&gt; = &lt;value&gt;</code>. To remove the column name, we can use the <code>for_each_annotation</code> function. Example:</p>
-<pre><code class="language-python">fig.for_each_annotation(lambda a: a.update(text=a.text.split(&quot;=&quot;)[-1]))
-</code></pre>
 <h3 id="sharing-the-axes-titles-between-rows-and-columns">Sharing the axes titles between rows and columns<a class="headerlink" href="#sharing-the-axes-titles-between-rows-and-columns" title="Permanent link">&para;</a></h3>
-<p>Unfortunately, the axes titles cannot be easily shared between rows and columns. The only way is to delete the titles and add shared titles manually using the <code>add_annotation</code> function. Example:</p>
-<pre><code class="language-python"># shared y axis title
-fig.for_each_yaxis(lambda y: y.update(title = ''))
-fig.add_annotation(x=-0.05, y=0.5, text=&quot;Vehicle hours&quot;, textangle=-90, xref=&quot;paper&quot;, yref=&quot;paper&quot;, showarrow=False)
+<p>Unfortunately, the axes titles cannot be easily shared between rows and columns. The only way is configure the axis text manually. Example:</p>
+<pre><code class="language-python"># remove y axis titles except for the first subplot
+for i in range(1, 4):
+    fig.update_yaxes(title_text='', row=1, col=i)
+# set the text of the first y axis
+fig.update_yaxes(title_text=&quot;Comp. time relative to IH&quot;, row=1, col=1)
 
-# shared x axis title
-fig.for_each_xaxis(lambda y: y.update(title = ''))
-fig.add_annotation(x=0.5, y=-0.12, text=&quot;Occupancy&quot;,  xref=&quot;paper&quot;, yref=&quot;paper&quot;, showarrow=False)
 </code></pre>
 <h2 id="3d-scatter-plot">3D Scatter Plot<a class="headerlink" href="#3d-scatter-plot" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/3d-scatter-plots/">documentation</a></p>
@@ -842,9 +846,10 @@ fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
 - <code>ticks</code>: the position of the ticks. Can be <code>outside</code>, <code>inside</code> or <code>""</code> (no ticks, default).
 - <code>ticklen</code>: the length of the ticks in pixels
 - <code>tickformat</code>: the format of the tick labels. Depending on the axis datatype, we can use number formats (e.g., <code>".2f"</code> for two decimal places), datetime formats (e.g., <code>"%Y-%m-%d"</code> for dates) or scientific notation (e.g., <code>"e"</code> for scientific notation).
-    - for percentage, we can use <code>".0%"</code> for integer percentage and <code>".1%"</code> for one decimal place. Note that this way, the <code>%</code> sign is added automatically to each tick label. If we do not want this, we can either set the text manually using the <code>ticktext</code> parameter, or multiply the data by 100.</p>
+    - for percentage, we can use <code>".0%"</code> for integer percentage and <code>".1%"</code> for one decimal place. Note that this way, the <code>%</code> sign is added automatically to each tick label. If we do not want this, we can either set the text manually using the <code>ticktext</code> parameter, or multiply the data by 100.
+- <code>tickangle</code>: the angle of the tick labels in degrees</p>
 <p>Other important parameters are:
-- <code>title_text</code>: the title of the axis. Note that <strong>this text is only used if the tickavls are set manually</strong>.
+- <code>title_text</code>: the title of the axis. 
 - <code>linecolor</code>: the color of the axis line
 - <code>gridcolor</code>: the color of the grid lines
 - <code>mirror</code>: if <code>True</code>, the axis line will be mirrored to the other side of the plot</p>
@@ -884,6 +889,22 @@ fig.update_yaxes(showticklabels=True, row=1, col=1)
 ))
 </code></pre>
 <p><strong>One thing that is not possible to customize idn 3D is the position of the axis</strong>. The x and y axes are always in the bottom, while the z axis is always on the left.</p>
+<h3 id="change-position-of-the-axis-title">Change position of the axis title<a class="headerlink" href="#change-position-of-the-axis-title" title="Permanent link">&para;</a></h3>
+<p>Unfortunately, there is no way how to change the position of the axis title. The solution is to hide the title and add a new annotation with the title text. Example:</p>
+<pre><code class="language-python">fig.update_xaxes(title_text=&quot;&quot;)
+fig.add_annotation(
+    text=&quot;Comp. time relative to IH&quot;,
+    xref=&quot;paper&quot;,
+    yref=&quot;paper&quot;,
+    x=-0.09,
+    y=0.5,
+    showarrow=False,
+    font=dict(
+        size=14,
+    ),
+    textangle=270,
+)
+</code></pre>
 <h2 id="legend_1">Legend<a class="headerlink" href="#legend_1" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/legend/">documentation</a></p>
 <p><a href="https://plotly.com/python/reference/layout/#layout-legend">reference</a></p>
@@ -977,7 +998,12 @@ If the legend is positioned inside the plot, the plot expands to the whole width
 <p>Important parameters:
 - <code>x</code>, <code>y</code>: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
 - <code>xanchor</code>, <code>yanchor</code>: the position of the title relative to the x and y coordinates. Can be <code>left</code>, <code>center</code> or <code>right</code> for <code>xanchor</code> and <code>top</code>, <code>middle</code> or <code>bottom</code> for <code>yanchor</code>.</p>
-<h3 id="individual-subplot-titles">Individual subplot titles<a class="headerlink" href="#individual-subplot-titles" title="Permanent link">&para;</a></h3>
+<h3 id="subplot-titles">Subplot titles<a class="headerlink" href="#subplot-titles" title="Permanent link">&para;</a></h3>
+<h4 id="automatic-subplot-titles-facet-plots">Automatic subplot titles (facet plots)<a class="headerlink" href="#automatic-subplot-titles-facet-plots" title="Permanent link">&para;</a></h4>
+<p>When using facet plots, the subplot titles are generated automatically as <code>&lt;facet column name&gt;=&lt;facet column value&gt;</code>. Usually, we want to remove the column name and keep only the value. To do this, we can use the <code>for_each_annotation</code> function. Example:</p>
+<pre><code class="language-python">fig.for_each_annotation(lambda a: a.update(text=a.text.split(&quot;=&quot;)[-1]))
+</code></pre>
+<h4 id="individual-subplot-titles">Individual subplot titles<a class="headerlink" href="#individual-subplot-titles" title="Permanent link">&para;</a></h4>
 <p>To set the title of an individual subplot, we can use the <code>subplot_titles</code> parameter of the <code>make_subplots</code> function. </p>
 <h2 id="z-order-of-the-traces">Z-Order of the Traces<a class="headerlink" href="#z-order-of-the-traces" title="Permanent link">&para;</a></h2>
 <p>The z-order of the traces cannot be configured. Instead, the traces are drawn in the order they are added to the figure. </p>

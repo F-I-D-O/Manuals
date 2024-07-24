@@ -659,6 +659,14 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#sqlalchemy" class="nav-link">SQLAlchemy</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#executing-statements-without-transaction" class="nav-link">Executing statements without transaction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#executing-multiple-statements-at-once" class="nav-link">Executing multiple statements at once</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -1260,8 +1268,53 @@ for i in tqdm(range(100)):
 - the <a href="https://www.psycopg.org/">psycopg2</a> adapter or,
 - the <a href="https://www.sqlalchemy.org/">sqlalchemy</a>.</p>
 <h2 id="sqlalchemy">SQLAlchemy<a class="headerlink" href="#sqlalchemy" title="Permanent link">&para;</a></h2>
-<p>Simple query:</p>
-<pre><code class="language-Python">sqlalchemy_engine.execute(&quot;&lt;sql&gt;&quot;)
+<p><a href="https://docs.sqlalchemy.org/en/20/core/connections.html">Connection documentation</a></p>
+<p>SQLAlchemy works with engine objects that represent the application's connection to the database. The engine object is created using the <code>create_engine</code> function:</p>
+<pre><code class="language-Python">from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://user:password@localhost:5432/dbname')
+</code></pre>
+<p>A simple <strong><code>SELECT</code></strong> query can be executed using using the following code:</p>
+<pre><code class="language-Python">with engine.connect() as conneciton:
+    result = conneciton.execute(&quot;SELECT * FROM table&quot;)
+    ...
+</code></pre>
+<p>With modifying statements, the situation is more complicated as SQLAlchemy uses transactions by default. Therefore we need to commit the transaction. There are two ways how to do that:
+- using the <code>commit</code> method of the connection object
+    <code>Python
+    with engine.connect() as conneciton:
+        conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
+        conneciton.commit()</code>
+- creating a new block for the transaction using the <code>begin</code> method of the connection object
+    <code>Python
+    with engine.connect() as conneciton:
+        with conneciton.begin():
+            conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")</code>
+    - this option has also its shortcut: the <code>begin</code> method of the engine object
+        <code>Python
+        with engine.begin() as conneciton:
+            conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")</code></p>
+<p>Note that <strong>the old <code>execute</code> method of the engine object is not available anymore</strong> in newer versions of SQLAlchemy. </p>
+<h3 id="executing-statements-without-transaction">Executing statements without transaction<a class="headerlink" href="#executing-statements-without-transaction" title="Permanent link">&para;</a></h3>
+<p>By default, sqlalchemy executes sql statements in a transaction. However, some statements (e.g., <code>CREATE DATABASE</code>) cannot be executed in a transaction. To execute such statements, we have to use the <code>execution_options</code> method:</p>
+<pre><code class="language-Python">with sqlalchemy_engine.connect() as conn:
+    conn.execution_options(isolation_level=&quot;AUTOCOMMIT&quot;)
+    conn.execute(&quot;&lt;sql&gt;&quot;)
+    conn.commit()
+</code></pre>
+<h2 id="executing-multiple-statements-at-once">Executing multiple statements at once<a class="headerlink" href="#executing-multiple-statements-at-once" title="Permanent link">&para;</a></h2>
+<p>To execute multiple statements at once, for example when executing a script, it is best to use the <code>execute</code> method of the psycopg2 connection object. Moreover, to safely handle errors, it is best to catch the exceptions and manually rollback the transaction in case of an error:</p>
+<pre><code class="language-Python">conn = psycopg2.connect(&lt;connection string&gt;)
+cursor = conn.cursor()
+try:
+    cursor.execute(&lt;sql&gt;)
+    conn.commit()
+except Exception as e:
+    conn.rollback()
+    raise e
+finally:
+    cursor.close()
+    conn.close()
 </code></pre>
 <h1 id="working-with-gis">Working with GIS<a class="headerlink" href="#working-with-gis" title="Permanent link">&para;</a></h1>
 <p>When working with gis data, we usually change the <code>pandas</code> library for its GIS extension called <a href="https://geopandas.org/en/stable/"><code>geopandas</code></a>.</p>

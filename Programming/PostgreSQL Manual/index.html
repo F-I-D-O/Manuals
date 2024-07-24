@@ -561,9 +561,9 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#table-and-database-statistics" class="nav-link">Table and database statistics</a>
+            <li class="nav-item" data-level="1"><a href="#information-and-statistics" class="nav-link">Information and statistics</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#listing-databases" class="nav-link">Listing databases</a>
+            <li class="nav-item" data-level="2"><a href="#databases" class="nav-link">Databases</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -572,6 +572,10 @@
             
             <li class="nav-item" data-level="1"><a href="#managing-the-database-clusters" class="nav-link">Managing the database clusters</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#starting-stopping-and-restarting-the-cluster" class="nav-link">Starting, stopping, and restarting the cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#creating-new-user" class="nav-link">Creating new user</a>
               <ul class="nav flex-column">
               </ul>
@@ -582,7 +586,7 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#granting-privileges" class="nav-link">Granting privileges</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#grant-all-privileges-for-database-schema" class="nav-link">Grant all privileges for database schema</a>
+            <li class="nav-item" data-level="3"><a href="#grant-privileges-for-database-schema" class="nav-link">Grant privileges for database schema</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -599,6 +603,14 @@
             <li class="nav-item" data-level="2"><a href="#managing-access-to-the-database" class="nav-link">Managing access to the database</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#lost-password-to-the-postgres-server" class="nav-link">Lost Password to the Postgres Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#logging_1" class="nav-link">Logging</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -635,6 +647,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#duplicate-table" class="nav-link">Duplicate table</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#known-issues-and-workarounds" class="nav-link">Known issues and workarounds</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#datagrip-displays-objects-that-were-deleted" class="nav-link">DataGrip displays objects that were deleted</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -737,6 +757,9 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <p>If we want to also keep the array index, we can use the <code>WITH ORDINALITY</code> expression, as shown in the <a href="https://www.postgresql.org/docs/current/functions-srf.html">manual</a> or on <a href="https://stackoverflow.com/questions/8760419/postgresql-unnest-with-element-number">SO</a>.</p>
 <h2 id="hstore">hstore<a class="headerlink" href="#hstore" title="Permanent link">&para;</a></h2>
 <p>A specific feature of PostgreSQL is the <a href="https://www.postgresql.org/docs/current/hstore.html"><code>hstore</code></a> column type. It enables to store structured data in a single column. It can be used to dump variables that we do not plan to utilize in the database (i.e., in the SELECT, JOIN statements) frequently. </p>
+<p>This data type requires the <code>hstore</code> extension to be enabled in the database. To enable it, use the following command:</p>
+<pre><code class="language-SQL">CREATE EXTENSION hstore;
+</code></pre>
 <p>When we, exceptionally, want to access a variable from a hstore column, we can use the following syntax:</p>
 <pre><code class="language-SQL">SELECT &lt;COLUMN NAME&gt;-&gt;&lt;VARIABLE NAME&gt; AS ...
 </code></pre>
@@ -887,6 +910,13 @@ $$
 <p>PostgreSQL supports an extended syntax for <a href="https://www.postgresql.org/docs/current/tutorial-window.html">window functions</a>.</p>
 <p>We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an <a href="https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column">SO answer</a>.</p>
 <h1 id="postgis">PostGis<a class="headerlink" href="#postgis" title="Permanent link">&para;</a></h1>
+<p>PolsGIS is an extension for PostgreSQL that adds support for spatial data. </p>
+<p>To enable the extension, we need to:
+1. install the extension
+    - e.g., using the bundeled stack builder application
+1. enable the extension in the database
+    <code>SQL
+    CREATE EXTENSION postgis;</code></p>
 <h2 id="geometry-columns">Geometry columns<a class="headerlink" href="#geometry-columns" title="Permanent link">&para;</a></h2>
 <p>Postgis features can be utilized with geometry and geography column types. To add a new geometry column:</p>
 <pre><code class="language-SQL">ADD COLUMN &lt;COLUUMN NAME&gt; geometry(&lt;GEOMETRY TYPE&gt;, &lt;SRID&gt;)
@@ -1095,7 +1125,7 @@ END IF
 <p>Example:</p>
 <pre><code class="language-bash">echo &quot;COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'&quot; | psql -d opendata
 </code></pre>
-<h1 id="table-and-database-statistics">Table and database statistics<a class="headerlink" href="#table-and-database-statistics" title="Permanent link">&para;</a></h1>
+<h1 id="information-and-statistics">Information and statistics<a class="headerlink" href="#information-and-statistics" title="Permanent link">&para;</a></h1>
 <p>To show the <strong>table size</strong>, run:</p>
 <pre><code class="language-PostgreSQL">SELECT pg_size_pretty(pg_total_relation_size('&lt;table name&gt;'));
 </code></pre>
@@ -1105,22 +1135,38 @@ END IF
 <p>To list all <strong>extensions</strong> for a database, run:</p>
 <pre><code class="language-PostgreSQL">psql -d &lt;db name&gt; -c &quot;\dx&quot;
 </code></pre>
-<h2 id="listing-databases">Listing databases<a class="headerlink" href="#listing-databases" title="Permanent link">&para;</a></h2>
+<p>To check if a <strong>specific table</strong> exists, run:</p>
+<pre><code class="language-PostgreSQL">SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '&lt;schema_name&gt;' AND table_name = '&lt;table_name&gt;');
+</code></pre>
+<h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
 <p>To list all databases, we can use the <code>-l</code> parameter:</p>
 <pre><code class="language-bash">psql -l
 </code></pre>
 <p>To get more information about the databases, we can use the <code>\l+</code> meta-command.</p>
+<p>To check if a specific database exists, we can use the following query:</p>
+<pre><code class="language-SQL">SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '&lt;db name&gt;');
+</code></pre>
 <h1 id="managing-the-database-clusters">Managing the database clusters<a class="headerlink" href="#managing-the-database-clusters" title="Permanent link">&para;</a></h1>
 <p>As a first step, it is always good to know which clusters are installed and running. To show this information, use the <code>pg_lsclusters</code> command.</p>
+<h2 id="starting-stopping-and-restarting-the-cluster">Starting, stopping, and restarting the cluster<a class="headerlink" href="#starting-stopping-and-restarting-the-cluster" title="Permanent link">&para;</a></h2>
+<p>Sometimes it is needed to restart the cluster. There are two commands:
+- <code>pg_ctl restart</code>: restarts the cluster
+- <code>pg_ctl reload</code>: reloads the configuration of the cluster</p>
+<p>Always check which one is needed in each case. For both commands, the path to the <code>data</code> directory of the cluster is needed. We can specify it in two ways:
+- using the <code>-D</code> parameter of the <code>pg_ctl</code> command
+- setting the <code>PGDATA</code> environment variable</p>
 <h2 id="creating-new-user">Creating new user<a class="headerlink" href="#creating-new-user" title="Permanent link">&para;</a></h2>
 <p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:
 - <code>-P</code> or <code>--pwprompt</code>: prompt for password. If not used, the user will be created without a password.</p>
 <h2 id="deleting-database">Deleting database<a class="headerlink" href="#deleting-database" title="Permanent link">&para;</a></h2>
 <p>To delete a database, we can use the <a href="https://www.postgresql.org/docs/current/app-dropdb.html"><code>dropdb</code></a> command: <code>dropdb &lt;db name&gt;</code></p>
 <h2 id="granting-privileges">Granting privileges<a class="headerlink" href="#granting-privileges" title="Permanent link">&para;</a></h2>
-<h3 id="grant-all-privileges-for-database-schema">Grant all privileges for database schema<a class="headerlink" href="#grant-all-privileges-for-database-schema" title="Permanent link">&para;</a></h3>
+<h3 id="grant-privileges-for-database-schema">Grant privileges for database schema<a class="headerlink" href="#grant-privileges-for-database-schema" title="Permanent link">&para;</a></h3>
 <p>To grant all privileges for a database schema to a user, we can use the following command:</p>
 <pre><code class="language-SQL">GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO &lt;user name&gt;;
+</code></pre>
+<p>To grant only the <code>SELECT</code> privilege, use:</p>
+<pre><code class="language-SQL">GRANT SELECT ON ALL TABLES IN SCHEMA public TO &lt;user name&gt;;
 </code></pre>
 <h2 id="upgrading-the-database-cluster">Upgrading the database cluster<a class="headerlink" href="#upgrading-the-database-cluster" title="Permanent link">&para;</a></h2>
 <p>With PostgreSQL version 9.3 and later, we can upgrade easily even between major versions using the <a href="https://www.postgresql.org/docs/current/pgupgrade.html"><code>pg_upgrade</code></a> command. We can even skip versions, e.g., upgrade from 12 to 16. </p>
@@ -1166,6 +1212,16 @@ END IF
 5. restore the <code>pg_hba.conf</code> file from backup
 6. restart the postgreSQL service again
 7. test if the new password works</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>The configuration of the PostgreSQL server is stored in the <code>&lt;postgres data dir&gt;/postgresql.conf</code> file. </p>
+<h3 id="logging_1">Logging<a class="headerlink" href="#logging_1" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">Documentation</a></p>
+<p>The logs are stored in the <code>&lt;postgres data dir&gt;/log</code> directory. </p>
+<p>By default, only errors are logged. To logg statements, we need to change the <code>log_statement</code> parameter. Valid values are:
+- <code>none</code>: no statements are logged
+- <code>ddl</code>: only DDL statements are logged
+- <code>mod</code>: only statements that modify the database are logged
+- <code>all</code>: all statements are logged</p>
 <h2 id="garbage-collection-and-optimization">Garbage collection and optimization<a class="headerlink" href="#garbage-collection-and-optimization" title="Permanent link">&para;</a></h2>
 <p>There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb`</a> command.  </p>
 <h1 id="datagrip">DataGrip<a class="headerlink" href="#datagrip" title="Permanent link">&para;</a></h1>
@@ -1185,6 +1241,11 @@ END IF
 <p>There is no UI available currently, use Navicat or console</p>
 <h2 id="duplicate-table">Duplicate table<a class="headerlink" href="#duplicate-table" title="Permanent link">&para;</a></h2>
 <p>Drag the table in the database explorer and drop it to the location you want it to copy to.</p>
+<h2 id="known-issues-and-workarounds">Known issues and workarounds<a class="headerlink" href="#known-issues-and-workarounds" title="Permanent link">&para;</a></h2>
+<h3 id="datagrip-displays-objects-that-were-deleted">DataGrip displays objects that were deleted<a class="headerlink" href="#datagrip-displays-objects-that-were-deleted" title="Permanent link">&para;</a></h3>
+<p>Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
+1. right-click on database connection (root object in the database explorer)
+1. click on <code>Diagnostics</code> -&gt; <code>Force refresh</code></p>
 <h1 id="navicat">Navicat<a class="headerlink" href="#navicat" title="Permanent link">&para;</a></h1>
 <h2 id="cannot-connect-to-db">Cannot connect to db<a class="headerlink" href="#cannot-connect-to-db" title="Permanent link">&para;</a></h2>
 <p>Symptoms:
