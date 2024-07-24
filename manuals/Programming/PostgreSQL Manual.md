@@ -679,10 +679,15 @@ To delete a database, we can use the [`dropdb`](https://www.postgresql.org/docs/
 
 ## Granting privileges
 
-### Grant all privileges for database schema
+### Grant privileges for database schema
 To grant all privileges for a database schema to a user, we can use the following command:
 ```SQL
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user name>;
+```
+
+To grant only the `SELECT` privilege, use:
+```SQL
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO <user name>;
 ```
 
 

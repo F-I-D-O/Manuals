@@ -830,14 +830,44 @@ When working with PostgreSQL databases, we usually use either
 - the [sqlalchemy](https://www.sqlalchemy.org/).
 
 ## SQLAlchemy
-Simple query:
-```Python
-sqlalchemy_engine.execute("<sql>")
+[Connection documentation](https://docs.sqlalchemy.org/en/20/core/connections.html)
 
-# which is an equivalent to
-with sqlalchemy_engine.connect() as conn:
-    conn.execute("<sql>")
+SQLAlchemy works with engine objects that represent the application's connection to the database. The engine object is created using the `create_engine` function:
+```Python
+from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://user:password@localhost:5432/dbname')
 ```
+
+A simple **`SELECT`** query can be executed using using the following code:
+```Python
+with engine.connect() as conneciton:
+    result = conneciton.execute("SELECT * FROM table")
+    ...
+```
+
+With modifying statements, the situation is more complicated as SQLAlchemy uses transactions by default. Therefore we need to commit the transaction. There are two ways how to do that:
+- using the `commit` method of the connection object
+    ```Python
+    with engine.connect() as conneciton:
+        conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
+        conneciton.commit()
+    ```
+- creating a new block for the transaction using the `begin` method of the connection object
+    ```Python
+    with engine.connect() as conneciton:
+        with conneciton.begin():
+            conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
+    ```
+    - this option has also its shortcut: the `begin` method of the engine object
+        ```Python
+        with engine.begin() as conneciton:
+            conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
+        ```
+
+Note that **the old `execute` method of the engine object is not available anymore** in newer versions of SQLAlchemy. 
+
+
 
 ### Executing statements without transaction
 By default, sqlalchemy executes sql statements in a transaction. However, some statements (e.g., `CREATE DATABASE`) cannot be executed in a transaction. To execute such statements, we have to use the `execution_options` method:
@@ -845,6 +875,7 @@ By default, sqlalchemy executes sql statements in a transaction. However, some s
 with sqlalchemy_engine.connect() as conn:
     conn.execution_options(isolation_level="AUTOCOMMIT")
     conn.execute("<sql>")
+    conn.commit()
 ```
 
 ## Executing multiple statements at once
