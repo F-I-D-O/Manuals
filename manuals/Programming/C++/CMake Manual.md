@@ -127,6 +127,25 @@ cmake -DCMAKE_INSTALL_PREFIX=<test install dir> <source dir>
 ```
 
 
+## CMake command-line tools
+[documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html#run-a-command-line-tool)
+
+Apart from standard commands listed in previous sections, CMake provides several command-line tools that are not directly related to the build process. These tools wrap the system commands so that we are able to use them in a cross-platform way. To run these tools, execute:
+```bash
+cmake -E <tool name> <arguments>
+```
+
+The most useful tools are:
+- `copy` - copy files and directories
+
+
+### Copy tool
+The copy tool has two signatures:
+- `copy <source> <destination>` 
+- `copy -t <destination> <source>` (**only available in CMake 3.26 and later**)
+
+Here, `<source>` can be a directory, a file, or a list of files. The `<destination>` can be a directory or a file. 
+
 
 # Syntax
 
@@ -200,7 +219,7 @@ endif()
 
 
 ## Generator expressions
-[`Manual`](https://cmake.org/cmake/help/v3.4/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions%287%29)
+[`Manual`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html)
 
 Generator expressions are a very useful tool to control the build process based on the build type, compiler type, or similar properties. CMake use them to generate mutliple build scripts from a single `CMakeLists.txt` file.
 
@@ -208,6 +227,16 @@ The syntax for a basic condition expression is:
 ```cmake
 "$<$<condition>:<this will be printed if condition is satisfied>>"
 ```
+
+Unlike, variables, the values of generator expressions are evaluated during the build process, not during the configuration process. Therefore, they cannot be dumped during the configuration process, and they cannot be used in the `if` command. However, in case of need, we can try to cheat this using the following command:
+```cmake
+file(GENERATE OUTPUT <filename> CONTENT <string-with-generator-expression>)
+```
+This way, we receive the evaluated value of the generator expression in the file for one of the build configurations.
+
+Notable variable expressions:
+- `$<TARGET_FILE_DIR:<target name>>` - the directory where the target will be built
+- [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) - the list of runtime dependencies of the target
 
 
 
@@ -517,16 +546,41 @@ Make sure that you **always link against all the libraries that are needed for t
 
 
 
+## Copying Runtime Dependencies
+Some generators (e.g., Visual Studio) do not copy the runtime dependencies to the output directory. To do that, we can use the [`add_custom_command`](https://cmake.org/cmake/help/latest/command/add_custom_command.html) command:
+```cmake
+add_custom_command(
+	TARGET <target name>
+	POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:<target name>> $<TARGET_FILE_DIR:<target name>>
+	COMMAND_EXPAND_LISTS
+)
+```
 
+Here, the `COMMAND_EXPAND_LISTS` is used to expand the generator expressions in the command. We use it for the [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) generator expression that returns the list of runtime dependencies of the target. 
 
 
 ## Installation Configuration
 To enable installation, we have to provide several commands and do some adjustments in the `CMakeLists.txt` file. Specific steps depends on what we want to achieve.
 
-The minimal installation that installs only binaries can be set up using the [`install(TARGETS...`](https://cmake.org/cmake/help/latest/command/install.html#targets) command. The basic syntax is:
-```cmake
-install(TARGETS <target name 1> <target name 2>)
-```
+The minimal installation that installs only binaries can be set up using two commands:
+- Install binaries with the [`install(TARGETS...`](https://cmake.org/cmake/help/latest/command/install.html#targets) command. The basic syntax is:
+    ```cmake
+    install(TARGETS <target name 1> <target name 2>)
+    ```
+- Install headers with the [`install(FILES...`](https://cmake.org/cmake/help/latest/command/install.html#files) command. The basic syntax is:
+    ```cmake
+    install(FILES <file 1> <file 2> DESTINATION <destination>)
+    ```
+    - The `<destination>` is the directory where the files will be installed. Typically, it is `${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}` for header files.
+    - We usually only want a single set of headers to be installed for both Debug and Release builds (**for vcpkg, this is required**). This can be achieved by using the `CONFIGURATIONS` parameter of the `install` command. Example:
+        ```cmake
+        install(
+            FILES <file 1> <file 2> 
+            DESTINATION <destination> 
+            CONFIGURATIONS Release
+        )
+        ```
 
 This command provides the `install` target that builds all targets (it depends on the `all` target) and then installs the project, which means that it copies the binary files to the installation directory.
 
@@ -557,6 +611,7 @@ This involves two steps:
     - The `<destination>` is the directory where the CMake configuration files will be installed. Typically, it is ([source](https://discourse.cmake.org/t/what-should-the-destination-be-for-a-header-only-librarys-cmake-config-file/8473)):
         - `${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}` for binaries
         - `share/cmake/${PROJECT_NAME}` for header-only libraries
+        - **for vcpkg**: `share/${PROJECT_NAME}`. Otherwise, we need to mess with the `CONFIG_PATH` parameter of the `vcpkg_cmake_config_fixup` function.
     - for using the `CMAKE_INSTALL_LIBDIR` variable, we have to include the `GNUInstallDirs` module using the `include` command.
 
 
@@ -682,6 +737,40 @@ The order of execution follows the order of the `add_subdirectory` commands, i.e
 The variable scope for multiple `CMakeLists.txt` files is hierarchical. This means that the variables defined in the parent `CMakeLists.txt` file are visible in the child `CMakeLists.txt` file, but not vice versa.
 
 
+## Decide based on the build configuration
+Sometimes is essential to decide based on the build configuration in the `CMakeLists.txt` file. However, this is not possible for the multi-configuration generators like Visual Studio or Xcode because the build configuration is not known during the CMake configuration step. However, there are measures that can be taken to achieve the result for particular tasks.
+
+For `install` command, we can use the `CONFIGURATIONS` parameter to install the files only for the selected build configuration. Example:
+```cmake
+install(
+    FILES <file 1> <file 2> 
+    DESTINATION <destination> 
+    CONFIGURATIONS Release
+)
+```
+
+For building, there are ways to limit the build based on the build configuration for both single- and multi-configuration generators. For single configuration generators, we can use the [`CMAKE_BUILD_TYPE`](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html) variable and simply exclude the target from the build using the `EXCLUDE_FROM_ALL` target property:
+```cmake
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+   set_target_properties(<target name> PROPERTIES EXCLUDE_FROM_ALL TRUE)
+endif()
+```
+For multi-configuration generators, this variable is not set, but we can use the
+`EXCLUDE_FROM_DEFAULT_BUILD_DEBUG` property:
+```cmake
+set_target_properties(<target name> PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD_DEBUG TRUE)
+```
+To support both single- and multi-configuration generators, we have to first check whether we use a single- or multi-configuration generator using the [`CMAKE_CONFIGURATION_TYPES`](https://cmake.org/cmake/help/latest/variable/CMAKE_CONFIGURATION_TYPES.html) variable and then set the property accordingly:
+```cmake
+if(CMAKE_CONFIGURATION_TYPES)
+    set_target_properties(<target name> PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD_DEBUG TRUE)
+else()
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set_target_properties(<target name> PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    endif()
+endif()
+```
+
 # CMake Variables and Cache
 CMake has two types of variables:
 - *normal variables* that are used just like in any other programming language and
@@ -729,6 +818,15 @@ There are some variable generated by default by CMake. These are:
 # CMake Directory Structure
 ## System Find_XXX.cmake files
 The system find scripts are located in the `CMake/share/cmake-<version>/Modules/` directory.
+
+
+# Various Tasks
+
+## Showing the generator for a configured directory
+If the configuration step is already done, we can show the generator used for the configuration by reading the `CMAKE_GENERATOR` variable from the `CMakeCache.txt` file:
+```powershell
+Get-Content CMakeCache.txt | Select-String -Pattern "CMAKE_GENERATOR"
+```
 
 
 # Debugging CMake 

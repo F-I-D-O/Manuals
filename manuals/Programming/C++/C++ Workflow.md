@@ -99,6 +99,123 @@ llvm[target-arm]                      Build with ARM backend.
 ```
 Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use `vcpkg install llvm[target-arm]`. Sometimes, a new build of the main package is required, in that case, we need to type `vcpkg install llvm[target-arm] --recurse`.
 
+
+## Integrate your library to vcpkg
+For complete integration of your library to vcpkg, the following steps are needed:
+1. Configure and test the [*CMake installation*](CMake%20Manual.md#install)
+1. Crate the port and test it locally (*vcpkg installation*)
+3. Submit the port to the vcpkg repository (*publishing*) 
+
+### Create the Port
+[The official guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging)
+
+Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
+The usual port contain these files:
+- `portfile.cmake`: the main file containing the calls to cmake functions that install the package
+- `vcpkg.json`: metadata file containing the package name, version, dependencies, etc.
+
+A simple `portfile.cmake` can look like this:
+```cmake
+
+# download the source code
+vcpkg_from_github(
+	OUT_SOURCE_PATH SOURCE_PATH
+	REPO <reo owner>/<repo name>
+	REF <branch name>
+	SHA512 <hash of the files>
+)
+
+# configure the source code
+vcpkg_cmake_configure(
+	SOURCE_PATH <path to source dir>
+)
+
+# build the source code and install it
+vcpkg_cmake_install()
+
+# fix the cmake generaed files for vcpkg
+vcpkg_cmake_config_fixup(PACKAGE_NAME <package name>)
+
+# install the license
+file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+```
+
+Explanation:
+- [`vcpkg_from_github`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github): downloads the source code from the github repository
+	- the `<path to source dir>` is the directory where the `CMakeLists.txt` file is located. It is usually the directory where the source code is downloaded, so we can set it to `${SOURCE_PATH}`
+	- the `<hash of the files>` can be easily obtained by:
+		1.  setting the `<hash of files> to 0
+		2.  running the `vcpkg install <port name>`
+		3.  copying the hash from the error message
+- [`vcpkg_cmake_configure`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure): configures the source code using cmake (wraps the `cmake` command)
+- [`vcpkg_cmake_install`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install): builds and installs the source code (wraps the `cmake --build . --target install` command)
+	- the majority of code is in the subroutine [`vcpkg_cmake_build`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build)
+	- **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the `ADD_BIN_TO_PATH` option in the `vcpkg_cmake_install` function**. This is needed as the automatic dll copy to the output dir (`VCPKG_APPLOCAL_DEPS`) is disabelled by the `vcpkg_cmake_build` function. This option solve the problem by prepending the `PATH` environment variable with the path to the vcpkg installed libraries (`<vcpkg root>/installed/<triplet>/bin` for release and `<vcpkg root>/installed/<triplet>/debug/bin` for debug).
+- [`vcpkg_cmake_config_fixup`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup): fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the `CMakeConfig.cmake` and `CMakeConfigVersion.cmake` files.
+	- the `<package name>` is the name of the package, usually the same as the port name
+- `file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)` installs the license file to `share/<port name>/copyright` file. The `copyright` file is obligatory for the package to be accepted to the vcpkg repository.
+
+
+The `vcpkg.json` file can look like this:
+```json
+{
+	{
+    "name": "fconfig",
+    "version-string": "0.1.0",
+    "description": "C++ implementation of the fconfig configuration system",
+    "homepage": "https://github.com/F-I-D-O/Future-Config",
+    "dependencies": [
+        {
+            "name" : "vcpkg-cmake",
+            "host" : true
+        },
+        "yaml-cpp",
+        "spdlog",
+        "inja"
+    ]
+}
+}
+```
+
+The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
+
+### Installation
+To install the port locally, run:
+```bash
+vcpkg install <port name>
+```
+
+For this command to work, the port has to be located in `<vcpkg root>/ports/<port name>`. If we want to install the port from an alternative location, we can use the `--overlay-ports` option.  For example, if we have the port stored in the `C:/custom_ports/our_new_port` directory, we can install it by:
+```bash
+vcpkg install our_new_port --overlay-ports=C:/custom_ports
+```
+
+If the port installation is failing and the reason is not clear from stdout, check the logs located in `<vcpkg root>/buildtrees/<port name>/`
+
+
+### Reinistallation after changes
+During testing, we can reach a scenario where a) we successfully installed the port, b) we need to make some changes. In this case, we need to reinstall the port. However, it is not completely straightforward due to [binary caching](https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default). The following steps are needed to reinstall the port:
+1. uninstall the port: `vcpkg remove <port name>`
+2. disable the binary cache by setting the [`VCPKG_BINARY_SOURCES`](https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching) environment variable to `clear`
+	- in PowerShell: `$env:VCPKG_BINARY_SOURCES = "clear"`
+1. install the port again: `vcpkg install <port name>`
+
+
+### Executable installation
+In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools used in the build process. To do so you have to:
+- disable the insatllation of the debug version of the executable.
+- install the release version of the executable to the `tools` directory instead of the `bin` directory. 
+
+To do this, remove the executable target from the main `install(TARGETS ...)` command and add a second such command to the `CMakeLists.txt` file:
+```cmake
+install(
+	TARGETS <tool target name>
+	DESTINATION tools
+	CONFIGURATIONS Release
+)
+```
+
+
 ## Directory Structure
 vcpkg has the following directory structure:
 - `buildtrees`: contains the build directories for each installed package. Each build directory contains the build logs.
@@ -461,88 +578,6 @@ git config core.ignorecase false
 Here, we describe how to make some library or executable available in the system (*installation*) and how to distribute it to other users (*publishing*).
 
 ## Vcpkg
-Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
-1. Crate the port
-2. Test the port by installing it locally (*installation*)
-3. Submit the port to the vcpkg repository (*publishing*) 
 
-### Create the Port
-The usual port contain these files:
-- `portfile.cmake`: the main file containing the calls to cmake functions that install the package
-- `vcpkg.json`: metadata file containing the package name, version, dependencies, etc.
-
-A simple `portfile.cmake` can look like this:
-```cmake
-
-# download the source code
-vcpkg_from_github(
-	OUT_SOURCE_PATH SOURCE_PATH
-	REPO <reo owner>/<repo name>
-	REF <branch name>
-	SHA512 <hash of the files>
-)
-
-# configure the source code
-vcpkg_cmake_configure(
-	SOURCE_PATH <path to source dir>
-)
-
-# build the source code and install it
-vcpkg_cmake_install()
-
-# fix the cmake generaed files for vcpkg
-vcpkg_cmake_config_fixup(PACKAGE_NAME <package name>)
-```
-
-Explanation:
-- [`vcpkg_from_github`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github): downloads the source code from the github repository
-	- the `<path to source dir>` is the directory where the `CMakeLists.txt` file is located. It is usually the directory where the source code is downloaded, so we can set it to `${SOURCE_PATH}`
-	- the `<hash of the files>` can be easily obtained by:
-		1.  setting the `<hash of files> to 0
-		2.  running the `vcpkg install <port name>`
-		3.  copying the hash from the error message
-- [`vcpkg_cmake_configure`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure): configures the source code using cmake (wraps the `cmake` command)
-- [`vcpkg_cmake_install`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install): builds and installs the source code (wraps the `cmake --build . --target install` command)
-	- the majority of code is in the subroutine [`vcpkg_cmake_build`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build)
-	- **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the `ADD_BIN_TO_PATH` option in the `vcpkg_cmake_install` function**. This is needed as the automatic dll copy to the output dir (`VCPKG_APPLOCAL_DEPS`) is disabelled by the `vcpkg_cmake_build` function. This option solve the problem by prepending the `PATH` environment variable with the path to the vcpkg installed libraries (`<vcpkg root>/installed/<triplet>/bin` for release and `<vcpkg root>/installed/<triplet>/debug/bin` for debug).
-- [`vcpkg_cmake_config_fixup`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup): fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the `CMakeConfig.cmake` and `CMakeConfigVersion.cmake` files.
-	- the `<package name>` is the name of the package, usually the same as the port name
-
-
-The `vcpkg.json` file can look like this:
-```json
-{
-	{
-    "name": "fconfig",
-    "version-string": "0.1.0",
-    "description": "C++ implementation of the fconfig configuration system",
-    "homepage": "https://github.com/F-I-D-O/Future-Config",
-    "dependencies": [
-        {
-            "name" : "vcpkg-cmake",
-            "host" : true
-        },
-        "yaml-cpp",
-        "spdlog",
-        "inja"
-    ]
-}
-}
-```
-
-The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
-
-### Installation
-To install the port locally, run:
-```bash
-vcpkg install <port name>
-```
-
-For this command to work, the port has to be located in `<vcpkg root>/ports/<port name>`. If we want to install the port from an alternative location, we can use the `--overlay-ports` option.  For example, if we have the port stored in the `C:/custom_ports/our_new_port` directory, we can install it by:
-```bash
-vcpkg install our_new_port --overlay-ports=C:/custom_ports
-```
-
-If the port installation is failing and the reason is not clear from stdout, check the logs located in `<vcpkg root>/buildtrees/<port name>/`
 
 

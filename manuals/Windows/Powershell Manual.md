@@ -241,8 +241,15 @@ The above command lists the names of all files in the current directory.
 
 The alias for the `ForEach-Object` cmdlet is `foreach` and `%`.
 
+# Inputs and Outputs
 
-# Outputs
+## Inputs
+To read a file, use the [`Get-Content`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content) cmdlet. Example:
+```PowerShell
+Get-Content "C:\Users\user\file.txt"
+```
+
+##  Outputs
 There are many output streams in PowerShell. We can use:
 - `Write-Output`: for standard output
 - `Write-Error`: for standard error
