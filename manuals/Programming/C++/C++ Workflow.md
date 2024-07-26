@@ -62,6 +62,8 @@ Other details about CMake can be found in the CMake Manual.
 	-   `x64-MinGW` for MinGW
     
 ## CMake Integration
+[documentation](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration)
+
 By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: `vcpkg/scripts/buildsystems/vcpkg.cmake`. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. 
 
 The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.
@@ -107,7 +109,10 @@ For complete integration of your library to vcpkg, the following steps are neede
 3. Submit the port to the vcpkg repository (*publishing*) 
 
 ### Create the Port
-[The official guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging)
+- [The official guide for packageing](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging)
+- [Maintainer guide](https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide)
+	- missing details from other guides
+	- contains the list of deprecated functions
 
 Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
 The usual port contain these files:
@@ -201,17 +206,30 @@ During testing, we can reach a scenario where a) we successfully installed the p
 1. install the port again: `vcpkg install <port name>`
 
 
-### Executable installation
-In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools used in the build process. To do so you have to:
-- disable the insatllation of the debug version of the executable.
-- install the release version of the executable to the `tools` directory instead of the `bin` directory. 
+### Variables and Functions available in the portfile.cmake
+The variables and functions available in the `portfile.cmake` are described in the [create command documentation](https://learn.microsoft.com/en-us/vcpkg/commands/create). The most important variables are:
+- `CURRENT_PACKAGES_DIR`: the directory where the package is installed: `<vcpkg root>/installed/<triplet>/<port name>`
 
-To do this, remove the executable target from the main `install(TARGETS ...)` command and add a second such command to the `CMakeLists.txt` file:
+### Executable installation
+In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools (to the `installed/<triplet>/tools` directory) used in the build process. To do so, you have to add the [`vcpgk_copy_tools`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_copy_tools) call to the `portfile.cmake` file:
 ```cmake
-install(
-	TARGETS <tool target name>
-	DESTINATION tools
-	CONFIGURATIONS Release
+vcpkg_copy_tools(
+	TOOL_NAMES <tool target name>
+	AUTO_CLEAN
+)
+```
+The `AUTO_CLEAN` option ensures that the tools are deleted from the `bin` directory. Without it the tools will be kept in the `bin` directory, resulting in warnings and non-complicance with the vcpkg rules.
+
+The `vcpgk_copy_tools` function also automatically copies the runtime dependencies of the tools to the `tools` directory. 
+
+
+### Executing installed tools from cmake
+The installed tools can be executed from cmake using cmake comands specified in the [CMake manual](CMake%20Manual.md#executing-external-commands). 
+
+To specify the path to the tools directory, use the [`VCPKG_INSTALLED_DIR`](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_installed_dir) and [`VCPKG_TARGET_TRIPLET`](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_target_triplet) variables:
+```cmake
+execute_process(
+	COMMAND ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/tools/${PROJECT_NAME}/<tool name>
 )
 ```
 

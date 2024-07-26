@@ -176,6 +176,17 @@ message(STATUS "dir=$ENV{dir}")
 - `CMAKE_CURRENT_SOURCE_DIR` - the directory where the currently processed `CMakeLists.txt` file is located.
 
 
+### List variables
+List variables are defined similarly to scalar variables using the `set` command:
+```cmake
+set(<name> <value 1> <value 2> ...)
+```
+
+Then, we can use the list variable in:
+- commands that accept lists (e.g., `add_executable`, `add_library`, `target_link_libraries`)
+- for loops
+
+
 ### Print all variables
 To print all variables, the following function can be used:
 ```cmake
@@ -228,16 +239,26 @@ The syntax for a basic condition expression is:
 "$<$<condition>:<this will be printed if condition is satisfied>>"
 ```
 
-Unlike, variables, the values of generator expressions are evaluated during the build process, not during the configuration process. Therefore, they cannot be dumped during the configuration process, and they cannot be used in the `if` command. However, in case of need, we can try to cheat this using the following command:
-```cmake
-file(GENERATE OUTPUT <filename> CONTENT <string-with-generator-expression>)
-```
-This way, we receive the evaluated value of the generator expression in the file for one of the build configurations.
+Unlike, variables, the **generator expressions are evaluated during the build process, not during the configuration process**. Therefore, they cannot be dumped during the configuration process, and they cannot be used in the `if` command. However, they can be still used in variables and commands, if the evaluation is not needed during the configuration process.
 
 Notable variable expressions:
 - `$<TARGET_FILE_DIR:<target name>>` - the directory where the target will be built
 - [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) - the list of runtime dependencies of the target
 
+### Evaluating generator expressions during configuration
+In case we need to see the evaluated generator expressions during cmake configuration, we can try to cheat using the following command:
+```cmake
+file(GENERATE OUTPUT <filename> CONTENT <string-with-generator-expression>)
+```
+This way, we receive the evaluated value of the generator expression in the file for one of the build configurations.
+
+
+## File operations
+To perform file operations, use the [`file`](https://cmake.org/cmake/help/latest/command/file.html) command. The most useful subcommands are:
+- `MAKE_DIRECTORY <directory>` - create a directory
+- `RENAME <from> <to>` - renames/moves a file or directory. The `<from>` must exist, and the parent directory of `<to>` must exist. 
+- `REMOVE <file>` - remove a file 
+- `REMOVE_RECURSE <directory>` - remove a directory and all its content
 
 
 # CMakeLists.txt
@@ -770,6 +791,15 @@ else()
     endif()
 endif()
 ```
+
+
+## Executing external commands
+There are different ways to execute external commands in the `CMakeLists.txt`, the proper way depends on the time when we want to execute the command:
+- **configuration time**: use the [`execute_process`](https://cmake.org/cmake/help/latest/command/execute_process.html) command
+- **build time**: use the [`add_custom_command`](https://cmake.org/cmake/help/latest/command/add_custom_command.html) command
+    - can be run both before and after the build step using the `PRE_BUILD` and `POST_BUILD` options
+
+
 
 # CMake Variables and Cache
 CMake has two types of variables:
