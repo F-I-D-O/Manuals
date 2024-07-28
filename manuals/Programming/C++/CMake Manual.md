@@ -593,6 +593,7 @@ The minimal installation that installs only binaries can be set up using two com
     ```cmake
     install(FILES <file 1> <file 2> DESTINATION <destination>)
     ```
+    - We have to install both public API headers and their internal dependencies. Usually, this means installing most of the headers.
     - The `<destination>` is the directory where the files will be installed. Typically, it is `${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}` for header files.
     - We usually only want a single set of headers to be installed for both Debug and Release builds (**for vcpkg, this is required**). This can be achieved by using the `CONFIGURATIONS` parameter of the `install` command. Example:
         ```cmake
@@ -644,6 +645,8 @@ To generate the package configuration file:
 name `<package name>Config.cmake.in` and fill it with the following content:
     ```cmake
     @PACKAGE_INIT@
+
+    include ("${CMAKE_CURRENT_LIST_DIR}/<package name>Targes.cmake")
     
     optional content ...
     ``` 
