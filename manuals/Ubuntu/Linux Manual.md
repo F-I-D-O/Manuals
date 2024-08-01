@@ -687,7 +687,7 @@ usermod --shell /usr/sbin/nologin <username>
 Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the `-N` parameter, which tells the client not to execute any command after login.
 
 
-# Managing services with systemd
+# Services and systemd
 The [systemd](https://en.wikipedia.org/wiki/Systemd) is a system and service manager for Linux. It is used to manage services, devices, and other aspects of the system. 
 
 The main command to manage services is `systemctl`. The general syntax is:
@@ -719,9 +719,10 @@ To list all services, we can use one of the following commands:
 - `list-units-files` to list all units, including the ones that have never been run
 
 
+# Frequently used software
 
-# Installing Java
-## Oracle JDK
+## Installing Java
+### Oracle JDK
 1. Go to the download page, the link to the dowload page for current version of java is on the [main JDK page](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Click on the debian package, accept the license, and download it.
 	- If installing on system without GUI, copy now (after accepting the license) the target link and dowload the debian package with `wget`:  `
@@ -736,9 +737,26 @@ sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-16/bin/ja
 To check the priorities, call `update-alternatives --query java`. The newly installed JDK should have the highest priority.
 
 
-# Python
+## Python
 Python has to be executed with `python3` by default, instead of `python`.
 
+
+## GCC 
+GCC is typically installed by default and itts minor versions are updated with the system updates. However, if we need a major version update, we have to install it manually as a new package:
+```bash
+sudo apt install gcc-<version>
+```
+This way, the new version is installed alongside the old version. To switch to the new version, we have to use the `update-alternatives` command:
+```bash
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-<version> <priority>
+```
+The `<priority>` is a number that determines the priority of the version. The version with the highest priority is used. To check the priorities, we can use the `update-alternatives --query gcc` command.
+
+Note that **these steps only updates the C compiler**. To affect the C++ compiler as well, we have to repeat the steps with the `g++` command:
+```bash
+sudo apt install g++-<version>
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-<version> <priority>
+```
 
 # Other usefull commands
 
@@ -783,9 +801,23 @@ ls | xargs rm # remove all files in the current directory
 
 
 # Upgrade
+For a simple system upgrade, we can use the following steps:
+
 1. First run the **update of the current version**.
 2. Then optionaly backup the WSL
 3. run `sudo do-release-upgrade`
+
+However, this only work if there is a LTS version available. If not, the last step will fail. In this case, we can use the `do-release-upgrade -d` command, which upgrades to the latest version, regardless of the LTS status.
+
+## Upgrade to other version than the latest
+When upgrading to a version other than the latest, we can try the following steps:
+1. perform steps 1 and 2 from the normal upgrade
+2. open the `/etc/update-manager/release-upgrades` file and set the `Prompt` parameter to `normal` or `lts` (depending on the desired version)
+3. backup the `/etc/apt/sources.list` file
+4. change the sources to the new version:
+	- e.g., run `sudo sed -i 's/<current version name>/<new version name>/g' /etc/apt/sources.list`
+5. run a normal upgrade: `sudo apt update && sudo apt upgrade`
+6. finalizing the upgrade: `sudo apt dist-upgrade`
 
 ## WSL backup
 1. check the WSL distro name: `wsl -l -v`

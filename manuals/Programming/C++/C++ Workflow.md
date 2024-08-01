@@ -203,6 +203,8 @@ During testing, we can reach a scenario where a) we successfully installed the p
 1. uninstall the port: `vcpkg remove <port name>`
 2. disable the binary cache by setting the [`VCPKG_BINARY_SOURCES`](https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching) environment variable to `clear`
 	- in PowerShell: `$env:VCPKG_BINARY_SOURCES = "clear"`
+	- in bash: `export VCPKG_BINARY_SOURCES=clear`
+	- if setting the environment variable does not work (WSL), we can specify the `--binarysource=clear` option in the next step
 1. install the port again: `vcpkg install <port name>`
 
 
@@ -305,6 +307,15 @@ wget https://raw.githubusercontent.com/JetBrains/clion-wsl/master/ubuntu_setup_e
 ```
   
 Next, It’s necessary to modify the WSL/create the WSL initialization script to fix a CMake issue when connecting from CLion. Download the wsl.conf file, and put it in /etc/.  The restart the WSL (wsl.exe -t Ubuntu-20.04)
+
+
+### Configuring only some CMake profiles
+When we click on the CMake reconiguration button, all profiles are reconfigured. Unfortunately, there is no way how to configure only some profiles. To work around this, we can deactivate the profiles we do not want to configure. To do so:
+1. go to `settings` -> `Build, Execution, Deployment` -> `CMake` 
+2. select the profile you want to deactivate
+2. uncheck the `Enable profile` checkbox located at the top of the profile settings
+
+
     
 ## Visual Studio
 ### Installation

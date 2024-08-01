@@ -11,6 +11,12 @@ Main resources:
 - [CMake documentation](https://cmake.org/cmake/help/latest/index.html)
 - [CMake tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
 
+## Generators
+CMake not only supports multiple platforms but also multiple build systems on each platform. These build systems are called *generators*. To get a list of available generators, run:
+```bash
+cmake -E capabilities
+``` 
+
 
 # Commands
 ## Configuration: Generating Build scripts
@@ -137,6 +143,7 @@ cmake -E <tool name> <arguments>
 
 The most useful tools are:
 - `copy` - copy files and directories
+- `capabilities` - print the properties of the system related to the build process
 
 
 ### Copy tool
@@ -217,7 +224,7 @@ To print all variables related to HDF5 lib, call `dump_cmake_variables(HDF)` aft
 
 ## Control structures
 ### `if`
-The `if` command has the following syntax:
+The [`if`](https://cmake.org/cmake/help/latest/command/if.html) command has the following syntax:
 ```cmake
 if(<condition>)
 ...
@@ -227,6 +234,19 @@ else()
 ...
 endif()
 ``` 
+
+The condition can be:
+- a variable
+- an expression
+
+Each expression can use some of the supported operators:
+- logical operators: `AND`, `OR`, `NOT`
+- comparison operators: `EQUAL`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
+- file operators: `EXISTS`, `IS_DIRECTORY`, `IS_REGULAR_FILE`, `IS_SYMLINK`, `IS_ABSOLUTE`, `IS_RELATIVE`, `IS_NEWER_THAN`, `IS_OLDER_THAN`
+- string operators: `MATCHES`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
+- and more...
+
+For the full list of operators, see the [if command documentation](https://cmake.org/cmake/help/latest/command/if.html).
 
 
 ## Generator expressions
@@ -261,6 +281,61 @@ To perform file operations, use the [`file`](https://cmake.org/cmake/help/latest
 - `REMOVE_RECURSE <directory>` - remove a directory and all its content
 
 
+## Functions
+Functions are defined using the [`function`](https://cmake.org/cmake/help/latest/command/function.html) command. The syntax is:
+```cmake
+function(<function name> <argument 1> <argument 2> ...)
+...
+endfunction()
+```
+
+This way, we have a function with simple positional arguments. These arguments can be used in the function body as variables:
+```cmake
+function(print_arguments arg1 arg2)
+    message(STATUS "arg1=${arg1}")
+    message(STATUS "arg2=${arg2}")
+endfunction()
+```
+
+To call the function, use the following syntax:
+```cmake
+print_arguments("value 1" "value 2")
+```
+
+More resources:
+- https://hsf-training.github.io/hsf-training-cmake-webpage/11-functions/index.html
+
+### Named arguments
+We can notice that a typical cmake function has named arguments, e.g., `add_custom_command(TARGET <target name> POST_BUILD COMMAND <command>)`. To achieve this, we can use the [`cmake_parse_arguments`](https://cmake.org/cmake/help/latest/command/cmake_parse_arguments.html) command. The syntax is:
+```cmake
+function(<function name>)
+    cmake_parse_arguments(
+        PARSE_ARGV 
+        <required args count> 
+        <variable prefix> 
+        <options>
+        <one_value_keywords> 
+        <multi_value_keywords>
+    )
+```
+This way, we say that the function has:
+- `<required args count>` required arguments,
+- all argument values are stored in variables with the name `<variable prefix>_<variable_name>`,
+- and the variable names available for the caller as well as the `<variable_name>` values are determined by the `<options>`, `<one_value_keywords>`, and `<multi_value_keywords>` arguments.
+
+Each of the `<options>`, `<one_value_keywords>`, and `<multi_value_keywords>` arguments is a list of argument names divided by a semicolon. The `<options>` are the arguments that can be either present or not, the `<one_value_keywords>` are the arguments that have a single value, and the `<multi_value_keywords>` are the arguments that have multiple values.
+
+
+### Default values for arguments
+There is no specific syntax for default values for arguments. We can achieve this, for example, by using the `if` command:
+```cmake
+if(NOT DEFINED <variable>)
+    set(<variable> <default value>)
+endif()
+```
+
+
+
 # CMakeLists.txt
 The `CMakeLists.txt` file is the main configuration file for any CMake project. This file is executed during the [configuration step](#configuration-generating-build-scripts) (when the `cmake` command is run without arguments specifying another step).
  It contains commands written in the CMake language that are used to configure the build process.
@@ -292,6 +367,13 @@ This way, the standard is set for all targets and the compiler should be configu
 ```cmake
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ``` 
+
+However, the required standard is not always correctly supported by the compiler (e.g., GCC up to version 13 does not support C++20). Therefore, we need to specify the minimum version for these compilers:
+```cmake
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.0.0)
+    message(FATAL_ERROR "GCC version must be at least 13.0.0!")
+endif()
+```
 
 
 ### Compile options
@@ -568,14 +650,16 @@ Make sure that you **always link against all the libraries that are needed for t
 
 
 ## Copying Runtime Dependencies
-Some generators (e.g., Visual Studio) do not copy the runtime dependencies to the output directory. To do that, we can use the [`add_custom_command`](https://cmake.org/cmake/help/latest/command/add_custom_command.html) command:
+Some generators (e.g., Visual Studio) do not copy the runtime dependencies to the output directory. To do that, we can use the [`add_custom_command`](https://cmake.org/cmake/help/latest/command/add_custom_command.html) command together with the [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) generator expression. Be careful to wrap this code by a condition that checks the generator type, as the generator expression is only available for DLL-aware generators.
 ```cmake
-add_custom_command(
-	TARGET <target name>
-	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:<target name>> $<TARGET_FILE_DIR:<target name>>
-	COMMAND_EXPAND_LISTS
-)
+if(CMAKE_GENERATOR MATCHES "Visual Studio.*")
+    add_custom_command(
+        TARGET <target name>
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:<target name>> $<TARGET_FILE_DIR:<target name>>
+        COMMAND_EXPAND_LISTS
+    )
+endif()
 ```
 
 Here, the `COMMAND_EXPAND_LISTS` is used to expand the generator expressions in the command. We use it for the [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) generator expression that returns the list of runtime dependencies of the target. 

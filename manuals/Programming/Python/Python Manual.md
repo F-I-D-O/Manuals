@@ -458,7 +458,7 @@ p = p.as_posix() # 'C:/workspace/project/file.txt'
 
 
 
-## Geting and setting the working directory
+## Working directory
 - `os.getcwd()` - get the current working directory
 - `os.chdir(<path>)` - set the current working directory
 
