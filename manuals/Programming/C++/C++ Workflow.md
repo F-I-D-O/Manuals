@@ -118,6 +118,8 @@ Vcpkg works with ports which are special directories containing all files descri
 The usual port contain these files:
 - `portfile.cmake`: the main file containing the calls to cmake functions that install the package
 - `vcpkg.json`: metadata file containing the package name, version, dependencies, etc.
+- `usage`: a file containing the usage instructions for the package. These instructions are displayed at the end of the installation process.
+	- [example](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/examples/adding-usage.md)
 
 A simple `portfile.cmake` can look like this:
 ```cmake
@@ -143,6 +145,9 @@ vcpkg_cmake_config_fixup(PACKAGE_NAME <package name>)
 
 # install the license
 file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+
+# install the usage file
+file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
 ```
 
 Explanation:
@@ -184,6 +189,11 @@ The `vcpkg.json` file can look like this:
 
 The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
 
+#### Variables and Functions available in the portfile.cmake
+The variables and functions available in the `portfile.cmake` are described in the [create command documentation](https://learn.microsoft.com/en-us/vcpkg/commands/create). The most important variables are:
+- `CURRENT_PACKAGES_DIR`: the directory where the package is installed: `<vcpkg root>/installed/<triplet>/<port name>`
+
+
 ### Installation
 To install the port locally, run:
 ```bash
@@ -198,7 +208,7 @@ vcpkg install our_new_port --overlay-ports=C:/custom_ports
 If the port installation is failing and the reason is not clear from stdout, check the logs located in `<vcpkg root>/buildtrees/<port name>/`
 
 
-### Reinistallation after changes
+#### Reinistallation after changes
 During testing, we can reach a scenario where a) we successfully installed the port, b) we need to make some changes. In this case, we need to reinstall the port. However, it is not completely straightforward due to [binary caching](https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default). The following steps are needed to reinstall the port:
 1. uninstall the port: `vcpkg remove <port name>`
 2. disable the binary cache by setting the [`VCPKG_BINARY_SOURCES`](https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching) environment variable to `clear`
@@ -208,11 +218,9 @@ During testing, we can reach a scenario where a) we successfully installed the p
 1. install the port again: `vcpkg install <port name>`
 
 
-### Variables and Functions available in the portfile.cmake
-The variables and functions available in the `portfile.cmake` are described in the [create command documentation](https://learn.microsoft.com/en-us/vcpkg/commands/create). The most important variables are:
-- `CURRENT_PACKAGES_DIR`: the directory where the package is installed: `<vcpkg root>/installed/<triplet>/<port name>`
 
-### Executable installation
+
+#### Executable installation
 In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools (to the `installed/<triplet>/tools` directory) used in the build process. To do so, you have to add the [`vcpgk_copy_tools`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_copy_tools) call to the `portfile.cmake` file:
 ```cmake
 vcpkg_copy_tools(
@@ -225,7 +233,7 @@ The `AUTO_CLEAN` option ensures that the tools are deleted from the `bin` direct
 The `vcpgk_copy_tools` function also automatically copies the runtime dependencies of the tools to the `tools` directory. 
 
 
-### Executing installed tools from cmake
+#### Executing installed tools from cmake
 The installed tools can be executed from cmake using cmake comands specified in the [CMake manual](CMake%20Manual.md#executing-external-commands). 
 
 To specify the path to the tools directory, use the [`VCPKG_INSTALLED_DIR`](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_installed_dir) and [`VCPKG_TARGET_TRIPLET`](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_target_triplet) variables:
@@ -234,6 +242,14 @@ execute_process(
 	COMMAND ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/tools/${PROJECT_NAME}/<tool name>
 )
 ```
+
+### Publishing
+[official guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry)
+
+Before publishing the port, we should check for the following:
+- the port follows the [maintainer guide](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md), especially:
+	- the port name does not clash with existing packages (check at [repology](https://repology.org/))
+	
 
 
 ## Directory Structure
