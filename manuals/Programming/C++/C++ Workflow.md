@@ -85,13 +85,21 @@ For using gcc 10:
 Other details about CMake can be found in the CMake Manual.
 
 # vcpkg
--   follow the [installation guide](https://github.com/microsoft/vcpkg), including the user and PowerShell/bash integration
--   add the vcpkg directory to `PATH`, so the program can be run from anywhere
--   Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
--   add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
-	-   `x64-linux` for Linux Compilers
-	-   `x64-windows` for MSVC
-	-   `x64-MinGW` for MinGW
+To install vcpkg:
+
+1. clone the repo
+1. run the bootstrap script (`bootstrap-vcpkg.bat` on Windows, `bootstrap-vcpkg.sh` on Linux)
+1. add the vcpkg directory to `PATH`, so the program can be run from anywhere
+	- Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
+
+
+To install a package, run `vcpkg install package`.
+
+## Changing the default triplet
+To change the default triplet, add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
+- `x64-linux` for Linux Compilers
+- `x64-windows` for MSVC
+- `x64-MinGW` for MinGW
     
 ## CMake Integration
 [documentation](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration)
