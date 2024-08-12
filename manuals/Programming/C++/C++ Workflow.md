@@ -14,18 +14,50 @@ Appart from the build pipeline, we also cover the dependency management. For thi
 # Compiler Toolchains
 There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with Clion.
 
-## MSYS2 (Windows only)
+## MSYS2 (Windows)
+
 -   [download](https://www.msys2.org/)
 -   follow the installation guide on the homepage
 -   install MinGW64 using: `pacman -S mingw-w64-x86_64-gcc`
     
 
-## MSCV (Windows only)
+## MSVC (Windows)
+
 -   install [Visual Studio 2019 Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
 
 
+### Choosing the runtime library
+[official documentation](https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library)
+
+When compiling with MSVC, it is crucial to choose the correct runtime library. Typically, both the compiled target and all its dependencies have to use the same runtime library. The following options are available:
+
+| Option | Copiler flag | MSBuild name | Description | Linged library |
+|--------|--------------|--------------|-------------|----------------|
+| Multi-threaded Dynamic | `/MD` | `MultiThreadedDLL` | The default option. The application uses the dynamic version of the runtime library.  | `msvcrt.lib` |
+| Multi-threaded Dynamic Debug | `/MDd` |  `MultiThreadedDebugDLL` | The debug version of the dynamic runtime library. | `msvcrtd.lib` |
+| Multi-threaded Static | `/MT` | `MultiThreaded` | The application uses the static version of the runtime library. | `libcmt.lib` |
+| Multi-threaded Static Debug | `/MTd` | `MultiThreadedDebug` | The debug version of the static runtime library. | `libcmtd.lib` |
+| DLL | `/LD` | | The application is compiled as a DLL. | - |
+| DLL Debug | `/LDd` | | The debug version of the DLL. | - |
+
+By default, the `/MD`/`/MDd` flags are used depending on the build type. 
+
+When the mismatch occurs, we usually get the following error message:
+```plaintext
+LNK2038 mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MTd_StaticDebug' in ..
+```
+To determine if the type of the runtime library used by the target, we can explore the build script for the target, For MSBuild, the runtime library is set by the `RuntimeLibrary` property.
+
+To determine the runtime library used by a library, we can use the [dumpbin](https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-reference) tool.
+This tool is part of the Visual Studio installation and can be run from the Developer Command Prompt or Developer PowerShell. The following command will display the runtime library used by the library:
+```bash
+dumpbin /directives <path to the library>
+```
+
+#### Resources
+- [Standard library description](https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-library-features)
+
 ### Common Compiler Flags
-- [`/MD`, `/MT`, and similar](https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library): these determines the version of the standard run-time library. The `/MD` flag is the default and also prefered.
 - [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
 - [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags
     
@@ -55,13 +87,21 @@ For using gcc 10:
 Other details about CMake can be found in the CMake Manual.
 
 # vcpkg
--   follow the [installation guide](https://github.com/microsoft/vcpkg), including the user and PowerShell/bash integration
--   add the vcpkg directory to `PATH`, so the program can be run from anywhere
--   Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
--   add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
-	-   `x64-linux` for Linux Compilers
-	-   `x64-windows` for MSVC
-	-   `x64-MinGW` for MinGW
+To install vcpkg:
+
+1. clone the repo
+1. run the bootstrap script (`bootstrap-vcpkg.bat` on Windows, `bootstrap-vcpkg.sh` on Linux)
+1. add the vcpkg directory to `PATH`, so the program can be run from anywhere
+	- Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
+
+
+To install a package, run `vcpkg install package`.
+
+## Changing the default triplet
+To change the default triplet, add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
+- `x64-linux` for Linux Compilers
+- `x64-windows` for MSVC
+- `x64-MinGW` for MinGW
     
 ## CMake Integration
 [documentation](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration)
@@ -109,6 +149,9 @@ For complete integration of your library to vcpkg, the following steps are neede
 1. Configure and test the [*CMake installation*](CMake%20Manual.md#install)
 1. Crate the port and test it locally (*vcpkg installation*)
 3. Submit the port to the vcpkg repository (*publishing*) 
+
+Resources:
+- [decovar tutorial](https://decovar.dev/blog/2022/10/30/cpp-dependencies-with-vcpkg/)
 
 ### Create the Port
 - [The official guide for packageing](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging)
@@ -537,14 +580,86 @@ In WSL, when combined with CLion, some find scripts does not work, because they 
 
 
 # Refactoring
+
 The refactoring of C++ code is a complex process, so the number of supported refactoring operations is limited. In Visual Studio, the only supported refactoring operation is renaming. In IntelliJ tools (CLion, ReSharper C++), there are more tools available, but still, the refactoring is not as powerful nor reliable as in Java or Python.
 
 Other alternative is to implement the refactoring manually, with a help of some compiler tools like [clang Refactoring Engine](https://clang.llvm.org/docs/RefactoringEngine.html) ([example project](https://github.com/realincubus/clang-refactor)). 
 
 
 ## Changing Method Signature
+
 As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.
 
+
+# Exporting symbols for shared libraries
+
+When creating a shared library, we have to specify which symbols are exported. These are the only symbols that can be directly used from the client code. This is done using special keywords. Because the keywords are different for different compilers, usually, some macros are used instead. Typically, these macros:
+- use the correct keyword for the compiler
+- support disabling the keyword for building static libraries or executables
+
+The macros are typically defined in a dedicated header file called *export header*. This file is then included in every header file that defines a symbol that should be exported. 
+
+For the whole export machinery to work, we need to:
+- create the export header file and include it in every header file that defines an exported symbol
+- mark the symbols that should be exported with the export macro
+- use CMake to supply the correct compiler flags used in the export header
+
+## Creating the Export Header
+We can generate the export header file using the [`GenerateExportHeader`](https://cmake.org/cmake/help/latest/module/GenerateExportHeader.html) module. We can get it by the following code:
+
+```cmake
+add_library(<target name> SHARED <files>)
+generate_export_header(<target name>)
+```
+
+This will generate the export header file in the build directory. However, the export file is different for different compilers. Therefore, it is best to copy the file for each compiler and then merge the macros to create a universal export header file. Alternatively, we can use some proven export header file.
+
+Finally, we can store the export header file in the source directory and include it in every header file that defines an exported symbol.
+
+
+## Marking the Symbols
+
+Usually, we mark the following symbols for export:
+- classes: `class <export macro> MyClass{...}`
+- functions: `<export macro> <return type> my_function(...)`
+
+Other symbols does not have to be exported as they are automatically exported by the compiler:
+- enums and enum classes
+- constants
+For shared libraries, we have to export symbols. Becasue of the differences between the compilers, and to support using the same headers for both shared and static libraries it is better to use macros
+
+The macro from the `GenerateExportHeader` is named `<target name>_EXPORT`, we can check the exact name in the export header file.
+
+
+## CMake Configuration
+
+Now the shared library build should work correctly. However, the static library build will be full of warnings, because the export macro is not intended for static libraries. The same is true for executables. Therefore, we need to set a special property for each target that uses the export header and is not a shared library:
+```cmake
+target_compile_definitions(<static/executable target name> PUBLIC <static condition macro >)
+```
+The static condition macro from the `GenerateExportHeader` is named `<target name>_STATIC_DEFINE`. If not clear, we can find the exact macros' names in the export header file.
+
+
+## Resouces
+
+- [tutorial on decovar](https://decovar.dev/blog/2021/03/08/cmake-cpp-library/)
+
+
+
+
+
+
+# Ensuring the same runtime library (MSVC) usage
+Using the same runtime library is crucial when using the MSVC compiler. At lover levels, the runtime library is set by compiler flags (see the [MSVC section](#msvc-windows)). These flags are automatically passed to the compiler by the build system based on the build configuration files (e.g., `MSBuild` files). If we generate thes files by the IDE (Visual Studio), we have to set the runtime library in the IDE. If they are generated by CMake, there are three possible situations:
+- we use the dynamic runtime library (default): nothing has to be done
+- the build is handled by vcpkg (libraries installed with `vcpgk install`): the runtime library is set by the [`VCPKG_CRT_LINKAGE`](https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage) variable in the triplet file. Nothing has to be done.
+- we use the static runtime library: we have to set the `CMAKE_MSVC_RUNTIME_LIBRARY` variable in the `CMakeLists.txt` file. if we use vcpgk, we should set it based on the triplet used:
+
+	```cmake
+	if (VCPKG_TARGET_TRIPLET MATCHES "-static")
+		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif()
+	```
 
 
  # Compilation for a specific CPU
