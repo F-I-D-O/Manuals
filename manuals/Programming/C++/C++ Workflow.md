@@ -1,15 +1,17 @@
+# Introduction
+In C++, the workflow and especially the build pipeline is much more complicated than in other languages. Therefore, we start with brief overview of the C++ build pipelines. The following scheme shows the possible build pipelines for C++, starting from Integrated developemnt tools (IDE) and ending with the linker.
 
-This guide presents how to prepare the following working environment:
+![C++ Workflow](Build%20tools%20and%20toolsets.png)
 
--   One or more from the following toolchains
-	-   MinGW  
-	-   MSVC
-	-   GCC
--   Cmake
--   Clion and/or Visual studio
--   vcpkg
+This guide presents mostly the following workflows:
+- Clion or Visual Studio IDE
+- CMake
+- any sequencing tool (these are discribed only briefly as they are configured automaticvally by CMake)
+- MSVC and GCC compiler toolchains
 
-# Toolchain
+Appart from the build pipeline, we also cover the dependency management. For this, we focus on the dependency manager vcpkg.
+
+# Compiler Toolchains
 There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with Clion.
 
 ## MSYS2 (Windows only)
@@ -249,7 +251,7 @@ execute_process(
 Before publishing the port, we should check for the following:
 - the port follows the [maintainer guide](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md), especially:
 	- the port name does not clash with existing packages (check at [repology](https://repology.org/))
-	
+
 
 
 ## Directory Structure
