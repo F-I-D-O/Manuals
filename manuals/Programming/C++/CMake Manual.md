@@ -263,6 +263,16 @@ Each expression can use some of the supported operators:
 - comparison operators: `EQUAL`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
 - file operators: `EXISTS`, `IS_DIRECTORY`, `IS_REGULAR_FILE`, `IS_SYMLINK`, `IS_ABSOLUTE`, `IS_RELATIVE`, `IS_NEWER_THAN`, `IS_OLDER_THAN`
 - string operators: `MATCHES`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
+- version operators: `VERSION_EQUAL`, `VERSION_LESS`, `VERSION_GREATER`, `VERSION_LESS_EQUAL`, `VERSION_GREATER_EQUAL`
+    - these are ment to be used with version string variables created by the `find_package` command:
+
+    ```cmake
+    find_package(<package name> CONFIG REQUIRED)
+    if(<package name>_VERSION VERSION_LESS <version>)
+    ...
+    endif()
+    ```
+
 - and more...
 
 For the full list of operators, see the [if command documentation](https://cmake.org/cmake/help/latest/command/if.html).
