@@ -711,6 +711,8 @@ Here, the `COMMAND_EXPAND_LISTS` is used to expand the generator expressions in 
 
 
 ## Installation Configuration
+[Importing and Exporting Guide](https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html)
+
 To enable installation, we have to provide several commands and do some adjustments in the `CMakeLists.txt` file. Specific steps depends on what we want to achieve.
 
 The minimal installation that installs only binaries can be set up using two commands:
@@ -770,6 +772,10 @@ This involves two steps:
 
 
 #### Installing the package configuration file and the version file
+[official guide - package config file](https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-configuration-file)
+
+[official guide - version file](https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-version-file)
+
 In order for these files to be portable, they should be generated. The appropriate functions for this are in the [`CMakePackageConfigHelpers module](https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html), which has to be included. 
 
 To generate the package configuration file:
@@ -830,6 +836,24 @@ target_include_directories(<target name> PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 ```
+
+#### Handling dependencies
+If our library depends on other libraries, the targets depending on our library may also need to link against these dependencies. The linking itself is automatically handled by CMake. However, we need to provide the variables that are needed for the in the package configuration file (`<packag name.cmake.in`). To do so, we use the `find_dependency` command from the [`CMakeFindDependencyMacro module](https://cmake.org/cmake/help/latest/module/CMakeFindDependencyMacro.html):
+```cmake
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(<dependency 1>)
+...
+find_dependency(<dependency n>)
+
+include("${CMAKE_CURRENT_LIST_DIR}/<package name>Targets.cmake")
+
+...
+```
+The name of the dependency is the name of the package that is used in the `find_package` command in the `CMakeLists.txt` file. Other parameters (`REQUIRED`, `CONFIG`, etc.) are not needed as they are inherited from the `find_package` command.
+
 
 ### Specify the targets to install
 The [`install`](https://cmake.org/cmake/help/latest/command/install.html)

@@ -19,9 +19,10 @@ When deciding between static and dynamic libraries, there are a few things to co
 | Property | Static Libraries | Dynamic Libraries |
 |----------|------------------|-------------------|
 | Memory footprint | Each executable includes a copy of all used library code | All executables share the same copy of the library code |
-| Modularity | None | We can extedn the functionality of the program by adding new shared libraries |
+| Modularity | None | We can extend the functionality of the program by adding new shared libraries |
 | Licensing | Some licenses (e.g. GPL) require that the source code of the library is made available if the library is linked statically | The library can be linked dynamically without having to make the source code available |
 | Symbol export | All symbols are exported by default | Only symbols marked for export are exported |
+| Linking of transitive dependencies | All transitive dependencies must be linked explicitly | Transitive dependencies are loaded automatically at runtime | 
 
 Historically, there were other factors that are not relevant anymore:
 - *Size*: The historical argument was that dynamic libraries can save disk space because only one copy of the library is needed in the system. However, a) disk space is cheap now and b) dynamic libraries are now distributed with the application on many platforms.
