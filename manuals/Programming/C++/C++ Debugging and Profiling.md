@@ -322,14 +322,3 @@ To profile memory in Visul Studio
 7. Wait for the hit, take snapshot and check both snapshots
 
 ### Memory
-
-> Written with [StackEdit](https://stackedit.io/).
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTQzNDY5ODksMTUxMTUwNzgzNSwxNz
-I4MDcyNjgwLDEzMjM3MzI1NTAsMTEzMDExMzEsMTc3Nzc4OTkz
-MCwxNjIwOTI0Njc2LC00MTA2MDQ4NjUsMTAwMDY3MjIzNiwtMT
-Q5ODUxNTk5MSwtMjAxMjc2NzczMywxOTU1OTA3ODEzLDI2NzUz
-NTU2MiwzMjc5MDIxOTEsLTUwMTY5NDczMyw2NzgyODUwNzEsLT
-E2MzI2NTA5MTgsNTU4MzExNzI0LDYzMTYyNDA3MywtMTE3OTk4
-OTQ1XX0=
--->
