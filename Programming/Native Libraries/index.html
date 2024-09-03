@@ -406,12 +406,22 @@
 <tr>
 <td>Modularity</td>
 <td>None</td>
-<td>We can extedn the functionality of the program by adding new shared libraries</td>
+<td>We can extend the functionality of the program by adding new shared libraries</td>
 </tr>
 <tr>
 <td>Licensing</td>
 <td>Some licenses (e.g. GPL) require that the source code of the library is made available if the library is linked statically</td>
 <td>The library can be linked dynamically without having to make the source code available</td>
+</tr>
+<tr>
+<td>Symbol export</td>
+<td>All symbols are exported by default</td>
+<td>Only symbols marked for export are exported</td>
+</tr>
+<tr>
+<td>Linking of transitive dependencies</td>
+<td>All transitive dependencies must be linked explicitly</td>
+<td>Transitive dependencies are loaded automatically at runtime</td>
 </tr>
 </tbody>
 </table>

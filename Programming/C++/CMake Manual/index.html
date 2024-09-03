@@ -353,6 +353,10 @@
             
             <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generators" class="nav-link">Generators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -402,6 +406,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#cmake-command-line-tools" class="nav-link">CMake command-line tools</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#copy-tool" class="nav-link">Copy tool</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -414,6 +426,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#built-in-variables" class="nav-link">Built-in variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#list-variables" class="nav-link">List variables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -433,6 +449,26 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#generator-expressions" class="nav-link">Generator expressions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#evaluating-generator-expressions-during-configuration" class="nav-link">Evaluating generator expressions during configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#file-operations" class="nav-link">File operations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#named-arguments" class="nav-link">Named arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#default-values-for-arguments" class="nav-link">Default values for arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -443,6 +479,10 @@
             <li class="nav-item" data-level="2"><a href="#typical-top-section-content" class="nav-link">Typical Top section content</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#language-standards" class="nav-link">Language standards</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#set-the-runtime-library-type-for-msvc" class="nav-link">Set the runtime library type for MSVC</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -502,7 +542,11 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#cmake-targets" class="nav-link">CMake Targets</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#target-definition" class="nav-link">Target definition</a>
+            <li class="nav-item" data-level="3"><a href="#executable-targets" class="nav-link">Executable targets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#library-targets" class="nav-link">Library targets</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -524,6 +568,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#copying-runtime-dependencies" class="nav-link">Copying Runtime Dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#installation-configuration" class="nav-link">Installation Configuration</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#install-cmake-files" class="nav-link">Install CMake files</a>
@@ -540,6 +588,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="4"><a href="#handling-dependencies" class="nav-link">Handling dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#specify-the-targets-to-install" class="nav-link">Specify the targets to install</a>
@@ -552,6 +604,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#support-both-shared-and-static-libraries" class="nav-link">Support both shared and static libraries</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#specific-configuration-for-frequentlly-used-libraries" class="nav-link">Specific configuration for frequentlly used libraries</a>
@@ -573,16 +629,20 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#decide-based-on-the-build-configuration" class="nav-link">Decide based on the build configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#executing-external-commands" class="nav-link">Executing external commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#cmake-variables-and-cache" class="nav-link">CMake Variables and Cache</a>
+            <li class="nav-item" data-level="1"><a href="#cmake-cache" class="nav-link">CMake Cache</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#the-option-command" class="nav-link">The option command</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#built-in-variables_1" class="nav-link">Built-in variables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -592,6 +652,15 @@
             <li class="nav-item" data-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#various-tasks" class="nav-link">Various Tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#showing-the-generator-for-a-configured-directory" class="nav-link">Showing the generator for a configured directory</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -625,6 +694,10 @@
 <p>Main resources:
 - <a href="https://cmake.org/cmake/help/latest/index.html">CMake documentation</a>
 - <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake tutorial</a></p>
+<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link">&para;</a></h2>
+<p>CMake not only supports multiple platforms but also multiple build systems on each platform. These build systems are called <em>generators</em>. To get a list of available generators, run:</p>
+<pre><code class="language-bash">cmake -E capabilities
+</code></pre>
 <h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
 <h2 id="configuration-generating-build-scripts">Configuration: Generating Build scripts<a class="headerlink" href="#configuration-generating-build-scripts" title="Permanent link">&para;</a></h2>
 <p>General syntax is:</p>
@@ -704,14 +777,30 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <p>Usually, we want to use a different directory when testing the installation. To do that, we need to configure the project with the <code>CMAKE_INSTALL_PREFIX</code> variable. Example:</p>
 <pre><code class="language-bash">cmake -DCMAKE_INSTALL_PREFIX=&lt;test install dir&gt; &lt;source dir&gt;
 </code></pre>
+<h2 id="cmake-command-line-tools">CMake command-line tools<a class="headerlink" href="#cmake-command-line-tools" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake.1.html#run-a-command-line-tool">documentation</a></p>
+<p>Apart from standard commands listed in previous sections, CMake provides several command-line tools that are not directly related to the build process. These tools wrap the system commands so that we are able to use them in a cross-platform way. To run these tools, execute:</p>
+<pre><code class="language-bash">cmake -E &lt;tool name&gt; &lt;arguments&gt;
+</code></pre>
+<p>The most useful tools are:
+- <code>copy</code> - copy files and directories
+- <code>capabilities</code> - print the properties of the system related to the build process</p>
+<h3 id="copy-tool">Copy tool<a class="headerlink" href="#copy-tool" title="Permanent link">&para;</a></h3>
+<p>The copy tool has two signatures:
+- <code>copy &lt;source&gt; &lt;destination&gt;</code> 
+- <code>copy -t &lt;destination&gt; &lt;source&gt;</code> (<strong>only available in CMake 3.26 and later</strong>)</p>
+<p>Here, <code>&lt;source&gt;</code> can be a directory, a file, or a list of files. The <code>&lt;destination&gt;</code> can be a directory or a file. </p>
 <h1 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h1>
 <h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
-<p>We can use the variable using their name:</p>
+<p>In order to use a variable in the <code>CMakeLists.txt</code> file, we have to use the <code>${}</code> syntax:</p>
+<pre><code class="language-cmake">message(STATUS &quot;dir=${dir}&quot;)
+</code></pre>
+<p>In conditions, we can use the variable using its name:</p>
 <pre><code class="language-cmake">if(DEFINED &lt;name&gt;)
 ...
 </code></pre>
-<p>In string, we need to wrap the variable in <code>${}</code>:</p>
-<pre><code class="language-cmake">message(STATUS &quot;dir=${dir}&quot;)
+<p>Variables are set using the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code>set</code></a> command:</p>
+<pre><code class="language-cmake">set(&lt;variable name&gt; &lt;variable value&gt;)
 </code></pre>
 <h3 id="enviromental-variables">Enviromental variables<a class="headerlink" href="#enviromental-variables" title="Permanent link">&para;</a></h3>
 <p>We can use environmental variables using the <code>ENV</code> variable:</p>
@@ -722,9 +811,25 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <pre><code class="language-cmake">message(STATUS &quot;dir=$ENV{dir}&quot;)
 </code></pre>
 <h3 id="built-in-variables">Built-in variables<a class="headerlink" href="#built-in-variables" title="Permanent link">&para;</a></h3>
+<p>There are some variable generated by default by CMake. These are:
+- <code>CMAKE_CURRENT_SOURCE_DIR</code>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.
+- <code>CMAKE_CURRENT_BINARY_DIR</code>: the directory where the build scripts are located.</p>
+<p>There are also variables for installation directories typical for Unix systems. Touse them, we have to include the <a href="https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html"><code>GNUInstallDirs</code> module</a>. The variables have two formats:</p>
 <ul>
-<li><code>CMAKE_CURRENT_SOURCE_DIR</code> - the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
+<li><code>CMAKE_INSTALL_&lt;dir&gt;</code>: the directory relative to the installation prefix. These variables have to be used in the <code>install</code> command and other commands that use the installation prefix.</li>
+<li><code>CMAKE_INSTALL_FULL_&lt;dir&gt;</code>: the full path to the directory. </li>
 </ul>
+<p>Notable variables are:
+- <code>BINDIR</code>: the directory for executables (<code>bin</code>)
+- <code>LIBDIR</code>: the directory for libraries (<code>lib</code>)
+- <code>INCLUDEDIR</code>: the directory for headers (<code>include</code>)</p>
+<h3 id="list-variables">List variables<a class="headerlink" href="#list-variables" title="Permanent link">&para;</a></h3>
+<p>List variables are defined similarly to scalar variables using the <code>set</code> command:</p>
+<pre><code class="language-cmake">set(&lt;name&gt; &lt;value 1&gt; &lt;value 2&gt; ...)
+</code></pre>
+<p>Then, we can use the list variable in:
+- commands that accept lists (e.g., <code>add_executable</code>, <code>add_library</code>, <code>target_link_libraries</code>)
+- for loops</p>
 <h3 id="print-all-variables">Print all variables<a class="headerlink" href="#print-all-variables" title="Permanent link">&para;</a></h3>
 <p>To print all variables, the following function can be used:</p>
 <pre><code class="language-cmake">function(dump_cmake_variables)
@@ -751,7 +856,7 @@ endfunction()
 <p>To print all variables related to HDF5 lib, call <code>dump_cmake_variables(HDF)</code> after the <code>find_package</code> call.</p>
 <h2 id="control-structures">Control structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h2>
 <h3 id="if"><code>if</code><a class="headerlink" href="#if" title="Permanent link">&para;</a></h3>
-<p>The <code>if</code> command has the following syntax:</p>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/if.html"><code>if</code></a> command has the following syntax:</p>
 <pre><code class="language-cmake">if(&lt;condition&gt;)
 ...
 elseif(&lt;condition&gt;)
@@ -760,11 +865,87 @@ else()
 ...
 endif()
 </code></pre>
+<p>The condition can be:
+- a variable
+- an expression</p>
+<p>Each expression can use some of the supported operators:
+- logical operators: <code>AND</code>, <code>OR</code>, <code>NOT</code>
+- comparison operators: <code>EQUAL</code>, <code>LESS</code>, <code>GREATER</code>, <code>LESS_EQUAL</code>, <code>GREATER_EQUAL</code>, <code>STREQUAL</code>, <code>STRLESS</code>, <code>STRGREATER</code>, <code>STRLESS_EQUAL</code>, <code>STRGREATER_EQUAL</code>
+- file operators: <code>EXISTS</code>, <code>IS_DIRECTORY</code>, <code>IS_REGULAR_FILE</code>, <code>IS_SYMLINK</code>, <code>IS_ABSOLUTE</code>, <code>IS_RELATIVE</code>, <code>IS_NEWER_THAN</code>, <code>IS_OLDER_THAN</code>
+- string operators: <code>MATCHES</code>, <code>LESS</code>, <code>GREATER</code>, <code>LESS_EQUAL</code>, <code>GREATER_EQUAL</code>, <code>STREQUAL</code>, <code>STRLESS</code>, <code>STRGREATER</code>, <code>STRLESS_EQUAL</code>, <code>STRGREATER_EQUAL</code>
+- version operators: <code>VERSION_EQUAL</code>, <code>VERSION_LESS</code>, <code>VERSION_GREATER</code>, <code>VERSION_LESS_EQUAL</code>, <code>VERSION_GREATER_EQUAL</code>
+    - these are ment to be used with version string variables created by the <code>find_package</code> command:</p>
+<pre><code>```cmake
+find_package(&lt;package name&gt; CONFIG REQUIRED)
+if(&lt;package name&gt;_VERSION VERSION_LESS &lt;version&gt;)
+...
+endif()
+```
+</code></pre>
+<ul>
+<li>and more...</li>
+</ul>
+<p>For the full list of operators, see the <a href="https://cmake.org/cmake/help/latest/command/if.html">if command documentation</a>.</p>
 <h2 id="generator-expressions">Generator expressions<a class="headerlink" href="#generator-expressions" title="Permanent link">&para;</a></h2>
-<p><a href="https://cmake.org/cmake/help/v3.4/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions%287%29"><code>Manual</code></a></p>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html"><code>Manual</code></a></p>
 <p>Generator expressions are a very useful tool to control the build process based on the build type, compiler type, or similar properties. CMake use them to generate mutliple build scripts from a single <code>CMakeLists.txt</code> file.</p>
 <p>The syntax for a basic condition expression is:</p>
 <pre><code class="language-cmake">&quot;$&lt;$&lt;condition&gt;:&lt;this will be printed if condition is satisfied&gt;&gt;&quot;
+</code></pre>
+<p>Unlike, variables, the <strong>generator expressions are evaluated during the build process, not during the configuration process</strong>. Therefore, they cannot be dumped during the configuration process, and they cannot be used in the <code>if</code> command. However, they can be still used in variables and commands, if the evaluation is not needed during the configuration process.</p>
+<p>Notable variable expressions:
+- <code>$&lt;TARGET_FILE_DIR:&lt;target name&gt;&gt;</code> - the directory where the target will be built
+- <a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS"><code>$&lt;TARGET_RUNTIME_DLLS:&lt;target name&gt;&gt;</code></a> - the list of runtime dependencies of the target</p>
+<h3 id="evaluating-generator-expressions-during-configuration">Evaluating generator expressions during configuration<a class="headerlink" href="#evaluating-generator-expressions-during-configuration" title="Permanent link">&para;</a></h3>
+<p>In case we need to see the evaluated generator expressions during cmake configuration, we can try to cheat using the following command:</p>
+<pre><code class="language-cmake">file(GENERATE OUTPUT &lt;filename&gt; CONTENT &lt;string-with-generator-expression&gt;)
+</code></pre>
+<p>This way, we receive the evaluated value of the generator expression in the file for one of the build configurations.</p>
+<h2 id="file-operations">File operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h2>
+<p>To perform file operations, use the <a href="https://cmake.org/cmake/help/latest/command/file.html"><code>file</code></a> command. The most useful subcommands are:
+- <code>MAKE_DIRECTORY &lt;directory&gt;</code> - create a directory
+- <code>RENAME &lt;from&gt; &lt;to&gt;</code> - renames/moves a file or directory. The <code>&lt;from&gt;</code> must exist, and the parent directory of <code>&lt;to&gt;</code> must exist. 
+- <code>REMOVE &lt;file&gt;</code> - remove a file 
+- <code>REMOVE_RECURSE &lt;directory&gt;</code> - remove a directory and all its content</p>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<p>Functions are defined using the <a href="https://cmake.org/cmake/help/latest/command/function.html"><code>function</code></a> command. The syntax is:</p>
+<pre><code class="language-cmake">function(&lt;function name&gt; &lt;argument 1&gt; &lt;argument 2&gt; ...)
+...
+endfunction()
+</code></pre>
+<p>This way, we have a function with simple positional arguments. These arguments can be used in the function body as variables:</p>
+<pre><code class="language-cmake">function(print_arguments arg1 arg2)
+    message(STATUS &quot;arg1=${arg1}&quot;)
+    message(STATUS &quot;arg2=${arg2}&quot;)
+endfunction()
+</code></pre>
+<p>To call the function, use the following syntax:</p>
+<pre><code class="language-cmake">print_arguments(&quot;value 1&quot; &quot;value 2&quot;)
+</code></pre>
+<p>More resources:
+- https://hsf-training.github.io/hsf-training-cmake-webpage/11-functions/index.html</p>
+<h3 id="named-arguments">Named arguments<a class="headerlink" href="#named-arguments" title="Permanent link">&para;</a></h3>
+<p>We can notice that a typical cmake function has named arguments, e.g., <code>add_custom_command(TARGET &lt;target name&gt; POST_BUILD COMMAND &lt;command&gt;)</code>. To achieve this, we can use the <a href="https://cmake.org/cmake/help/latest/command/cmake_parse_arguments.html"><code>cmake_parse_arguments</code></a> command. The syntax is:</p>
+<pre><code class="language-cmake">function(&lt;function name&gt;)
+    cmake_parse_arguments(
+        PARSE_ARGV 
+        &lt;required args count&gt; 
+        &lt;variable prefix&gt; 
+        &lt;options&gt;
+        &lt;one_value_keywords&gt; 
+        &lt;multi_value_keywords&gt;
+    )
+</code></pre>
+<p>This way, we say that the function has:
+- <code>&lt;required args count&gt;</code> required arguments,
+- all argument values are stored in variables with the name <code>&lt;variable prefix&gt;_&lt;variable_name&gt;</code>,
+- and the variable names available for the caller as well as the <code>&lt;variable_name&gt;</code> values are determined by the <code>&lt;options&gt;</code>, <code>&lt;one_value_keywords&gt;</code>, and <code>&lt;multi_value_keywords&gt;</code> arguments.</p>
+<p>Each of the <code>&lt;options&gt;</code>, <code>&lt;one_value_keywords&gt;</code>, and <code>&lt;multi_value_keywords&gt;</code> arguments is a list of argument names divided by a semicolon. The <code>&lt;options&gt;</code> are the arguments that can be either present or not, the <code>&lt;one_value_keywords&gt;</code> are the arguments that have a single value, and the <code>&lt;multi_value_keywords&gt;</code> are the arguments that have multiple values.</p>
+<h3 id="default-values-for-arguments">Default values for arguments<a class="headerlink" href="#default-values-for-arguments" title="Permanent link">&para;</a></h3>
+<p>There is no specific syntax for default values for arguments. We can achieve this, for example, by using the <code>if</code> command:</p>
+<pre><code class="language-cmake">if(NOT DEFINED &lt;variable&gt;)
+    set(&lt;variable&gt; &lt;default value&gt;)
+endif()
 </code></pre>
 <h1 id="cmakeliststxt">CMakeLists.txt<a class="headerlink" href="#cmakeliststxt" title="Permanent link">&para;</a></h1>
 <p>The <code>CMakeLists.txt</code> file is the main configuration file for any CMake project. This file is executed during the <a href="#configuration-generating-build-scripts">configuration step</a> (when the <code>cmake</code> command is run without arguments specifying another step).
@@ -794,6 +975,23 @@ endif()
 <p>This way, the standard is set for all targets and the compiler should be configured for that standard. However, if the compiler does not support the standard, the build script generation continues and the failure will appear later during the compilation. To avoid that, we can make the standard a requirement using the <code>set</code> command together with the <code>CMAKE_&lt;LANG&gt;_STANDARD_REQUIRED</code> variable. Example:</p>
 <pre><code class="language-cmake">set(CMAKE_CXX_STANDARD_REQUIRED ON)
 </code></pre>
+<p>However, the required standard is not always correctly supported by the compiler (e.g., GCC up to version 13 does not support C++20). Therefore, we need to specify the minimum version for these compilers:</p>
+<pre><code class="language-cmake">if(CMAKE_CXX_COMPILER_ID STREQUAL &quot;GNU&quot; AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.0.0)
+    message(FATAL_ERROR &quot;GCC version must be at least 13.0.0!&quot;)
+endif()
+</code></pre>
+<h3 id="set-the-runtime-library-type-for-msvc">Set the runtime library type for MSVC<a class="headerlink" href="#set-the-runtime-library-type-for-msvc" title="Permanent link">&para;</a></h3>
+<p>In MSVC, it is crucial that both the target and all its dependencies are compiled with the same (standard) runtime library type. </p>
+<p>To set the library type for the target in CMake, we use the <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_MSVC_RUNTIME_LIBRARY.html"><code>CMKAE_MSVC_RUNTIME_LIBRARY</code></a> variable. The possible values are:
+- <code>MultiThreadedDLL</code> - the dynamic library (default in Release mode)
+- <code>MultiThreadedDebugDLL</code> - the dynamic library with debug information (default in Debug mode)
+- <code>MultiThreaded</code> - the static library
+- <code>MultiThreadedDebug</code> - the static library with debug information</p>
+<p>By default, the dynamic library is used. To set the static library, use:</p>
+<pre><code class="language-cmake">set(CMAKE_MSVC_RUNTIME_LIBRARY &quot;MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;&quot;)
+</code></pre>
+<p>This way, the static library with debug information is used in the Debug mode, and the static library is used in the Release mode.</p>
+<p><strong>Note that the <code>CMAKE_MSVC_RUNTIME_LIBRARY</code> variable was introduced in CMake 3.15. Therefore, you have to set <code>cmake_minimum_required(VERSION 3.15)</code> in the <code>CMakeLists.txt</code> file, or set the CMP0091 policy to <code>NEW</code> using the <code>cmake_policy</code> command.</strong></p>
 <h3 id="compile-options">Compile options<a class="headerlink" href="#compile-options" title="Permanent link">&para;</a></h3>
 <p>Most of the compile options are now sets automatically based on the declarations in the <code>CMakeLists.txt</code> file. However, some notable exceptions exists. To set such options, we have to use the <code>add_compile_options</code> command:</p>
 <pre><code class="language-cmake">add_compile_options(&lt;option 1&gt; &lt;option 2&gt; ...)
@@ -955,13 +1153,13 @@ find_package_handle_standard_args(MOSEK
 endif()
 </code></pre>
 <h3 id="downolad-dependencies-during-configuration-and-build-them-from-source">Downolad dependencies during configuration and build them from source<a class="headerlink" href="#downolad-dependencies-during-configuration-and-build-them-from-source" title="Permanent link">&para;</a></h3>
-<p>To download and build dependencies during the configuration, we can use the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module. For details, see the <a href="https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#fetchcontent-and-find-package-integration">dependency management documentation</a>.</p>
+<p>To download and build dependencies during the configuration, we can use the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module. This way, the sources are downloaded at the configuration step, and built during the build step. Note that because of this, the usage of these dpendencies is limited, we cannot, for example, run the dependency tools at configuration time. For details, see the <a href="https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#fetchcontent-and-find-package-integration">dependency management documentation</a>.</p>
 <p>The usual workflow is:
 1. Download the dependency using the <code>FetchContent_Declare</code> command
     <code>cmake
     FetchContent_Declare(
-    &lt;NAME&gt;
-    &lt;SPECIFICATION&gt;
+        &lt;NAME&gt;
+        &lt;SPECIFICATION&gt;
     )</code>
     - The specification can be either a URL or a git repository.
 2. Configure the dependency using the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html#command:fetchcontent_makeavailable"><code>FetchContent_MakeAvailable</code></a> command:
@@ -978,12 +1176,16 @@ endif()
 - custom targets doing all sorts of things
 - sets of targets, i.e., aliases for building multiple targets at once</p>
 <p>Available targets are either user-defined or automatically generated by CMake.  </p>
-<h3 id="target-definition">Target definition<a class="headerlink" href="#target-definition" title="Permanent link">&para;</a></h3>
+<h3 id="executable-targets">Executable targets<a class="headerlink" href="#executable-targets" title="Permanent link">&para;</a></h3>
 <p>The target definition is done using the <code>add_executable</code> command. The syntax is:</p>
 <pre><code class="language-cmake">add_executable(&lt;target name&gt; &lt;source file 1&gt; &lt;source file 2&gt; ...)
 </code></pre>
 <p>The target name is used to refer to the target in other commands. The target name is also used to name the output file. </p>
 <p>The list of source files should contain all the source files that are needed to build the target. There are some automatic mechanisms that can be used to add the source files (discussed e.g. on <a href="https://discourse.cmake.org/t/is-glob-still-considered-harmful-with-configure-depends/808/2">cmake forums</a>), but they are not recommended.</p>
+<h3 id="library-targets">Library targets<a class="headerlink" href="#library-targets" title="Permanent link">&para;</a></h3>
+<p>Library targets are defined using the <code>add_library</code> command. The syntax is:</p>
+<pre><code class="language-cmake">add_library(&lt;target name&gt; &lt;type&gt; &lt;source file 1&gt; &lt;source file 2&gt; ...)
+</code></pre>
 <h3 id="targets-automatically-generated-by-cmake">Targets automatically generated by CMake<a class="headerlink" href="#targets-automatically-generated-by-cmake" title="Permanent link">&para;</a></h3>
 <p><a href="https://cmake.org/cmake/help/latest/guide/user-interaction/index.html#selecting-a-target">listed here</a>.</p>
 <p>Besides the user-defined targets, CMake automatically generates some targets. These are:
@@ -1008,11 +1210,37 @@ endforeach()
 <h2 id="linking-configuration">Linking configuration<a class="headerlink" href="#linking-configuration" title="Permanent link">&para;</a></h2>
 <p>For linking, use the <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code></a> command.</p>
 <p>Make sure that you <strong>always link against all the libraries that are needed for the target to work!</strong> Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advanced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.</p>
-<h2 id="installation-configuration">Installation Configuration<a class="headerlink" href="#installation-configuration" title="Permanent link">&para;</a></h2>
-<p>To enable installation, we have to provide several commands and do some adjustments in the <code>CMakeLists.txt</code> file. Specific steps depends on what we want to achieve.</p>
-<p>The minimal installation that installs only binaries can be set up using the <a href="https://cmake.org/cmake/help/latest/command/install.html#targets"><code>install(TARGETS...</code></a> command. The basic syntax is:</p>
-<pre><code class="language-cmake">install(TARGETS &lt;target name 1&gt; &lt;target name 2&gt;)
+<h2 id="copying-runtime-dependencies">Copying Runtime Dependencies<a class="headerlink" href="#copying-runtime-dependencies" title="Permanent link">&para;</a></h2>
+<p>Some generators (e.g., Visual Studio) do not copy the runtime dependencies to the output directory. To do that, we can use the <a href="https://cmake.org/cmake/help/latest/command/add_custom_command.html"><code>add_custom_command</code></a> command together with the <a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS"><code>$&lt;TARGET_RUNTIME_DLLS:&lt;target name&gt;&gt;</code></a> generator expression. Be careful to wrap this code by a condition that checks the generator type, as the generator expression is only available for DLL-aware generators.</p>
+<pre><code class="language-cmake">if(CMAKE_GENERATOR MATCHES &quot;Visual Studio.*&quot;)
+    add_custom_command(
+        TARGET &lt;target name&gt;
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $&lt;TARGET_RUNTIME_DLLS:&lt;target name&gt;&gt; $&lt;TARGET_FILE_DIR:&lt;target name&gt;&gt;
+        COMMAND_EXPAND_LISTS
+    )
+endif()
 </code></pre>
+<p>Here, the <code>COMMAND_EXPAND_LISTS</code> is used to expand the generator expressions in the command. We use it for the <a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS"><code>$&lt;TARGET_RUNTIME_DLLS:&lt;target name&gt;&gt;</code></a> generator expression that returns the list of runtime dependencies of the target. </p>
+<h2 id="installation-configuration">Installation Configuration<a class="headerlink" href="#installation-configuration" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html">Importing and Exporting Guide</a></p>
+<p>To enable installation, we have to provide several commands and do some adjustments in the <code>CMakeLists.txt</code> file. Specific steps depends on what we want to achieve.</p>
+<p>The minimal installation that installs only binaries can be set up using two commands:
+- Install binaries with the <a href="https://cmake.org/cmake/help/latest/command/install.html#targets"><code>install(TARGETS...</code></a> command. The basic syntax is:
+    <code>cmake
+    install(TARGETS &lt;target name 1&gt; &lt;target name 2&gt;)</code>
+- Install headers with the <a href="https://cmake.org/cmake/help/latest/command/install.html#files"><code>install(FILES...</code></a> command. The basic syntax is:
+    <code>cmake
+    install(FILES &lt;file 1&gt; &lt;file 2&gt; DESTINATION &lt;destination&gt;)</code>
+    - We have to install both public API headers and their internal dependencies. Usually, this means installing most of the headers.
+    - The <code>&lt;destination&gt;</code> is the directory where the files will be installed. Typically, it is <code>${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}</code> for header files.
+    - We usually only want a single set of headers to be installed for both Debug and Release builds (<strong>for vcpkg, this is required</strong>). This can be achieved by using the <code>CONFIGURATIONS</code> parameter of the <code>install</code> command. Example:
+        <code>cmake
+        install(
+            FILES &lt;file 1&gt; &lt;file 2&gt; 
+            DESTINATION &lt;destination&gt; 
+            CONFIGURATIONS Release
+        )</code></p>
 <p>This command provides the <code>install</code> target that builds all targets (it depends on the <code>all</code> target) and then installs the project, which means that it copies the binary files to the installation directory.</p>
 <h3 id="install-cmake-files">Install CMake files<a class="headerlink" href="#install-cmake-files" title="Permanent link">&para;</a></h3>
 <p>If we want our library to be used from CMake projects, the basic configuration is not enough. We have to provide the CMake configuration files that will be used by the <code>find_package</code> command when searching for the dependency. Usually, CMake packages have the following cmake files:
@@ -1031,20 +1259,28 @@ endforeach()
     <code>cmake
     install(EXPORT &lt;export name&gt;
         DESTINATION &lt;destination&gt;
+        NAMESPACE &lt;namespace&gt;
     )</code>
     - The <code>&lt;export name&gt;</code> is the name of the export set that was used in the <code>install(TARGETS...</code> command
     - The <code>&lt;destination&gt;</code> is the directory where the CMake configuration files will be installed. Typically, it is (<a href="https://discourse.cmake.org/t/what-should-the-destination-be-for-a-header-only-librarys-cmake-config-file/8473">source</a>):
         - <code>${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}</code> for binaries
         - <code>share/cmake/${PROJECT_NAME}</code> for header-only libraries
-    - for using the <code>CMAKE_INSTALL_LIBDIR</code> variable, we have to include the <code>GNUInstallDirs</code> module using the <code>include</code> command.</p>
+        - <strong>for vcpkg</strong>: <code>share/${PROJECT_NAME}</code>. Otherwise, we need to mess with the <code>CONFIG_PATH</code> parameter of the <code>vcpkg_cmake_config_fixup</code> function.
+        - for using the <code>CMAKE_INSTALL_LIBDIR</code> variable, we have to include the <code>GNUInstallDirs</code> module using the <code>include</code> command.
+    - The <code>&lt;namespace&gt;</code> is the namespace that will be used in the CMake configuration file, and later in the <code>target_link_libraries</code> command of the dependent project. It is not required, but it is recommended because the namespace with <code>::</code> only searches between the exported targets, preventing a possible name clash with some library installed in the system.
+        - typically, it has the form of <code>&lt;project name&gt;::</code></p>
 <h4 id="installing-the-package-configuration-file-and-the-version-file">Installing the package configuration file and the version file<a class="headerlink" href="#installing-the-package-configuration-file-and-the-version-file" title="Permanent link">&para;</a></h4>
+<p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-configuration-file">official guide - package config file</a></p>
+<p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-version-file">official guide - version file</a></p>
 <p>In order for these files to be portable, they should be generated. The appropriate functions for this are in the <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html">`CMakePackageConfigHelpers module</a>, which has to be included. </p>
 <p>To generate the package configuration file:
 1. create the input file somewhere in the project directory with the
 name <code>&lt;package name&gt;Config.cmake.in</code> and fill it with the following content:
     ```cmake
     @PACKAGE_INIT@</p>
-<pre><code>optional content ...
+<pre><code>include ("${CMAKE_CURRENT_LIST_DIR}/&lt;package name&gt;Targes.cmake")
+
+optional content ...
 ``` 
 - The `@PACKAGE_INIT@` is a placeholder that will be replaced by the `write_basic_package_version_file` command.
 </code></pre>
@@ -1088,6 +1324,21 @@ name <code>&lt;package name&gt;Config.cmake.in</code> and fill it with the follo
     $&lt;INSTALL_INTERFACE:include&gt;
 )
 </code></pre>
+<h4 id="handling-dependencies">Handling dependencies<a class="headerlink" href="#handling-dependencies" title="Permanent link">&para;</a></h4>
+<p>If our library depends on other libraries, the targets depending on our library may also need to link against these dependencies. The linking itself is automatically handled by CMake. However, we need to provide the variables that are needed for the in the package configuration file (<code>&lt;packag name.cmake.in</code>). To do so, we use the <code>find_dependency</code> command from the <a href="https://cmake.org/cmake/help/latest/module/CMakeFindDependencyMacro.html">`CMakeFindDependencyMacro module</a>:</p>
+<pre><code class="language-cmake">@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(&lt;dependency 1&gt;)
+...
+find_dependency(&lt;dependency n&gt;)
+
+include(&quot;${CMAKE_CURRENT_LIST_DIR}/&lt;package name&gt;Targets.cmake&quot;)
+
+...
+</code></pre>
+<p>The name of the dependency is the name of the package that is used in the <code>find_package</code> command in the <code>CMakeLists.txt</code> file. Other parameters (<code>REQUIRED</code>, <code>CONFIG</code>, etc.) are not needed as they are inherited from the <code>find_package</code> command.</p>
 <h3 id="specify-the-targets-to-install">Specify the targets to install<a class="headerlink" href="#specify-the-targets-to-install" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/install.html"><code>install</code></a>
  command has a parameter <code>TARGETS</code> that can specify the targets that should be installed. The syntax is:</p>
@@ -1110,6 +1361,25 @@ set_target_properties(&lt;target name&gt; PROPERTIES EXCLUDE_FROM_ALL TRUE)
 <h4 id="disabling-the-building-of-the-install-target-and-using-a-custom-wrapper-target">Disabling the building of the <code>install</code> target and using a custom wrapper target<a class="headerlink" href="#disabling-the-building-of-the-install-target-and-using-a-custom-wrapper-target" title="Permanent link">&para;</a></h4>
 <p>For this solution,we first need to disable the building of the <code>install</code> using: <code>set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY true)</code>. Then, we need to create a target that: a) builds the selected targets, b) calls the <code>install</code> target. </p>
 <p><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_SKIP_INSTALL_ALL_DEPENDENCY.html#variable:CMAKE_SKIP_INSTALL_ALL_DEPENDENCY"><code>CMAKE_SKIP_INSTALL_ALL_DEPENDENCY</code> documentation</a> </p>
+<h3 id="support-both-shared-and-static-libraries">Support both shared and static libraries<a class="headerlink" href="#support-both-shared-and-static-libraries" title="Permanent link">&para;</a></h3>
+<p>Sometimes, we want the user to be able to choose between shared and static libraries when installing the package. For vcpkg, this is required. To add this support, we have to:
+1. define option for choosing the shared or static library (most likely, we do not want to install both)
+2. install the correct library target based on the option
+3. install the export header file (in both cases, as we use the same headers for both shared and static libraries)</p>
+<p>The conditional installation can look like this:</p>
+<pre><code class="language-cmake">if(&lt;package name&gt;_BUILD_SHARED_LIBS)
+    set_target_properties(&lt;static lib target&gt; PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    install(TARGETS &lt;shared lib target&gt; EXPORT &lt;export name&gt;)
+else()
+    set_target_properties(&lt;shared lib target&gt; PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    set_target_properties(&lt;static lib target&gt; PROPERTIES EXPORT_NAME &lt;shared lib target&gt;) # this aligns the name of the exported targets
+    install(TARGETS &lt;static lib target&gt; EXPORT &lt;export name&gt;)
+endif()
+</code></pre>
+<p>Here, the <code>set_target_properties</code> command is used to exclude the other target from the <code>all</code> target, effectively preventing it from being built during the installation. The <code>install</code> command is then used to install the correct target.</p>
+<p>Finally, we just copy the export header file to the installation directory:</p>
+<pre><code class="language-cmake">install(FILES ${CMAKE_CURRENT_BINARY_DIR}/&lt;export header file&gt; DESTINATION &lt;install include dir&gt;)
+</code></pre>
 <h3 id="specific-configuration-for-frequentlly-used-libraries">Specific configuration for frequentlly used libraries<a class="headerlink" href="#specific-configuration-for-frequentlly-used-libraries" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
@@ -1134,17 +1404,43 @@ FetchContent_MakeAvailable(googletest)
 <p>The order of execution follows the order of the <code>add_subdirectory</code> commands, i.e., the processing of the <code>CMakeLists.txt</code> containing the <code>add_subdirectory</code> command is paused until the added <code>CMakeLists.txt</code> file is processed.</p>
 <h3 id="variables-scope">Variables scope<a class="headerlink" href="#variables-scope" title="Permanent link">&para;</a></h3>
 <p>The variable scope for multiple <code>CMakeLists.txt</code> files is hierarchical. This means that the variables defined in the parent <code>CMakeLists.txt</code> file are visible in the child <code>CMakeLists.txt</code> file, but not vice versa.</p>
-<h1 id="cmake-variables-and-cache">CMake Variables and Cache<a class="headerlink" href="#cmake-variables-and-cache" title="Permanent link">&para;</a></h1>
+<h2 id="decide-based-on-the-build-configuration">Decide based on the build configuration<a class="headerlink" href="#decide-based-on-the-build-configuration" title="Permanent link">&para;</a></h2>
+<p>Sometimes is essential to decide based on the build configuration in the <code>CMakeLists.txt</code> file. However, this is not possible for the multi-configuration generators like Visual Studio or Xcode because the build configuration is not known during the CMake configuration step. However, there are measures that can be taken to achieve the result for particular tasks.</p>
+<p>For <code>install</code> command, we can use the <code>CONFIGURATIONS</code> parameter to install the files only for the selected build configuration. Example:</p>
+<pre><code class="language-cmake">install(
+    FILES &lt;file 1&gt; &lt;file 2&gt; 
+    DESTINATION &lt;destination&gt; 
+    CONFIGURATIONS Release
+)
+</code></pre>
+<p>For building, there are ways to limit the build based on the build configuration for both single- and multi-configuration generators. For single configuration generators, we can use the <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html"><code>CMAKE_BUILD_TYPE</code></a> variable and simply exclude the target from the build using the <code>EXCLUDE_FROM_ALL</code> target property:</p>
+<pre><code class="language-cmake">if(CMAKE_BUILD_TYPE STREQUAL &quot;Debug&quot;)
+   set_target_properties(&lt;target name&gt; PROPERTIES EXCLUDE_FROM_ALL TRUE)
+endif()
+</code></pre>
+<p>For multi-configuration generators, this variable is not set, but we can use the
+<code>EXCLUDE_FROM_DEFAULT_BUILD_DEBUG</code> property:</p>
+<pre><code class="language-cmake">set_target_properties(&lt;target name&gt; PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD_DEBUG TRUE)
+</code></pre>
+<p>To support both single- and multi-configuration generators, we have to first check whether we use a single- or multi-configuration generator using the <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CONFIGURATION_TYPES.html"><code>CMAKE_CONFIGURATION_TYPES</code></a> variable and then set the property accordingly:</p>
+<pre><code class="language-cmake">if(CMAKE_CONFIGURATION_TYPES)
+    set_target_properties(&lt;target name&gt; PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD_DEBUG TRUE)
+else()
+    if(CMAKE_BUILD_TYPE STREQUAL &quot;Debug&quot;)
+        set_target_properties(&lt;target name&gt; PROPERTIES EXCLUDE_FROM_ALL TRUE)
+    endif()
+endif()
+</code></pre>
+<h2 id="executing-external-commands">Executing external commands<a class="headerlink" href="#executing-external-commands" title="Permanent link">&para;</a></h2>
+<p>There are different ways to execute external commands in the <code>CMakeLists.txt</code>, the proper way depends on the time when we want to execute the command:
+- <strong>configuration time</strong>: use the <a href="https://cmake.org/cmake/help/latest/command/execute_process.html"><code>execute_process</code></a> command
+- <strong>build time</strong>: use the <a href="https://cmake.org/cmake/help/latest/command/add_custom_command.html"><code>add_custom_command</code></a> command
+    - can be run both before and after the build step using the <code>PRE_BUILD</code> and <code>POST_BUILD</code> options</p>
+<h1 id="cmake-cache">CMake Cache<a class="headerlink" href="#cmake-cache" title="Permanent link">&para;</a></h1>
 <p>CMake has two types of variables:
 - <em>normal variables</em> that are used just like in any other programming language and
 - <em>cache variables</em>, which are configured in the first cmake run and then stored in the <code>CMakeCache.txt</code> file in the build directory.
 The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20Cache.html">CMake cache</a> is an essential part of the CMake build system. It stores variables that are used to configure the build scripts. </p>
-<p>In order to use a variable in the <code>CMakeLists.txt</code> file, we have to use the <code>${}</code> syntax:</p>
-<pre><code class="language-cmake">message(STATUS &quot;dir=${dir}&quot;)
-</code></pre>
-<p>Normal variables are set using the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code>set</code></a> command:</p>
-<pre><code class="language-cmake">set(&lt;variable name&gt; &lt;variable value&gt;)
-</code></pre>
 <p>Cache variables can be set in the following ways:
 - by the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code>set</code></a> command in the <code>CMakeLists.txt</code> file with the <code>CACHE</code> option
 - by the <code>-D</code> command line argument: <code>cmake -D&lt;variable name&gt;=&lt;variable value&gt; &lt;dir&gt;</code>
@@ -1158,13 +1454,14 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <p>The behavior of the <code>option</code> command is as follows:
 - If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.
 - Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</p>
-<h2 id="built-in-variables_1">Built-in variables<a class="headerlink" href="#built-in-variables_1" title="Permanent link">&para;</a></h2>
-<p>There are some variable generated by default by CMake. These are:
-- <code>CMAKE_CURRENT_SOURCE_DIR</code>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.
-- <code>CMAKE_CURRENT_BINARY_DIR</code>: the directory where the build scripts are located.</p>
 <h1 id="cmake-directory-structure">CMake Directory Structure<a class="headerlink" href="#cmake-directory-structure" title="Permanent link">&para;</a></h1>
 <h2 id="system-find_xxxcmake-files">System Find_XXX.cmake files<a class="headerlink" href="#system-find_xxxcmake-files" title="Permanent link">&para;</a></h2>
 <p>The system find scripts are located in the <code>CMake/share/cmake-&lt;version&gt;/Modules/</code> directory.</p>
+<h1 id="various-tasks">Various Tasks<a class="headerlink" href="#various-tasks" title="Permanent link">&para;</a></h1>
+<h2 id="showing-the-generator-for-a-configured-directory">Showing the generator for a configured directory<a class="headerlink" href="#showing-the-generator-for-a-configured-directory" title="Permanent link">&para;</a></h2>
+<p>If the configuration step is already done, we can show the generator used for the configuration by reading the <code>CMAKE_GENERATOR</code> variable from the <code>CMakeCache.txt</code> file:</p>
+<pre><code class="language-powershell">Get-Content CMakeCache.txt | Select-String -Pattern &quot;CMAKE_GENERATOR&quot;
+</code></pre>
 <h1 id="debugging-cmake">Debugging CMake<a class="headerlink" href="#debugging-cmake" title="Permanent link">&para;</a></h1>
 <h2 id="debugging-cmake-using-clion-cmake-debugger">Debugging CMake using CLion CMake debugger<a class="headerlink" href="#debugging-cmake-using-clion-cmake-debugger" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.jetbrains.com/help/clion/cmake-debug.html">documentation</a></p>

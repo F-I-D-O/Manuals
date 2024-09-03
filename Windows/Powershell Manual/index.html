@@ -445,8 +445,16 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#outputs" class="nav-link">Outputs</a>
+            <li class="nav-item" data-level="1"><a href="#inputs-and-outputs" class="nav-link">Inputs and Outputs</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#inputs" class="nav-link">Inputs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#outputs" class="nav-link">Outputs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -734,7 +742,12 @@ else {
 </code></pre>
 <p>The above command lists the names of all files in the current directory.</p>
 <p>The alias for the <code>ForEach-Object</code> cmdlet is <code>foreach</code> and <code>%</code>.</p>
-<h1 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h1>
+<h1 id="inputs-and-outputs">Inputs and Outputs<a class="headerlink" href="#inputs-and-outputs" title="Permanent link">&para;</a></h1>
+<h2 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h2>
+<p>To read a file, use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content"><code>Get-Content</code></a> cmdlet. Example:</p>
+<pre><code class="language-PowerShell">Get-Content &quot;C:\Users\user\file.txt&quot;
+</code></pre>
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
 <p>There are many output streams in PowerShell. We can use:
 - <code>Write-Output</code>: for standard output
 - <code>Write-Error</code>: for standard error

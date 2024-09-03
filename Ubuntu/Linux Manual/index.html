@@ -613,7 +613,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#managing-services-with-systemd" class="nav-link">Managing services with systemd</a>
+            <li class="nav-item" data-level="1"><a href="#services-and-systemd" class="nav-link">Services and systemd</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#get-the-status-of-a-service" class="nav-link">Get the status of a service</a>
               <ul class="nav flex-column">
@@ -626,17 +626,24 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#installing-java" class="nav-link">Installing Java</a>
+            <li class="nav-item" data-level="1"><a href="#frequently-used-software" class="nav-link">Frequently used software</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#oracle-jdk" class="nav-link">Oracle JDK</a>
+            <li class="nav-item" data-level="2"><a href="#installing-java" class="nav-link">Installing Java</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#oracle-jdk" class="nav-link">Oracle JDK</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#python" class="nav-link">Python</a>
+            <li class="nav-item" data-level="2"><a href="#python" class="nav-link">Python</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gcc" class="nav-link">GCC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -671,6 +678,10 @@
             
             <li class="nav-item" data-level="1"><a href="#upgrade" class="nav-link">Upgrade</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#upgrade-to-other-version-than-the-latest" class="nav-link">Upgrade to other version than the latest</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#wsl-backup" class="nav-link">WSL backup</a>
               <ul class="nav flex-column">
               </ul>
@@ -1240,7 +1251,7 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <pre><code class="language-bash">usermod --shell /usr/sbin/nologin &lt;username&gt;
 </code></pre>
 <p>Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the <code>-N</code> parameter, which tells the client not to execute any command after login.</p>
-<h1 id="managing-services-with-systemd">Managing services with systemd<a class="headerlink" href="#managing-services-with-systemd" title="Permanent link">&para;</a></h1>
+<h1 id="services-and-systemd">Services and systemd<a class="headerlink" href="#services-and-systemd" title="Permanent link">&para;</a></h1>
 <p>The <a href="https://en.wikipedia.org/wiki/Systemd">systemd</a> is a system and service manager for Linux. It is used to manage services, devices, and other aspects of the system. </p>
 <p>The main command to manage services is <code>systemctl</code>. The general syntax is:</p>
 <pre><code class="language-bash">sudo systemctl &lt;action&gt; &lt;service name&gt;
@@ -1264,8 +1275,9 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <p>To list all services, we can use one of the following commands:
 - <code>list-units</code> to list all units ever run on the server or
 - <code>list-units-files</code> to list all units, including the ones that have never been run</p>
-<h1 id="installing-java">Installing Java<a class="headerlink" href="#installing-java" title="Permanent link">&para;</a></h1>
-<h2 id="oracle-jdk">Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permanent link">&para;</a></h2>
+<h1 id="frequently-used-software">Frequently used software<a class="headerlink" href="#frequently-used-software" title="Permanent link">&para;</a></h1>
+<h2 id="installing-java">Installing Java<a class="headerlink" href="#installing-java" title="Permanent link">&para;</a></h2>
+<h3 id="oracle-jdk">Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Go to the download page, the link to the dowload page for current version of java is on the <a href="https://www.oracle.com/java/technologies/javase-downloads.html">main JDK page</a>.</li>
 <li>Click on the debian package, accept the license, and download it.<ul>
@@ -1281,8 +1293,20 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <pre><code>sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-16/bin/java 2
 </code></pre>
 <p>To check the priorities, call <code>update-alternatives --query java</code>. The newly installed JDK should have the highest priority.</p>
-<h1 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
+<h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>Python has to be executed with <code>python3</code> by default, instead of <code>python</code>.</p>
+<h2 id="gcc">GCC<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h2>
+<p>GCC is typically installed by default and itts minor versions are updated with the system updates. However, if we need a major version update, we have to install it manually as a new package:</p>
+<pre><code class="language-bash">sudo apt install gcc-&lt;version&gt;
+</code></pre>
+<p>This way, the new version is installed alongside the old version. To switch to the new version, we have to use the <code>update-alternatives</code> command:</p>
+<pre><code class="language-bash">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-&lt;version&gt; &lt;priority&gt;
+</code></pre>
+<p>The <code>&lt;priority&gt;</code> is a number that determines the priority of the version. The version with the highest priority is used. To check the priorities, we can use the <code>update-alternatives --query gcc</code> command.</p>
+<p>Note that <strong>these steps only updates the C compiler</strong>. To affect the C++ compiler as well, we have to repeat the steps with the <code>g++</code> command:</p>
+<pre><code class="language-bash">sudo apt install g++-&lt;version&gt;
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt; &lt;priority&gt;
+</code></pre>
 <h1 id="other-usefull-commands">Other usefull commands<a class="headerlink" href="#other-usefull-commands" title="Permanent link">&para;</a></h1>
 <h2 id="selecting-lines-from-file">Selecting lines from file<a class="headerlink" href="#selecting-lines-from-file" title="Permanent link">&para;</a></h2>
 <p>The <code>head</code> and <code>tail</code> commands are for that, printing the top and bottom 10 lines, respectively.</p>
@@ -1307,11 +1331,22 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <pre><code class="language-bash">ls | xargs rm # remove all files in the current directory
 </code></pre>
 <h1 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h1>
+<p>For a simple system upgrade, we can use the following steps:</p>
 <ol>
 <li>First run the <strong>update of the current version</strong>.</li>
 <li>Then optionaly backup the WSL</li>
 <li>run <code>sudo do-release-upgrade</code></li>
 </ol>
+<p>However, this only work if there is a LTS version available. If not, the last step will fail. In this case, we can use the <code>do-release-upgrade -d</code> command, which upgrades to the latest version, regardless of the LTS status.</p>
+<h2 id="upgrade-to-other-version-than-the-latest">Upgrade to other version than the latest<a class="headerlink" href="#upgrade-to-other-version-than-the-latest" title="Permanent link">&para;</a></h2>
+<p>When upgrading to a version other than the latest, we can try the following steps:
+1. perform steps 1 and 2 from the normal upgrade
+2. open the <code>/etc/update-manager/release-upgrades</code> file and set the <code>Prompt</code> parameter to <code>normal</code> or <code>lts</code> (depending on the desired version)
+3. backup the <code>/etc/apt/sources.list</code> file
+4. change the sources to the new version:
+    - e.g., run <code>sudo sed -i 's/&lt;current version name&gt;/&lt;new version name&gt;/g' /etc/apt/sources.list</code>
+5. run a normal upgrade: <code>sudo apt update &amp;&amp; sudo apt upgrade</code>
+6. finalizing the upgrade: <code>sudo apt dist-upgrade</code></p>
 <h2 id="wsl-backup">WSL backup<a class="headerlink" href="#wsl-backup" title="Permanent link">&para;</a></h2>
 <ol>
 <li>check the WSL distro name: <code>wsl -l -v</code></li>
