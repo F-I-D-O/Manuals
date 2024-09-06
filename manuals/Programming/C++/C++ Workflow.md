@@ -269,6 +269,7 @@ The `vcpkg.json` file can look like this:
     "version-string": "0.1.0",
     "description": "C++ implementation of the fconfig configuration system",
     "homepage": "https://github.com/F-I-D-O/Future-Config",
+	"license": "MIT",
     "dependencies": [
         {
             "name" : "vcpkg-cmake",
@@ -281,8 +282,9 @@ The `vcpkg.json` file can look like this:
 }
 }
 ```
-
-The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
+Here:
+- the `license` key is obligatory and has to match the license file of the package
+- The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
 
 #### Variables and Functions available in the portfile.cmake
 The variables and functions available in the `portfile.cmake` are described in the [create command documentation](https://learn.microsoft.com/en-us/vcpkg/commands/create). The most important variables are:
@@ -342,8 +344,21 @@ execute_process(
 [official guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry)
 
 Before publishing the port, we should check for the following:
+- all dependencies in `CMakelists.txt` are required (`find_package(<package name> REQUIRED)`) **and** listed in the `vcpkg.json` file in the `dependencies` array
 - the port follows the [maintainer guide](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md), especially:
 	- the port name does not clash with existing packages (check at [repology](https://repology.org/))
+	- the port should work for both Windows and Linux and on both platforms, the port should support both static and dynamic linking.
+- the [PR checklist](https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist) is followed
+
+Then, the submission process is as follows:
+1. copy the port to the vcpkg repository
+2. remove the manual `SOURCE_PATH` overrides and uncomment the `vcpkg_from_github` call
+3. test the port locally withouth the `--overlay-ports` option
+4. format the `vcpkg.json` file using the `vcpkg format-manifest <path to the vcpkg.json file>` command
+5. create a new branch and commit the changes to that branch
+6. push the branch to the forked vcpkg repository
+1. open the forked repository in the browser and create a new pull request to the main vcpkg repository
+
 
 
 
@@ -679,6 +694,8 @@ Other symbols does not have to be exported as they are automatically exported by
 For shared libraries, we have to export symbols. Becasue of the differences between the compilers, and to support using the same headers for both shared and static libraries it is better to use macros
 
 The macro from the `GenerateExportHeader` is named `<target name>_EXPORT`, we can check the exact name in the export header file.
+
+Only the symbols needed by external code should be exported. The exeption is when the the interface use templates. In this case, all symbols used by the template should be exported.
 
 
 ## CMake Configuration
