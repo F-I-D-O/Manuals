@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -781,14 +782,20 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <pre><code class="language-python">df = pd.DataFrame(0, index=range(10), columns=['col1', 'col2'])
 </code></pre>
 <h3 id="generating-the-index">Generating the index<a class="headerlink" href="#generating-the-index" title="Permanent link">&para;</a></h3>
-<p>As displayed in the above example, we can generate a numerical index using the <code>range</code> function. However, there are more options:
-- date index with <a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html"><code>date_range</code></a>
-    - <code>pd.date_range(&lt;start date&gt;, &lt;end date&gt;, freq=&lt;frequency&gt;)</code></p>
+<p>As displayed in the above example, we can generate a numerical index using the <code>range</code> function. However, there are more options:</p>
+<ul>
+<li>date index with <a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html"><code>date_range</code></a><ul>
+<li><code>pd.date_range(&lt;start date&gt;, &lt;end date&gt;, freq=&lt;frequency&gt;)</code></li>
+</ul>
+</li>
+</ul>
 <h1 id="obtaining-info-about-dataset">Obtaining info about dataset<a class="headerlink" href="#obtaining-info-about-dataset" title="Permanent link">&para;</a></h1>
-<p>For a DataFrame <code>df</code>:
-- column names: <code>df.columns</code>
-- column types: <code>df.dtypes</code>
-- number of rows: <code>len(df)</code></p>
+<p>For a DataFrame <code>df</code>:</p>
+<ul>
+<li>column names: <code>df.columns</code></li>
+<li>column types: <code>df.dtypes</code></li>
+<li>number of rows: <code>len(df)</code></li>
+</ul>
 <h1 id="iteration">Iteration<a class="headerlink" href="#iteration" title="Permanent link">&para;</a></h1>
 <h2 id="standard-iteration">Standard Iteration<a class="headerlink" href="#standard-iteration" title="Permanent link">&para;</a></h2>
 <p>https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas</p>
@@ -812,9 +819,11 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <p>https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html
 Iterates over columns</p>
 <h2 id="iteration-with-modification">Iteration with modification<a class="headerlink" href="#iteration-with-modification" title="Permanent link">&para;</a></h2>
-<p>For modification, the best strategy is to:
-1. select what we want to modify (see <a href="#selection">selection</a>)
-1. modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.</p>
+<p>For modification, the best strategy is to:</p>
+<ol>
+<li>select what we want to modify (see <a href="#selection">selection</a>)</li>
+<li>modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.</li>
+</ol>
 <h1 id="filtration">Filtration<a class="headerlink" href="#filtration" title="Permanent link">&para;</a></h1>
 <pre><code class="language-python">filtered = df[df['max_delay'] == x]
 </code></pre>
@@ -846,12 +855,16 @@ sf = s[s &lt;= 10] # now we have a Series with values from df['col'] less than 1
 <li>filtering dates: <code>&lt;column selection&gt;.dt.&lt;date function&gt;</code></li>
 </ul>
 <h1 id="selection">Selection<a class="headerlink" href="#selection" title="Permanent link">&para;</a></h1>
-<p>If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see <a href="#filtration">filtration</a>), we can use these methods:
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a>: select by index, works for both rows and columns
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code>iloc</code></a>: select by position, works for both rows and columns
-- <code>[]</code>: select by index, works only for columns</p>
-<p>There are also other methods that works for selection but does not work for setting values, such as:
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a>: select by label, works for both rows and columns</p>
+<p>If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see <a href="#filtration">filtration</a>), we can use these methods:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html"><code>loc</code></a>: select by index, works for both rows and columns</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code>iloc</code></a>: select by position, works for both rows and columns</li>
+<li><code>[]</code>: select by index, works only for columns</li>
+</ul>
+<p>There are also other methods that works for selection but does not work for setting values, such as:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a>: select by label, works for both rows and columns</li>
+</ul>
 <p>The return type of the selection is determined by the number of selected rows and columns. For a single row or column, the result is a series, for multiple rows and columns, the result is a dataframe. If we want to get a dataframe for a single row or column, we can use the <code>[]</code> operator with a list of values:</p>
 <pre><code class="language-python">df[['col1']]
 # or 
@@ -898,10 +911,12 @@ sel['a'] =  ... # we possibly edit a temporary!
 </code></pre>
 <h2 id="multi-index-selection">Multi-index selection<a class="headerlink" href="#multi-index-selection" title="Permanent link">&para;</a></h2>
 <p><a href="https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical">documentation</a></p>
-<p>When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:
-- using <code>loc</code> with slices: simple, but verbose
-- using <code>loc</code> with <code>IndexSlice</code> object: more readable, but requires the <code>IndexSlice</code> object to be created first
-- using <code>xs</code> function, neat, but does not support all the features, e.g., it does not support ranges</p>
+<p>When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:</p>
+<ul>
+<li>using <code>loc</code> with slices: simple, but verbose</li>
+<li>using <code>loc</code> with <code>IndexSlice</code> object: more readable, but requires the <code>IndexSlice</code> object to be created first</li>
+<li>using <code>xs</code> function, neat, but does not support all the features, e.g., it does not support ranges</li>
+</ul>
 <h3 id="using-loc">Using <code>loc</code><a class="headerlink" href="#using-loc" title="Permanent link">&para;</a></h3>
 <p>The general <code>loc</code> usage is the same as for a single index dataframe:</p>
 <pre><code class="language-Python">df.loc[&lt;row selection&gt;, &lt;column selection&gt;]
@@ -921,11 +936,17 @@ sel['a'] =  ... # we possibly edit a temporary!
 dft.loc[idx[:, 15:30], ...]
 </code></pre>
 <h4 id="handeling-the-too-many-indexers-error">Handeling the <code>too many indexers</code> error<a class="headerlink" href="#handeling-the-too-many-indexers-error" title="Permanent link">&para;</a></h4>
-<p>Sometimes, when using the <code>loc</code> method, the selection can fail with the <code>too many indexers</code> error, because it is ambiguous whether we select by rows or by columns. In that case, we can either<br />
-- use the <code>axis</code> parameter to specify the axis to select from:
+<p>Sometimes, when using the <code>loc</code> method, the selection can fail with the <code>too many indexers</code> error, because it is ambiguous whether we select by rows or by columns. In that case, we can either  </p>
+<ul>
+<li>
+<p>use the <code>axis</code> parameter to specify the axis to select from:
     <code>python
-    df.loc(axis=0)[&lt;row selection&gt;]</code>
-- or use the IndexSlice instead.</p>
+    df.loc(axis=0)[&lt;row selection&gt;]</code></p>
+</li>
+<li>
+<p>or use the IndexSlice instead.</p>
+</li>
+</ul>
 <h3 id="using-xs">Using <code>xs</code><a class="headerlink" href="#using-xs" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html"><code>xs</code></a> function can be used to select from a multi-index dataframe. However, slices (ranges) are not supported. Example:</p>
 <pre><code class="language-python">df.xs(15, level=1) # selects all rows with level 1 equal to 15
@@ -943,9 +964,11 @@ dft.loc[idx[:, 15:30], ...]
 <p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
 <pre><code class="language-python">df.sort_values(['col1', 'col2'])
 </code></pre>
-<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should
-- satisfy the classical python sorting interface (see <a href="../Python%20Manual/">Python manual</a>) and
-- it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. </p>
+<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should</p>
+<ul>
+<li>satisfy the classical python sorting interface (see <a href="../Python%20Manual/">Python manual</a>) and</li>
+<li>it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. </li>
+</ul>
 <p>Example:</p>
 <pre><code class="language-python">def key_fn(column: list):
     return [len(x) for x in l]
@@ -992,8 +1015,10 @@ s.name = '&lt;new name&gt;'
 <p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html"><code>reindex</code></a> function. The first parameter is the new index. Example:</p>
 <pre><code class="language-python">df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 </code></pre>
-<p>Important parameters:
-- <code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</p>
+<p>Important parameters:</p>
+<ul>
+<li><code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</li>
+</ul>
 <h3 id="creating-index-from-scratch">Creating index from scratch<a class="headerlink" href="#creating-index-from-scratch" title="Permanent link">&para;</a></h3>
 <p>To create an index from scratch, we just assign the index to the dataframe <code>index</code> property:</p>
 <pre><code class="language-python">df.index = pd.Index([1, 2, 3, 4, 5])
@@ -1001,8 +1026,10 @@ s.name = '&lt;new name&gt;'
 <p>We can also assign a range directly to the index:</p>
 <pre><code class="language-python">df.index = range(5)
 </code></pre>
-<p>To create more complicated indices, dedicated functions can be used:
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</p>
+<p>To create more complicated indices, dedicated functions can be used:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</li>
+</ul>
 <h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html"><code>Index.rename</code></a> function can be used for that.</p>
 <h1 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h1>
@@ -1022,21 +1049,29 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <p>Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the <strong>aggregation does not have to actually aggregate the data, it can also transform it</strong>.</p>
 <p>In the groupby object, the columns used for grouping are omitted if each group is aggregated to exactly one row. To keep them, we can use the <code>group_keys</code> parameter of the <code>groupby</code> function.</p>
 <h2 id="aggregate-functions">Aggregate functions<a class="headerlink" href="#aggregate-functions" title="Permanent link">&para;</a></h2>
-<p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
-- <code>sum</code>
-- <code>mean</code>
-- <code>median</code>
-- <code>min</code>
-- <code>max</code>
-- <code>count</code></p>
-<p>Transformation functions (value for each row):
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html"><code>cumsum</code></a>: cumulative sum
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html"><code>diff</code></a>: difference between the current and the previous row.
-    - the <code>periods</code> parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the <code>abs</code> function to get the absolute value.</p>
+<p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):</p>
+<ul>
+<li><code>sum</code></li>
+<li><code>mean</code></li>
+<li><code>median</code></li>
+<li><code>min</code></li>
+<li><code>max</code></li>
+<li><code>count</code></li>
+</ul>
+<p>Transformation functions (value for each row):</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html"><code>cumsum</code></a>: cumulative sum</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html"><code>diff</code></a>: difference between the current and the previous row.<ul>
+<li>the <code>periods</code> parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the <code>abs</code> function to get the absolute value.</li>
+</ul>
+</li>
+</ul>
 <h2 id="custom-aggegate-function">Custom aggegate function<a class="headerlink" href="#custom-aggegate-function" title="Permanent link">&para;</a></h2>
-<p>Also, there are more general aggregate functions:
--  <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that is usefull for applying different functions for different columns and
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a>: the most flexible function that can be used for custom aggregation and transformation operations.</p>
+<p>Also, there are more general aggregate functions:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg</code></a> function that is usefull for applying different functions for different columns and</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a>: the most flexible function that can be used for custom aggregation and transformation operations.</li>
+</ul>
 <p>These two functions have different interfaces for the custom aggregation functions they call. These are summarized in the following table:</p>
 <table>
 <thead>
@@ -1079,16 +1114,24 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
 </code></pre>
 <h3 id="apply_1"><code>apply</code><a class="headerlink" href="#apply_1" title="Permanent link">&para;</a></h3>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a> function takes a custom function as an argument. That custom aggregation function:
-- takes a DataFrame/Series (depending on the source object) as the first argument
-    - this dataframe/series contains the data for the group (all columns)
-- returns a Series, DataFrame, or a scalar
-    - when a scalar is returned, the result is a series with the scalar value for each group
-    - we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.</p>
-<p>The process works as follows:
-1. The dataframe is split into groups according to the <code>groupby</code> function.
-1. The custom function is applied to each group.
-1. The results are combined into a single dataframe.</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html"><code>apply</code></a> function takes a custom function as an argument. That custom aggregation function:</p>
+<ul>
+<li>takes a DataFrame/Series (depending on the source object) as the first argument<ul>
+<li>this dataframe/series contains the data for the group (all columns)</li>
+</ul>
+</li>
+<li>returns a Series, DataFrame, or a scalar<ul>
+<li>when a scalar is returned, the result is a series with the scalar value for each group</li>
+<li>we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.</li>
+</ul>
+</li>
+</ul>
+<p>The process works as follows:</p>
+<ol>
+<li>The dataframe is split into groups according to the <code>groupby</code> function.</li>
+<li>The custom function is applied to each group.</li>
+<li>The results are combined into a single dataframe.</li>
+</ol>
 <p>In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and compining aggreate results is done by the <code>apply</code> function.</p>
 <h2 id="time-aggregation">Time aggregation<a class="headerlink" href="#time-aggregation" title="Permanent link">&para;</a></h2>
 <p>We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html"><code>resample</code></a> function. Example:</p>
@@ -1100,9 +1143,11 @@ df.resample('1H').sum()
 <pre><code class="language-Python">df.resample('1H').sum().ffill()
 </code></pre>
 <h1 id="joins">Joins<a class="headerlink" href="#joins" title="Permanent link">&para;</a></h1>
-<p>Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html"><code>merge</code></a>: the most general function that has the behavior known from SQL
-- <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html"><code>join</code></a>: a more specialized function, </p>
+<p>Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html"><code>merge</code></a>: the most general function that has the behavior known from SQL</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html"><code>join</code></a>: a more specialized function, </li>
+</ul>
 <p>The following table lists the most important differences between the two functions:</p>
 <table>
 <thead>
@@ -1140,18 +1185,24 @@ df.resample('1H').sum()
 <p>By default, the indices from both input parameters are preserved. To reset the index, we can use the <code>ignore_index</code> parameter. Alternatively, to preserve one of the indices, we can set the index of the other dataframe to the index of the first dataframe before the concatenation using the <code>set_index</code> function.</p>
 <h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
 <h2 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h2>
-<p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
-- we round a column with mix of floats and ints: fail (<code>loop of ufunc does not support argument 0 of type float which has no callable rint method</code>)
-- we need to apply string functions, but the column contains numbers as well</p>
-<p>The solution is usually:
-1. fill the missing values with the <code>fillna</code> function
-2. convert the column to <code>str</code> type using the <code>astype</code> function
-3. apply string functions to clear the data
-4. convert the column to the desired type</p>
+<p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:</p>
+<ul>
+<li>we round a column with mix of floats and ints: fail (<code>loop of ufunc does not support argument 0 of type float which has no callable rint method</code>)</li>
+<li>we need to apply string functions, but the column contains numbers as well</li>
+</ul>
+<p>The solution is usually:</p>
+<ol>
+<li>fill the missing values with the <code>fillna</code> function</li>
+<li>convert the column to <code>str</code> type using the <code>astype</code> function</li>
+<li>apply string functions to clear the data</li>
+<li>convert the column to the desired type</li>
+</ol>
 <h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
-<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
-- <code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.
-- <code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </p>
+<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:</p>
+<ul>
+<li><code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.</li>
+<li><code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </li>
+</ul>
 <h2 id="datetime">Datetime<a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h2>
 <p>Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:</p>
 <pre><code class="language-python">df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
@@ -1162,31 +1213,39 @@ print(df)
 </code></pre>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">csv<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
-<p>For reading csv files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function. Important params:
-- <code>sep</code>: separator
-- <code>header</code>: row number to use as column names. If <code>None</code>, no header is used
-- <code>skiprows</code>: number of rows to skip from the beginning
-- <code>delim_whitespace</code>: if <code>True</code>, the whitespace is used as a separator. The <code>sep</code> parameter is ignored in that case. This is a way how to read a file with variable number of whitespaces between columns.</p>
+<p>For reading csv files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function. Important params:</p>
+<ul>
+<li><code>sep</code>: separator</li>
+<li><code>header</code>: row number to use as column names. If <code>None</code>, no header is used</li>
+<li><code>skiprows</code>: number of rows to skip from the beginning</li>
+<li><code>delim_whitespace</code>: if <code>True</code>, the whitespace is used as a separator. The <code>sep</code> parameter is ignored in that case. This is a way how to read a file with variable number of whitespaces between columns.</li>
+</ul>
 <p>For export, we can use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html"><code>to_csv</code></a> method:</p>
 <pre><code class="language-python">df.to_csv(&lt;file name&gt; [, &lt;other params&gt;])
 </code></pre>
-<p>Useful parameters:
-- <code>index</code>: if <code>False</code>, the index is not exported
-- <code>index_label</code>: the name of the index column</p>
+<p>Useful parameters:</p>
+<ul>
+<li><code>index</code>: if <code>False</code>, the index is not exported</li>
+<li><code>index_label</code>: the name of the index column</li>
+</ul>
 <h2 id="json">Json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
 <p>For exporting to json, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html"><code>to_json</code></a> function. </p>
 <p>By default, the data are exported as a list of columns. To export the data as a list of rows, we can use the <code>orient</code> parameter:</p>
 <pre><code class="language-python">df.to_json(&lt;file name&gt;, orient='records')
 </code></pre>
-<p>Other important parameters:
-- <code>indent</code>: the number of spaces to use for indentation</p>
+<p>Other important parameters:</p>
+<ul>
+<li><code>indent</code>: the number of spaces to use for indentation</li>
+</ul>
 <h2 id="insert-dataframe-into-db">Insert dataframe into db<a class="headerlink" href="#insert-dataframe-into-db" title="Permanent link">&para;</a></h2>
 <p>We can use the <code>to_sql</code> method for that:</p>
 <pre><code class="language-python">df.to_sql(&lt;table name&gt;, &lt;sql alchemy engine&gt; [, &lt;other params&gt;])
 </code></pre>
-<p>Important params:
-- to append, not replace existing records: <code>if_exists='append'</code>
-- do not import dataframe index: <code>index=False</code></p>
+<p>Important params:</p>
+<ul>
+<li>to append, not replace existing records: <code>if_exists='append'</code></li>
+<li>do not import dataframe index: <code>index=False</code></li>
+</ul>
 <p>For larger datasets, it is important to not insert everything at once, while also tracking the progress. The following code does exactly that</p>
 <pre><code class="language-python">def chunker(seq, size):
     return (seq[pos:pos + size] for pos in range(0, len(seq), size))
@@ -1199,10 +1258,12 @@ with tqdm(total=len(data)) as pbar:
 </code></pre>
 <p><strong>If the speed is slow, it can be caused by a low upload speed of your internet connection.</strong> Note that due to the SQL syntax, the size of the SQL strings may be much larger than the size of the dataframe.</p>
 <h1 id="latex-export">Latex export<a class="headerlink" href="#latex-export" title="Permanent link">&para;</a></h1>
-<p>Currently, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html"><code>to_latex</code></a> function is deprecated. The <code>Styler</code> class should be used for latex exports instead. You can get the <code>Styler</code> from the DataFrame using the <code>style</code> property. The usual workfolow is:
-1. Create a <code>Styler</code> object from the dataframe using the <code>style</code> property.
-1. Apply the desired formatting to the styler object.
-1. Export DataFrame to latex using the <code>to_latex</code> method.</p>
+<p>Currently, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html"><code>to_latex</code></a> function is deprecated. The <code>Styler</code> class should be used for latex exports instead. You can get the <code>Styler</code> from the DataFrame using the <code>style</code> property. The usual workfolow is:</p>
+<ol>
+<li>Create a <code>Styler</code> object from the dataframe using the <code>style</code> property.</li>
+<li>Apply the desired formatting to the styler object.</li>
+<li>Export DataFrame to latex using the <code>to_latex</code> method.</li>
+</ol>
 <p>Keep in mind that <strong>the <code>Styler</code> object is immutable, so you need to assign the result of each formatting operation to a new variable or chain the calls</strong>. Example:</p>
 <pre><code class="language-Python"># wrong, the format is not apllied
 df.style.format(...)
@@ -1217,27 +1278,35 @@ df.style.format(...).to_latex(...)
 </code></pre>
 <h2 id="formatting-the-index-columns-and-row-labels">Formatting the index: columns and row labels<a class="headerlink" href="#formatting-the-index-columns-and-row-labels" title="Permanent link">&para;</a></h2>
 <p>The columns' and row labels' format is configures by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format_index.html"><code>format_index</code></a> function.
-Important parameters:
-- <code>axis</code>: 0 for rows, 1 for columns (cannot be both)
-- <code>escape</code>: by default, the index is not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.</p>
+Important parameters:</p>
+<ul>
+<li><code>axis</code>: 0 for rows, 1 for columns (cannot be both)</li>
+<li><code>escape</code>: by default, the index is not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.</li>
+</ul>
 <h2 id="formatting-or-changing-the-values">Formatting or changing the values<a class="headerlink" href="#formatting-or-changing-the-values" title="Permanent link">&para;</a></h2>
-<p>The values are formated by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html"><code>format</code></a> function. Important parameters:
-- <code>escape</code>: by default, the values are not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.
-- <code>na_rep</code>: the string to use for missing values
-- <code>precision</code>: the number of decimal places to use for floats</p>
+<p>The values are formated by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html"><code>format</code></a> function. Important parameters:</p>
+<ul>
+<li><code>escape</code>: by default, the values are not escaped, to do so, we need to set <code>escape</code> to <code>'latex'</code>.</li>
+<li><code>na_rep</code>: the string to use for missing values</li>
+<li><code>precision</code>: the number of decimal places to use for floats</li>
+</ul>
 <h2 id="replacing-values">Replacing values<a class="headerlink" href="#replacing-values" title="Permanent link">&para;</a></h2>
 <p>For replace some values for the presentation with something else, we can  also use the <code>format</code> function.For example, to change the boolean presentation in column <code>col</code> we call:</p>
 <pre><code class="language-python">df.style.format({'col': lambda x: 'yes' if x else 'no'})
 </code></pre>
 <h2 id="hihglighting-minmax-values">Hihglighting min/max values<a class="headerlink" href="#hihglighting-minmax-values" title="Permanent link">&para;</a></h2>
-<p>For highlighting the min/max values, we can use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html"><code>highlight_min</code></a> and <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html"><code>highlight_max</code></a> functions. Important parameters:
-- <code>subset</code>: the columns in which the highlighting should be applied
-- <code>props</code>: the css properties to apply to the highlighted cells</p>
+<p>For highlighting the min/max values, we can use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html"><code>highlight_min</code></a> and <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html"><code>highlight_max</code></a> functions. Important parameters:</p>
+<ul>
+<li><code>subset</code>: the columns in which the highlighting should be applied</li>
+<li><code>props</code>: the css properties to apply to the highlighted cells</li>
+</ul>
 <h2 id="hiding-some-columns-rows-or-indices">Hiding some columns, rows, or indices<a class="headerlink" href="#hiding-some-columns-rows-or-indices" title="Permanent link">&para;</a></h2>
-<p>For hiding some columns, rows, or indices, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html"><code>hide</code></a> function. Important Parameters:
-- <code>axis</code>: 0 for hiding row indices (default), 1 for hiding column names
-- <code>level</code>: the level of the multi-index to hide (default is all levels)
-- <code>subset</code>: the columns or rows to hide (default is all columns or rows)</p>
+<p>For hiding some columns, rows, or indices, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html"><code>hide</code></a> function. Important Parameters:</p>
+<ul>
+<li><code>axis</code>: 0 for hiding row indices (default), 1 for hiding column names</li>
+<li><code>level</code>: the level of the multi-index to hide (default is all levels)</li>
+<li><code>subset</code>: the columns or rows to hide (default is all columns or rows)</li>
+</ul>
 <p>When used without the <code>subset</code> parameter, the <code>hide</code> function hides the whole index. To hide just a selected row or column from the data, the subset parameter has to be used.</p>
 <p>By default, the <code>&lt;index_name&gt;</code> refers to the row index. <strong>To hide a column</strong>:</p>
 <pre><code class="language-python">df.style.hide_columns(&lt;column name&gt;, axis=1)
@@ -1245,21 +1314,27 @@ Important parameters:
 <h2 id="changing-the-header-column-labels">Changing the header (column labels)<a class="headerlink" href="#changing-the-header-column-labels" title="Permanent link">&para;</a></h2>
 <p>There is no equivalent to the header parameter of the old <code>to_latex</code> function in the new style system. Instead, it is necessary to change the column names of the dataframe. </p>
 <h2 id="exporting-to-latex">Exporting to latex<a class="headerlink" href="#exporting-to-latex" title="Permanent link">&para;</a></h2>
-<p>For the export, we use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html"><code>to_latex</code></a> function. Important parameters:
-- <code>convert_css</code>: if <code>True</code>, the css properties are converted to latex commands
-- <code>multirow_align</code>: the alignment of the multirow cells. Options are <code>t</code>, <code>c</code>, <code>b</code>
-- <code>hrules</code>: if set to <code>True</code>, the horizontal lines are added to the table, specifically to the top, bottom, and between the header and the body. Note that these hrules are realized as the <code>\toprule</code>, <code>\midrule</code>, and <code>\bottomrule</code> commands from the <code>booktabs</code> package, so the package has to be imported  .
-- <code>clines</code>: configuration for hlines between rows. It is a string composed of two parts divided by <code>;</code> (e.g.: <code>skip-last;data</code>). The parts are:
-    - whether to skip last row or not (<code>skip-last</code> or <code>all</code>)
-    - whether to draw the lines between indices or the whole rows (<code>index</code> or <code>data</code>)</p>
+<p>For the export, we use the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html"><code>to_latex</code></a> function. Important parameters:</p>
+<ul>
+<li><code>convert_css</code>: if <code>True</code>, the css properties are converted to latex commands</li>
+<li><code>multirow_align</code>: the alignment of the multirow cells. Options are <code>t</code>, <code>c</code>, <code>b</code></li>
+<li><code>hrules</code>: if set to <code>True</code>, the horizontal lines are added to the table, specifically to the top, bottom, and between the header and the body. Note that these hrules are realized as the <code>\toprule</code>, <code>\midrule</code>, and <code>\bottomrule</code> commands from the <code>booktabs</code> package, so the package has to be imported  .</li>
+<li><code>clines</code>: configuration for hlines between rows. It is a string composed of two parts divided by <code>;</code> (e.g.: <code>skip-last;data</code>). The parts are:<ul>
+<li>whether to skip last row or not (<code>skip-last</code> or <code>all</code>)</li>
+<li>whether to draw the lines between indices or the whole rows (<code>index</code> or <code>data</code>)</li>
+</ul>
+</li>
+</ul>
 <h1 id="displaying-the-dataframe-in-console">Displaying the dataframe in console<a class="headerlink" href="#displaying-the-dataframe-in-console" title="Permanent link">&para;</a></h1>
 <p>We can display the dataframe in the conslo print or int the log just by supplying the dataframe as an argument because it implements the <code>__repr__</code> method. Sometimes, however, the default display parameters are not sufficient. In that case, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.set_option.html"><code>set_option</code></a> function to change the display parameters:</p>
 <pre><code class="language-python">pd.set_option('display.max_rows', 1000)
 </code></pre>
-<p>Important parameters:
-- <code>display.max_rows</code>: the maximum number of rows to display
-- <code>display.max_columns</code>: the maximum number of columns to display
-- <code>display.max_colwidth</code>: the maximum width of a column</p>
+<p>Important parameters:</p>
+<ul>
+<li><code>display.max_rows</code>: the maximum number of rows to display</li>
+<li><code>display.max_columns</code>: the maximum number of columns to display</li>
+<li><code>display.max_colwidth</code>: the maximum width of a column</li>
+</ul>
 <h1 id="other-useful-functions">Other useful functions<a class="headerlink" href="#other-useful-functions" title="Permanent link">&para;</a></h1>
 <ul>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"><code>drop_duplicates</code></a> to quickly drop duplicate rows based on a subset of columns.</li>
@@ -1268,21 +1343,29 @@ Important parameters:
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html"><code>cut</code></a>: function that can be used to discretize a continuous variable into bins.</li>
 </ul>
 <h2 id="pivot_table"><code>pivot_table</code><a class="headerlink" href="#pivot_table" title="Permanent link">&para;</a></h2>
-<p>The pivot table (mega)function do a lot of things at once:
-- it aggregates the data
-- it transforms the data
-- it sorts the data due to reindexing</p>
-<p>Although this function is very powerfall there are also many pitfalls. The most important ones are:
-- column data type change for columns with missing values</p>
+<p>The pivot table (mega)function do a lot of things at once:</p>
+<ul>
+<li>it aggregates the data</li>
+<li>it transforms the data</li>
+<li>it sorts the data due to reindexing</li>
+</ul>
+<p>Although this function is very powerfall there are also many pitfalls. The most important ones are:</p>
+<ul>
+<li>column data type change for columns with missing values</li>
+</ul>
 <h3 id="column-data-type-change-for-columns-with-missing-values">Column data type change for columns with missing values<a class="headerlink" href="#column-data-type-change-for-columns-with-missing-values" title="Permanent link">&para;</a></h3>
-<p>The tranformation often creates row-column combinations that do not exist in the original data. These are filled with <code>NaN</code> values. But some data types does not support <code>NaN</code> values, and in conclusion, the data type of the columns with missing values is changed to <code>float</code>. Possible solutions:
-- we can use the <code>fill_value</code> parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)
-- we can use the <code>dropna</code> parameter to drop the rows with missing values
-- we can change the data type of the columns with missing values prior to calling the <code>pivot_table</code> function. For example, the <a href="https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer">pandas integer data types</a> support <code>NaN</code> values.</p>
+<p>The tranformation often creates row-column combinations that do not exist in the original data. These are filled with <code>NaN</code> values. But some data types does not support <code>NaN</code> values, and in conclusion, the data type of the columns with missing values is changed to <code>float</code>. Possible solutions:</p>
+<ul>
+<li>we can use the <code>fill_value</code> parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)</li>
+<li>we can use the <code>dropna</code> parameter to drop the rows with missing values</li>
+<li>we can change the data type of the columns with missing values prior to calling the <code>pivot_table</code> function. For example, the <a href="https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer">pandas integer data types</a> support <code>NaN</code> values.</li>
+</ul>
 <h2 id="to_datetime"><code>to_datetime</code><a class="headerlink" href="#to_datetime" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html"><code>to_datetime</code></a> function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
-- <code>unit</code>: the unit of the input, e.g., <code>s</code> for seconds.
-- <code>origin</code>: the origin of the input, e.g., <code>unix</code> for unix timestamps. It can be also any specific <code>datetime</code> object.</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html"><code>to_datetime</code></a> function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:</p>
+<ul>
+<li><code>unit</code>: the unit of the input, e.g., <code>s</code> for seconds.</li>
+<li><code>origin</code>: the origin of the input, e.g., <code>unix</code> for unix timestamps. It can be also any specific <code>datetime</code> object.</li>
+</ul>
 <h2 id="squeeze"><code>squeeze</code><a class="headerlink" href="#squeeze" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.squeeze.html"><code>squeeze</code></a> function removes the unnecessary dimension from a dataframe or series. It is usefull when we want to convert a dataframe with a single column to a series, or a series with a single value to a scalar.</p>
 <h1 id="geopandas">Geopandas<a class="headerlink" href="#geopandas" title="Permanent link">&para;</a></h1>
@@ -1310,10 +1393,12 @@ Important parameters:
 </code></pre>
 <h2 id="insert-geodataframe-into-db">Insert geodataframe into db<a class="headerlink" href="#insert-geodataframe-into-db" title="Permanent link">&para;</a></h2>
 <h3 id="preprocesssing">preprocesssing<a class="headerlink" href="#preprocesssing" title="Permanent link">&para;</a></h3>
-<p>Before inserting a geodataframe into the database, we need to process it a little bit:
-1. set the SRID: <code>gdf.set_crs(epsg=&lt;SRID&gt;, allow_override=True, inplace=True)</code>
-2. set the geometry: <code>gdf.set_geometry('geom', inplace=True)</code>
-3. select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with <code>pandas</code></p>
+<p>Before inserting a geodataframe into the database, we need to process it a little bit:</p>
+<ol>
+<li>set the SRID: <code>gdf.set_crs(epsg=&lt;SRID&gt;, allow_override=True, inplace=True)</code></li>
+<li>set the geometry: <code>gdf.set_geometry('geom', inplace=True)</code></li>
+<li>select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with <code>pandas</code></li>
+</ol>
 <h3 id="simple-insertion">Simple insertion<a class="headerlink" href="#simple-insertion" title="Permanent link">&para;</a></h3>
 <p>When the data are in the correct format and we don|t need any customization for the db query, we can use the <code>to_postgis</code> method:</p>
 <pre><code class="language-Python">gdf.to_postgis(&lt;TABLE NAME&gt;, &lt;SQL ALCHEMY CONNECTION&gt;, if_exists='append')
@@ -1350,12 +1435,14 @@ insert_statement
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

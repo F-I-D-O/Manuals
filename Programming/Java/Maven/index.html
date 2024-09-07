@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -541,16 +542,20 @@
 
 <p>Maven is a dependency management and build tool for Java. </p>
 <p>The project configuration for Maven is stored in a single file called <code>pom.xml</code>. Both the project dependencies and the build configuration are stored in this file.</p>
-<p>The maven is executed using the as <code>mvn &lt;goal&gt;</code>. Typical goals are
-- <code>compile</code>: compile the project
-- <code>test</code>: run tests
-- <code>package</code>: package the project into a jar or war file
-- <code>install</code>: install the project into the local maven repository
-- <code>deploy</code>: deploy the project to a remote repository</p>
+<p>The maven is executed using the as <code>mvn &lt;goal&gt;</code>. Typical goals are</p>
+<ul>
+<li><code>compile</code>: compile the project</li>
+<li><code>test</code>: run tests</li>
+<li><code>package</code>: package the project into a jar or war file</li>
+<li><code>install</code>: install the project into the local maven repository</li>
+<li><code>deploy</code>: deploy the project to a remote repository</li>
+</ul>
 <h1 id="maven-packages-artifacts">Maven Packages: Artifacts<a class="headerlink" href="#maven-packages-artifacts" title="Permanent link">&para;</a></h1>
-<p>All Maven dependencies and plugins installed in local system repositories can be either:
-- downloaded from a remote repository
-- installed from a local file or project</p>
+<p>All Maven dependencies and plugins installed in local system repositories can be either:</p>
+<ul>
+<li>downloaded from a remote repository</li>
+<li>installed from a local file or project</li>
+</ul>
 <p>Note that if we want the artifact to be downloaded from a remote repository, we do not have to take any action. It will be downloaded automatically when needed.</p>
 <p>By default, Maven searches for artifacts in the <a href="https://central.sonatype.com/">Maven Central repository</a>. If we want to use a different repository, we have to add it manually.</p>
 <h2 id="list-locally-installed-artifacts">List locally installed artifacts<a class="headerlink" href="#list-locally-installed-artifacts" title="Permanent link">&para;</a></h2>
@@ -562,9 +567,11 @@
 <pre><code class="language-bash">mvn dependency:get -Dartifact=&lt;GROUP ID&gt;:&lt;ARTIFACT ID&gt;:&lt;VERSION&gt;
 </code></pre>
 <h2 id="debugging-missing-artifacts">Debugging missing Artifacts<a class="headerlink" href="#debugging-missing-artifacts" title="Permanent link">&para;</a></h2>
-<p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
-- check that the dependencies are on the maven central.
-- if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency</p>
+<p>All Maven dependencies should work out of the box. If some dependencies cannot be resolved:</p>
+<ul>
+<li>check that the dependencies are on the maven central.</li>
+<li>if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency</li>
+</ul>
 <h1 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
 <p>Variables in the <code>pom.xml</code> file can be used using the <code>${variable}</code> syntax. </p>
 <p>To use some environment variables, we can use the <code>${env.variable}</code>.</p>
@@ -695,12 +702,16 @@ Typically, the manual for such a library tells us to modify the classpath to inc
 </code></pre>
 <p>runs all tests within the <code>input</code> package.</p>
 <h1 id="execute-programs-from-maven">Execute Programs from Maven<a class="headerlink" href="#execute-programs-from-maven" title="Permanent link">&para;</a></h1>
-<p>For executing programs, Maven has the <code>exec</code> plugin. This plugin has two goals: 
-- <code>exec:java</code>: for Java programs
-- <code>exec:exec</code>: for any program</p>
-<p>However, the <code>exec:java</code> goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the <code>exec:java</code> goal, it is not possible to:
-- pass JVM arguments like <code>-Xmx</code>
-- set the library path using <code>-Djava.library.path</code></p>
+<p>For executing programs, Maven has the <code>exec</code> plugin. This plugin has two goals: </p>
+<ul>
+<li><code>exec:java</code>: for Java programs</li>
+<li><code>exec:exec</code>: for any program</li>
+</ul>
+<p>However, the <code>exec:java</code> goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the <code>exec:java</code> goal, it is not possible to:</p>
+<ul>
+<li>pass JVM arguments like <code>-Xmx</code></li>
+<li>set the library path using <code>-Djava.library.path</code></li>
+</ul>
 <p>Note that when working with PowerShell, we typically encounter the problem with arguments that start with <code>-</code> and contain a dot. For guide how to solve this, refer to the <a href="../../../Windows/Powershell%20Manual/">PowerShell manual</a>.</p>
 <h2 id="execjava"><code>exec:java</code><a class="headerlink" href="#execjava" title="Permanent link">&para;</a></h2>
 <p>Basic example:</p>
@@ -713,11 +724,13 @@ Typically, the manual for such a library tells us to modify the classpath to inc
 <pre><code>mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;Xmx30g -classpath %classpath test.Main&quot;
 </code></pre>
 <p>The <code>-classpath %classpath</code> argument is obligatory and it is used to pass the project classpath to the program. </p>
-<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and program arguments.</strong> The order is:
-1. JVM arguments, classpath
-2. main class
-3. program arguments
-Example:</p>
+<p><strong>Note that here, the <code>-Dexec.args</code> parameter is used both for vm and program arguments.</strong> The order is:</p>
+<ol>
+<li>JVM arguments, classpath</li>
+<li>main class</li>
+<li>program arguments
+Example:</li>
+</ol>
 <pre><code>mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.args=&quot;-Xmx30g -classpath %classpath test.Main arg1 arg2&quot;
 </code></pre>
 <p>We can also use <code>-Dexec.mainClass</code> with <code>exec:exec</code>, but we need to refer it in the <code>-classpath</code> argument. The following three maven commands run the same Java program:</p>
@@ -733,9 +746,11 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <p>Sometimes, it can happen that maven cannot connect to a repository with this error:</p>
 <pre><code>PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 </code></pre>
-<p>This error signals that the server SSL certificate of the maven repo (when using HTTPS) is not present in the local SSL certificate keystore. This can have two reasons, to disintiguish between them, try to access the repo from your browser over https:
-- If you can access the repo from your browser, it means that the server has a valid SSL certificate, but it is not in zour local keystore (just in the browser keystore). You can solve this problem by adding the certificate to your java SSL keystore (see below).
-- if you cannot access the server from your browser, it is likely that the server does not have a valid SSL certificate, and you have to solve it on the serer side.</p>
+<p>This error signals that the server SSL certificate of the maven repo (when using HTTPS) is not present in the local SSL certificate keystore. This can have two reasons, to disintiguish between them, try to access the repo from your browser over https:</p>
+<ul>
+<li>If you can access the repo from your browser, it means that the server has a valid SSL certificate, but it is not in zour local keystore (just in the browser keystore). You can solve this problem by adding the certificate to your java SSL keystore (see below).</li>
+<li>if you cannot access the server from your browser, it is likely that the server does not have a valid SSL certificate, and you have to solve it on the serer side.</li>
+</ul>
 <h2 id="adding-a-new-ssl-certificate-to-your-keystore">Adding a new SSL certificate to your keystore<a class="headerlink" href="#adding-a-new-ssl-certificate-to-your-keystore" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open the repo URL in your browser </li>
@@ -765,21 +780,29 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <p>Try to clean and compile again</p>
 <h1 id="project-publishing">Project Publishing<a class="headerlink" href="#project-publishing" title="Permanent link">&para;</a></h1>
 <p>This section s focused on Maven projects but most of the steps should apply to all Java projects.</p>
-<p>Steps:
-1. Cleanup
-1. Add License to all files
-1. Test
-1. Update Changelog
-1. Update pom of the project and related projects
-1. Install Locally
-1. Deploy</p>
+<p>Steps:</p>
+<ol>
+<li>Cleanup</li>
+<li>Add License to all files</li>
+<li>Test</li>
+<li>Update Changelog</li>
+<li>Update pom of the project and related projects</li>
+<li>Install Locally</li>
+<li>Deploy</li>
+</ol>
 <h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h2>
-<p>The following cleanup steps should be done:
-- clean garbage/IDE files
-    - check that they are in gitignore
-    - remove already tracked files by <code>git rm -r --cached &lt;path&gt;</code>
-- remove unused imports
-    - In Netbeans: <code>Refactor</code> -&gt; <code>Inspect and Transform</code> -&gt; <code>browse</code> -&gt; <code>imports</code> -&gt; <code>organize imports</code></p>
+<p>The following cleanup steps should be done:</p>
+<ul>
+<li>clean garbage/IDE files<ul>
+<li>check that they are in gitignore</li>
+<li>remove already tracked files by <code>git rm -r --cached &lt;path&gt;</code></li>
+</ul>
+</li>
+<li>remove unused imports<ul>
+<li>In Netbeans: <code>Refactor</code> -&gt; <code>Inspect and Transform</code> -&gt; <code>browse</code> -&gt; <code>imports</code> -&gt; <code>organize imports</code></li>
+</ul>
+</li>
+</ul>
 <h2 id="add-license-information">Add license information:<a class="headerlink" href="#add-license-information" title="Permanent link">&para;</a></h2>
 <p>There is a nice program called <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> that can be used for that. Unfortunatelly, <strong>the program is currently broken and a <a href="https://github.com/F-I-D-O/licenseheaders">fork</a> must be used</strong>. Syntax:</p>
 <pre><code class="language-bash">licenseheaders -t &lt;license type&gt; -o &quot;&lt;Owner&gt;&quot; -cy -n &lt;Software name&gt; -u &quot;&lt;link to github&gt;&quot; 
@@ -787,58 +810,75 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 <p>A full path to a license template has to be given.</p>
 <h2 id="updating-poms">Updating poms<a class="headerlink" href="#updating-poms" title="Permanent link">&para;</a></h2>
 <p>In general, it is desirable to update the version of each related project from SNAPSHOT to the release version and then test the whole setup.</p>
-<p>In complex setups, we need to:
-1. Change the version of the parent project
-2. Change the version of the project's dependencies
-3. Change the version of the project itself
-4. Update the versions of projects in parent pom
-5. Update the versions of projects in the dependency section of each related project (if this is not done by the parent pom)</p>
+<p>In complex setups, we need to:</p>
+<ol>
+<li>Change the version of the parent project</li>
+<li>Change the version of the project's dependencies</li>
+<li>Change the version of the project itself</li>
+<li>Update the versions of projects in parent pom</li>
+<li>Update the versions of projects in the dependency section of each related project (if this is not done by the parent pom)</li>
+</ol>
 <p>If we fullfill all these steps, we can deploy the project. Both SNAPSHOTs and releases can be deployed using the <code>deploy</code> goal. The repository is chosen based on the version of the artifact (SNAPSHOT or release).</p>
 <h2 id="deploying-the-project-to-maven-central">Deploying the project to Maven Central<a class="headerlink" href="#deploying-the-project-to-maven-central" title="Permanent link">&para;</a></h2>
 <p>Deploying to Maven Central has many advantages: it is free, reliable, and every maven user can get our artifact without any additional configuration. However, it is also a bit complicated due to security requirements and high quality standards. </p>
-<p>The process is usually as follows:
-1. namespace (groupId) registration
-2. deploying of artifacts to the namespace</p>
+<p>The process is usually as follows:</p>
+<ol>
+<li>namespace (groupId) registration</li>
+<li>deploying of artifacts to the namespace</li>
+</ol>
 <p>Note that <strong>for one group id registration, we can deploy multiple artifacts, as long as the registered group id is equal to, or a prefix of, the group id of the artifact</strong>.</p>
 <p>The whole process is described in detail in the <a href="https://central-stage.sonatype.org/register/central-portal/">Central Repository Documentation</a>. As of 2024-02-15, there is an ongoing migration from OSSRH to the new Central Portal. Because of that, we will describe the current (OSSRH) process only briefly, as it is likely to change in the future. Also, we will describe only the process for deploying artifacts, as the namespace registration in OSSRH is not possible anymore.</p>
 <p><strong>To see your currently registered namespaces, go to the <a href="https://issues.sonatype.org/secure/ViewProfile.jspa">your profile at sonatype Jira portal</a> and look insides the issues listed on right in the Activity Stream.</strong></p>
 <h3 id="deploying-artifacts-to-ossrh">Deploying artifacts to OSSRH<a class="headerlink" href="#deploying-artifacts-to-ossrh" title="Permanent link">&para;</a></h3>
-<p>Requirements:
-- required metadata in the pom 
-- javadoc and sources must be supplied
-- all files must be signed with GPG
-- various plugins and configuration need to be set up in the pom
-- user authentication for the OSSRH must be set up in the <code>settings.xml</code> file</p>
+<p>Requirements:</p>
+<ul>
+<li>required metadata in the pom </li>
+<li>javadoc and sources must be supplied</li>
+<li>all files must be signed with GPG</li>
+<li>various plugins and configuration need to be set up in the pom</li>
+<li>user authentication for the OSSRH must be set up in the <code>settings.xml</code> file</li>
+</ul>
 <h4 id="required-metadata">Required metadata<a class="headerlink" href="#required-metadata" title="Permanent link">&para;</a></h4>
 <p><a href="https://central.sonatype.org/pages/requirements">Official documentation</a> (at the end)</p>
-<p>The following metadata must be present in the pom:
-- project tags:
-    - <code>name</code>
-    - <code>description</code>
-    - <code>url</code>
-- license information:
+<p>The following metadata must be present in the pom:</p>
+<ul>
+<li>project tags:<ul>
+<li><code>name</code></li>
+<li><code>description</code></li>
+<li><code>url</code></li>
+</ul>
+</li>
+<li>
+<p>license information:
+    ```XML
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses></p>
+</li>
+<li>
+<p>developer information:
     <code>XML
-    &lt;licenses&gt;
-        &lt;license&gt;
-            &lt;name&gt;MIT License&lt;/name&gt;
-            &lt;url&gt;https://opensource.org/licenses/MIT&lt;/url&gt;
-        &lt;/license&gt;
-    &lt;/licenses&gt;
-- developer information:</code>XML
-    <developers>
-        <developer>
-            <name>Full Name</name>
-            <email>user email</email>
-            <url>user url</url>
-        </developer>
-    </developers>
-    <code>- scm information:</code>XML
-    <scm>
-        <connection>scm:git:git://github.com/simpligility/ossrh-demo.git</connection>
-        <developerConnection>scm:git:ssh://github.com:simpligility/ossrh-demo.git</developerConnection>
-        <url>http://github.com/simpligility/ossrh-demo/tree/master</url>
-    </scm>
-    ```</p>
+    &lt;developers&gt;
+        &lt;developer&gt;
+            &lt;name&gt;Full Name&lt;/name&gt;
+            &lt;email&gt;user email&lt;/email&gt;
+            &lt;url&gt;user url&lt;/url&gt;
+        &lt;/developer&gt;
+    &lt;/developers&gt;</code></p>
+</li>
+<li>
+<p>scm information:
+    <code>XML
+    &lt;scm&gt;
+        &lt;connection&gt;scm:git:git://github.com/simpligility/ossrh-demo.git&lt;/connection&gt;
+        &lt;developerConnection&gt;scm:git:ssh://github.com:simpligility/ossrh-demo.git&lt;/developerConnection&gt;
+        &lt;url&gt;http://github.com/simpligility/ossrh-demo/tree/master&lt;/url&gt;
+    &lt;/scm&gt;</code></p>
+</li>
+</ul>
 <h4 id="javadoc-and-sources-setup">Javadoc and sources setup<a class="headerlink" href="#javadoc-and-sources-setup" title="Permanent link">&para;</a></h4>
 <p>The following configuration is suitable for deploying with sources and javadoc:</p>
 <pre><code class="language-XML">&lt;plugin&gt;
@@ -912,9 +952,11 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
     &lt;/repository&gt;
 &lt;/distributionManagement&gt; 
 </code></pre>
-<p>The <SNAPSHOT URL> and <RELEASE URL> are links to the repo we have received after the namespace registration approval. Note that we need to use the original URLs, even if they do not match the links in the documentation. The current (2024-02-15) URLs are:
-- https://s01.oss.sonatype.org/content/repositories/snapshots
-- https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</p>
+<p>The <SNAPSHOT URL> and <RELEASE URL> are links to the repo we have received after the namespace registration approval. Note that we need to use the original URLs, even if they do not match the links in the documentation. The current (2024-02-15) URLs are:</p>
+<ul>
+<li>https://s01.oss.sonatype.org/content/repositories/snapshots</li>
+<li>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</li>
+</ul>
 <p>Next, we need a staging plugin to deploy the artifacts to the OSSRH staging repository. The plugin is configured as follows:</p>
 <pre><code class="language-XML">&lt;plugin&gt;
     &lt;groupId&gt;org.sonatype.plugins&lt;/groupId&gt;
@@ -940,10 +982,12 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 &lt;/servers&gt;
 </code></pre>
 <h1 id="profiles">Profiles<a class="headerlink" href="#profiles" title="Permanent link">&para;</a></h1>
-<p>Maven profiles can be used to supply different configurations in a single <code>pom.xml</code> file. This can be used for example to:
-- support different build environments (e.g., development, testing, production)
-- support different build targets (e.g., different Java versions)
-- support different build configurations (e.g., optional dependencies)</p>
+<p>Maven profiles can be used to supply different configurations in a single <code>pom.xml</code> file. This can be used for example to:</p>
+<ul>
+<li>support different build environments (e.g., development, testing, production)</li>
+<li>support different build targets (e.g., different Java versions)</li>
+<li>support different build configurations (e.g., optional dependencies)</li>
+</ul>
 <p>Profiles are defined in the <code>profiles</code> section of the <code>pom.xml</code> file. Each profile has a unique id and can contain any configuration that can be present in the <code>pom.xml</code> file. </p>
 <p>To manually activate a profile, we can use the <code>-P</code> argument of the <code>mvn</code> command:</p>
 <pre><code>mvn &lt;goal&gt; -P &lt;profile id&gt;
@@ -958,10 +1002,12 @@ mvn exec:exec -Dexec.executable=&quot;java&quot; -Dexec.mainClass=test.Main -Dex
 </code></pre>
 <h1 id="creating-maven-plugins">Creating maven plugins<a class="headerlink" href="#creating-maven-plugins" title="Permanent link">&para;</a></h1>
 <p><a href="https://maven.apache.org/guides/plugin/guide-java-plugin-development.html">Official guide</a></p>
-<p>Maven plugins can be created as maven projects. Specifics <code>pom</code> configuration:
-- The packaging is <code>maven-plugin</code>
-- The name of the plugin is <code>&lt;artifactId&gt;-maven-plugin</code>
-- among the dependencies, there should be <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code></p>
+<p>Maven plugins can be created as maven projects. Specifics <code>pom</code> configuration:</p>
+<ul>
+<li>The packaging is <code>maven-plugin</code></li>
+<li>The name of the plugin is <code>&lt;artifactId&gt;-maven-plugin</code></li>
+<li>among the dependencies, there should be <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code></li>
+</ul>
 <p>To use a cclass method as an entry point for a plugin goal, we annotate it with <code>@Mojo(name = "&lt;goal name&gt;")</code>.</p>
 <h2 id="testing-a-maven-plugin">Testing a maven plugin<a class="headerlink" href="#testing-a-maven-plugin" title="Permanent link">&para;</a></h2>
 <p>The best way to test the plugin is to run it separately, even if it should be later bound to a lifecycle phase. To run the plugin, we use the following syntax:</p>
@@ -995,12 +1041,14 @@ mvn com.test:example-maven-plugin:example
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

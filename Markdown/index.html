@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Web Tricks - Manuals</title>
+        <title>Markdown - Manuals</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -301,8 +301,8 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../Markdown/" class="nav-link">Markdown</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
                                 <a href="../Network/" class="nav-link">Network</a>
@@ -313,8 +313,8 @@
                             <li class="navitem">
                                 <a href="../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Web Tricks</a>
+                            <li class="navitem">
+                                <a href="../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                         </ul>
 
@@ -325,12 +325,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../vscode/" class="nav-link">
+                                <a rel="prev" href=".." class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../Network/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -352,8 +352,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#download-all-photos-from-rajcecz" class="nav-link">Download all photos from rajce.cz</a>
+            <li class="nav-item" data-level="1"><a href="#elements" class="nav-link">Elements</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#links" class="nav-link">Links</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#images" class="nav-link">Images</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#standardization" class="nav-link">Standardization</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#linter" class="nav-link">Linter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -361,8 +378,45 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="download-all-photos-from-rajcecz">Download all photos from <code>rajce.cz</code><a class="headerlink" href="#download-all-photos-from-rajcecz" title="Permanent link">&para;</a></h1>
-<pre><code class="language-JavaScript">$(&quot;#photoList img&quot;).each(function () {var a = $(this).closest(&quot;a&quot;); if (a.length){$(document.body).append(&quot;&lt;img src='&quot; + a.attr(&quot;href&quot;) + &quot;' \/&gt;&quot;);}});$(&quot;body&gt;*:not(img)&quot;).remove();
+<ul>
+<li><a href="https://commonmark.org/help/">Available elements with syntax</a></li>
+<li><a href="https://github.com/DavidAnson/markdownlint">Linter</a></li>
+<li><a href="https://github.com/DavidAnson/vscode-markdownlint">VSCode Linter specifics</a></li>
+<li><a href="https://spec.commonmark.org/0.31.2/">CommonMark specification</a></li>
+</ul>
+<h1 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h1>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<p>Links can be added to a markdown file by using the following syntax:</p>
+<pre><code class="language-markdown">[Link text](http://example.com)
+</code></pre>
+<p>There are also simple links where the URL is used as the link text, these are called <em><a href="https://spec.commonmark.org/0.31.2/#autolink">autolinks</a></em></p>
+<pre><code class="language-markdown">&lt;http://example.com&gt;
+</code></pre>
+<h2 id="images">Images<a class="headerlink" href="#images" title="Permanent link">&para;</a></h2>
+<p>Images can be added to a markdown file by using the following syntax:</p>
+<pre><code class="language-markdown">![Alt text](/path/to/image.png)
+</code></pre>
+<h1 id="standardization">Standardization<a class="headerlink" href="#standardization" title="Permanent link">&para;</a></h1>
+<p>The only standard for markdown is the <a href="https://commonmark.org">CommonMark specification</a>. However, this specification was created ten years after the original markdown was introduced and therefore there are many implementations of markdown does not follow the CommonMark specification. The following implementations follow the CommonMark specification:</p>
+<ul>
+<li><a href="https://markdown-it.github.io/">Markdown-it</a></li>
+</ul>
+<p>The following implementations do not follow the CommonMark specification:</p>
+<ul>
+<li><a href="https://python-markdown.github.io/">Python-Markdown</a></li>
+</ul>
+<h2 id="linter">Linter<a class="headerlink" href="#linter" title="Permanent link">&para;</a></h2>
+<p>There is a <a href="https://github.com/DavidAnson/markdownlint">linter</a> for markdown available also as a <a href="https://github.com/DavidAnson/vscode-markdownlint">VSCode extension</a>.</p>
+<p>The linter can be configured:</p>
+<ul>
+<li>in the <code>.markdownlint.jsonc</code> or <code>markdownlint.yaml</code> file in the root of the project</li>
+<li>a file with the same name in the home directory</li>
+<li>in the settings of the VSCode extension (<code>markdownlint.config</code>)</li>
+</ul>
+<p>By default, the linter will check more than 50 rules. Not all of them are based on the CommonMark specification and therefore it may be useful to disable some of them. We can do this by adding the following to the configuration file:</p>
+<pre><code class="language-json">{
+    &quot;MD013&quot;: false
+}
 </code></pre></div>
             </div>
         </div>

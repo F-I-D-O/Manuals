@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -1359,6 +1360,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#-we-cannot-use-abstract-classes-as-arguments-of-stdinvoke_result_t-while-we-can-use-them-inside-decltype-using-stddeclval-see-below" class="nav-link">- we cannot use abstract classes as arguments of std::invoke_result_t, while we can use them inside decltype (using std::declval, see below).</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#construct-object-inside-decltype-with-stddeclval" class="nav-link">Construct object inside decltype with std::declval</a>
               <ul class="nav flex-column">
               </ul>
@@ -1517,23 +1522,29 @@
 
 <h1 id="type-system-and-basic-types">Type System and basic types<a class="headerlink" href="#type-system-and-basic-types" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/type">cppreference</a></p>
-<p><em>Type</em> is a property of each:
-- object
-- reference
-- function
-- expression</p>
+<p><em>Type</em> is a property of each:</p>
+<ul>
+<li>object</li>
+<li>reference</li>
+<li>function</li>
+<li>expression</li>
+</ul>
 <h2 id="arithmetic-types">Arithmetic Types<a class="headerlink" href="#arithmetic-types" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/types">cppreference</a></p>
 <h3 id="integers">Integers<a class="headerlink" href="#integers" title="Permanent link">&para;</a></h3>
 <p>Integer types varies in the sign and size. </p>
 <p>Unfortunatelly, <strong>the minimum sizes guaranteed by the standard are not usable, because the real size is different and it differs even between platforms</strong>. Especially the <code>long</code> type. To use an integer with a specific size, or a specific minimal size, we can use <a href="https://en.cppreference.com/w/cpp/types/integer">type aliases defined in <code>cstdint</code></a></p>
 <h3 id="overflow-and-underflow">Overflow and Underflow<a class="headerlink" href="#overflow-and-underflow" title="Permanent link">&para;</a></h3>
-<p>The overflow (and underflow) is a common problem in most programming languages. The problem in C++ is that:
-- overflows are <strong>not detected</strong>
-- overflows can happen in many unexpected situations</p>
+<p>The overflow (and underflow) is a common problem in most programming languages. The problem in C++ is that:</p>
+<ul>
+<li>overflows are <strong>not detected</strong></li>
+<li>overflows can happen in many unexpected situations</li>
+</ul>
 <h4 id="dangerous-situations">Dangerous situations<a class="headerlink" href="#dangerous-situations" title="Permanent link">&para;</a></h4>
-<p>In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:
-- the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:</p>
+<p>In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:</p>
+<ul>
+<li>the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:</li>
+</ul>
 <pre><code class="language-cpp">short a = 32767;
 short b = 1;
 int c = a + b; // overflow happens beffore the assignment
@@ -1544,17 +1555,21 @@ short b = 1;
 int c = static_cast&lt;int&gt;(a) + b;
 </code></pre>
 <h4 id="detecting-overflows">Detecting overflows<a class="headerlink" href="#detecting-overflows" title="Permanent link">&para;</a></h4>
-<p>There are some methods how to detect overflows automatically by suppliying arguments to the compiler. These are summarized here:
-- <strong>MSVC</strong>: not implemented
-- <strong>GCC</strong>: only detectes signed and floating point overflows, as the unsigned overflows are not considered as errors (the behaviour is defined in the standard). All undefined behaviour can be detected using the <code>-fsanitize=undefined</code> flag. <a href="https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html">Documentation</a>
-- <strong>Clang</strong>: Both signed and unsigned overflow can be detected. The undefined behaviour can be detected using the <code>-fsanitize=undefined</code> flag. Fo all integer overflows, the <code>-fsanitize=integer</code> flag can be used. <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html">Documentation</a></p>
+<p>There are some methods how to detect overflows automatically by suppliying arguments to the compiler. These are summarized here:</p>
+<ul>
+<li><strong>MSVC</strong>: not implemented</li>
+<li><strong>GCC</strong>: only detectes signed and floating point overflows, as the unsigned overflows are not considered as errors (the behaviour is defined in the standard). All undefined behaviour can be detected using the <code>-fsanitize=undefined</code> flag. <a href="https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html">Documentation</a></li>
+<li><strong>Clang</strong>: Both signed and unsigned overflow can be detected. The undefined behaviour can be detected using the <code>-fsanitize=undefined</code> flag. Fo all integer overflows, the <code>-fsanitize=integer</code> flag can be used. <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html">Documentation</a></li>
+</ul>
 <p>The reasoning behind excluding the unsigned overflows from GCC are described <a href="https://gcc.gnu.org/legacy-ml/gcc/2016-07/msg00051.html">here</a>.</p>
 <p>It is also possible to do an ad-hoc overflow check in the code, the possible solutions are described in <a href="https://stackoverflow.com/questions/199333/how-do-i-detect-unsigned-integer-overflow">this SO question</a></p>
 <h3 id="characters">Characters<a class="headerlink" href="#characters" title="Permanent link">&para;</a></h3>
 <p>Characters in C++ are represented by the <code>char</code> type, which is an integer type. This type can be signed or unsigned, and it is at least 8 bits long. </p>
-<p>Useful functions for working with characters are:
-- <a href="https://en.cppreference.com/w/cpp/string/byte/isspace"><code>std::isspace</code></a>: checks if the character is a whitespace (space, tab, newline, etc.)
-- <a href="https://en.cppreference.com/w/cpp/string/byte/toupper"><code>std::toupper</code></a>: converts the character to upper case</p>
+<p>Useful functions for working with characters are:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/string/byte/isspace"><code>std::isspace</code></a>: checks if the character is a whitespace (space, tab, newline, etc.)</li>
+<li><a href="https://en.cppreference.com/w/cpp/string/byte/toupper"><code>std::toupper</code></a>: converts the character to upper case</li>
+</ul>
 <h2 id="pointers">Pointers<a class="headerlink" href="#pointers" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/pointer">cppreference</a></p>
 <h3 id="pointers-to-functions">Pointers to Functions<a class="headerlink" href="#pointers-to-functions" title="Permanent link">&para;</a></h3>
@@ -1566,9 +1581,11 @@ int c = static_cast&lt;int&gt;(a) + b;
 </code></pre>
 <p>The above example can be then simply called as <code>bool b = ptr(2)</code></p>
 <h3 id="pointers-to-member-objects">Pointers to Member Objects<a class="headerlink" href="#pointers-to-member-objects" title="Permanent link">&para;</a></h3>
-<p>Pointers to member objects has a cumbersome syntax
-- declaration: <code>&lt;member type&gt; &lt;class type&gt;::*&lt;pointer name&gt; = ...</code>
-- usage: <code>&lt;object name&gt;.*&lt;pointer name&gt; = ...</code></p>
+<p>Pointers to member objects has a cumbersome syntax</p>
+<ul>
+<li>declaration: <code>&lt;member type&gt; &lt;class type&gt;::*&lt;pointer name&gt; = ...</code></li>
+<li>usage: <code>&lt;object name&gt;.*&lt;pointer name&gt; = ...</code></li>
+</ul>
 <p>Example:</p>
 <pre><code class="language-cpp">class My_class{
 public:
@@ -1607,9 +1624,11 @@ int main{
 <p>The first unexpected change is the <code>My_class</code> before the name of the pointer. It's because unlike a pointer to function <code>the_function</code> which is of type <code>(*)(int)</code>, the pointer to <code>my_method</code> is of type <code>(My_class::*)(int)</code></p>
 <p>The second difference is the call. We have t use the pointer to member binding operator <code>.*</code> to access the member of the specific instance  <code>inst</code>. But this operator has a lower priority then the function call operator, so we must use the extra parantheses.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p><a href="https://en.cppreference.com/w/cpp/language/reference">References</a> serve as an alias to already existing objects. Standard (<em>Lvalue</em>) references works the same way as pointers, with two differences:
-- they cannot be NULL
-- they cannot be reassigned</p>
+<p><a href="https://en.cppreference.com/w/cpp/language/reference">References</a> serve as an alias to already existing objects. Standard (<em>Lvalue</em>) references works the same way as pointers, with two differences:</p>
+<ul>
+<li>they cannot be NULL</li>
+<li>they cannot be reassigned</li>
+</ul>
 <p>The second property is the most important, as the assignment is a common operation, which often happens under do hood. In conslusion, <strong>reference types cannot be used in most of the containers and objets that needs to be copied</strong>.</p>
 <h3 id="rvalue-references">Rvalue references<a class="headerlink" href="#rvalue-references" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.cppreference.com/w/cpp/language/reference#Rvalue_references">Rvalue references</a> are used to refer to temporary objects. They eneable to prevent copying local objets by extending lifetime of temporary objects. They are mostly used as function parameters:</p>
@@ -1625,17 +1644,21 @@ void f(int&amp;&amp; x){
 f(3) // rvalue overload called, no copy
 </code></pre>
 <h3 id="forwarding-references">Forwarding references<a class="headerlink" href="#forwarding-references" title="Permanent link">&para;</a></h3>
-<p><a href="https://en.cppreference.com/w/cpp/language/reference#Forwarding_references">Forwarding references</a> are references that preserves the value category (i.e. r/l-value reference, <code>const</code>). They have two forms:
-- function parameter forwarding references
-- <code>auto</code> forwarding references</p>
+<p><a href="https://en.cppreference.com/w/cpp/language/reference#Forwarding_references">Forwarding references</a> are references that preserves the value category (i.e. r/l-value reference, <code>const</code>). They have two forms:</p>
+<ul>
+<li>function parameter forwarding references</li>
+<li><code>auto</code> forwarding references</li>
+</ul>
 <h4 id="function-parameter-forwarding-references">Function parameter forwarding references<a class="headerlink" href="#function-parameter-forwarding-references" title="Permanent link">&para;</a></h4>
 <p>In a function template, if we use the rvalue reference syntax for a function parameter of  whose type is a function template parameter, the reference is actually a forwarding reference. Example:</p>
 <pre><code class="language-cpp">template&lt;class T&gt;
 void f(T&amp;&amp; arg) // parameter is T&amp; or T&amp;&amp; depending on the supplied argument
 </code></pre>
-<p>Important details:
-- it works only for non const references
-- the reference type has to be a function template argument, not a class template argument </p>
+<p>Important details:</p>
+<ul>
+<li>it works only for non const references</li>
+<li>the reference type has to be a function template argument, not a class template argument </li>
+</ul>
 <h4 id="auto-forwarding-reference"><code>auto</code> forwarding reference<a class="headerlink" href="#auto-forwarding-reference" title="Permanent link">&para;</a></h4>
 <p>When we assign to `auto&amp;&amp;, it is a forwarding reference, not rvalue reference:</p>
 <pre><code class="language-cpp">auto&amp;&amp; a = f() // both type and value category depends on the return value of f()
@@ -1645,9 +1668,11 @@ for(auto&amp;&amp; a: g(){ // same
 </code></pre>
 <h2 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/array">cppreference</a></p>
-<p>There are two types of arrays:
-- <em>static</em>, i.e., their size is known at compile type, and
-- <em>dynamic</em>, the size of which is computed at runtime</p>
+<p>There are two types of arrays:</p>
+<ul>
+<li><em>static</em>, i.e., their size is known at compile type, and</li>
+<li><em>dynamic</em>, the size of which is computed at runtime</li>
+</ul>
 <p>We can use the array name to access the first elemnt of the array as it is the pointer to that element.</p>
 <h3 id="static-arrays">Static arrays<a class="headerlink" href="#static-arrays" title="Permanent link">&para;</a></h3>
 <p>Declaration:</p>
@@ -1704,30 +1729,15 @@ int* ptr = a; // ptr points to the first element of a
 </code></pre>
 <p>This implicit conversion is called <em>array-to-pointer decay</em>.</p>
 <h3 id="mutli-dimensional-dynamic-arrays">Mutli-dimensional dynamic arrays<a class="headerlink" href="#mutli-dimensional-dynamic-arrays" title="Permanent link">&para;</a></h3>
-<p>To simulate multi-dimensional dynamic arrays, we have two options:
-- use the flat syntax, as demonstrated on static arrays
-- use aray of pointers to arrays </p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Flat Syntax</td>
-<td>Fast: single continuous allocations</td>
-<td>different access syntax than static 2D arrays</td>
-</tr>
-<tr>
-<td>Array of pointers</td>
-<td>Slow: one allocation per row, unrelated memory addresses between rows</td>
-<td>same access syntax as static 2D arrays</td>
-</tr>
-</tbody>
-</table>
+<p>To simulate multi-dimensional dynamic arrays, we have two options:</p>
+<ul>
+<li>use the flat syntax, as demonstrated on static arrays</li>
+<li>use aray of pointers to arrays </li>
+</ul>
+<p>Method | Pros | Cons</p>
+<p>--|--|--
+Flat Syntax | Fast: single continuous allocations | different access syntax than static 2D arrays
+Array of pointers | Slow: one allocation per row, unrelated memory addresses between rows | same access syntax as static 2D arrays</p>
 <h4 id="flat-array">Flat array<a class="headerlink" href="#flat-array" title="Permanent link">&para;</a></h4>
 <pre><code class="language-cpp">int* a = new int[rows * cols]
 </code></pre>
@@ -1817,73 +1827,92 @@ int main(){
     }
 }
 </code></pre>
-<p>For more complex code requireing automatic conversion to string and more, we can consider the <a href="https://github.com/Neargye/magic_enum">magic_enum library</a>. It supports the following features:
-- enum to string conversion
-- string to enum conversion
-- enum iteration
-- sequence of possible values</p>
+<p>For more complex code requireing automatic conversion to string and more, we can consider the <a href="https://github.com/Neargye/magic_enum">magic_enum library</a>. It supports the following features:</p>
+<ul>
+<li>enum to string conversion</li>
+<li>string to enum conversion</li>
+<li>enum iteration</li>
+<li>sequence of possible values</li>
+</ul>
 <h2 id="complete-and-incomplete-types">Complete and Incomplete Types<a class="headerlink" href="#complete-and-incomplete-types" title="Permanent link">&para;</a></h2>
-<p>In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?
-- The <code>void</code> type is always incomplete
-- Any structure without definition (e.g. using <code>struct structure *ps;</code>, without defining <code>structure</code>.)
-- An array without dimensions is an incomplete type: <code>int a[];</code> is incomplete, while <code>int a[5];</code> is complete.
-- An array of incomplete elements is incomplete.</p>
+<p>In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?</p>
+<ul>
+<li>The <code>void</code> type is always incomplete</li>
+<li>Any structure without definition (e.g. using <code>struct structure *ps;</code>, without defining <code>structure</code>.)</li>
+<li>An array without dimensions is an incomplete type: <code>int a[];</code> is incomplete, while <code>int a[5];</code> is complete.</li>
+<li>An array of incomplete elements is incomplete.</li>
+</ul>
 <p>A type trait that can be used to determine whether a type is complete is described <a href="https://devblogs.microsoft.com/oldnewthing/20190710-00/?p=102678">here</a>.</p>
 <h2 id="aggregate-types">Aggregate types<a class="headerlink" href="#aggregate-types" title="Permanent link">&para;</a></h2>
-<p>Aggregate types are:
-- array types 
-- class types that fullfill the following conditions
-    - no private or protected members
-    - no constructores declared (including inherited constructors)
-    - no private or protected base classes
-    - no virtual member functions</p>
+<p>Aggregate types are:</p>
+<ul>
+<li>array types </li>
+<li>class types that fullfill the following conditions<ul>
+<li>no private or protected members</li>
+<li>no constructores declared (including inherited constructors)</li>
+<li>no private or protected base classes</li>
+<li>no virtual member functions</li>
+</ul>
+</li>
+</ul>
 <p>The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).</p>
 <h2 id="type-conversion">Type Conversion<a class="headerlink" href="#type-conversion" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/implicit_conversion">cppreference: implicit conversion</a></p>
 <p>In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the <code>static_cast</code> operator. In some cases where the conversion is potentially dangerous, the <code>static_cast</code> is the only way to prevent compiler warnings.</p>
 <h3 id="numeric-conversion">Numeric Conversion<a class="headerlink" href="#numeric-conversion" title="Permanent link">&para;</a></h3>
-<p>There are two basic types of numeric conversion:
-- standard <em>implicit conversion</em> that can be of many types: this conversion is applied if we use an expression of type <code>T</code> in a context that expects a type <code>U</code>. Example:
+<p>There are two basic types of numeric conversion:</p>
+<ul>
+<li>
+<p>standard <em>implicit conversion</em> that can be of many types: this conversion is applied if we use an expression of type <code>T</code> in a context that expects a type <code>U</code>. Example:
     ```cpp
     void print_int(int a){
         std::cout &lt;&lt; a &lt;&lt; std::endl;
     }</p>
-<pre><code>int main(){
+<p>int main(){
     short a = 5;
     print_int(a); // a is implicitly converted to int
 }
-```
-</code></pre>
-<ul>
-<li><em>usual arithmetic conversion</em> which is applied when we use two different types in an arithmetic binary operation. Example:
+```</p>
+</li>
+<li>
+<p><em>usual arithmetic conversion</em> which is applied when we use two different types in an arithmetic binary operation. Example:
     <code>cpp
     int main(){
         short a = 5;
         int b = 2;
         int c = a + b; // a is converted to int
-    }</code></li>
+    }</code></p>
+</li>
 </ul>
 <h4 id="implicit-numeric-conversion">Implicit Numeric Conversion<a class="headerlink" href="#implicit-numeric-conversion" title="Permanent link">&para;</a></h4>
 <h5 id="integral-promotion">Integral Promotion<a class="headerlink" href="#integral-promotion" title="Permanent link">&para;</a></h5>
-<p>Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:
-- <code>bool</code> is promoted to <code>int</code>: <code>false</code> -&gt; <code>0</code>, <code>true</code> -&gt; <code>1</code></p>
+<p>Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:</p>
+<ul>
+<li><code>bool</code> is promoted to <code>int</code>: <code>false</code> -&gt; <code>0</code>, <code>true</code> -&gt; <code>1</code></li>
+</ul>
 <h5 id="integral-conversion">Integral Conversion<a class="headerlink" href="#integral-conversion" title="Permanent link">&para;</a></h5>
 <p>Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:</p>
 <h4 id="usual-arithmetic-conversion">Usual Arithmetic Conversion<a class="headerlink" href="#usual-arithmetic-conversion" title="Permanent link">&para;</a></h4>
 <p><a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions">cppreference</a></p>
 <p>This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. </p>
-<p>The conversion has the following steps steps:
-1. lvalue to rvalue conversion of both operands
-1. special step for enum types
-1. special step for floating point types
-1. conversion of both operands to the common type</p>
-<p>The last step: the conversion of both operands to the common type is performed using the following rules:
-1. If both operands have the same type, no conversion is performed.
-1. If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser <a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank">integer conversion rank</a> (size) is converted to the type of the operand with greater rank.
-1. otherwise, we have a mix of signed and unsigned types. The following rules are applied:
-    1. If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.
-    1. Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.
-    1. Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).</p>
+<p>The conversion has the following steps steps:</p>
+<ol>
+<li>lvalue to rvalue conversion of both operands</li>
+<li>special step for enum types</li>
+<li>special step for floating point types</li>
+<li>conversion of both operands to the common type</li>
+</ol>
+<p>The last step: the conversion of both operands to the common type is performed using the following rules:</p>
+<ol>
+<li>If both operands have the same type, no conversion is performed.</li>
+<li>If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser <a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank">integer conversion rank</a> (size) is converted to the type of the operand with greater rank.</li>
+<li>otherwise, we have a mix of signed and unsigned types. The following rules are applied:<ol>
+<li>If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.</li>
+<li>Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.</li>
+<li>Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).</li>
+</ol>
+</li>
+</ol>
 <p>Here <strong>especially the rule 3.1 leads to many unexpected results</strong> and hard to find bugs. Example:</p>
 <pre><code class="language-cpp">int main(){
     unsigned int a = 10;
@@ -1893,10 +1922,12 @@ int main(){
 </code></pre>
 <p>To avoid this problem, <strong>always use the <code>static_cast</code> operator if dealing with mixed signed/unsigned types</strong>.</p>
 <h2 id="show-the-type-at-runtime">Show the Type at Runtime<a class="headerlink" href="#show-the-type-at-runtime" title="Permanent link">&para;</a></h2>
-<p>It may be useful to show the type of a variable at runtime:
-- for debugging purposes
-- for logging
-- to compare the types of two variables</p>
+<p>It may be useful to show the type of a variable at runtime:</p>
+<ul>
+<li>for debugging purposes</li>
+<li>for logging</li>
+<li>to compare the types of two variables</li>
+</ul>
 <p>Note however, that in C++, there is no reflection support. Therefore, <strong>we cannot retrieve the name of the type at runtime in a reliable way</strong>. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.</p>
 <h3 id="resolved-complicated-types">Resolved complicated types<a class="headerlink" href="#resolved-complicated-types" title="Permanent link">&para;</a></h3>
 <p>Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:</p>
@@ -1934,13 +1965,17 @@ constexpr auto type_name() {
 <h1 id="standard-library-types">Standard Library Types<a class="headerlink" href="#standard-library-types" title="Permanent link">&para;</a></h1>
 <h2 id="smart-pointers">Smart Pointers<a class="headerlink" href="#smart-pointers" title="Permanent link">&para;</a></h2>
 <p>For managing resources in dynamic memory, <em>smart pointers</em> (sometimes called <em>handles</em>) should be used. They manage the memory (alocation, dealocation) automatically, but their usage requires some practice.</p>
-<p>There are two types of smart pointers:
-- <code>std::unique_ptr</code> for unique ownership
-- <code>std::shared_ptr</code> for shared ownership</p>
+<p>There are two types of smart pointers:</p>
+<ul>
+<li><code>std::unique_ptr</code> for unique ownership</li>
+<li><code>std::shared_ptr</code> for shared ownership</li>
+</ul>
 <h3 id="creation">Creation<a class="headerlink" href="#creation" title="Permanent link">&para;</a></h3>
-<p>Usually, we create the pointer together with the target object in one call:
-- <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique"><code>std::make_unique&lt;T&gt;(&lt;OBJECT PARAMS&gt;)</code></a> for unique pointer
-- <code>std::make_shared&lt;T&gt;(&lt;OBJECT PARAMS&gt;)</code> for shared pointer</p>
+<p>Usually, we create the pointer together with the target object in one call:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique"><code>std::make_unique&lt;T&gt;(&lt;OBJECT PARAMS&gt;)</code></a> for unique pointer</li>
+<li><code>std::make_shared&lt;T&gt;(&lt;OBJECT PARAMS&gt;)</code> for shared pointer</li>
+</ul>
 <p>These methods work well for objects, but cannot be used for arbitrary array initialization (only the empty/zero-initialized array can be created using these methods). For arbitrary array initialization, we need to use the smart pointer constructor:</p>
 <pre><code class="language-cpp">std::unique_ptr&lt;int[]&gt; ptr(new int[]{1, 2, 3}); 
 </code></pre>
@@ -1954,9 +1989,11 @@ std::unique_ptr&lt;My_class&gt; ptr(); // ptr is also null
 <p><a href="https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper">cppreference</a>
 Reference wrapper is a class template that can be used to store references in containers or aggregated objects. The disintinction from normal references is that the reference wrapper can be copied and assigned, so it does not prevent the copy/move operations on the object it belongs to. Otherwise, it behaves like a normal reference: it has to be assigned to a valid object and it cannot be null.</p>
 <h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
-<p>In C++, there are two types of strings:
-- <a href="https://en.cppreference.com/w/cpp/string/basic_string"><code>std::string</code></a> is an owning class for a string.
-- <a href="https://en.cppreference.com/w/cpp/string/basic_string_view"><code>std::string_view</code></a> is a non-owning class for a string.</p>
+<p>In C++, there are two types of strings:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/string/basic_string"><code>std::string</code></a> is an owning class for a string.</li>
+<li><a href="https://en.cppreference.com/w/cpp/string/basic_string_view"><code>std::string_view</code></a> is a non-owning class for a string.</li>
+</ul>
 <p>Also, there is a C-style string (<code>char*</code>), but it is not recommended to use it in modern C++.</p>
 <p>The difference between <code>std::string</code> and <code>std::string_view</code> is best explained by a table below:</p>
 <table>
@@ -2006,23 +2043,31 @@ std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quo
  <code>R"lit(literal)lit"</code>. </p>
 <p>Raw string literals also useful for <strong>multi-line string literals</strong>.</p>
 <h3 id="formatting-strings">Formatting strings<a class="headerlink" href="#formatting-strings" title="Permanent link">&para;</a></h3>
-<p>The usage of modern string formating is either
-- <a href="https://en.cppreference.com/w/cpp/utility/format/format"><code>std::format</code></a> from the <code>&lt;format&gt;</code> header if the compiler supports <a href="https://en.cppreference.com/w/cpp/utility/format">C++20 string formatting</a> (<a href="https://en.cppreference.com/w/cpp/compiler_support">compiler support</a>) or
-- <code>fmt::format</code> from the <a href="https://github.com/fmtlib/fmt"><code>fmt</code></a> library if not.</p>
+<p>The usage of modern string formating is either</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/format/format"><code>std::format</code></a> from the <code>&lt;format&gt;</code> header if the compiler supports <a href="https://en.cppreference.com/w/cpp/utility/format">C++20 string formatting</a> (<a href="https://en.cppreference.com/w/cpp/compiler_support">compiler support</a>) or</li>
+<li><code>fmt::format</code> from the <a href="https://github.com/fmtlib/fmt"><code>fmt</code></a> library if not.</li>
+</ul>
 <p>Either way, the usage is the same:</p>
 <pre><code class="language-cpp">format(&lt;literal&gt;, &lt;arguments&gt;)
 </code></pre>
 <p>where the literal is a string literal with <code>{}</code> placeholders and the arguments are the values to be inserted into the placeholders. </p>
-<p>The placeholders can be filled width<br />
-- argument identification, if we want to use the same argument multiple times or change the order in the string while keep the order of arguments in the function call or
-- format specification.</p>
+<p>The placeholders can be filled width  </p>
+<ul>
+<li>argument identification, if we want to use the same argument multiple times or change the order in the string while keep the order of arguments in the function call or</li>
+<li>format specification.</li>
+</ul>
 <p>These two parts are separated by <code>:</code>, both of them are optional.</p>
-<p>The most common format specifications are:
-- data type:
-    - <code>d</code> for decimal integer
-    - <code>f</code> for floating point number
-    - <code>s</code> for string
-- width and precision, in the format <code>&lt;width&gt;.&lt;precision&gt;</code>. Both values can be dynamic: <code>std::format("{:{}.{}f}", a, b, c)</code> formats a float number <code>a</code> with width <code>b</code> and precision <code>c</code>.</p>
+<p>The most common format specifications are:</p>
+<ul>
+<li>data type:<ul>
+<li><code>d</code> for decimal integer</li>
+<li><code>f</code> for floating point number</li>
+<li><code>s</code> for string</li>
+</ul>
+</li>
+<li>width and precision, in the format <code>&lt;width&gt;.&lt;precision&gt;</code>. Both values can be dynamic: <code>std::format("{:{}.{}f}", a, b, c)</code> formats a float number <code>a</code> with width <code>b</code> and precision <code>c</code>.</li>
+</ul>
 <p>The formating reference can be found in the <a href="https://en.cppreference.com/w/cpp/utility/format/formatter#Standard_format_specification">cppreference</a> </p>
 <h3 id="spliting-the-string-into-tokens">Spliting the string into tokens<a class="headerlink" href="#spliting-the-string-into-tokens" title="Permanent link">&para;</a></h3>
 <p>Unfortunately, the STL does not provide a simple way to split the string into tokens like Python's <code>split</code> method or PHP's <code>explode</code> function. It is not even planned for the future.  </p>
@@ -2076,15 +2121,19 @@ ss &gt;&gt; std::get_time(&amp;tm, &quot;%Y-%b-%d %H:%M:%S&quot;);
 <li><a href="https://en.cppreference.com/w/cpp/container/vector">std::vector</a></li>
 </ul>
 <h3 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h3>
-<p>Normal set collection for C++ is <a href="https://en.cppreference.com/w/cpp/container/unordered_set"><code>std::unordered_set</code></a>. By default, the set uses a <code>Hash</code>, <code>KeyEqual</code> and <code>Allocator</code> template params provided by std functions. However, they need to exist, specifically:
-- <a href="https://en.cppreference.com/w/cpp/utility/hash"><code>std::hash&lt;Key&gt;</code></a>
-- <code>std::equal_to&lt;Key&gt;</code>
-- <code>std::allocator&lt;Key&gt;</code></p>
+<p>Normal set collection for C++ is <a href="https://en.cppreference.com/w/cpp/container/unordered_set"><code>std::unordered_set</code></a>. By default, the set uses a <code>Hash</code>, <code>KeyEqual</code> and <code>Allocator</code> template params provided by std functions. However, they need to exist, specifically:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/hash"><code>std::hash&lt;Key&gt;</code></a></li>
+<li><code>std::equal_to&lt;Key&gt;</code></li>
+<li><code>std::allocator&lt;Key&gt;</code></li>
+</ul>
 <p>So either those specializations needs to be provided by the snadard library (check cppreference), or you have to provide it. </p>
 <h4 id="providing-custom-hash-function">Providing custom hash function<a class="headerlink" href="#providing-custom-hash-function" title="Permanent link">&para;</a></h4>
-<p>There are two options for providing custom hash function for a type <code>T</code>s:
-- implementing an <em>explicit specialization</em> of the template function  <code>std::hash&lt;T&gt;</code>
-- providing the <code>Hash</code> template param when constructing the hash</p>
+<p>There are two options for providing custom hash function for a type <code>T</code>s:</p>
+<ul>
+<li>implementing an <em>explicit specialization</em> of the template function  <code>std::hash&lt;T&gt;</code></li>
+<li>providing the <code>Hash</code> template param when constructing the hash</li>
+</ul>
 <p>The first method is prefered if we want to provide a default hash function for some type for which there is no hash function specialization in the standard library. The second method is prefered only when we want some special hash function for a type <code>T</code> for which <code>std::hash&lt;T&gt;</code> is already defined.</p>
 <h4 id="implementing-custom-hash-function">Implementing custom hash function<a class="headerlink" href="#implementing-custom-hash-function" title="Permanent link">&para;</a></h4>
 <p>First check whether the hash function is not provide by STL on <a href="https://en.cppreference.com/w/cpp/utility/hash">cppreference</a>. Then, many other hash specializations are implemented by boost, check the <a href="https://www.boost.org/doc/libs/1_78_0/doc/html/hash/reference.html">reference</a>. </p>
@@ -2101,9 +2150,11 @@ struct std::hash&lt;std::unordered_set&lt;const Request*&gt;&gt; {
     }
 };
 </code></pre>
-<p>Important implementation details:
-- the function needs to be implemented inside <code>std</code> or annonymous namespace, not inside a custom namespace
-- do not forget to add <code>template&lt;&gt;</code> above the function, this indicates that it is a template specialization.</p>
+<p>Important implementation details:</p>
+<ul>
+<li>the function needs to be implemented inside <code>std</code> or annonymous namespace, not inside a custom namespace</li>
+<li>do not forget to add <code>template&lt;&gt;</code> above the function, this indicates that it is a template specialization.</li>
+</ul>
 <h3 id="maps">Maps<a class="headerlink" href="#maps" title="Permanent link">&para;</a></h3>
 <p>The maps has similar requiremnts for keys as the requirements for set value types (see previous section). The hash map type is called <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a>.</p>
 <h4 id="geeting-value-by-key">Geeting value by key<a class="headerlink" href="#geeting-value-by-key" title="Permanent link">&para;</a></h4>
@@ -2115,24 +2166,32 @@ a = map[1] // a == map[1] == &quot;&quot; unintuitively, the default value is in
 </code></pre>
 <p>Therefore, <strong>if we just read from the map, it is safer to use the <code>at()</code></strong> member function.</p>
 <h4 id="inserting-into-map">Inserting into map<a class="headerlink" href="#inserting-into-map" title="Permanent link">&para;</a></h4>
-<p>There are three options:
-1. <code>map[key] = value;</code> or
-2. <code>map.insert({key, value});</code>
-3. <code>map.emplace(key, value);</code></p>
-<p>There are some considerations with these options:
-- 1 inserts the <code>value</code> into the map even if the <code>key</code> already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (<code>true</code> if the insertion happend).
-- 1 requires the value to be default <em>constructible</em> and <em>assignable</em>
-- 3 avoids the creation of temporary objects, it sends references to <code>key</code> and <code>value</code> directly to the map.<br />
-- 3 ignores the insertion if the key already exists.</p>
+<p>There are three options:</p>
+<ol>
+<li><code>map[key] = value;</code> or</li>
+<li><code>map.insert({key, value});</code></li>
+<li><code>map.emplace(key, value);</code></li>
+</ol>
+<p>There are some considerations with these options:</p>
+<ul>
+<li>1 inserts the <code>value</code> into the map even if the <code>key</code> already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (<code>true</code> if the insertion happend).</li>
+<li>1 requires the value to be default <em>constructible</em> and <em>assignable</em></li>
+<li>3 avoids the creation of temporary objects, it sends references to <code>key</code> and <code>value</code> directly to the map.  </li>
+<li>3 ignores the insertion if the key already exists.</li>
+</ul>
 <h3 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h3>
-<p>We have two standard class templates for tuples:
-- <a href="https://en.cppreference.com/w/cpp/utility/pair"><code>std::pair</code></a> for pairs
-- <a href="https://en.cppreference.com/w/cpp/utility/tuple"><code>std::tuple</code></a> for tuples with unlimited size</p>
+<p>We have two standard class templates for tuples:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/pair"><code>std::pair</code></a> for pairs</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/tuple"><code>std::tuple</code></a> for tuples with unlimited size</li>
+</ul>
 <p>Although named differently, these class templates behaves mostly the same.</p>
 <h4 id="creating-tuples">Creating tuples<a class="headerlink" href="#creating-tuples" title="Permanent link">&para;</a></h4>
-<p>There are two ways of creating a tuple:
-- constructor (<code>auto p = std::pair(...)</code>)
-- initializer (<code>auto p = {}</code>)</p>
+<p>There are two ways of creating a tuple:</p>
+<ul>
+<li>constructor (<code>auto p = std::pair(...)</code>)</li>
+<li>initializer (<code>auto p = {}</code>)</li>
+</ul>
 <p>Beware that <strong>by default</strong>, the deduced types are decayed, i.e., const and references are removed and the <strong>tuple stores value types</strong>. If you need to store the reference in a tuple, you have to specify the type: </p>
 <pre><code class="language-cpp">auto p = std::pair&lt;int, constr std::string&amp;&gt;(...)
 </code></pre>
@@ -2146,9 +2205,11 @@ a = map[1] // a == map[1] == &quot;&quot; unintuitively, the default value is in
 auto hello = std::get&lt;1&gt;(tuple);
 </code></pre>
 <h4 id="unpacking-tuples-into-variables">Unpacking tuples into variables<a class="headerlink" href="#unpacking-tuples-into-variables" title="Permanent link">&para;</a></h4>
-<p>There are two scenarios of unpacking tuples into variables:
-- unpacking into <strong>new variables</strong>: for that, we use structured binding. 
-- unpacking into <strong>existing variables</strong>: for that, we use <code>std::tie</code> function.</p>
+<p>There are two scenarios of unpacking tuples into variables:</p>
+<ul>
+<li>unpacking into <strong>new variables</strong>: for that, we use structured binding. </li>
+<li>unpacking into <strong>existing variables</strong>: for that, we use <code>std::tie</code> function.</li>
+</ul>
 <h5 id="structured-binding">Structured binding<a class="headerlink" href="#structured-binding" title="Permanent link">&para;</a></h5>
 <p>If we don't need the whole tuple objects, but only its members, we can use a <a href="https://en.cppreference.com/w/cpp/language/structured_binding"><em>structured binding</em></a>. Example:</p>
 <pre><code class="language-cpp">std::pair&lt;int, int&gt; get_data();
@@ -2210,29 +2271,37 @@ if(a){
 <h1 id="value-categories">Value Categories<a class="headerlink" href="#value-categories" title="Permanent link">&para;</a></h1>
 <p>[cppreferencepreerecege/value_category).
 In many contexts, the value category of an expression is important in deciding whether the code compiles or not, or which function or template overload is chosen. Therefore, it is usefull to be able to read value categories.</p>
-<p>expression value types:
-- <em>lvalue</em>, meaning left-value. An expression typically on the left side of compound expression a statement, e.g. variable, member, or function name. Also, lvalues expressions are are:
-    - function ratoalls to fuctions returning lvalue
-    - assignments
-    -  <code>++a</code>, <code>--a</code> and similar pre operators
-    - <code>*a</code> indirection
-    - string literal
-    - cast
-- <em>prvalue</em>, meaning pure rvalue. It is either a result of some operand (<code>+</code>, <code>/</code>) or a constructor/initializer result. The foloowing expressions are prvalues:
-    - literals with exception of string literals, e.g.: <code>4</code>, <code>true</code>, <code>nullptr</code>
-    - function or operator calls that return rvalue (non-reference)
-    - <code>a++</code>, <code>a--</code> and other post operators
-    - arithmetic and logical expressions
-    - <code>&amp;a</code> address of expression
-    - <code>this</code>
-    - non-type template parameters, unless they are references
-    - lambda expressions
-    - requires expressions and concept spetializations
-- <em>xvalue</em>, meaning expiring value. These valaues usually represent lvalues converted to rvalues. Xvalue expressions are:
-    - function call to functions returning rvalue reference (e.g., <a href="https://en.cppreference.com/w/cpp/utility/move"><code>std::move</code></a>).
-    - member object expression (<code>a.m</code>) if <code>a</code> is an rvlaue and <code>m</code> is a non-reference type
-- <em>glvalue</em> = <em>lvalue</em> <code>||</code> <em>xvalue</em>. 
-- <em>rvalue</em> = <em>prvlaue</em> <code>||</code> <em>xvalue</em>. </p>
+<p>expression value types:</p>
+<ul>
+<li><em>lvalue</em>, meaning left-value. An expression typically on the left side of compound expression a statement, e.g. variable, member, or function name. Also, lvalues expressions are are:<ul>
+<li>function ratoalls to fuctions returning lvalue</li>
+<li>assignments</li>
+<li><code>++a</code>, <code>--a</code> and similar pre operators</li>
+<li><code>*a</code> indirection</li>
+<li>string literal</li>
+<li>cast</li>
+</ul>
+</li>
+<li><em>prvalue</em>, meaning pure rvalue. It is either a result of some operand (<code>+</code>, <code>/</code>) or a constructor/initializer result. The foloowing expressions are prvalues:<ul>
+<li>literals with exception of string literals, e.g.: <code>4</code>, <code>true</code>, <code>nullptr</code></li>
+<li>function or operator calls that return rvalue (non-reference)</li>
+<li><code>a++</code>, <code>a--</code> and other post operators</li>
+<li>arithmetic and logical expressions</li>
+<li><code>&amp;a</code> address of expression</li>
+<li><code>this</code></li>
+<li>non-type template parameters, unless they are references</li>
+<li>lambda expressions</li>
+<li>requires expressions and concept spetializations</li>
+</ul>
+</li>
+<li><em>xvalue</em>, meaning expiring value. These valaues usually represent lvalues converted to rvalues. Xvalue expressions are:<ul>
+<li>function call to functions returning rvalue reference (e.g., <a href="https://en.cppreference.com/w/cpp/utility/move"><code>std::move</code></a>).</li>
+<li>member object expression (<code>a.m</code>) if <code>a</code> is an rvlaue and <code>m</code> is a non-reference type</li>
+</ul>
+</li>
+<li><em>glvalue</em> = <em>lvalue</em> <code>||</code> <em>xvalue</em>. </li>
+<li><em>rvalue</em> = <em>prvlaue</em> <code>||</code> <em>xvalue</em>. </li>
+</ul>
 <h1 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreferencempp.com/w/cpp/language/operators">cppreferencen</a></p>
 <p>C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded. </p>
@@ -2284,43 +2353,22 @@ In many contexts, the value category of an expression is important in deciding w
 <h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/functions">cppreference</a></p>
 <h2 id="deciding-between-free-function-member-function-and-static-member-function">Deciding between free function, member function and static member function<a class="headerlink" href="#deciding-between-free-function-member-function-and-static-member-function" title="Permanent link">&para;</a></h2>
-<p>Basically, you should decide as follows:
-1. Function needs access to instance -&gt; <strong>member function</strong>
-2. Function 
-    - should be called only by class members (i.e., member functions), so we want to limit its visibility, or
-    - we need to access static members of the class -&gt; <strong>static member function</strong>
-1. Otherwise -&gt; <strong>free function</strong></p>
+<p>Basically, you should decide as follows:</p>
+<ol>
+<li>Function needs access to instance -&gt; <strong>member function</strong></li>
+<li>Function <ul>
+<li>should be called only by class members (i.e., member functions), so we want to limit its visibility, or</li>
+<li>we need to access static members of the class -&gt; <strong>static member function</strong></li>
+</ul>
+</li>
+<li>Otherwise -&gt; <strong>free function</strong></li>
+</ol>
 <h2 id="argument-parameter-conversions">Argument-parameter Conversions<a class="headerlink" href="#argument-parameter-conversions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Arg/param</th>
-<th>value</th>
-<th>reference</th>
-<th>rvalue</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>value</td>
-<td>-</td>
-<td>-</td>
-<td><code>std::move</code></td>
-</tr>
-<tr>
-<td>reference</td>
-<td>implicit copy</td>
-<td>-</td>
-<td>copy constructor</td>
-</tr>
-<tr>
-<td>rvalue</td>
-<td>-</td>
-<td>not possible</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
+<p>Arg/param | value | reference | rvalue</p>
+<p>-- |--|--|--
+value | - | - | <code>std::move</code> 
+reference | implicit copy | - | copy constructor
+rvalue | - | not possible | -</p>
 <h2 id="default-parameters">Default Parameters<a class="headerlink" href="#default-parameters" title="Permanent link">&para;</a></h2>
 <p>Default function parameters  in C++ works similarly to other languages:</p>
 <pre><code class="language-c++">int add(int a, int b = 10);
@@ -2337,17 +2385,21 @@ addf(1) // does not compile
 <p>Also, the default parameters need to be values, not references or pointers. For references and pointers, we should use function overloading.</p>
 <h3 id="default-parameters-and-inheritance">Default Parameters and Inheritance<a class="headerlink" href="#default-parameters-and-inheritance" title="Permanent link">&para;</a></h3>
 <p>TLDR: do not use default parameters in virtual functions.</p>
-<p>The default parameters are resolved at compile time. Therefore, the value does not depend on the actual type of the object, but on the declared type of the variable. This have following consequences:
-- the default parameters are not inherited
-- <code>A* a = new B(); a-&gt;foo()</code> will call <code>B::foo()</code>, with the default parameters of <code>A::foo()</code></p>
+<p>The default parameters are resolved at compile time. Therefore, the value does not depend on the actual type of the object, but on the declared type of the variable. This have following consequences:</p>
+<ul>
+<li>the default parameters are not inherited</li>
+<li><code>A* a = new B(); a-&gt;foo()</code> will call <code>B::foo()</code>, with the default parameters of <code>A::foo()</code></li>
+</ul>
 <p>To prevent confusion with inheritence we should use function overloading instead of default parameters in virtual functions (like in Java).</p>
 <h2 id="return-values-and-nrvo">Return values and NRVO<a class="headerlink" href="#return-values-and-nrvo" title="Permanent link">&para;</a></h2>
 <p>For deciding the return value format, refer to the <a href="https://drive.google.com/file/d/1Ml6g63_mbgjmRRByIItayAuEnhDymnH_/view?usp=sharing">return value decision tree</a>.</p>
 <p>Especially, note that <a href="https://en.wikipedia.org/wiki/Copy_elision#RVO">NRVO</a> is used in modern C++ and therefore, we can return all objects by value with no overhead most of the time.</p>
-<p>The NRVO works as follows:
-1. compiler tries to just tranfer the object to the parent stack frame (i. e. to the caller) without any move or copy
-2. if the above is not possible, the move constructor is called.
-3. if the above is not possible, the copy constructor is called.</p>
+<p>The NRVO works as follows:</p>
+<ol>
+<li>compiler tries to just tranfer the object to the parent stack frame (i. e. to the caller) without any move or copy</li>
+<li>if the above is not possible, the move constructor is called.</li>
+<li>if the above is not possible, the copy constructor is called.</li>
+</ol>
 <p>From C++17, the RVO is mandatory, therefore, it is unlikely that the compiler use a move/copy constructor.
 Consequently, most of the times, we can just return the local variable and let the rest to the compiler:</p>
 <pre><code class="language-cpp">unique_ptr&lt;int&gt; f(){
@@ -2359,29 +2411,41 @@ Consequently, most of the times, we can just return the local variable and let t
 </code></pre>
 <p>The NRVO is described also on <a href="https://en.cppreference.com/w/cpp/language/copy_elision">cppreference</a> together with initializer copy elision.</p>
 <h2 id="function-overlaoding">Function Overlaoding<a class="headerlink" href="#function-overlaoding" title="Permanent link">&para;</a></h2>
-<p>Both normal and member funcions in C++ can be overloaded. The oveload mechanic, however, is quite complicated. There can be three results of overload resolution of some function call:
-- no function fits -&gt; error
-- one function fits the best
-- multiple functions fits the best -&gt; error</p>
+<p>Both normal and member funcions in C++ can be overloaded. The oveload mechanic, however, is quite complicated. There can be three results of overload resolution of some function call:</p>
+<ul>
+<li>no function fits -&gt; error</li>
+<li>one function fits the best</li>
+<li>multiple functions fits the best -&gt; error</li>
+</ul>
 <p>The whole algorithm of overload resolution can be found on <a href="https://en.cppreference.com/w/cpp/language/overload_resolution">cppreference</a>.</p>
-<p>First, <em>viable</em> funcions are determined as functions with the same name and:
-- with the same number of parameters
-- with a greater number of parameters if the extra parameters has default arguments</p>
-<p>If there are no viable functions, the compilation fails. Otherwise, all viable functions are compared to get the best fit. The comparison has multiple levels. The basic principle is that if only one function fits the rules at certain level, it is chosen as a best fit. If there are multiple such functions, the compilation fails. Levels:
-1. Better <em>conversion</em> priority (most of the time, the best fit is found here, see conversion priority and ranking bellow)</p>
+<p>First, <em>viable</em> funcions are determined as functions with the same name and:</p>
+<ul>
+<li>with the same number of parameters</li>
+<li>with a greater number of parameters if the extra parameters has default arguments</li>
+</ul>
+<p>If there are no viable functions, the compilation fails. Otherwise, all viable functions are compared to get the best fit. The comparison has multiple levels. The basic principle is that if only one function fits the rules at certain level, it is chosen as a best fit. If there are multiple such functions, the compilation fails. Levels:</p>
 <ol>
-<li>non-template constructor priority</li>
+<li>
+<p>Better <em>conversion</em> priority (most of the time, the best fit is found here, see conversion priority and ranking bellow)</p>
+</li>
+<li>
+<p>non-template constructor priority</p>
+</li>
 </ol>
 <h3 id="conversion-prioritiy-and-ranking">Conversion prioritiy and ranking<a class="headerlink" href="#conversion-prioritiy-and-ranking" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.cppreference.com/w/cpp/language/overload_resolution#Ranking_of_implicit_conversion_sequences">cppreference</a></p>
-<p>When the conversion takes priority during the best viable function search, we say it is <em>better</em>. The (incomplete) algorithm of determining <em>better</em> conversion works as follows:
-1. standard conversion is better than user defined conversion
-2. user defined conversion is better then elipsis (<code>...</code>) conversion
-3. comparing two standard conversions:
-    1. if a conversion sequence S1 is a subsequence of conversion sequence S2, S1 is better then S2
-    2. lower rank priority
-    3. rvalue over lvalue if both applicable
-    4. ref over const ref if both applicable</p>
+<p>When the conversion takes priority during the best viable function search, we say it is <em>better</em>. The (incomplete) algorithm of determining <em>better</em> conversion works as follows:</p>
+<ol>
+<li>standard conversion is better than user defined conversion</li>
+<li>user defined conversion is better then elipsis (<code>...</code>) conversion</li>
+<li>comparing two standard conversions:<ol>
+<li>if a conversion sequence S1 is a subsequence of conversion sequence S2, S1 is better then S2</li>
+<li>lower rank priority</li>
+<li>rvalue over lvalue if both applicable</li>
+<li>ref over const ref if both applicable</li>
+</ol>
+</li>
+</ol>
 <h4 id="conversion-sequence-ranks">Conversion sequence ranks<a class="headerlink" href="#conversion-sequence-ranks" title="Permanent link">&para;</a></h4>
 <ol>
 <li><strong>exact match</strong></li>
@@ -2389,15 +2453,19 @@ Consequently, most of the times, we can just return the local variable and let t
 <li><strong>conversion</strong>: includes class to base conversion</li>
 </ol>
 <h3 id="constructor-argument-type-resolution-in-list-initialization">Constructor argument type resolution in list initialization<a class="headerlink" href="#constructor-argument-type-resolution-in-list-initialization" title="Permanent link">&para;</a></h3>
-<p>When we use a list initailization <strong>and</strong> it results in a constructor call, it is not immediatelly clear which types will be used for arguments as the initialization list is not an expression. These types are, however, critical for the finding of best viable constructor. The following rules are used to determine the argument types (simplified):
-1. </p>
+<p>When we use a list initailization <strong>and</strong> it results in a constructor call, it is not immediatelly clear which types will be used for arguments as the initialization list is not an expression. These types are, however, critical for the finding of best viable constructor. The following rules are used to determine the argument types (simplified):</p>
+<ol>
+<li></li>
+</ol>
 <h2 id="auto-return-type"><code>auto</code> return type<a class="headerlink" href="#auto-return-type" title="Permanent link">&para;</a></h2>
 <p>For functions that are defined inside declaration (template functions, lambdas), the return type can be automatically deduced if we use the <code>auto</code> keyword. </p>
-<p>The decision between value and reference return type is made according to the following rules:
-- return type <code>auto</code> -&gt; return by value
-- return type <code>auto&amp;</code> -&gt; return by reference
-- return type <code>auto*</code> -&gt; return by pointer
-- return type <code>decltyype(auto)</code> -&gt; the return type is <code>decltype(&lt;RETURN EXPRESSION&gt;)</code></p>
+<p>The decision between value and reference return type is made according to the following rules:</p>
+<ul>
+<li>return type <code>auto</code> -&gt; return by value</li>
+<li>return type <code>auto&amp;</code> -&gt; return by reference</li>
+<li>return type <code>auto*</code> -&gt; return by pointer</li>
+<li>return type <code>decltyype(auto)</code> -&gt; the return type is <code>decltype(&lt;RETURN EXPRESSION&gt;)</code></li>
+</ul>
 <p>See more rules on <a href="https://en.cppreference.com/w/cpp/language/function#Return_type_deduction">cppreference</a></p>
 <p>Note that <strong>the <code>auto</code> return type is not allowed for functions defined outside the declaration</strong> (unless using the trailing return type).</p>
 <h2 id="function-visibility">Function visibility<a class="headerlink" href="#function-visibility" title="Permanent link">&para;</a></h2>
@@ -2438,9 +2506,11 @@ Consequently, most of the times, we can just return the local variable and let t
 <p>The only difference between a <code>class</code> and a <code>struct</code> is that in class, all 
 members are private by default.</p>
 <h2 id="class-constants">Class Constants<a class="headerlink" href="#class-constants" title="Permanent link">&para;</a></h2>
-<p>Class constants can be defined in two ways:
-- <code>static constexpr</code> member variable if the constant type supports <code>constexpr</code> specifier, or
-- <code>static const</code> member variable </p>
+<p>Class constants can be defined in two ways:</p>
+<ul>
+<li><code>static constexpr</code> member variable if the constant type supports <code>constexpr</code> specifier, or</li>
+<li><code>static const</code> member variable </li>
+</ul>
 <p>In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:</p>
 <pre><code class="language-cpp">// in the header file
 class My_class{
@@ -2481,29 +2551,37 @@ class To_be_accesssed {
 </code></pre>
 <h1 id="initialization-and-assignment">Initialization and Assignment<a class="headerlink" href="#initialization-and-assignment" title="Permanent link">&para;</a></h1>
 <h2 id="loacal-variables-initializationassignment">Loacal variables initialization/assignment<a class="headerlink" href="#loacal-variables-initializationassignment" title="Permanent link">&para;</a></h2>
-<p><a href="https://en.cppreference.com/w/cpp/language/initialization">Initialization</a> happens in many <strong>contexts</strong>:
-- in the declaration
-- in <code>new</code> expression
-- function parameter initialization
-- return value initialization</p>
-<p>The <strong>syntax</strong> can be:
-- <code>(&lt;expression list&gt;)</code>
-- <code>= expression list</code>
-- <code>{&lt;initializer list&gt;}</code></p>
-<p>Finally, there are multiple initialization types, the resulting <strong>initialization type</strong> depends on both context and syntax:
-- Value initialization: <code>std::string s{};</code>
-- Direct initialization: <code>std::string s{"value"}</code>
-- Copy initialization: <code>std::string s = "value"</code>
-- List initialization: <code>std::string s{'v', 'a', 'l', 'u', 'e'}</code>
-- Aggregate initialization: <code>char a[3] = {'a', 'b'}</code>
-- Reference initialization: <code>char&amp; c = a[0]</code>
-- Default initialization: <code>std::string s</code></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/initialization">Initialization</a> happens in many <strong>contexts</strong>:</p>
+<ul>
+<li>in the declaration</li>
+<li>in <code>new</code> expression</li>
+<li>function parameter initialization</li>
+<li>return value initialization</li>
+</ul>
+<p>The <strong>syntax</strong> can be:</p>
+<ul>
+<li><code>(&lt;expression list&gt;)</code></li>
+<li><code>= expression list</code></li>
+<li><code>{&lt;initializer list&gt;}</code></li>
+</ul>
+<p>Finally, there are multiple initialization types, the resulting <strong>initialization type</strong> depends on both context and syntax:</p>
+<ul>
+<li>Value initialization: <code>std::string s{};</code></li>
+<li>Direct initialization: <code>std::string s{"value"}</code></li>
+<li>Copy initialization: <code>std::string s = "value"</code></li>
+<li>List initialization: <code>std::string s{'v', 'a', 'l', 'u', 'e'}</code></li>
+<li>Aggregate initialization: <code>char a[3] = {'a', 'b'}</code></li>
+<li>Reference initialization: <code>char&amp; c = a[0]</code></li>
+<li>Default initialization: <code>std::string s</code></li>
+</ul>
 <h3 id="list-initialization">List initialization<a class="headerlink" href="#list-initialization" title="Permanent link">&para;</a></h3>
-<p><a href="https://en.cppreference.com/w/cpp/language/list_initialization">List initialization</a> initializes an object from a list. he list initialization has many forms, including:
-- <code>My_class c{arg_1, arg_2}</code> 
-- <code>My_class c = {arg_1, arg_2}</code>
-- <code>my_func({arg_1, arg_2})</code>
-- <code>return {arg_1, arg_2}</code></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/list_initialization">List initialization</a> initializes an object from a list. he list initialization has many forms, including:</p>
+<ul>
+<li><code>My_class c{arg_1, arg_2}</code> </li>
+<li><code>My_class c = {arg_1, arg_2}</code></li>
+<li><code>my_func({arg_1, arg_2})</code></li>
+<li><code>return {arg_1, arg_2}</code></li>
+</ul>
 <p>The list initialization of a type <code>T</code> can result in various initializations/constructios depending on many aspects. Here is the simplified algorithm:
  1. <code>T</code> is aggregate -&gt; aggregate initialization
  2. The initializer list is empty and <code>T</code> has a default constructor -&gt; value initialization
@@ -2517,9 +2595,11 @@ class To_be_accesssed {
 <pre><code class="language-cpp">My_class o1{arg_1, arg_2};
 My_class o2 = {arg_1, arg_2}; // equivalent
 </code></pre>
-<p>The list initialization of type <code>T</code> from an initializer list results in aggregate initialization if these conditions are fullfilled:
-- the initializer list contains more then one element
-- T is an aggregate type</p>
+<p>The list initialization of type <code>T</code> from an initializer list results in aggregate initialization if these conditions are fullfilled:</p>
+<ul>
+<li>the initializer list contains more then one element</li>
+<li>T is an aggregate type</li>
+</ul>
 <h3 id="nested-initialization">Nested initialization<a class="headerlink" href="#nested-initialization" title="Permanent link">&para;</a></h3>
 <p><strong>It is not possible to create nested initializatio statements</strong> like:</p>
 <pre><code class="language-cpp">class My_class{
@@ -2534,17 +2614,23 @@ std::tuple&lt;int, My_class&gt;{2, {3, 2.5}} // does not compile
 std::tuple&lt;int, My_class&gt;{2, My_class{3, 2.5}} // correnct version
 </code></pre>
 <h2 id="member-initializationassignment">Member Initialization/Assignment<a class="headerlink" href="#member-initializationassignment" title="Permanent link">&para;</a></h2>
-<p>There are two ways of member initialization:
-- <strong>default member initialization</strong>
-- initialization using <strong>member initializer list</strong></p>
+<p>There are two ways of member initialization:</p>
+<ul>
+<li><strong>default member initialization</strong></li>
+<li>initialization using <strong>member initializer list</strong></li>
+</ul>
 <p>And then, there is an assignment option in  <strong>constructor body</strong> .</p>
-<p>Reference:
-- <a href="https://en.cppreference.com/w/cpp/language/data_members#Member_initialization">default member initialization</a>
-- <a href="https://en.cppreference.comwcplng/w/cpp/language/constructor">constructor and initializer list</a></p>
-<p>One way or another, <strong>all members should be initialized at the constructor body at latest</strong>, even if we assign them again during all possible use cases. Reason:
-- some types can have arbitrary values when unassigned. This can lead to confusion when debugging the class, i.e., the member can appear as initialized even if it is not.
-- easy support for overloading constructors, we can sometimes skip the call to the constructor with all arguments
-- we can avoid default arguments in the constructor</p>
+<p>Reference:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/language/data_members#Member_initialization">default member initialization</a></li>
+<li><a href="https://en.cppreference.comwcplng/w/cpp/language/constructor">constructor and initializer list</a></li>
+</ul>
+<p>One way or another, <strong>all members should be initialized at the constructor body at latest</strong>, even if we assign them again during all possible use cases. Reason:</p>
+<ul>
+<li>some types can have arbitrary values when unassigned. This can lead to confusion when debugging the class, i.e., the member can appear as initialized even if it is not.</li>
+<li>easy support for overloading constructors, we can sometimes skip the call to the constructor with all arguments</li>
+<li>we can avoid default arguments in the constructor</li>
+</ul>
 <p>It is important to <strong>not use virtual functions in member initialization or constructor body</strong>, because the function table is not ready yet, so the calls are hard wired, and the results can be unpredictable, possibly compiler dependent.</p>
 <h3 id="default-member-initialization">Default Member Initialization<a class="headerlink" href="#default-member-initialization" title="Permanent link">&para;</a></h3>
 <p>Either a <strong>brace initializer</strong>:</p>
@@ -2577,27 +2663,31 @@ std::tuple&lt;int, My_class&gt;{2, My_class{3, 2.5}} // correnct version
 </code></pre>
 <h3 id="comparison-table">Comparison Table<a class="headerlink" href="#comparison-table" title="Permanent link">&para;</a></h3>
 <p>Ordered by priority, i.e., each method makes the methods bellow ignored/ovewritten if applied to the same member.</p>
-<p>Type | In-place | works for const members
---|
+<p>Type | In-place | works for const members</p>
+<p>--|
 --|--
 Constructor body | no | no
 Member initializer list | yes | yes
 Default member initializer | yes, if we use direct initialization | yes</p>
 <h1 id="constructors-and-special-member-functions">Constructors and Special Member Functions<a class="headerlink" href="#constructors-and-special-member-functions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/member_functions#Special_member_functions">cppreference</a></p>
-<p>Special member functions are member functions that are someetimes defined implicitely by the compiler. The special member functions are:
-- default (no parameter) constructor
--   copy Cconstructor
--   copy sssignment
--   move constructor
--   move assignment
--   destructor</p>
+<p>Special member functions are member functions that are someetimes defined implicitely by the compiler. The special member functions are:</p>
+<ul>
+<li>default (no parameter) constructor</li>
+<li>copy Cconstructor</li>
+<li>copy sssignment</li>
+<li>move constructor</li>
+<li>move assignment</li>
+<li>destructor</li>
+</ul>
 <p>Along with the comparison operators, these are the only functions that can be <em>defaulted</em> (see below).</p>
 <h2 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h2>
 <h3 id="defualt-variant">Defualt Variant<a class="headerlink" href="#defualt-variant" title="Permanent link">&para;</a></h3>
-<p>The default constructor just create an empty object. The default constructor is not implicitly generated if:
-- there is anothe constructor declared, including copy and move constructor
-- there is some member that cannot be defaulty initialized</p>
+<p>The default constructor just create an empty object. The default constructor is not implicitly generated if:</p>
+<ul>
+<li>there is anothe constructor declared, including copy and move constructor</li>
+<li>there is some member that cannot be defaulty initialized</li>
+</ul>
 <h3 id="explicit-constructor">Explicit constructor<a class="headerlink" href="#explicit-constructor" title="Permanent link">&para;</a></h3>
 <p>Sometimes, a normal constructor can lead to unexpected results, especially if it has only a single argument:</p>
 <pre><code class="language-cpp">class My_string {
@@ -2620,8 +2710,10 @@ public:
 <p>This way, we can call another constructor of the same class, or of the base class. </p>
 <h2 id="copy-constructor">Copy Constructor<a class="headerlink" href="#copy-constructor" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/copy_constructor">cppreference</a></p>
-<p>A copy constructor is called if an object is initialized from another object unless the move constructor is called as a better fit or the call is optimized out by <a href="https://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>. Some examples:
-- initializing a new object from an existing object:</p>
+<p>A copy constructor is called if an object is initialized from another object unless the move constructor is called as a better fit or the call is optimized out by <a href="https://en.cppreference.com/w/cpp/language/copy_elision">copy elision</a>. Some examples:</p>
+<ul>
+<li>initializing a new object from an existing object:</li>
+</ul>
 <pre><code class="language-cpp">My_class a;
 
 My_class b = a;  // copy constructor called
@@ -2642,15 +2734,19 @@ f(a); // copy constructor called
 <h3 id="implicit-declaration-and-implicit-deletion">Implicit declaration and implicit deletion<a class="headerlink" href="#implicit-declaration-and-implicit-deletion" title="Permanent link">&para;</a></h3>
 <p>The copy constructor for type <code>T</code> is implicitely-declared if <code>T</code> has no declared user-defined copy constructors. </p>
 <p>If some there are some user-defined copy constructors, we can still force the implicit declaration of the copy constructor using the <code>default</code> keyword</p>
-<p>However, the implicit declaration does not mean that the copy constructor can be used! This is because the <strong>copy constructor can be implicitely defined as deleted</strong>. This happens if any of the following conditions is true:
-1. T has a non-static data member that cannot be copied. This can happen if any of the following is true:
-    - it has a deleted copy constructor,
-    - the copy constructor is inaccessible (<strong>protected, private</strong>)
-    - the copy constructor is ambiguous (e.g., multiple inheritance)
-1. T has a base class that cannot be copied, i.e., 1, 2, or 3 applies to at least one base class
-1. T has a non-static data member or base class with inaccessible destructor
-1. T has a rvlaue data member
-1. T has a user-defined move constructor or move assignment operator (this rule does not apply for defaulted copy constructor)</p>
+<p>However, the implicit declaration does not mean that the copy constructor can be used! This is because the <strong>copy constructor can be implicitely defined as deleted</strong>. This happens if any of the following conditions is true:</p>
+<ol>
+<li>T has a non-static data member that cannot be copied. This can happen if any of the following is true:<ul>
+<li>it has a deleted copy constructor,</li>
+<li>the copy constructor is inaccessible (<strong>protected, private</strong>)</li>
+<li>the copy constructor is ambiguous (e.g., multiple inheritance)</li>
+</ul>
+</li>
+<li>T has a base class that cannot be copied, i.e., 1, 2, or 3 applies to at least one base class</li>
+<li>T has a non-static data member or base class with inaccessible destructor</li>
+<li>T has a rvlaue data member</li>
+<li>T has a user-defined move constructor or move assignment operator (this rule does not apply for defaulted copy constructor)</li>
+</ol>
 <p>The default implementationof copy constructor calls recursively the copy constructor of all base classes and on all members. For a pointer member, the copy object’s member points to the same object as the original object’s member</p>
 <h3 id="checking-if-a-class-is-copy-constructible">Checking if a class is copy constructible<a class="headerlink" href="#checking-if-a-class-is-copy-constructible" title="Permanent link">&para;</a></h3>
 <p>We can check if a class is copy constructible using the <a href="https://en.cppreference.com/w/cpp/types/is_copy_constructible"><code>std::is_copy_constructible</code></a> type trait. </p>
@@ -2663,8 +2759,10 @@ instanceB = instance A
 <h2 id="move-constructor">Move Constructor<a class="headerlink" href="#move-constructor" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/move_constructor">cppreference</a></p>
 <p>Move constructor semantic is that the new object takes the ownership of the resources of the old object. The state of the old object is unspecified, but it should not be used anymore. </p>
-<p>Move constructor is typically called when the object is initaialized from xvalue (but not prvalue!) of the same type. Examples:
-- returning xvalue: </p>
+<p>Move constructor is typically called when the object is initaialized from xvalue (but not prvalue!) of the same type. Examples:</p>
+<ul>
+<li>returning xvalue: </li>
+</ul>
 <pre><code class="language-cpp">Type f(){
     Type t;
     return std::move(t);
@@ -2693,31 +2791,39 @@ Type t2 = std::move(t);
 
 Type t = T(f()) // no move constructor call, copy elision
 </code></pre>
-<p>Move constructor is needed:
--   to cheaply move the object out from function if RVO is not possible
--   to store the object in vector without copying it</p>
+<p>Move constructor is needed:</p>
+<ul>
+<li>to cheaply move the object out from function if RVO is not possible</li>
+<li>to store the object in vector without copying it</li>
+</ul>
 <p>Note that a single class can have multiple move constructors, e.g.: both <code>Type(Type&amp;&amp;)</code> and <code>Type(const Type&amp;&amp;)</code>.</p>
 <h3 id="implicit-declaration-and-implicit-deletion_1">Implicit declaration and implicit deletion<a class="headerlink" href="#implicit-declaration-and-implicit-deletion_1" title="Permanent link">&para;</a></h3>
 <p>The move constructor for type <code>T</code> is implicitely-declared if <code>T</code> has no declared copy constructors, copy assignment operators, move assignment operators, or destructors.</p>
 <p>If some of the above is declared, we can still force the implicit declaration of the move constructor using the <code>default</code> keyword</p>
-<p>However, that does not mean that the move constructor can be used! This is because the <strong>move constructor can be implicitely defined as deleted</strong>. This happens if any of the following conditions is true:
-1. T has a non-static data member that cannot be moved. A member cannot be moved if any of the following is true:
-    - it has a deleted, inaccessible (protected, private), or ambiguous move constructor,
-    - it is a reference,
-    - it is <strong>const</strong>-qualified
-1. T has a base class that cannot be moved, i.e., 1, 2, or 3 applies to at least one base class
-1. T has a non-static data member or base class with inaccessible destructor</p>
+<p>However, that does not mean that the move constructor can be used! This is because the <strong>move constructor can be implicitely defined as deleted</strong>. This happens if any of the following conditions is true:</p>
+<ol>
+<li>T has a non-static data member that cannot be moved. A member cannot be moved if any of the following is true:<ul>
+<li>it has a deleted, inaccessible (protected, private), or ambiguous move constructor,</li>
+<li>it is a reference,</li>
+<li>it is <strong>const</strong>-qualified</li>
+</ul>
+</li>
+<li>T has a base class that cannot be moved, i.e., 1, 2, or 3 applies to at least one base class</li>
+<li>T has a non-static data member or base class with inaccessible destructor</li>
+</ol>
 <h3 id="checking-if-a-class-is-move-constructible">Checking if a class is move constructible<a class="headerlink" href="#checking-if-a-class-is-move-constructible" title="Permanent link">&para;</a></h3>
 <p>We can check if a class is move constructible using the <a href="https://en.cppreference.com/w/cpp/types/is_move_constructible"><code>std::is_move_constructible</code></a> type trait. However, <strong>the <code>std::is_move_constructible</code> does not check if the move constructor is accessible!</strong> Instead it checks if the call to the move constructor is valid (can success, compiles). The call can success if the move constructor is accessible, but it can also success if it is not accessible, but the class has a copy constructor, which is used instead. </p>
 <p>To check if the move constructor is accessible, we have to manually check the conditions, or disable the copy constructor. </p>
 <h2 id="move-assignment">Move Assignment<a class="headerlink" href="#move-assignment" title="Permanent link">&para;</a></h2>
 <h2 id="trivial-special-member-functions">Trivial special member functions<a class="headerlink" href="#trivial-special-member-functions" title="Permanent link">&para;</a></h2>
-<p>The special member functions are called trivial if they contain no operations other then copying/moving the members and base classes. For a special member function of type <code>T</code> to be trivial, all of the following conditions must be true:
-- it is implicitly-declared or defaulted
-- <code>T</code> has no virtual functions
-- <code>T</code> has no virtual base classes
-- the constructor for all direct base classes is trivial
-- the constructor for all non-static data members is trivial</p>
+<p>The special member functions are called trivial if they contain no operations other then copying/moving the members and base classes. For a special member function of type <code>T</code> to be trivial, all of the following conditions must be true:</p>
+<ul>
+<li>it is implicitly-declared or defaulted</li>
+<li><code>T</code> has no virtual functions</li>
+<li><code>T</code> has no virtual base classes</li>
+<li>the constructor for all direct base classes is trivial</li>
+<li>the constructor for all non-static data members is trivial</li>
+</ul>
 <h2 id="destructor">Destructor<a class="headerlink" href="#destructor" title="Permanent link">&para;</a></h2>
 <p>We need destructor only if the object owns some resources that needs to be manually deallocated</p>
 <h2 id="setting-special-member-functions-to-default">Setting special member functions to default<a class="headerlink" href="#setting-special-member-functions-to-default" title="Permanent link">&para;</a></h2>
@@ -2753,15 +2859,19 @@ Type t = T(f()) // no move constructor call, copy elision
 </li>
 </ul>
 <h1 id="const-vs-non-const">Const vs non-const<a class="headerlink" href="#const-vs-non-const" title="Permanent link">&para;</a></h1>
-<p>The <code>const</code> keyword makes the object non-mutable. This means that:
-- it cannot be reassigned
-- non-const member functions of the object cannot be called</p>
+<p>The <code>const</code> keyword makes the object non-mutable. This means that:</p>
+<ul>
+<li>it cannot be reassigned</li>
+<li>non-const member functions of the object cannot be called</li>
+</ul>
 <p>The const keyword is usually used for local variables, function parameters, etc.</p>
 <p><strong>For members, the const keyword should not be used</strong>, as it sometimes breaks the move operations on the object. For example we cannot move f om a const <code>std::unique_ptr&lt;T&gt;</code> object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const <code>std::unique_ptr&lt;T&gt;</code>  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.</p>
 <h2 id="avoiding-duplication-between-const-and-non-const-version-of-the-same-function">Avoiding duplication between const and non-const version of the same function<a class="headerlink" href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function" title="Permanent link">&para;</a></h2>
-<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:
-- one that converts <em>this</em> to const, so we can call the const version of the function
-- another one that removes const from the return value</p>
+<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
+<ul>
+<li>one that converts <em>this</em> to const, so we can call the const version of the function</li>
+<li>another one that removes const from the return value</li>
+</ul>
 <p>Example:</p>
 <pre><code class="language-cpp">const Content&amp; get_content(unsigned index) const {
     Content content = ... // complicated code to get the right content
@@ -2804,9 +2914,11 @@ test.get(); // ambiguous function error
 };
 </code></pre>
 <h2 id="avoiding-duplication-between-const-and-non-const-version-of-the-same-function_1">Avoiding duplication between const and non-const version of the same function<a class="headerlink" href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function_1" title="Permanent link">&para;</a></h2>
-<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:
-- one that converts <em>this</em> to const, so we can call the const version of the function
-- another one that removes const from the return value</p>
+<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
+<ul>
+<li>one that converts <em>this</em> to const, so we can call the const version of the function</li>
+<li>another one that removes const from the return value</li>
+</ul>
 <p>Example:</p>
 <pre><code class="language-cpp">const Content&amp; get_content(unsigned index) const {
     Content content = ... // complicated code to get the right content
@@ -2827,14 +2939,18 @@ Content&amp; get_content(unsigned index){
 </code></pre>
 <h2 id="file-path-manipulation">File path manipulation<a class="headerlink" href="#file-path-manipulation" title="Permanent link">&para;</a></h2>
 <p>Although we can use strings to work with file paths in C++, the standard format which is also easy to use is <a href="https://en.cppreference.com/w/cpp/filesystem/path"><code>std::filesystem::path</code></a> from the <a href="https://en.cppreference.com/w/cpp/filesystem">filesystem library</a>.</p>
-<p>Basic operations:
-- To <strong>create a path</strong>, we jusct call <code>std::filesystem::path(&lt;string path&gt;)</code>.
-- We can easily <strong>join two paths</strong> by <code>auto full_path = &lt;path 1&gt; / &lt;path 2&gt;</code>;
-- To get the <strong>asolute path</strong>, we call
-    - <a href="https://en.cppreference.com/w/cpp/filesystem/absolute"><code>std::filesystem::absolute(&lt;path&gt;)</code></a> to get the path as <code>CWD/&lt;path&gt;</code>
-    - <a href="https://en.cppreference.com/w/cpp/filesystem/canonical"><code>std::filesystem::canonical(&lt;path&gt;)</code></a> to get the dots resolved. Note that this method throws exception if the path does not exists.
-- The path to the <strong>current working directory</strong> can be obtained by calling <code>std::filesystem::current_path()</code> and set using <code>std::filesystem::current_path(&lt;path&gt;)</code>.
-- To change the file extension (in the C++ representation, not in the filesystem), we can call the <a href="https://en.cppreference.com/w/cpp/filesystem/path/replace_extension"><code>replace_extension</code></a> method.</p>
+<p>Basic operations:</p>
+<ul>
+<li>To <strong>create a path</strong>, we jusct call <code>std::filesystem::path(&lt;string path&gt;)</code>.</li>
+<li>We can easily <strong>join two paths</strong> by <code>auto full_path = &lt;path 1&gt; / &lt;path 2&gt;</code>;</li>
+<li>To get the <strong>asolute path</strong>, we call<ul>
+<li><a href="https://en.cppreference.com/w/cpp/filesystem/absolute"><code>std::filesystem::absolute(&lt;path&gt;)</code></a> to get the path as <code>CWD/&lt;path&gt;</code></li>
+<li><a href="https://en.cppreference.com/w/cpp/filesystem/canonical"><code>std::filesystem::canonical(&lt;path&gt;)</code></a> to get the dots resolved. Note that this method throws exception if the path does not exists.</li>
+</ul>
+</li>
+<li>The path to the <strong>current working directory</strong> can be obtained by calling <code>std::filesystem::current_path()</code> and set using <code>std::filesystem::current_path(&lt;path&gt;)</code>.</li>
+<li>To change the file extension (in the C++ representation, not in the filesystem), we can call the <a href="https://en.cppreference.com/w/cpp/filesystem/path/replace_extension"><code>replace_extension</code></a> method.</li>
+</ul>
 <h2 id="filesystem-manipulation">Filesystem manipulation<a class="headerlink" href="#filesystem-manipulation" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/filesystem">cppreference</a> </p>
 <h3 id="copying">Copying<a class="headerlink" href="#copying" title="Permanent link">&para;</a></h3>
@@ -2844,9 +2960,11 @@ Content&amp; get_content(unsigned index){
 
 std::filesystem::copy(&quot;C:/temp/data&quot;, &quot;c:/data/new&quot;, options);
 </code></pre>
-<p>Note that <strong>unlike the unix <code>cp</code> command, the <code>copy</code> function does not copy the directoy itself</strong>, even if the destination directory exists. Suppose we have two direcories:
-- <code>C:/temp/new</code> 
-- <code>C:/data/</code></p>
+<p>Note that <strong>unlike the unix <code>cp</code> command, the <code>copy</code> function does not copy the directoy itself</strong>, even if the destination directory exists. Suppose we have two direcories:</p>
+<ul>
+<li><code>C:/temp/new</code> </li>
+<li><code>C:/data/</code></li>
+</ul>
 <p>And we want to copy the <code>new</code> folder, so that the result is: <code>C:/data/new/</code>. In bash, this will be:</p>
 <pre><code class="language-bash">cp -r C:/temp/new C:/data/
 </code></pre>
@@ -2912,12 +3030,14 @@ if (node[&quot;key&quot;]) {
 }
 </code></pre>
 <h1 id="inheritance">Inheritance<a class="headerlink" href="#inheritance" title="Permanent link">&para;</a></h1>
-<p>Inheritance in C++ is similar to other languages, here are the important points:
-- To enable overiding, a member function needs to be declared as <code>virtual</code>. Otherwise, it will be just hidden in a child with a function with the same name, and the <code>override</code> specifier cannot be used (see Shadowing).
-- Multiple inheritance is possible.
-- No interfaces. Instead, you can use abstract class with no data members.
-- Virtual functions without implementation needs <code>= 0</code> at the end of the declaration (e.g.: <code>virtual void print() = 0;</code>)
-- a type is polymorphic if it has at least one virtual function. I.e., the inheritance itself does not make the type polymorphic.</p>
+<p>Inheritance in C++ is similar to other languages, here are the important points:</p>
+<ul>
+<li>To enable overiding, a member function needs to be declared as <code>virtual</code>. Otherwise, it will be just hidden in a child with a function with the same name, and the <code>override</code> specifier cannot be used (see Shadowing).</li>
+<li>Multiple inheritance is possible.</li>
+<li>No interfaces. Instead, you can use abstract class with no data members.</li>
+<li>Virtual functions without implementation needs <code>= 0</code> at the end of the declaration (e.g.: <code>virtual void print() = 0;</code>)</li>
+<li>a type is polymorphic if it has at least one virtual function. I.e., the inheritance itself does not make the type polymorphic.</li>
+</ul>
 <h2 id="polymorphism">Polymorphism<a class="headerlink" href="#polymorphism" title="Permanent link">&para;</a></h2>
 <p>Polymorphism is a concept for abstraction using which we can provide a single interface for multiple types that share the same parent. In C++, to use the polymorphism, <strong>we need to work with pointers or references</strong>. Imagine that we have these two class and a method that can process the base class:</p>
 <pre><code class="language-c++">class Base {
@@ -2970,8 +3090,10 @@ int main()
 }
 </code></pre>
 <h3 id="how-to-call-a-hidden-function">How to call a hidden function?<a class="headerlink" href="#how-to-call-a-hidden-function" title="Permanent link">&para;</a></h3>
-<p>There are two ways how to call a hideen function:
-1. we can use the <code>using</code> declaration in the child to introduce the hidden function:
+<p>There are two ways how to call a hideen function:</p>
+<ol>
+<li>
+<p>we can use the <code>using</code> declaration in the child to introduce the hidden function:
     <code>c++
     class Child: public Base {
     public:
@@ -2979,8 +3101,10 @@ int main()
         void print(std::string type) {
             printf("Child " + type + "\n");
         }
-    };</code>
-2. Usiang a <em>fully qualified name</em> of the method:
+    };</code></p>
+</li>
+<li>
+<p>Usiang a <em>fully qualified name</em> of the method:
     <code>c++
     int main()
     {
@@ -2988,6 +3112,8 @@ int main()
         child.Base::print(); 
         return 0;
     }</code></p>
+</li>
+</ol>
 <h2 id="constructors">Constructors<a class="headerlink" href="#constructors" title="Permanent link">&para;</a></h2>
 <p>Parent constructor is always called from a child. By default, an empty constructor is called. Alternatively, we can call another constructor in the initializer. When we do not call the parent constructor in the child's initializer and the parent has no empty constructor, a compilation error is raised.</p>
 <h3 id="enablinging-parent-constructors-in-child">Enablinging Parent Constructors in Child<a class="headerlink" href="#enablinging-parent-constructors-in-child" title="Permanent link">&para;</a></h3>
@@ -3005,10 +3131,12 @@ public:
 Base* base = (Base) child;
 delete base;
 </code></pre>
-<p>But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, <strong>the best approach for the base class</strong> is to: 
-- declare the <strong>virtual destrucor</strong> as default
-- declare the <strong>default constructor</strong>. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.
-- declare the <strong>copy and move operations as protected</strong>. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  </p>
+<p>But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, <strong>the best approach for the base class</strong> is to: </p>
+<ul>
+<li>declare the <strong>virtual destrucor</strong> as default</li>
+<li>declare the <strong>default constructor</strong>. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.</li>
+<li>declare the <strong>copy and move operations as protected</strong>. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  </li>
+</ul>
 <h3 id="initializing-base-class-members">Initializing base class members<a class="headerlink" href="#initializing-base-class-members" title="Permanent link">&para;</a></h3>
 <p>The base class members cannot be initialized in the child constructor initializer. Instead, we need to create a constructor in the base class and call it from the child constructor initializer.</p>
 <h2 id="slicing">Slicing<a class="headerlink" href="#slicing" title="Permanent link">&para;</a></h2>
@@ -3121,23 +3249,29 @@ class D: public B, public C {};
 <li><a href="https://stackoverflow.com/questions/21558/in-c-what-is-a-virtual-base-class/21607#21607">SO answer 2</a></li>
 </ul>
 <h1 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h1>
-<p>The templates are a powerful tool for:
-- generic programming,
-- zero-overhead interfaces,
-- and metaprogramming.</p>
+<p>The templates are a powerful tool for:</p>
+<ul>
+<li>generic programming,</li>
+<li>zero-overhead interfaces,</li>
+<li>and metaprogramming.</li>
+</ul>
 <p>Although they have similar syntax as generics in Java, they are principialy different both in the way they are implemented and in the way they are used.</p>
-<p>There are two types of templates:
-- function templates
-- class templates</p>
+<p>There are two types of templates:</p>
+<ul>
+<li>function templates</li>
+<li>class templates</li>
+</ul>
 <h2 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h2>
 <h3 id="template-declaration">Template Declaration<a class="headerlink" href="#template-declaration" title="Permanent link">&para;</a></h3>
 <p>Both for classes and functions, the template declaration has the following form:</p>
 <pre><code class="language-cpp">template&lt;&lt;template parameters&gt;&gt;
 </code></pre>
-<p>The template parameters can be:
-- type parameters: <code>class T</code>
-- value parameters: <code>int N</code>
-- concept parameters: <code>std::integral T</code></p>
+<p>The template parameters can be:</p>
+<ul>
+<li>type parameters: <code>class T</code></li>
+<li>value parameters: <code>int N</code></li>
+<li>concept parameters: <code>std::integral T</code></li>
+</ul>
 <h3 id="template-definition">Template definition<a class="headerlink" href="#template-definition" title="Permanent link">&para;</a></h3>
 <p>The definition of template functions or functions fo the template class requires the template declaration to be present. The definition has the following form:</p>
 <pre><code class="language-cpp">template&lt;&lt;template parameters&gt;&gt;
@@ -3159,12 +3293,16 @@ template&lt;&lt;function template parameters&gt;&gt;
 <p>For simplicity, we include the <code>tpp</code> files at the end of corresponding header files. If we need to speed up the compilation, we can include the <code>tpp</code> files only in the source files that needs the implementations , as described on <a href="https://softwareengineering.stackexchange.com/questions/373916/c-preferred-method-of-dealing-with-implementation-for-large-templates">SE</a></p>
 <p>To speed up the build it <strong>is also desireble to move any non-template code to source files</strong>, even through inheritance, if needed.</p>
 <h2 id="providing-template-arguments">Providing Template Arguments<a class="headerlink" href="#providing-template-arguments" title="Permanent link">&para;</a></h2>
-<p>A template can be instantiated only if all the template arguments are provided. Arguments can be:
-- provided explicitly: <code>std::vector&lt;int&gt; v;</code> or <code>sum&lt;int&gt;(1,2)</code>
-- deduced 
-    - from the initialization (classes): <code>std::vector v = {1,2,3};</code>
-    - from the context (functions): <code>sum(1,2);</code>
-- defaulted: </p>
+<p>A template can be instantiated only if all the template arguments are provided. Arguments can be:</p>
+<ul>
+<li>provided explicitly: <code>std::vector&lt;int&gt; v;</code> or <code>sum&lt;int&gt;(1,2)</code></li>
+<li>deduced <ul>
+<li>from the initialization (classes): <code>std::vector v = {1,2,3};</code></li>
+<li>from the context (functions): <code>sum(1,2);</code></li>
+</ul>
+</li>
+<li>defaulted: </li>
+</ul>
 <pre><code class="language-cpp">template&lt;class T = int&gt;
 class A {};
 
@@ -3192,24 +3330,30 @@ std::vector&lt;A&gt; v; // error, the A is considered a template here, not the i
 </code></pre>
 <p>The rules for omitting the <code>&lt;&gt;</code> are quite complex. Therefore, <strong>it is better to always use the <code>&lt;&gt;</code></strong> when we want to use the default arguments.</p>
 <h3 id="rules-for-omitting-the">Rules for omitting the <code>&lt;&gt;</code><a class="headerlink" href="#rules-for-omitting-the" title="Permanent link">&para;</a></h3>
-<p>We can ommite the <code>&lt;&gt;</code> in the following cases:
-- when declaring a variable: <code>A a;</code>
-- when using the type in a function call: <code>f(A());</code>
-- when instantiating a template class: <code>class B: public A {};</code></p>
-<p>We cannot ommite the <code>&lt;&gt;</code> in the following cases:
-- When we use the template as a nested type: <code>std::vector&lt;A&lt;&gt;&gt; v;</code>, not <code>std::vector&lt;A&gt; v;</code>
-- in the return type of a function: <code>A&lt;&gt; f()</code>, not <code>A f()</code>
-- When declaring an alias: <code>using B = A&lt;&gt;</code> not <code>using B = A</code>
-- for template template parameters.</p>
+<p>We can ommite the <code>&lt;&gt;</code> in the following cases:</p>
+<ul>
+<li>when declaring a variable: <code>A a;</code></li>
+<li>when using the type in a function call: <code>f(A());</code></li>
+<li>when instantiating a template class: <code>class B: public A {};</code></li>
+</ul>
+<p>We cannot ommite the <code>&lt;&gt;</code> in the following cases:</p>
+<ul>
+<li>When we use the template as a nested type: <code>std::vector&lt;A&lt;&gt;&gt; v;</code>, not <code>std::vector&lt;A&gt; v;</code></li>
+<li>in the return type of a function: <code>A&lt;&gt; f()</code>, not <code>A f()</code></li>
+<li>When declaring an alias: <code>using B = A&lt;&gt;</code> not <code>using B = A</code></li>
+<li>for template template parameters.</li>
+</ul>
 <h3 id="default-template-arguments">Default Template Arguments<a class="headerlink" href="#default-template-arguments" title="Permanent link">&para;</a></h3>
 <p>Default template arguments can be used to provide a default value for any template parameter except parameter packs. </p>
 <p>For template classes, there is a restriction that after a default argument is used, all the following parameters must have a default argument as well, except the last one wchich can be parameter pack. </p>
 <h2 id="template-argument-deduction">Template Argument Deduction<a class="headerlink" href="#template-argument-deduction" title="Permanent link">&para;</a></h2>
 <p>Details on <a href="https://en.cppreference.com/w/cpp/language/template_argument_deduction">cppreference</a>.</p>
-<p>Template argument deduction should work for:
-- constructors
-- function and operator calls
-- storing the function pointer</p>
+<p>Template argument deduction should work for:</p>
+<ul>
+<li>constructors</li>
+<li>function and operator calls</li>
+<li>storing the function pointer</li>
+</ul>
 <h2 id="class-template-argument-deduction-ctad">Class Template Argument Deduction (CTAD)<a class="headerlink" href="#class-template-argument-deduction-ctad" title="Permanent link">&para;</a></h2>
 <p>Details on <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">cppreference</a>.</p>
 <p>The main difference from the function templete argument deduction is that in CTAD, all the template arguments needs to be specified, or all must not be specified and must be deducible.</p>
@@ -3233,9 +3377,11 @@ public:
 <p>Here, the part left from <code>-&gt;</code> represents the constructor call that should be guided, and the part right from <code>-&gt;</code> defines the argument types we want to deduce.</p>
 <p>Some more details about user defined deduction guides are also on the <a href="https://devblogs.microsoft.com/cppblog/how-to-use-class-template-argument-deduction/">Microsoft Blog</a>.</p>
 <h4 id="implicit-deduction-guides">Implicit deduction guides<a class="headerlink" href="#implicit-deduction-guides" title="Permanent link">&para;</a></h4>
-<p>The vast majority of deduction guidedes used in CTAD are implicit. The most important implicit deduction guides are:
-- constructor deduction guides
-- copy deduction guides</p>
+<p>The vast majority of deduction guidedes used in CTAD are implicit. The most important implicit deduction guides are:</p>
+<ul>
+<li>constructor deduction guides</li>
+<li>copy deduction guides</li>
+</ul>
 <p>The <strong>copy</strong> deduction guide has the following form:</p>
 <pre><code>template&lt;&lt;class template parameters&gt;&gt; &lt;class&gt;(&lt;class&gt;&lt;class template parameters&gt; obj) -&gt; &lt;class&gt;&lt;class template parameters&gt;;
 </code></pre>
@@ -3302,9 +3448,11 @@ void Object&lt;std::string&gt;::print(std::string value){
     std::cout &lt;&lt; value &lt;&lt; std::endl;
 }
 </code></pre>
-<p>There are two types of template specialization:
-- <strong>full specialization</strong>: exact specification for all template arguments
-- <a href="https://en.cppreference.com/w/cpp/language/partial_specialization"><strong>partial specialization</strong></a>: exact specification for a subset of template arguments and/or non-type template arguments</p>
+<p>There are two types of template specialization:</p>
+<ul>
+<li><strong>full specialization</strong>: exact specification for all template arguments</li>
+<li><a href="https://en.cppreference.com/w/cpp/language/partial_specialization"><strong>partial specialization</strong></a>: exact specification for a subset of template arguments and/or non-type template arguments</li>
+</ul>
 <p>To demonstrate the difference, let's have a look at the following example:</p>
 <pre><code class="language-cpp">// declaration
 template&lt;class T, class C&gt;
@@ -3321,9 +3469,11 @@ class Object&lt;int, C&gt;{}; // not a full specialization, as C is not specifie
 template&lt;std::integral T, My_concept C&gt;
 class Object&lt;T, C&gt;{}; // not a full specialization, types are not exactly specified
 </code></pre>
-<p>While behaving similarly, there are some important differences between the two types:
-- <strong>Full specialization is a new type. Therefore, it must be defined in the source file (<code>.cpp</code>), just like any other class or function and it must have a separate declaration.</strong> On the other hand, partial specialization is still just a template, so it must be defined in the header file (<code>.h</code> or <code>.tpp</code>).
-- <strong>For functions, we cannot provide a partial specialization</strong>. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use <code>if constexpr</code> to select the correct implementation:</p>
+<p>While behaving similarly, there are some important differences between the two types:</p>
+<ul>
+<li><strong>Full specialization is a new type. Therefore, it must be defined in the source file (<code>.cpp</code>), just like any other class or function and it must have a separate declaration.</strong> On the other hand, partial specialization is still just a template, so it must be defined in the header file (<code>.h</code> or <code>.tpp</code>).</li>
+<li><strong>For functions, we cannot provide a partial specialization</strong>. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use <code>if constexpr</code> to select the correct implementation:</li>
+</ul>
 <pre><code class="language-cpp">template&lt;class T, class C&gt;
 class Object{
 public:
@@ -3392,8 +3542,10 @@ namespace my_namespace {
 <li><a href="https://en.cppreference.com/w/cpp/types/conditional"><code>std::conditional</code></a>: enables if-else type selection</li>
 </ul>
 <h2 id="replacement-for-old-type-traits">Replacement for old type traits<a class="headerlink" href="#replacement-for-old-type-traits" title="Permanent link">&para;</a></h2>
-<p>Some of the old type traits are no longer needed as they can be replaced by new language features, which are more readable and less error prone. Some examples:
-- <a href="https://en.cppreference.com/w/cpp/types/enable_if"><code>std::enable_if</code></a> can be replaced by concepts:</p>
+<p>Some of the old type traits are no longer needed as they can be replaced by new language features, which are more readable and less error prone. Some examples:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/types/enable_if"><code>std::enable_if</code></a> can be replaced by concepts:</li>
+</ul>
 <pre><code class="language-cpp">
 // old: enable_if
 template&lt;class T&gt;
@@ -3416,8 +3568,10 @@ concept concept-name = constraint-expression
 </code></pre>
 <p>The concept can have multiple template parameters. The first one in the declaration stands for the concept itself, so it can be refered in the constraint expression. More template parameters can be optionally added and their purpose is to make the concept generic.</p>
 <h2 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h2>
-<p>Constraints can be composed using <code>&amp;&amp;</code> and <code>||</code> operatos. For atomic constaints declaration, we can use:
-- Type traits:</p>
+<p>Constraints can be composed using <code>&amp;&amp;</code> and <code>||</code> operatos. For atomic constaints declaration, we can use:</p>
+<ul>
+<li>Type traits:</li>
+</ul>
 <pre><code class="language-cpp">template&lt;class T&gt;
 concept Integral = std::is_integral&lt;T&gt;::value;
 </code></pre>
@@ -3438,8 +3592,10 @@ concept Addable = requires (T x) { x + x; };
 <p>Requires expressions ar ethe most powerfull conctraints. The syntax is:</p>
 <pre><code class="language-cpp">requires(parameter list){requirements}
 </code></pre>
-<p>There are four types of requirements that can appear in the requires expression:
-- <em>simple requiremnet</em>: a requirement that can contain any expression. Evaluates to true if the expression is valid.</p>
+<p>There are four types of requirements that can appear in the requires expression:</p>
+<ul>
+<li><em>simple requiremnet</em>: a requirement that can contain any expression. Evaluates to true if the expression is valid.</li>
+</ul>
 <pre><code class="language-cpp">requires (T x) { x + x; };
 </code></pre>
 <ul>
@@ -3537,9 +3693,11 @@ requires(L loadable) {
 <p><a href="https://akrzemi1.wordpress.com/2020/01/29/requires-expression/">Requires expression explained</a></p>
 <h1 id="interfaces">Interfaces<a class="headerlink" href="#interfaces" title="Permanent link">&para;</a></h1>
 <p>In programming, an interface is usualy a set of requirements that restricts the function or template parameters, so that all types fulfiling the requiremnet can be used as arguments.</p>
-<p>Therte are two ways how to create an interface in C++:
-- using the <em>polymorphism</em>
-- using <em>templates argument restriction</em></p>
+<p>Therte are two ways how to create an interface in C++:</p>
+<ul>
+<li>using the <em>polymorphism</em></li>
+<li>using <em>templates argument restriction</em></li>
+</ul>
 <p>While the polymorphism is easier to implement, the templating is more powerful and it has zero overhead. The most important thing is probably that despite these concepts can be used together in one application, not all "combinations" are allowed especialy when using tamplates and polymorphism in the same type.</p>
 <p><strong>Note that in C++, polymorphism option work only for function argument restriction, but we cannot directly use it to constrain template arguments</strong> (unlike in Java). </p>
 <p>To demonstrate all possible options, imagine an interface that constraints a type that it must have the following two functions:</p>
@@ -3616,29 +3774,37 @@ Moreover, we will lose the zero overhead advantage of the concepts, as the polym
 | We can work with value members | <code>No</code> | <code>Yes</code>
 | When using the interface, we need to use downcasting and upcasting | <code>Yes</code> | <code>No</code></p>
 <h2 id="deciding-between-template-and-polymorphism">Deciding between template and polymorphism<a class="headerlink" href="#deciding-between-template-and-polymorphism" title="Permanent link">&para;</a></h2>
-<p>Frequently, we need some entity(class, function) to accept multiple objects through some interface. We have to decide, whether we use templates, or polymorphism for that interface. Some decision points:
-- We need to return the same type we enter to the class/function -&gt; use templates
-- We have to access the interface (from outside) without knowing the exact type -&gt; use polymorphism
-- We need to restrict the member/parametr type in the child -&gt; use templates for the template parameter
-- if you need to fix the relation between method parameters/members or template arguments of thouse, you need to use templates 
-- If there are space considerations, be aware that every parent class adds an 8 byte pointer to the atribute table</p>
-<p>In general, the polymorphic interface have the following adventages:
-- easy to implement
-- easy to undestand
-- similar to what people know from other languages</p>
-<p>On the other hand, the interface using concepts has the following adventages:
-- no need for type cast
-- all types check on compile time -&gt; no runtime errors
-- zero overhead
-- no object slicing -&gt; you don't have to use pointers when working with this kind of interface
-- we can save memory because we don't need the vtable pointers</p>
+<p>Frequently, we need some entity(class, function) to accept multiple objects through some interface. We have to decide, whether we use templates, or polymorphism for that interface. Some decision points:</p>
+<ul>
+<li>We need to return the same type we enter to the class/function -&gt; use templates</li>
+<li>We have to access the interface (from outside) without knowing the exact type -&gt; use polymorphism</li>
+<li>We need to restrict the member/parametr type in the child -&gt; use templates for the template parameter</li>
+<li>if you need to fix the relation between method parameters/members or template arguments of thouse, you need to use templates </li>
+<li>If there are space considerations, be aware that every parent class adds an 8 byte pointer to the atribute table</li>
+</ul>
+<p>In general, the polymorphic interface have the following adventages:</p>
+<ul>
+<li>easy to implement</li>
+<li>easy to undestand</li>
+<li>similar to what people know from other languages</li>
+</ul>
+<p>On the other hand, the interface using concepts has the following adventages:</p>
+<ul>
+<li>no need for type cast</li>
+<li>all types check on compile time -&gt; no runtime errors</li>
+<li>zero overhead</li>
+<li>no object slicing -&gt; you don't have to use pointers when working with this kind of interface</li>
+<li>we can save memory because we don't need the vtable pointers</li>
+</ul>
 <h1 id="iterators-stl-algorithms-and-ranges">Iterators, STL algorithms, and ranges<a class="headerlink" href="#iterators-stl-algorithms-and-ranges" title="Permanent link">&para;</a></h1>
 <p>If we want to iterate over elements in some programming language, we need to fulfill some interface. In Java, this interface is called <code>Iterable</code>. Also, there is usually some interface that formalize the underlying work, in Java, for example, it is called <code>Iterator</code>. </p>
-<p>In C++, however, the interface for iteration is not handled by polymorphism. Instead, it is handled using type traits and concepts. On top of that, there are multiple interfaces for iteration:
-- legacy iteration, e.g., <code>for (auto it = v.begin(); it != v.end(); ++it)</code>
-- STL algorithms, e.g., <code>std::find(v.begin(), v.end(), 42)</code>
-- STL range algorithms, e.g., <code>std::ranges::find(v, 42)</code>
-- STL range views, e.g., <code>std::ranges::views::filter(v, [](int x){return x &gt; 0;})</code></p>
+<p>In C++, however, the interface for iteration is not handled by polymorphism. Instead, it is handled using type traits and concepts. On top of that, there are multiple interfaces for iteration:</p>
+<ul>
+<li>legacy iteration, e.g., <code>for (auto it = v.begin(); it != v.end(); ++it)</code></li>
+<li>STL algorithms, e.g., <code>std::find(v.begin(), v.end(), 42)</code></li>
+<li>STL range algorithms, e.g., <code>std::ranges::find(v, 42)</code></li>
+<li>STL range views, e.g., <code>std::ranges::views::filter(v, [](int x){return x &gt; 0;})</code></li>
+</ul>
 <p>The following table summarizes the differences between the interfaces:
 |---| Plain iteration | STL algorithms | STL range algorithms | STL range views |
 |---|---|---|---|---|
@@ -3673,25 +3839,31 @@ std::vector vec{range.begin(), range.end()}; // in-place vector construction
 <li><em>range</em>: the object we iterate over (Iterable in Java)</li>
 <li><em>iterator</em>: the object which does the real work (Iterator in Java)</li>
 </ul>
-<p>Usually, a range is composed of two iterators:
-- <em>begin</em>: points to the beginning of the range, returned by <code>&lt;range_object&gt;.begin()</code>
-- <em>end</em>: points to the end of the object, returned by  <code>&lt;range_object&gt;.end()</code> </p>
+<p>Usually, a range is composed of two iterators:</p>
+<ul>
+<li><em>begin</em>: points to the beginning of the range, returned by <code>&lt;range_object&gt;.begin()</code></li>
+<li><em>end</em>: points to the end of the object, returned by  <code>&lt;range_object&gt;.end()</code> </li>
+</ul>
 <p>Each iterator implements the dereference (<code>*</code>) operator that acces the element of the range the iterator is pointing to.</p>
 <p>Depending on the iterator type, the iterator also supports other operations: <code>++</code>, <code>--</code> to iterate along the range, array index operator (<code>[]</code>) for random access, etc.</p>
 <p>Most of the STL <em>collections</em> (vector, set,...) are also ranges.</p>
 <h2 id="how-to-choose-the-correct-interface">How to choose the correct interface?<a class="headerlink" href="#how-to-choose-the-correct-interface" title="Permanent link">&para;</a></h2>
-<p>when deciding which interface to use, we can use the following rules:
-1. <strong>If the number of tasks and the complexity of the tasks is high, use the legacy iteration</strong>. It is hard to write a 20 line for loop with various function calls as algorithm or adaptor and the result would be hard to read.
-1. Otherwise, <strong>if you need to preserve the original range as it is or you need to compose multiple operations, use the STL range adaptors</strong>. 
-1. Otherwise, <strong>use the STL range algorithms</strong>.</p>
+<p>when deciding which interface to use, we can use the following rules:</p>
+<ol>
+<li><strong>If the number of tasks and the complexity of the tasks is high, use the legacy iteration</strong>. It is hard to write a 20 line for loop with various function calls as algorithm or adaptor and the result would be hard to read.</li>
+<li>Otherwise, <strong>if you need to preserve the original range as it is or you need to compose multiple operations, use the STL range adaptors</strong>. </li>
+<li>Otherwise, <strong>use the STL range algorithms</strong>.</li>
+</ol>
 <p>Note that the in this guide, we do not consider the legacy STL algorithms. With the availability of the STL <em>range</em> algorithms, there is no reason to use the legacy algorithms, except for the backward compatibility or for the algorithms that are not yet implemented in the STL.</p>
 <p>Also note that some STL algorithms are principially non-modifying, e.g., <code>std::ranges::find</code> or <code>std::ranges::count</code>. These algorithms logically do not have the adaptor equivalent.</p>
 <h2 id="stl-ranges-and-views">STL ranges and views<a class="headerlink" href="#stl-ranges-and-views" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/ranges">https://en.cppreference.com/w/cpp/ranges</a></p>
 <p>In C++ 20 there is a new range library that provides functional operations for iterators. It is similar to functional addon in Java 8.</p>
-<p>As explained in the beginning of this chapter, there are two ways how to use the STL ranges:
-- using the <a href="https://en.cppreference.com/w/cpp/ranges">range algorithms</a> (<code>ranges::&lt;alg name&gt;</code>) that are invoked eagerly.
-- using the <a href="https://en.cppreference.com/w/cpp/ranges/views">range views</a> (<code>ranges::views::&lt;view name&gt;</code>) that are invoked lazily.</p>
+<p>As explained in the beginning of this chapter, there are two ways how to use the STL ranges:</p>
+<ul>
+<li>using the <a href="https://en.cppreference.com/w/cpp/ranges">range algorithms</a> (<code>ranges::&lt;alg name&gt;</code>) that are invoked eagerly.</li>
+<li>using the <a href="https://en.cppreference.com/w/cpp/ranges/views">range views</a> (<code>ranges::views::&lt;view name&gt;</code>) that are invoked lazily.</li>
+</ul>
 <p>Note that the range algorithms and adaptors cannot produce result without an input, i.e., <strong>we always need a range or collection on which we want to apply our algorithm/view.</strong></p>
 <h3 id="stl-range-views">STL range views<a class="headerlink" href="#stl-range-views" title="Permanent link">&para;</a></h3>
 <p>The difference of range view to range algorithms is that the views are lazy, i.e., they do not produce any result until they are iterated over. This is similar to the Python generators. The advantage is that we can chain multiple views together and the result is computed only when we iterate over the final view.</p>
@@ -3752,9 +3924,11 @@ std::ranges::sort(indexes, {}, proj) // sort indexes using the property of objec
     &gt;
 )); // true
 </code></pre>
-<p>Most likely, the compiler will complain that <code>boost::range_iterator&lt;R&gt;::type</code> does not exist for your range <code>R</code> . The boost range library generate this type by a macro from the <code>R::iterator</code> type. Therefore, make sure that your range has an iterator type defined, either as:
-- a type alias to an existing iterator
-- an iterator nested class</p>
+<p>Most likely, the compiler will complain that <code>boost::range_iterator&lt;R&gt;::type</code> does not exist for your range <code>R</code> . The boost range library generate this type by a macro from the <code>R::iterator</code> type. Therefore, make sure that your range has an iterator type defined, either as:</p>
+<ul>
+<li>a type alias to an existing iterator</li>
+<li>an iterator nested class</li>
+</ul>
 <p>Note that <strong><code>&lt;RANGE CLASS&gt;::iterator</code> and <code>&lt;RANGE CLASS&gt;::const_iterator</code> has to be accessible (public).</strong></p>
 <h2 id="sequences">Sequences<a class="headerlink" href="#sequences" title="Permanent link">&para;</a></h2>
 <p>The <code>iota</code> algortihm/adapter is used to create a sequence:</p>
@@ -3790,18 +3964,28 @@ for(auto const&amp; el: &lt;range&gt;) {
 }
 </code></pre>
 <h2 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h2>
-<p>There is no sorted view or something simmiler, so in order to sort a range, we need to:
-- really sort the object in the range
-- create an adaptor/view from the range, and then sort the view</p>
-<p>There are two functions for sorting in the STL algorithm library:
-- <a href="https://en.cppreference.com/w/cpp/algorithm/sort"><code>std::sort</code></a>: old
-    - supports parallelization directly by the policy param
-- <a href="https://en.cppreference.com/w/cpp/algorithm/ranges/sort"><code>std::ranges::sort</code></a>: new
-    - supports comparison using projections</p>
-<p>There are three types of sorting:
-- natural sorting using the <code>&lt;</code> operator of <code>T</code> : <code>std::sort(&lt;RANGE&lt;T&gt;&gt;)</code>
-- sorting using a comparator: <code>std::sort(&lt;RANGE&gt;, &lt;COMPARATOR&gt;)</code>, where comparator is a fuction with parameters and return value analogous to the natural sorting operator.
-- sorting using projection (only availeble in <code>std::ranges::sort</code>): <code>std::ranges::sort(&lt;RANGE&gt;, &lt;STANDARD GENERIC COMPARATOR&gt;, &lt;PROJECTION&gt;</code></p>
+<p>There is no sorted view or something simmiler, so in order to sort a range, we need to:</p>
+<ul>
+<li>really sort the object in the range</li>
+<li>create an adaptor/view from the range, and then sort the view</li>
+</ul>
+<p>There are two functions for sorting in the STL algorithm library:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/algorithm/sort"><code>std::sort</code></a>: old<ul>
+<li>supports parallelization directly by the policy param</li>
+</ul>
+</li>
+<li><a href="https://en.cppreference.com/w/cpp/algorithm/ranges/sort"><code>std::ranges::sort</code></a>: new<ul>
+<li>supports comparison using projections</li>
+</ul>
+</li>
+</ul>
+<p>There are three types of sorting:</p>
+<ul>
+<li>natural sorting using the <code>&lt;</code> operator of <code>T</code> : <code>std::sort(&lt;RANGE&lt;T&gt;&gt;)</code></li>
+<li>sorting using a comparator: <code>std::sort(&lt;RANGE&gt;, &lt;COMPARATOR&gt;)</code>, where comparator is a fuction with parameters and return value analogous to the natural sorting operator.</li>
+<li>sorting using projection (only availeble in <code>std::ranges::sort</code>): <code>std::ranges::sort(&lt;RANGE&gt;, &lt;STANDARD GENERIC COMPARATOR&gt;, &lt;PROJECTION&gt;</code></li>
+</ul>
 <h3 id="sorting-using-projection">Sorting using projection<a class="headerlink" href="#sorting-using-projection" title="Permanent link">&para;</a></h3>
 <p>When we want to sort the objects by a single property different then natural sorting, the easiest way is to use projection. Example:</p>
 <pre><code class="language-cpp">struct Data {
@@ -3824,10 +4008,12 @@ auto proj = [&amp;objects](std::size_t i) -&gt; const std::string&amp; {
 std::ranges::sort(indexes, {}, proj) // sort indexes using the property of objects
 </code></pre>
 <h2 id="transformation">Transformation<a class="headerlink" href="#transformation" title="Permanent link">&para;</a></h2>
-<p>Transformation alg/views transforms an input range according to a callable. As with other operation, there are thre options:
-- classical algorithm: <a href="https://en.cppreference.com/w/cpp/algorithm/transform"><code>std::transform</code></a> with a direct paralellization using the policy parameter
-- range algorithm: <a href="https://en.cppreference.com/w/cpp/algorithm/ranges/transform"><code>std::ranges::transform</code></a> with a support for projections
-- range view: <a href="https://en.cppreference.com/w/cpp/ranges/transform_view"><code>std::ranges::views::transform</code></a> - a lazy variant</p>
+<p>Transformation alg/views transforms an input range according to a callable. As with other operation, there are thre options:</p>
+<ul>
+<li>classical algorithm: <a href="https://en.cppreference.com/w/cpp/algorithm/transform"><code>std::transform</code></a> with a direct paralellization using the policy parameter</li>
+<li>range algorithm: <a href="https://en.cppreference.com/w/cpp/algorithm/ranges/transform"><code>std::ranges::transform</code></a> with a support for projections</li>
+<li>range view: <a href="https://en.cppreference.com/w/cpp/ranges/transform_view"><code>std::ranges::views::transform</code></a> - a lazy variant</li>
+</ul>
 <p>The algorithms (but not the view) also supports <strong>binary transformations</strong>, i.e., create an output range using two input ranges.</p>
 <p>Transform view example:</p>
 <pre><code class="language-c++">std::vector&lt;int&gt; in(3, 0); // [0, 0, 0]
@@ -3848,12 +4034,18 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies&lt;int&
 <h2 id="implementing-a-custom-range">Implementing a custom range<a class="headerlink" href="#implementing-a-custom-range" title="Permanent link">&para;</a></h2>
 <p>There are different requirements for different types of ranges. Moreover, there are different requirements for the <a href="https://en.cppreference.com/w/cpp/language/range-for">range-based for loop (for each)</a>, or the legacy STL algorithms. </p>
 <p>Here we focus on requirements for ranges. Not however, that the range requirements are more strict than the requirements for the range-based for loop or the legacy STL algorithms. Therefore, the described approach should work for all three cases.</p>
-<p>Usually, we proceed as follows:
-1. Choose the right range (Iterable) concept for your range from the <a href="https://en.cppreference.com/w/cpp/ranges">STL range concepts</a>.
-    - The most common is the <a href="https://en.cppreference.com/w/cpp/ranges/input_range"><code>std::ranges::input_range</code></a> concept.
-1. Implement the range concept for the range.
-    - Either, we can do it by using the interface of the undelying range we usein our class (i.e, we just forward the calls to the methods of <code>std::vector</code> or <code>std::unordered_map</code>) or
-    - implement the interface from scratch. For that, we also need to implement the iterator class that fulfills the corresponding <a href="https://en.cppreference.com/w/cpp/iterator">iterator concept</a> (e.g., <a href="https://en.cppreference.com/w/cpp/named_req/InputIterator"><code>std::input_iterator</code></a> for the <code>std::ranges::input_range</code>).</p>
+<p>Usually, we proceed as follows:</p>
+<ol>
+<li>Choose the right range (Iterable) concept for your range from the <a href="https://en.cppreference.com/w/cpp/ranges">STL range concepts</a>.<ul>
+<li>The most common is the <a href="https://en.cppreference.com/w/cpp/ranges/input_range"><code>std::ranges::input_range</code></a> concept.</li>
+</ul>
+</li>
+<li>Implement the range concept for the range.<ul>
+<li>Either, we can do it by using the interface of the undelying range we usein our class (i.e, we just forward the calls to the methods of <code>std::vector</code> or <code>std::unordered_map</code>) or</li>
+<li>implement the interface from scratch. For that, we also need to implement the iterator class that fulfills the corresponding <a href="https://en.cppreference.com/w/cpp/iterator">iterator concept</a> (e.g., <a href="https://en.cppreference.com/w/cpp/named_req/InputIterator"><code>std::input_iterator</code></a> for the <code>std::ranges::input_range</code>).</li>
+</ul>
+</li>
+</ol>
 <h3 id="implementing-an-input-range">Implementing an input range<a class="headerlink" href="#implementing-an-input-range" title="Permanent link">&para;</a></h3>
 <p>The input range is the most common range type. The only requirement for the input range is that it has to have the <code>begin</code> and <code>end</code> methods that return the input iterator. Example:</p>
 <pre><code class="language-cpp">class My_range {
@@ -3870,16 +4062,22 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies&lt;int&
 };
 </code></pre>
 <h2 id="boost-iterator-templates">Boost Iterator Templates<a class="headerlink" href="#boost-iterator-templates" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://www.boost.org/doc/libs/1_77_0/libs/iterator/doc/index.html">boost.iterator library</a> provides some templates to implement iteratores easily, typically using some existing iterators and modifying just a small part of it:
-- for pointer to type (dereference) iterator, you can use <a href="https://www.boost.org/doc/libs/1_54_0/libs/iterator/doc/indirect_iterator.html">boost indirect iterator</a>
-- <a href="https://www.boost.org/doc/libs/1_80_0/libs/iterator/doc/zip_iterator.html">zip iterator</a> for Python like iteration over multiple collections
-- [transform iteratorather useful iterators are also included in <a href="https://www.boost.org/doc/libs/1_787_0/libs/iterator/doc/transform_iterator.html">the boost.iterator library</a> for using another iterator and just modify the access (<code>*</code>) opindex.html). including:
-    - zip iterator.
-    - <a href="https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/counting_iterator.html">counting_iterator</a> to create number sequence like Python range
-- <a href="https://livewww.boost.org/doc/libs/1_787_0/libs/iterator/doc/generattransform_iterator.html">gentransform iterator</a></p>
-<p>There are also two general (most powerfull) classes:
-- <a href="https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/iterator_adaptor.html">iterator adapter</a>
-- iterator facade</p>
+<p>The <a href="https://www.boost.org/doc/libs/1_77_0/libs/iterator/doc/index.html">boost.iterator library</a> provides some templates to implement iteratores easily, typically using some existing iterators and modifying just a small part of it:</p>
+<ul>
+<li>for pointer to type (dereference) iterator, you can use <a href="https://www.boost.org/doc/libs/1_54_0/libs/iterator/doc/indirect_iterator.html">boost indirect iterator</a></li>
+<li><a href="https://www.boost.org/doc/libs/1_80_0/libs/iterator/doc/zip_iterator.html">zip iterator</a> for Python like iteration over multiple collections</li>
+<li>[transform iteratorather useful iterators are also included in <a href="https://www.boost.org/doc/libs/1_787_0/libs/iterator/doc/transform_iterator.html">the boost.iterator library</a> for using another iterator and just modify the access (<code>*</code>) opindex.html). including:<ul>
+<li>zip iterator.</li>
+<li><a href="https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/counting_iterator.html">counting_iterator</a> to create number sequence like Python range</li>
+</ul>
+</li>
+<li><a href="https://livewww.boost.org/doc/libs/1_787_0/libs/iterator/doc/generattransform_iterator.html">gentransform iterator</a></li>
+</ul>
+<p>There are also two general (most powerfull) classes:</p>
+<ul>
+<li><a href="https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/iterator_adaptor.html">iterator adapter</a></li>
+<li>iterator facade</li>
+</ul>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -3905,8 +4103,10 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies&lt;int&
 <h2 id="return-type">Return type<a class="headerlink" href="#return-type" title="Permanent link">&para;</a></h2>
 <p>The return type of lambda functions can be set only using the trailing return type syntax (<code>-&gt; &lt;RETURN TYPE&gt;</code> after the function params). The return type can be omited. Note however, that <strong>the default return type is <code>auto</code></strong>, so in case we want to return by reference, we need to add at least <code>-&gt; auto</code>, or even a more specific return type.</p>
 <h2 id="specifiers">Specifiers<a class="headerlink" href="#specifiers" title="Permanent link">&para;</a></h2>
-<p>Lambda functions can have special specifiers:
-- <code>mutable</code>: lambda can modify function parameters capture by copy</p>
+<p>Lambda functions can have special specifiers:</p>
+<ul>
+<li><code>mutable</code>: lambda can modify function parameters capture by copy</li>
+</ul>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p>In C++, exceptions works simillarly as in other languages. </p>
 <p>Standard runtime error can be thrown using the <a href="https://en.cppreference.com/w/cpp/error/runtime_error"><code>std::runtime_error</code></a> class:</p>
@@ -3982,11 +4182,15 @@ int product = std::accumulate(vec.begin(), vec.end(), 1, std::multiplies&lt;int&
 
 std::set_terminate(&amp;terminate_handler_with_stacktrace);
 </code></pre>
-<p>To create the stacktrace, we can use one of the stacktrace libraries:
-- <a href="https://en.cppreference.com/w/cpp/header/stacktrace">stacktrace</a> header from the standard library if the compiler supports it (C++ 23)
-    - as of 2024-04, only MSVC supports this functionality
-- <a href="https://github.com/jeremy-rifkin/cpptrace">cpptrace</a>
-- <a href="https://github.com/boostorg/stacktrace/">boost stacktrace</a></p>
+<p>To create the stacktrace, we can use one of the stacktrace libraries:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/header/stacktrace">stacktrace</a> header from the standard library if the compiler supports it (C++ 23)<ul>
+<li>as of 2024-04, only MSVC supports this functionality</li>
+</ul>
+</li>
+<li><a href="https://github.com/jeremy-rifkin/cpptrace">cpptrace</a></li>
+<li><a href="https://github.com/boostorg/stacktrace/">boost stacktrace</a></li>
+</ul>
 <h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h1>
 <p>There is no build in logging in C++. However, there are some libraries that can be used for logging. In this section we will present logging using the <a href="https://github.com/gabime/spdlog">spdlog</a> library.</p>
 <p>We can log using the <code>spdlog::&lt;LEVEL&gt;</code> functions:</p>
@@ -4008,9 +4212,11 @@ spdlog::set_default_logger(logger);
 <pre><code class="language-cpp">spdlog::flush_every(std::chrono::seconds(5));
 </code></pre>
 <h2 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h2>
-<p>By default, the logger uses colors for different log levels. However, this capability is lost when:
-- using custom sinks or
-- using custom formatters</p>
+<p>By default, the logger uses colors for different log levels. However, this capability is lost when:</p>
+<ul>
+<li>using custom sinks or</li>
+<li>using custom formatters</li>
+</ul>
 <p>To keep the colors, we need to a) use the color sink and b) explicitly set the usage of the color in the formatter:</p>
 <pre><code class="language-cpp">auto console_sink = std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;();
 
@@ -4026,9 +4232,11 @@ using number = int;
 typedef void func(int,int);
 using func = void(int, int)
 </code></pre>
-<p>The <code>using</code>new syntax is more readable, as the alias is at the begining of the expression. But why to use type aliases? Two strong motivations can be:
-- <strong>iImprove the readebility</strong>: When we work with a type with a very long declaration, it is wise to use an alias. We can partialy solve this issue by using auto, but that is not a complete solution
-- <strong>Make the refactoring easier</strong>: When w work with aliases, it is easy to change the type we work with, just by redefining the alias. </p>
+<p>The <code>using</code>new syntax is more readable, as the alias is at the begining of the expression. But why to use type aliases? Two strong motivations can be:</p>
+<ul>
+<li><strong>iImprove the readebility</strong>: When we work with a type with a very long declaration, it is wise to use an alias. We can partialy solve this issue by using auto, but that is not a complete solution</li>
+<li><strong>Make the refactoring easier</strong>: When w work with aliases, it is easy to change the type we work with, just by redefining the alias. </li>
+</ul>
 <p>Note that <strong>type aliases cannot have the same name as variables in the same scope</strong>. So it is usually safer to name type aliases with this in mind, i.e., <code>using id_type = ..</code> insted of <code>using id = ..</code></p>
 <h2 id="template-aliasis">Template Aliasis<a class="headerlink" href="#template-aliasis" title="Permanent link">&para;</a></h2>
 <p>We can also create template aliases as follows:</p>
@@ -4050,9 +4258,11 @@ public:
 My_class::number number = 5;
 </code></pre>
 <h1 id="constant-expressions">Constant Expressions<a class="headerlink" href="#constant-expressions" title="Permanent link">&para;</a></h1>
-<p>A constant expression is an expression that can be evaluated at compile time. The result of constant expression can be used in static context, i.e., it can be:
-- assigned to a <code>constexpr</code> variable,
-- tested for true using <code>static_assert</code></p>
+<p>A constant expression is an expression that can be evaluated at compile time. The result of constant expression can be used in static context, i.e., it can be:</p>
+<ul>
+<li>assigned to a <code>constexpr</code> variable,</li>
+<li>tested for true using <code>static_assert</code></li>
+</ul>
 <p>Unfortunatelly, <a href="https://stackoverflow.com/a/47538175/1827955">there is no universal way how to determine if an expression is a constant expression</a>.</p>
 <p>More on <a href="https://en.cppreference.com/w/cpp/language/constant_expression">cppreference</a>.</p>
 <h1 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h1>
@@ -4108,17 +4318,21 @@ decltype(i) j = 3
 std::vector&lt;decltype(j)&gt; numbers;
 </code></pre>
 <h2 id="the-value-category-of-decltype">The Value Category of <code>decltype</code><a class="headerlink" href="#the-value-category-of-decltype" title="Permanent link">&para;</a></h2>
-<p>The value category of <code>decltype</code> is resolved depending on the value category of an expression inside it:
-- <code>deltype(&lt;XVALUE&gt;)</code> -&gt; <code>T&amp;&amp;</code>
-- <code>deltype(&lt;LVALUE&gt;)</code> -&gt; <code>T&amp;</code>
-- <code>deltype(&lt;RVALUE&gt;)</code> -&gt; <code>T</code></p>
+<p>The value category of <code>decltype</code> is resolved depending on the value category of an expression inside it:</p>
+<ul>
+<li><code>deltype(&lt;XVALUE&gt;)</code> -&gt; <code>T&amp;&amp;</code></li>
+<li><code>deltype(&lt;LVALUE&gt;)</code> -&gt; <code>T&amp;</code></li>
+<li><code>deltype(&lt;RVALUE&gt;)</code> -&gt; <code>T</code></li>
+</ul>
 <p>The rvalue conversion can lead to unexpected results, in context, where the value type matters:</p>
 <pre><code class="language-cpp">static_assert(std::is_same_v&lt;decltype(0), decltype(std::identity()(0))&gt;); // error
 </code></pre>
-<p>The above expressions fails because:
-- <code>decltype(0)</code>, <code>0</code> is an rvalue <code>-&gt;</code> the <code>decltype</code> result is <code>int</code>
-- <code>decltype(std::identity()(0))</code> result of <a href="https://en.cppreference.com/w/cpp/utility/functional/identity"><code>std::identity()</code></a> is an xvalue <code>-&gt;</code> the <code>decltype</code> result is <code>int&amp;&amp;</code>. Determining Type from Expressions
-Sometimes, it is usefull to declare a type from expression, instead of do it manualy. Using  <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a> specifier, we can get the resulting type of an expression as if it was evaluated. Examples:</p>
+<p>The above expressions fails because:</p>
+<ul>
+<li><code>decltype(0)</code>, <code>0</code> is an rvalue <code>-&gt;</code> the <code>decltype</code> result is <code>int</code></li>
+<li><code>decltype(std::identity()(0))</code> result of <a href="https://en.cppreference.com/w/cpp/utility/functional/identity"><code>std::identity()</code></a> is an xvalue <code>-&gt;</code> the <code>decltype</code> result is <code>int&amp;&amp;</code>. Determining Type from Expressions
+Sometimes, it is usefull to declare a type from expression, instead of do it manualy. Using  <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a> specifier, we can get the resulting type of an expression as if it was evaluated. Examples:</li>
+</ul>
 <pre><code class="language-cpp">struct A { double x; };
 const A* a;
 
@@ -4133,9 +4347,8 @@ decltype(i) j = 3
 std::vector&lt;decltype(j)&gt; numbers;
 </code></pre>
 <h3 id="determining-the-return-value-type-of-a-function">Determining the Return Value Type of a Function<a class="headerlink" href="#determining-the-return-value-type-of-a-function" title="Permanent link">&para;</a></h3>
-<p>As we can see above, we can use <code>decltype</code> to determine the return value type. But also, there is a <em>type trait</em> for that: <a href="https://en.cppreference.com/w/cpp/types/result_of"><code>std::invoke_result_t</code></a> (formerly <code>std::result_of</code>). The <code>std::invoke_result_t</code> should vbe equal to <code>decltype</code> when aplied to return type, with the following limitations:
-- we cannot use abstract classes as arguments of <code>std::invoke_result_t</code>, while we can use them inside <code>decltype</code> (using <code>std::declval</code>, see below).
-- </p>
+<p>As we can see above, we can use <code>decltype</code> to determine the return value type. But also, there is a <em>type trait</em> for that: <a href="https://en.cppreference.com/w/cpp/types/result_of"><code>std::invoke_result_t</code></a> (formerly <code>std::result_of</code>). The <code>std::invoke_result_t</code> should vbe equal to <code>decltype</code> when aplied to return type, with the following limitations:</p>
+<h2 id="-we-cannot-use-abstract-classes-as-arguments-of-stdinvoke_result_t-while-we-can-use-them-inside-decltype-using-stddeclval-see-below">- we cannot use abstract classes as arguments of <code>std::invoke_result_t</code>, while we can use them inside <code>decltype</code> (using <code>std::declval</code>, see below).<a class="headerlink" href="#-we-cannot-use-abstract-classes-as-arguments-of-stdinvoke_result_t-while-we-can-use-them-inside-decltype-using-stddeclval-see-below" title="Permanent link">&para;</a></h2>
 <h3 id="construct-object-inside-decltype-with-stddeclval">Construct object inside <code>decltype</code> with <code>std::declval</code><a class="headerlink" href="#construct-object-inside-decltype-with-stddeclval" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.cppreference.com/w/cpp/utility/declval"><code>std::declval</code></a> is a usefull function designed to be used only in static contexts, inside <code>decltype</code>. It enables using member functions inside decltype without using constructors.  Without <code>std::declval</code>, some type expressions are hard or even impossible to costruct. Example:</p>
 <pre><code class="language-cpp">class Complex_class{
@@ -4193,10 +4406,12 @@ bool b = mem_ptr(inst, 2)
 <pre><code class="language-cpp">auto functor = std::bind(&amp;My_class::my_method, inst);
 bool b = functor(2)
 </code></pre>
-<p>Advanteges:
-- we do not need an access to instance in the context from which we call the member function
-- we do not have to remember the complex syntax of a pointer to a member function declaration
-- we receive a callable object, which usage is even simpler than using <code>std::invoke</code></p>
+<p>Advanteges:</p>
+<ul>
+<li>we do not need an access to instance in the context from which we call the member function</li>
+<li>we do not have to remember the complex syntax of a pointer to a member function declaration</li>
+<li>we receive a callable object, which usage is even simpler than using <code>std::invoke</code></li>
+</ul>
 <p>Note that in case we want to bind only some parameters, we need to supply placeholders for the remaining parameters (<code>std::placeholders</code>).</p>
 <h2 id="using-lambdas-instead-of-stdbind">Using Lambdas Instead of std::bind<a class="headerlink" href="#using-lambdas-instead-of-stdbind" title="Permanent link">&para;</a></h2>
 <p>For more readable code and better compile error messages, it is usefull to replace <code>std::bind</code> callls with labda functions. The above example can be rewritten as:</p>
@@ -4227,18 +4442,24 @@ std::function f = [inst]() -&gt; const int&amp; {return &amp;inst.my_member; } /
 <pre><code class="language-cpp">int Car::*pSpeed = &amp;Car::speed;
 c1.*pSpeed = 2;
 </code></pre>
-<p>Usefull STL functions
-- <a href="https://en.cppreference.com/w/cpp/algorithm/for_each"><code>std::for_each</code></a>: iterates over iterable objects and call a callable for each iteration
-- <a href="https://en.cppreference.com/w/cpp/utility/functional/bind"><code>std::bind</code></a>: Binds a function call to a variable that can be called
-    - some parameters of the function can be fixed in the variable, while others can be provided for each call
-    - each reference parameter has to be wrapped as a <code>reference_wrapper</code>
-- <a href="https://en.cppreference.com/w/cpp/utility/functional/mem_fn"><code>std:mem_fn</code></a>: Creates a variable that represents a callable that calls member function</p>
+<p>Usefull STL functions</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/algorithm/for_each"><code>std::for_each</code></a>: iterates over iterable objects and call a callable for each iteration</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional/bind"><code>std::bind</code></a>: Binds a function call to a variable that can be called<ul>
+<li>some parameters of the function can be fixed in the variable, while others can be provided for each call</li>
+<li>each reference parameter has to be wrapped as a <code>reference_wrapper</code></li>
+</ul>
+</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional/mem_fn"><code>std:mem_fn</code></a>: Creates a variable that represents a callable that calls member function</li>
+</ul>
 <h2 id="stdfunction">std::function<a class="headerlink" href="#stdfunction" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://en.cppreference.com/w/cpp/utility/functional/function"><code>std::function</code></a> template can hold any callable. It can be initialized from:
-- function pointer/reference, 
-- member function pointer/reference, 
-- lambda function 
-- functor</p>
+<p>The <a href="https://en.cppreference.com/w/cpp/utility/functional/function"><code>std::function</code></a> template can hold any callable. It can be initialized from:</p>
+<ul>
+<li>function pointer/reference, </li>
+<li>member function pointer/reference, </li>
+<li>lambda function </li>
+<li>functor</li>
+</ul>
 <p>It can be easily passed to functions, used as template parameter, etc. The template parameters for <code>std::function</code> has the form of <code>std::function&lt;&lt;RETURN TYPE&gt;(&lt;ARGUMENTS&gt;)&gt;</code>. Example:</p>
 <pre><code class="language-cpp">auto lambda = [](std::size_t i) -&gt; My_class { return My_class(i); };
 
@@ -4370,9 +4591,11 @@ K32GetProcessMemoryInfo(GetCurrentProcess(), &amp;pmc, sizeof(pmc));
 auto max_mem = pmc.PeakWorkingSetSize
 </code></pre>
 <h1 id="working-with-tabular-data">Working with tabular data<a class="headerlink" href="#working-with-tabular-data" title="Permanent link">&para;</a></h1>
-<p>Potential libs similar to Python Pandas:
-- <a href="https://arrow.apache.org/docs/cpp/">Arrow</a>
-- <a href="https://github.com/hosseinmoein/DataFrame">Dataframe</a></p>
+<p>Potential libs similar to Python Pandas:</p>
+<ul>
+<li><a href="https://arrow.apache.org/docs/cpp/">Arrow</a></li>
+<li><a href="https://github.com/hosseinmoein/DataFrame">Dataframe</a></li>
+</ul>
 <h1 id="executing-external-commands">Executing external commands<a class="headerlink" href="#executing-external-commands" title="Permanent link">&para;</a></h1>
 <p>The support for executing external commands in C++ is unsatisfactory. The most common solution is to use the <a href="https://en.cppreference.com/w/cpp/utility/program/system"><code>system</code></a> function.
 However, the <code>system</code> calls are not portable, e.g., the quotes around the command are not supported in Windows</p>
@@ -4386,13 +4609,19 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
 <pre><code class="language-cpp">std::variant&lt;int, double&gt; v;
 </code></pre>
 <p>The <code>std::variant</code> can store any of the types specified in the template parameters. </p>
-<p>The <strong>type</strong> of the stored value can be obtained using:
-- <a href="https://en.cppreference.com/w/cpp/utility/variant/holds_alternative"><code>std::holds_alternative</code></a> method that returns a boolean value if the variant stores the type specified in the template parameter or
-- <a href="https://en.cppreference.com/w/cpp/utility/variant/index"><code>std::variant::index</code></a> method that returns the index of the stored value.
-    - this method can be used also in a <strong>switch statement</strong> as the index is integral</p>
-<p>The <strong>value</strong> can be accessed using:
-- the <a href="https://en.cppreference.com/w/cpp/utility/variant/get"><code>std::get</code></a> function, if we know the type stored in the variant or
-- the <a href="https://en.cppreference.com/w/cpp/utility/variant/get_if"><code>std::get_if</code></a> function if we are guesing the type.</p>
+<p>The <strong>type</strong> of the stored value can be obtained using:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/variant/holds_alternative"><code>std::holds_alternative</code></a> method that returns a boolean value if the variant stores the type specified in the template parameter or</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/variant/index"><code>std::variant::index</code></a> method that returns the index of the stored value.<ul>
+<li>this method can be used also in a <strong>switch statement</strong> as the index is integral</li>
+</ul>
+</li>
+</ul>
+<p>The <strong>value</strong> can be accessed using:</p>
+<ul>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/variant/get"><code>std::get</code></a> function, if we know the type stored in the variant or</li>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/variant/get_if"><code>std::get_if</code></a> function if we are guesing the type.</li>
+</ul>
 <p>Both functions return a pointer to the stored value. Example:</p>
 <pre><code class="language-cpp">std::variant&lt;int, double&gt; v = 1;
 std::cout &lt;&lt; v.index() &lt;&lt; std::endl; // prints 0
@@ -4402,18 +4631,22 @@ std::cout &lt;&lt; *std::get_if&lt;int&gt;(&amp;v) &lt;&lt; std::endl; // prints
 <pre><code class="language-cpp">std::variant&lt;int, double&gt; v = 1;
 std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }, v); // prints 1
 </code></pre>
-<p>More on variants:
-- <a href="https://en.cppreference.com/w/cpp/utility/variant">cppreference</a>
-- <a href="https://www.cppstories.com/2018/06/variant/">cppstories</a></p>
+<p>More on variants:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/variant">cppreference</a></li>
+<li><a href="https://www.cppstories.com/2018/06/variant/">cppstories</a></li>
+</ul>
 <h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h1>
 <p>For CLI, please follow the <a href="../../Common/#command-line-interface">CLI manual</a>. Here we focus on setting up the <a href="http://tclap.sourceforge.net/manual.html">TCLAP</a> library.</p>
 <p>TCLAP use</p>
 <h1 id="jinja-like-templating">Jinja-like Templating<a class="headerlink" href="#jinja-like-templating" title="Permanent link">&para;</a></h1>
 <p>For working with Jinja-like templates, we can use the <a href="https://github.com/pantor/inja">Inja</a> template engine. </p>
 <h2 id="exceptions_1">Exceptions<a class="headerlink" href="#exceptions_1" title="Permanent link">&para;</a></h2>
-<p>There are the following exceptions types:
-- <code>ParserError</code> thrown on <code>parse_template</code> method
-- <code>RenderError</code> thrown on <code>write</code> method</p>
+<p>There are the following exceptions types:</p>
+<ul>
+<li><code>ParserError</code> thrown on <code>parse_template</code> method</li>
+<li><code>RenderError</code> thrown on <code>write</code> method</li>
+</ul>
 <h3 id="render-errors">Render Errors<a class="headerlink" href="#render-errors" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>empty expression</code>: this signalize that some expression is empty. Unfortunatelly, the line number is incorrect (it is always 1). Look for empty conditions, loops, etc. (e.g., <code>{% if %}</code>, <code>{% for %}</code>, <code>{% else if %}</code>).</li>
@@ -4425,12 +4658,14 @@ std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

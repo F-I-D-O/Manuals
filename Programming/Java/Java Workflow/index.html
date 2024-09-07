@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -508,14 +509,18 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="java-developement-stack">Java developement stack<a class="headerlink" href="#java-developement-stack" title="Permanent link">&para;</a></h1>
-<p>We use this stack:
-- Toolchain: JDK
-- Package manager: standalone Maven
-- IDE: Netbeans, Idea</p>
+<p>We use this stack:</p>
+<ul>
+<li>Toolchain: JDK</li>
+<li>Package manager: standalone Maven</li>
+<li>IDE: Netbeans, Idea</li>
+</ul>
 <h1 id="jdk">JDK<a class="headerlink" href="#jdk" title="Permanent link">&para;</a></h1>
-<p>Java developem kit is the standard Java toolchain. Most comon tools are:
-- <code>javac</code> for compilation
-- <code>java</code> for execution</p>
+<p>Java developem kit is the standard Java toolchain. Most comon tools are:</p>
+<ul>
+<li><code>javac</code> for compilation</li>
+<li><code>java</code> for execution</li>
+</ul>
 <h2 id="javac"><a href="https://docs.oracle.com/en/java/javase/12/tools/javac.html"><code>javac</code></a><a class="headerlink" href="#javac" title="Permanent link">&para;</a></h2>
 <p>The syntax is:</p>
 <pre><code>javac [options] [sourcefiles]
@@ -563,13 +568,17 @@
 </ol>
 <p><a href="https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html">More on Jetbrains</a></p>
 <h3 id="maven-configuration">Maven configuration<a class="headerlink" href="#maven-configuration" title="Permanent link">&para;</a></h3>
-<p>By default, Idea uses the bundled Maven, which is almost never desired. It is best to swich to the system Maven, which we should done in:
-- <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Build Tools</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for existing projects
-- <code>File</code> -&gt; <code>New Project Setup</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for new projects</p>
+<p>By default, Idea uses the bundled Maven, which is almost never desired. It is best to swich to the system Maven, which we should done in:</p>
+<ul>
+<li><code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Build Tools</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for existing projects</li>
+<li><code>File</code> -&gt; <code>New Project Setup</code> -&gt; <code>Maven</code> -&gt; <code>Maven home directory</code> for new projects</li>
+</ul>
 <h3 id="jdk-configuration">JDK configuration<a class="headerlink" href="#jdk-configuration" title="Permanent link">&para;</a></h3>
-<p>The correct JDK has to be set up in various places:
-- compielr has to be at least target jdk, set it in: <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Project bytecode version</code> and <code>Per-module bytecode version</code>
-- language level should be the same as target jdk: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code></p>
+<p>The correct JDK has to be set up in various places:</p>
+<ul>
+<li>compielr has to be at least target jdk, set it in: <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Project bytecode version</code> and <code>Per-module bytecode version</code></li>
+<li>language level should be the same as target jdk: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code></li>
+</ul>
 <h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h2>
 <p>Everything is compiled in the background automatically. However, if we need to compile manually using maven, e.g., to activate certain plugins, we can compile using the maven tab on the right.</p>
 <h2 id="running-projects">Running Projects<a class="headerlink" href="#running-projects" title="Permanent link">&para;</a></h2>
@@ -578,9 +587,11 @@
 <h2 id="developing-the-whole-project-stack-at-once">Developing the whole project stack at once<a class="headerlink" href="#developing-the-whole-project-stack-at-once" title="Permanent link">&para;</a></h2>
 <p>If we are developing a whole stack of projects at once, it is best if we can navigate between them easily. However, it is not possible to open multiple projects in the same window in Idea (like in Netbeans). Instead, we need to open the project on the top of the stack and then add the other projects as modules. To add a module, click <code>File</code> -&gt; <code>Project Structure</code> -&gt; <code>Modules</code> and add the module.</p>
 <h2 id="running-maven-goals">Running Maven Goals<a class="headerlink" href="#running-maven-goals" title="Permanent link">&para;</a></h2>
-<p>Maven goals can be run from a dedicated tab on the right. The goals in the tab are divided into two categories:
-- <code>Lifecycle</code> goals are the most common goals, which are used to build the project
-- <code>Plugins</code> goals are the goals of the plugins used in the project</p>
+<p>Maven goals can be run from a dedicated tab on the right. The goals in the tab are divided into two categories:</p>
+<ul>
+<li><code>Lifecycle</code> goals are the most common goals, which are used to build the project</li>
+<li><code>Plugins</code> goals are the goals of the plugins used in the project</li>
+</ul>
 <p>To run the goal, just double-click on it. </p>
 <p>If the run need some special configuration, right-click on the goal and choose <code>Modify Run Configuration...</code></p>
 <p>If the plugin is missing from the list, it may be necessary to reload the plugins. Click the <code>Reload All Maven Projects</code> button in the top left corner of the maven tab.</p>
@@ -594,13 +605,17 @@
 <h3 id="idea-does-not-see-environment-variables">Idea does not see environment variables<a class="headerlink" href="#idea-does-not-see-environment-variables" title="Permanent link">&para;</a></h3>
 <p>These may be new environment variables, which were not present when Idea was started. Restart Idea to see the new environment variables.</p>
 <h1 id="set-java-version-for-project">Set Java version for project<a class="headerlink" href="#set-java-version-for-project" title="Permanent link">&para;</a></h1>
-<p>There are two options to set:
-- <em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.
-- <em>target</em> version determines the least version of java that can be used to <strong>run</strong> your java application.</p>
+<p>There are two options to set:</p>
+<ul>
+<li><em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.</li>
+<li><em>target</em> version determines the least version of java that can be used to <strong>run</strong> your java application.</li>
+</ul>
 <p>The target version can be higher than the source version, but not he other way around. most of the time, however, we use the same version for source and for target.</p>
-<p>Usually, these versions needs to be set:
-1. in the project compilation tool (maven) to configure the project compilation
-2. in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.</p>
+<p>Usually, these versions needs to be set:</p>
+<ol>
+<li>in the project compilation tool (maven) to configure the project compilation</li>
+<li>in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.</li>
+</ol>
 <p>Sometimes, the Java version used for running Maven has to be also set because it cannot be lower then the Java version used for project compilation using Maven.</p>
 <p><a href="https://stackoverflow.com/questions/38882080/specifying-java-version-in-maven-differences-between-properties-and-compiler-p">SO explanation</a></p>
 <h2 id="setting-java-version-in-maven">Setting Java version in Maven<a class="headerlink" href="#setting-java-version-in-maven" title="Permanent link">&para;</a></h2>
@@ -628,9 +643,11 @@
 <p><strong>Note that the Java version configured in the pom file cannot be greater then the Java version used to run the Maven.</strong></p>
 <h2 id="setting-java-version-in-netbeans">Setting Java version in Netbeans<a class="headerlink" href="#setting-java-version-in-netbeans" title="Permanent link">&para;</a></h2>
 <p><strong>Note that for maven projects, this is automatically set to match the properties in the pom file.</strong></p>
-<p>For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: 
-1. Right click on project -&gt; <code>Properties</code> -&gt; <code>Sources</code>
-2. In the bottom, change the <code>Source/Binary Format</code></p>
+<p>For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: </p>
+<ol>
+<li>Right click on project -&gt; <code>Properties</code> -&gt; <code>Sources</code></li>
+<li>In the bottom, change the <code>Source/Binary Format</code></li>
+</ol>
 <h2 id="setting-java-version-in-idea">Setting Java version in IDEA<a class="headerlink" href="#setting-java-version-in-idea" title="Permanent link">&para;</a></h2>
 <p>In idea, an extra step is sometimes necessary: to set the Java Language Level in the project settings: <code>File</code> -&gt; <code>Project Structure...</code> -&gt; <code>Modules</code> -&gt; <code>Language Level</code>. The language level has to be lower or equal to the target version set in the maven configuration.</p>
 <h2 id="setting-java-version-used-for-executing-maven">Setting Java version used for executing Maven<a class="headerlink" href="#setting-java-version-used-for-executing-maven" title="Permanent link">&para;</a></h2>
@@ -665,11 +682,15 @@
     &lt;/plugins&gt;
 &lt;/build&gt;
 </code></pre>
-<p>Unfortunatelly, it is also necessary to enable preview features in the IDE configuration: 
-- In Netbeans, add <code>--enable-preview</code> to <code>Project Properties</code> -&gt; <code>Run</code> -&gt; <code>VM options</code>.
-- In IDEA:
-    1. add <code>--enable-preview</code> to <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Override compiler parameters per-module</code>
-    2. add <code>--enable-preview</code> to run configuration -&gt; <code>Build and run</code> vm options</p>
+<p>Unfortunatelly, it is also necessary to enable preview features in the IDE configuration: </p>
+<ul>
+<li>In Netbeans, add <code>--enable-preview</code> to <code>Project Properties</code> -&gt; <code>Run</code> -&gt; <code>VM options</code>.</li>
+<li>In IDEA:<ol>
+<li>add <code>--enable-preview</code> to <code>Settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Compiler</code> -&gt; <code>Java Compiler</code> -&gt; <code>Override compiler parameters per-module</code></li>
+<li>add <code>--enable-preview</code> to run configuration -&gt; <code>Build and run</code> vm options</li>
+</ol>
+</li>
+</ul>
 <h2 id="gurobi">Gurobi<a class="headerlink" href="#gurobi" title="Permanent link">&para;</a></h2>
 <p>Gurobi is a commercial project not contained in any public maven repositories. It is necessary to <a href="http://fido.ninja/manuals/add-gurobi-java-interface-maven">install the gurobi maven artifact</a> manualy.</p>
 <h3 id="potential-problems">Potential problems<a class="headerlink" href="#potential-problems" title="Permanent link">&para;</a></h3>
@@ -677,15 +698,19 @@
 <li><code>unsatisfied linker error</code>: Check if the gurobi version in the error log matches the gurobi version installed.</li>
 </ul>
 <h1 id="make-part-of-the-project-optional">Make part of the project optional<a class="headerlink" href="#make-part-of-the-project-optional" title="Permanent link">&para;</a></h1>
-<p>Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:
-- not essential for the project to work
-- dependent on some external library, which can be cumbersome to install</p>
-<p>The required steps are usually:
-1. Create a maven profile for the optional part of the project
-2. Move optional dependencies to the profile
-3. Move optional source files outside the <code>src/main/java</code> directory
-3. Use the <code>build-helper-maven-plugin</code> in the profile to add the optional source files to the project
-4. At runtime, load the optional part of the project using the reflection</p>
+<p>Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:</p>
+<ul>
+<li>not essential for the project to work</li>
+<li>dependent on some external library, which can be cumbersome to install</li>
+</ul>
+<p>The required steps are usually:</p>
+<ol>
+<li>Create a maven profile for the optional part of the project</li>
+<li>Move optional dependencies to the profile</li>
+<li>Move optional source files outside the <code>src/main/java</code> directory</li>
+<li>Use the <code>build-helper-maven-plugin</code> in the profile to add the optional source files to the project</li>
+<li>At runtime, load the optional part of the project using the reflection</li>
+</ol>
 <p>We now describe these steps in detail.</p>
 <h2 id="maven-profiles-and-optional-dependencies">Maven profiles and optional dependencies<a class="headerlink" href="#maven-profiles-and-optional-dependencies" title="Permanent link">&para;</a></h2>
 <p>A maven profile belongs to the <code>profiles</code> section of the <code>pom.xml</code> file. The structure is simple:</p>
@@ -749,12 +774,14 @@ else{
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

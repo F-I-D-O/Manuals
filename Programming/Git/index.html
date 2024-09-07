@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -468,10 +469,12 @@
 <h1 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h1>
 <p>The structure of a single git repository is displayed in the following picture:
 <img alt="Git Repository Structure" src="../Git%20Scheme.png" /></p>
-<p>Explanation of the picture:
-- The <strong>working tree</strong> or working directory is the directory where the files are stored, typically the root directory of the project where the <code>.git</code> directory is located.
-- The <strong>index</strong> or staging area is a cache of all changes that are marked (<em>staged</em>) for the next commit. To stage a change, we need to call <code>git add</code> command. Only files in the index are committed when we call <code>git commit</code>.
-- The <strong>HEAD</strong> is a pointer to the last commit in the current branch. </p>
+<p>Explanation of the picture:</p>
+<ul>
+<li>The <strong>working tree</strong> or working directory is the directory where the files are stored, typically the root directory of the project where the <code>.git</code> directory is located.</li>
+<li>The <strong>index</strong> or staging area is a cache of all changes that are marked (<em>staged</em>) for the next commit. To stage a change, we need to call <code>git add</code> command. Only files in the index are committed when we call <code>git commit</code>.</li>
+<li>The <strong>HEAD</strong> is a pointer to the last commit in the current branch. </li>
+</ul>
 <p>The following scheme shows the operations that can be performed between the working tree, index, HEAD and the remote repository (blue arrows represent the typical workflow):
 <img alt="Git Operations" src="../Git%20Operations.png" /></p>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
@@ -493,18 +496,22 @@
 <h2 id="untrack-files-but-not-delete-them-locally">Untrack files, but not delete them locally:<a class="headerlink" href="#untrack-files-but-not-delete-them-locally" title="Permanent link">&para;</a></h2>
 <pre><code>git rm --cached &lt;FILEPATH&gt;
 </code></pre>
-<p>usefull params:
-- <code>-r</code>: recursive - deletes content of directories
-- <code>-n</code> dry run</p>
+<p>usefull params:</p>
+<ul>
+<li><code>-r</code>: recursive - deletes content of directories</li>
+<li><code>-n</code> dry run</li>
+</ul>
 <h2 id="add-remote">Add remote<a class="headerlink" href="#add-remote" title="Permanent link">&para;</a></h2>
 <pre><code>git remote add origin &lt;URL&gt;
 </code></pre>
 <p>Where <code>origin</code> is the name of the remote and <code>&lt;URL&gt;</code> is is the link we use to clone the repository.</p>
 <h1 id="reverting">Reverting<a class="headerlink" href="#reverting" title="Permanent link">&para;</a></h1>
-<p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:
-- <a href="https://git-scm.com/docs/git-checkout"><code>git checkout</code></a> for overwriting local files with version from a specified tree (also for switching branches) and
-- <a href="https://git-scm.com/docs/git-reset"><code>git reset</code></a> for reverting commits and effectively rewriting the history.
-- <a href="https://git-scm.com/docs/git-read-tree"><code>git read-tree</code></a>: similar to checkout, but does not require a cleanup before</p>
+<p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:</p>
+<ul>
+<li><a href="https://git-scm.com/docs/git-checkout"><code>git checkout</code></a> for overwriting local files with version from a specified tree (also for switching branches) and</li>
+<li><a href="https://git-scm.com/docs/git-reset"><code>git reset</code></a> for reverting commits and effectively rewriting the history.</li>
+<li><a href="https://git-scm.com/docs/git-read-tree"><code>git read-tree</code></a>: similar to checkout, but does not require a cleanup before</li>
+</ul>
 <p>The following table shows the differences between the commands:
 | Command | revrerts commits | overwrite local changes |  delete files committed after <code>&lt;commit&gt;</code> |
 | --- | --- | --- | --- |
@@ -512,14 +519,18 @@
 | <code>git read-tree -m -u &lt;commit&gt;</code> | no | yes | yes |
 | <code>git reset --soft &lt;commit&gt;</code> | yes | no | no |
 | <code>git reset --hard &lt;commit&gt;</code> | yes | yes | yes |</p>
-<p>To decide between the commands, the first consideration should be whether we want to preserve the history or not:
-- we want to reach a specific state in the history and commit the changes as a new commit -&gt; use <code>git checkout</code> or <code>git read-tree</code>
-- we want to reach a specific state in the history and discard all changes after that point -&gt; use <code>git reset</code></p>
+<p>To decide between the commands, the first consideration should be whether we want to preserve the history or not:</p>
+<ul>
+<li>we want to reach a specific state in the history and commit the changes as a new commit -&gt; use <code>git checkout</code> or <code>git read-tree</code></li>
+<li>we want to reach a specific state in the history and discard all changes after that point -&gt; use <code>git reset</code></li>
+</ul>
 <h2 id="keep-the-history">Keep the history<a class="headerlink" href="#keep-the-history" title="Permanent link">&para;</a></h2>
-<p>If we want to keep the history, there are still two options:
-- we want to revert the whole working tree and also delete all files that were committed after the specified commit -&gt; use <code>git read-tree -m -u &lt;commit&gt;</code>
-- we want to revert the whole working tree, but keep all files that were committed after the specified commit -&gt; use <code>git checkout &lt;commit&gt;</code>
-- we want to revert only some files -&gt; use <code>git checkout &lt;commit&gt; &lt;filepath&gt;</code></p>
+<p>If we want to keep the history, there are still two options:</p>
+<ul>
+<li>we want to revert the whole working tree and also delete all files that were committed after the specified commit -&gt; use <code>git read-tree -m -u &lt;commit&gt;</code></li>
+<li>we want to revert the whole working tree, but keep all files that were committed after the specified commit -&gt; use <code>git checkout &lt;commit&gt;</code></li>
+<li>we want to revert only some files -&gt; use <code>git checkout &lt;commit&gt; &lt;filepath&gt;</code></li>
+</ul>
 <h3 id="using-git-checkout">Using <code>git checkout</code><a class="headerlink" href="#using-git-checkout" title="Permanent link">&para;</a></h3>
 <p>To reset an individual file, call: <code>git checkout &lt;commit&gt; &lt;filepath&gt;</code>, to reset all files, call: <code>git checkout &lt;commit&gt; .</code>. </p>
 <p>If the <code>&lt;commit&gt;</code> parameter is ommited, the local files will be overwritten by the HEAD.  </p>
@@ -529,41 +540,59 @@
 <pre><code>git push -f
 </code></pre>
 <h1 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h1>
-<p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:
-- <code>**/</code> in any directory
-- <code>/**</code> everything in a directory</p>
+<p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:</p>
+<ul>
+<li><code>**/</code> in any directory</li>
+<li><code>/**</code> everything in a directory</li>
+</ul>
 <h1 id="removing-files-from-all-branches-local-and-remote">Removing files from all branches, local and remote<a class="headerlink" href="#removing-files-from-all-branches-local-and-remote" title="Permanent link">&para;</a></h1>
-<p>Removing files from history can be done using multiple tools:
-1. <a href="https://rtyley.github.io/bfg-repo-cleaner/">bfg repo cleaner</a> is the simplest tool. It can only select files by filename or size, but that is sufficient in most cases. 
-2. <a href="https://github.com/newren/git-filter-repo/">git filter-repo</a> is a more sophisticated successor to BFG. It can do almost anything possible. Nevertheless, it is less intuitive to operate, and it is harder to analyze its result.
-3. The <a href="https://git-scm.com/docs/git-filter-branch"><code>filter-branch</code></a> command is the original tool for filtering git history. It is slow and problematic, so it should be used only if the above two tools are not available.  </p>
-<p><strong>No matter of the used tool, before you begin:</strong>
-1. commit and push from all machines,
-2. backup the repository</p>
-<p><strong>Similarly, at the end:</strong>
-- <strong>It is important not to merge (branch or conflitcs) that originated before the cleanup</strong> on other machines. Otherwise, the deleted file can be reintroduced to the history.
-- Pull on other machines.
-- <strong>Add the file to gitignore</strong> so that it wont be commited again</p>
+<p>Removing files from history can be done using multiple tools:</p>
+<ol>
+<li><a href="https://rtyley.github.io/bfg-repo-cleaner/">bfg repo cleaner</a> is the simplest tool. It can only select files by filename or size, but that is sufficient in most cases. </li>
+<li><a href="https://github.com/newren/git-filter-repo/">git filter-repo</a> is a more sophisticated successor to BFG. It can do almost anything possible. Nevertheless, it is less intuitive to operate, and it is harder to analyze its result.</li>
+<li>The <a href="https://git-scm.com/docs/git-filter-branch"><code>filter-branch</code></a> command is the original tool for filtering git history. It is slow and problematic, so it should be used only if the above two tools are not available.  </li>
+</ol>
+<p><strong>No matter of the used tool, before you begin:</strong></p>
+<ol>
+<li>commit and push from all machines,</li>
+<li>backup the repository</li>
+</ol>
+<p><strong>Similarly, at the end:</strong></p>
+<ul>
+<li><strong>It is important not to merge (branch or conflitcs) that originated before the cleanup</strong> on other machines. Otherwise, the deleted file can be reintroduced to the history.</li>
+<li>Pull on other machines.</li>
+<li><strong>Add the file to gitignore</strong> so that it wont be commited again</li>
+</ul>
 <h2 id="bfg">BFG<a class="headerlink" href="#bfg" title="Permanent link">&para;</a></h2>
-<p>With BFG, <strong>only a file with specific filename can be deleted</strong>. It is not possible to use exact file path. To remove file by its name:
-1. remove the file locally
-2. clone the whole repo again with the <code>--mirror</code> option
-3. on the mirrored repo, run the cleaner: <code>bfg --delete-files &lt;FILENAME&gt;</code>
-4. run the git commands that appears at the end of the bfg output
-5. run git push</p>
+<p>With BFG, <strong>only a file with specific filename can be deleted</strong>. It is not possible to use exact file path. To remove file by its name:</p>
+<ol>
+<li>remove the file locally</li>
+<li>clone the whole repo again with the <code>--mirror</code> option</li>
+<li>on the mirrored repo, run the cleaner: <code>bfg --delete-files &lt;FILENAME&gt;</code></li>
+<li>run the git commands that appears at the end of the bfg output</li>
+<li>run git push</li>
+</ol>
 <h2 id="git-filter-repo">Git filter-repo<a class="headerlink" href="#git-filter-repo" title="Permanent link">&para;</a></h2>
 <p>The git filter-repo can be installed using pip: <code>pip install git-filter-repo</code>.</p>
-<p>To remove file by its path:
-1. run the command: <code>git filter-repo --invert-paths --force --dry-run --path &lt;PATH TO THE FILE TO BE REMOVED&gt;</code>
-2. inspect the changes in <code>.git/filter-repo</code> directory:
-    - Compare the files in KDiff3
-    - To skip the lines  starting with <code>original-oid</code>, 
-        1. go to the file selection dialog
-        2. click Configure
-        3. to the line-matching preprocessor command, add: <code>sed 's/original-oid .*//'</code>
-3. add remote again: <code>git remote add origin &lt;REPO SSH ADDRESS&gt;</code>
-4. force push the comman to the remote <code>git push origin --force --all</code>
-    - If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config. </p>
+<p>To remove file by its path:</p>
+<ol>
+<li>run the command: <code>git filter-repo --invert-paths --force --dry-run --path &lt;PATH TO THE FILE TO BE REMOVED&gt;</code></li>
+<li>inspect the changes in <code>.git/filter-repo</code> directory:<ul>
+<li>Compare the files in KDiff3</li>
+<li>To skip the lines  starting with <code>original-oid</code>, <ol>
+<li>go to the file selection dialog</li>
+<li>click Configure</li>
+<li>to the line-matching preprocessor command, add: <code>sed 's/original-oid .*//'</code></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>add remote again: <code>git remote add origin &lt;REPO SSH ADDRESS&gt;</code></li>
+<li>force push the comman to the remote <code>git push origin --force --all</code><ul>
+<li>If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config. </li>
+</ul>
+</li>
+</ol>
 <p><a href="https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html">git filter-repo manual</a></p>
 <p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository">More information on github</a></p>
 <h2 id="filter-branch">filter-branch<a class="headerlink" href="#filter-branch" title="Permanent link">&para;</a></h2>
@@ -609,18 +638,24 @@ This is the content of the file in the branch we are merging
 <h1 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
 <p>On windows, run: <code>git update-git-for-windows</code></p>
 <h1 id="pull-requests">Pull Requests<a class="headerlink" href="#pull-requests" title="Permanent link">&para;</a></h1>
-<p>Pull requests are a way to propose changes to the repository. The principle is as follows:
-1. Create a branch for the changes
-2. Commit the changes to the branch and push it to the remote
-3. Create a pull request on the remote, that suggest to merge the branch into the master branch</p>
-<p>There are two possible scenarios:
-- We have the permission to create a branch in the repository: in this case, we can create the branch directly on the remote
-- We do not have the permission to create a branch in the repository: in this case, we have to:
-    1. Fork the repository
-    2. Clone the fork
-    3. Create the branch locally in the fork
-    4. Commit and push the changes to the fork
-    5. Create a pull request from the fork to the original repository</p>
+<p>Pull requests are a way to propose changes to the repository. The principle is as follows:</p>
+<ol>
+<li>Create a branch for the changes</li>
+<li>Commit the changes to the branch and push it to the remote</li>
+<li>Create a pull request on the remote, that suggest to merge the branch into the master branch</li>
+</ol>
+<p>There are two possible scenarios:</p>
+<ul>
+<li>We have the permission to create a branch in the repository: in this case, we can create the branch directly on the remote</li>
+<li>We do not have the permission to create a branch in the repository: in this case, we have to:<ol>
+<li>Fork the repository</li>
+<li>Clone the fork</li>
+<li>Create the branch locally in the fork</li>
+<li>Commit and push the changes to the fork</li>
+<li>Create a pull request from the fork to the original repository</li>
+</ol>
+</li>
+</ul>
 <h2 id="update-pull-request">Update pull request<a class="headerlink" href="#update-pull-request" title="Permanent link">&para;</a></h2>
 <p>If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.</p>
 <h1 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h1>
@@ -632,12 +667,14 @@ This is the content of the file in the branch we are merging
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

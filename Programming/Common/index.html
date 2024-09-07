@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -429,43 +430,59 @@
 </ul>
 <h1 id="command-line-interface-cli">Command Line Interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Permanent link">&para;</a></h1>
 <p>This chapter should guide you on how to design CLI in a user-friendly and predictable way. Mostly, it follows the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">POSIX standard</a>, with the <a href="https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html">GNU long option extensions</a>.</p>
-<p>There are two main types of CLI arguments:
-- <strong>Options</strong>: (e.g., <code>--help</code>, <code>-h</code>) are used to change the behavior of the program. They are usually optional and can be in any order.
-- <strong>Operands</strong>: (e.g., <code>file.txt</code>) are the input data for the program. They are usually required and their order is important.</p>
+<p>There are two main types of CLI arguments:</p>
+<ul>
+<li><strong>Options</strong>: (e.g., <code>--help</code>, <code>-h</code>) are used to change the behavior of the program. They are usually optional and can be in any order.</li>
+<li><strong>Operands</strong>: (e.g., <code>file.txt</code>) are the input data for the program. They are usually required and their order is important.</li>
+</ul>
 <p>All operands should be placed after all options. </p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<p>Options can be of two types:
-- <strong>Short options</strong>: (e.g., <code>-h</code>) are one character long and are prefixed with a single dash.
-- <strong>Long options</strong>: (e.g., <code>--help</code>) are multi-characcter and are prefixed with two dashes.</p>
-<p>Options can have arguments:
-- <strong>Short options</strong> and their arguments are separated by a space or can be concatenated, e.g., <code>-o file.txt</code> or <code>-ofile.txt</code>. The first variant is strongly recommended.
-- <strong>Long options</strong> and their arguments are separated by a space or can be concatenated with an equal sign, e.g., <code>--output file.txt</code> or <code>--output=file.txt</code>. </p>
+<p>Options can be of two types:</p>
+<ul>
+<li><strong>Short options</strong>: (e.g., <code>-h</code>) are one character long and are prefixed with a single dash.</li>
+<li><strong>Long options</strong>: (e.g., <code>--help</code>) are multi-characcter and are prefixed with two dashes.</li>
+</ul>
+<p>Options can have arguments:</p>
+<ul>
+<li><strong>Short options</strong> and their arguments are separated by a space or can be concatenated, e.g., <code>-o file.txt</code> or <code>-ofile.txt</code>. The first variant is strongly recommended.</li>
+<li><strong>Long options</strong> and their arguments are separated by a space or can be concatenated with an equal sign, e.g., <code>--output file.txt</code> or <code>--output=file.txt</code>. </li>
+</ul>
 <p>Also, short options can be grouped, e.g., <code>-h -v -o file.txt</code> can be written as <code>-hvo file.txt</code>.</p>
 <h2 id="multiple-values-in-one-option-or-operand">Multiple values in one option or operand<a class="headerlink" href="#multiple-values-in-one-option-or-operand" title="Permanent link">&para;</a></h2>
 <p>If an option or operand contains multiple values (e.g., a list of files), the values should be separated by a comma, e.g., <code>--files file1.txt,file2.txt,file3.txt</code>.</p>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
-<p>Exceptions should be used to handle erroneus situations that are expected to happen. Exceptions should <strong>not</strong> be used for:
-- <strong>Flow control</strong>, e.g., parse float from input, catch exception and try integer, then catch exception and try string... 
-- <strong>Unexpected situations</strong>, e.g., a method should always return a positive number, but it returns a negative one. For this we should use assertions, not exceptions.</p>
+<p>Exceptions should be used to handle erroneus situations that are expected to happen. Exceptions should <strong>not</strong> be used for:</p>
+<ul>
+<li><strong>Flow control</strong>, e.g., parse float from input, catch exception and try integer, then catch exception and try string... </li>
+<li><strong>Unexpected situations</strong>, e.g., a method should always return a positive number, but it returns a negative one. For this we should use assertions, not exceptions.</li>
+</ul>
 <p>There are many types of exceptions, encapsulating different types of error description data. However, to begin with, it is not important to use some specific exception type. Using some general exception class is always much better than not using exceptions at all.</p>
 <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
 <h2 id="testing-private-methods">Testing private methods<a class="headerlink" href="#testing-private-methods" title="Permanent link">&para;</a></h2>
 <p>An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.</p>
-<p>The possible approaches are:
-- <strong>Makeing the method public</strong>: Only recommended if the method should be exposed, i.e., its functionality is not limited to the class itself.
-- <strong>Move the method to a different class</strong>: Maybe, the method is correcly marked as private in the current context, but it can also be extracted to its own class, where it will become the main method of the class. This applies to methods that can be used in other contexts, or for methods contained in large classes.
-- <strong>Mark the method as internal and make it public</strong>: This is a strategy that can be always applied with minimum effort. Various ways how to signalize that the method is intended for internal use are:
-    - <strong>Naming convention</strong>: The method name can start with an underscore, e.g., <code>_my_method</code>.
-    - <strong>Documentation</strong>: The comments can contain a warning that the method is intended for internal use.
-    - <strong>Namespace</strong>: The method can be placed in a namespace that signals that it is intended for internal use, e.g., <code>internal::my_method</code>.
-- <strong>Special access</strong>: We can use special language-dependant tools that can provide a special access to private methods:
-    - in C++ the <code>friend</code> keyword can be used to grant access to a class to another class. 
-    - In Java, the <code>@VisibleForTesting</code> annotation can be used to mark a method as visible for testing. 
-    - In Python, the <code>__test__</code> attribute can be used to mark a method as visible for testing.</p>
+<p>The possible approaches are:</p>
+<ul>
+<li><strong>Makeing the method public</strong>: Only recommended if the method should be exposed, i.e., its functionality is not limited to the class itself.</li>
+<li><strong>Move the method to a different class</strong>: Maybe, the method is correcly marked as private in the current context, but it can also be extracted to its own class, where it will become the main method of the class. This applies to methods that can be used in other contexts, or for methods contained in large classes.</li>
+<li><strong>Mark the method as internal and make it public</strong>: This is a strategy that can be always applied with minimum effort. Various ways how to signalize that the method is intended for internal use are:<ul>
+<li><strong>Naming convention</strong>: The method name can start with an underscore, e.g., <code>_my_method</code>.</li>
+<li><strong>Documentation</strong>: The comments can contain a warning that the method is intended for internal use.</li>
+<li><strong>Namespace</strong>: The method can be placed in a namespace that signals that it is intended for internal use, e.g., <code>internal::my_method</code>.</li>
+</ul>
+</li>
+<li><strong>Special access</strong>: We can use special language-dependant tools that can provide a special access to private methods:<ul>
+<li>in C++ the <code>friend</code> keyword can be used to grant access to a class to another class. </li>
+<li>In Java, the <code>@VisibleForTesting</code> annotation can be used to mark a method as visible for testing. </li>
+<li>In Python, the <code>__test__</code> attribute can be used to mark a method as visible for testing.</li>
+</ul>
+</li>
+</ul>
 <h1 id="finding-duplicates">Finding Duplicates<a class="headerlink" href="#finding-duplicates" title="Permanent link">&para;</a></h1>
-<p>For finding duplicates, there are two possible approaches:
-- <strong>Using hash sets</strong>: iteratively checking if the current element is in the set of already seen elements and adding it to the set if not. 
-- <strong>Sorting</strong>: sorting the collection and then for each element checking if the current element is the same as the previous one. </p>
+<p>For finding duplicates, there are two possible approaches:</p>
+<ul>
+<li><strong>Using hash sets</strong>: iteratively checking if the current element is in the set of already seen elements and adding it to the set if not. </li>
+<li><strong>Sorting</strong>: sorting the collection and then for each element checking if the current element is the same as the previous one. </li>
+</ul>
 <p>Comparison:
 | Approach | Time complexity (worst case asymptothic)| Time complexity (average expected) | Space complexity | allocation complexity |
 | --- | --- | --- | --- | --- |
@@ -483,12 +500,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

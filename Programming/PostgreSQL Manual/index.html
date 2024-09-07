@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -721,9 +722,11 @@
 <p>Other parts can be extracted too. To extract <strong>day of week</strong>, we can use <code>isodow</code> (assigns 1 to Monday and 7 to Sunday).</p>
 <h2 id="auto-incrementing-columns">Auto incrementing columns<a class="headerlink" href="#auto-incrementing-columns" title="Permanent link">&para;</a></h2>
 <p>In PostgreSQL, sequences are used for auto-incrementing columns. When you are creating a new db table or adding a new column, the process of creating a new sequence can be automated by choosing an <code>identity</code> or a <code>serial</code> column type.</p>
-<p>When updating an aexisting column, a manual intervention is required:
-1. change the column to some numerical datatype
-2. create the sequence:</p>
+<p>When updating an aexisting column, a manual intervention is required:</p>
+<ol>
+<li>change the column to some numerical datatype</li>
+<li>create the sequence:</li>
+</ol>
 <pre><code class="language-SQL">CREATE SEQUENCE &lt;SEQUENCE NAME&gt; OWNED BY &lt;TABLE NAME&gt;.&lt;COLUMN NAME&gt;;
 </code></pre>
 <ol>
@@ -773,9 +776,11 @@ WHERE
 </code></pre>
 <h1 id="handeling-duplicates-in-the-insert-statement">Handeling duplicates in the <code>INSERT</code> statement<a class="headerlink" href="#handeling-duplicates-in-the-insert-statement" title="Permanent link">&para;</a></h1>
 <p>To handle duplicates on <code>INSERT</code>, PostgreSQL provides the <code>ON CONFLICT</code> clause (see the <a href="https://www.postgresql.org/docs/current/sql-insert.html"><code>INSERT</code></a> documentation).</p>
-<p>The options are:
-- <code>DO NOTHING</code>: do nothing
-- <code>DO UPDATE SET &lt;column name&gt; = &lt;value&gt;</code>: update the column to the given value</p>
+<p>The options are:</p>
+<ul>
+<li><code>DO NOTHING</code>: do nothing</li>
+<li><code>DO UPDATE SET &lt;column name&gt; = &lt;value&gt;</code>: update the column to the given value</li>
+</ul>
 <h1 id="random-oredering">Random oredering<a class="headerlink" href="#random-oredering" title="Permanent link">&para;</a></h1>
 <p>To order the result set randomly, we can use the <code>RANDOM()</code> function in the <code>ORDER BY</code> clause:</p>
 <pre><code class="language-SQL">SELECT ...
@@ -850,9 +855,11 @@ BEGIN
 </code></pre>
 <p>Be carful to <strong>not use a variable name equal to the name of some of the columns</strong> used in the same context, which results in a name clash. </p>
 <h3 id="assigning-a-value-to-a-variable-using-sql">Assigning a value to a variable using SQL<a class="headerlink" href="#assigning-a-value-to-a-variable-using-sql" title="Permanent link">&para;</a></h3>
-<p>There are two options how to assign a value to a variable using SQL:
-- using the <code>INTO</code> clause in the <code>SELECT</code> statement
-- using a <code>SELECT</code> statement as rvlaue of the assignment</p>
+<p>There are two options how to assign a value to a variable using SQL:</p>
+<ul>
+<li>using the <code>INTO</code> clause in the <code>SELECT</code> statement</li>
+<li>using a <code>SELECT</code> statement as rvlaue of the assignment</li>
+</ul>
 <p>Example with <code>INTO</code>:</p>
 <pre><code class="language-PostgreSQL">SELECT name INTO customer_name FROM customers WHERE id = 1
 </code></pre>
@@ -877,13 +884,17 @@ RETURN;
 </code></pre>
 <p>Note that for these constructs, the return type needs to be a <code>table</code> or <code>setof</code> type. The <code>RETURN QUERY</code> cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead. </p>
 <h2 id="deciding-the-language">Deciding the language<a class="headerlink" href="#deciding-the-language" title="Permanent link">&para;</a></h2>
-<p>For simple statements, we can use the SQL language. We need the PL/pgSQL if:
-- we need to use variables or control statements specific to PL/pgSQL
-- we need to use temporary tables, as the SQL language fails to recognize them if they are created inside the function/procedure</p>
+<p>For simple statements, we can use the SQL language. We need the PL/pgSQL if:</p>
+<ul>
+<li>we need to use variables or control statements specific to PL/pgSQL</li>
+<li>we need to use temporary tables, as the SQL language fails to recognize them if they are created inside the function/procedure</li>
+</ul>
 <h2 id="conditional-filters-based-on-the-value-of-a-variable-or-input-parameter">Conditional filters based on the value of a variable or input parameter<a class="headerlink" href="#conditional-filters-based-on-the-value-of-a-variable-or-input-parameter" title="Permanent link">&para;</a></h2>
-<p>To add some filter to the <code>WHERE</code> or <code>ON</code> clause of a query based on the value of a variable or input parameter, we can use the following technique:
-1. set the variable or input parameter to <code>NULL</code> if we do not want to apply the filter
-2. in the filter test for disjunction of NULL or the filter condition</p>
+<p>To add some filter to the <code>WHERE</code> or <code>ON</code> clause of a query based on the value of a variable or input parameter, we can use the following technique:</p>
+<ol>
+<li>set the variable or input parameter to <code>NULL</code> if we do not want to apply the filter</li>
+<li>in the filter test for disjunction of NULL or the filter condition</li>
+</ol>
 <p>Example:</p>
 <pre><code class="language-SQL">SELECT ... FROM ... 
 WHERE param IS NULL OR some_column = param
@@ -911,12 +922,16 @@ $$
 <p>We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an <a href="https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column">SO answer</a>.</p>
 <h1 id="postgis">PostGis<a class="headerlink" href="#postgis" title="Permanent link">&para;</a></h1>
 <p>PolsGIS is an extension for PostgreSQL that adds support for spatial data. </p>
-<p>To enable the extension, we need to:
-1. install the extension
-    - e.g., using the bundeled stack builder application
-1. enable the extension in the database
+<p>To enable the extension, we need to:</p>
+<ol>
+<li>install the extension<ul>
+<li>e.g., using the bundeled stack builder application</li>
+</ul>
+</li>
+<li>enable the extension in the database
     <code>SQL
-    CREATE EXTENSION postgis;</code></p>
+    CREATE EXTENSION postgis;</code></li>
+</ol>
 <h2 id="geometry-columns">Geometry columns<a class="headerlink" href="#geometry-columns" title="Permanent link">&para;</a></h2>
 <p>Postgis features can be utilized with geometry and geography column types. To add a new geometry column:</p>
 <pre><code class="language-SQL">ADD COLUMN &lt;COLUUMN NAME&gt; geometry(&lt;GEOMETRY TYPE&gt;, &lt;SRID&gt;)
@@ -929,16 +944,20 @@ $$
   USING GIST (geom);
 </code></pre>
 <h2 id="converting-between-geometry-types">Converting between geometry types<a class="headerlink" href="#converting-between-geometry-types" title="Permanent link">&para;</a></h2>
-<p>There are dedicated functions whcich we can use to convert between geometry types:
-- <code>ST_Multi</code>: converts geometries to their multi-variant, e.g., <code>LineString</code> to <code>MultiLineString</code>.</p>
+<p>There are dedicated functions whcich we can use to convert between geometry types:</p>
+<ul>
+<li><code>ST_Multi</code>: converts geometries to their multi-variant, e.g., <code>LineString</code> to <code>MultiLineString</code>.</li>
+</ul>
 <h2 id="compute-area-surrounding-geometries">Compute area surrounding geometries<a class="headerlink" href="#compute-area-surrounding-geometries" title="Permanent link">&para;</a></h2>
 <p>If we are ok with a convex envelope of the geometries, we can simply use the <a href="https://postgis.net/docs/ST_ConvexHull.html"><code>St_ConvexHull</code></a> functon. Howeever, if we need the exact shape, We have to use the <a href="https://postgis.net/docs/ST_ConcaveHull.html"><code>St_ConcaveHull</code></a> function which computes the concave hull of a geometry.</p>
 <p>The <code>St_ConcaveHull</code> function takes an additional parameter <code>param_pctconvex</code> which determines how <em>concave</em> is the result: 0 means strictly concave, while 1 means convex hull. Note that while lowere values leads to more acurate results, the computation is much slower. There is also another parameter <code>param_allow_holes</code> which determines whether holes in the object are permited (default false).</p>
 <h2 id="split-area-to-polygons-based-on-points">Split area to polygons based on points<a class="headerlink" href="#split-area-to-polygons-based-on-points" title="Permanent link">&para;</a></h2>
-<p>The split of spece into polygons based on a set of points is called <em>Voronoi diagram</em>. In PostGIS, we have a [<code>ST_Voronoi_Polygons](https://postgis.net/docs/ST_VoronoiPolygons.html) for that. To obtain a set of polygons from a set of points, it is necessary to
-1. Aggregate the rows (</code>ST_Collect<code>)
-2. Compute the polygon geometry (</code>ST_Voronoi_Polygons<code>)
-3. Disaggregate the geometry into individual polygons (</code>ST_Dump`)</p>
+<p>The split of spece into polygons based on a set of points is called <em>Voronoi diagram</em>. In PostGIS, we have a <a href="https://postgis.net/docs/ST_VoronoiPolygons.html">`ST_Voronoi_Polygons</a> for that. To obtain a set of polygons from a set of points, it is necessary to</p>
+<ol>
+<li>Aggregate the rows (<code>ST_Collect</code>)</li>
+<li>Compute the polygon geometry (<code>ST_Voronoi_Polygons</code>)</li>
+<li>Disaggregate the geometry into individual polygons (<code>ST_Dump</code>)</li>
+</ol>
 <p>Also, there is an important aspect of how far the polygons will reach outside of the points. By default, it enlarge the area determined by the points by about 50%. If we need a larger area, we can use the <code>extend_to</code> parameter. If we need a smaller area, however, we need to compute the intersection with this smaller area afterwards manually.</p>
 <p>Full example:</p>
 <pre><code class="language-SQL">SELECT st_intersection(
@@ -964,22 +983,28 @@ $$
 <li><a href="https://postgis.net/docs/ST_Area.html"><code>ST_Area</code></a>: computes the area of a geometry. The units of the result are the same as the units of the <code>SRID</code> of the geometry (use UTM coordinate system for getting the area in square meters).</li>
 </ul>
 <h1 id="pgrouting">PgRouting<a class="headerlink" href="#pgrouting" title="Permanent link">&para;</a></h1>
-<p><a href="https://pgrouting.org/">PgRouting</a> is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
-- finding the strongly connected components: <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0">`pgr_strongComponents</a>
-- graph contraction/simplification</p>
+<p><a href="https://pgrouting.org/">PgRouting</a> is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:</p>
+<ul>
+<li>finding the strongly connected components: <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0">`pgr_strongComponents</a></li>
+<li>graph contraction/simplification</li>
+</ul>
 <h2 id="finding-strongly-connected-components">Finding strongly connected components<a class="headerlink" href="#finding-strongly-connected-components" title="Permanent link">&para;</a></h2>
-<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a> finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:
-- <code>id</code>, 
-- <code>source</code>,
-- <code>target</code>, 
-- <code>cost</code>,
-- <code>reverse_cost</code>.</p>
+<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a> finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:</p>
+<ul>
+<li><code>id</code>, </li>
+<li><code>source</code>,</li>
+<li><code>target</code>, </li>
+<li><code>cost</code>,</li>
+<li><code>reverse_cost</code>.</li>
+</ul>
 <p>The first three parameters are obvious. The cost parameter does not have any effect. <strong>You should provide a negative <code>reverse_cost</code>, othervise, the edge will be considered as bidirectional!</strong></p>
 <h1 id="plpgsql">PL/pgSQL<a class="headerlink" href="#plpgsql" title="Permanent link">&para;</a></h1>
-<p><a href="https://www.postgresql.org/docs/current/plpgsql.html">PL/pgSQL</a> is a procedural language available in PostgreSQL databases. It can be used inside:
-- functions
-- procedures
-- <code>DO</code> command</p>
+<p><a href="https://www.postgresql.org/docs/current/plpgsql.html">PL/pgSQL</a> is a procedural language available in PostgreSQL databases. It can be used inside:</p>
+<ul>
+<li>functions</li>
+<li>procedures</li>
+<li><code>DO</code> command</li>
+</ul>
 <h2 id="branching">Branching<a class="headerlink" href="#branching" title="Permanent link">&para;</a></h2>
 <p>PL/pgSQL has the following branching:</p>
 <pre><code class="language-SQL">IF &lt;condition&gt; THEN
@@ -1021,25 +1046,31 @@ END IF
 <p>Do not forget to quote the command. Also, note that certain SQL commands, such as <code>CREATE DATABASE</code> requires its own session. To combine them with other SQL commands, you can use multiple <code>-c</code> parameters:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;CREATE DATABASE &lt;db name&gt;&quot; -c &quot;&lt;other command&gt;&quot;
 </code></pre>
-<p>Other useful parameters:
-- <code>-X</code>: do not read the <code>~/.psqlrc</code> file. This is useful when debuging the <code>psql</code> commands or running scripts, as it disables any customizations.
-- <code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.
-- <code>-p</code><port number>: specify the port number.  (default is 5432)</p>
+<p>Other useful parameters:</p>
+<ul>
+<li><code>-X</code>: do not read the <code>~/.psqlrc</code> file. This is useful when debuging the <code>psql</code> commands or running scripts, as it disables any customizations.</li>
+<li><code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.</li>
+<li><code>-p</code><port number>: specify the port number.  (default is 5432)</li>
+</ul>
 <h2 id="meta-commands">meta-commands<a class="headerlink" href="#meta-commands" title="Permanent link">&para;</a></h2>
 <p>The <code>psql</code> has its own set of commands, called <em>meta-commands</em>. These commands start with a backslash (<code>\</code>) and can be used inside SQL queries (either interactively, or in the -c argument). Example:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\l+&quot;
 </code></pre>
 <p>The above command lists all databases, including additional information.</p>
-<p>Note that the <strong>meta-commands cannot be combined with SQL queries passed to the <code>-c</code> parameter</strong>. As <code>-c</code> argument, we can use either:
-- a plain SQL query without any meta-commands
-- a single meta-command without any SQL query (like the example above)</p>
+<p>Note that the <strong>meta-commands cannot be combined with SQL queries passed to the <code>-c</code> parameter</strong>. As <code>-c</code> argument, we can use either:</p>
+<ul>
+<li>a plain SQL query without any meta-commands</li>
+<li>a single meta-command without any SQL query (like the example above)</li>
+</ul>
 <p><em>(In</em> <code>\copy public.nodes FROM nodes.csv CSV HEADER</code><em>, the string after <code>\copy</code> is a list of arguments, not an SQL query)</em></p>
-<p>When we want to combine a meta-command with an SQL query, we need to use some of the workarounds:
-- use the <code>psql</code> interactive mode
-- use the <code>psql</code> <code>--file</code> parameter to execute a script from a file
-- pipe the commands to <code>psql</code> using <code>echo</code>:
+<p>When we want to combine a meta-command with an SQL query, we need to use some of the workarounds:</p>
+<ul>
+<li>use the <code>psql</code> interactive mode</li>
+<li>use the <code>psql</code> <code>--file</code> parameter to execute a script from a file</li>
+<li>pipe the commands to <code>psql</code> using <code>echo</code>:
     <code>bash
-    echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata</code></p>
+    echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata</code></li>
+</ul>
 <h1 id="importing-data">Importing data<a class="headerlink" href="#importing-data" title="Permanent link">&para;</a></h1>
 <p>A simple SQL data (database dump) can be imported using the <code>psql</code> command:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -f &lt;file name&gt;
@@ -1051,58 +1082,86 @@ END IF
 &lt;command&gt; | psql -d &lt;db name&gt;
 </code></pre>
 <h2 id="importing-compressed-sql-dump">Importing compressed SQL dump<a class="headerlink" href="#importing-compressed-sql-dump" title="Permanent link">&para;</a></h2>
-<p>To import a compressed SQL dump we need to know how the dump was compressed. 
-- If it was compressed using the <code>pg_dump</code> with the <code>-Z</code> parameter, we use a <code>pg_restore</code> command:
+<p>To import a compressed SQL dump we need to know how the dump was compressed. </p>
+<ul>
+<li>
+<p>If it was compressed using the <code>pg_dump</code> with the <code>-Z</code> parameter, we use a <code>pg_restore</code> command:
     <code>bash
-    pg_restore -d &lt;db name&gt; &lt;file name&gt;</code>
-- If it was compressed using a compression tool, we need to pipe the output to the decompression tool and then to <code>psql</code>:
+    pg_restore -d &lt;db name&gt; &lt;file name&gt;</code></p>
+</li>
+<li>
+<p>If it was compressed using a compression tool, we need to pipe the output to the decompression tool and then to <code>psql</code>:
     <code>bash
     &lt;decompression tool&gt; &lt; &lt;file name&gt; | psql -d &lt;db name&gt;</code></p>
+</li>
+</ul>
 <h2 id="importing-data-from-csv">Importing data from csv<a class="headerlink" href="#importing-data-from-csv" title="Permanent link">&para;</a></h2>
 <p>The easiest way to import data from csv is to use the <code>psql</code> <code>\copy</code> meta-command:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\copy &lt;table name&gt; FROM &lt;file name&gt; CSV HEADER&quot;
 </code></pre>
-<p>The syntax of this command and its parameters is almost identical to the <a href="https://www.postgresql.org/docs/current/sql-copy.html"><code>COPY</code></a> command. Important parameters:
-- <code>CSV</code>: the file is in CSV format
-- <code>HEADER</code>: the first line of the file contains column names</p>
+<p>The syntax of this command and its parameters is almost identical to the <a href="https://www.postgresql.org/docs/current/sql-copy.html"><code>COPY</code></a> command. Important parameters:</p>
+<ul>
+<li><code>CSV</code>: the file is in CSV format</li>
+<li><code>HEADER</code>: the first line of the file contains column names</li>
+</ul>
 <p>Except simplicity, the <code>\copy</code> command has another advantage over the <code>COPY</code> command: it has the same access rights as the user that is currently logged in. The <code>COPY</code> command, on the other hand, has the access rights of the user that started the database server. </p>
 <p>The <code>COPY</code> command, however, has an advantage over the <code>\copy</code> command when we access a remote database. In that case, the <code>\copy</code> command would first download the whole file to the client and then upload it to the server. The <code>COPY</code> command, on the other hand, can be executed directly on the server, so the data are not downloaded to the client.</p>
 <h3 id="importing-data-from-csv-with-columns-than-are-not-in-the-db-table">Importing data from csv with columns than are not in the db table<a class="headerlink" href="#importing-data-from-csv-with-columns-than-are-not-in-the-db-table" title="Permanent link">&para;</a></h3>
-<p>The <code>COPY</code> (and <code>\copy</code>) command can be used to copy the input into a database table even if it contains only a subset of database table columns. However, it does not work the other way, i.e, all input columns have to be used. If only a subset of input columns needs to be used, or some of the input columns requires processing, we need to use some workaround. The prefered mathod depends on the characte of the data: 
-- data do not match the table, but they are small: 
-    1. load the data with pandas
-    2. process the data as needed
-    3. use <code>pandas.to_sql</code> to upload the data
-- data do not match the table and they are large:
-    1. preprocess the data with batch commands
-    2. use <code>COPY</code> (or <code>\copy</code>) to upload the data
-- data do not match the table and they are large <em>and dirty</em>: use the <a href="https://www.postgresql.org/docs/current/file-fdw.html"><code>file_fdw</code></a> module:     <br />
-    1. create a table for SQL mapping with tolerant column types (e.g., text for problematic columns)
-    2. select from the mapping to the real table</p>
+<p>The <code>COPY</code> (and <code>\copy</code>) command can be used to copy the input into a database table even if it contains only a subset of database table columns. However, it does not work the other way, i.e, all input columns have to be used. If only a subset of input columns needs to be used, or some of the input columns requires processing, we need to use some workaround. The prefered mathod depends on the characte of the data: </p>
+<ul>
+<li>data do not match the table, but they are small: <ol>
+<li>load the data with pandas</li>
+<li>process the data as needed</li>
+<li>use <code>pandas.to_sql</code> to upload the data</li>
+</ol>
+</li>
+<li>data do not match the table and they are large:<ol>
+<li>preprocess the data with batch commands</li>
+<li>use <code>COPY</code> (or <code>\copy</code>) to upload the data</li>
+</ol>
+</li>
+<li>data do not match the table and they are large <em>and dirty</em>: use the <a href="https://www.postgresql.org/docs/current/file-fdw.html"><code>file_fdw</code></a> module:       <ol>
+<li>create a table for SQL mapping with tolerant column types (e.g., text for problematic columns)</li>
+<li>select from the mapping to the real table</li>
+</ol>
+</li>
+</ul>
 <h2 id="importing-data-from-a-shapefile">Importing data from a shapefile<a class="headerlink" href="#importing-data-from-a-shapefile" title="Permanent link">&para;</a></h2>
-<p>There are multiple options:
-- <code>shp2psql</code>: simple tool that creates sql from a shapefile
-    - easy start, almost no configuration
-    - always imports all data from shapefile, cannot be configured to skip columns
-    - included in the Postgres instalation
-- <code>ogr2ogr</code>
-    - needs to be installed, part of GDAL
-- <code>QGIS</code>
-    - The db manger can be used to export data from <code>QGIS</code>
-    - data can be viewed before import
-    - only suitable for creating new table, not for appending to an existing one</p>
+<p>There are multiple options:</p>
+<ul>
+<li><code>shp2psql</code>: simple tool that creates sql from a shapefile<ul>
+<li>easy start, almost no configuration</li>
+<li>always imports all data from shapefile, cannot be configured to skip columns</li>
+<li>included in the Postgres instalation</li>
+</ul>
+</li>
+<li><code>ogr2ogr</code><ul>
+<li>needs to be installed, part of GDAL</li>
+</ul>
+</li>
+<li><code>QGIS</code><ul>
+<li>The db manger can be used to export data from <code>QGIS</code></li>
+<li>data can be viewed before import</li>
+<li>only suitable for creating new table, not for appending to an existing one</li>
+</ul>
+</li>
+</ul>
 <h2 id="importing-data-from-geojson">Importing data from GeoJSON<a class="headerlink" href="#importing-data-from-geojson" title="Permanent link">&para;</a></h2>
-<p>For a single geometry stored in a GeoJSON file, the function <a href="http://postgis.net/docs/ST_GeomFromGeoJSON.html"><code>ST_GeomFromGeoJSON</code></a> can be used.
-- just copy the geometry part of the file
-- change the geometry type to match the type in db
-- don't forget to surround the object with curly brackets</p>
+<p>For a single geometry stored in a GeoJSON file, the function <a href="http://postgis.net/docs/ST_GeomFromGeoJSON.html"><code>ST_GeomFromGeoJSON</code></a> can be used.</p>
+<ul>
+<li>just copy the geometry part of the file</li>
+<li>change the geometry type to match the type in db</li>
+<li>don't forget to surround the object with curly brackets</li>
+</ul>
 <p>For the whole document, the <code>ogr2ogr</code> tool can be used.</p>
 <h1 id="exporting-data">Exporting data<a class="headerlink" href="#exporting-data" title="Permanent link">&para;</a></h1>
 <p>The data can be exported to SQL using the <code>pg_dump</code> command. The simplest usage is:</p>
 <pre><code class="language-bash">pg_dump -f &lt;output file name&gt; &lt;db name&gt;
 </code></pre>
-<p>Important parameters:
-- <code>-s</code>: export only the schema, not the data</p>
+<p>Important parameters:</p>
+<ul>
+<li><code>-s</code>: export only the schema, not the data</li>
+</ul>
 <p>If we need to further process the data, we can use the stdout as an output simply by omitting the <code>-f</code> parameter:</p>
 <pre><code class="language-bash">pg_dump &lt;db name&gt; | &lt;command&gt;
 </code></pre>
@@ -1111,17 +1170,23 @@ END IF
 <pre><code class="language-bash">pg_dumpall -f &lt;output file name&gt;
 </code></pre>
 <h2 id="compressing-the-sql-dump">Compressing the SQL dump<a class="headerlink" href="#compressing-the-sql-dump" title="Permanent link">&para;</a></h2>
-<p>To compress the SQL dump, we have two options:
-- use the <code>pg_dump</code> command with the <code>-Z</code> parameter, e.g., <code>pg_dump &lt;db name&gt; -Z1 -f &lt;output file name&gt;</code> or
-- pipe the output to a compression tool, e.g., <code>pg_dump &lt;db name&gt; | gzip &gt; &lt;output file name&gt;</code></p>
+<p>To compress the SQL dump, we have two options:</p>
+<ul>
+<li>use the <code>pg_dump</code> command with the <code>-Z</code> parameter, e.g., <code>pg_dump &lt;db name&gt; -Z1 -f &lt;output file name&gt;</code> or</li>
+<li>pipe the output to a compression tool, e.g., <code>pg_dump &lt;db name&gt; | gzip &gt; &lt;output file name&gt;</code></li>
+</ul>
 <h2 id="exporting-data-to-csv">Exporting data to csv<a class="headerlink" href="#exporting-data-to-csv" title="Permanent link">&para;</a></h2>
-<p>When exporting large data sets, it is not wise to export them as an SQL dump. To export data to csv, we can use either:
-- <code>psql</code> <code>\copy</code> command
-- <code>COPY</code> command in SQL</p>
+<p>When exporting large data sets, it is not wise to export them as an SQL dump. To export data to csv, we can use either:</p>
+<ul>
+<li><code>psql</code> <code>\copy</code> command</li>
+<li><code>COPY</code> command in SQL</li>
+</ul>
 <p>The simplest way is to use the <code>\copy</code> command. However, it may be slow if we call psql from a client and we want to export the data to a file on the server, because the data are first sent to the client and then back to the server. </p>
-<p>The <code>COPY</code> command is the fastest way to export data to the server. However, by default, it can be tricky to use, as the sql server needs to have write access to the file. To overcome this problem, we can use the following workaround:
-1. choose <code>STDOUT</code> as an output for the <code>COPY</code> command
-2. at the end of the command, add <code>\g &lt;file name&gt;</code> to redirect the output to a file.</p>
+<p>The <code>COPY</code> command is the fastest way to export data to the server. However, by default, it can be tricky to use, as the sql server needs to have write access to the file. To overcome this problem, we can use the following workaround:</p>
+<ol>
+<li>choose <code>STDOUT</code> as an output for the <code>COPY</code> command</li>
+<li>at the end of the command, add <code>\g &lt;file name&gt;</code> to redirect the output to a file.</li>
+</ol>
 <p>Example:</p>
 <pre><code class="language-bash">echo &quot;COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'&quot; | psql -d opendata
 </code></pre>
@@ -1149,15 +1214,21 @@ END IF
 <h1 id="managing-the-database-clusters">Managing the database clusters<a class="headerlink" href="#managing-the-database-clusters" title="Permanent link">&para;</a></h1>
 <p>As a first step, it is always good to know which clusters are installed and running. To show this information, use the <code>pg_lsclusters</code> command.</p>
 <h2 id="starting-stopping-and-restarting-the-cluster">Starting, stopping, and restarting the cluster<a class="headerlink" href="#starting-stopping-and-restarting-the-cluster" title="Permanent link">&para;</a></h2>
-<p>Sometimes it is needed to restart the cluster. There are two commands:
-- <code>pg_ctl restart</code>: restarts the cluster
-- <code>pg_ctl reload</code>: reloads the configuration of the cluster</p>
-<p>Always check which one is needed in each case. For both commands, the path to the <code>data</code> directory of the cluster is needed. We can specify it in two ways:
-- using the <code>-D</code> parameter of the <code>pg_ctl</code> command
-- setting the <code>PGDATA</code> environment variable</p>
+<p>Sometimes it is needed to restart the cluster. There are two commands:</p>
+<ul>
+<li><code>pg_ctl restart</code>: restarts the cluster</li>
+<li><code>pg_ctl reload</code>: reloads the configuration of the cluster</li>
+</ul>
+<p>Always check which one is needed in each case. For both commands, the path to the <code>data</code> directory of the cluster is needed. We can specify it in two ways:</p>
+<ul>
+<li>using the <code>-D</code> parameter of the <code>pg_ctl</code> command</li>
+<li>setting the <code>PGDATA</code> environment variable</li>
+</ul>
 <h2 id="creating-new-user">Creating new user<a class="headerlink" href="#creating-new-user" title="Permanent link">&para;</a></h2>
-<p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:
-- <code>-P</code> or <code>--pwprompt</code>: prompt for password. If not used, the user will be created without a password.</p>
+<p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:</p>
+<ul>
+<li><code>-P</code> or <code>--pwprompt</code>: prompt for password. If not used, the user will be created without a password.</li>
+</ul>
 <h2 id="deleting-database">Deleting database<a class="headerlink" href="#deleting-database" title="Permanent link">&para;</a></h2>
 <p>To delete a database, we can use the <a href="https://www.postgresql.org/docs/current/app-dropdb.html"><code>dropdb</code></a> command: <code>dropdb &lt;db name&gt;</code></p>
 <h2 id="granting-privileges">Granting privileges<a class="headerlink" href="#granting-privileges" title="Permanent link">&para;</a></h2>
@@ -1171,26 +1242,36 @@ END IF
 <h2 id="upgrading-the-database-cluster">Upgrading the database cluster<a class="headerlink" href="#upgrading-the-database-cluster" title="Permanent link">&para;</a></h2>
 <p>With PostgreSQL version 9.3 and later, we can upgrade easily even between major versions using the <a href="https://www.postgresql.org/docs/current/pgupgrade.html"><code>pg_upgrade</code></a> command. We can even skip versions, e.g., upgrade from 12 to 16. </p>
 <p>The process is described in the pg_upgrade manual, however, usually, most of the steps are not necessary as they apply only to very specific cases. On top of that, some aspects important for the upgrade are not mentioned in the manual.</p>
-<p>The steps for a typical ubuntu/debian installation are:
-1. stop the new cluster using <code>systemctl stop postgresql@&lt;version&gt;-main</code>
-2. run the <code>pg_upgrade</code> command with <code>--check</code> to check the compatibility
-3. stop the old cluster using <code>systemctl stop postgresql</code>
-4. run the <code>pg_upgrade</code> command without <code>--check</code> to perform the upgrade
-5. apply all actions recommended by the <code>pg_upgrade</code> output
-1. change the <code>port</code> in the <code>/etc/postgresql/&lt;version&gt;/main/postgresql.conf</code> file of the new cluster to the original port (usually 5432)
-6. start the new cluster using <code>systemctl start postgresql@&lt;version&gt;-main</code> an check if the connection works</p>
+<p>The steps for a typical ubuntu/debian installation are:</p>
+<ol>
+<li>stop the new cluster using <code>systemctl stop postgresql@&lt;version&gt;-main</code></li>
+<li>run the <code>pg_upgrade</code> command with <code>--check</code> to check the compatibility</li>
+<li>stop the old cluster using <code>systemctl stop postgresql</code></li>
+<li>run the <code>pg_upgrade</code> command without <code>--check</code> to perform the upgrade</li>
+<li>apply all actions recommended by the <code>pg_upgrade</code> output</li>
+<li>change the <code>port</code> in the <code>/etc/postgresql/&lt;version&gt;/main/postgresql.conf</code> file of the new cluster to the original port (usually 5432)</li>
+<li>start the new cluster using <code>systemctl start postgresql@&lt;version&gt;-main</code> an check if the connection works</li>
+</ol>
 <p>The standard <code>pg_upgrade</code> command looks like this:</p>
 <pre><code class="language-bash">sudo -u postgres pg_upgrade --link -j &lt;number of cores&gt; -b &lt;old bin dir&gt; -d &lt;old data dir&gt; -D &lt;new data dir&gt; -o 'config_file=&lt;old conf file&gt;' -O 'config_file=&lt;new conf file&gt;'
 </code></pre>
-<p>Description:
-- <code>--link</code>: links the old data directory to the new one instead of copying the data. Fastest migration method.
-- <code>&lt;old bin dir&gt;</code>: The <code>bin</code> directory of the old cluster.
-    - usually <code>/usr/lib/postgresql/&lt;old version&gt;/bin</code>
-- <code>&lt;old/new data dir&gt;</code>: The <code>data</code> directory of the cluster.
-    - usually <code>/var/lib/postgresql/&lt;old/new version&gt;/main</code>.
-    - Can be found using <code>pg_lsclusters</code>
-- <code>&lt;old/new conf file&gt;</code>: The path to the <code>postgresql.conf</code> file.
-    - usually <code>/etc/postgresql/&lt;old/new version&gt;/main/postgresql.conf</code></p>
+<p>Description:</p>
+<ul>
+<li><code>--link</code>: links the old data directory to the new one instead of copying the data. Fastest migration method.</li>
+<li><code>&lt;old bin dir&gt;</code>: The <code>bin</code> directory of the old cluster.<ul>
+<li>usually <code>/usr/lib/postgresql/&lt;old version&gt;/bin</code></li>
+</ul>
+</li>
+<li><code>&lt;old/new data dir&gt;</code>: The <code>data</code> directory of the cluster.<ul>
+<li>usually <code>/var/lib/postgresql/&lt;old/new version&gt;/main</code>.</li>
+<li>Can be found using <code>pg_lsclusters</code></li>
+</ul>
+</li>
+<li><code>&lt;old/new conf file&gt;</code>: The path to the <code>postgresql.conf</code> file.<ul>
+<li>usually <code>/etc/postgresql/&lt;old/new version&gt;/main/postgresql.conf</code></li>
+</ul>
+</li>
+</ul>
 <h2 id="upgrading-extensions">Upgrading extensions<a class="headerlink" href="#upgrading-extensions" title="Permanent link">&para;</a></h2>
 <p>Some PostgreSQL extensions uses separate libraries. These are installed fro each version of the PostgreSQL server separately. If a library is not foun on the new cluster, it is detected by the <code>pg_upgrade</code> command automaticly. In that case, you have to install the library according to the instructions of the library provider.</p>
 <h2 id="managing-access-to-the-database">Managing access to the database<a class="headerlink" href="#managing-access-to-the-database" title="Permanent link">&para;</a></h2>
@@ -1200,28 +1281,38 @@ END IF
 </code></pre>
 <p><a href="https://www.postgresql.org/docs/current/auth-pg-hba-conf.html">Documentation</a></p>
 <h3 id="lost-password-to-the-postgres-server">Lost Password to the Postgres Server<a class="headerlink" href="#lost-password-to-the-postgres-server" title="Permanent link">&para;</a></h3>
-<p>The password for the db superuser is stored in db <code>postgres</code>. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
-1. find the <code>pg_hba.conf file</code> 
-    - usually located in <code>C:\Program Files\PostgreSQL\13\data</code>
-2. backup the file and replace all occurances of <code>scram-sha-256</code> in the file with <code>trust</code>
-3. restart the posgreSQL service
-    - in the Windows service management, there should be a service for postgresql running
-4. change the password for the superuser
-    1. <code>psql -U postgres</code>
-    2.  <code>ALTER USER postgres WITH password 'yourpassword';</code> (do not forget the semicolon at the end!)
-5. restore the <code>pg_hba.conf</code> file from backup
-6. restart the postgreSQL service again
-7. test if the new password works</p>
+<p>The password for the db superuser is stored in db <code>postgres</code>. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:</p>
+<ol>
+<li>find the <code>pg_hba.conf file</code> <ul>
+<li>usually located in <code>C:\Program Files\PostgreSQL\13\data</code></li>
+</ul>
+</li>
+<li>backup the file and replace all occurances of <code>scram-sha-256</code> in the file with <code>trust</code></li>
+<li>restart the posgreSQL service<ul>
+<li>in the Windows service management, there should be a service for postgresql running</li>
+</ul>
+</li>
+<li>change the password for the superuser<ol>
+<li><code>psql -U postgres</code></li>
+<li><code>ALTER USER postgres WITH password 'yourpassword';</code> (do not forget the semicolon at the end!)</li>
+</ol>
+</li>
+<li>restore the <code>pg_hba.conf</code> file from backup</li>
+<li>restart the postgreSQL service again</li>
+<li>test if the new password works</li>
+</ol>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>The configuration of the PostgreSQL server is stored in the <code>&lt;postgres data dir&gt;/postgresql.conf</code> file. </p>
 <h3 id="logging_1">Logging<a class="headerlink" href="#logging_1" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">Documentation</a></p>
 <p>The logs are stored in the <code>&lt;postgres data dir&gt;/log</code> directory. </p>
-<p>By default, only errors are logged. To logg statements, we need to change the <code>log_statement</code> parameter. Valid values are:
-- <code>none</code>: no statements are logged
-- <code>ddl</code>: only DDL statements are logged
-- <code>mod</code>: only statements that modify the database are logged
-- <code>all</code>: all statements are logged</p>
+<p>By default, only errors are logged. To logg statements, we need to change the <code>log_statement</code> parameter. Valid values are:</p>
+<ul>
+<li><code>none</code>: no statements are logged</li>
+<li><code>ddl</code>: only DDL statements are logged</li>
+<li><code>mod</code>: only statements that modify the database are logged</li>
+<li><code>all</code>: all statements are logged</li>
+</ul>
 <h2 id="garbage-collection-and-optimization">Garbage collection and optimization<a class="headerlink" href="#garbage-collection-and-optimization" title="Permanent link">&para;</a></h2>
 <p>There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb`</a> command.  </p>
 <h1 id="datagrip">DataGrip<a class="headerlink" href="#datagrip" title="Permanent link">&para;</a></h1>
@@ -1243,27 +1334,35 @@ END IF
 <p>Drag the table in the database explorer and drop it to the location you want it to copy to.</p>
 <h2 id="known-issues-and-workarounds">Known issues and workarounds<a class="headerlink" href="#known-issues-and-workarounds" title="Permanent link">&para;</a></h2>
 <h3 id="datagrip-displays-objects-that-were-deleted">DataGrip displays objects that were deleted<a class="headerlink" href="#datagrip-displays-objects-that-were-deleted" title="Permanent link">&para;</a></h3>
-<p>Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
-1. right-click on database connection (root object in the database explorer)
-1. click on <code>Diagnostics</code> -&gt; <code>Force refresh</code></p>
+<p>Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:</p>
+<ol>
+<li>right-click on database connection (root object in the database explorer)</li>
+<li>click on <code>Diagnostics</code> -&gt; <code>Force refresh</code></li>
+</ol>
 <h1 id="navicat">Navicat<a class="headerlink" href="#navicat" title="Permanent link">&para;</a></h1>
 <h2 id="cannot-connect-to-db">Cannot connect to db<a class="headerlink" href="#cannot-connect-to-db" title="Permanent link">&para;</a></h2>
-<p>Symptoms:
-- cant connect to db server: <code>Could not connect</code>
-- after editing the connection and trying to save it (ok button): <code>connection is being used</code></p>
-<p>Try:
-1. close navicat
-2. open navicat, edit connection
-1. click test connection
-1. click ok, and start the connection by double click</p>
+<p>Symptoms:</p>
+<ul>
+<li>cant connect to db server: <code>Could not connect</code></li>
+<li>after editing the connection and trying to save it (ok button): <code>connection is being used</code></li>
+</ul>
+<p>Try:</p>
+<ol>
+<li>close navicat</li>
+<li>open navicat, edit connection</li>
+<li>click test connection</li>
+<li>click ok, and start the connection by double click</li>
+</ol>
 <h1 id="pgadmin">PgAdmin<a class="headerlink" href="#pgadmin" title="Permanent link">&para;</a></h1>
 <p>The best way to install the PgAdmin is to use the <a href="https://www.postgresql.org/download/windows/">EDB PostgreSQL installer</a> and uncheck the database installation during the installation configuration. This way, we also install useful tools like <code>psql</code></p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <p>To create diagram from an existing database: right click on the database -&gt; <code>Generate ERD</code></p>
 <h1 id="kill-a-hanging-query">Kill a hanging query<a class="headerlink" href="#kill-a-hanging-query" title="Permanent link">&para;</a></h1>
-<p>To kill a hanging query, we need to complete two steps:
-1. identify the query PID
-1. kill the query</p>
+<p>To kill a hanging query, we need to complete two steps:</p>
+<ol>
+<li>identify the query PID</li>
+<li>kill the query</li>
+</ol>
 <p>To identify the PID of the problematic query, we can use tool such as <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
 <pre><code class="language-bash">sudo -u postgres pg_activity -U postgres
 </code></pre>
@@ -1287,12 +1386,14 @@ END IF
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

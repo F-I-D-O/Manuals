@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -738,8 +739,10 @@
 <h2 id="show-path-to-executable">Show path to executable<a class="headerlink" href="#show-path-to-executable" title="Permanent link">&para;</a></h2>
 <p>Use the <code>which</code> command: <code>which &lt;executable&gt;</code></p>
 <h2 id="unpack-file">Unpack file<a class="headerlink" href="#unpack-file" title="Permanent link">&para;</a></h2>
-<p>Foe unpacking, you can use the <code>tar -f &lt;file&gt;</code> command. The most used options are:
-- <code>x</code>: extract</p>
+<p>Foe unpacking, you can use the <code>tar -f &lt;file&gt;</code> command. The most used options are:</p>
+<ul>
+<li><code>x</code>: extract</li>
+</ul>
 <h1 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h1>
 <p>The environment variables are introduced with the <code>export</code> command:</p>
 <pre><code class="language-bash">export &lt;variable&gt;=&lt;value&gt;
@@ -747,30 +750,40 @@
 <p>without export, the variable is just a local shell variable:</p>
 <pre><code class="language-bash">&lt;variable&gt;=&lt;value&gt; # local variable
 </code></pre>
-<p>We will demonstrate the work with environment variables on the <code>PATH</code> example. If you have a program in a custom location, adding it to <code>$PATH</code> permanently and be able to run it under all circumstances is not an easy task on linux. Standard procedure is to add a system variable: 
-1.  Create a dedicated <code>.sh</code> file in <code>/etc/profile.d.</code> for your configuration (config for each app should be stored in a separate file).
-2.  the file should contain: <code>export PATH=$PATH:YOURPATH</code>
-1. exit nano and save the file: <code>ctrl+x</code> and <code>y</code>
-3.  logout and login again to load the newly added varibales
-    - for WSL close the console and reopen it, it is not necessary to restart the WSL</p>
+<p>We will demonstrate the work with environment variables on the <code>PATH</code> example. If you have a program in a custom location, adding it to <code>$PATH</code> permanently and be able to run it under all circumstances is not an easy task on linux. Standard procedure is to add a system variable: </p>
+<ol>
+<li>Create a dedicated <code>.sh</code> file in <code>/etc/profile.d.</code> for your configuration (config for each app should be stored in a separate file).</li>
+<li>the file should contain: <code>export PATH=$PATH:YOURPATH</code></li>
+<li>exit nano and save the file: <code>ctrl+x</code> and <code>y</code></li>
+<li>logout and login again to load the newly added varibales<ul>
+<li>for WSL close the console and reopen it, it is not necessary to restart the WSL</li>
+</ul>
+</li>
+</ol>
 <p>(<a href="https://askubuntu.com/questions/866161/setting-path-variable-in-etc-environment-vs-profile">click here for detailed description</a>)</p>
 <h2 id="enable-variable-with-sudo">Enable Variable with sudo<a class="headerlink" href="#enable-variable-with-sudo" title="Permanent link">&para;</a></h2>
-<p>To enable the variable even if you use <code>sudo</code>, you need to edit sudo config using <code>sudo visudo</code> and:
-1.  exclude <code>PATH</code> from variable being reset when running <code>sudo</code>:  <code>Defaults env_keep += "PATH"</code>
-2.  disable the safe path mechanism for <code>sudo</code>, i.e., comment the line: <code>Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin</code>
-3.  logout and login again to load the new added varibales</p>
+<p>To enable the variable even if you use <code>sudo</code>, you need to edit sudo config using <code>sudo visudo</code> and:</p>
+<ol>
+<li>exclude <code>PATH</code> from variable being reset when running <code>sudo</code>:  <code>Defaults env_keep += "PATH"</code></li>
+<li>disable the safe path mechanism for <code>sudo</code>, i.e., comment the line: <code>Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin</code></li>
+<li>logout and login again to load the new added varibales</li>
+</ol>
 <h2 id="enable-the-variable-outside-bash">Enable the Variable Outside Bash<a class="headerlink" href="#enable-the-variable-outside-bash" title="Permanent link">&para;</a></h2>
 <p>If you need the variable outside bash, the above-mentioned approach wonâ€™t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for <a href="https://en.wikipedia.org/wiki/Linux_PAM">PAM shells</a>  (see <a href="https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible">this SO answer</a> why).</p>
 <p>Add the variable to <code>/etc/environment</code>. Note that it is not a script file, so you can use only simple variable assignments.</p>
 <h2 id="enable-variable-on-a-device-without-root-access">Enable Variable on a Device Without Root Access<a class="headerlink" href="#enable-variable-on-a-device-without-root-access" title="Permanent link">&para;</a></h2>
-<p>Without root access, we can only edit the user config files. put the necessary config into:
--   <code>~/.bash_profile</code> if it already exists <br />
--   or to <code>~/.profile</code></p>
+<p>Without root access, we can only edit the user config files. put the necessary config into:</p>
+<ul>
+<li><code>~/.bash_profile</code> if it already exists   </li>
+<li>or to <code>~/.profile</code></li>
+</ul>
 <p>Note that the <code>.profile</code> file is ignored when the <code>.bash_profile</code> file exists.</p>
 <h2 id="remove-windows-path-from-wsl">Remove Windows <code>$PATH</code> from WSL<a class="headerlink" href="#remove-windows-path-from-wsl" title="Permanent link">&para;</a></h2>
-<p>By default, the <code>PATH</code> environment variable from Windows is inluded in the <code>PATH</code> variable in Ubuntu running in WSL. This can lead to conflicts, when the same executables are used in both systems (e.g., vcpkg, cmake).  To turn of the Windows <code>PATH</code> inclusion:
-1. open <code>/etc/wsl.conf</code>
-1. add the fllowing code:</p>
+<p>By default, the <code>PATH</code> environment variable from Windows is inluded in the <code>PATH</code> variable in Ubuntu running in WSL. This can lead to conflicts, when the same executables are used in both systems (e.g., vcpkg, cmake).  To turn of the Windows <code>PATH</code> inclusion:</p>
+<ol>
+<li>open <code>/etc/wsl.conf</code></li>
+<li>add the fllowing code:</li>
+</ol>
 <pre><code>[interop]
 appendWindowsPath = false
 </code></pre>
@@ -779,45 +792,63 @@ appendWindowsPath = false
 </ol>
 <h1 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h1>
 <h2 id="copy-file">copy file<a class="headerlink" href="#copy-file" title="Permanent link">&para;</a></h2>
-<p>The <code>cp</code> command is used to copy files: <code>cp &lt;source&gt; &lt;destination&gt;</code>. The most used options are:
-- <code>-r</code>, <code>-R</code>: copy recursively
-- <code>-v</code>: verbose
-- <code>-f</code>: force
-- <code>-p</code>: preserve permissions and timestamps
-- <code>-a</code>: same as <code>-p -R</code> plus some other options</p>
-<p>For more sophisticated copying, use <code>rsync</code>: <code>rsync &lt;source&gt; &lt;destination&gt;</code>. The most used options are:
-- <code>-h</code>: human readable
-- <code>-a</code>: archive mode, equivalent to <code>-rlptgoD</code>
-- <code>--progress</code>: show progress</p>
+<p>The <code>cp</code> command is used to copy files: <code>cp &lt;source&gt; &lt;destination&gt;</code>. The most used options are:</p>
+<ul>
+<li><code>-r</code>, <code>-R</code>: copy recursively</li>
+<li><code>-v</code>: verbose</li>
+<li><code>-f</code>: force</li>
+<li><code>-p</code>: preserve permissions and timestamps</li>
+<li><code>-a</code>: same as <code>-p -R</code> plus some other options</li>
+</ul>
+<p>For more sophisticated copying, use <code>rsync</code>: <code>rsync &lt;source&gt; &lt;destination&gt;</code>. The most used options are:</p>
+<ul>
+<li><code>-h</code>: human readable</li>
+<li><code>-a</code>: archive mode, equivalent to <code>-rlptgoD</code></li>
+<li><code>--progress</code>: show progress</li>
+</ul>
 <h2 id="remove-file">Remove file<a class="headerlink" href="#remove-file" title="Permanent link">&para;</a></h2>
-<p>The <code>rm</code> command is used to remove files. The most used options are:
-- <code>-r</code>, <code>-R</code>: remove recursively</p>
+<p>The <code>rm</code> command is used to remove files. The most used options are:</p>
+<ul>
+<li><code>-r</code>, <code>-R</code>: remove recursively</li>
+</ul>
 <p>To remove all files in a directory, you can use</p>
 <h2 id="access-rights">Access rights<a class="headerlink" href="#access-rights" title="Permanent link">&para;</a></h2>
-<p>The Linux access rights use the same system for files and folders. The access rights are divided into three groups, from left to right:
-- owner
-- group
-- other</p>
-<p>Each group has three possible access rights:
-- <code>r</code>: read
-- <code>w</code>: write
-- <code>x</code>: execute</p>
-<p>Important aspects:
-- to access a directory, the user has to have the <code>x</code> right on the directory.
-- to access a file, the user has to have the <code>x</code> right on all folders in the path to the file.</p>
+<p>The Linux access rights use the same system for files and folders. The access rights are divided into three groups, from left to right:</p>
+<ul>
+<li>owner</li>
+<li>group</li>
+<li>other</li>
+</ul>
+<p>Each group has three possible access rights:</p>
+<ul>
+<li><code>r</code>: read</li>
+<li><code>w</code>: write</li>
+<li><code>x</code>: execute</li>
+</ul>
+<p>Important aspects:</p>
+<ul>
+<li>to access a directory, the user has to have the <code>x</code> right on the directory.</li>
+<li>to access a file, the user has to have the <code>x</code> right on all folders in the path to the file.</li>
+</ul>
 <h2 id="compute-directory-size">Compute directory size<a class="headerlink" href="#compute-directory-size" title="Permanent link">&para;</a></h2>
-<p>To compute the size of a directory, use the <code>du</code> command:<code>du &lt;path&gt;</code>. The most used options are:
-- <code>-h</code>: human readable
-- <code>-s</code>: summarize</p>
+<p>To compute the size of a directory, use the <code>du</code> command:<code>du &lt;path&gt;</code>. The most used options are:</p>
+<ul>
+<li><code>-h</code>: human readable</li>
+<li><code>-s</code>: summarize</li>
+</ul>
 <h2 id="find-files">Find files<a class="headerlink" href="#find-files" title="Permanent link">&para;</a></h2>
-<p>To find files, use the <code>find</code> command: <code>find &lt;where&gt; &lt;options&gt; &lt;params&gt;</code>. The most used options are:
-- <code>-name</code>: find by name. This option should be followed by a file name pattern.
-- <code>-path</code>: find by path. This option should be followed by a path pattern. </p>
+<p>To find files, use the <code>find</code> command: <code>find &lt;where&gt; &lt;options&gt; &lt;params&gt;</code>. The most used options are:</p>
+<ul>
+<li><code>-name</code>: find by name. This option should be followed by a file name pattern.</li>
+<li><code>-path</code>: find by path. This option should be followed by a path pattern. </li>
+</ul>
 <h1 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h1>
 <h2 id="netstat"><a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a><a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a> command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:
-- <code>-n</code>: do not translate IP and ports into human readable names
-- <code>-a</code>: show all connections. Without this, some connections can be skipped.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a> command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:</p>
+<ul>
+<li><code>-n</code>: do not translate IP and ports into human readable names</li>
+<li><code>-a</code>: show all connections. Without this, some connections can be skipped.</li>
+</ul>
 <h1 id="bash">Bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h1>
 <h2 id="general-remarks">General Remarks<a class="headerlink" href="#general-remarks" title="Permanent link">&para;</a></h2>
 <ul>
@@ -849,10 +880,12 @@ declare -r var # read only
 </code></pre>
 <p>which also prints the type and attributes of the variables.</p>
 <h3 id="operations-on-variables">Operations on variables<a class="headerlink" href="#operations-on-variables" title="Permanent link">&para;</a></h3>
-<p>There are many operations on variables, the most important are:
-- <code>${#&lt;variable&gt;}</code>: length of the variable
-- <code>${&lt;variable&gt;%%&lt;pattern&gt;}</code>: remove the longest suffix matching the pattern
-- <code>${&lt;variable&gt;##&lt;pattern&gt;}</code>: remove the longest prefix matching the pattern</p>
+<p>There are many operations on variables, the most important are:</p>
+<ul>
+<li><code>${#&lt;variable&gt;}</code>: length of the variable</li>
+<li><code>${&lt;variable&gt;%%&lt;pattern&gt;}</code>: remove the longest suffix matching the pattern</li>
+<li><code>${&lt;variable&gt;##&lt;pattern&gt;}</code>: remove the longest prefix matching the pattern</li>
+</ul>
 <h2 id="working-with-io">Working with I/O<a class="headerlink" href="#working-with-io" title="Permanent link">&para;</a></h2>
 <h3 id="output-forwarding">Output Forwarding<a class="headerlink" href="#output-forwarding" title="Permanent link">&para;</a></h3>
 <p>Output forwarding is a process of redirecting the output of a command to an input of another command. The operator for that is the pipe <code>|</code>. The syntax is:</p>
@@ -959,10 +992,12 @@ $(&lt;command&gt;)
 echo resut is: $(cut -d, -f 7)
 </code></pre>
 <h2 id="bash-script-arguments">Bash Script Arguments<a class="headerlink" href="#bash-script-arguments" title="Permanent link">&para;</a></h2>
-<p>We refer the arguments of a bash script as
-- <code>$0</code> - the name of the script
-- <code>$1..$n</code> - the arguments of the script
-- <code>$@</code> - all the arguments of the script</p>
+<p>We refer the arguments of a bash script as</p>
+<ul>
+<li><code>$0</code> - the name of the script</li>
+<li><code>$1..$n</code> - the arguments of the script</li>
+<li><code>$@</code> - all the arguments of the script</li>
+</ul>
 <p>Sometimes, it is useful to throw away processed arguments. This can be done using the <code>shift</code> command <code>shift &lt;n&gt;</code>, where <code>&lt;n&gt;</code> is the number of arguments to be thrown away (default is 1). The remaining arguments are then shifted to the left, i.e., <code>$2</code> becomes <code>$1</code> and so on. </p>
 <h2 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h2>
 <p>In general, condition in bash has the following syntax:</p>
@@ -971,27 +1006,37 @@ echo resut is: $(cut -d, -f 7)
     else &lt;command&gt;
 fi
 </code></pre>
-<p>The condition can have several formats:
-- <strong>plain command</strong>: the condition is true if the command returns 0
+<p>The condition can have several formats:</p>
+<ul>
+<li>
+<p><strong>plain command</strong>: the condition is true if the command returns 0
     <code>bash
     if grep -q "$text" $file 
         then ...
-    fi</code>
-- <strong><code>[ &lt;condition&gt; ] or test &lt;condition&gt;</code></strong>: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
+    fi</code></p>
+</li>
+<li>
+<p><strong><code>[ &lt;condition&gt; ] or test &lt;condition&gt;</code></strong>: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
     <code>bash
     if [ $var = 1 ]
     then ...
-    fi</code>
-- <strong><code>[[ &lt;condition&gt; ]]</code></strong>: The extended test construct. This is the recommended way of writing conditions, due to <a href="https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash">several practical features</a> (e.g., no need to quote variables, regex support, logical operators, etc.).
+    fi</code></p>
+</li>
+<li>
+<p><strong><code>[[ &lt;condition&gt; ]]</code></strong>: The extended test construct. This is the recommended way of writing conditions, due to <a href="https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash">several practical features</a> (e.g., no need to quote variables, regex support, logical operators, etc.).
     <code>bash
     if [[ $var = 1 ]]
     then ...
-    fi</code>
-- <strong><code>(( &lt;condition&gt; ))</code></strong>: The arithmetic test construct. This is used for arithmetic conditions.
+    fi</code></p>
+</li>
+<li>
+<p><strong><code>(( &lt;condition&gt; ))</code></strong>: The arithmetic test construct. This is used for arithmetic conditions.
     <code>bash
     if (( $var == 1 ))
     then ...
     fi</code></p>
+</li>
+</ul>
 <p>Note that if we want to use some arbitrary value (e. g. the <em>return value</em> of a command), or comparisons in the condition (similar to programming languages), we have to use one of the test constructs. </p>
 <p><strong>Mind the spaces around the braces!</strong></p>
 <h3 id="string-comparison">String comparison<a class="headerlink" href="#string-comparison" title="Permanent link">&para;</a></h3>
@@ -1067,9 +1112,11 @@ SQL)
 <p>To read from command line, we can use the <code>read</code> command. The syntax is:</p>
 <pre><code class="language-bash">read &lt;variable&gt;
 </code></pre>
-<p>where <code>&lt;variable&gt;</code> is the name of the variable to store the input. Important parameters:
-- <code>-p &lt;prompt&gt;</code>: prints the <code>&lt;prompt&gt;</code> before reading the input
-- <code>-s</code>: do not echo the input (usefull for passwords)</p>
+<p>where <code>&lt;variable&gt;</code> is the name of the variable to store the input. Important parameters:</p>
+<ul>
+<li><code>-p &lt;prompt&gt;</code>: prints the <code>&lt;prompt&gt;</code> before reading the input</li>
+<li><code>-s</code>: do not echo the input (usefull for passwords)</li>
+</ul>
 <h2 id="bash-script-header-content">Bash Script Header Content<a class="headerlink" href="#bash-script-header-content" title="Permanent link">&para;</a></h2>
 <p>Usually, here are some special lines at the beginning of the bash script.</p>
 <p>First, we can specify the interpreter to be used:</p>
@@ -1090,8 +1137,10 @@ SQL)
 <p>A password of the current user is required to run the command. Also, the user has have the right to run <code>sudo</code>.</p>
 <p>The password is usually required only once per some time period (e.g., 15 minutes). </p>
 <p>For some operations (e.g., browsing folders requiring root access), we have to run multiple commands as root. In this case, we have to switch the shell user to root. </p>
-<p>Resources:
-- <a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386">SO</a></p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386">SO</a></li>
+</ul>
 <h2 id="changing-shell-user">Changing shell user<a class="headerlink" href="#changing-shell-user" title="Permanent link">&para;</a></h2>
 <p>To change the shell user, we can use the <code>su</code> command:</p>
 <pre><code class="language-bash">su &lt;username&gt;
@@ -1106,10 +1155,12 @@ SQL)
 <p>To <strong>exit</strong> the shell user, we can use the <code>exit</code> command.</p>
 <h3 id="changing-shell-user-in-a-script">Changing shell user in a script<a class="headerlink" href="#changing-shell-user-in-a-script" title="Permanent link">&para;</a></h3>
 <p>In a script, we cannot change the shell user for the remaining commands in the script. If we do that, the script will execute a new shell, and the remaining commands will be executed in the old shell. </p>
-<p>To execute commands as a different user, we have several options. Every option pass the commands as a parameter to the change user command (e.g., <code>su -c "&lt;command&gt;"</code>). The options are:
-1. for each command, create a new change user command 
-2. create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)
-3. move commands to a separate script and execute the script as a different user</p>
+<p>To execute commands as a different user, we have several options. Every option pass the commands as a parameter to the change user command (e.g., <code>su -c "&lt;command&gt;"</code>). The options are:</p>
+<ol>
+<li>for each command, create a new change user command </li>
+<li>create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)</li>
+<li>move commands to a separate script and execute the script as a different user</li>
+</ol>
 <h1 id="managing-packages-with-apt-and-dpkg">Managing packages with <code>apt</code> and <code>dpkg</code><a class="headerlink" href="#managing-packages-with-apt-and-dpkg" title="Permanent link">&para;</a></h1>
 <p>To <strong>update the list</strong> of possible updates:</p>
 <pre><code class="language-bash">sudo apt update
@@ -1137,25 +1188,31 @@ SQL)
 <pre><code class="language-bash">curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
 </code></pre>
 <p>The number in the leftmost column indicates the bandwidth in bytes (larger number is better).</p>
-<p>To change the repositories to the best mirror, we need to replace the mirror in <code>etc/apt/source.list</code>. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: <a href="https://apt-mirror-updater.readthedocs.io/en/latest/readme.html"><code>apt-mirror-updater</code></a>. Steps:
-1. install the python script: <code>sudo pip install apt-mirror-updater</code>
-1. backup the old file: <code>sudo cp sources.list sources.list.bak</code>
-1. change the mirror with the script: <code>apt-mirror-updater -c &lt;mirror URL&gt;</code></p>
+<p>To change the repositories to the best mirror, we need to replace the mirror in <code>etc/apt/source.list</code>. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: <a href="https://apt-mirror-updater.readthedocs.io/en/latest/readme.html"><code>apt-mirror-updater</code></a>. Steps:</p>
+<ol>
+<li>install the python script: <code>sudo pip install apt-mirror-updater</code></li>
+<li>backup the old file: <code>sudo cp sources.list sources.list.bak</code></li>
+<li>change the mirror with the script: <code>apt-mirror-updater -c &lt;mirror URL&gt;</code></li>
+</ol>
 <p>Note that the <code>apt-mirror-updater</code> script can also measure the bandwidth, however, the result does not seem to be reliable.</p>
 <h1 id="string-processing">String Processing<a class="headerlink" href="#string-processing" title="Permanent link">&para;</a></h1>
 <h2 id="string-filtering-with-grep">String filtering with <code>grep</code><a class="headerlink" href="#string-filtering-with-grep" title="Permanent link">&para;</a></h2>
 <p>The <code>grep</code> command is used to filter lines containing a pattern. The syntax is:</p>
 <pre><code class="language-bash">grep &lt;pattern&gt; &lt;file&gt;
 </code></pre>
-<p>The pattern can be a simple string, or a regex. The most used options are:
-- <code>-v</code>: invert the match, i.e., print only lines not matching the pattern
-- <code>-e</code>: use multiple patterns (e.g., <code>-e &lt;pattern 1&gt; -e &lt;pattern 2&gt;</code>)
-- <code>-i</code>: ignore case</p>
+<p>The pattern can be a simple string, or a regex. The most used options are:</p>
+<ul>
+<li><code>-v</code>: invert the match, i.e., print only lines not matching the pattern</li>
+<li><code>-e</code>: use multiple patterns (e.g., <code>-e &lt;pattern 1&gt; -e &lt;pattern 2&gt;</code>)</li>
+<li><code>-i</code>: ignore case</li>
+</ul>
 <h2 id="word-count-with-wc">Word count with <code>wc</code><a class="headerlink" href="#word-count-with-wc" title="Permanent link">&para;</a></h2>
-<p>The <code>wc</code> command counts words, lines, and characters. What is counted is determined by the parameters:
-- <code>-w</code>: words
-- <code>-l</code>: lines
-- <code>-c</code>: characters</p>
+<p>The <code>wc</code> command counts words, lines, and characters. What is counted is determined by the parameters:</p>
+<ul>
+<li><code>-w</code>: words</li>
+<li><code>-l</code>: lines</li>
+<li><code>-c</code>: characters</li>
+</ul>
 <h2 id="string-mofification-with-sed">String mofification with <code>sed</code><a class="headerlink" href="#string-mofification-with-sed" title="Permanent link">&para;</a></h2>
 <p>Sed is a multi purpose command for string modification.</p>
 <p>It can search and replace in string. The syntax is folowing:</p>
@@ -1185,10 +1242,12 @@ SQL)
 <h3 id="pattern">Pattern<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
 <p>In the <code>awk</code>, <code>/</code> is used as a delimiter of the regex pattern. </p>
 <h3 id="action">Action<a class="headerlink" href="#action" title="Permanent link">&para;</a></h3>
-<p>The <code>&lt;action&gt;</code> can be a sequence of commands, separated by <code>;</code>. We can use column values by using special column variables:
-- <code>$0</code>: the whole line
-- <code>$1</code>: the first column
-...</p>
+<p>The <code>&lt;action&gt;</code> can be a sequence of commands, separated by <code>;</code>. We can use column values by using special column variables:</p>
+<ul>
+<li><code>$0</code>: the whole line</li>
+<li><code>$1</code>: the first column
+...</li>
+</ul>
 <h2 id="trim-string">Trim string<a class="headerlink" href="#trim-string" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">&lt;command with string output&gt; | xargs
 </code></pre>
@@ -1205,9 +1264,11 @@ SQL)
 <p>The <code>pkill</code> command kills a process by name. The syntax is:</p>
 <pre><code class="language-bash">pkill &lt;process name&gt;
 </code></pre>
-<p>important parameters:
-- <code>-f</code>: match the whole command line, not only the process name
-- <code>-9</code>: force kill</p>
+<p>important parameters:</p>
+<ul>
+<li><code>-f</code>: match the whole command line, not only the process name</li>
+<li><code>-9</code>: force kill</li>
+</ul>
 <h2 id="process-info">Process Info<a class="headerlink" href="#process-info" title="Permanent link">&para;</a></h2>
 <h1 id="users">Users<a class="headerlink" href="#users" title="Permanent link">&para;</a></h1>
 <p>The users are listed in <code>/etc/passwd</code>. The file contains one line per user, each line has the following format:</p>
@@ -1215,9 +1276,11 @@ SQL)
 </code></pre>
 <p>The password is typically stored in <code>/etc/shadow</code> and is represented by <code>x</code>. <a href="https://en.wikipedia.org/wiki/Gecos_field">GECOS</a> is some kind of a comment storing arbitrary information about the user.</p>
 <h2 id="adding-a-user">Adding a user<a class="headerlink" href="#adding-a-user" title="Permanent link">&para;</a></h2>
-<p>To add a user, we can use either the <code>useradd</code> binary directly, or the <code>adduser</code> wrapper script. Here we describe the <code>adduser</code> script. The basic syntax is <code>adduser &lt;username&gt;</code>. Important parameters:
-- <code>--gecos "&lt;GECOS&gt;"</code>: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.
-- <code>--shell &lt;shell&gt;</code>: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to <code>/usr/sbin/nologin</code>.</p>
+<p>To add a user, we can use either the <code>useradd</code> binary directly, or the <code>adduser</code> wrapper script. Here we describe the <code>adduser</code> script. The basic syntax is <code>adduser &lt;username&gt;</code>. Important parameters:</p>
+<ul>
+<li><code>--gecos "&lt;GECOS&gt;"</code>: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.</li>
+<li><code>--shell &lt;shell&gt;</code>: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to <code>/usr/sbin/nologin</code>.</li>
+</ul>
 <p>Note that the <code>adduser</code> needs to be run as root. Otherwise it will fail with <code>bash: adduser: command not found</code>.</p>
 <h2 id="user-groups">User Groups<a class="headerlink" href="#user-groups" title="Permanent link">&para;</a></h2>
 <p>An important aspect of user management in Linux is the user groups. For example, by belonging to the <code>sudo</code> group, the user can execute commands with <code>sudo</code>. The groups are listed in <code>/etc/group</code>. The file contains one line per group, each line has the following format:</p>
@@ -1233,10 +1296,12 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 </code></pre>
 <p>where <code>&lt;group list&gt;</code> is a comma separated list of groups the user should belong to.</p>
 <h2 id="file-ownership">File ownership<a class="headerlink" href="#file-ownership" title="Permanent link">&para;</a></h2>
-<p>Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
-- <em>owner</em>: the user owner
-- <em>group</em>: the group owner
-- <em>other</em>: all other users</p>
+<p>Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:</p>
+<ul>
+<li><em>owner</em>: the user owner</li>
+<li><em>group</em>: the group owner</li>
+<li><em>other</em>: all other users</li>
+</ul>
 <p>To change the owner of a file, we can use the <code>chown</code> command. The syntax is:</p>
 <pre><code class="language-bash">chown &lt;user&gt;:&lt;group&gt; &lt;file&gt;
 </code></pre>
@@ -1256,35 +1321,45 @@ To add a user to a group, we can use the <code>usermod</code> command:</p>
 <p>The main command to manage services is <code>systemctl</code>. The general syntax is:</p>
 <pre><code class="language-bash">sudo systemctl &lt;action&gt; &lt;service name&gt;
 </code></pre>
-<p>The most used actions are:
-- <code>start</code>: start the service
-- <code>stop</code>: stop the service
-- <code>restart</code>: restart the service
-- <code>status</code>: get the status of the service
-- <code>reload</code>: reload the configuration of the service</p>
+<p>The most used actions are:</p>
+<ul>
+<li><code>start</code>: start the service</li>
+<li><code>stop</code>: stop the service</li>
+<li><code>restart</code>: restart the service</li>
+<li><code>status</code>: get the status of the service</li>
+<li><code>reload</code>: reload the configuration of the service</li>
+</ul>
 <h2 id="get-the-status-of-a-service">Get the status of a service<a class="headerlink" href="#get-the-status-of-a-service" title="Permanent link">&para;</a></h2>
 <p>To get the status of a service, we can use the <code>status</code> action:</p>
 <pre><code class="language-bash">sudo systemctl status &lt;service name&gt;
 </code></pre>
-<p>The statuses can be:
-- <code>active (running)</code>: the service is running
-- <code>active (exited)</code>: the service has finished
-- <code>active (waiting)</code>: the service is not running, but it is waiting for some event
-- TODO: add more statuses</p>
+<p>The statuses can be:</p>
+<ul>
+<li><code>active (running)</code>: the service is running</li>
+<li><code>active (exited)</code>: the service has finished</li>
+<li><code>active (waiting)</code>: the service is not running, but it is waiting for some event</li>
+<li>TODO: add more statuses</li>
+</ul>
 <h2 id="listing-services">Listing services<a class="headerlink" href="#listing-services" title="Permanent link">&para;</a></h2>
-<p>To list all services, we can use one of the following commands:
-- <code>list-units</code> to list all units ever run on the server or
-- <code>list-units-files</code> to list all units, including the ones that have never been run</p>
+<p>To list all services, we can use one of the following commands:</p>
+<ul>
+<li><code>list-units</code> to list all units ever run on the server or</li>
+<li><code>list-units-files</code> to list all units, including the ones that have never been run</li>
+</ul>
 <h1 id="frequently-used-software">Frequently used software<a class="headerlink" href="#frequently-used-software" title="Permanent link">&para;</a></h1>
 <h2 id="installing-java">Installing Java<a class="headerlink" href="#installing-java" title="Permanent link">&para;</a></h2>
 <h3 id="oracle-jdk">Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Go to the download page, the link to the dowload page for current version of java is on the <a href="https://www.oracle.com/java/technologies/javase-downloads.html">main JDK page</a>.</li>
-<li>Click on the debian package, accept the license, and download it.<ul>
+<li>
+<p>Click on the debian package, accept the license, and download it.</p>
+<ul>
 <li>If installing on system without GUI, copy now (after accepting the license) the target link and dowload the debian package with <code>wget</code>:  <code>wget --header "Cookie: oraclelicense=accept-securebackup-cookie" &lt;COPIED LINK&gt;</code>. More info on <a href="https://stackoverflow.com/questions/10268583/downloading-java-jdk-on-linux-via-wget-is-shown-license-page-instead">SO</a>.</li>
 </ul>
 </li>
-<li>Install the package with <code>sudo apt-get install &lt;PATH TO DOWNLOADED .deb&gt;</code><ul>
+<li>
+<p>Install the package with <code>sudo apt-get install &lt;PATH TO DOWNLOADED .deb&gt;</code></p>
+<ul>
 <li>if there is a problem with the isntallation, check the file integritiy with: <code>sha256 &lt;PATH TO DOWNLOADED .deb&gt;</code>. It should match with the checksums refered on the download page. If not cheksums do not match, go back to download step.</li>
 </ul>
 </li>
@@ -1339,14 +1414,18 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 </ol>
 <p>However, this only work if there is a LTS version available. If not, the last step will fail. In this case, we can use the <code>do-release-upgrade -d</code> command, which upgrades to the latest version, regardless of the LTS status.</p>
 <h2 id="upgrade-to-other-version-than-the-latest">Upgrade to other version than the latest<a class="headerlink" href="#upgrade-to-other-version-than-the-latest" title="Permanent link">&para;</a></h2>
-<p>When upgrading to a version other than the latest, we can try the following steps:
-1. perform steps 1 and 2 from the normal upgrade
-2. open the <code>/etc/update-manager/release-upgrades</code> file and set the <code>Prompt</code> parameter to <code>normal</code> or <code>lts</code> (depending on the desired version)
-3. backup the <code>/etc/apt/sources.list</code> file
-4. change the sources to the new version:
-    - e.g., run <code>sudo sed -i 's/&lt;current version name&gt;/&lt;new version name&gt;/g' /etc/apt/sources.list</code>
-5. run a normal upgrade: <code>sudo apt update &amp;&amp; sudo apt upgrade</code>
-6. finalizing the upgrade: <code>sudo apt dist-upgrade</code></p>
+<p>When upgrading to a version other than the latest, we can try the following steps:</p>
+<ol>
+<li>perform steps 1 and 2 from the normal upgrade</li>
+<li>open the <code>/etc/update-manager/release-upgrades</code> file and set the <code>Prompt</code> parameter to <code>normal</code> or <code>lts</code> (depending on the desired version)</li>
+<li>backup the <code>/etc/apt/sources.list</code> file</li>
+<li>change the sources to the new version:<ul>
+<li>e.g., run <code>sudo sed -i 's/&lt;current version name&gt;/&lt;new version name&gt;/g' /etc/apt/sources.list</code></li>
+</ul>
+</li>
+<li>run a normal upgrade: <code>sudo apt update &amp;&amp; sudo apt upgrade</code></li>
+<li>finalizing the upgrade: <code>sudo apt dist-upgrade</code></li>
+</ol>
 <h2 id="wsl-backup">WSL backup<a class="headerlink" href="#wsl-backup" title="Permanent link">&para;</a></h2>
 <ol>
 <li>check the WSL distro name: <code>wsl -l -v</code></li>
@@ -1354,15 +1433,19 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <li>backup the distro: <code>wsl --export &lt;disto name&gt; &lt;backup folder path&gt;/&lt;backup name&gt;.tar</code></li>
 </ol>
 <h1 id="vim">vim<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h1>
-<p>Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:
-- <strong>normal mode</strong>: for navigation and file manipulation
-- <strong>insert mode</strong>: for text editing
-- <strong>visual mode</strong>: for text selection</p>
+<p>Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:</p>
+<ul>
+<li><strong>normal mode</strong>: for navigation and file manipulation</li>
+<li><strong>insert mode</strong>: for text editing</li>
+<li><strong>visual mode</strong>: for text selection</li>
+</ul>
 <h2 id="normal-mode">Normal Mode<a class="headerlink" href="#normal-mode" title="Permanent link">&para;</a></h2>
-<p>In normal mode, we can:
-- navigate the file using arrow keys or <code>hjkl</code> (left, down, up, right)
-- enter global commands using <code>:</code> (e.g., <code>:q</code> for quit)
-- edit file content using special commands (e.g., <code>dd</code> for delete line)</p>
+<p>In normal mode, we can:</p>
+<ul>
+<li>navigate the file using arrow keys or <code>hjkl</code> (left, down, up, right)</li>
+<li>enter global commands using <code>:</code> (e.g., <code>:q</code> for quit)</li>
+<li>edit file content using special commands (e.g., <code>dd</code> for delete line)</li>
+</ul>
 <h3 id="global-commands">Global Commands<a class="headerlink" href="#global-commands" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>:q</code>: quit</li>
@@ -1379,9 +1462,11 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <h2 id="visual-mode">Visual Mode<a class="headerlink" href="#visual-mode" title="Permanent link">&para;</a></h2>
 <p>Visual mode is used for text selection. To enter visual mode, press <code>v</code>. To exit visual mode, press <code>esc</code>.</p>
 <h2 id="copy-text-to-cliboard">Copy text to cliboard<a class="headerlink" href="#copy-text-to-cliboard" title="Permanent link">&para;</a></h2>
-<p>Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:
-1. select the text using mouse or keyboard
-2. press enter to copy the text to the clipboard</p></div>
+<p>Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:</p>
+<ol>
+<li>select the text using mouse or keyboard</li>
+<li>press enter to copy the text to the clipboard</li>
+</ol></div>
             </div>
         </div>
 
@@ -1389,12 +1474,14 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

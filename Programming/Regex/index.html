@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -462,20 +463,24 @@
 <h1 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h1>
 <h2 id="non-capturing-groups">Non-capturing groups<a class="headerlink" href="#non-capturing-groups" title="Permanent link">&para;</a></h2>
 <p>Non-capturing groups are groups that helps to specify the match but they are not captured. They are useful when we want to use the group content to specify the match, but we don't want to capture/consume the group. Some of them can be replaced, but usually with a more complicated regex.</p>
-<p>All of the non-capturing groups start with <code>(?</code> and end with <code>)</code>. The <code>?</code> is followed by a character that specifies the type of the group. The most common are:
-- <code>?:</code> non-capturing group
-- <code>?=</code> positive lookahead
-- <code>?!</code> negative lookahead
-- <code>?&lt;=</code> positive lookbehind
-- <code>?&lt;!</code> negative lookbehind</p>
+<p>All of the non-capturing groups start with <code>(?</code> and end with <code>)</code>. The <code>?</code> is followed by a character that specifies the type of the group. The most common are:</p>
+<ul>
+<li><code>?:</code> non-capturing group</li>
+<li><code>?=</code> positive lookahead</li>
+<li><code>?!</code> negative lookahead</li>
+<li><code>?&lt;=</code> positive lookbehind</li>
+<li><code>?&lt;!</code> negative lookbehind</li>
+</ul>
 <p>The actual content of the group is specified between the group type specifier (e.g., <code>?=</code>) and the closing bracket (<code>)</code>). Example:</p>
 <pre><code class="language-Regex">(?=d)a
 </code></pre>
 <p>This regex will match <code>a</code> only if it is followed by <code>d</code>. The <code>d</code> will not be consumed.</p>
-<p>Note that <strong>some regex engines don't support variable length lookbehind</strong>. To overcome this, we can use the following tricks:
-- use multiple lookbehinds with fixed length
-- construct a more complicated regex that will match the same thing
-- place a marker with one regex replace and then use the lookbehind to match the marker</p>
+<p>Note that <strong>some regex engines don't support variable length lookbehind</strong>. To overcome this, we can use the following tricks:</p>
+<ul>
+<li>use multiple lookbehinds with fixed length</li>
+<li>construct a more complicated regex that will match the same thing</li>
+<li>place a marker with one regex replace and then use the lookbehind to match the marker</li>
+</ul>
 <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
 <h2 id="any-whitespace">Any whitespace<a class="headerlink" href="#any-whitespace" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Regex">/[\x{00a0}\s]/u
@@ -519,12 +524,14 @@ nahradit \1 &amp; \2 &amp; \3 &amp; \4 \\\\\r\n
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

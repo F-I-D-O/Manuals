@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -436,11 +437,13 @@ https://login.rci.cvut.cz/wiki/how_to_start</p>
 </li>
 </ul>
 <h1 id="how-to-clone-projects">How to clone projects<a class="headerlink" href="#how-to-clone-projects" title="Permanent link">&para;</a></h1>
-<p>Usually, you need to clone some of the SUM projects to start working on the RCI cluster. To do that:
-1. Copy your key to <code>~/.ssh/</code>
-2. Set file permissions to your ssh key safely
-3. Modify <code>~/.ssh/config IdentityFile</code> to point to your key
-4. Clone your project</p>
+<p>Usually, you need to clone some of the SUM projects to start working on the RCI cluster. To do that:</p>
+<ol>
+<li>Copy your key to <code>~/.ssh/</code></li>
+<li>Set file permissions to your ssh key safely</li>
+<li>Modify <code>~/.ssh/config IdentityFile</code> to point to your key</li>
+<li>Clone your project</li>
+</ol>
 <h1 id="specifics-for-java-projects">Specifics for java projects<a class="headerlink" href="#specifics-for-java-projects" title="Permanent link">&para;</a></h1>
 <ol>
 <li>Clone project on RCI cluster</li>
@@ -495,10 +498,12 @@ https://login.rci.cvut.cz/wiki/how_to_start</p>
 </tbody>
 </table>
 <h2 id="building-on-rci">Building on RCI<a class="headerlink" href="#building-on-rci" title="Permanent link">&para;</a></h2>
-<p>In general the workflow is the same as on a local machine. The difference is that we do not have root access, so for all needed tools, we have to either  load them via <code>ml</code> command, or, if not available, install them in the user space. Typically, we need to load:
-- git: <code>ml git</code>
-- GCC: <code>ml GCC</code>
-- CMake: <code>ml CMake</code></p>
+<p>In general the workflow is the same as on a local machine. The difference is that we do not have root access, so for all needed tools, we have to either  load them via <code>ml</code> command, or, if not available, install them in the user space. Typically, we need to load:</p>
+<ul>
+<li>git: <code>ml git</code></li>
+<li>GCC: <code>ml GCC</code></li>
+<li>CMake: <code>ml CMake</code></li>
+</ul>
 <h1 id="specific-for-projects-with-gurobi">Specific for projects with gurobi<a class="headerlink" href="#specific-for-projects-with-gurobi" title="Permanent link">&para;</a></h1>
 <ol>
 <li>Load Gurobi with <ul>
@@ -512,11 +517,13 @@ https://login.rci.cvut.cz/wiki/how_to_start</p>
 <p>It is necessary to install Gurobi to maven: <code>mvn install:install-file -Dfile=/mnt/appl/software/Gurobi/9.0.3-GCCcore-8.3.0-Python-3.7.4/lib/gurobi.jar -DgroupId=com.gurobi -DartifactId=gurobi -Dversion=1.0 -Dpackaging=jar</code></p>
 <h2 id="gurobi-and-c">Gurobi and C++<a class="headerlink" href="#gurobi-and-c" title="Permanent link">&para;</a></h2>
 <p>As RCI use Linux as OS, we need to compile the Gurobi C++ libs with the same compiler as the one we use for compilation of our code (see C++ Workflow for more details). Note that <strong>this is necessary even if the Gurobi seems to be compiled with the same copiler we use for compilation</strong>.</p>
-<p>Unlike in Linux installation we controll, we cannot build the C++ lib in the Gurobi installation folder. To make the Linking work, foloow these steps:
-1. copy the <code>src</code> dir from the RCI Gurobi module located at <code>mnt/appl/software/Gurobi/&lt;desired version&gt;</code> to our home
-2. run make located in <code>src/build</code>
-3. copy the <code>libgurobi_c++.a</code> to the <code>lib</code> subfolder of your project
-4. configure the searching for the C++ lib in <code>FindGUROVI.cmake</code> file:</p>
+<p>Unlike in Linux installation we controll, we cannot build the C++ lib in the Gurobi installation folder. To make the Linking work, foloow these steps:</p>
+<ol>
+<li>copy the <code>src</code> dir from the RCI Gurobi module located at <code>mnt/appl/software/Gurobi/&lt;desired version&gt;</code> to our home</li>
+<li>run make located in <code>src/build</code></li>
+<li>copy the <code>libgurobi_c++.a</code> to the <code>lib</code> subfolder of your project</li>
+<li>configure the searching for the C++ lib in <code>FindGUROVI.cmake</code> file:</li>
+</ol>
 <pre><code class="language-cmake">find_library(GUROBI_CXX_LIBRARY
     NAMES gurobi_c++
     HINTS ${PROJECT_SOURCE_DIR}
@@ -531,11 +538,17 @@ https://login.rci.cvut.cz/wiki/how_to_start</p>
 </ol>
 <h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
 <p>For command description, see Slurm manual.</p>
-<p>Main params
-- <code>--mem=&lt;required memory&gt;</code>
-     - <code>&lt;required memory&gt;</code> is in megabytes by default, for gigabytes, we need to add G
-- <code>-t &lt;time&gt;</code>
-    - Time in minutes</p>
+<p>Main params</p>
+<ul>
+<li><code>--mem=&lt;required memory&gt;</code><ul>
+<li><code>&lt;required memory&gt;</code> is in megabytes by default, for gigabytes, we need to add G</li>
+</ul>
+</li>
+<li><code>-t &lt;time&gt;</code><ul>
+<li>Time in minutes</li>
+</ul>
+</li>
+</ul>
 <h1 id="task-explanations">Task Explanations<a class="headerlink" href="#task-explanations" title="Permanent link">&para;</a></h1>
 <p><code>srun --pty bash -i</code>
     - <code>--pty</code> runs the first task and close output and error stream for everything except the first task
@@ -549,12 +562,14 @@ osed</p></div>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

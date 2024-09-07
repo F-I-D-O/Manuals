@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -631,11 +632,13 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="primitive-types">Primitive types<a class="headerlink" href="#primitive-types" title="Permanent link">&para;</a></h1>
-<p>Java has the following primitive types:
-- <strong>Integer types</strong>: <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>
-- <strong>Floating point types</strong>: <code>float</code>, <code>double</code>
-- <strong>Character type</strong>: <code>char</code>
-- <strong>Boolean type</strong>: <code>boolean</code></p>
+<p>Java has the following primitive types:</p>
+<ul>
+<li><strong>Integer types</strong>: <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code></li>
+<li><strong>Floating point types</strong>: <code>float</code>, <code>double</code></li>
+<li><strong>Character type</strong>: <code>char</code></li>
+<li><strong>Boolean type</strong>: <code>boolean</code></li>
+</ul>
 <h1 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h1>
 <p>Arrays in Java are objects, and they are created using the <code>new</code> keyword. The syntax is:</p>
 <pre><code class="language-Java">int[] myArray = new int[10];
@@ -643,13 +646,17 @@
 <p>The array is then filled with zeros. The length of the array is fixed and cannot be changed. The array can be initialized using the following syntax:</p>
 <pre><code class="language-Java">int[] myArray = {1, 2, 3, 4, 5};
 </code></pre>
-<p>For working with arrays, the static methods from []<code>java.util.Arrays</code>](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) class can be used. Some of the most important methods are:
-- <code>copyOf</code> and <code>copyOfRange</code> for copying arrays
-- <code>fill</code> for filling arrays with a specific value</p>
+<p>For working with arrays, the static methods from []<code>java.util.Arrays</code>](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) class can be used. Some of the most important methods are:</p>
+<ul>
+<li><code>copyOf</code> and <code>copyOfRange</code> for copying arrays</li>
+<li><code>fill</code> for filling arrays with a specific value</li>
+</ul>
 <h1 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h1>
-<p>In java, there are the following types of classes:
-- <strong>Standard class</strong>: similar to classes in other languages.
-- <strong>Record class</strong>: a simple aggregate of values. </p>
+<p>In java, there are the following types of classes:</p>
+<ul>
+<li><strong>Standard class</strong>: similar to classes in other languages.</li>
+<li><strong>Record class</strong>: a simple aggregate of values. </li>
+</ul>
 <h2 id="record-class">Record class<a class="headerlink" href="#record-class" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-8.html#jls-8.10">official specification</a></p>
 <p>Record class is a simple aggregate class. It is designed to replace the standard class in cases where the class is used only to hold the data (POJO). It is defined using the <code>record</code> keyword like this:</p>
@@ -657,12 +664,14 @@
    ...
 }
 </code></pre>
-<p>The advantage over the standard class is that the record class automatically declare data members for all parameters of the record header, and it generates the following methods:
-- <code>equals</code>
-- <code>hashCode</code>
-- <code>toString</code>
-- <code>getters</code> for all parameters
-- <code>constructor</code> that accepts all parameters</p>
+<p>The advantage over the standard class is that the record class automatically declare data members for all parameters of the record header, and it generates the following methods:</p>
+<ul>
+<li><code>equals</code></li>
+<li><code>hashCode</code></li>
+<li><code>toString</code></li>
+<li><code>getters</code> for all parameters</li>
+<li><code>constructor</code> that accepts all parameters</li>
+</ul>
 <h1 id="standard-types">Standard Types<a class="headerlink" href="#standard-types" title="Permanent link">&para;</a></h1>
 <h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
 <p>Classical string literals has to be enclosed in quotes (<code>"my string"</code>). They cannot contain some characters (newline, <code>"</code>). The backslash (<code>\</code>) character is reserved for Java escape sequences  and need to be ecaped as <code>\\</code>.</p>
@@ -672,9 +681,11 @@ My long
 &quot;text block&quot;
 &quot;&quot;&quot;
 </code></pre>
-<p>The properties of text blocks:
-- can be used as standard string literals
-- can contain newlines, quotes, and some other symbols that have to be escaped in standard string literals.</p>
+<p>The properties of text blocks:</p>
+<ul>
+<li>can be used as standard string literals</li>
+<li>can contain newlines, quotes, and some other symbols that have to be escaped in standard string literals.</li>
+</ul>
 <p>The new line after opening triple quoute is obligatory. <strong>Note that backslash (<code>\</code>) is still interpreted as Java escape character, so we need to escape it using <code>\\</code></strong>. </p>
 <p>There are no fstrings in Java, the best way for using variables in strings is to use the <code>String.format</code> method:</p>
 <pre><code class="language-Java">String s = String.format(&quot;My string with %s and %d&quot;, &quot;text&quot;, 5);
@@ -816,8 +827,10 @@ class StringClass extends GenericClass&lt;String&gt;{};
 
 </code></pre>
 <h2 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h2>
-<p>The wildcard symbol (<code>?</code> ) represents a concrete but unspecified type. It can be bounded by superclass/interface (<code>? exctends MyInterface</code>), or by sublcass (<code>? super MyClass</code>). The typical use cases:
-- single non-generic method accepting generic types of multiple generic parameter values: </p>
+<p>The wildcard symbol (<code>?</code> ) represents a concrete but unspecified type. It can be bounded by superclass/interface (<code>? exctends MyInterface</code>), or by sublcass (<code>? super MyClass</code>). The typical use cases:</p>
+<ul>
+<li>single non-generic method accepting generic types of multiple generic parameter values: </li>
+</ul>
 <pre><code class="language-Java">myMethod(Wrapper&lt;? extends MyInterface&gt; wrapper){
     MyInterface mi = wrapper.get();
     ...
@@ -927,32 +940,42 @@ E genEnumInst = Enum.valueOf(enumClass, &quot;RED&quot;);
 <p>Note that here <code>E</code> has to be a properly typed enum (<code>Enum&lt;E&gt;</code>), not the raw enum (<code>Enum</code>).</p>
 <h1 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h1>
 <p>The modern class for working with paths is the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html"><code>Path</code></a> class from the <code>java.nio.file</code> package. </p>
-<p>Other important class is the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class, which contains static methods for working with files and directories. Important methods:
-- <code>exists</code>
-- <code>isDirectory</code>
-- <code>isRegularFile</code>
--  methods for iterating over files (see next section)</p>
+<p>Other important class is the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class, which contains static methods for working with files and directories. Important methods:</p>
+<ul>
+<li><code>exists</code></li>
+<li><code>isDirectory</code></li>
+<li><code>isRegularFile</code></li>
+<li>methods for iterating over files (see next section)</li>
+</ul>
 <h2 id="iterating-over-files-in-a-directory">Iterating over files in a directory<a class="headerlink" href="#iterating-over-files-in-a-directory" title="Permanent link">&para;</a></h2>
-<p>We can iterate the files in a directory using the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class:
-- <code>Files.list</code>: flat list of files
-- <code>Files.walk</code>: recursive list of files</p>
+<p>We can iterate the files in a directory using the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html"><code>Files</code></a> class:</p>
+<ul>
+<li><code>Files.list</code>: flat list of files</li>
+<li><code>Files.walk</code>: recursive list of files</li>
+</ul>
 <p>Both methods return a <code>Stream&lt;Path&gt;</code> object.</p>
 <h2 id="creating-a-directory">Creating a directory<a class="headerlink" href="#creating-a-directory" title="Permanent link">&para;</a></h2>
 <p>The directory can be created from any <code>Path</code> object using the <code>Files.createDirectory</code> method. </p>
 <p>We can also create a directory from a <code>File</code> object using the <code>mkdir</code> and <code>mkdirs</code> methods. </p>
 <h1 id="date-and-time">Date and Time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.baeldung.com/java-8-date-time-intro">Baeldung tutorial</a></p>
-<p>The following classes are intended for working with date and time in Java:
-- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html"><code>LocalDate</code></a>: date without time
-- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html"><code>LocalTime</code></a>: time without date
-- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a>: date and time</p>
-<p>The <code>LocalDateTime</code> als has its timezone/localization aware counterpart:
-- <a href="https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html"><code>ZonedDateTime</code></a>: date and time with timezone</p>
+<p>The following classes are intended for working with date and time in Java:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html"><code>LocalDate</code></a>: date without time</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html"><code>LocalTime</code></a>: time without date</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a>: date and time</li>
+</ul>
+<p>The <code>LocalDateTime</code> als has its timezone/localization aware counterpart:</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html"><code>ZonedDateTime</code></a>: date and time with timezone</li>
+</ul>
 <h1 id="lambda-expressions">Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikipedia.org/wiki/Anonymous_function#Java">wiki</a></p>
-<p>An important thing about lambda expressions in Java is that we can only use them to create types satisfying some functional interface. This means that:
-- They can be used only in a context where a functional interface is expected
-- They need to be convertible to that interface. </p>
+<p>An important thing about lambda expressions in Java is that we can only use them to create types satisfying some functional interface. This means that:</p>
+<ul>
+<li>They can be used only in a context where a functional interface is expected</li>
+<li>They need to be convertible to that interface. </li>
+</ul>
 <p>The example that demonstrate this behavior is bellow. Usually, we use some standard interface, but here we create a new one for clarity:</p>
 <pre><code class="language-Java">interface OurFunctionalInterface(){
     int operation(int a)
@@ -1072,9 +1095,11 @@ var stream = StreamSupport.stream(iterable.spliterator(), false);
 <p>Java use a tradidional casting syntax:</p>
 <pre><code> (&lt;TARGET TYPE&gt;) &lt;VAR&gt;
 </code></pre>
-<p>There are two different types of cast:
-- <em>value cast</em>, which is used for value types (only primitive types in Java) and change the data
-- <em>reference cast</em>, which is used for Java objects and does not change it, it just change the objects interface</p>
+<p>There are two different types of cast:</p>
+<ul>
+<li><em>value cast</em>, which is used for value types (only primitive types in Java) and change the data</li>
+<li><em>reference cast</em>, which is used for Java objects and does not change it, it just change the objects interface</li>
+</ul>
 <h2 id="reference-cast">Reference cast<a class="headerlink" href="#reference-cast" title="Permanent link">&para;</a></h2>
 <p>The <em>upcasting</em> (casting to a supertype) is done implicitely by the compiler, so instead of</p>
 <pre><code class="language-Java">Object o = (Object) new MyClass();
@@ -1140,14 +1165,18 @@ int a = it.nextInt();
 <h1 id="reflection">Reflection<a class="headerlink" href="#reflection" title="Permanent link">&para;</a></h1>
 <p>Reflection is a toolset for working with Java types dynamically. </p>
 <h2 id="get-class-object">Get class object<a class="headerlink" href="#get-class-object" title="Permanent link">&para;</a></h2>
-<p>To obtain the class object, we can use:
-- the <code>forName</code> method of the <code>Class</code> class:
+<p>To obtain the class object, we can use:</p>
+<ul>
+<li>the <code>forName</code> method of the <code>Class</code> class:
     <code>Java
-    Class&lt;?&gt; c = Class.forName("java.lang.String");</code>
-    - This way, we can load classes dynamically at runtime.
-- <code>myString.getClass()</code> if we have an instance or
-- <code>String.class</code> if we know the class at compile time.
- from an object of the class (e.g.,. The method can be then iterated using the <code>getDeclaredMethods</code> method of the <code>Class</code> class.</p>
+    Class&lt;?&gt; c = Class.forName("java.lang.String");</code><ul>
+<li>This way, we can load classes dynamically at runtime.</li>
+</ul>
+</li>
+<li><code>myString.getClass()</code> if we have an instance or</li>
+<li><code>String.class</code> if we know the class at compile time.
+ from an object of the class (e.g.,. The method can be then iterated using the <code>getDeclaredMethods</code> method of the <code>Class</code> class.</li>
+</ul>
 <h2 id="test-if-a-class-is-a-superclass-or-interface-of-another-class">Test if a class is a superclass or interface of another class<a class="headerlink" href="#test-if-a-class-is-a-superclass-or-interface-of-another-class" title="Permanent link">&para;</a></h2>
 <p>It can be tested simply as:</p>
 <pre><code class="language-Java">ClassA.isAssignableFrom(ClassB)
@@ -1161,16 +1190,20 @@ Method method = myClass.getMethod(&quot;methodName&quot;, &lt;PARAM TYPES&gt;);
 <pre><code class="language-Java">method.invoke(myObject, &lt;PARAMS&gt;);
 </code></pre>
 <h1 id="sql">SQL<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h1>
-<p>Java has a build in support for SQL in package <code>java.sql</code>. The typical operation:
-1. 
-1. 
-1. create a <code>PreparedStatement</code> from the cursor using the SQL string as an input
-1. Fill the parameters of the <code>PreparedStatement</code>
-1. Execute the query</p>
+<p>Java has a build in support for SQL in package <code>java.sql</code>. The typical operation:</p>
+<ol>
+<li></li>
+<li></li>
+<li>create a <code>PreparedStatement</code> from the cursor using the SQL string as an input</li>
+<li>Fill the parameters of the <code>PreparedStatement</code></li>
+<li>Execute the query</li>
+</ol>
 <h2 id="filling-the-query-parameters">Filling the query parameters<a class="headerlink" href="#filling-the-query-parameters" title="Permanent link">&para;</a></h2>
-<p>This process consist of safe replacement of <code>?</code> marks in the SQL string with real values. The <code>PreparedStatement</code> class has dedicated methods for that:
-- <code>setString</code> for strings
-- <code>setObject</code> for complex objects</p>
+<p>This process consist of safe replacement of <code>?</code> marks in the SQL string with real values. The <code>PreparedStatement</code> class has dedicated methods for that:</p>
+<ul>
+<li><code>setString</code> for strings</li>
+<li><code>setObject</code> for complex objects</li>
+</ul>
 <p>Each method has the index of the <code>?</code> to be replaced as the first parameter. <strong>The index start from 1</strong>.</p>
 <p>Note that these methods can be used to supply arguments for data part of the SQL statement. <strong>If the <code>?</code> is used for table names or SQL keywords, the query execution will fail.</strong> Therefore, if you need to dynamically set the non-data part of an SQL query (e.g., table name), you need to sanitize the argument manually and add it to the SQl querry. </p>
 <h2 id="processing-the-result">Processing the result<a class="headerlink" href="#processing-the-result" title="Permanent link">&para;</a></h2>
@@ -1250,12 +1283,14 @@ while(iterator.hasNext()){
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

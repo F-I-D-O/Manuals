@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -429,9 +430,11 @@
 <p>Almost all statements works with sets of data. Unless specified, we work with a default set (<code>_</code>).</p>
 <p>To wrrito to a specific set, we can use <code>-&gt;.</code> operator: <code>&lt;statement&gt;-&gt;.&lt;set&gt;</code> writes the result of the <code>&lt;statement&gt;</code> to the <set>. The default set can be ommited: <code>&lt;statement&gt;</code> is equal to <code>&lt;statement&gt;-&gt;._</code>.</p>
 <h1 id="out-statement"><code>out</code> statement<a class="headerlink" href="#out-statement" title="Permanent link">&para;</a></h1>
-<p>All queries should contain an <code>out</code> statement that determines the output format.
-- <code>out</code> is used for data only request
-- <code>out geom</code> returns data with all elements associated with their geometry.</p>
+<p>All queries should contain an <code>out</code> statement that determines the output format.</p>
+<ul>
+<li><code>out</code> is used for data only request</li>
+<li><code>out geom</code> returns data with all elements associated with their geometry.</li>
+</ul>
 <p>Note that while the output format can be specified, we cannot filter the output (e.g., <a href="https://gis.stackexchange.com/questions/433800/exclude-filter-relation-members-by-type-or-role">we cannot filter the ralation members</a>).</p>
 <h1 id="area-specification">Area specification<a class="headerlink" href="#area-specification" title="Permanent link">&para;</a></h1>
 <p>We select an area by name as:</p>
@@ -459,8 +462,8 @@
 <pre><code>rel[&quot;admin_level&quot;~&quot;.*&quot;];
 node;
 </code></pre>
-<p>because we are basically selecting nodes from a set of relations. Solutions:
-1) Union statement
+<p>because we are basically selecting nodes from a set of relations. Solutions:</p>
+<p>1) Union statement
 2) Named sets</p>
 <h2 id="union-utatement">Union Utatement<a class="headerlink" href="#union-utatement" title="Permanent link">&para;</a></h2>
 <p>Union statement is surounded by parantheses. We can achieve the intended behaviour by:</p>
@@ -476,17 +479,21 @@ node(pivot);
 out geom;
 </code></pre>
 <h2 id="discover-the-full-name-of-an-area">Discover the full name of an area<a class="headerlink" href="#discover-the-full-name-of-an-area" title="Permanent link">&para;</a></h2>
-<p>If we want to know the full name of the area while the above query return multiple results, we can do that in openstreet map:
-1. Move the map to see the area
-2. Click the button with cusor and question mark to select the exploration tool
-3. Click inside the area
-4. Scroll down to area relations
-5. Click on the proper region
-6. The <code>name</code> property is what we are looking for</p>
+<p>If we want to know the full name of the area while the above query return multiple results, we can do that in openstreet map:</p>
+<ol>
+<li>Move the map to see the area</li>
+<li>Click the button with cusor and question mark to select the exploration tool</li>
+<li>Click inside the area</li>
+<li>Scroll down to area relations</li>
+<li>Click on the proper region</li>
+<li>The <code>name</code> property is what we are looking for</li>
+</ol>
 <h2 id="filter-areas-with-duplicite-names">Filter areas with duplicite names<a class="headerlink" href="#filter-areas-with-duplicite-names" title="Permanent link">&para;</a></h2>
-<p>Sometimes, even the full name of the area is not specific enough. In that case, we can use two approaches:
-- select the area by the area relation id
-- specify the area by the higher level area (state, country)</p>
+<p>Sometimes, even the full name of the area is not specific enough. In that case, we can use two approaches:</p>
+<ul>
+<li>select the area by the area relation id</li>
+<li>specify the area by the higher level area (state, country)</li>
+</ul>
 <h3 id="select-area-by-id">Select area by ID<a class="headerlink" href="#select-area-by-id" title="Permanent link">&para;</a></h3>
 <ol>
 <li>select the requested area</li>
@@ -516,12 +523,14 @@ out geom;
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

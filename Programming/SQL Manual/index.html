@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -590,10 +591,12 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="literals">Literals<a class="headerlink" href="#literals" title="Permanent link">&para;</a></h1>
-<p>In SQL, there are three basic types of literals:
-- <strong>numeric</strong>: <code>1</code>, <code>1.2</code>, <code>1.2e3</code>
-- <strong>string</strong>: <code>'string'</code>, <code>"string"</code>
-- <strong>boolean</strong>: <code>true</code>, <code>false</code></p>
+<p>In SQL, there are three basic types of literals:</p>
+<ul>
+<li><strong>numeric</strong>: <code>1</code>, <code>1.2</code>, <code>1.2e3</code></li>
+<li><strong>string</strong>: <code>'string'</code>, <code>"string"</code></li>
+<li><strong>boolean</strong>: <code>true</code>, <code>false</code></li>
+</ul>
 <p>When we need a constant value for other types, we usually use either a constructor function or a specifically formatted string literal.</p>
 <p><strong>String literals can also span multiple lines</strong>, we do not need any operator to split the line (unlike in Python and despite the JetBrains IDEs adds a string concatenation operator automatically on newline).</p>
 <h1 id="with">WITH<a class="headerlink" href="#with" title="Permanent link">&para;</a></h1>
@@ -654,10 +657,12 @@ AS (&lt;sql that assigns data to var&gt;)
 <li><code>CROSS</code>: creates cartesian product between tables</li>
 </ul>
 <h2 id="outer-join">OUTER JOIN<a class="headerlink" href="#outer-join" title="Permanent link">&para;</a></h2>
-<p>The OUTER JOIN has three subtypes
-- <code>LEFT</code>: joins right table to left, fills the missing rows on right with null
-- <code>RIGHT</code>: joins left to right, fills the missing rows on left with null  <br />
-- <code>FULL</code>: both <code>LEFT</code> and <code>RIGHT</code> <code>JOIN</code> is performend</p>
+<p>The OUTER JOIN has three subtypes</p>
+<ul>
+<li><code>LEFT</code>: joins right table to left, fills the missing rows on right with null</li>
+<li><code>RIGHT</code>: joins left to right, fills the missing rows on left with null    </li>
+<li><code>FULL</code>: both <code>LEFT</code> and <code>RIGHT</code> <code>JOIN</code> is performend</li>
+</ul>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <ul>
 <li>When there are multiple matching rows, all of them are matched (i.e., it creates duplicit rows)</li>
@@ -821,32 +826,41 @@ WHERE new.way_id = old.way_id AND new.area = old.area AND new.position = old.pos
 </code></pre>
 <p>If some data from another table are required for the selection of the records to be deleted, the syntax varies depending on the database engine. </p>
 <h1 id="explain"><code>EXPLAIN</code><a class="headerlink" href="#explain" title="Permanent link">&para;</a></h1>
-<p>Sources
-- <a href="https://www.postgresql.org/docs/current/sql-explain.html">official documentation</a> 
-- <a href="https://www.postgresql.org/docs/current/using-explain.html">official cosumentation: usage</a>
-- https://docs.gitlab.com/ee/development/understanding_explain_plans.html</p>
+<p>Sources</p>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/sql-explain.html">official documentation</a> </li>
+<li><a href="https://www.postgresql.org/docs/current/using-explain.html">official cosumentation: usage</a></li>
+<li>https://docs.gitlab.com/ee/development/understanding_explain_plans.html</li>
+</ul>
 <h2 id="remarks">Remarks:<a class="headerlink" href="#remarks" title="Permanent link">&para;</a></h2>
 <ul>
 <li>to show the actual run times, we need to run <code>EXPLAIN ANALYZE</code></li>
 </ul>
 <h2 id="nodes">Nodes<a class="headerlink" href="#nodes" title="Permanent link">&para;</a></h2>
-<p>Sources
-- <a href="https://gitlab.com/postgres/postgres/blob/master/src/include/nodes/plannodes.h">Plan nodes source code</a>
-- <a href="https://www.pgmustard.com/docs/explain">PG documentation with nodes described</a></p>
+<p>Sources</p>
+<ul>
+<li><a href="https://gitlab.com/postgres/postgres/blob/master/src/include/nodes/plannodes.h">Plan nodes source code</a></li>
+<li><a href="https://www.pgmustard.com/docs/explain">PG documentation with nodes described</a></li>
+</ul>
 <p>Node example:</p>
-<pre><code>-&gt;  Parallel Seq Scan on records_mon  (cost=0.00..4053077.22 rows=2074111 width=6) (actual time=398.243..74465.389 rows=7221902 loops=2)
+<pre><code>
+-&gt;  Parallel Seq Scan on records_mon  (cost=0.00..4053077.22 rows=2074111 width=6) (actual time=398.243..74465.389 rows=7221902 loops=2)
     Filter: ((trip_length_0_1_mi = '0'::double precision) AND (trip_length_1_2_mi = '0'::double precision) AND (trip_length_2_3_mi = '0'::double precision) AND (trip_length_3_4_mi = '0'::double precision) AND (trip_length_4_5_mi = '0'::double precision))
     Rows Removed by Filter: 8639817
     Buffers: shared hit=157989 read=3805864
 </code></pre>
 <p>Description:
-In first parantheses, there are expected values:
-- <code>cost</code> the estimated cost in arbitrary units.  The format is <em>startup cost..total cost</em>, where startup cost is a flat cost of the node, an init cost, while total cost is the estimated cost of the node. Averege per loop.
-- <code>rows</code>: expected number of rows produced by this node. Averege per loop.
-- <code>width</code> the width of each row in bytes</p>
-<p>In the second parantheses, there are measured results:
-- <code>actual time</code>: The measured execution time in miliseconds. The format is <em>startup time..total time</em>. 
-- <code>rows</code> The real number of rows returned. </p>
+In first parantheses, there are expected values:</p>
+<ul>
+<li><code>cost</code> the estimated cost in arbitrary units.  The format is <em>startup cost..total cost</em>, where startup cost is a flat cost of the node, an init cost, while total cost is the estimated cost of the node. Averege per loop.</li>
+<li><code>rows</code>: expected number of rows produced by this node. Averege per loop.</li>
+<li><code>width</code> the width of each row in bytes</li>
+</ul>
+<p>In the second parantheses, there are measured results:</p>
+<ul>
+<li><code>actual time</code>: The measured execution time in miliseconds. The format is <em>startup time..total time</em>. </li>
+<li><code>rows</code> The real number of rows returned. </li>
+</ul>
 <p>The <code>Rows Removed by the Filter</code> indicates the number of rows that were filtered out.
 The <code>Buffers</code> statistic shows the number of buffers used. Each buffer consists of 8 KB of data.</p>
 <h1 id="keys">Keys<a class="headerlink" href="#keys" title="Permanent link">&para;</a></h1>
@@ -854,9 +868,11 @@ The <code>Buffers</code> statistic shows the number of buffers used. Each buffer
 There are many type of keys, see <a href="https://www.databasestar.com/database-keys/">databastar article</a> for the terminology overview.</p>
 <h2 id="primary-key">Primary key<a class="headerlink" href="#primary-key" title="Permanent link">&para;</a></h2>
 <p>Most important keys in ORM are primary keys. Each table should have a single primary key. A primary key has to be non null.</p>
-<p>When choosing primary key, we can either
-- use a uniqu combination of database colums: a <em>natural key</em>
-- use and extra column: <em>surogate key</em></p>
+<p>When choosing primary key, we can either</p>
+<ul>
+<li>use a uniqu combination of database colums: a <em>natural key</em></li>
+<li>use and extra column: <em>surogate key</em></li>
+</ul>
 <p>If we use a natural key and it is composed from multiple columns, we call it a <em>composite key</em></p>
 <p>The following table summarize the adventages and disadvantages of each of the solutions:
 Area | Property | Natural key | Composite key | Surrogate key |
@@ -928,11 +944,13 @@ WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 <h2 id="modifying-the-view">Modifying the view<a class="headerlink" href="#modifying-the-view" title="Permanent link">&para;</a></h2>
 <p>The view can be modified with <code>CREATE OR REPLACE VIEW</code>, however, <a href="https://dba.stackexchange.com/questions/586/cant-rename-columns-in-postgresql-views-with-create-or-replace">existing columns cannot be changed</a>. If you need to change existing columns, drop the view first.</p>
 <h1 id="performace-optimization">Performace Optimization<a class="headerlink" href="#performace-optimization" title="Permanent link">&para;</a></h1>
-<p>When the query is slow, first inspect the following checklist:
-- Do not use <code>OR</code> or <code>IN</code> for a set of columns (see replacing <code>OR</code> below).
-- Check that all column and combination of columns used in conditions (<code>WHERE</code>) are indexed.
-- Check that all foreign keys are indexed.
-- Check that all joins are simple joins (column to column, or set of columns to a matching set of columns).</p>
+<p>When the query is slow, first inspect the following checklist:</p>
+<ul>
+<li>Do not use <code>OR</code> or <code>IN</code> for a set of columns (see replacing <code>OR</code> below).</li>
+<li>Check that all column and combination of columns used in conditions (<code>WHERE</code>) are indexed.</li>
+<li>Check that all foreign keys are indexed.</li>
+<li>Check that all joins are simple joins (column to column, or set of columns to a matching set of columns).</li>
+</ul>
 <p>If nothing from the above works, try to start with a simple query and add more complex pars to find where the problem is. </p>
 <p>If decomposing the query also does not bing light into the problem, refer to either one of the subsections below, or to the external sources.</p>
 <p>Also, note that <strong>some IDEs limits the number of returned rows automatically, which can hide serious problems</strong> and confuse you. Try to remove the limit when testing the performance this way.</p>
@@ -955,16 +973,20 @@ FROM promo
 GROUP BY people.id
 </code></pre>
 <h2 id="a-specific-join-makes-the-query-slow">A specific join makes the query slow<a class="headerlink" href="#a-specific-join-makes-the-query-slow" title="Permanent link">&para;</a></h2>
-<p>If a single join makes the query slow, there is a great chance that the index is not used for the join. Even if the table has an index on the referenced column(s), the join can still not use it if we are joining not to the table itself but to:
-- a subquery,
-- a variable created with a <code>WITH</code> statement,
-- a view,
-- or temborary table</p>
-<p>created from the indexed table. You can solve the situation by creating a <em>materialized</em> view or temporary table instead, and adding inedices to the table manualy. Specifically, you need to split the query into multiple queries:
-1. delete the materialized view/table if exists
-1. create the materialized view/table
-1. create the required indices
-1. perform the actual query that utilizes th view/table</p>
+<p>If a single join makes the query slow, there is a great chance that the index is not used for the join. Even if the table has an index on the referenced column(s), the join can still not use it if we are joining not to the table itself but to:</p>
+<ul>
+<li>a subquery,</li>
+<li>a variable created with a <code>WITH</code> statement,</li>
+<li>a view,</li>
+<li>or temborary table</li>
+</ul>
+<p>created from the indexed table. You can solve the situation by creating a <em>materialized</em> view or temporary table instead, and adding inedices to the table manualy. Specifically, you need to split the query into multiple queries:</p>
+<ol>
+<li>delete the materialized view/table if exists</li>
+<li>create the materialized view/table</li>
+<li>create the required indices</li>
+<li>perform the actual query that utilizes th view/table</li>
+</ol>
 <p>Of course we can skip the first three steps if the materialized view is constant for all queries, which is common during the testing phase.</p>
 <h2 id="slow-delete">Slow <code>DELETE</code><a class="headerlink" href="#slow-delete" title="Permanent link">&para;</a></h2>
 <p>When the delete is slow, the cause can be the missing index on the child table that refers to the table we are deleting from.</p>
@@ -978,12 +1000,14 @@ GROUP BY people.id
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

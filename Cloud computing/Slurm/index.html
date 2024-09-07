@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -392,24 +393,34 @@
 <h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
 <h2 id="srun"><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a><a class="headerlink" href="#srun" title="Permanent link">&para;</a></h2>
 <p>Run the task in the current shell in blocking mode, i.e., the console will be blocked till the task finishes. This command is only useful if we expect that the resources will be available immediatelly and the task will finish quickly. Otherwise, we should use <code>sbatch</code>.</p>
-<p>Params:
-- <code>--pty</code> runs the in terminal mode. Output and error streams are closed for everything except the first task.
-- <code>-i</code> Input setting. If followed by no param, it indicates that the input stream is closed.</p>
+<p>Params:</p>
+<ul>
+<li><code>--pty</code> runs the in terminal mode. Output and error streams are closed for everything except the first task.</li>
+<li><code>-i</code> Input setting. If followed by no param, it indicates that the input stream is closed.</li>
+</ul>
 <h2 id="sbatch"><a href="https://slurm.schedmd.com/sbatch.html">sbatch</a><a class="headerlink" href="#sbatch" title="Permanent link">&para;</a></h2>
 <p>Request the execution of a task, with the required resources specified as <code>sbatch</code> parameters. The plain call with all resources defaulted is:</p>
 <pre><code class="language-bash">sbatch &lt;bash script&gt;
 </code></pre>
 <p>Note that the <code>&lt;bash script&gt;</code> here realy needs to be a bash script, it cannot be an arbitrary command or executable.</p>
-<p>Important parameters:
-- <code>-n, --ntasks</code>: maximum number of tasks/threads that will be allocated by the job
-    - default is one task per node
-- <code>-N, --nodes</code>: number of allocated nodes. 
-    - default: minimum nodes that are needed to allocate resources according to other parameters (e.g., <code>--ntasks</code>, <code>--mem</code>).
-- <code>--mem</code> maximum memory that will be allocated by the job. The suffix G stands for gigabytes, by default, it uses megabytes. Example: <code>--mem=40G</code>.
-- <code>-t, --time</code>: time limit. possible formats are <code>&lt;minutes&gt;</code>, <code>&lt;minutes:seconds&gt;</code>, <code>&lt;hours:minutes:seconds&gt;</code>, <code>&lt;days-hours&gt;</code>, <code>&lt;days-hours:minutes&gt;</code>, and <code>&lt;days-hours:minutes:seconds&gt;</code>. 
-    - default: partition time limit
-- <code>-p</code>, <code>--partition=</code>: partition name
-- <code>-o</code>, <code>--output=</code>: job's output file name. The default name is <code>slurm-&lt;JOB ID&gt;.out</code></p>
+<p>Important parameters:</p>
+<ul>
+<li><code>-n, --ntasks</code>: maximum number of tasks/threads that will be allocated by the job<ul>
+<li>default is one task per node</li>
+</ul>
+</li>
+<li><code>-N, --nodes</code>: number of allocated nodes. <ul>
+<li>default: minimum nodes that are needed to allocate resources according to other parameters (e.g., <code>--ntasks</code>, <code>--mem</code>).</li>
+</ul>
+</li>
+<li><code>--mem</code> maximum memory that will be allocated by the job. The suffix G stands for gigabytes, by default, it uses megabytes. Example: <code>--mem=40G</code>.</li>
+<li><code>-t, --time</code>: time limit. possible formats are <code>&lt;minutes&gt;</code>, <code>&lt;minutes:seconds&gt;</code>, <code>&lt;hours:minutes:seconds&gt;</code>, <code>&lt;days-hours&gt;</code>, <code>&lt;days-hours:minutes&gt;</code>, and <code>&lt;days-hours:minutes:seconds&gt;</code>. <ul>
+<li>default: partition time limit</li>
+</ul>
+</li>
+<li><code>-p</code>, <code>--partition=</code>: partition name</li>
+<li><code>-o</code>, <code>--output=</code>: job's output file name. The default name is <code>slurm-&lt;JOB ID&gt;.out</code></li>
+</ul>
 <h2 id="squeue"><a href="https://slurm.schedmd.com/squeue.html">squeue</a><a class="headerlink" href="#squeue" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>--me</code> filter just my jobs</li>
@@ -425,12 +436,16 @@
 <pre><code class="language-bash">squeue --me | awk '/smod_cha/ {print $1}' | xargs scancel
 </code></pre>
 <h2 id="sacctmgr"><a href="https://slurm.schedmd.com/sacctmgr.html">sacctmgr</a><a class="headerlink" href="#sacctmgr" title="Permanent link">&para;</a></h2>
-<p>For viewing and modifying Slurm account information. The most important command for users is <code>show</code> (or <code>list</code>, which is equivalent). Baset on the parameter, it shows different information:
-- <code>show associations</code>: associations between users and accounts
-- <code>show qos</code>: quality of service: limits and priorities for each group-queue combination</p>
+<p>For viewing and modifying Slurm account information. The most important command for users is <code>show</code> (or <code>list</code>, which is equivalent). Baset on the parameter, it shows different information:</p>
+<ul>
+<li><code>show associations</code>: associations between users and accounts</li>
+<li><code>show qos</code>: quality of service: limits and priorities for each group-queue combination</li>
+</ul>
 <h1 id="determining-why-the-job-was-killed">Determining why the job was killed<a class="headerlink" href="#determining-why-the-job-was-killed" title="Permanent link">&para;</a></h1>
-<p>Usually, the error message is at the end of the output file. Message meaning:
-- <code>Detected 1 oom_kill event in ...</code>: oom stands for out of memory. The job was killed because it exceeded the memory limit.</p></div>
+<p>Usually, the error message is at the end of the output file. Message meaning:</p>
+<ul>
+<li><code>Detected 1 oom_kill event in ...</code>: oom stands for out of memory. The job was killed because it exceeded the memory limit.</li>
+</ul></div>
             </div>
         </div>
 
@@ -438,12 +453,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

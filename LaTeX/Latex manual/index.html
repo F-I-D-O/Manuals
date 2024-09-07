@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -767,16 +768,20 @@
     ...
 \end{document}
 </code></pre>
-<p>Lot of content is usually put in the preamble, i.e., between the <code>\documentclass</code> and <code>\begin{document}</code> commands. The preamble usual content is:
-- loading packages with <code>\usepackage{&lt;package&gt;}</code>
-- providing new commands or redefining existing commands
-- configuring packages
-- supplying metadata for the document (title, author, etc.)</p>
+<p>Lot of content is usually put in the preamble, i.e., between the <code>\documentclass</code> and <code>\begin{document}</code> commands. The preamble usual content is:</p>
+<ul>
+<li>loading packages with <code>\usepackage{&lt;package&gt;}</code></li>
+<li>providing new commands or redefining existing commands</li>
+<li>configuring packages</li>
+<li>supplying metadata for the document (title, author, etc.)</li>
+</ul>
 <h2 id="title-page">Title page<a class="headerlink" href="#title-page" title="Permanent link">&para;</a></h2>
-<p>The title page typically contains the title, authors, and potentially other metadata like date or keywords. The standard way how to create the title page is to first define the metadata and then use the <code>\maketitle</code> command. To print the whole title page. The metadata available for standard article class:
-- <code>\title{&lt;title&gt;}</code>
-- <code>\author{&lt;author&gt;}</code>
-- <code>\date{&lt;date&gt;}</code>. <code>\today</code> can be used to print the current date. This is the default value if we omit the <code>\date</code> command.</p>
+<p>The title page typically contains the title, authors, and potentially other metadata like date or keywords. The standard way how to create the title page is to first define the metadata and then use the <code>\maketitle</code> command. To print the whole title page. The metadata available for standard article class:</p>
+<ul>
+<li><code>\title{&lt;title&gt;}</code></li>
+<li><code>\author{&lt;author&gt;}</code></li>
+<li><code>\date{&lt;date&gt;}</code>. <code>\today</code> can be used to print the current date. This is the default value if we omit the <code>\date</code> command.</li>
+</ul>
 <p>A special non-numbered footnote can be added to most fields using the <code>\thanks{&lt;text&gt;}</code> command. </p>
 <h3 id="authors-specification">Authors specification<a class="headerlink" href="#authors-specification" title="Permanent link">&para;</a></h3>
 <p>By default, all authors should be filled within a single <code>\author</code> command, separated by the <code>\and</code> command. If we need to specify the affiliations, we can do it inside the <code>\author</code> command. This way, each author have the affiliation printed right after/bellow the author name. </p>
@@ -799,10 +804,12 @@
 <h2 id="appendices">Appendices<a class="headerlink" href="#appendices" title="Permanent link">&para;</a></h2>
 <p>Appendicies are started with the command <code>appendix</code>. Then, each chapter started with the <code>\chapter</code> command is considered an appendix. </p>
 <h2 id="book-class-structuring">Book class structuring<a class="headerlink" href="#book-class-structuring" title="Permanent link">&para;</a></h2>
-<p>Appart from sections and chapters, the book class also supports top level parts for marking special areas of the document. The parts are:
-- <code>\frontmatter</code>: the front matter of the document, i.e., the title page, abstract, table of contents, etc. The page numbering is in roman numerals.
-- <code>\mainmatter</code>: the main matter of the document, i.e., the main content. The page numbering is in arabic numerals, and the page numbering is reset to 1.
-- <code>\backmatter</code>: the back matter of the document, i.e., the bibliography, appendices, etc. The page numbering is in arabic numerals. Chapters are not numbered.</p>
+<p>Appart from sections and chapters, the book class also supports top level parts for marking special areas of the document. The parts are:</p>
+<ul>
+<li><code>\frontmatter</code>: the front matter of the document, i.e., the title page, abstract, table of contents, etc. The page numbering is in roman numerals.</li>
+<li><code>\mainmatter</code>: the main matter of the document, i.e., the main content. The page numbering is in arabic numerals, and the page numbering is reset to 1.</li>
+<li><code>\backmatter</code>: the back matter of the document, i.e., the bibliography, appendices, etc. The page numbering is in arabic numerals. Chapters are not numbered.</li>
+</ul>
 <h1 id="escape-characters">Escape characters<a class="headerlink" href="#escape-characters" title="Permanent link">&para;</a></h1>
 <p>LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:</p>
 <table>
@@ -853,22 +860,28 @@
 \definecolor{my_color}{HTML}{FF0000} # HTML color
 \definecolor{my_color}{cmyk}{0,1,1,0} # CMYK color
 </code></pre>
-<p>Then, we can use various commands to change the font color:
-- <code>\textcolor{&lt;color&gt;}{&lt;text&gt;}</code>: change the color of the text
-- <code>{\color{&lt;color&gt;}&lt;text&gt;}</code>: change the color of the text. Can span multiple paragraphs.</p>
+<p>Then, we can use various commands to change the font color:</p>
+<ul>
+<li><code>\textcolor{&lt;color&gt;}{&lt;text&gt;}</code>: change the color of the text</li>
+<li><code>{\color{&lt;color&gt;}&lt;text&gt;}</code>: change the color of the text. Can span multiple paragraphs.</li>
+</ul>
 <p>note that other commands that have color options usually depend on the <code>xcolor</code> package, and accept the same color definitions.</p>
 <h2 id="horizontal-and-vertical-spacing">Horizontal and vertical spacing<a class="headerlink" href="#horizontal-and-vertical-spacing" title="Permanent link">&para;</a></h2>
 <p>Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. </p>
-<p>To adjust the spacing in a single place, we can use the following commands:
-- <code>\hspace{&lt;length&gt;}</code>: horizontal space
-- <code>\vspace{&lt;length&gt;}</code>: vertical space</p>
+<p>To adjust the spacing in a single place, we can use the following commands:</p>
+<ul>
+<li><code>\hspace{&lt;length&gt;}</code>: horizontal space</li>
+<li><code>\vspace{&lt;length&gt;}</code>: vertical space</li>
+</ul>
 <p>Note that we can use negative values for the <code>&lt;length&gt;</code> parameter, so we can use these commands to relatively positioning.</p>
 <h2 id="horizontal-and-vertical-alignment">Horizontal and vertical alignment<a class="headerlink" href="#horizontal-and-vertical-alignment" title="Permanent link">&para;</a></h2>
 <h3 id="horizontal-alignment">Horizontal alignment<a class="headerlink" href="#horizontal-alignment" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment">wiki</a></p>
-<p>By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
-- environments: <code>flushleft</code> for left alignment, <code>flushright</code> for right alignment, or
-- commands: <code>\raggedright</code> for <strong>left</strong> alignment, <code>\raggedleft</code> for <strong>right</strong> alignment.</p>
+<p>By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either </p>
+<ul>
+<li>environments: <code>flushleft</code> for left alignment, <code>flushright</code> for right alignment, or</li>
+<li>commands: <code>\raggedright</code> for <strong>left</strong> alignment, <code>\raggedleft</code> for <strong>right</strong> alignment.</li>
+</ul>
 <h3 id="vertical-alignment">Vertical alignment<a class="headerlink" href="#vertical-alignment" title="Permanent link">&para;</a></h3>
 <p>By default, the text starts from the top of the page. To align the text to the bottom of the page, we can use the <code>vfill</code> command. Example:</p>
 <pre><code class="language-latex">Some text
@@ -892,10 +905,12 @@ Some text at the bottom
     ...
 \end{&lt;list type&gt;}
 </code></pre>
-<p>The following list types are available:
-- <code>itemize</code>: bullet points
-- <code>enumerate</code>: numbered list
-- <code>description</code>: description list. Items can have a label, which is specified as an optional argument of the <code>\item</code> command. </p>
+<p>The following list types are available:</p>
+<ul>
+<li><code>itemize</code>: bullet points</li>
+<li><code>enumerate</code>: numbered list</li>
+<li><code>description</code>: description list. Items can have a label, which is specified as an optional argument of the <code>\item</code> command. </li>
+</ul>
 <p>More typoes of lists like questions or checklists can be created using external packages.</p>
 <h2 id="units-numbers-and-currency">Units, numbers, and currency<a class="headerlink" href="#units-numbers-and-currency" title="Permanent link">&para;</a></h2>
 <p>Units are usually typeset with a small space between the number and the unit. Normal space should be avoidedas it is too wide. Also, we sometimes want a special separator in large numbers. For these purposes, the best practice is to use the <a href="https://ctan.org/pkg/siunitx"><code>siunitx</code></a> package. </p>
@@ -948,12 +963,16 @@ Some text at the bottom
 </tr>
 </tbody>
 </table>
-<p>The first two parameters are shared for these commands:
-- <code>pos</code>: the position of the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. <strong>The position refers to the part of the box that is aligned with the surrounding text.</strong>
-- <code>height</code>: the height of the box. </p>
-<p>The <code>parbox</code> and <code>minipage</code> share another two parameters that follows:
-- <code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. 
-- <code>width</code>: the width of the box.</p>
+<p>The first two parameters are shared for these commands:</p>
+<ul>
+<li><code>pos</code>: the position of the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. <strong>The position refers to the part of the box that is aligned with the surrounding text.</strong></li>
+<li><code>height</code>: the height of the box. </li>
+</ul>
+<p>The <code>parbox</code> and <code>minipage</code> share another two parameters that follows:</p>
+<ul>
+<li><code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. </li>
+<li><code>width</code>: the width of the box.</li>
+</ul>
 <h2 id="make-a-box-wider-than-the-text-width">Make a box wider than the text width<a class="headerlink" href="#make-a-box-wider-than-the-text-width" title="Permanent link">&para;</a></h2>
 <p>To make a box wider than the text width, we can use the <code>\adjustwidth</code> command from the <a href="https://ctan.org/pkg/changepage"><code>changepage</code></a> package. Example:</p>
 <pre><code class="language-latex">\begin{adjustwidth}{-1cm}{-1cm}
@@ -962,32 +981,44 @@ Some text at the bottom
 </code></pre>
 <p>The box above will be 1cm wider on each side than the text width.</p>
 <h1 id="floats">Floats<a class="headerlink" href="#floats" title="Permanent link">&para;</a></h1>
-<p>The following environments are floats:
-- <code>figure</code>
-- <code>table</code>
-- <code>algorithm</code></p>
+<p>The following environments are floats:</p>
+<ul>
+<li><code>figure</code></li>
+<li><code>table</code></li>
+<li><code>algorithm</code></li>
+</ul>
 <h2 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h2>
-<p>Any float takes the position as a first argument. The following positions are available:
-- <code>h</code>: here
-- <code>t</code>: top
-- <code>b</code>: bottom
-- <code>p</code>: special dedicated page per float
-- <code>!</code>: ignore nice positioning and put it according to the float specifiers</p>
+<p>Any float takes the position as a first argument. The following positions are available:</p>
+<ul>
+<li><code>h</code>: here</li>
+<li><code>t</code>: top</li>
+<li><code>b</code>: bottom</li>
+<li><code>p</code>: special dedicated page per float</li>
+<li><code>!</code>: ignore nice positioning and put it according to the float specifiers</li>
+</ul>
 <p>The placement algorithm then iterate pages starting from the page where the float is placed. For each page, it tries to find a place for the float according to the float specifiers (in the same order as they appear in the float position argument). In case of success, the procedure stops and place the float. If the procedure fails for all pages, the float is placed at the end. </p>
 <p>Note that by specifying the float position, we only add constraints to the placement algorithm, but do not guarantee the placement. <strong>By omitting the float position, we can accually make the float appear closer to the place where it is defined.</strong></p>
-<p>Sources:
-- <a href="https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures">LaTeX Wikibook</a>
-- <a href="https://www.overleaf.com/learn/latex/Positioning_images_and_tables#The_figure_environment">Overleaf</a></p>
+<p>Sources:</p>
+<ul>
+<li><a href="https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures">LaTeX Wikibook</a></li>
+<li><a href="https://www.overleaf.com/learn/latex/Positioning_images_and_tables#The_figure_environment">Overleaf</a></li>
+</ul>
 <h3 id="default-placement">Default placement<a class="headerlink" href="#default-placement" title="Permanent link">&para;</a></h3>
 <p>The default placement differs between environments and also classes. For example for article class, the default placement for <code>figure</code> and <code>table</code> is <code>tbp</code> (<a href="https://tex.stackexchange.com/questions/172782/what-are-the-default-placement-options-for-a-floating-figure-in-latex">see SO</a>).</p>
 <h2 id="figures">Figures<a class="headerlink" href="#figures" title="Permanent link">&para;</a></h2>
 <p>The float environment for figures is <code>figure</code>. The image itself is included using the <code>\includegraphics</code> command. </p>
 <p>The mandatory argument of the <code>\includegraphics</code> command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main <code>.tex</code> file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.</p>
-<p>Optional arguments of the <code>\includegraphics</code> command are the following:
-- <code>width</code>: the width of the image.
-    - example: <code>\includegraphics[width=0.5\textwidth]{image.png}</code>
-- <code>scale</code>: the scale of the image with respect to the original size.
-    - example: <code>\includegraphics[scale=0.5]{image.png}</code></p>
+<p>Optional arguments of the <code>\includegraphics</code> command are the following:</p>
+<ul>
+<li><code>width</code>: the width of the image.<ul>
+<li>example: <code>\includegraphics[width=0.5\textwidth]{image.png}</code></li>
+</ul>
+</li>
+<li><code>scale</code>: the scale of the image with respect to the original size.<ul>
+<li>example: <code>\includegraphics[scale=0.5]{image.png}</code></li>
+</ul>
+</li>
+</ul>
 <h3 id="subfigures">Subfigures<a class="headerlink" href="#subfigures" title="Permanent link">&para;</a></h3>
 <p>For more images in one float, we can use the <code>subfigure</code> environment from the <a href="https://ctan.org/pkg/subcaption"><code>subcaption</code></a> package. The <code>subfigure</code> environment is used as follows:</p>
 <pre><code class="language-latex">\begin{figure}[h]
@@ -1012,16 +1043,20 @@ Some text at the bottom
 \end{subfigure}
 </code></pre>
 <h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
-<p>The float environment for tables is <code>table</code>. However, the rows and columns are wrapped in another environment. The default inner enviroment is <code>tabular</code>, however, there are <em>many</em> other packages that extends the functionality. In practice, there are currently three inner environments to consider:
-- <code>tabular</code>: the default environment that is sufficient for simple tables
-- <code>tabulary</code>: the environment that allows to create columns with automatic width. If the main or only issue of the table is that it needs to fit a specific width, this is the environment to use.
-- <code>tblr</code>: the <code>tblr</code> environment from the <a href="https://ctan.org/pkg/tabularray"><code>tabulararray</code></a> package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that <strong>it does not support automatic column width</strong>. </p>
+<p>The float environment for tables is <code>table</code>. However, the rows and columns are wrapped in another environment. The default inner enviroment is <code>tabular</code>, however, there are <em>many</em> other packages that extends the functionality. In practice, there are currently three inner environments to consider:</p>
+<ul>
+<li><code>tabular</code>: the default environment that is sufficient for simple tables</li>
+<li><code>tabulary</code>: the environment that allows to create columns with automatic width. If the main or only issue of the table is that it needs to fit a specific width, this is the environment to use.</li>
+<li><code>tblr</code>: the <code>tblr</code> environment from the <a href="https://ctan.org/pkg/tabularray"><code>tabulararray</code></a> package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that <strong>it does not support automatic column width</strong>. </li>
+</ul>
 <h3 id="column-types">Column types<a class="headerlink" href="#column-types" title="Permanent link">&para;</a></h3>
-<p>The column types are specified in the argument of the <code>tabular</code> or equivalent environment. The following column types are available by default:
-- <code>l</code>: left aligned
-- <code>c</code>: centered
-- <code>r</code>: right aligned
-- <code>p{width}</code>: paragraph column with specified width</p>
+<p>The column types are specified in the argument of the <code>tabular</code> or equivalent environment. The following column types are available by default:</p>
+<ul>
+<li><code>l</code>: left aligned</li>
+<li><code>c</code>: centered</li>
+<li><code>r</code>: right aligned</li>
+<li><code>p{width}</code>: paragraph column with specified width</li>
+</ul>
 <p>Other column types can be provided by the inner environment package or by the user.</p>
 <h3 id="simple-tables-with-tabular-environment">Simple tables with tabular environment<a class="headerlink" href="#simple-tables-with-tabular-environment" title="Permanent link">&para;</a></h3>
 <p>The usual way to create a table in the <code>tabular</code> environment is:</p>
@@ -1038,25 +1073,37 @@ Some text at the bottom
 <p>By default, laTeX does not support automatic width for columns, i.e., sizing the columns by their content. To enable this feature, we can use the <code>tabulary</code> package, which provides the <code>tabulary</code> environment (which is a replacement for the <code>tabular</code> environment). The columns with automatic width are specified by the <code>L</code>, <code>C</code>, <code>R</code> column types. </p>
 <p>Note that the new column types can be combined with the standard column types. In that case, the standard columns will have width according to their content, and the rest of the space will be distributed among the new column types. </p>
 <h3 id="complex-tables-with-tabulararray-package">Complex tables with <code>tabulararray</code> package<a class="headerlink" href="#complex-tables-with-tabulararray-package" title="Permanent link">&para;</a></h3>
-<p>The <code>tabulararray</code> package provides :
-- full control over the table, most features among all packages
-- separation of the table content and the table presentation 
-- simpler code for basic tasks like multirows and multicolumns, wrapping text in cells, etc.</p>
-<p>Notable features present in the <code>tabulararray</code> package missing in other packages:
-- footnotes in tables (otherwise, it requires a <code>threeparttable</code> environment wrapper)</p>
-<p>As other tabular packages, there are some incompatibilities related to the <code>tabulararray</code> package.  So far, I observed only incompatibilities with the <code>tabulararray</code> <code>talltblr</code> environment, not with the standard <code>tblr</code> environment. The following table summarizes the incompatibilities I found so far:
-- <code>cases</code>: Obviously, the <code>cases</code> environment uses table components internally. When using together with <code>talltblr</code>, the <code>cases</code> environment compilation results with the following error: <code>latex "\begin{cases}" package array empty preamble l' used</code>. The solution is to use the use the new <code>+cases</code> environment provided by the <code>tabulararray</code> package. As a bonus, the <code>+cases</code> environment also fixes some visual glitches. Steps:
-    1. enable the <code>+cases</code> environment by adding <code>\UseTblrLibrary{amsmath}</code> to the preamble
-    1. replace the <code>cases</code> environment with the <code>+cases</code> environment 
-- <code>tabular</code>: yes, the <code>talltblr</code> environment is incompatible with the default <code>tabular</code> environment. The solution is simple: replace all <code>tabular</code> environments with <code>tblr</code> environments.</p>
+<p>The <code>tabulararray</code> package provides :</p>
+<ul>
+<li>full control over the table, most features among all packages</li>
+<li>separation of the table content and the table presentation </li>
+<li>simpler code for basic tasks like multirows and multicolumns, wrapping text in cells, etc.</li>
+</ul>
+<p>Notable features present in the <code>tabulararray</code> package missing in other packages:</p>
+<ul>
+<li>footnotes in tables (otherwise, it requires a <code>threeparttable</code> environment wrapper)</li>
+</ul>
+<p>As other tabular packages, there are some incompatibilities related to the <code>tabulararray</code> package.  So far, I observed only incompatibilities with the <code>tabulararray</code> <code>talltblr</code> environment, not with the standard <code>tblr</code> environment. The following table summarizes the incompatibilities I found so far:</p>
+<ul>
+<li><code>cases</code>: Obviously, the <code>cases</code> environment uses table components internally. When using together with <code>talltblr</code>, the <code>cases</code> environment compilation results with the following error: <code>latex "\begin{cases}" package array empty preamble l' used</code>. The solution is to use the use the new <code>+cases</code> environment provided by the <code>tabulararray</code> package. As a bonus, the <code>+cases</code> environment also fixes some visual glitches. Steps:<ol>
+<li>enable the <code>+cases</code> environment by adding <code>\UseTblrLibrary{amsmath}</code> to the preamble</li>
+<li>replace the <code>cases</code> environment with the <code>+cases</code> environment </li>
+</ol>
+</li>
+<li><code>tabular</code>: yes, the <code>talltblr</code> environment is incompatible with the default <code>tabular</code> environment. The solution is simple: replace all <code>tabular</code> environments with <code>tblr</code> environments.</li>
+</ul>
 <h3 id="styling">Styling<a class="headerlink" href="#styling" title="Permanent link">&para;</a></h3>
 <h4 id="table-grid-visual-lines">Table grid (visual lines)<a class="headerlink" href="#table-grid-visual-lines" title="Permanent link">&para;</a></h4>
 <p>Usually, tables contain some horizontal and vertical lines to separate the cells. Unfortunately, the way how to create these lines differs completely between horizontal and vertical lines.</p>
 <h5 id="horizontal-lines">Horizontal lines<a class="headerlink" href="#horizontal-lines" title="Permanent link">&para;</a></h5>
-<p>For horizontal lines, we can:
-- use various commands to create a line in a specific row:
-    - <code>\hline</code>: creates a line in the current row
-- specify the lines outside the data with the <code>tabularray</code> package:</p>
+<p>For horizontal lines, we can:</p>
+<ul>
+<li>use various commands to create a line in a specific row:<ul>
+<li><code>\hline</code>: creates a line in the current row</li>
+</ul>
+</li>
+<li>specify the lines outside the data with the <code>tabularray</code> package:</li>
+</ul>
 <h5 id="specify-the-lines-outside-the-data-with-the-tabularray-package">Specify the lines outside the data with the <code>tabularray</code> package<a class="headerlink" href="#specify-the-lines-outside-the-data-with-the-tabularray-package" title="Permanent link">&para;</a></h5>
 <p>The format is <code>hline{&lt;list of rows&gt;} = {&lt;line style&gt;}</code>. Example:</p>
 <pre><code class="language-latex">\begin{tblr}{
@@ -1066,10 +1113,12 @@ Some text at the bottom
 ...
 \end{tblr}
 </code></pre>
-<p>The <code>&lt;list of rows&gt;</code> can be specified as:
-- single row: <code>hline{1} = {1pt, solid}</code>
-- multiple rows: <code>hline{1,3,5} = {1pt, solid}</code>
-- range of rows: <code>hline{1-Z} = {1pt, solid}</code></p>
+<p>The <code>&lt;list of rows&gt;</code> can be specified as:</p>
+<ul>
+<li>single row: <code>hline{1} = {1pt, solid}</code></li>
+<li>multiple rows: <code>hline{1,3,5} = {1pt, solid}</code></li>
+<li>range of rows: <code>hline{1-Z} = {1pt, solid}</code></li>
+</ul>
 <p>Rows are numbered from 1. The <code>Z</code> character is used to specify the last row.</p>
 <h4 id="styling-the-specific-rows-or-columns">Styling the specific rows or columns<a class="headerlink" href="#styling-the-specific-rows-or-columns" title="Permanent link">&para;</a></h4>
 <p>With the <code>tabularray</code> package, we can style the table header differently than the rest of the table. In fact, we can style each specific row or column differently. for that, we use the <code>row</code> and <code>column</code> keys. Example</p>
@@ -1079,8 +1128,10 @@ Some text at the bottom
     column{1} = {bg=gray9, fg=white},
 }
 </code></pre>
-<p>The syntax is the same for both keys: <code>row{&lt;row number&gt;} = {&lt;style&gt;}</code>. For the <code>&lt;row number&gt;</code> specification, see the grid section. The <code>&lt;style&gt;</code> specification is a list of key-value pairs. The keys are the following:
-- <code>font</code>: the font style</p>
+<p>The syntax is the same for both keys: <code>row{&lt;row number&gt;} = {&lt;style&gt;}</code>. For the <code>&lt;row number&gt;</code> specification, see the grid section. The <code>&lt;style&gt;</code> specification is a list of key-value pairs. The keys are the following:</p>
+<ul>
+<li><code>font</code>: the font style</li>
+</ul>
 <h4 id="configure-the-space-between-columns">Configure the space between columns<a class="headerlink" href="#configure-the-space-between-columns" title="Permanent link">&para;</a></h4>
 <p>In most packages, the space between columns is configured using the <code>\tabcolsep</code> variable. Example:</p>
 <pre><code class="language-latex">\setlength{\tabcolsep}{10pt}
@@ -1127,9 +1178,11 @@ Some text at the bottom
 <h3 id="export-google-sheets-to-latex-tables">Export google sheets to latex tables<a class="headerlink" href="#export-google-sheets-to-latex-tables" title="Permanent link">&para;</a></h3>
 <p>There is ann addon called <a href="http://caenrigen.tech/LatexKit/">LatexKit</a> which can be used for that.</p>
 <h3 id="footnotes-in-tables">Footnotes in tables<a class="headerlink" href="#footnotes-in-tables" title="Permanent link">&para;</a></h3>
-<p>In tables and table captions, the <code>\footnote</code> command does not work correctly. Also, it is not desirable to have the footnote at the bottom of page, instead, we want the footnote to be at the bottom of the table. To achieve this, we use a special environment:
-- <code>threeparttable</code>: if we are using the <code>tabular</code> or <code>tabulary</code> environment
-- <code>talltblr</code>: if we are using the <code>tblr</code> environment</p>
+<p>In tables and table captions, the <code>\footnote</code> command does not work correctly. Also, it is not desirable to have the footnote at the bottom of page, instead, we want the footnote to be at the bottom of the table. To achieve this, we use a special environment:</p>
+<ul>
+<li><code>threeparttable</code>: if we are using the <code>tabular</code> or <code>tabulary</code> environment</li>
+<li><code>talltblr</code>: if we are using the <code>tblr</code> environment</li>
+</ul>
 <h4 id="using-the-threeparttable">Using the <code>threeparttable</code><a class="headerlink" href="#using-the-threeparttable" title="Permanent link">&para;</a></h4>
 <p>The <code>threeparttable</code> environment is used as follows:</p>
 <pre><code class="language-latex">\begin{table}[h]
@@ -1176,16 +1229,20 @@ Some text at the bottom
 </code></pre>
 <h2 id="algorithms">Algorithms<a class="headerlink" href="#algorithms" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Algorithms">wiki</a>
-There are two types of enviroments for, depending on the purpose:
-- <code>algorithm</code>: for pseudocode
-- <code>lstlisting</code>: for code in a specific language</p>
+There are two types of enviroments for, depending on the purpose:</p>
+<ul>
+<li><code>algorithm</code>: for pseudocode</li>
+<li><code>lstlisting</code>: for code in a specific language</li>
+</ul>
 <h3 id="pseudocode">Pseudocode<a class="headerlink" href="#pseudocode" title="Permanent link">&para;</a></h3>
-<p>The floating environment for pseudocode is <code>algorithm</code>. It is an equivalent of the <code>table</code> environment for tables. Same as with tables, there is also an inner environment for the pseudocode. The options for the inner environment are:
-- <code>algorithmic</code>: basic environment for pseudocode
-- <code>algorithmicx</code>: extension of the <code>algorithmic</code> environment, supports custom keywords
-- <code>algorithm2e</code>: 
-- <code>algpseudocodex</code>: extension of the <code>algorithmicx</code> package, various improvements
-- <code>pseudo</code>: a package for writing pseudocode directly, not using any special commands </p>
+<p>The floating environment for pseudocode is <code>algorithm</code>. It is an equivalent of the <code>table</code> environment for tables. Same as with tables, there is also an inner environment for the pseudocode. The options for the inner environment are:</p>
+<ul>
+<li><code>algorithmic</code>: basic environment for pseudocode</li>
+<li><code>algorithmicx</code>: extension of the <code>algorithmic</code> environment, supports custom keywords</li>
+<li><code>algorithm2e</code>: </li>
+<li><code>algpseudocodex</code>: extension of the <code>algorithmicx</code> package, various improvements</li>
+<li><code>pseudo</code>: a package for writing pseudocode directly, not using any special commands </li>
+</ul>
 <p>Their properties are summarized in the following table:
 | Environment | Package | Updated | Custom keywords | 
 |--- | --- | --- | --- |
@@ -1280,12 +1337,16 @@ There are two types of enviroments for, depending on the purpose:
 </tr>
 </tbody>
 </table>
-<p>The first two parameters are shared for these commands:
-- <code>pos</code>: the position of the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. <strong>The position refers to the part of the box that is aligned with the surrounding text.</strong>
-- <code>height</code>: the height of the box. </p>
-<p>The <code>parbox</code> and <code>minipage</code> share another two parameters that follows:
-- <code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. 
-- <code>width</code>: the width of the box.</p>
+<p>The first two parameters are shared for these commands:</p>
+<ul>
+<li><code>pos</code>: the position of the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. <strong>The position refers to the part of the box that is aligned with the surrounding text.</strong></li>
+<li><code>height</code>: the height of the box. </li>
+</ul>
+<p>The <code>parbox</code> and <code>minipage</code> share another two parameters that follows:</p>
+<ul>
+<li><code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. </li>
+<li><code>width</code>: the width of the box.</li>
+</ul>
 <h2 id="make-a-box-wider-than-the-text-width_1">Make a box wider than the text width<a class="headerlink" href="#make-a-box-wider-than-the-text-width_1" title="Permanent link">&para;</a></h2>
 <p>To make a box wider than the text width, we can use the <code>\adjustwidth</code> command from the <a href="https://ctan.org/pkg/changepage"><code>changepage</code></a> package. Example:</p>
 <pre><code class="language-latex">\begin{adjustwidth}{-1cm}{-1cm}
@@ -1298,15 +1359,19 @@ There are two types of enviroments for, depending on the purpose:
 <p>To use math, we need the <code>amsmath</code> package. </p>
 <p>The math commands only works in math mode which can be entered in one of the many math environments. </p>
 <h2 id="common-math-constructs">Common math constructs<a class="headerlink" href="#common-math-constructs" title="Permanent link">&para;</a></h2>
-<p>The following table lists the most common math constructs:
-- <strong>fractions</strong>: <code>\frac{&lt;numerator&gt;}{&lt;denominator&gt;}</code>
-- <strong>binomial coefficients</strong>: <code>\binom{n}{k}</code></p>
+<p>The following table lists the most common math constructs:</p>
+<ul>
+<li><strong>fractions</strong>: <code>\frac{&lt;numerator&gt;}{&lt;denominator&gt;}</code></li>
+<li><strong>binomial coefficients</strong>: <code>\binom{n}{k}</code></li>
+</ul>
 <h2 id="subscript-and-superscript_1">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript_1" title="Permanent link">&para;</a></h2>
 <p>Subscript and superscript are created using the <code>_</code> and <code>^</code> characters. If the subscript or superscript is longer than one character, we need to wrap it in curly braces. </p>
-<p>There are aslo some special characters that result in superscript:
-- <code>'</code>: prime
-- <code>*</code>: star
-However, these characters alone works only in normal math text. If we want to use them in a subscript or superscript, we need to use the <code>^</code> and <code>_</code> characters. Example:</p>
+<p>There are aslo some special characters that result in superscript:</p>
+<ul>
+<li><code>'</code>: prime</li>
+<li><code>*</code>: star
+However, these characters alone works only in normal math text. If we want to use them in a subscript or superscript, we need to use the <code>^</code> and <code>_</code> characters. Example:</li>
+</ul>
 <pre><code class="language-latex">x* % correct print
 a_{x*} % inccorrect print - the star is not in superscript
 a_{x^*} % correct print
@@ -1322,12 +1387,14 @@ a_{x^*} % correct print
 \end{equation}
 </code></pre>
 <h2 id="equations-and-similar-environments">Equations and similar environments<a class="headerlink" href="#equations-and-similar-environments" title="Permanent link">&para;</a></h2>
-<p>The following environments are available for equations:
-- <code>equation</code>: for single equations
-- <code>align</code>: for multiple equations aligned at a specific character
-- <code>alignat</code>: for multiple equations aligned at multiple characters
-- <code>aligned</code>: for multiple equations inside another math environment (e.g., <code>equation</code>)
-- <code>gather</code>: for multiple equations not aligned, each line numbered separately</p>
+<p>The following environments are available for equations:</p>
+<ul>
+<li><code>equation</code>: for single equations</li>
+<li><code>align</code>: for multiple equations aligned at a specific character</li>
+<li><code>alignat</code>: for multiple equations aligned at multiple characters</li>
+<li><code>aligned</code>: for multiple equations inside another math environment (e.g., <code>equation</code>)</li>
+<li><code>gather</code>: for multiple equations not aligned, each line numbered separately</li>
+</ul>
 <!-- - `multline`: for multiple equations with a single equation number -->
 
 <p>The new line is created using the <code>\\</code> command. Nothe that <strong>the <code>\\</code> command is not allowed in the <code>equation</code> environment</strong>.</p>
@@ -1357,9 +1424,11 @@ a_{x^*} % correct print
 <p>More can be fount on <a href="https://proofwiki.org/wiki/Category:Theorems">proofwiki</a></p>
 <h2 id="math-fonts">Math fonts<a class="headerlink" href="#math-fonts" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics#Fonts">wiki</a></p>
-<p>the default math font is typed as common math italic. To use a different font, we need to use special commands:
-- <code>\mathrm{}</code>: for normal font in math mode, e.g., for multi-letter subscripts and superscripts
-- <code>\mathbb{}</code>: for blackboard bold font, e.g., for special sets (R, N, ...). This font requires the <code>amsfonts</code> package.</p>
+<p>the default math font is typed as common math italic. To use a different font, we need to use special commands:</p>
+<ul>
+<li><code>\mathrm{}</code>: for normal font in math mode, e.g., for multi-letter subscripts and superscripts</li>
+<li><code>\mathbb{}</code>: for blackboard bold font, e.g., for special sets (R, N, ...). This font requires the <code>amsfonts</code> package.</li>
+</ul>
 <h3 id="bold-math-font">Bold math font<a class="headerlink" href="#bold-math-font" title="Permanent link">&para;</a></h3>
 <p>To use a bold font, we can use the <code>\bm</code> command from the <code>bm</code> package:</p>
 <pre><code class="language-latex">\usepackage{bm}
@@ -1390,15 +1459,19 @@ a_{x^*} % correct print
 </code></pre>
 <h1 id="bibliography">Bibliography<a class="headerlink" href="#bibliography" title="Permanent link">&para;</a></h1>
 <p>See more on <a href="https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib">SE</a>.</p>
-<p>For bibliography management, whole toolchain is usually needed, including:
-- a tool that generates the bibliography file (e.g. Zotero, Mendeley, ...)
-- a latex package that cares about the citations style (e.g. biblatex, natbib, or default style)
-- the real bibliography processer that generates and sorts the bibliography (e.g. bibtex, biber, ...)</p>
+<p>For bibliography management, whole toolchain is usually needed, including:</p>
+<ul>
+<li>a tool that generates the bibliography file (e.g. Zotero, Mendeley, ...)</li>
+<li>a latex package that cares about the citations style (e.g. biblatex, natbib, or default style)</li>
+<li>the real bibliography processer that generates and sorts the bibliography (e.g. bibtex, biber, ...)</li>
+</ul>
 <p>However, not all combinations of theses tools are possible. For understanding the pipeline and the possible combinations, see the following figure:</p>
 <p><img alt="bibliography toolchain" src="../LaTeX_Bibliography_processing.png" title="bibliography toolchain" /></p>
-<p>When choosing what package to use in latex, we have to take care that we:
-- have the bibliography file in the right format (<code>.bib</code> for all pipelines, but the content differs)
-- have the style in the right format (<code>.bst</code> for default or natbib, <code>.bbx</code> for biblatex)</p>
+<p>When choosing what package to use in latex, we have to take care that we:</p>
+<ul>
+<li>have the bibliography file in the right format (<code>.bib</code> for all pipelines, but the content differs)</li>
+<li>have the style in the right format (<code>.bst</code> for default or natbib, <code>.bbx</code> for biblatex)</li>
+</ul>
 <p>By default, we should use the biblatex - Biber pipeline. Howevver, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as <a href="https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex">there is no conversion tool</a>). The styles available for biblatex are listed <a href="https://ctan.org/topic/biblatex">on CTAN</a>.</p>
 <h2 id="latex-document-configuration">Latex document configuration<a class="headerlink" href="#latex-document-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="biblatex-styling">Biblatex styling<a class="headerlink" href="#biblatex-styling" title="Permanent link">&para;</a></h3>
@@ -1432,20 +1505,28 @@ a_{x^*} % correct print
 <pre><code class="language-latex">\usepackage{natbib}
 </code></pre>
 <h2 id="commands-for-citing">Commands for citing<a class="headerlink" href="#commands-for-citing" title="Permanent link">&para;</a></h2>
-<p>There are multiple commands for citing, each resulting in a different output. The two most important variants are in-text citation and parenthetical citation:
-- In-text citation: the citation is part of the text.
-    - IEEE: <em>this was proven by Smith et al. [1]</em>
-    - APA: <em>this was proven by Smith et al., 2019</em>
-- Parenthetical citation: the citation is not part of the text.
-    - IEEE: <em>this has been proven before [1]</em>
-    - APA: <em>this has been proven before (Smith et al., 2019)</em></p>
+<p>There are multiple commands for citing, each resulting in a different output. The two most important variants are in-text citation and parenthetical citation:</p>
+<ul>
+<li>In-text citation: the citation is part of the text.<ul>
+<li>IEEE: <em>this was proven by Smith et al. [1]</em></li>
+<li>APA: <em>this was proven by Smith et al., 2019</em></li>
+</ul>
+</li>
+<li>Parenthetical citation: the citation is not part of the text.<ul>
+<li>IEEE: <em>this has been proven before [1]</em></li>
+<li>APA: <em>this has been proven before (Smith et al., 2019)</em></li>
+</ul>
+</li>
+</ul>
 <p>Unfortunately, the commands for these two variants are not consistent across the bibliography packages. The following table summarizes the commands for the two variants:
 | Package | In-text citation | Parenthetical citation | Full citation |
 | --- | --- | --- | --- |
 | Biblatex | <code>\textcite{&lt;key&gt;}</code> | <code>\cite{&lt;key&gt;}</code> (<code>\parencite</code> for APA) | <code>\fullcite{&lt;key&gt;}</code> |
 | Natbib | <code>\cite{&lt;key&gt;}</code> | <code>\citep{&lt;key&gt;}</code> | <code>\bibentry{&lt;key&gt;}</code> (requires the <a href="https://ctan.org/pkg/bibentry"><code>bibentry</code></a> package) |</p>
-<p>There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
-- <a href="https://www.overleaf.com/learn/latex/Natbib_citation_styles">Natbib styles</a></p>
+<p>There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:</p>
+<ul>
+<li><a href="https://www.overleaf.com/learn/latex/Natbib_citation_styles">Natbib styles</a></li>
+</ul>
 <h3 id="adittional-details-for-citation-page-number-chapter">Adittional details for citation (page number, chapter, ... )<a class="headerlink" href="#adittional-details-for-citation-page-number-chapter" title="Permanent link">&para;</a></h3>
 <p>To add additional details to the citation, we can use the optional argument of the citation command:</p>
 <pre><code class="language-latex">\cite[page~123]{key}
@@ -1507,10 +1588,12 @@ a_{x^*} % correct print
 </tr>
 </tbody>
 </table>
-<p>Other sources:
-- <a href="https://mirrors.nic.cz/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf">Biblatex documentation</a>
-- <a href="https://www.zotero.org/support/kb/item_types_and_fields">Zotero documentation</a>
-- <a href="https://www.zotero.org/support/kb/legal_citations">Zotero legal types</a></p>
+<p>Other sources:</p>
+<ul>
+<li><a href="https://mirrors.nic.cz/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf">Biblatex documentation</a></li>
+<li><a href="https://www.zotero.org/support/kb/item_types_and_fields">Zotero documentation</a></li>
+<li><a href="https://www.zotero.org/support/kb/legal_citations">Zotero legal types</a></li>
+</ul>
 <h1 id="custom-commands-and-variables">Custom commands and variables<a class="headerlink" href="#custom-commands-and-variables" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Macros">wiki</a></p>
 <p>Basic syntax for defining a new command or variable is:</p>
@@ -1538,19 +1621,25 @@ a_{x^*} % correct print
 </code></pre>
 <p>Here again, both optioanl arguments, if supplied, must be supplied in the square brackets.</p>
 <h1 id="splitting-the-document-into-multiple-files">Splitting the document into multiple files<a class="headerlink" href="#splitting-the-document-into-multiple-files" title="Permanent link">&para;</a></h1>
-<p>There are two ways to split the document into multiple files:
-- <code>\input{file}</code>
-- <code>\include{file}</code></p>
-<p>The <code>\include</code> is intended for chapters or other large parts of the document. It has the following properties:
-- it starts a new page before and after the included file
-- it does not allow nesting
-- there is a special command <code>\includeonly{file1,file2,...}</code> which allows to include only the specified files. This is useful for large documents where we want to compile only a part of the document. Without this command we would need to search for the include command and comment it out.</p>
+<p>There are two ways to split the document into multiple files:</p>
+<ul>
+<li><code>\input{file}</code></li>
+<li><code>\include{file}</code></li>
+</ul>
+<p>The <code>\include</code> is intended for chapters or other large parts of the document. It has the following properties:</p>
+<ul>
+<li>it starts a new page before and after the included file</li>
+<li>it does not allow nesting</li>
+<li>there is a special command <code>\includeonly{file1,file2,...}</code> which allows to include only the specified files. This is useful for large documents where we want to compile only a part of the document. Without this command we would need to search for the include command and comment it out.</li>
+</ul>
 <p>The <code>\input</code> command is intended for smaller parts of the document. Contrary to the <code>\include</code> command, there is no special behavior involved. Instead, the content of the file is simply pasted at the place of the <code>\input</code> command. </p>
 <h1 id="speedup-techniques">Speedup Techniques<a class="headerlink" href="#speedup-techniques" title="Permanent link">&para;</a></h1>
-<p>The compilation of large documents can be slow. There are several techniques to speed up the compilation:
-- split the document into multiple files and use <code>\includeonly</code> to include only the relevant files
-- precompiling the preamble
-- using draft mode</p>
+<p>The compilation of large documents can be slow. There are several techniques to speed up the compilation:</p>
+<ul>
+<li>split the document into multiple files and use <code>\includeonly</code> to include only the relevant files</li>
+<li>precompiling the preamble</li>
+<li>using draft mode</li>
+</ul>
 <h2 id="precompiling-the-preamble">Precompiling the preamble<a class="headerlink" href="#precompiling-the-preamble" title="Permanent link">&para;</a></h2>
 <p>The preamble is the part of the document before the <code>\begin{document}</code> command. It contains the document configuration, packages, etc. Because the included packages are usually large, the compilation of the preamble can be slow. To speed up the compilation, we can precompile the preamble and use the precompiled preamble in the main document. This can be done using the <code>mylatexformat</code> package. The usage is as follows:</p>
 <ol>
@@ -1566,10 +1655,14 @@ a_{x^*} % correct print
 <p>To balance the columns at the end of the document, we can use the <code>flushend</code> package. Just add <code>\usepackage{flushend}</code> to the preamble.</p>
 <h1 id="common-problems">Common problems<a class="headerlink" href="#common-problems" title="Permanent link">&para;</a></h1>
 <h2 id="ugly-font-in-pdf">Ugly font in pdf<a class="headerlink" href="#ugly-font-in-pdf" title="Permanent link">&para;</a></h2>
-<p>This can be cause by the missing  vector fonts. If the vector fonts are missing, the bitmap fonts are used instead. 
-1. To check if this is the cause, zoom in on the pdf. If the text is blurry, the bitmap fonts are used.
-1. To fix this, install the vector fonts.
-    - On Windows, install the cm-super package through MikTeX.</p></div>
+<p>This can be cause by the missing  vector fonts. If the vector fonts are missing, the bitmap fonts are used instead. </p>
+<ol>
+<li>To check if this is the cause, zoom in on the pdf. If the text is blurry, the bitmap fonts are used.</li>
+<li>To fix this, install the vector fonts.<ul>
+<li>On Windows, install the cm-super package through MikTeX.</li>
+</ul>
+</li>
+</ol></div>
             </div>
         </div>
 
@@ -1577,12 +1670,14 @@ a_{x^*} % correct print
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

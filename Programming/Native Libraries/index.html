@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -362,9 +363,11 @@
 
 <p>Native libraries are an important part of programming in most languages. They allow us to run the code without the need for an interpreter or virtual machine. </p>
 <p>Native libraries can be written in any language that can be compiled to machine code. This includes C, C++, Rust, and many others.</p>
-<p>There are two ways how to link a native library to your code: statically and dynamically:
-- <em>Static libraries</em> are linked at compile time. This means that the library code is included in the final executable. This makes the executable larger, but it also means that the executable is self-contained and does not require the library to be installed on the target system.
-- <em>Dynamic libraries</em> are usually linked at runtime. This means that the library code is not included in the final executable. Instead, the executable loads the library code from a separate file when it is run. This makes the executable smaller, but it also means that the library must be installed on the target system.</p>
+<p>There are two ways how to link a native library to your code: statically and dynamically:</p>
+<ul>
+<li><em>Static libraries</em> are linked at compile time. This means that the library code is included in the final executable. This makes the executable larger, but it also means that the executable is self-contained and does not require the library to be installed on the target system.</li>
+<li><em>Dynamic libraries</em> are usually linked at runtime. This means that the library code is not included in the final executable. Instead, the executable loads the library code from a separate file when it is run. This makes the executable smaller, but it also means that the library must be installed on the target system.</li>
+</ul>
 <p>Each operating system has its own way of loading and using native libraries. Also,  The following table shows the extension of the library file for each operating system:</p>
 <table>
 <thead>
@@ -425,15 +428,19 @@
 </tr>
 </tbody>
 </table>
-<p>Historically, there were other factors that are not relevant anymore:
-- <em>Size</em>: The historical argument was that dynamic libraries can save disk space because only one copy of the library is needed in the system. However, a) disk space is cheap now and b) dynamic libraries are now distributed with the application on many platforms.
-- <em>Maintenance</em>: The historical argument was that dynamic libraries are easier to maintain because they can be updated without recompiling the application and distributing a new version. However, this is now not true because on many platforms the dynamic libraries are distributed with the application.
-- <em>Portability</em>: The historical argument was that static libraries are more portable because they do not depend on the presence of the library on the target system. However, we can distribute dynamic libraries with the application to mitigate this issue of dynamic libraries.</p>
-<p>So finally, how to decide between static and dynamic libraries? 
-- We create a library that will be used by many applications, and it is large -&gt; dynamic libraries.
-- We use a GPL library and we do not want to make the source code available -&gt; dynamic libraries.
-- Users are expected to only use a fraction of the library -&gt; static libraries.
-- Otherwise -&gt; it does not matter.</p></div>
+<p>Historically, there were other factors that are not relevant anymore:</p>
+<ul>
+<li><em>Size</em>: The historical argument was that dynamic libraries can save disk space because only one copy of the library is needed in the system. However, a) disk space is cheap now and b) dynamic libraries are now distributed with the application on many platforms.</li>
+<li><em>Maintenance</em>: The historical argument was that dynamic libraries are easier to maintain because they can be updated without recompiling the application and distributing a new version. However, this is now not true because on many platforms the dynamic libraries are distributed with the application.</li>
+<li><em>Portability</em>: The historical argument was that static libraries are more portable because they do not depend on the presence of the library on the target system. However, we can distribute dynamic libraries with the application to mitigate this issue of dynamic libraries.</li>
+</ul>
+<p>So finally, how to decide between static and dynamic libraries? </p>
+<ul>
+<li>We create a library that will be used by many applications, and it is large -&gt; dynamic libraries.</li>
+<li>We use a GPL library and we do not want to make the source code available -&gt; dynamic libraries.</li>
+<li>Users are expected to only use a fraction of the library -&gt; static libraries.</li>
+<li>Otherwise -&gt; it does not matter.</li>
+</ul></div>
             </div>
         </div>
 
@@ -441,12 +448,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

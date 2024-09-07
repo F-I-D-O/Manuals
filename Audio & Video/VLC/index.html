@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../Network/" class="nav-link">Network</a>
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
@@ -361,14 +362,20 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="showing-subtitles-under-video">Showing subtitles under video<a class="headerlink" href="#showing-subtitles-under-video" title="Permanent link">&para;</a></h1>
-<p>This can be done using the video cropping filter (<code>croppadd</code>)
-1.  check how much of the black bars are in the video, and how much of it is an empty space (use codec information tool)
-2.  <code>Options</code> -&gt; <code>Advenced/All</code> -&gt; <code>Filters</code> -&gt; <code>croppadd</code>
+<p>This can be done using the video cropping filter (<code>croppadd</code>)</p>
+<ol>
+<li>check how much of the black bars are in the video, and how much of it is an empty space (use codec information tool)</li>
+<li>
+<p><code>Options</code> -&gt; <code>Advenced/All</code> -&gt; <code>Filters</code> -&gt; <code>croppadd</code>
 a.  to decrease the black bars contained in the video, set crop from top
-b.  to decrease the black bars not contained in the video, set the padding from bottom
-3.  <code>Options</code> -&gt; <code>Advenced/All</code> -&gt; <code>Filters</code> -&gt; check the video cropping filter
-4.  Change the subtitle position
-5.  Restart VLC</p></div>
+b.  to decrease the black bars not contained in the video, set the padding from bottom</p>
+</li>
+<li>
+<p><code>Options</code> -&gt; <code>Advenced/All</code> -&gt; <code>Filters</code> -&gt; check the video cropping filter</p>
+</li>
+<li>Change the subtitle position</li>
+<li>Restart VLC</li>
+</ol></div>
             </div>
         </div>
 
@@ -376,12 +383,14 @@ b.  to decrease the black bars not contained in the video, set the padding from 
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

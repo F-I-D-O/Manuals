@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -226,6 +223,10 @@
 </li>
                                     
 <li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
 </li>
                                     
@@ -301,10 +302,10 @@
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../Network/" class="nav-link">Network</a>
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
                             <li class="navitem">
-                                <a href="../../../PowerPoint/" class="nav-link">PowerPoint</a>
+                                <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
@@ -493,56 +494,74 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="dev-stack">Dev Stack<a class="headerlink" href="#dev-stack" title="Permanent link">&para;</a></h1>
-<p>I use the following stack:
--  the latest Python, 64 bit
--  pip as the package manager
--  Pycharm IDE
--  pytest test suite
--  Visual Studio for deugging native code</p>
+<p>I use the following stack:</p>
+<ul>
+<li>the latest Python, 64 bit</li>
+<li>pip as the package manager</li>
+<li>Pycharm IDE</li>
+<li>pytest test suite</li>
+<li>Visual Studio for deugging native code</li>
+</ul>
 <h1 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
-<p>Python should be installed from the <a href="https://www.python.org/">official web page</a>, not using any package manager. Steps:
-1. Dowload the 64-bit installer
-2. Run the installer, choose advanced install
-    - Include the GUI tools (Tkinter, TK)
-    - Includ    <code>*.py</code> launcher, but <strong>only if</strong> there is no newer python version installed. If this is checked and there is a newer vesrsion of Python installed, the setup will fail.
-    - Include documentation
-    - Check download debug symbols to enable native code debugging</p>
+<p>Python should be installed from the <a href="https://www.python.org/">official web page</a>, not using any package manager. Steps:</p>
+<ol>
+<li>Dowload the 64-bit installer</li>
+<li>Run the installer, choose advanced install<ul>
+<li>Include the GUI tools (Tkinter, TK)</li>
+<li>Includ    <code>*.py</code> launcher, but <strong>only if</strong> there is no newer python version installed. If this is checked and there is a newer vesrsion of Python installed, the setup will fail.</li>
+<li>Include documentation</li>
+<li>Check download debug symbols to enable native code debugging</li>
+</ul>
+</li>
+</ol>
 <p>The source code for python can be inspected on <a href="https://github.com/python/cpython">GitHub</a>  </p>
 <h2 id="command-line">Command line<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
 <p>We execute python scripts from the command line as: <code>python &lt;path to the .py file&gt;</code>. </p>
-<p>Parameters:
-- <code>-m</code> executes a module as a script, e.g. <code>python -m venv</code>. This is useful for executing scripts whithout knowing the path to the script.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>-m</code> executes a module as a script, e.g. <code>python -m venv</code>. This is useful for executing scripts whithout knowing the path to the script.</li>
+</ul>
 <h1 id="pip">Pip<a class="headerlink" href="#pip" title="Permanent link">&para;</a></h1>
 <h2 id="installing-packages">Installing Packages<a class="headerlink" href="#installing-packages" title="Permanent link">&para;</a></h2>
 <p>Normal packages are installed using: pip install <code>&lt;package name&gt;</code>.</p>
 <p>However, if a package uses a C/C++ backend and does not contain the compiled wheel on PyPy, this approach will fail on Windows. Instead, you have to download the wheel from <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">the Chris Gohlke page</a> and install it: <code>pip install &lt;path to wheel&gt;</code>. Also, you have to install the dependencies mentioned on that page.</p>
 <h2 id="uninstalling-packages">Uninstalling packages<a class="headerlink" href="#uninstalling-packages" title="Permanent link">&para;</a></h2>
 <p>To uninstall a package, use <code>pip uninstall &lt;package name&gt;</code>.</p>
-<p>There is no way how to uninstall more packages using some wildcard. To uninstall more packages efficiently (not one by one):
-1.  create a file with the list of all installed packages: <code>pip freeze &gt; packages.txt</code>
-2.  edit the file and remove all packages you want to keep
-3.  uninstall all packages from the file: <code>pip uninstall -r packages.txt -y</code></p>
+<p>There is no way how to uninstall more packages using some wildcard. To uninstall more packages efficiently (not one by one):</p>
+<ol>
+<li>create a file with the list of all installed packages: <code>pip freeze &gt; packages.txt</code></li>
+<li>edit the file and remove all packages you want to keep</li>
+<li>uninstall all packages from the file: <code>pip uninstall -r packages.txt -y</code></li>
+</ol>
 <h2 id="troubleshooting-package-installation">Troubleshooting package installation<a class="headerlink" href="#troubleshooting-package-installation" title="Permanent link">&para;</a></h2>
-<p>If the installation fails, check the following:
-1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
-2.  if you installed the package from a wheel, check the notes/requirement info on Chris Golthke page
-3.  Check the log. Specifically, no building should appear there whatsoever. If a build starts, it means that some dependency that should be installed as a prebuild wheel is missing. Possible reasons:
-    1.  you forget to install the dependency, go back to step 2
-    2.  the dependency version does not correspond with the version required by the package you are installing. Check the log for the required version.</p>
+<p>If the installation fails, check the following:</p>
+<ol>
+<li>if you installed the package by name, check for the wheel on the Chris Golthke page.</li>
+<li>if you installed the package from a wheel, check the notes/requirement info on Chris Golthke page</li>
+<li>Check the log. Specifically, no building should appear there whatsoever. If a build starts, it means that some dependency that should be installed as a prebuild wheel is missing. Possible reasons:<ol>
+<li>you forget to install the dependency, go back to step 2</li>
+<li>the dependency version does not correspond with the version required by the package you are installing. Check the log for the required version.</li>
+</ol>
+</li>
+</ol>
 <h2 id="upgrading-pip">Upgrading pip<a class="headerlink" href="#upgrading-pip" title="Permanent link">&para;</a></h2>
 <p>To upgrade pip, use <code>python -m pip install --upgrade pip</code>. Sometimes, this command end ith an error. There can be specific solutions to this, but what always seems to fix the pip is the <a href="https://bootstrap.pypa.io/get-pip.py">get-pip script</a>. Download the script and run it using <code>python get-pip.py</code>.</p>
 <h2 id="local-packages">Local packages<a class="headerlink" href="#local-packages" title="Permanent link">&para;</a></h2>
 <p>A useful method how to develop and test packages is to have them installed locally. This way, each change in the source code is immediately reflected in the package and also in the code that uses the package. To install a package locally, use <code>pip install -e &lt;path to the package&gt;</code>.</p>
-<p>Note that the package needs to be properly initialized first, i.e.:
-- at least one <code>__init__.py</code> file in the package root (optionally others in subpackages)
-- a <code>setup.py</code> file in the parent directory of the package root</p>
+<p>Note that the package needs to be properly initialized first, i.e.:</p>
+<ul>
+<li>at least one <code>__init__.py</code> file in the package root (optionally others in subpackages)</li>
+<li>a <code>setup.py</code> file in the parent directory of the package root</li>
+</ul>
 <h1 id="pycharm">Pycharm<a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h1>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="settings-synchronization">Settings synchronization<a class="headerlink" href="#settings-synchronization" title="Permanent link">&para;</a></h3>
-<p>Same as in IDEA:
-1. Log in into JetBrains Toolbox or to the App
-1. Click on the gear icon on the top-right and choose Sync
-1. Check all categories and click on pull settings from the cloud</p>
+<p>Same as in IDEA:</p>
+<ol>
+<li>Log in into JetBrains Toolbox or to the App</li>
+<li>Click on the gear icon on the top-right and choose Sync</li>
+<li>Check all categories and click on pull settings from the cloud</li>
+</ol>
 <h3 id="do-not-run-scripts-in-python-console-by-default">Do Not Run scripts in Python Console by Default<a class="headerlink" href="#do-not-run-scripts-in-python-console-by-default" title="Permanent link">&para;</a></h3>
 <p><code>Run configuration select box</code> -&gt; <code>Edit Configurations...</code> -&gt; <code>Edit configuration templates</code> -&gt; <code>Python</code> -&gt; uncheck the <code>Run with Python Console</code></p>
 <h3 id="enable-progress-bars-in-output-console">Enable Progress Bars in output console<a class="headerlink" href="#enable-progress-bars-in-output-console" title="Permanent link">&para;</a></h3>
@@ -556,11 +575,13 @@
 <p>Problem: It can happen that the output printing/logging can be reordered randomly (not matching the order of calls in the source, neither the system console output).
 Solution: <code>Edit Configurations...</code> -&gt; select configuration for the script -&gt; check <code>Emulate terminal in output console</code>.</p>
 <h3 id="pycharm-does-not-recognize-a-locally-installed-package">Pycharm does not recognize a locally installed package<a class="headerlink" href="#pycharm-does-not-recognize-a-locally-installed-package" title="Permanent link">&para;</a></h3>
-<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. This can be solved by adding the path to the package to the interpreter paths:
-1.  <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Project: &lt;project name&gt;</code> -&gt; <code>Python Interpreter</code>
-1. Click on the arrow next to the interpreter name and choose <code>Show All...</code>
-1. Click on the desired interpreter and click on the filetree icon on the top of the window
-1. Add the path to the package to the list of paths</p>
+<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. This can be solved by adding the path to the package to the interpreter paths:</p>
+<ol>
+<li><code>File</code> -&gt; <code>Settings</code> -&gt; <code>Project: &lt;project name&gt;</code> -&gt; <code>Python Interpreter</code></li>
+<li>Click on the arrow next to the interpreter name and choose <code>Show All...</code></li>
+<li>Click on the desired interpreter and click on the filetree icon on the top of the window</li>
+<li>Add the path to the package to the list of paths</li>
+</ol>
 <h1 id="jupyter">Jupyter<a class="headerlink" href="#jupyter" title="Permanent link">&para;</a></h1>
 <p>Jupyter can be used both in Pycharm and in a web browser.</p>
 <h2 id="jupyter-in-pycharm">Jupyter in Pycharm<a class="headerlink" href="#jupyter-in-pycharm" title="Permanent link">&para;</a></h2>
@@ -573,35 +594,53 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
 <li><code>Ctrl</code> + <code>Shift</code> + <code>Up</code>: move cell up</li>
 <li><code>Ctrl</code> + <code>Shift</code> + <code>Down</code>: move cell down</li>
 </ul>
-<p>Text mode shortcuts:
-- <code>Ctrl</code> + <code>Shift</code> + <code>-</code>: split cell on cursor position</p>
+<p>Text mode shortcuts:</p>
+<ul>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>-</code>: split cell on cursor position</li>
+</ul>
 <h2 id="web-browser-configuration">Web Browser Configuration<a class="headerlink" href="#web-browser-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="install-extension-manager-with-basic-extensions">Install Extension Manager with basic extensions<a class="headerlink" href="#install-extension-manager-with-basic-extensions" title="Permanent link">&para;</a></h3>
 <p>Best use the <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions">official installation guide</a>. The extensions then can be toggled on in the Nbextensions tab in the jupyter homepage. Be sure to unselect the <em>disable configuration for nbextensions without explicit compatibility (they may break your notebook environment, but can be useful to show for nbextension development)</em> checkbox, otherwise, all extensions will be disabled.</p>
 <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
 <p>Pycharm contains a good debuger for python code. However, it cannot step into most standard library functions, as those are native, implemented in C/C++. For that, we need mixed python/native debugging.</p>
 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
-<p>To run pytest, simply go to the folder and run <code>pytest</code>. Arguments:
-- <code>-x</code>: stop on first failure</p>
+<p>To run pytest, simply go to the folder and run <code>pytest</code>. Arguments:</p>
+<ul>
+<li><code>-x</code>: stop on first failure</li>
+</ul>
 <h1 id="mixed-python-native-debugging">Mixed Python-native debugging<a class="headerlink" href="#mixed-python-native-debugging" title="Permanent link">&para;</a></h1>
-<p>In theory, there are two ways how to debug python native code:
-- use a tool that can step from python to C++ (only Visual Studio offers this possibility AFAIK)
-- use two debuggers, start with a python debugger, and attach a native debugger to the python process. This way, the debuggers can be independent. However, one needs to put a breakpoint in the native code, and for that, we need to know the location of the code that will be executed from python (non-trivial for standard library)</p>
+<p>In theory, there are two ways how to debug python native code:</p>
+<ul>
+<li>use a tool that can step from python to C++ (only Visual Studio offers this possibility AFAIK)</li>
+<li>use two debuggers, start with a python debugger, and attach a native debugger to the python process. This way, the debuggers can be independent. However, one needs to put a breakpoint in the native code, and for that, we need to know the location of the code that will be executed from python (non-trivial for standard library)</li>
+</ul>
 <h2 id="python-native-debugger-in-visual-studio">Python-native debugger in Visual Studio<a class="headerlink" href="#python-native-debugger-in-visual-studio" title="Permanent link">&para;</a></h2>
-<p>First check and install the requirements:
-- Python 3.5-3.9, including debugging symbols
-    - Python 3.10 is not compatible yet
-- in Visual Studio, a Python development component needs to be installed, including <em>Python native development tools</em></p>
-<p>Then, configure the Visual studio:
-- Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Python</code> -&gt; <code>Debugging</code> and check: <em>Enable debugging of the Python standard library</em>.</p>
-<p>Finally, create a new Python project (either clean, or from existing code) and configure it:
-- use the interpreter directly, do not create a virtual environment
-- enable native code debugging:
-    1. Go to project properties -&gt; <code>Debug</code>
-    2. Check enable native code debugging
-- use the <code>-i</code> flag to always see the debug console, even if the program ends without breaking
-    1. Go to project properties -&gt; <code>Debug</code>
-    2. Add the <code>-i</code> flag to the <code>Interpreter Arguments</code> field</p>
+<p>First check and install the requirements:</p>
+<ul>
+<li>Python 3.5-3.9, including debugging symbols<ul>
+<li>Python 3.10 is not compatible yet</li>
+</ul>
+</li>
+<li>in Visual Studio, a Python development component needs to be installed, including <em>Python native development tools</em></li>
+</ul>
+<p>Then, configure the Visual studio:</p>
+<ul>
+<li>Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Python</code> -&gt; <code>Debugging</code> and check: <em>Enable debugging of the Python standard library</em>.</li>
+</ul>
+<p>Finally, create a new Python project (either clean, or from existing code) and configure it:</p>
+<ul>
+<li>use the interpreter directly, do not create a virtual environment</li>
+<li>enable native code debugging:<ol>
+<li>Go to project properties -&gt; <code>Debug</code></li>
+<li>Check enable native code debugging</li>
+</ol>
+</li>
+<li>use the <code>-i</code> flag to always see the debug console, even if the program ends without breaking<ol>
+<li>Go to project properties -&gt; <code>Debug</code></li>
+<li>Add the <code>-i</code> flag to the <code>Interpreter Arguments</code> field</li>
+</ol>
+</li>
+</ul>
 <h3 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
 <p><em>The reference assemblies for .NETFramework,Version=v4.7.2 were not found.</em> -&gt; Install this component using the visual studio installer</p>
 <h3 id="other-sources">Other Sources<a class="headerlink" href="#other-sources" title="Permanent link">&para;</a></h3>
@@ -631,12 +670,14 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
