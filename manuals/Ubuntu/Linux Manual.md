@@ -24,6 +24,7 @@ Use the `which` command: `which <executable>`
 
 ## Unpack file
 Foe unpacking, you can use the `tar -f <file>` command. The most used options are:
+
 - `x`: extract
 
 
@@ -39,6 +40,7 @@ without export, the variable is just a local shell variable:
 ```
 
 We will demonstrate the work with environment variables on the `PATH` example. If you have a program in a custom location, adding it to `$PATH` permanently and be able to run it under all circumstances is not an easy task on linux. Standard procedure is to add a system variable: 
+
 1.  Create a dedicated `.sh` file in `/etc/profile.d.` for your configuration (config for each app should be stored in a separate file).
 2.  the file should contain: `export PATH=$PATH:YOURPATH`
 1. exit nano and save the file: `ctrl+x` and `y`
@@ -49,6 +51,7 @@ We will demonstrate the work with environment variables on the `PATH` example. I
 
 ## Enable Variable with sudo
 To enable the variable even if you use `sudo`, you need to edit sudo config using `sudo visudo` and:
+
 1.  exclude `PATH` from variable being reset when running `sudo`:  `Defaults env_keep += "PATH"`
 2.  disable the safe path mechanism for `sudo`, i.e., comment the line: `Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin`
 3.  logout and login again to load the new added varibales
@@ -60,6 +63,7 @@ Add the variable to `/etc/environment`. Note that it is not a script file, so yo
 
 ## Enable Variable on a Device Without Root Access
 Without root access, we can only edit the user config files. put the necessary config into:
+
 -   `~/.bash_profile` if it already exists   
 -   or to `~/.profile`
 
@@ -68,12 +72,14 @@ Note that the `.profile` file is ignored when the `.bash_profile` file exists.
 
 ## Remove Windows `$PATH` from WSL
 By default, the `PATH` environment variable from Windows is inluded in the `PATH` variable in Ubuntu running in WSL. This can lead to conflicts, when the same executables are used in both systems (e.g., vcpkg, cmake).  To turn of the Windows `PATH` inclusion:
+
 1. open `/etc/wsl.conf`
 1. add the fllowing code:
 ```
 [interop]
 appendWindowsPath = false
 ```
+
 1. restart WSL
 
 
@@ -81,6 +87,7 @@ appendWindowsPath = false
 # File System
 ## copy file
 The `cp` command is used to copy files: `cp <source> <destination>`. The most used options are:
+
 - `-r`, `-R`: copy recursively
 - `-v`: verbose
 - `-f`: force
@@ -88,6 +95,7 @@ The `cp` command is used to copy files: `cp <source> <destination>`. The most us
 - `-a`: same as `-p -R` plus some other options
 
 For more sophisticated copying, use `rsync`: `rsync <source> <destination>`. The most used options are:
+
 - `-h`: human readable
 - `-a`: archive mode, equivalent to `-rlptgoD`
 - `--progress`: show progress
@@ -95,6 +103,7 @@ For more sophisticated copying, use `rsync`: `rsync <source> <destination>`. The
 
 ## Remove file
 The `rm` command is used to remove files. The most used options are:
+
 - `-r`, `-R`: remove recursively
 
 To remove all files in a directory, you can use
@@ -102,27 +111,32 @@ To remove all files in a directory, you can use
 
 ## Access rights
 The Linux access rights use the same system for files and folders. The access rights are divided into three groups, from left to right:
+
 - owner
 - group
 - other
 
 Each group has three possible access rights:
+
 - `r`: read
 - `w`: write
 - `x`: execute
 
 Important aspects:
+
 - to access a directory, the user has to have the `x` right on the directory.
 - to access a file, the user has to have the `x` right on all folders in the path to the file.
 
 ## Compute directory size
 To compute the size of a directory, use the `du` command:`du <path>`. The most used options are:
+
 - `-h`: human readable
 - `-s`: summarize
 
 
 ## Find files
 To find files, use the `find` command: `find <where> <options> <params>`. The most used options are:
+
 - `-name`: find by name. This option should be followed by a file name pattern.
 - `-path`: find by path. This option should be followed by a path pattern. 
 
@@ -131,6 +145,7 @@ To find files, use the `find` command: `find <where> <options> <params>`. The mo
 # Network
 ## [`netstat`](https://en.wikipedia.org/wiki/Netstat)
 The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:
+
 - `-n`: do not translate IP and ports into human readable names
 - `-a`: show all connections. Without this, some connections can be skipped.
 
@@ -138,6 +153,7 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 
 # Bash
 ## General Remarks
+
 - It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error
 - Empty constructs are not allowed, i.e, empty function or loop results in an error
 - brackets needs spaces around them, otherwise, there will be a syntax error
@@ -178,6 +194,7 @@ which also prints the type and attributes of the variables.
 
 ### Operations on variables
 There are many operations on variables, the most important are:
+
 - `${#<variable>}`: length of the variable
 - `${<variable>%%<pattern>}`: remove the longest suffix matching the pattern
 - `${<variable>##<pattern>}`: remove the longest prefix matching the pattern
@@ -250,6 +267,7 @@ echo resut is: $(cut -d, -f 7)
 
 ## Bash Script Arguments
 We refer the arguments of a bash script as
+
 - `$0` - the name of the script
 - `$1..$n` - the arguments of the script
 - `$@` - all the arguments of the script
@@ -267,24 +285,28 @@ fi
 ```
 
 The condition can have several formats:
+
 - **plain command**: the condition is true if the command returns 0
 	```bash
 	if grep -q "$text" $file 
 		then ...
 	fi
 	```
+
 - **`[ <condition> ] or test <condition>`**: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
 	```bash
 	if [ $var = 1 ]
 	then ...
 	fi
 	```
+
 - **`[[ <condition> ]]`**: The extended test construct. This is the recommended way of writing conditions, due to [several practical features](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash) (e.g., no need to quote variables, regex support, logical operators, etc.).
 	```bash
 	if [[ $var = 1 ]]
 	then ...
 	fi
 	```
+
 - **`(( <condition> ))`**: The arithmetic test construct. This is used for arithmetic conditions.
 	```bash
 	if (( $var == 1 ))
@@ -396,6 +418,7 @@ To read from command line, we can use the `read` command. The syntax is:
 read <variable>
 ```
 where `<variable>` is the name of the variable to store the input. Important parameters:
+
 - `-p <prompt>`: prints	the `<prompt>` before reading the input
 - `-s`: do not echo the input (usefull for passwords)
 
@@ -434,6 +457,7 @@ The password is usually required only once per some time period (e.g., 15 minute
 For some operations (e.g., browsing folders requiring root access), we have to run multiple commands as root. In this case, we have to switch the shell user to root. 
 
 Resources:
+
 - [SO](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386)
 
 ## Changing shell user
@@ -459,6 +483,7 @@ To **exit** the shell user, we can use the `exit` command.
 In a script, we cannot change the shell user for the remaining commands in the script. If we do that, the script will execute a new shell, and the remaining commands will be executed in the old shell. 
 
 To execute commands as a different user, we have several options. Every option pass the commands as a parameter to the change user command (e.g., `su -c "<command>"`). The options are:
+
 1. for each command, create a new change user command 
 2. create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)
 3. move commands to a separate script and execute the script as a different user
@@ -508,6 +533,7 @@ curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `cur
 The number in the leftmost column indicates the bandwidth in bytes (larger number is better).
 
 To change the repositories to the best mirror, we need to replace the mirror in `etc/apt/source.list`. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: [`apt-mirror-updater`](https://apt-mirror-updater.readthedocs.io/en/latest/readme.html). Steps:
+
 1. install the python script: `sudo pip install apt-mirror-updater`
 1. backup the old file: `sudo cp sources.list sources.list.bak`
 1. change the mirror with the script: `apt-mirror-updater -c <mirror URL>`
@@ -525,6 +551,7 @@ The `grep` command is used to filter lines containing a pattern. The syntax is:
 grep <pattern> <file>
 ```
 The pattern can be a simple string, or a regex. The most used options are:
+
 - `-v`: invert the match, i.e., print only lines not matching the pattern
 - `-e`: use multiple patterns (e.g., `-e <pattern 1> -e <pattern 2>`)
 - `-i`: ignore case
@@ -532,6 +559,7 @@ The pattern can be a simple string, or a regex. The most used options are:
 
 ## Word count with `wc`
 The `wc` command counts words, lines, and characters. What is counted is determined by the parameters:
+
 - `-w`: words
 - `-l`: lines
 - `-c`: characters
@@ -587,6 +615,7 @@ In the `awk`, `/` is used as a delimiter of the regex pattern.
 
 ### Action
 The `<action>` can be a sequence of commands, separated by `;`. We can use column values by using special column variables:
+
 - `$0`: the whole line
 - `$1`: the first column
 ...
@@ -599,6 +628,7 @@ The `<action>` can be a sequence of commands, separated by `;`. We can use colum
 
 
 # Processes
+
 - for checking **all processes**, we can use `htop`
 - to get a **path to executable** of a process by PID, we can use `pwdx <PID>`
 - for checking a specific process, we can use `ps`
@@ -612,6 +642,7 @@ The `pkill` command kills a process by name. The syntax is:
 pkill <process name>
 ```
 important parameters:
+
 - `-f`: match the whole command line, not only the process name
 - `-9`: force kill
 
@@ -627,6 +658,7 @@ The password is typically stored in `/etc/shadow` and is represented by `x`. [GE
 
 ## Adding a user
 To add a user, we can use either the `useradd` binary directly, or the `adduser` wrapper script. Here we describe the `adduser` script. The basic syntax is `adduser <username>`. Important parameters:
+
 - `--gecos "<GECOS>"`: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.
 - `--shell <shell>`: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to `/usr/sbin/nologin`.
 
@@ -658,6 +690,7 @@ where `<group list>` is a comma separated list of groups the user should belong 
 
 ## File ownership
 Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
+
 - *owner*: the user owner
 - *group*: the group owner
 - *other*: all other users
@@ -695,6 +728,7 @@ The main command to manage services is `systemctl`. The general syntax is:
 sudo systemctl <action> <service name>
 ```
 The most used actions are:
+
 - `start`: start the service
 - `stop`: stop the service
 - `restart`: restart the service
@@ -708,6 +742,7 @@ To get the status of a service, we can use the `status` action:
 sudo systemctl status <service name>
 ```
 The statuses can be:
+
 - `active (running)`: the service is running
 - `active (exited)`: the service has finished
 - `active (waiting)`: the service is not running, but it is waiting for some event
@@ -715,6 +750,7 @@ The statuses can be:
 
 ## Listing services
 To list all services, we can use one of the following commands:
+
 - `list-units` to list all units ever run on the server or
 - `list-units-files` to list all units, including the ones that have never been run
 
@@ -723,11 +759,13 @@ To list all services, we can use one of the following commands:
 
 ## Installing Java
 ### Oracle JDK
+
 1. Go to the download page, the link to the dowload page for current version of java is on the [main JDK page](https://www.oracle.com/java/technologies/javase-downloads.html).
 2. Click on the debian package, accept the license, and download it.
 	- If installing on system without GUI, copy now (after accepting the license) the target link and dowload the debian package with `wget`:  `
 wget --header "Cookie: oraclelicense=accept-securebackup-cookie" <COPIED LINK>
 `. More info on [SO](https://stackoverflow.com/questions/10268583/downloading-java-jdk-on-linux-via-wget-is-shown-license-page-instead).
+
 3. Install the package with `sudo apt-get install <PATH TO DOWNLOADED .deb>`
 	- if there is a problem with the isntallation, check the file integritiy with: `sha256 <PATH TO DOWNLOADED .deb>`. It should match with the checksums refered on the download page. If not cheksums do not match, go back to download step.
 4. In case there is another version of Java alreadz install, we need to overwrite it using the `update-alternatives` command: `sudo update-alternatives --install /usr/bin/java java <PATH TO JAVA> <PRIORITY>`. Example: 
@@ -811,6 +849,7 @@ However, this only work if there is a LTS version available. If not, the last st
 
 ## Upgrade to other version than the latest
 When upgrading to a version other than the latest, we can try the following steps:
+
 1. perform steps 1 and 2 from the normal upgrade
 2. open the `/etc/update-manager/release-upgrades` file and set the `Prompt` parameter to `normal` or `lts` (depending on the desired version)
 3. backup the `/etc/apt/sources.list` file
@@ -820,6 +859,7 @@ When upgrading to a version other than the latest, we can try the following step
 6. finalizing the upgrade: `sudo apt dist-upgrade`
 
 ## WSL backup
+
 1. check the WSL distro name: `wsl -l -v`
 2. shutdown WSL: `wsl --shutdown`
 3. backup the distro: `wsl --export <disto name> <backup folder path>/<backup name>.tar`
@@ -828,23 +868,27 @@ When upgrading to a version other than the latest, we can try the following step
 
 # vim
 Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:
+
 - **normal mode**: for navigation and file manipulation
 - **insert mode**: for text editing
 - **visual mode**: for text selection
 
 ## Normal Mode
 In normal mode, we can:
+
 - navigate the file using arrow keys or `hjkl` (left, down, up, right)
 - enter global commands using `:` (e.g., `:q` for quit)
 - edit file content using special commands (e.g., `dd` for delete line)
 
 ### Global Commands
+
 - `:q`: quit
 - `:w`: save
 - `:wq`: save and quit
 - `:q!`: quit without saving
 
 ### File Editing Commands
+
 - `dd`: delete line
 
 ## Insert Mode
@@ -856,5 +900,6 @@ Visual mode is used for text selection. To enter visual mode, press `v`. To exit
 
 ## Copy text to cliboard
 Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:
+
 1. select the text using mouse or keyboard
 2. press enter to copy the text to the clipboard

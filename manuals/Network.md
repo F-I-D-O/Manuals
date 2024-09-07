@@ -1,5 +1,6 @@
 # Setup second router as a switch
 ## Tools
+
 - Router 1 - master - connected to the internet
 - Router 2 - Slave
 - Laptop
@@ -10,6 +11,7 @@
 2.	add an IP address reservation for router 2 to routers 1 setting, e.g. 192.168.0.2
 
 ## Setup Router 2
+
 3.	On the laptop, log off from wifi and connect the cable to router 2
 4.	Disable the DHCP server on this router to prevent IP conflicts or network configuration issues allowing only Router 1 to manage the network.
 5.	Restart the router

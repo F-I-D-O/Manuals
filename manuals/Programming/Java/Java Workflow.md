@@ -1,11 +1,13 @@
 # Java developement stack
 We use this stack:
+
 - Toolchain: JDK
 - Package manager: standalone Maven
 - IDE: Netbeans, Idea
 
 # JDK
 Java developem kit is the standard Java toolchain. Most comon tools are:
+
 - `javac` for compilation
 - `java` for execution
 
@@ -28,6 +30,7 @@ Described in the [Maven](./Maven.md) manual.
 
     
 # Netbeans
+
 -   Install the latest version of Apache Netbeans
 -   Configuration:
 	-   Autosaving: `Editor` -> `Autosave`
@@ -55,6 +58,7 @@ A lot of configuration we do in Idea Settings only applies to the current projec
 
 
 ### Settings synchronization
+
 1. Log in into JetBrains Toolbox or to the App
 1. Click on the gear icon on the top-right and choose Sync
 1. Check all categories and click on pull settings from the cloud
@@ -65,12 +69,14 @@ A lot of configuration we do in Idea Settings only applies to the current projec
 
 ### Maven configuration
 By default, Idea uses the bundled Maven, which is almost never desired. It is best to swich to the system Maven, which we should done in:
+
 - `File` -> `Settings` -> `Build, Execution, Deployment` -> `Build Tools` -> `Maven` -> `Maven home directory` for existing projects
 - `File` -> `New Project Setup` -> `Maven` -> `Maven home directory` for new projects
 
 
 ### JDK configuration
 The correct JDK has to be set up in various places:
+
 - compielr has to be at least target jdk, set it in: `File` -> `Settings` -> `Build, Execution, Deployment` -> `Compiler` -> `Java Compiler` -> `Project bytecode version` and `Per-module bytecode version`
 - language level should be the same as target jdk: `File` -> `Project Structure...` -> `Modules` -> `Language Level`
     
@@ -91,6 +97,7 @@ If we are developing a whole stack of projects at once, it is best if we can nav
 
 ## Running Maven Goals
 Maven goals can be run from a dedicated tab on the right. The goals in the tab are divided into two categories:
+
 - `Lifecycle` goals are the most common goals, which are used to build the project
 - `Plugins` goals are the goals of the plugins used in the project
 
@@ -120,12 +127,14 @@ These may be new environment variables, which were not present when Idea was sta
 
 # Set Java version for project
 There are two options to set:
+
 - *source* version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to **compile** the source code.
 - *target* version determines the least version of java that can be used to **run** your java application.
 
 The target version can be higher than the source version, but not he other way around. most of the time, however, we use the same version for source and for target.
 
 Usually, these versions needs to be set:
+
 1. in the project compilation tool (maven) to configure the project compilation
 2. in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.
 
@@ -169,6 +178,7 @@ The old way is to use separate properties:
 **Note that for maven projects, this is automatically set to match the properties in the pom file.**
 
 For the Netbeans real-time compiler, the cross compilation does not make sense, so both source and target Java version is set in one place: 
+
 1. Right click on project -> `Properties` -> `Sources`
 2. In the bottom, change the `Source/Binary Format`
 
@@ -217,6 +227,7 @@ For Maven compiler plugin older then version 3.10.1, use:
 ```
 
 Unfortunatelly, it is also necessary to enable preview features in the IDE configuration: 
+
 - In Netbeans, add `--enable-preview` to `Project Properties` -> `Run` -> `VM options`.
 - In IDEA:
 	1. add `--enable-preview` to `Settings` -> `Build, Execution, Deployment` -> `Compiler` -> `Java Compiler` -> `Override compiler parameters per-module`
@@ -226,16 +237,19 @@ Unfortunatelly, it is also necessary to enable preview features in the IDE confi
 Gurobi is a commercial project not contained in any public maven repositories. It is necessary to [install the gurobi maven artifact](http://fido.ninja/manuals/add-gurobi-java-interface-maven) manualy.
 
 ### Potential problems
+
 - `unsatisfied linker error`: Check if the gurobi version in the error log matches the gurobi version installed.
 
 
 
 # Make part of the project optional
 Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:
+
 - not essential for the project to work
 - dependent on some external library, which can be cumbersome to install
 
 The required steps are usually:
+
 1. Create a maven profile for the optional part of the project
 2. Move optional dependencies to the profile
 3. Move optional source files outside the `src/main/java` directory

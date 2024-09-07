@@ -3,15 +3,18 @@
 Jackson is a (de)serialization library primarily focused to the JSON format. It supports annotations for automatic serialization and deserialization of Java objects.
 
 Jackson have two basic modes:
+
 - **Object mapper mode**, JSON is (de)serialized from/to Java objects
 - **Parser/Generator mode**, JSON is parsed/generated one token at a time
 
 To make it even more complicated, the Object mapper mode can be used in two ways:
+
 - **Data binding**, where the JSON is (de)serialized from/to Java objects that we provide for this purpose
 - **Tree model**, where the JSON is (de)serialized from/to a tree structure of Jackson objects
 
 
 Tutorials:
+
 - [Official databind tutorial](https://github.com/FasterXML/jackson-databind/)
 - [Jenkov tutorial](https://jenkov.com/tutorials/java-json/index.html) (old but gold)
 
@@ -39,6 +42,7 @@ mapper.writeValue(new File("path/to/file.json"), myObject);
 ```
 
 By defualt, Jackson:
+
 - (de)serialize from/to public fields or public setters/getters with the same name as the JSON property
 - all JSON properties are deserialized and all public fields or public getters are serialized
 - if there is no matching field or setter to a JSON property, the deserialization fails
@@ -185,6 +189,7 @@ https://stackoverflow.com/questions/44122782/jackson-deserialize-based-on-type
 
 ### Custom deserializer
 If our architecture is so complex or specific that none of the Jackson annotations can help us to achieve the desired behavior, we can use a custom deserializer. For that we need to:
+
 1. Implement a custom deserializer by extending the `JsonDeserializer` class
 1. Registering the deserializer in the `ObjectMapper`
 
@@ -223,6 +228,7 @@ If we also need to get the generic argument type from JSON, we need to implement
 
 #### Custom deserializer with inheritance
 We can have a common deserializer for both parent and child class, or multiple child classes. However, it is necessary to 
+
 - make the deserializer generic and
 - register the deserializer for all classes, not just for the parent.
 
@@ -254,6 +260,7 @@ mapper.writerWithDefaultPrettyPrinter().writeValue(file, object);
 ```
 
 By default, new objects are created for all members in the object hierarchy that are either:
+
 - public value mebers (fields)
 - public getters: public methods with name `get<NAME>`, where `<NAME>` is a name of some value member
 
@@ -270,6 +277,7 @@ mapper.writeValue(generator, output);
 
 ### Complex member filters
 Insted of adding annotations to each member we want to ignore, we can also apply some more compex filters, to do that, we need to:
+
 1. add a `@JsonFilter("<FILTER NAME>")` annotation to all classes for which we want to use the filter
 2. create the filter
 3. pass a set of all filters we want to use to the writer we are using for serialization
@@ -352,6 +360,7 @@ in the above examples, the `first` and `second` are keys mapping the objects in 
 
 ## Default Serializers and Deserializers
 By default, Jackson can serialize and deserialize many types of objects: 
+
 - all primitive types
 - all primitive wrappers
 - `String`
@@ -361,6 +370,7 @@ By default, Jackson can serialize and deserialize many types of objects:
 
 ### Java 8 Date and Time (de)serialization
 Among the types that are not covered in basic Jakson package are the Java 8 types for date and time. To (de)serialize them, we have two options:
+
 - use the [`jackson-datatype-jsr310`](https://github.com/FasterXML/jackson-modules-java8) module that adds support for the ISO-8601 format for date and time
 - use custom serializers and deserializers if we need a different format
 

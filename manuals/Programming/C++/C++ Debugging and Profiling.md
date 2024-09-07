@@ -8,6 +8,7 @@
 -   Be aware that the cause of the error can be on a different line than the one in the error log!
 
 ### If the source of the compilation bug cannot be found
+
 1.  read the error examples below
 2. check that the code follow the [my guidelines](https://drive.google.com/file/d/1fIwSVqSojOxIZFJCvSszu4xEUvfVPA5P/view?usp=sharing) and [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html). 
 3.  read the [cpp reference](http://cppreference.com) for the parts of the problematic code
@@ -22,6 +23,7 @@ Test for concept satisfaction:
 static_assert(My_concept<My_class>);
 ```
 ### Useful Predicates
+
 - [`std::is_same_as`](https://en.cppreference.com/w/cpp/types/is_same) for checking the type equality. 
 
 ## Determining type at compile time
@@ -62,6 +64,7 @@ If the check passes, and the copy constructor is still being called:
 First, we should check whether the object's type `T` is movable using `static_assert(std::is_move_constructible_v<T>)`
 
 If the static assertion is false:
+
 1. Check whether all base classes has move constructors available
 	- the `std::is_move_constructible_v<T>` cannot be used for that, as the move operations can be protected. Instead, look for the presence of the move constructors in base classes (any base class should have them declared, as the implicit declaration of copy/move/destruction does not work with virtual classes)
 2. Check whether all class members are move constructible using the `std::is_move_constructible_v<T>` concept. Do not forget the const qualifiers!
@@ -74,6 +77,7 @@ This mostly happens if we forgot to add the `public` keyword when inheriting fro
 
 ## Cannot convert from 'initializer list' to...
 This happans when there is no function signature matching the arguments. Sometimes, the specific argument can be found by using constructor instead of initializer list. Otherwise, check the arguments one by one. For each argument:
+
 1. check if the type matches
 2. check if the value type matches, i.e. value/ref/pointer
 3. **check if the const matches**
@@ -88,6 +92,7 @@ or alternatively: `'identifier' was unexpected here; expected 'type specifier'`.
 It simply means that the type cannot be reolved from the code location.
 
 Possible reasons:
+
 - Circular dinclude
 
 # Linker Errors
@@ -102,6 +107,7 @@ Something like `unresolved external symbol...`.
     
 
 ## Multiply Defined
+
 1.  Check the recent includes, are all of them correct?
 2.  Check the multiply defined symbol. If it is a function defined in a header file, it has to be static or inline.
 1.  there can be a bug even in an external library!
@@ -131,6 +137,7 @@ Error codes are the only thing visible when the exception is not caught and no d
 
 ### Windows Error Codes
 On windows, many error codes can be emitted by the system or standard libraries:
+
 - `0x0` to `0x3e7f`: [Win32 error codes](https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes): Errors emitted by Windows high-level functionalities
 - `0xC0000000` to `0xCFFFFFFF`: [NT status codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref): Standardized 32-bit error codes used in Windows kernel, drivers, and protocols. Notable examples:
   - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation
@@ -166,6 +173,7 @@ Be aware that in **CLion debugger, the program does not terminate on unhandled e
 Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.
 
 To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:
+
 - use the `&` operator on the variable in the watch window
 - use the `&` operator on the variable in the immediate window
 
@@ -176,6 +184,7 @@ The address should have a format `0x0000000000000000`.
 
 ## Memory Errors
 These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:
+
 - *Read Access Violation*
 -  *HEAP CORRUPTION DETECTED* 
 
@@ -202,6 +211,7 @@ A lot of memory errors can be caught just by running the program in the debugger
 To add even more assert guards (e.g., for dynamic arrays), we can use the [Application Verifier](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/application-verifier) which is installed as a part of Windows SDK (which is typically installed together with Visual Studio).
 
 To debug the application with the Application verifier enabled:
+
 1. Open AV
 2. `right click` -> `add executable` and select the executable to test 
 3. select the appropriete test suite (the basic one is enouh for the memory testing)
@@ -214,6 +224,7 @@ To debug the application with the Application verifier enabled:
 
 ### Using Address Sanitizer
 A linux memory tool called address sanitizer can be used to debug memory related errors. To use it from the Visual Studio:
+
 1. Check that the `libasan` lib is installed on WSL
 1. In Cmake Settings for the debug configuration, check `Enable AddressSanitizer`
 1. build the project
@@ -235,6 +246,7 @@ The explanation of the error messages can be found on the [Valgrind website](htt
 
 
 The most common errors and tips:
+
 - `Conditional jump or move depends on uninitialised value`:
   - triggers on the first usage (not copy) of the uninitialized data
   - note that the uninitialized variable can look normal (e.g. if it is a number), just the value is random.
@@ -252,11 +264,13 @@ Warning: set address range perms: large range
 
 ## Logical Errors
 ### C++ Specific Numerical Errors
+
 - First possible error is *overflow*. **C++ does not handle or report overflow!** The behaviour is undefined.
 - Second potential danger is the *unsigned integer overflow*. In case the result below zero is stored in unsigned integer, the number is wrapped around, resulting in large positive integer.
 - Another thing is that when signed and unsigned integers are used in one operation, the **signed integer is implicitely converted to unsigned integer before the operation!** This is called promotion and it also works for other types (see in a [table on SO](https://stackoverflow.com/questions/5563000/implicit-type-conversion-rules-in-c-operators)).
 
 In general to prevent the overflow:
+
 - check each operation for the potential overflow, inluding the unsigned integer overflow with negative numbers
 - if the overflow can happen, cast the types before any arithmetic operation to prevent the overflow
 - also, one have to use the right type in templates like `std::max`
@@ -275,6 +289,7 @@ Also, you need to run tests from Visual Studio, otherwise, the program ends when
 
 # Visual Studio Errors
 ## False errors appears in a file / in many files
+
 1. close visual studio
 2. delete the `out` folder
 3. open the visual studio again
@@ -292,6 +307,7 @@ Sometimes, the errors disappears by deleting the `.suo` file located in `<projec
 Unlike in Visual Studio, the Clion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.
 
 To debug multiple targets at once:
+
 1. Open the `Run/Debug Configurations` dialog
 2. Add a new configuration of type `Compound`
 3. Add the configurations you want to run together using the `+` button
@@ -308,11 +324,13 @@ VTune can be run ftom the Visual Studio only for VS solution projects. In case o
 
 ## Memory Profiling 
 For memory profiling to work, two things needs to be taken care of:
+
 - if the application allocates a lot memory inside parallel region, **disable paralelization** for profiling. Otherwise, there can be too many allocation events for the profiler to handle 
 - if you use a custom memory allocator, disable it and use a standard allocator for memory profiling
 
 ### Memory Profiling in Visual Studio
 To profile memory in Visul Studio
+
 1. Set a breakpoint before the region of interest
 2. Run the app and wait for the hit
 3. In `Diagnostic Tools` tab -> `Summary`, click `Enable heap profiling for next session`

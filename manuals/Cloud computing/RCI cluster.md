@@ -5,6 +5,7 @@ Official instructions:
 https://login.rci.cvut.cz/wiki/how_to_start
 
 ## Usual command Usage
+
 - You can watch your jobs with `squeue -u username`.
 - You test/debug your program when running it with `srun` command
     - you usually don’t have to allocate resources when testing
@@ -17,12 +18,14 @@ https://login.rci.cvut.cz/wiki/how_to_start
 
 # How to clone projects
 Usually, you need to clone some of the SUM projects to start working on the RCI cluster. To do that:
+
 1. Copy your key to `~/.ssh/`
 2. Set file permissions to your ssh key safely
 3. Modify `~/.ssh/config IdentityFile` to point to your key
 4. Clone your project
 
 # Specifics for java projects
+
 1. Clone project on RCI cluster
 2. Download binary maven from: http://maven.apache.org/download.cgi and export it to your home folder on the RCI cluster.
 3. Prepare your bash script
@@ -36,6 +39,7 @@ Usually, you need to clone some of the SUM projects to start working on the RCI 
 4. Run your script with srun, sbatch etc. commands, I recommend first use srun, to check everything is set up ok and then use sbatch command, because if computational nodes are busy, your job will be added to the queue and you can do other work.
 
 # Specifics for python projects
+
 1. First load the appropriate version of python, e. G.: `ml Python/3.6.6-foss-2018b`
 2. You can’t just install the packages with `sudo`, you have to install them to the user space instead:
     - Run `pip install --user packagename`
@@ -54,11 +58,13 @@ As linux binaries are usually not portable. They are not compatible with older l
 
 ## Building on RCI
 In general the workflow is the same as on a local machine. The difference is that we do not have root access, so for all needed tools, we have to either  load them via `ml` command, or, if not available, install them in the user space. Typically, we need to load:
+
 - git: `ml git`
 - GCC: `ml GCC`
 - CMake: `ml CMake`
 
 # Specific for projects with gurobi
+
 1. Load Gurobi with 
     - `ml Gurobi`
     - or `ml Gurobi/8.1.1-foss-2018b-Python-3.6.6` for a specific version
@@ -72,6 +78,7 @@ It is necessary to install Gurobi to maven: `mvn install:install-file -Dfile=/mn
 As RCI use Linux as OS, we need to compile the Gurobi C++ libs with the same compiler as the one we use for compilation of our code (see C++ Workflow for more details). Note that **this is necessary even if the Gurobi seems to be compiled with the same copiler we use for compilation**.
 
 Unlike in Linux installation we controll, we cannot build the C++ lib in the Gurobi installation folder. To make the Linking work, foloow these steps:
+
 1. copy the `src` dir from the RCI Gurobi module located at `mnt/appl/software/Gurobi/<desired version>` to our home
 2. run make located in `src/build`
 3. copy the `libgurobi_c++.a` to the `lib` subfolder of your project
@@ -85,6 +92,7 @@ find_library(GUROBI_CXX_LIBRARY
     REQUIRED
 )
 ```
+
 5. if the CMake cache is already generated, delete it.
 6. Generate the CMake cache and build the project
 
@@ -99,6 +107,7 @@ For command description, see Slurm manual.
 
 
 Main params
+
 - `--mem=<required memory>`
      - `<required memory>` is in megabytes by default, for gigabytes, we need to add G
 - `-t <time>`

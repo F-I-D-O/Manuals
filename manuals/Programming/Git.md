@@ -3,6 +3,7 @@ The structure of a single git repository is displayed in the following picture:
 ![Git Repository Structure](Git%20Scheme.png)
 
 Explanation of the picture:
+
 - The **working tree** or working directory is the directory where the files are stored, typically the root directory of the project where the `.git` directory is located.
 - The **index** or staging area is a cache of all changes that are marked (*staged*) for the next commit. To stage a change, we need to call `git add` command. Only files in the index are committed when we call `git commit`.
 - The **HEAD** is a pointer to the last commit in the current branch. 
@@ -46,6 +47,7 @@ git rm --cached <FILEPATH>
 ```
 
 usefull params:
+
 - `-r`: recursive - deletes content of directories
 - `-n` dry run
 
@@ -60,6 +62,7 @@ Where `origin` is the name of the remote and `<URL>` is is the link we use to cl
 
 # Reverting
 When we want to revert  something using git there are multiple options depending on the situation. The commands are:
+
 - [`git checkout`](https://git-scm.com/docs/git-checkout) for overwriting local files with version from a specified tree (also for switching branches) and
 - [`git reset`](https://git-scm.com/docs/git-reset) for reverting commits and effectively rewriting the history.
 - [`git read-tree`](https://git-scm.com/docs/git-read-tree): similar to checkout, but does not require a cleanup before
@@ -73,11 +76,13 @@ The following table shows the differences between the commands:
 | `git reset --hard <commit>` | yes | yes | yes |
 
 To decide between the commands, the first consideration should be whether we want to preserve the history or not:
+
 - we want to reach a specific state in the history and commit the changes as a new commit -> use `git checkout` or `git read-tree`
 - we want to reach a specific state in the history and discard all changes after that point -> use `git reset`
 
 ## Keep the history
 If we want to keep the history, there are still two options:
+
 - we want to revert the whole working tree and also delete all files that were committed after the specified commit -> use `git read-tree -m -u <commit>`
 - we want to revert the whole working tree, but keep all files that were committed after the specified commit -> use `git checkout <commit>`
 - we want to revert only some files -> use `git checkout <commit> <filepath>`
@@ -102,6 +107,7 @@ git push -f
 
 # Wildcards
 Can be used in gitignore and also in some git commands. All described in the [Manual](https://git-scm.com/docs/gitignore#_pattern_format). Usefull wildcards:
+
 - `**/` in any directory
 - `/**` everything in a directory
 
@@ -109,21 +115,25 @@ Can be used in gitignore and also in some git commands. All described in the [Ma
 # Removing files from all branches, local and remote 
 
 Removing files from history can be done using multiple tools:
+
 1. [bfg repo cleaner](https://rtyley.github.io/bfg-repo-cleaner/) is the simplest tool. It can only select files by filename or size, but that is sufficient in most cases. 
 2. [git filter-repo](https://github.com/newren/git-filter-repo/) is a more sophisticated successor to BFG. It can do almost anything possible. Nevertheless, it is less intuitive to operate, and it is harder to analyze its result.
 3. The [`filter-branch`](https://git-scm.com/docs/git-filter-branch) command is the original tool for filtering git history. It is slow and problematic, so it should be used only if the above two tools are not available.  
 
 **No matter of the used tool, before you begin:**
+
 1. commit and push from all machines,
 2. backup the repository
 
 **Similarly, at the end:**
+
 - **It is important not to merge (branch or conflitcs) that originated before the cleanup** on other machines. Otherwise, the deleted file can be reintroduced to the history.
 - Pull on other machines.
 - **Add the file to gitignore** so that it wont be commited again
 
 ## BFG
 With BFG, **only a file with specific filename can be deleted**. It is not possible to use exact file path. To remove file by its name:
+
 1. remove the file locally
 2. clone the whole repo again with the `--mirror` option
 3. on the mirrored repo, run the cleaner: `bfg --delete-files <FILENAME>`
@@ -134,6 +144,7 @@ With BFG, **only a file with specific filename can be deleted**. It is not possi
 The git filter-repo can be installed using pip: `pip install git-filter-repo`.
 
 To remove file by its path:
+
 1. run the command: `git filter-repo --invert-paths --force --dry-run --path <PATH TO THE FILE TO BE REMOVED>`
 2. inspect the changes in `.git/filter-repo` directory:
 	- Compare the files in KDiff3
@@ -218,11 +229,13 @@ On windows, run: `git update-git-for-windows`
 
 # Pull Requests
 Pull requests are a way to propose changes to the repository. The principle is as follows:
+
 1. Create a branch for the changes
 2. Commit the changes to the branch and push it to the remote
 3. Create a pull request on the remote, that suggest to merge the branch into the master branch
 
 There are two possible scenarios:
+
 - We have the permission to create a branch in the repository: in this case, we can create the branch directly on the remote
 - We do not have the permission to create a branch in the repository: in this case, we have to:
 	1. Fork the repository

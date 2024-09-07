@@ -1,5 +1,6 @@
 # Primitive types
 Java has the following primitive types:
+
 - **Integer types**: `byte`, `short`, `int`, `long`
 - **Floating point types**: `float`, `double`
 - **Character type**: `char`
@@ -16,12 +17,14 @@ int[] myArray = {1, 2, 3, 4, 5};
 ```
 
 For working with arrays, the static methods from []`java.util.Arrays`](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html) class can be used. Some of the most important methods are:
+
 - `copyOf` and `copyOfRange` for copying arrays
 - `fill` for filling arrays with a specific value
 
 
 # Classes
 In java, there are the following types of classes:
+
 - **Standard class**: similar to classes in other languages.
 - **Record class**: a simple aggregate of values. 
 
@@ -35,6 +38,7 @@ record MyRecord(int par1, String par2){
 }
 ```
 The advantage over the standard class is that the record class automatically declare data members for all parameters of the record header, and it generates the following methods:
+
 - `equals`
 - `hashCode`
 - `toString`
@@ -56,6 +60,7 @@ My long
 """
 ```
 The properties of text blocks:
+
 - can be used as standard string literals
 - can contain newlines, quotes, and some other symbols that have to be escaped in standard string literals.
 
@@ -267,6 +272,7 @@ class StringClass extends GenericClass<String>{};
 
 ## Wildcards
 The wildcard symbol (`?` ) represents a concrete but unspecified type. It can be bounded by superclass/interface (`? exctends MyInterface`), or by sublcass (`? super MyClass`). The typical use cases:
+
 - single non-generic method accepting generic types of multiple generic parameter values: 
 ```Java
 myMethod(Wrapper<? extends MyInterface> wrapper){
@@ -274,6 +280,7 @@ myMethod(Wrapper<? extends MyInterface> wrapper){
     ...
 }
 ```
+
 - method that can process generic class but does not need to work with the generic parameters at all:
 ```Java
 getLength(List<?> list){
@@ -374,6 +381,7 @@ Note that here `E` has to be a properly typed enum (`Enum<E>`), not the raw enum
 The modern class for working with paths is the [`Path`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html) class from the `java.nio.file` package. 
 
 Other important class is the [`Files`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html) class, which contains static methods for working with files and directories. Important methods:
+
 - `exists`
 - `isDirectory`
 - `isRegularFile`
@@ -382,6 +390,7 @@ Other important class is the [`Files`](https://docs.oracle.com/javase/8/docs/api
 
 ## Iterating over files in a directory
 We can iterate the files in a directory using the [`Files`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html) class:
+
 - `Files.list`: flat list of files
 - `Files.walk`: recursive list of files
 
@@ -398,11 +407,13 @@ We can also create a directory from a `File` object using the `mkdir` and `mkdir
 [Baeldung tutorial](https://www.baeldung.com/java-8-date-time-intro)
 
 The following classes are intended for working with date and time in Java:
+
 - [`LocalDate`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html): date without time
 - [`LocalTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html): time without date
 - [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html): date and time
 
 The `LocalDateTime` als has its timezone/localization aware counterpart:
+
 - [`ZonedDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html): date and time with timezone
 
 
@@ -410,6 +421,7 @@ The `LocalDateTime` als has its timezone/localization aware counterpart:
 [wiki](https://en.wikipedia.org/wiki/Anonymous_function#Java)
 
 An important thing about lambda expressions in Java is that we can only use them to create types satisfying some functional interface. This means that:
+
 - They can be used only in a context where a functional interface is expected
 - They need to be convertible to that interface. 
 
@@ -590,6 +602,7 @@ Java use a tradidional casting syntax:
 ```
 
 There are two different types of cast:
+
 - *value cast*, which is used for value types (only primitive types in Java) and change the data
 - *reference cast*, which is used for Java objects and does not change it, it just change the objects interface
 
@@ -685,6 +698,7 @@ Reflection is a toolset for working with Java types dynamically.
 
 ## Get class object
 To obtain the class object, we can use:
+
 - the `forName` method of the `Class` class:
     ```Java
     Class<?> c = Class.forName("java.lang.String");
@@ -719,6 +733,7 @@ method.invoke(myObject, <PARAMS>);
 
 # SQL
 Java has a build in support for SQL in package `java.sql`. The typical operation:
+
 1. 
 1. 
 1. create a `PreparedStatement` from the cursor using the SQL string as an input
@@ -727,6 +742,7 @@ Java has a build in support for SQL in package `java.sql`. The typical operation
 
 ## Filling the query parameters
 This process consist of safe replacement of `?` marks in the SQL string with real values. The `PreparedStatement` class has dedicated methods for that:
+
 - `setString` for strings
 - `setObject` for complex objects
 

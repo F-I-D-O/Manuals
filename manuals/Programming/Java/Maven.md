@@ -3,6 +3,7 @@ Maven is a dependency management and build tool for Java.
 The project configuration for Maven is stored in a single file called `pom.xml`. Both the project dependencies and the build configuration are stored in this file.
 
 The maven is executed using the as `mvn <goal>`. Typical goals are
+
 - `compile`: compile the project
 - `test`: run tests
 - `package`: package the project into a jar or war file
@@ -12,6 +13,7 @@ The maven is executed using the as `mvn <goal>`. Typical goals are
 
 # Maven Packages: Artifacts
 All Maven dependencies and plugins installed in local system repositories can be either:
+
 - downloaded from a remote repository
 - installed from a local file or project
 
@@ -36,6 +38,7 @@ mvn dependency:get -Dartifact=<GROUP ID>:<ARTIFACT ID>:<VERSION>
 
 ## Debugging missing Artifacts
 All Maven dependencies should work out of the box. If some dependencies cannot be resolved:
+
 - check that the dependencies are on the maven central.
 - if not, check that they are in some special repo and check that the repo is present in the pom of the project that requires the dependency
 
@@ -211,10 +214,12 @@ runs all tests within the `input` package.
 
 # Execute Programs from Maven
 For executing programs, Maven has the `exec` plugin. This plugin has two goals: 
+
 - `exec:java`: for Java programs
 - `exec:exec`: for any program
 
 However, the `exec:java` goal is not very flexible. It uses the same JVM as the calling Maven process, so the JVM cannot be configured in any way. Notably, with the `exec:java` goal, it is not possible to:
+
 - pass JVM arguments like `-Xmx`
 - set the library path using `-Djava.library.path`
 
@@ -236,6 +241,7 @@ mvn exec:exec -Dexec.executable="java" -Dexec.args="Xmx30g -classpath %classpath
 The `-classpath %classpath` argument is obligatory and it is used to pass the project classpath to the program. 
 
 **Note that here, the `-Dexec.args` parameter is used both for vm and program arguments.** The order is:
+
 1. JVM arguments, classpath
 2. main class
 3. program arguments
@@ -267,10 +273,12 @@ PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderExce
 ```
 
 This error signals that the server SSL certificate of the maven repo (when using HTTPS) is not present in the local SSL certificate keystore. This can have two reasons, to disintiguish between them, try to access the repo from your browser over https:
+
 - If you can access the repo from your browser, it means that the server has a valid SSL certificate, but it is not in zour local keystore (just in the browser keystore). You can solve this problem by adding the certificate to your java SSL keystore (see below).
 - if you cannot access the server from your browser, it is likely that the server does not have a valid SSL certificate, and you have to solve it on the serer side.
 
 ## Adding a new SSL certificate to your keystore
+
 1. Open the repo URL in your browser 
 2. Export the certificate:
 	- Chrome: click on the padlock icon left to address in address bar, select `Certificate -> Details -> Copy to File` and save in format "Der-encoded binary, single certificate".
@@ -292,6 +300,7 @@ keytool -keystore "<PATH TO cacerts>" -list
 First, try to look at the versions of related dependencies and plugins. Old versions of these can cause many problems.
 
 ## No tests found using the `Dtest` argument of the `test` goal
+
 1. Check the class name/path/pattern
 2. If the name works, but pattern does not, it can be caused by an old version of the surefire plugin that use a different patten syntax.
 
@@ -304,6 +313,7 @@ Try to clean and compile again
 This section s focused on Maven projects but most of the steps should apply to all Java projects.
 
 Steps:
+
 1. Cleanup
 1. Add License to all files
 1. Test
@@ -314,6 +324,7 @@ Steps:
 
 ## Cleanup
 The following cleanup steps should be done:
+
 - clean garbage/IDE files
 	- check that they are in gitignore
 	- remove already tracked files by `git rm -r --cached <path>`
@@ -333,6 +344,7 @@ A full path to a license template has to be given.
 In general, it is desirable to update the version of each related project from SNAPSHOT to the release version and then test the whole setup.
 
 In complex setups, we need to:
+
 1. Change the version of the parent project
 2. Change the version of the project's dependencies
 3. Change the version of the project itself
@@ -346,6 +358,7 @@ If we fullfill all these steps, we can deploy the project. Both SNAPSHOTs and re
 Deploying to Maven Central has many advantages: it is free, reliable, and every maven user can get our artifact without any additional configuration. However, it is also a bit complicated due to security requirements and high quality standards. 
 
 The process is usually as follows:
+
 1. namespace (groupId) registration
 2. deploying of artifacts to the namespace
 
@@ -358,6 +371,7 @@ The whole process is described in detail in the [Central Repository Documentatio
 ### Deploying artifacts to OSSRH
 
 Requirements:
+
 - required metadata in the pom 
 - javadoc and sources must be supplied
 - all files must be signed with GPG
@@ -368,6 +382,7 @@ Requirements:
 [Official documentation](https://central.sonatype.org/pages/requirements) (at the end)
 
 The following metadata must be present in the pom:
+
 - project tags:
 	- `name`
 	- `description`
@@ -380,6 +395,7 @@ The following metadata must be present in the pom:
 			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
+
 - developer information:
 	```XML
 	<developers>
@@ -390,6 +406,7 @@ The following metadata must be present in the pom:
 		</developer>
 	</developers>
 	```
+
 - scm information:
 	```XML
 	<scm>
@@ -483,6 +500,7 @@ For the deployment to OSSRH, we need to use several plugins and add some configu
 ```
 
 The <SNAPSHOT URL> and <RELEASE URL> are links to the repo we have received after the namespace registration approval. Note that we need to use the original URLs, even if they do not match the links in the documentation. The current (2024-02-15) URLs are:
+
 - https://s01.oss.sonatype.org/content/repositories/snapshots
 - https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
 
@@ -518,6 +536,7 @@ The following configuration must be present in the `settings.xml` file:
 
 # Profiles
 Maven profiles can be used to supply different configurations in a single `pom.xml` file. This can be used for example to:
+
 - support different build environments (e.g., development, testing, production)
 - support different build targets (e.g., different Java versions)
 - support different build configurations (e.g., optional dependencies)
@@ -548,6 +567,7 @@ mvn help:active-profiles -P <profile id>
 [Official guide](https://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
 
 Maven plugins can be created as maven projects. Specifics `pom` configuration:
+
 - The packaging is `maven-plugin`
 - The name of the plugin is `<artifactId>-maven-plugin`
 - among the dependencies, there should be `maven-plugin-api` and `maven-plugin-annotations`

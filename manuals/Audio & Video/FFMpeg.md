@@ -9,6 +9,7 @@ ffmpeg -ss 00:00:03 -to 00:00:06 -i .\screen_recording1618479593603.mp4 -r 15 -v
 ```
 
 Used options:
+
 - `-ss 00:00:03`: start at 3 seconds
 - `-to 00:00:06`: end at 6 seconds
 - `-r 15`: set the frame rate to 15 fps

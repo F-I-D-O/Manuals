@@ -1,5 +1,6 @@
 # Running Gurobi CLI
 There are two gurobi command line tools: 
+
 - [`gurobi_cl`](https://www.gurobi.com/documentation/current/refman/grb_command_line_tool.html): for solving the optimization problems passed as a file
 - `gurobi`: for running the interactive shell (ipython-like)
 

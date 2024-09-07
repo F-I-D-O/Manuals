@@ -3,6 +3,7 @@
 
 ## Numbers
 Python has the following numeric types:
+
 - `int` - integer
 - `float` - floating point number
 
@@ -21,6 +22,7 @@ Strings in Python can be enclosed in single or double quotes (equivalent). The t
 
 ### String formatting
 The string formatting can be done in several ways:
+
 - using the `f` prefix to string literal: `f'{<VAR>}'`
 - using the `format` method: `'{}'.format(<VAR>)`
 
@@ -33,6 +35,7 @@ The following are the most common options:
 To use the character `{` and `}` in the string, we have to escape them using double braces: `{{` and `}}`. 
 
 ### String methods
+
 - `capitalize`: capitalize the first letter of the string
 - `lower`: convert the string to lowercase
 - `upper`: convert the string to uppercase
@@ -74,6 +77,7 @@ if s:
 The code above prints 'hello', as the variable `s` evaluates to `True`.
 
 Any object in Python evaluates to `True`, with exeption of:
+
 - `False`
 - `None`
 - numerically zero values (e.g., `0`, `0.0`)
@@ -241,6 +245,7 @@ Instead of using comparators, Python has a different concept of *key functions* 
 
 ## Complex sorting using tuples
 If we need to apply some complex sorting, we can use tuples as the key function return value. The tuples have comparison operator defined, the implementation is as follows:
+
 - elements are compared one by one
 - on first non-equal element, the comparison result is returned
 
@@ -263,6 +268,7 @@ a[None:3] # [1, 2, 3]
 ```
 
 Sometimes, it is not possible to use the slice syntax:
+
 - when we need to use a variable for the step or,
 - when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.
 
@@ -326,6 +332,7 @@ For all possible time formats, check the [`strftime` cheatsheet](https://strftim
 
 ## Accessing the parts of `datetime`
 The `datetime` object has the following attributes:
+
 - `year`
 - `month`
 - `day`
@@ -361,6 +368,7 @@ To convert a `datetime` object to unix timestamp, we can use the `timestamp` met
 
 # Filesystem
 There are three ways commonlz used to work with filesystem in Python:
+
 - manipulate paths as strings
 - [`os.path`](https://docs.python.org/3/library/os.path.html)
 - [`pathlib`](https://docs.python.org/3/library/pathlib.html)
@@ -459,12 +467,14 @@ p = p.as_posix() # 'C:/workspace/project/file.txt'
 
 
 ## Working directory
+
 - `os.getcwd()` - get the current working directory
 - `os.chdir(<path>)` - set the current working directory
 
 
 ## Iterating over files
 The `pathlib` module provides a convenient way to iterate over files in a directory. The particular methods are:
+
 - `iterdir` - iterate all files and directories in a directory
 - `glob` - iterate over files in a single directory, using a filter
 - `rglob` - iterate over files in a directory and all its subdirectories, using a filter
@@ -596,6 +606,7 @@ with open('file.csv', 'r') as f:
 ```
 
 Reader parameters:
+
 - `delimiter` - the delimiter character
 
 
@@ -673,6 +684,7 @@ for a in ... # ok
 
 ## Initialization
 We can create the new array as:
+
 - zero-filled: `np.zeros(<shape>, <dtype>)`
 - ones-filled: `np.ones(<shape>, <dtype>)`
 - empty: `np.empty(<shape>, <dtype>)`
@@ -699,6 +711,7 @@ np.savetxt('file.csv', a, delimiter=',', fmt='%i')
 
 
 ## Usefull array properties:
+
 - `size`: number of array items
     - unlike len, it counts all items in the mutli-dimensional array
 - `itemsize`: memory (bytes) needed to store one item in the array
@@ -790,6 +803,7 @@ sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith(
 
 # Plotting
 There are several libraries for plotting in Python. The most common are:
+
 - `matplotlib`
 - `plotly`
 
@@ -821,11 +835,13 @@ for i in tqdm(range(100)):
     ...
 ```
 Important parameters:
+
 - `desc`: description of the progress bar
 
 
 # PostgreSQL
 When working with PostgreSQL databases, we usually use either
+
 - the [psycopg2](https://www.psycopg.org/) adapter or,
 - the [sqlalchemy](https://www.sqlalchemy.org/).
 
@@ -847,12 +863,14 @@ with engine.connect() as conneciton:
 ```
 
 With modifying statements, the situation is more complicated as SQLAlchemy uses transactions by default. Therefore we need to commit the transaction. There are two ways how to do that:
+
 - using the `commit` method of the connection object
     ```Python
     with engine.connect() as conneciton:
         conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
         conneciton.commit()
     ```
+
 - creating a new block for the transaction using the `begin` method of the connection object
     ```Python
     with engine.connect() as conneciton:
@@ -912,6 +930,7 @@ KDTree can be found in the `scipy` library.
 
 # Geometry
 There are various libraries for working with geometry in Python:
+
 - [`scipy.spatial`](https://scikit-spatial.readthedocs.io/en/stable/index.html): for basic geometry operations
 - `shapely`
 - `geopandas`: for gis data

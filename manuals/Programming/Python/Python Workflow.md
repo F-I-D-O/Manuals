@@ -1,5 +1,6 @@
 # Dev Stack
 I use the following stack:
+
 -  the latest Python, 64 bit
 -  pip as the package manager
 -  Pycharm IDE
@@ -9,6 +10,7 @@ I use the following stack:
 
 # Python
 Python should be installed from the [official web page](https://www.python.org/), not using any package manager. Steps:
+
 1. Dowload the 64-bit installer
 2. Run the installer, choose advanced install
 	- Include the GUI tools (Tkinter, TK)
@@ -23,6 +25,7 @@ The source code for python can be inspected on [GitHub](https://github.com/pytho
 We execute python scripts from the command line as: `python <path to the .py file>`. 
 
 Parameters:
+
 - `-m` executes a module as a script, e.g. `python -m venv`. This is useful for executing scripts whithout knowing the path to the script.
 
 
@@ -37,6 +40,7 @@ However, if a package uses a C/C++ backend and does not contain the compiled whe
 To uninstall a package, use `pip uninstall <package name>`.
 
 There is no way how to uninstall more packages using some wildcard. To uninstall more packages efficiently (not one by one):
+
 1.  create a file with the list of all installed packages: `pip freeze > packages.txt`
 2.  edit the file and remove all packages you want to keep
 3.  uninstall all packages from the file: `pip uninstall -r packages.txt -y`
@@ -44,6 +48,7 @@ There is no way how to uninstall more packages using some wildcard. To uninstall
 
 ## Troubleshooting package installation
 If the installation fails, check the following:
+
 1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
 2.  if you installed the package from a wheel, check the notes/requirement info on Chris Golthke page
 3.  Check the log. Specifically, no building should appear there whatsoever. If a build starts, it means that some dependency that should be installed as a prebuild wheel is missing. Possible reasons:
@@ -59,6 +64,7 @@ To upgrade pip, use `python -m pip install --upgrade pip`. Sometimes, this comma
 A useful method how to develop and test packages is to have them installed locally. This way, each change in the source code is immediately reflected in the package and also in the code that uses the package. To install a package locally, use `pip install -e <path to the package>`.
 
 Note that the package needs to be properly initialized first, i.e.:
+
 - at least one `__init__.py` file in the package root (optionally others in subpackages)
 - a `setup.py` file in the parent directory of the package root
 
@@ -68,6 +74,7 @@ Note that the package needs to be properly initialized first, i.e.:
 ## Configuration
 ### Settings synchronization
 Same as in IDEA:
+
 1. Log in into JetBrains Toolbox or to the App
 1. Click on the gear icon on the top-right and choose Sync
 1. Check all categories and click on pull settings from the cloud
@@ -79,6 +86,7 @@ Same as in IDEA:
 `Run configuration select box` -> `Edit Configurations...` -> Select the configuration -> check the `Emulate terminal in output console`
 
 ## Project Configuration
+
 - configure the correct test suite in `File` -> `Settings` -> `Tools` -> `Python Integrated Tools` -> `testing`
 
 ## Known problems & solutions
@@ -90,6 +98,7 @@ Solution: `Edit Configurations...` -> select configuration for the script -> che
 
 ### Pycharm does not recognize a locally installed package
 It can happen that a locally installed package (`-e`) is not recognized by Pycharm. This can be solved by adding the path to the package to the interpreter paths:
+
 1.  `File` -> `Settings` -> `Project: <project name>` -> `Python Interpreter`
 1. Click on the arrow next to the interpreter name and choose `Show All...`
 1. Click on the desired interpreter and click on the filetree icon on the top of the window
@@ -105,6 +114,7 @@ Jupyter can be used both in Pycharm and in a web browser.
 The key for the effectivity of Jupyter in Pycharm is using the *command mode*. To enter the command mode, press `Esc`. To enter the edit mode, pres enter.
 
 ### Command mode shortcuts
+
 - `m`: change cell type to markdown
 - `Ctrl` + `C`: copy cell
 - `Ctrl` + `V`: paste cell
@@ -112,6 +122,7 @@ The key for the effectivity of Jupyter in Pycharm is using the *command mode*. T
 - `Ctrl` + `Shift` + `Down`: move cell down
 
 Text mode shortcuts:
+
 - `Ctrl` + `Shift` + `-`: split cell on cursor position
 
 
@@ -124,23 +135,28 @@ Pycharm contains a good debuger for python code. However, it cannot step into mo
 
 # Testing
 To run pytest, simply go to the folder and run `pytest`. Arguments:
+
 - `-x`: stop on first failure
 
 # Mixed Python-native debugging
 In theory, there are two ways how to debug python native code:
+
 - use a tool that can step from python to C++ (only Visual Studio offers this possibility AFAIK)
 - use two debuggers, start with a python debugger, and attach a native debugger to the python process. This way, the debuggers can be independent. However, one needs to put a breakpoint in the native code, and for that, we need to know the location of the code that will be executed from python (non-trivial for standard library)
 
 ## Python-native debugger in Visual Studio
 First check and install the requirements:
+
 - Python 3.5-3.9, including debugging symbols
 	- Python 3.10 is not compatible yet
 - in Visual Studio, a Python development component needs to be installed, including *Python native development tools*
 
 Then, configure the Visual studio:
+
 - Go to `Tools` -> `Options` -> `Python` -> `Debugging` and check: *Enable debugging of the Python standard library*.
 
 Finally, create a new Python project (either clean, or from existing code) and configure it:
+
 - use the interpreter directly, do not create a virtual environment
 - enable native code debugging:
 	1. Go to project properties -> `Debug`
@@ -161,12 +177,14 @@ Finally, create a new Python project (either clean, or from existing code) and c
 # Releasing libraries to PyPi
 
 ## Steps
+
 1. add license headers: https://github.com/johann-petrak/licenseheaders
 2. check that setup.py contains all requirements - pipreqs
 3. release
 4. update the min version in dependencies
 
 ## Release
+
 1. raise version
 2. run sdist
 	- in Pycharm: `Tools` -> `Run setup.py task` -> `sdist`

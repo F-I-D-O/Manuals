@@ -6,6 +6,7 @@ Run the task in the current shell in blocking mode, i.e., the console will be bl
 
 
 Params:
+
 - `--pty` runs the in terminal mode. Output and error streams are closed for everything except the first task.
 - `-i` Input setting. If followed by no param, it indicates that the input stream is closed.
 
@@ -18,6 +19,7 @@ sbatch <bash script>
 Note that the `<bash script>` here realy needs to be a bash script, it cannot be an arbitrary command or executable.
 
 Important parameters:
+
 - `-n, --ntasks`: maximum number of tasks/threads that will be allocated by the job
     - default is one task per node
 - `-N, --nodes`: number of allocated nodes. 
@@ -29,6 +31,7 @@ Important parameters:
 - `-o`, `--output=`: job's output file name. The default name is `slurm-<JOB ID>.out`
 
 ## [squeue](https://slurm.schedmd.com/squeue.html)
+
 - `--me` filter just my jobs
 - `-u <username>` filter just a specific user
 - `--start` print the expected start time and the nodes planed to run the task
@@ -51,6 +54,7 @@ squeue --me | awk '/smod_cha/ {print $1}' | xargs scancel
 
 ## [sacctmgr](https://slurm.schedmd.com/sacctmgr.html)
 For viewing and modifying Slurm account information. The most important command for users is `show` (or `list`, which is equivalent). Baset on the parameter, it shows different information:
+
 - `show associations`: associations between users and accounts
 - `show qos`: quality of service: limits and priorities for each group-queue combination
 
@@ -59,4 +63,5 @@ For viewing and modifying Slurm account information. The most important command 
 
 # Determining why the job was killed
 Usually, the error message is at the end of the output file. Message meaning:
+
 - `Detected 1 oom_kill event in ...`: oom stands for out of memory. The job was killed because it exceeded the memory limit.

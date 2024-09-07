@@ -21,15 +21,18 @@ Other parts can be extracted too. To extract **day of week**, we can use `isodow
 In PostgreSQL, sequences are used for auto-incrementing columns. When you are creating a new db table or adding a new column, the process of creating a new sequence can be automated by choosing an `identity` or a `serial` column type.
 
 When updating an aexisting column, a manual intervention is required:
+
 1. change the column to some numerical datatype
 2. create the sequence:
 ```SQL
 CREATE SEQUENCE <SEQUENCE NAME> OWNED BY <TABLE NAME>.<COLUMN NAME>;
 ```
+
 3. adjust the value of the sequence:
 ```SQL
 SELECT setval(pg_get_serial_sequence('<TABLE NAME>', '<COLUMN NAME>'), max(<COLUMN NAME>)) FROM <TABLE NAME>;
 ```
+
 3. set the column to be incremented by the sequence:
 ```SQL
 ALTER TABLE <TABLE NAME>
@@ -42,6 +45,7 @@ There are many string function available, including the `format` function that w
 
 
 ## Arrays
+
 - [arrays](https://www.postgresql.org/docs/current/arrays.html)
 - [array functions and operators](https://www.postgresql.org/docs/8.4/functions-array.html)
 
@@ -94,6 +98,7 @@ WHERE
 To handle duplicates on `INSERT`, PostgreSQL provides the `ON CONFLICT` clause (see the [`INSERT`](https://www.postgresql.org/docs/current/sql-insert.html) documentation).
 
 The options are:
+
 - `DO NOTHING`: do nothing
 - `DO UPDATE SET <column name> = <value>`: update the column to the given value
 
@@ -211,6 +216,7 @@ Be carful to **not use a variable name equal to the name of some of the columns*
 
 ### Assigning a value to a variable using SQL
 There are two options how to assign a value to a variable using SQL:
+
 - using the `INTO` clause in the `SELECT` statement
 - using a `SELECT` statement as rvlaue of the assignment
 
@@ -254,12 +260,14 @@ Note that for these constructs, the return type needs to be a `table` or `setof`
 
 ## Deciding the language
 For simple statements, we can use the SQL language. We need the PL/pgSQL if:
+
 - we need to use variables or control statements specific to PL/pgSQL
 - we need to use temporary tables, as the SQL language fails to recognize them if they are created inside the function/procedure
 
 
 ## Conditional filters based on the value of a variable or input parameter
 To add some filter to the `WHERE` or `ON` clause of a query based on the value of a variable or input parameter, we can use the following technique:
+
 1. set the variable or input parameter to `NULL` if we do not want to apply the filter
 2. in the filter test for disjunction of NULL or the filter condition
 
@@ -310,6 +318,7 @@ We can use it for example to retrieve the value of a column that has maximum val
 PolsGIS is an extension for PostgreSQL that adds support for spatial data. 
 
 To enable the extension, we need to:
+
 1. install the extension
 	- e.g., using the bundeled stack builder application
 1. enable the extension in the database
@@ -336,6 +345,7 @@ CREATE INDEX nodes_geom_idx
 
 ## Converting between geometry types
 There are dedicated functions whcich we can use to convert between geometry types:
+
 - `ST_Multi`: converts geometries to their multi-variant, e.g., `LineString` to `MultiLineString`.
 
 
@@ -348,6 +358,7 @@ The `St_ConcaveHull` function takes an additional parameter ` param_pctconvex` w
 
 ## Split area to polygons based on points
 The split of spece into polygons based on a set of points is called *Voronoi diagram*. In PostGIS, we have a [`ST_Voronoi_Polygons](https://postgis.net/docs/ST_VoronoiPolygons.html) for that. To obtain a set of polygons from a set of points, it is necessary to
+
 1. Aggregate the rows (`ST_Collect`)
 2. Compute the polygon geometry (`ST_Voronoi_Polygons`)
 3. Disaggregate the geometry into individual polygons (`ST_Dump`)
@@ -368,6 +379,7 @@ SELECT st_intersection(
 
 
 ## Other Useful Functions
+
 - [`ST_Within`] `ST_Within`(A, B) if A is completly inside B
 - [`ST_Intersects`](https://postgis.net/docs/ST_Intersects.html) `ST_Intersects(g1, g2)` if `g1` and `g2` have at least one point in common.
 - [`ST_Transform`](https://postgis.net/docs/ST_Transform.html): `ST_Transform(g, srid)` transforms geometry `g` to a projection defined by the `srid` and returns the result as a geometry.
@@ -383,12 +395,14 @@ SELECT st_intersection(
 
 # PgRouting
 [PgRouting](https://pgrouting.org/) is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
+
 - finding the strongly connected components: [`pgr_strongComponents](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
 - graph contraction/simplification
 
 
 ## Finding strongly connected components
 The function [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0) finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:
+
 - `id`, 
 - `source`,
 - `target`, 
@@ -401,6 +415,7 @@ The first three parameters are obvious. The cost parameter does not have any eff
 
 # PL/pgSQL
 [PL/pgSQL](https://www.postgresql.org/docs/current/plpgsql.html) is a procedural language available in PostgreSQL databases. It can be used inside:
+
 - functions
 - procedures
 - `DO` command
@@ -470,6 +485,7 @@ psql -d <db name> -c "CREATE DATABASE <db name>" -c "<other command>"
 ```
 
 Other useful parameters:
+
 - `-X`: do not read the `~/.psqlrc` file. This is useful when debuging the `psql` commands or running scripts, as it disables any customizations.
 - `-U <user name>`: connect as a different user. If not specified, the current user is used.
 - `-p`<port number>: specify the port number.  (default is 5432)
@@ -483,12 +499,14 @@ psql -d <db name> -c "\l+"
 The above command lists all databases, including additional information.
 
 Note that the **meta-commands cannot be combined with SQL queries passed to the `-c` parameter**. As `-c` argument, we can use either:
+
 - a plain SQL query without any meta-commands
 - a single meta-command without any SQL query (like the example above)
 
 *(In* `\copy public.nodes FROM nodes.csv CSV HEADER`*, the string after `\copy` is a list of arguments, not an SQL query)*
 
 When we want to combine a meta-command with an SQL query, we need to use some of the workarounds:
+
 - use the `psql` interactive mode
 - use the `psql` `--file` parameter to execute a script from a file
 - pipe the commands to `psql` using `echo`:
@@ -513,10 +531,12 @@ psql -d <db name> < <file name>
 
 ## Importing compressed SQL dump
 To import a compressed SQL dump we need to know how the dump was compressed. 
+
 - If it was compressed using the `pg_dump` with the `-Z` parameter, we use a `pg_restore` command:
 	```bash
 	pg_restore -d <db name> <file name>
 	```
+
 - If it was compressed using a compression tool, we need to pipe the output to the decompression tool and then to `psql`:
 	```bash
 	<decompression tool> < <file name> | psql -d <db name>
@@ -529,6 +549,7 @@ The easiest way to import data from csv is to use the `psql` `\copy` meta-comman
 psql -d <db name> -c "\copy <table name> FROM <file name> CSV HEADER"
 ```
 The syntax of this command and its parameters is almost identical to the [`COPY`](https://www.postgresql.org/docs/current/sql-copy.html) command. Important parameters:
+
 - `CSV`: the file is in CSV format
 - `HEADER`: the first line of the file contains column names
 
@@ -539,6 +560,7 @@ The `COPY` command, however, has an advantage over the `\copy` command when we a
 
 ### Importing data from csv with columns than are not in the db table
 The `COPY` (and `\copy`) command can be used to copy the input into a database table even if it contains only a subset of database table columns. However, it does not work the other way, i.e, all input columns have to be used. If only a subset of input columns needs to be used, or some of the input columns requires processing, we need to use some workaround. The prefered mathod depends on the characte of the data: 
+
 - data do not match the table, but they are small: 
 	1. load the data with pandas
 	2. process the data as needed
@@ -553,6 +575,7 @@ The `COPY` (and `\copy`) command can be used to copy the input into a database t
 
 ## Importing data from a shapefile
 There are multiple options:
+
 - `shp2psql`: simple tool that creates sql from a shapefile
 	- easy start, almost no configuration
 	- always imports all data from shapefile, cannot be configured to skip columns
@@ -566,6 +589,7 @@ There are multiple options:
 
 ## Importing data from GeoJSON
 For a single geometry stored in a GeoJSON file, the function [`ST_GeomFromGeoJSON`](http://postgis.net/docs/ST_GeomFromGeoJSON.html) can be used.
+
 - just copy the geometry part of the file
 - change the geometry type to match the type in db
 - don't forget to surround the object with curly brackets
@@ -579,6 +603,7 @@ The data can be exported to SQL using the `pg_dump` command. The simplest usage 
 pg_dump -f <output file name> <db name>
 ```
 Important parameters:
+
 - `-s`: export only the schema, not the data
 
 If we need to further process the data, we can use the stdout as an output simply by omitting the `-f` parameter:
@@ -596,18 +621,21 @@ pg_dumpall -f <output file name>
 
 ## Compressing the SQL dump
 To compress the SQL dump, we have two options:
+
 - use the `pg_dump` command with the `-Z` parameter, e.g., `pg_dump <db name> -Z1 -f <output file name>` or
 - pipe the output to a compression tool, e.g., `pg_dump <db name> | gzip > <output file name>`
 
 
 ## Exporting data to csv
 When exporting large data sets, it is not wise to export them as an SQL dump. To export data to csv, we can use either:
+
 - `psql` `\copy` command
 - `COPY` command in SQL
 
 The simplest way is to use the `\copy` command. However, it may be slow if we call psql from a client and we want to export the data to a file on the server, because the data are first sent to the client and then back to the server. 
 
 The `COPY` command is the fastest way to export data to the server. However, by default, it can be tricky to use, as the sql server needs to have write access to the file. To overcome this problem, we can use the following workaround:
+
 1. choose `STDOUT` as an output for the `COPY` command
 2. at the end of the command, add `\g <file name>` to redirect the output to a file.
 
@@ -660,16 +688,19 @@ As a first step, it is always good to know which clusters are installed and runn
 ## Starting, stopping, and restarting the cluster
 
 Sometimes it is needed to restart the cluster. There are two commands:
+
 - `pg_ctl restart`: restarts the cluster
 - `pg_ctl reload`: reloads the configuration of the cluster
 
 Always check which one is needed in each case. For both commands, the path to the `data` directory of the cluster is needed. We can specify it in two ways:
+
 - using the `-D` parameter of the `pg_ctl` command
 - setting the `PGDATA` environment variable
 
 
 ## Creating new user
 For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
+
 - `-P` or `--pwprompt`: prompt for password. If not used, the user will be created without a password.
 
 
@@ -697,6 +728,7 @@ With PostgreSQL version 9.3 and later, we can upgrade easily even between major 
 The process is described in the pg_upgrade manual, however, usually, most of the steps are not necessary as they apply only to very specific cases. On top of that, some aspects important for the upgrade are not mentioned in the manual.
 
 The steps for a typical ubuntu/debian installation are:
+
 1. stop the new cluster using `systemctl stop postgresql@<version>-main`
 2. run the `pg_upgrade` command with `--check` to check the compatibility
 3. stop the old cluster using `systemctl stop postgresql`
@@ -710,6 +742,7 @@ The standard `pg_upgrade` command looks like this:
 sudo -u postgres pg_upgrade --link -j <number of cores> -b <old bin dir> -d <old data dir> -D <new data dir> -o 'config_file=<old conf file>' -O 'config_file=<new conf file>'
 ```
 Description:
+
 - `--link`: links the old data directory to the new one instead of copying the data. Fastest migration method.
 - `<old bin dir>`: The `bin` directory of the old cluster.
 	- usually `/usr/lib/postgresql/<old version>/bin`
@@ -736,6 +769,7 @@ SHOW hba_file
 
 ### Lost Password to the Postgres Server
 The password for the db superuser is stored in db `postgres`. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
+
 1. find the `pg_hba.conf file` 
 	- usually located in `C:\Program Files\PostgreSQL\13\data`
 2. backup the file and replace all occurances of `scram-sha-256` in the file with `trust`
@@ -758,6 +792,7 @@ The configuration of the PostgreSQL server is stored in the `<postgres data dir>
 The logs are stored in the `<postgres data dir>/log` directory. 
 
 By default, only errors are logged. To logg statements, we need to change the `log_statement` parameter. Valid values are:
+
 - `none`: no statements are logged
 - `ddl`: only DDL statements are logged
 - `mod`: only statements that modify the database are logged
@@ -781,6 +816,7 @@ There is currently no GUI tool for that in DataGrip. Just add a normal index and
 
 
 ## Filter out store procedures
+
 1. right-click on `routines`
 1. click `open table`
 1. sort by type
@@ -796,6 +832,7 @@ Drag the table in the database explorer and drop it to the location you want it 
 ## Known issues and workarounds
 ### DataGrip displays objects that were deleted
 Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
+
 1. right-click on database connection (root object in the database explorer)
 1. click on `Diagnostics` -> `Force refresh`
 
@@ -804,10 +841,12 @@ Sometimes, DataGrip displays objects that were deleted. Additionally, it it disp
 # Navicat
 ## Cannot connect to db
 Symptoms:
+
 - cant connect to db server: `Could not connect`
 - after editing the connection and trying to save it (ok button): `connection is being used`
 
 Try:
+
 1. close navicat
 2. open navicat, edit connection
 1. click test connection
@@ -825,6 +864,7 @@ To create diagram from an existing database: right click on the database -> `Gen
 
 # Kill a hanging query
 To kill a hanging query, we need to complete two steps:
+
 1. identify the query PID
 1. kill the query
 

@@ -4,6 +4,7 @@ In C++, the workflow and especially the build pipeline is much more complicated 
 ![C++ Workflow](Build%20tools%20and%20toolsets.png)
 
 This guide presents mostly the following workflows:
+
 - Clion or Visual Studio IDE
 - CMake
 - any sequencing tool (these are discribed only briefly as they are configured automaticvally by CMake)
@@ -55,9 +56,11 @@ dumpbin /directives <path to the library>
 ```
 
 #### Resources
+
 - [Standard library description](https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-library-features)
 
 ### Common Compiler Flags
+
 - [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
 - [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags
     
@@ -65,6 +68,7 @@ dumpbin /directives <path to the library>
 ## GCC (Linux/WSL)
 
 ### Installation
+
 1. If on Windows, [Install the WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) first (WSL 2)
 2. check if GCC is installed by typing `gcc --version`
 
@@ -82,6 +86,7 @@ If GCC is not installed:
 - `g++  -o <output file> <object files and library files>`: linking only
 
 Other frequently used flags are:
+
 - `-g`: include debug information
 - `-l<library>`: link the library named `lib<library>`. Unlike direct library specification, here the linkers searches for the library in standard directories.
 
@@ -101,11 +106,13 @@ The MSBuild is a XML-based build sequencing tool. The scripts are typically gene
 
 The main file for each target is the `<target name>.vcxproj` file. All properties are stored in the root element `<Project>`. 
 The structure inside the project element is as follows (only the most important elements are listed):
+
 - `<ItemDefinitionGroup Condition="<configuration>">`: contains the properties for the given configuration.
 - `<ItemGroup><multiple <ClCompile> elements><ItemGroup>`: contains the source files that are compiled
 - `<ItemGroup><multiple <ProjectReference> elements><ItemGroup>`: contains references to other targets (dependencies). Theses targets are built before the current target.
 
 The propertis for each configuration are structured as follows:
+
 - `<ClCompile>`: contains the properties for the compilation of the source files (e.g., language standard, runtime library, etc.)
 - `<ResourceCompile>`:
 	- `<PreprocessorDefinitions>`: the preprocessor definitions used for the target. These are introduced either by the target itself or by the dependencies.
@@ -113,6 +120,7 @@ The propertis for each configuration are structured as follows:
 
 
 # Cmake
+
 -   Windows: Install CMake from [https://cmake.org/download/](https://cmake.org/download/)
 	-  if your CMake is too old (e.g. error: “CMake 3.15 or higher is required”), update CMake (same as new install)
 -   Linux:
@@ -131,6 +139,7 @@ Other details about CMake can be found in the CMake Manual.
 Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager. 
 
 VCpkg can work in two modes:
+
 - **Classic mode**: vcpkg is installed centrally. This mode is useful for development and testing.
 - [**Manifest mode**](https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode): vcpkg is installed in the project directory. This mode is useful for deployment. 
 
@@ -145,6 +154,7 @@ To install a package, run `vcpkg install package`.
 
 ## Changing the default triplet
 To change the default triplet, add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
+
 - `x64-linux` for Linux Compilers
 - `x64-windows` for MSVC
 - `x64-MinGW` for MinGW
@@ -157,12 +167,14 @@ By default, CMake does not see the vcpkg. To set up the appropriate enviroment v
 The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.
 
 ## Update
+
 1.  `git pull`
 2.  bootstrap vcpkg again
 	1.  Windows: `bootstrap-vcpkg.bat`   
 	2.  Linux: `bootstrap-vcpkg.sh`
 
 ## Update package
+
 1. [Update vcpkg](#update)
 2. `vcpkg update` to get a list of available updates
 3. `vcpkg upgrade --no-dry-run` to actually perform the upgrade
@@ -196,14 +208,17 @@ In classic mode, there is no way how to control the version of a package. For th
 
 ## Integrate your library to vcpkg
 For complete integration of your library to vcpkg, the following steps are needed:
+
 1. Configure and test the [*CMake installation*](CMake%20Manual.md#install)
 1. Crate the port and test it locally (*vcpkg installation*)
 3. Submit the port to the vcpkg repository (*publishing*) 
 
 Resources:
+
 - [decovar tutorial](https://decovar.dev/blog/2022/10/30/cpp-dependencies-with-vcpkg/)
 
 ### Create the Port
+
 - [The official guide for packageing](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging)
 - [Maintainer guide](https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide)
 	- missing details from other guides
@@ -211,6 +226,7 @@ Resources:
 
 Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
 The usual port contain these files:
+
 - `portfile.cmake`: the main file containing the calls to cmake functions that install the package
 - `vcpkg.json`: metadata file containing the package name, version, dependencies, etc.
 - `usage`: a file containing the usage instructions for the package. These instructions are displayed at the end of the installation process.
@@ -246,6 +262,7 @@ file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_D
 ```
 
 Explanation:
+
 - [`vcpkg_from_github`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github): downloads the source code from the github repository
 	- the `<path to source dir>` is the directory where the `CMakeLists.txt` file is located. It is usually the directory where the source code is downloaded, so we can set it to `${SOURCE_PATH}`
 	- the `<hash of the files>` can be easily obtained by:
@@ -283,11 +300,13 @@ The `vcpkg.json` file can look like this:
 }
 ```
 Here:
+
 - the `license` key is obligatory and has to match the license file of the package
 - The dependencies with the `host` key set to `true` are the dependencies that are required for the build, but not for the runtime. 
 
 #### Variables and Functions available in the portfile.cmake
 The variables and functions available in the `portfile.cmake` are described in the [create command documentation](https://learn.microsoft.com/en-us/vcpkg/commands/create). The most important variables are:
+
 - `CURRENT_PACKAGES_DIR`: the directory where the package is installed: `<vcpkg root>/installed/<triplet>/<port name>`
 
 
@@ -307,6 +326,7 @@ If the port installation is failing and the reason is not clear from stdout, che
 
 #### Reinistallation after changes
 During testing, we can reach a scenario where a) we successfully installed the port, b) we need to make some changes. In this case, we need to reinstall the port. However, it is not completely straightforward due to [binary caching](https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default). The following steps are needed to reinstall the port:
+
 1. uninstall the port: `vcpkg remove <port name>`
 2. disable the binary cache by setting the [`VCPKG_BINARY_SOURCES`](https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching) environment variable to `clear`
 	- in PowerShell: `$env:VCPKG_BINARY_SOURCES = "clear"`
@@ -344,6 +364,7 @@ execute_process(
 [official guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry)
 
 Before publishing the port, we should check for the following:
+
 - all dependencies in `CMakelists.txt` are required (`find_package(<package name> REQUIRED)`) **and** listed in the `vcpkg.json` file in the `dependencies` array
 - the port follows the [maintainer guide](https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md), especially:
 	- the port name does not clash with existing packages (check at [repology](https://repology.org/))
@@ -351,6 +372,7 @@ Before publishing the port, we should check for the following:
 - the [PR checklist](https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist) is followed
 
 Then, the submission process is as follows:
+
 1. copy the port to the vcpkg repository
 2. remove the manual `SOURCE_PATH` overrides and uncomment the `vcpkg_from_github` call
 3. test the port locally withouth the `--overlay-ports` option
@@ -364,6 +386,7 @@ Then, the submission process is as follows:
 
 ## Directory Structure
 vcpkg has the following directory structure:
+
 - `buildtrees`: contains the build directories for each installed package. Each build directory contains the build logs.
 - `installed`: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:
 	- `bin`: contains the shared libraries
@@ -395,6 +418,7 @@ In Clion, there are two types of surround with templates: `surrond with` and `su
 
 ### Toolchain configuration
 Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolchain and set:
+
 -   Name to whatever you want
 -   The environment should point to your toolchain:
 	-   MSVC: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community`
@@ -410,6 +434,7 @@ Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolc
 
 ### Project configuration
 Most project settings resides (hereinafter *Project settings*) in `settings` -> `Build, Execution, Deployment` -> `CMake`. For each build configuration, add a new template and set:
+
 -   `Name` to whatever you want   
 -   `Build type` to `debug`
 -   To `Cmake options`, add:
@@ -437,6 +462,7 @@ Next, It’s necessary to modify the WSL/create the WSL initialization script to
 
 ### Configuring only some CMake profiles
 When we click on the CMake reconiguration button, all profiles are reconfigured. Unfortunately, there is no way how to configure only some profiles. To work around this, we can deactivate the profiles we do not want to configure. To do so:
+
 1. go to `settings` -> `Build, Execution, Deployment` -> `CMake` 
 2. select the profile you want to deactivate
 2. uncheck the `Enable profile` checkbox located at the top of the profile settings
@@ -445,11 +471,13 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
     
 ## Visual Studio
 ### Installation
+
 1.   Install Visual Studio
 2.   Open/Create a CMake project
 3.  Install ReSharper C++
 
 ### Setting Synchronization
+
 1. Sign-in in Visual Studio using a Mictosoft account. [A lot of settings should be synchronized automatically](https://docs.microsoft.com/en-us/visualstudio/ide/synchronized-settings-in-visual-studio?view=vs-2022).
 2. Apply the layout: `Window` -> `Apply Window Layout` -> `<Layout Name>`
 3. Sync ReSharper settings: you can share the file: `%APPDATA%\JetBrains\Shared\vAny\` (`~\AppData\Roaming\JetBrains\Shared\vAny\`). 
@@ -458,6 +486,7 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
 4. Install roamed plugins
 
 ### Basic Configuration
+
 1. [Add 120 char guideline](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines)
 	- install the extension 
 	- add the guideline in command window: `Edit.AddGuideline 120`
@@ -472,18 +501,21 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
 
 installation
 #### Enable template implementation files (`.*tpp`) syntax highlighting:
+
 -   Go to `Tools` -> `Options` -> `Text Editor` -> `File Extension`
 -   select Microsoft Visual C++
 -   write `tpp` to the field and click add
 -   (reopen the file to see changes)
 
 #### To Change the Build Verbosity
+
 1. Go to `Tools` -> `Options` -> `Projects and Solutions` -> `Build and Run`
 2. Change the value of the MSBuild project build output verbosity.
     
 ### Project Setting
 
 #### Configure Visual Studio to use system CMake:
+
 -   Go to `Project` -> `CMake Settings`
 -   it should open the `CMakeSettings.json` file
 -   Scroll to the bottom and click on `show advanced settings` 
@@ -538,22 +570,26 @@ The launch settings determins the launch configuration, most importantly, the ru
 3.  Select the launch configuration in the drop-down menu next to the play button
 
 If the configuration is not visible in the drop-down menu, double-check the `launch.vs.json` file. The file is not validated, so it is easy to make a typo. If there is any problem, insted of an error, the launch configuration is not available. The following problems are common:
+
 - syntax error in the json (should be marked by red squiggly line)
 - typo in the target name
 
 ##### Other launch.vs.json options
+
 - `cwd`: the working directory
 
 [Microsoft reference for `launch.vs.json`](https://learn.microsoft.com/en-us/cpp/build/launch-vs-schema-reference-cpp?view=msvc-170)
 
 ### WSL Configuration
 For using GCC 10:
+
 - go to `CmakeSettings.json` -> `CMake variables and cache`
 - select `show advanced variables checkbox`
 - set `CMAKE_CXX_COMPILER` variable to `/usr/bin/g++-10`
 
 
 ### Other Configuration
+
 - show white spaces: `Edit` -> `Advanced` -> `View White Space`.
 - configure indentation: described [here](https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022)
 
@@ -571,6 +607,7 @@ go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz co
 # Installing Library Dependencies
 
 ## Vcpkg Libraries
+
 1. type `vcpkg list`, if the library you need is not listed, continue to the next steps
 1. type `vcpkg search <library simple name>` and inspect the result to determine the exact name of the package you need
 	- if the library is not listed, check the presence in [vcpkg repo](https://repology.org/projects/?inrepo=vcpkg)
@@ -582,6 +619,7 @@ To display the cmake commands for the installed libraries, just run `vcpkg insta
     
 ### Boost
 With boost, we should install only the necessary components. Then to include boost, we need:
+
 - `find_package(Boost REQUIRED)`
 	- with all compiled components listed
 - `target_include_directories(<YOUR TARGET NAME> PUBLIC ${Boost_INCLUDE_DIRS}) `
@@ -618,6 +656,7 @@ for JNI, a `JAVA_HOME` system property needs to be set to the absolute path to t
 		4.   if the C++ library is not found (`Gurobi c++ library not found`), check whether the correct C++ library is in the gurobi home, the file `<library name>.lib` has to be in the `lib` directory of the gurobi installation. If the file is not there, it is possible that your gurobi version is too old
 
 ### Update Gurobi
+
 -   Updating is done by [installing the new version](https://www.gurobi.com/downloads/gurobi-software/) and generating and using [new licence key](https://www.gurobi.com/downloads/end-user-license-agreement-academic/).
 -   after update, you need to delete your build dir in order to prevent using of cached path to old Gurobi install
 - Also, you need to update the library name on line 10 of the `FindGUROBI.cmake` script.
@@ -628,6 +667,7 @@ for JNI, a `JAVA_HOME` system property needs to be set to the absolute path to t
 ## Other Libraries Not Available in vcpkg
 ### Test Library linking/inclusion
 For testing purposes, we can follow this simple pattern:
+
 1. build the library
 2. include the library: `target_include_directories(<target name> PUBLIC <path to include dir>)`, where include dir is the directory with the main header file of the library.
 3. if the library is not the header only library, we need to:
@@ -639,6 +679,7 @@ For testing purposes, we can follow this simple pattern:
 
 ## Dependencies with WSL and CLion
 In WSL, when combined with CLion, some find scripts does not work, because they depend on system variables, that are not correctly passed from CLIon SSH connection to CMake. Therefore, it is necessary to add hints with absolute path to these scripts. Some of them can be downloaded [here](https://drive.google.com/drive/folders/1rWVl_T3p0cIf6QBYFtc-sEfuA-TUs2CU?usp=sharing). Package that require these hints:
+
 -   JNI
 -   Gurobi
     
@@ -659,12 +700,14 @@ As of 2023-10, there is no reliable way how to change the method signature in C+
 # Exporting symbols for shared libraries
 
 When creating a shared library, we have to specify which symbols are exported. These are the only symbols that can be directly used from the client code. This is done using special keywords. Because the keywords are different for different compilers, usually, some macros are used instead. Typically, these macros:
+
 - use the correct keyword for the compiler
 - support disabling the keyword for building static libraries or executables
 
 The macros are typically defined in a dedicated header file called *export header*. This file is then included in every header file that defines a symbol that should be exported. 
 
 For the whole export machinery to work, we need to:
+
 - create the export header file and include it in every header file that defines an exported symbol
 - mark the symbols that should be exported with the export macro
 - use CMake to supply the correct compiler flags used in the export header
@@ -685,10 +728,12 @@ Finally, we can store the export header file in the source directory and include
 ## Marking the Symbols
 
 Usually, we mark the following symbols for export:
+
 - classes: `class <export macro> MyClass{...}`
 - functions: `<export macro> <return type> my_function(...)`
 
 Other symbols does not have to be exported as they are automatically exported by the compiler:
+
 - enums and enum classes
 - constants
 For shared libraries, we have to export symbols. Becasue of the differences between the compilers, and to support using the same headers for both shared and static libraries it is better to use macros
@@ -718,6 +763,7 @@ The static condition macro from the `GenerateExportHeader` is named `<target nam
 
 # Ensuring the same runtime library (MSVC) usage
 Using the same runtime library is crucial when using the MSVC compiler. At lover levels, the runtime library is set by compiler flags (see the [MSVC section](#msvc-windows)). These flags are automatically passed to the compiler by the build system based on the build configuration files (e.g., `MSBuild` files). If we generate thes files by the IDE (Visual Studio), we have to set the runtime library in the IDE. If they are generated by CMake, there are three possible situations:
+
 - we use the dynamic runtime library (default): nothing has to be done
 - the build is handled by vcpkg (libraries installed with `vcpgk install`): the runtime library is set by the [`VCPKG_CRT_LINKAGE`](https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage) variable in the triplet file. Nothing has to be done.
 - we use the static runtime library: we have to set the `CMAKE_MSVC_RUNTIME_LIBRARY` variable in the `CMakeLists.txt` file. if we use vcpgk, we should set it based on the triplet used:
@@ -758,6 +804,7 @@ cmake -L
 
 ### Specify the build type (Debug, Release)
 To build in release mode, or any other build mode except for the default, we need to specify the parameters for CMake. Unfortunately, these parameters depends on the build system:
+
 - **Single-configuration systems** (Unix, MinGW) 
 - **Multi-configuration systems** (Visual Studio)
 

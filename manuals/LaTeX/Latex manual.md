@@ -10,6 +10,7 @@ The document structure is well documented [on wikibooks](https://en.wikibooks.or
 ```
 
 Lot of content is usually put in the preamble, i.e., between the `\documentclass` and `\begin{document}` commands. The preamble usual content is:
+
 - loading packages with `\usepackage{<package>}`
 - providing new commands or redefining existing commands
 - configuring packages
@@ -17,6 +18,7 @@ Lot of content is usually put in the preamble, i.e., between the `\documentclass
 
 ## Title page
 The title page typically contains the title, authors, and potentially other metadata like date or keywords. The standard way how to create the title page is to first define the metadata and then use the `\maketitle` command. To print the whole title page. The metadata available for standard article class:
+
 - `\title{<title>}`
 - `\author{<author>}`
 - `\date{<date>}`. `\today` can be used to print the current date. This is the default value if we omit the `\date` command.
@@ -55,6 +57,7 @@ Appendicies are started with the command `appendix`. Then, each chapter started 
 
 ## Book class structuring
 Appart from sections and chapters, the book class also supports top level parts for marking special areas of the document. The parts are:
+
 - `\frontmatter`: the front matter of the document, i.e., the title page, abstract, table of contents, etc. The page numbering is in roman numerals.
 - `\mainmatter`: the main matter of the document, i.e., the main content. The page numbering is in arabic numerals, and the page numbering is reset to 1.
 - `\backmatter`: the back matter of the document, i.e., the bibliography, appendices, etc. The page numbering is in arabic numerals. Chapters are not numbered.
@@ -73,6 +76,7 @@ LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, t
 # Special characters
 
 ## Non-breaking characters
+
 - `~`: non-breaking space
 - `\nobreakdash-`: non-breaking dash
 
@@ -116,6 +120,7 @@ First, we need to define the color using the `\definecolor` command. Example:
 ```
 
 Then, we can use various commands to change the font color:
+
 - `\textcolor{<color>}{<text>}`: change the color of the text
 - `{\color{<color>}<text>}`: change the color of the text. Can span multiple paragraphs.
 
@@ -126,6 +131,7 @@ note that other commands that have color options usually depend on the `xcolor` 
 Most of the time, the spacing should be handled by LaTeX automatically. However, there are cases when we need to adjust the spacing manually, either in a single place or globally. 
 
 To adjust the spacing in a single place, we can use the following commands:
+
 - `\hspace{<length>}`: horizontal space
 - `\vspace{<length>}`: vertical space
 
@@ -139,6 +145,7 @@ Note that we can use negative values for the `<length>` parameter, so we can use
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Paragraph_alignment)
 
 By default, the text is fully justified. To change the justification (alignment), to left or right, we can use either 
+
 - environments: `flushleft` for left alignment, `flushright` for right alignment, or
 - commands: `\raggedright` for **left** alignment, `\raggedleft` for **right** alignment.
 
@@ -181,6 +188,7 @@ The list enviroments have the following syntax:
 ```
 
 The following list types are available:
+
 - `itemize`: bullet points
 - `enumerate`: numbered list
 - `description`: description list. Items can have a label, which is specified as an optional argument of the `\item` command. 
@@ -216,6 +224,7 @@ The quotes are typeset using the `csquotes` package. The quotes are typeset usin
 
 
 ### Supported units
+
 - `\s`: second
 - `\km`: kilometer
 - `\km\per\hour`: kilometer per hour
@@ -235,10 +244,12 @@ Everythign in LaTeX is a box. Each character is a box, stored in a larger box fo
 | `\minipage` | multiple | fixed |
 
 The first two parameters are shared for these commands:
+
 - `pos`: the position of the box, e.g., `t` for top, `b` for bottom, `c` for center. **The position refers to the part of the box that is aligned with the surrounding text.**
 - `height`: the height of the box. 
 
 The `parbox` and `minipage` share another two parameters that follows:
+
 - `contentpos`: the position of the content inside the box, e.g., `t` for top, `b` for bottom, `c` for center. 
 - `width`: the width of the box.
 
@@ -258,12 +269,14 @@ The box above will be 1cm wider on each side than the text width.
 
 # Floats
 The following environments are floats:
+
 - `figure`
 - `table`
 - `algorithm`
 
 ## Placement
 Any float takes the position as a first argument. The following positions are available:
+
 - `h`: here
 - `t`: top
 - `b`: bottom
@@ -275,6 +288,7 @@ The placement algorithm then iterate pages starting from the page where the floa
 Note that by specifying the float position, we only add constraints to the placement algorithm, but do not guarantee the placement. **By omitting the float position, we can accually make the float appear closer to the place where it is defined.**
 
 Sources:
+
 - [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures)
 - [Overleaf](https://www.overleaf.com/learn/latex/Positioning_images_and_tables#The_figure_environment)
 
@@ -288,6 +302,7 @@ The float environment for figures is `figure`. The image itself is included usin
 The mandatory argument of the `\includegraphics` command is the path to the image file. This path can be relative or absolute. If the path is relative, it is relative to the location of the main `.tex` file. The file extension can be omitted. If the file extension is omitted, the compiler will try to find the file with various extensions. Therefore, it is only recommended to omit the file extension if there is only one file with the same name.
 
 Optional arguments of the `\includegraphics` command are the following:
+
 - `width`: the width of the image.
     - example: `\includegraphics[width=0.5\textwidth]{image.png}`
 - `scale`: the scale of the image with respect to the original size.
@@ -322,6 +337,7 @@ If the figures are not of the same height, they will be aligned at the bottom. T
 
 ## Tables
 The float environment for tables is `table`. However, the rows and columns are wrapped in another environment. The default inner enviroment is `tabular`, however, there are *many* other packages that extends the functionality. In practice, there are currently three inner environments to consider:
+
 - `tabular`: the default environment that is sufficient for simple tables
 - `tabulary`: the environment that allows to create columns with automatic width. If the main or only issue of the table is that it needs to fit a specific width, this is the environment to use.
 - `tblr`: the `tblr` environment from the [`tabulararray`](https://ctan.org/pkg/tabularray) package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that **it does not support automatic column width**. 
@@ -329,6 +345,7 @@ The float environment for tables is `table`. However, the rows and columns are w
 
 ### Column types
 The column types are specified in the argument of the `tabular` or equivalent environment. The following column types are available by default:
+
 - `l`: left aligned
 - `c`: centered
 - `r`: right aligned
@@ -359,14 +376,17 @@ Note that the new column types can be combined with the standard column types. I
 
 ### Complex tables with `tabulararray` package
 The `tabulararray` package provides :
+
 - full control over the table, most features among all packages
 - separation of the table content and the table presentation 
 - simpler code for basic tasks like multirows and multicolumns, wrapping text in cells, etc.
 
 Notable features present in the `tabulararray` package missing in other packages:
+
 - footnotes in tables (otherwise, it requires a `threeparttable` environment wrapper)
 
 As other tabular packages, there are some incompatibilities related to the `tabulararray` package.  So far, I observed only incompatibilities with the `tabulararray` `talltblr` environment, not with the standard `tblr` environment. The following table summarizes the incompatibilities I found so far:
+
 - `cases`: Obviously, the `cases` environment uses table components internally. When using together with `talltblr`, the `cases` environment compilation results with the following error: `latex "\begin{cases}" package array empty preamble l' used`. The solution is to use the use the new `+cases` environment provided by the `tabulararray` package. As a bonus, the `+cases` environment also fixes some visual glitches. Steps:
     1. enable the `+cases` environment by adding `\UseTblrLibrary{amsmath}` to the preamble
     1. replace the `cases` environment with the `+cases` environment 
@@ -380,6 +400,7 @@ Usually, tables contain some horizontal and vertical lines to separate the cells
 
 ##### Horizontal lines
 For horizontal lines, we can:
+
 - use various commands to create a line in a specific row:
     - `\hline`: creates a line in the current row
 - specify the lines outside the data with the `tabularray` package:
@@ -395,6 +416,7 @@ The format is `hline{<list of rows>} = {<line style>}`. Example:
 \end{tblr}
 ```
 The `<list of rows>` can be specified as:
+
 - single row: `hline{1} = {1pt, solid}`
 - multiple rows: `hline{1,3,5} = {1pt, solid}`
 - range of rows: `hline{1-Z} = {1pt, solid}`
@@ -413,6 +435,7 @@ With the `tabularray` package, we can style the table header differently than th
 ```
 
 The syntax is the same for both keys: `row{<row number>} = {<style>}`. For the `<row number>` specification, see the grid section. The `<style>` specification is a list of key-value pairs. The keys are the following:
+
 - `font`: the font style
 
 
@@ -483,6 +506,7 @@ There is ann addon called [LatexKit](http://caenrigen.tech/LatexKit/) which can 
 
 ### Footnotes in tables
 In tables and table captions, the `\footnote` command does not work correctly. Also, it is not desirable to have the footnote at the bottom of page, instead, we want the footnote to be at the bottom of the table. To achieve this, we use a special environment:
+
 - `threeparttable`: if we are using the `tabular` or `tabulary` environment
 - `talltblr`: if we are using the `tblr` environment
 
@@ -545,11 +569,13 @@ If we need to limit the width of the rotated text, we can use the `\parbox` comm
 ## Algorithms
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Algorithms)
 There are two types of enviroments for, depending on the purpose:
+
 - `algorithm`: for pseudocode
 - `lstlisting`: for code in a specific language
 
 ### Pseudocode
 The floating environment for pseudocode is `algorithm`. It is an equivalent of the `table` environment for tables. Same as with tables, there is also an inner environment for the pseudocode. The options for the inner environment are:
+
 - `algorithmic`: basic environment for pseudocode
 - `algorithmicx`: extension of the `algorithmic` environment, supports custom keywords
 - `algorithm2e`: 
@@ -658,10 +684,12 @@ Everythign in LaTeX is a box. Each character is a box, stored in a larger box fo
 | `\minipage` | multiple | fixed |
 
 The first two parameters are shared for these commands:
+
 - `pos`: the position of the box, e.g., `t` for top, `b` for bottom, `c` for center. **The position refers to the part of the box that is aligned with the surrounding text.**
 - `height`: the height of the box. 
 
 The `parbox` and `minipage` share another two parameters that follows:
+
 - `contentpos`: the position of the content inside the box, e.g., `t` for top, `b` for bottom, `c` for center. 
 - `width`: the width of the box.
 
@@ -686,6 +714,7 @@ The math commands only works in math mode which can be entered in one of the man
 
 ## Common math constructs
 The following table lists the most common math constructs:
+
 - **fractions**: `\frac{<numerator>}{<denominator>}`
 - **binomial coefficients**: `\binom{n}{k}`
 
@@ -694,6 +723,7 @@ The following table lists the most common math constructs:
 Subscript and superscript are created using the `_` and `^` characters. If the subscript or superscript is longer than one character, we need to wrap it in curly braces. 
 
 There are aslo some special characters that result in superscript:
+
 - `'`: prime
 - `*`: star
 However, these characters alone works only in normal math text. If we want to use them in a subscript or superscript, we need to use the `^` and `_` characters. Example:
@@ -720,6 +750,7 @@ For that, we use the `cases` environment. Example:
 
 ## Equations and similar environments
 The following environments are available for equations:
+
 - `equation`: for single equations
 - `align`: for multiple equations aligned at a specific character
 - `alignat`: for multiple equations aligned at multiple characters
@@ -751,6 +782,7 @@ Here, the first argument of the `\newtheorem` command is the name of the environ
 Some environments are already defined in the `amsthm` package, e.g., `proof`.
 
 ### Common environments names and their meaning
+
 - `theorem`: a statement to be proved
 - `lemma`: a minor theorem, with a limited applicability outside the context of the main theorem
 - `corollary`: a theorem that follows directly from another theorem
@@ -764,6 +796,7 @@ More can be fount on [proofwiki](https://proofwiki.org/wiki/Category:Theorems)
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Mathematics#Fonts)
 
 the default math font is typed as common math italic. To use a different font, we need to use special commands:
+
 - `\mathrm{}`: for normal font in math mode, e.g., for multi-letter subscripts and superscripts
 - `\mathbb{}`: for blackboard bold font, e.g., for special sets (R, N, ...). This font requires the `amsfonts` package.
 
@@ -817,6 +850,7 @@ To disallow footnote splitting, we can increase the `\interfootnotelinepenalty` 
 See more on [SE](https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib).
 
 For bibliography management, whole toolchain is usually needed, including:
+
 - a tool that generates the bibliography file (e.g. Zotero, Mendeley, ...)
 - a latex package that cares about the citations style (e.g. biblatex, natbib, or default style)
 - the real bibliography processer that generates and sorts the bibliography (e.g. bibtex, biber, ...)
@@ -826,6 +860,7 @@ However, not all combinations of theses tools are possible. For understanding th
 ![bibliography toolchain](LaTeX_Bibliography_processing.png "bibliography toolchain")
 
 When choosing what package to use in latex, we have to take care that we:
+
 - have the bibliography file in the right format (`.bib` for all pipelines, but the content differs)
 - have the style in the right format (`.bst` for default or natbib, `.bbx` for biblatex)
 
@@ -878,6 +913,7 @@ The bibtex bibliography management system is quite old and does not support many
 
 ## Commands for citing
 There are multiple commands for citing, each resulting in a different output. The two most important variants are in-text citation and parenthetical citation:
+
 - In-text citation: the citation is part of the text.
     - IEEE: *this was proven by Smith et al. [1]*
     - APA: *this was proven by Smith et al., 2019*
@@ -892,6 +928,7 @@ Unfortunately, the commands for these two variants are not consistent across the
 | Natbib | `\cite{<key>}` | `\citep{<key>}` | `\bibentry{<key>}` (requires the [`bibentry`](https://ctan.org/pkg/bibentry) package) |
 
 There are more citation commands resulting in different styles for each bibliography styling package, and each of these packages can be also configurated for even more customized look. For more information, see the following links:
+
 - [Natbib styles](https://www.overleaf.com/learn/latex/Natbib_citation_styles)
 
 ### Adittional details for citation (page number, chapter, ... )
@@ -923,6 +960,7 @@ There are many types of bibliography entries, each of them with different fields
 | Legal document | `@legal` | Unavailable. Use `Report` instead. |
 
 Other sources:
+
 - [Biblatex documentation](https://mirrors.nic.cz/tex-archive/macros/latex/contrib/biblatex/doc/biblatex.pdf)
 - [Zotero documentation](https://www.zotero.org/support/kb/item_types_and_fields)
 - [Zotero legal types](https://www.zotero.org/support/kb/legal_citations)
@@ -972,10 +1010,12 @@ Here again, both optioanl arguments, if supplied, must be supplied in the square
 
 # Splitting the document into multiple files
 There are two ways to split the document into multiple files:
+
 - `\input{file}`
 - `\include{file}`
 
 The `\include` is intended for chapters or other large parts of the document. It has the following properties:
+
 - it starts a new page before and after the included file
 - it does not allow nesting
 - there is a special command `\includeonly{file1,file2,...}` which allows to include only the specified files. This is useful for large documents where we want to compile only a part of the document. Without this command we would need to search for the include command and comment it out.
@@ -986,6 +1026,7 @@ The `\input` command is intended for smaller parts of the document. Contrary to 
 
 # Speedup Techniques
 The compilation of large documents can be slow. There are several techniques to speed up the compilation:
+
 - split the document into multiple files and use `\includeonly` to include only the relevant files
 - precompiling the preamble
 - using draft mode
@@ -1015,6 +1056,7 @@ To balance the columns at the end of the document, we can use the `flushend` pac
 
 ## Ugly font in pdf
 This can be cause by the missing  vector fonts. If the vector fonts are missing, the bitmap fonts are used instead. 
+
 1. To check if this is the cause, zoom in on the pdf. If the text is blurry, the bitmap fonts are used.
 1. To fix this, install the vector fonts.
     - On Windows, install the cm-super package through MikTeX.

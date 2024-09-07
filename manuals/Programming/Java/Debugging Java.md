@@ -1,4 +1,5 @@
 # General rules
+
 1. Warnings can help you to spot the problems. Check that they are enabled (`Xlint`).
 1. Sometimes, warnings may help to understand the problem. However, they are not emmited due to compilation error. Try to comment out the errorneous code and compile the code to see all warnings.
 

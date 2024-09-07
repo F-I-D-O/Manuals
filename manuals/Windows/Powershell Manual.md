@@ -9,6 +9,7 @@ In addition to system commands, PowerShell can also execute native PowerShell co
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks)
 
 A basic unit of execution in PowerShell is a script block. A script block can be:
+
 - a piece of code enclosed in curly braces `{}`.
 - a function 
 - a script
@@ -108,6 +109,7 @@ mvn exec:java '-Dexec.mainClass=com.example.MyExample' '-Dfile.encoding=UTF-8'
 ```
 
 The problem may arise if the argument or its part needs to be quotted as well. Then:
+
 - for first level of quoting, use `"` (double quotes)
 - for second level of quoting, use `''` (two single quotes)
 Example:
@@ -177,6 +179,7 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators)
 
 Equality operators:
+
 - `-eq`: equal
 - `-ne`: not equal
 - `-gt`: greater than
@@ -185,6 +188,7 @@ Equality operators:
 - `-le`: less or equal
 
 Matching operators:
+
 - `-match`: match
 
 ## Logical Operators
@@ -251,6 +255,7 @@ Get-Content "C:\Users\user\file.txt"
 
 ##  Outputs
 There are many output streams in PowerShell. We can use:
+
 - `Write-Output`: for standard output
 - `Write-Error`: for standard error
 - `Write-Warning`: for warnings
@@ -260,6 +265,7 @@ There are many output streams in PowerShell. We can use:
 - [`Write-Host`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host): for writing directly to the console. No output stream is used.
 
 By default, only the standard and error output streams are displayed. To display the other streams, we have several options:
+
 - manually set the `$VerbosePreference`, `$DebugPreference`, `$WarningPreference`, `$InformationPreference` variables to `Continue` (default is `SilentlyContinue`), or
 - make the function or script we are running an *Advanced Function or Script* and use the `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` parameters
 
@@ -270,6 +276,7 @@ By default, only the standard and error output streams are displayed. To display
 [redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
 
 Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
+
 - `>`: redirect to file, overwrite if exists
 - `>>`: redirect to file, append if exists
 - `>&1`: redirect to standard output stream
@@ -283,6 +290,7 @@ dir 2> err.txt # redirect standard error stream to err.txt
 If we want both see the output and redirect it to a file, we can use the `Tee-Object` command which is the equivalent of the `tee` command from Linux
 
 In new PowerShell, we have even more options:
+
 - `3>`: redirect Warning stream
 - `4>`: redirect Verbose stream
 - `5>`: redirect Debug stream
@@ -298,6 +306,7 @@ In new PowerShell, we have even more options:
 
 ## Replace
 For replacing a substring in a string, we have two options:
+
 - `Replace` method
 - `-replace` operator
 
@@ -323,6 +332,7 @@ $myString -match "pattern"
 
 # `Select-String`
 The [`Select-String`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string) is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
+
 - `-Content <before>[, <after>]`: Select also `<before>` lines before the matched line and `<after>` lines after the matched line
 - `-Pattern`: If we want to use a regular expression for searching, not a plain string
 
@@ -354,6 +364,7 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) is the basic network moni
 
 ### Lot of kubernetes entries in the log
 By default, the netstat command translates IPs into names. Unfortunatelly, on Windows, it also uses the information from the hosts file (`C:\Windows\System32\drivers\etc\hosts`). This is a problem, because some services, like Docker, can use the `hosts` file to redirect some adddress to localhost. Therefore, at the end, all localhost entries are named kubernetes. Solution options:
+
 - use the `-n` parameter for `netstat` or
 - remove the redirection to `localhost` in the `hosts` file 
 
@@ -368,6 +379,7 @@ To display executable for all connection, just use the `-b` swith. For filtering
 [WMI classes](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-classes)
 
 There are several interfaces for getting system information in PowerShell:
+
 - Using the [*Common Information Model* (CIM)](https://en.wikipedia.org/wiki/Common_Information_Model_(computing))
 - Using the [*`Windows Management Instrumentation` (WMI)*](https://en.wikipedia.org/wiki/Windows_Management_Instrumentation) 
 - By reading from the [*registry*](https://en.wikipedia.org/wiki/Windows_Registry)
@@ -378,10 +390,12 @@ Because the CIM and WMI interfaces are very similar, we will discuss them togeth
 The advantage of the CIM and WMI interfaces is that they are clear and object-oriented. The information can be queried using database-like operations. The disadvantage is that they are slow.
 
 The main command for getting system information is:
+
 - [`Get-CimInstance`](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance): for CIM
 - [`Get-WmiObject`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject): for WMI
 
 For both commands, we need to specify the class of the object we want to get using the `-ClassName` (CIM) or `-Class` (WMI) parameter. The classes are the same for both interfaces. Typical classes are:
+
 - `Win32_ComputerSystem`: information about the computer
 - `Win32_OperatingSystem`: information about the operating system
 - [`Win32_InstalledWin32Program`](https://learn.microsoft.com/en-us/windows/win32/wmisdk/win32-installedwin32program): information about installed programs
@@ -391,6 +405,7 @@ For both commands, we need to specify the class of the object we want to get usi
 
 ## Windows Registry
 To access the Windows registry, we use the same commands that are used for file system:
+
 - [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key
  - [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
 
@@ -408,6 +423,7 @@ function MyFunction {
 ```
 
 The advanced functions and scripts have the following features:
+
 - parameters are not available as `$args` (have to be parsed using the `param` block)
 - builtin parameters like `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` are parsed automatically
 - support for pipeline input
@@ -425,6 +441,7 @@ if (!$myWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Admin
 ```
 
 Another solution may be to restart the script with administrator privileges. However, this has several limitations:
+
 - when the script is run with administrator privileges a new terminal window is opened
 - parameters are not passed automatically to the new script. We can manually pass them using the `-ArgumentList` parameter. However, this is problematic for non-string parameters, especially in an advanced script block. 
 

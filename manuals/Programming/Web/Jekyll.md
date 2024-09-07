@@ -1,10 +1,12 @@
 # Local testing
+
 1. Install Ruby
 2. Download dependencies using `bundle` command
 3. Run `bundle exec jekyll serve` to start local server
 
 # Directory structure
 Jekyll has a predefined directory structure. The important directories are:
+
 - `_posts`: Contains all the posts. The file name should be in the format `YYYY-MM-DD-title.md`.
 - `_pages`: Contains all the pages. The file name should be in the format `title.md`.
 - `_config.yml`: Contains the configuration of the site.

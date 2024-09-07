@@ -1,5 +1,6 @@
 # Terminals and Shells
 There are two main [terminal applications](https://en.wikipedia.org/wiki/Terminal_emulator) in Windows: 
+
 - [*Windows Console Host*](https://en.wikipedia.org/wiki/Windows_Console): an old terminal application present in Windows for years, and
 - [*Windows Terminal*](https://en.wikipedia.org/wiki/Windows_Terminal): a new terminal application that is still in development.
 
@@ -10,16 +11,19 @@ The simplest [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is the [co
 
 ## Run a non-default terminal application
 It is not an easy task to manually run a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:
+
 - Windows Terminal: `wt.exe`
 - Windows Console Host: `conhost.exe`
 
 
 ## Windows Terminal
 The Windows Terminal is a new terminal application with many great features:
+
 - multiple tabs
 - smart text selection
 
 To configure Windows Terminal, click the `v` button in the top bar and select `Settings`. There are two kinds of settings:
+
 - Global settings sorted in categories in the left panel
 - Profile settings for each profile. The profiles are listed in the left panel. After selecting a profile, the settings are displayed in the right panel. Nonbasic settings are sorted in categories under the `Additonal settings` header. 
 
@@ -32,6 +36,7 @@ If a command outputs a text in Windows console host but passes it to a text edit
 
 
 # Keyboard Shortcuts
+
 - `Alt` + `Shift`: change input language
 - `Win` + `Space`: change keyboard input method
 
@@ -42,6 +47,7 @@ If a command outputs a text in Windows console host but passes it to a text edit
 Solution: Forget the connection and connect to the network manually
 
 ## Connect to a Network Manually
+
 1. `Control Panel` -> `Network and Internet` -> `Network and Sharing Center`
 2. `Set up a new connection or network`
 3. `Manually connect to a wireless network`
@@ -81,6 +87,7 @@ restrat the computer :)
 # Bluetooth
 ## Troiubleshooting
 ### Cannot connect to the device
+
 1. Try to remove the device and pair it with the PC again
 2. If it does not help, proceeed to the next section (even if the pairing is successfull)
 
@@ -91,6 +98,7 @@ Turn off the device and unplug it from the electricity/remove batteries. Then pl
 https://bluetoothinstaller.com/bluetooth-command-line-tools
 
 Bluetooth Command Line Tools is a set off tools that enables command line interaction with blootooth services. Basic usage:
+
 - discover and list available devices: `btdiscovery -s`
 
 # Filesytem
@@ -103,6 +111,7 @@ The user home folder is located in `C:\Users\<username>` by default. It is alias
 
 ### System instalation folders
 If an application is installed for all users, all its files are usually installed in a single folder per application. The location of the folder depends on the type of the application:
+
 - `C:\Program Files`: 64-bit applications
 - `C:\Program Files (x86)`: 32-bit applications
 
@@ -111,6 +120,7 @@ If the application needs to store some data, they are usually stored in the `C:\
 
 ### User instalation folders
 User instalations are stored in multiple folders, depending on the type of the file. All these folders are located in the user's home folder, which is `C:\Users\<username>` by default. The folders are:
+
 - `~\AppData\Local`: Program data and sometimes also executables
 - `~\AppData\Local\Promgrams`: program files and executables
 - `~\AppData\LocalLow`:
@@ -132,10 +142,12 @@ Most of the programs can ignore this flag and work with the file anyway. However
 
 # Sugarsync
 Quick orientation in the desktop app:
+
 - for file changes, check left menu -> `Activity`
 - for deleted files, check left menu -> `Deleted Items`
 
 ## Solving sync problems
+
 1. check if the file is updated in cloud using web browser
 2. if not, check the activity log on the computer with the updated file
 3. if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.
@@ -150,6 +162,7 @@ wmic baseboard get product,Manufacturer,version,serialnumber
 ```
 ## Copy multiple files/dirs
 [`robocopy`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) is the best command for that. Usefull params:
+
 - `/e`: Copy subdirectories, including empty ones
 - `/b`: Copy in the backup mode, so that even files with a different owner can be copied
 - `/xc`: Excludes changed files.
@@ -161,6 +174,7 @@ wmic baseboard get product,Manufacturer,version,serialnumber
 
 ## User info
 Information about users can be obtained with the [`Get-LocalUser`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1) command. By default, the command lists all users. Some useful params:
+
 - `-Name`: Specifies the user account names of the users to get. 
 - `-SID`: Specifies the security identifier (SID) of the users to get. 
 
@@ -171,6 +185,7 @@ Windows 11 can be installed only as an update of Windows 10.
 
 ## Windows 10
 Can be installed from bootable USB created by a tool downloaded from the official Miccosoft website. Single image for all Windows versions, a particular version is choosen based on the license key. Steps:
+
 1. Download the install tool from Microsoft
 2. Create a bootable USB
 3. Start the installation
@@ -185,10 +200,12 @@ Ensure that the boot priority of the drive where the Windows should be installed
 Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.
 
 ### Share with Skype
+
 1. in an elevated PowerShell, run:
 	```PowerShell
 	REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype
 	```
+
 2. restart the Explorer
 
 ### PowerToys modules
@@ -220,12 +237,14 @@ Diskpart is a useful command line tool for work with disks, partitions, etc.
 ## Find out wheteher a disk is MBR or GPT
 
 # Open Command Promp from the Windows 10 USB
+
 1. Insert the USB stick
 2. Wait till the first installation screen
 3. `shift` + `F10`
 
 # Firewall
 ## Generate firewall logs
+
 1. Go to Windows firewall and select properties on the right
 2. At the top, choose the profile corresponding to the current network profile
 3. In the logging section, click to customizze
@@ -241,12 +260,14 @@ For ssh, we can use the standard `ssh` commannd available in Windows (check Linu
 One thing that differs from Linux is that the Windows ssh does not support the `<addres>:<port>` syntax. To specify the port, it is necessary to use the `-p` parameter
 
 For more features, we can use other programs
+
 - [KiTTY](http://www.9bis.net/kitty/index.html#!pages/Portability.md) for credentials storage, automatic reconection, etc.
 - [WinSCP](https://winscp.net/eng/index.php) for file manipulation
 
 
 ## KiTTY
 It is best to use the portable version, so that nothing is stored in the Windows registry. Configurtation:
+
 - [copy the PuTTY credentials](): `.\kitty_portable-0.76.1.3.exe -convert-dir`
 - auto reconnect: `Connection` -> `auto reconnect on connection failure` and `auto reconnect on system wakeup`
 
@@ -282,6 +303,7 @@ git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 # Dual Boot
 
 ## Make Windows Work after Linux Uninstall if the Bootloader is Grub
+
 1. Get rid of the Grub bootloader
 2. Set the Windows bootloader as the primary partition
 	- it is the small partition at the beginning of the main disk
@@ -298,6 +320,7 @@ Note that updated **Windows 10 disabled anonymous sharing**, so password protect
 Below is a list of possible problems, together with solutions.
 
 ### The user name or password is incorrect
+
 1. Check whether the computer can be seen in the network. If not, resolve this issue first.
 	- quick check by running `net view <IP address>`
 2. Check that you are using the right username. You need to **use the username and password of the computer you are connecting to**.
@@ -320,6 +343,7 @@ net start FDResPub
 ## PC wakes up or cannot enter sleep
 ### 1 Find the source
 Using the Event viwer
+
 1. open the event viewer
 2. go to `windows logs` -> `system`
 3. In case of wake up
@@ -335,12 +359,14 @@ Using command line (admin):
 
 ### 2 Solve the problem
 #### Device waken up by network adapter
+
 1. Open device manager and search for the specific network adapter 
 2. right click -> `Properties` -> `Power Management`
 3. Check `Only allow a magic packet to wake up the computer` 
 
 #### The real sleep mode is not available on the system
 If this is the case, use the hibernate mode instead. To add it to the start menu:
+
 1. go to `Control panel` -> `Hardware and sound` -> `Power options`
 2. click on the left panel to `Choose what the power buttons does`
 3. click on `Change settings that are currently unavailable`

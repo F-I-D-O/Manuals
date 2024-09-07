@@ -1,5 +1,6 @@
 # Literals
 In SQL, there are three basic types of literals:
+
 - **numeric**: `1`, `1.2`, `1.2e3`
 - **string**: `'string'`, `"string"`
 - **boolean**: `true`, `false`
@@ -92,6 +93,7 @@ JOIN <table name> [[AS] <ALIAS>] ON <CONDITION>
 The alias is obligatory if there are duplicate names (e.g., we are joining one table twice)
 
 ## Types
+
 - `INNER` (default): when there is nothing to join, the row is discarded
 - `[LEFT/RIGHT/FULL] OUTER`: when there is nothing to join, the missing values are set to null
 - `CROSS`: creates cartesian product between tables
@@ -99,12 +101,14 @@ The alias is obligatory if there are duplicate names (e.g., we are joining one t
 
 ## OUTER JOIN
 The OUTER JOIN has three subtypes
+
 - `LEFT`: joins right table to left, fills the missing rows on right with null
 - `RIGHT`: joins left to right, fills the missing rows on left with null  	
 - `FULL`: both `LEFT` and `RIGHT` `JOIN` is performend
 
 
 ## Properties
+
 - When there are multiple matching rows, all of them are matched (i.e., it creates duplicit rows)
 - If you want to filter the tables *before* join, you need to specify the condition inside `ON` caluse
 
@@ -261,6 +265,7 @@ Window functions are evaluated after the `GROUP BY` clause and aggregate functio
 
 
 ## Specifiing the range
+
 - `()`: the whole result set
 - `(PARTITION BY <column set>)`: the rows with the same values for that set of columns
 We can also order the result for the selected range using `ORDER BY` inside the parantheses.
@@ -353,20 +358,24 @@ If some data from another table are required for the selection of the records to
 
 # `EXPLAIN`
 Sources
+
 - [official documentation](https://www.postgresql.org/docs/current/sql-explain.html) 
 - [official cosumentation: usage](https://www.postgresql.org/docs/current/using-explain.html)
 - https://docs.gitlab.com/ee/development/understanding_explain_plans.html
 
 ## Remarks:
+
 - to show the actual run times, we need to run `EXPLAIN ANALYZE`
 
 ## Nodes
 Sources
+
 - [Plan nodes source code](https://gitlab.com/postgres/postgres/blob/master/src/include/nodes/plannodes.h)
 - [PG documentation with nodes described](https://www.pgmustard.com/docs/explain)
 
 Node example:
 ```
+
 ->  Parallel Seq Scan on records_mon  (cost=0.00..4053077.22 rows=2074111 width=6) (actual time=398.243..74465.389 rows=7221902 loops=2)
 	Filter: ((trip_length_0_1_mi = '0'::double precision) AND (trip_length_1_2_mi = '0'::double precision) AND (trip_length_2_3_mi = '0'::double precision) AND (trip_length_3_4_mi = '0'::double precision) AND (trip_length_4_5_mi = '0'::double precision))
 	Rows Removed by Filter: 8639817
@@ -374,11 +383,13 @@ Node example:
 ```
 Description:
 In first parantheses, there are expected values:
+
 - `cost` the estimated cost in arbitrary units.  The format is *startup cost..total cost*, where startup cost is a flat cost of the node, an init cost, while total cost is the estimated cost of the node. Averege per loop.
 - `rows`: expected number of rows produced by this node. Averege per loop.
 - `width` the width of each row in bytes
 
 In the second parantheses, there are measured results:
+
 - `actual time`: The measured execution time in miliseconds. The format is *startup time..total time*. 
 - `rows` The real number of rows returned. 
 
@@ -393,6 +404,7 @@ There are many type of keys, see [databastar article](https://www.databasestar.c
 Most important keys in ORM are primary keys. Each table should have a single primary key. A primary key has to be non null.
 
 When choosing primary key, we can either
+
 - use a uniqu combination of database colums: a *natural key*
 - use and extra column: *surogate key*
 
@@ -510,6 +522,7 @@ The view can be modified with `CREATE OR REPLACE VIEW`, however, [existing colum
 
 # Performace Optimization
 When the query is slow, first inspect the following checklist:
+
 - Do not use `OR` or `IN` for a set of columns (see replacing `OR` below).
 - Check that all column and combination of columns used in conditions (`WHERE`) are indexed.
 - Check that all foreign keys are indexed.
@@ -547,12 +560,14 @@ GROUP BY people.id
 
 ## A specific join makes the query slow
 If a single join makes the query slow, there is a great chance that the index is not used for the join. Even if the table has an index on the referenced column(s), the join can still not use it if we are joining not to the table itself but to:
+
 - a subquery,
 - a variable created with a `WITH` statement,
 - a view,
 - or temborary table
 
 created from the indexed table. You can solve the situation by creating a *materialized* view or temporary table instead, and adding inedices to the table manualy. Specifically, you need to split the query into multiple queries:
+
 1. delete the materialized view/table if exists
 1. create the materialized view/table
 1. create the required indices

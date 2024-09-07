@@ -4,6 +4,7 @@
 [cppreference](https://en.cppreference.com/w/cpp/language/type)
 
 *Type* is a property of each:
+
 - object
 - reference
 - function
@@ -19,11 +20,13 @@ Unfortunatelly, **the minimum sizes guaranteed by the standard are not usable, b
 
 ### Overflow and Underflow
 The overflow (and underflow) is a common problem in most programming languages. The problem in C++ is that:
+
 - overflows are **not detected**
 - overflows can happen in many unexpected situations
 
 #### Dangerous situations
 In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:
+
 - the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:
 ```cpp
 short a = 32767;
@@ -40,6 +43,7 @@ int c = static_cast<int>(a) + b;
 
 #### Detecting overflows
 There are some methods how to detect overflows automatically by suppliying arguments to the compiler. These are summarized here:
+
 - **MSVC**: not implemented
 - **GCC**: only detectes signed and floating point overflows, as the unsigned overflows are not considered as errors (the behaviour is defined in the standard). All undefined behaviour can be detected using the `-fsanitize=undefined` flag. [Documentation](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html)
 - **Clang**: Both signed and unsigned overflow can be detected. The undefined behaviour can be detected using the `-fsanitize=undefined` flag. Fo all integer overflows, the `-fsanitize=integer` flag can be used. [Documentation](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)
@@ -54,6 +58,7 @@ It is also possible to do an ad-hoc overflow check in the code, the possible sol
 Characters in C++ are represented by the `char` type, which is an integer type. This type can be signed or unsigned, and it is at least 8 bits long. 
 
 Useful functions for working with characters are:
+
 - [`std::isspace`](https://en.cppreference.com/w/cpp/string/byte/isspace): checks if the character is a whitespace (space, tab, newline, etc.)
 - [`std::toupper`](https://en.cppreference.com/w/cpp/string/byte/toupper): converts the character to upper case
 
@@ -78,6 +83,7 @@ The above example can be then simply called as `bool b = ptr(2)`
 
 ### Pointers to Member Objects
 Pointers to member objects has a cumbersome syntax
+
 - declaration: `<member type> <class type>::*<pointer name> = ...`
 - usage: `<object name>.*<pointer name> = ...`
 
@@ -128,6 +134,7 @@ The second difference is the call. We have t use the pointer to member binding o
 
 ## References
 [References](https://en.cppreference.com/w/cpp/language/reference) serve as an alias to already existing objects. Standard (*Lvalue*) references works the same way as pointers, with two differences:
+
 - they cannot be NULL
 - they cannot be reassigned
 
@@ -151,6 +158,7 @@ f(3) // rvalue overload called, no copy
 
 ### Forwarding references
 [Forwarding references](https://en.cppreference.com/w/cpp/language/reference#Forwarding_references) are references that preserves the value category (i.e. r/l-value reference, `const`). They have two forms:
+
 - function parameter forwarding references
 - `auto` forwarding references
 
@@ -161,6 +169,7 @@ template<class T>
 void f(T&& arg) // parameter is T& or T&& depending on the supplied argument
 ```
 Important details:
+
 - it works only for non const references
 - the reference type has to be a function template argument, not a class template argument 
 
@@ -178,6 +187,7 @@ for(auto&& a: g(){ // same
 [cppreference](https://en.cppreference.com/w/cpp/language/array)
 
 There are two types of arrays:
+
 - *static*, i.e., their size is known at compile type, and
 - *dynamic*, the size of which is computed at runtime
 
@@ -258,10 +268,12 @@ This implicit conversion is called *array-to-pointer decay*.
 
 ### Mutli-dimensional dynamic arrays
 To simulate multi-dimensional dynamic arrays, we have two options:
+
 - use the flat syntax, as demonstrated on static arrays
 - use aray of pointers to arrays 
 
 Method | Pros | Cons
+
 --|--|--
 Flat Syntax | Fast: single continuous allocations | different access syntax than static 2D arrays
 Array of pointers | Slow: one allocation per row, unrelated memory addresses between rows | same access syntax as static 2D arrays
@@ -385,6 +397,7 @@ int main(){
 ```
 
 For more complex code requireing automatic conversion to string and more, we can consider the [magic_enum library](https://github.com/Neargye/magic_enum). It supports the following features:
+
 - enum to string conversion
 - string to enum conversion
 - enum iteration
@@ -393,6 +406,7 @@ For more complex code requireing automatic conversion to string and more, we can
 
 ## Complete and Incomplete Types
 In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?
+
 - The `void` type is always incomplete
 - Any structure without definition (e.g. using `struct structure *ps;`, without defining `structure`.)
 - An array without dimensions is an incomplete type: `int a[];` is incomplete, while `int a[5];` is complete.
@@ -402,6 +416,7 @@ In many context, we have to supply a type with a requirement of being a complete
 
 ## Aggregate types
 Aggregate types are:
+
 - array types 
 - class types that fullfill the following conditions
 	- no private or protected members
@@ -420,6 +435,7 @@ In some context, an implicit type conversion is aplied. This happens if we use a
 
 ### Numeric Conversion
 There are two basic types of numeric conversion:
+
 - standard *implicit conversion* that can be of many types: this conversion is applied if we use an expression of type `T` in a context that expects a type `U`. Example:
 	```cpp
 	void print_int(int a){
@@ -431,6 +447,7 @@ There are two basic types of numeric conversion:
 		print_int(a); // a is implicitly converted to int
 	}
 	```
+
 - *usual arithmetic conversion* which is applied when we use two different types in an arithmetic binary operation. Example:
 	```cpp
 	int main(){
@@ -444,6 +461,7 @@ There are two basic types of numeric conversion:
 
 ##### Integral Promotion
 Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:
+
 - `bool` is promoted to `int`: `false` -> `0`, `true` -> `1`
 
 
@@ -457,12 +475,14 @@ Unlike integral promotion, integral conversion coverts to a smaller type, so the
 This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. 
 
 The conversion has the following steps steps:
+
 1. lvalue to rvalue conversion of both operands
 1. special step for enum types
 1. special step for floating point types
 1. conversion of both operands to the common type
 
 The last step: the conversion of both operands to the common type is performed using the following rules:
+
 1. If both operands have the same type, no conversion is performed.
 1. If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser [integer conversion rank](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank) (size) is converted to the type of the operand with greater rank.
 1. otherwise, we have a mix of signed and unsigned types. The following rules are applied:
@@ -483,6 +503,7 @@ To avoid this problem, **always use the `static_cast` operator if dealing with m
 
 ## Show the Type at Runtime
 It may be useful to show the type of a variable at runtime:
+
 - for debugging purposes
 - for logging
 - to compare the types of two variables
@@ -538,11 +559,13 @@ If we want to show the type of a variable provided by the user (e.g., by a funct
 For managing resources in dynamic memory, *smart pointers* (sometimes called *handles*) should be used. They manage the memory (alocation, dealocation) automatically, but their usage requires some practice.
 
 There are two types of smart pointers:
+
 - `std::unique_ptr` for unique ownership
 - `std::shared_ptr` for shared ownership
 
 ### Creation
 Usually, we create the pointer together with the target object in one call:
+
 - [`std::make_unique<T>(<OBJECT PARAMS>)`](https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique) for unique pointer
 - `std::make_shared<T>(<OBJECT PARAMS>)` for shared pointer
 
@@ -569,6 +592,7 @@ Reference wrapper is a class template that can be used to store references in co
 
 ## Strings
 In C++, there are two types of strings:
+
 - [`std::string`](https://en.cppreference.com/w/cpp/string/basic_string) is an owning class for a string.
 - [`std::string_view`](https://en.cppreference.com/w/cpp/string/basic_string_view) is a non-owning class for a string.
 
@@ -603,6 +627,7 @@ std::string s = "hello"; // s stores a copy of the string literal "hello"
 
 ### Formatting strings
 The usage of modern string formating is either
+
 - [`std::format`](https://en.cppreference.com/w/cpp/utility/format/format) from the `<format>` header if the compiler supports [C++20 string formatting](https://en.cppreference.com/w/cpp/utility/format) ([compiler support](https://en.cppreference.com/w/cpp/compiler_support)) or
 - `fmt::format` from the [`fmt`](https://github.com/fmtlib/fmt) library if not.
 
@@ -613,12 +638,14 @@ format(<literal>, <arguments>)
 where the literal is a string literal with `{}` placeholders and the arguments are the values to be inserted into the placeholders. 
 
 The placeholders can be filled width  
+
 - argument identification, if we want to use the same argument multiple times or change the order in the string while keep the order of arguments in the function call or
 - format specification.
 
 These two parts are separated by `:`, both of them are optional.
 
 The most common format specifications are:
+
 - data type:
 	- `d` for decimal integer
 	- `f` for floating point number
@@ -697,11 +724,13 @@ ss >> std::get_time(&tm, "%Y-%b-%d %H:%M:%S");
 
 
 ## Collections
+
 - [std::array](https://en.cppreference.com/w/cpp/container/array)
 - [std::vector](https://en.cppreference.com/w/cpp/container/vector)
 
 ### Sets
 Normal set collection for C++ is [`std::unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set). By default, the set uses a `Hash`, `KeyEqual` and `Allocator` template params provided by std functions. However, they need to exist, specifically:
+
 - [`std::hash<Key>`](https://en.cppreference.com/w/cpp/utility/hash)
 - `std::equal_to<Key>`
 - `std::allocator<Key>`
@@ -710,6 +739,7 @@ So either those specializations needs to be provided by the snadard library (che
 
 #### Providing custom hash function
 There are two options for providing custom hash function for a type `T`s:
+
 - implementing an *explicit specialization* of the template function  `std::hash<T>`
 - providing the `Hash` template param when constructing the hash
 
@@ -734,6 +764,7 @@ struct std::hash<std::unordered_set<const Request*>> {
 ```
 
 Important implementation details:
+
 - the function needs to be implemented inside `std` or annonymous namespace, not inside a custom namespace
 - do not forget to add `template<>` above the function, this indicates that it is a template specialization.
 
@@ -753,11 +784,13 @@ Therefore, **if we just read from the map, it is safer to use the `at()`** membe
 
 #### Inserting into map
 There are three options:
+
 1. `map[key] = value;` or
 2. `map.insert({key, value});`
 3. `map.emplace(key, value);`
 
 There are some considerations with these options:
+
 - 1 inserts the `value` into the map even if the `key` already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (`true` if the insertion happend).
 - 1 requires the value to be default *constructible* and *assignable*
 - 3 avoids the creation of temporary objects, it sends references to `key` and `value` directly to the map.  
@@ -765,6 +798,7 @@ There are some considerations with these options:
 
 ### Tuples
 We have two standard class templates for tuples:
+
 - [`std::pair`](https://en.cppreference.com/w/cpp/utility/pair) for pairs
 - [`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) for tuples with unlimited size
 
@@ -772,6 +806,7 @@ Although named differently, these class templates behaves mostly the same.
 
 #### Creating tuples
 There are two ways of creating a tuple:
+
 - constructor (`auto p = std::pair(...)`)
 - initializer (`auto p = {}`)
 
@@ -797,6 +832,7 @@ auto hello = std::get<1>(tuple);
 
 #### Unpacking tuples into variables
 There are two scenarios of unpacking tuples into variables:
+
 - unpacking into **new variables**: for that, we use structured binding. 
 - unpacking into **existing variables**: for that, we use `std::tie` function.
 
@@ -879,6 +915,7 @@ if(a){
 In many contexts, the value category of an expression is important in deciding whether the code compiles or not, or which function or template overload is chosen. Therefore, it is usefull to be able to read value categories.
 
 expression value types:
+
 - *lvalue*, meaning left-value. An expression typically on the left side of compound expression a statement, e.g. variable, member, or function name. Also, lvalues expressions are are:
 	- function ratoalls to fuctions returning lvalue
 	- assignments
@@ -981,6 +1018,7 @@ switch(expression){
 
 ## Deciding between free function, member function and static member function
 Basically, you should decide as follows:
+
 1. Function needs access to instance -> **member function**
 2. Function 
 	- should be called only by class members (i.e., member functions), so we want to limit its visibility, or
@@ -989,6 +1027,7 @@ Basically, you should decide as follows:
 
 ## Argument-parameter Conversions
 Arg/param | value | reference | rvalue
+
 -- |--|--|--
 value | - | - | `std::move` 
 reference | implicit copy | - | copy constructor
@@ -1019,6 +1058,7 @@ Also, the default parameters need to be values, not references or pointers. For 
 TLDR: do not use default parameters in virtual functions.
 
 The default parameters are resolved at compile time. Therefore, the value does not depend on the actual type of the object, but on the declared type of the variable. This have following consequences:
+
 - the default parameters are not inherited
 - `A* a = new B(); a->foo()` will call `B::foo()`, with the default parameters of `A::foo()`
 
@@ -1031,6 +1071,7 @@ For deciding the return value format, refer to the [return value decision tree](
 Especially, note that [NRVO](https://en.wikipedia.org/wiki/Copy_elision#RVO) is used in modern C++ and therefore, we can return all objects by value with no overhead most of the time.
 
 The NRVO works as follows:
+
 1. compiler tries to just tranfer the object to the parent stack frame (i. e. to the caller) without any move or copy
 2. if the above is not possible, the move constructor is called.
 3. if the above is not possible, the copy constructor is called.
@@ -1050,6 +1091,7 @@ The NRVO is described also on [cppreference](https://en.cppreference.com/w/cpp/l
 
 ## Function Overlaoding
 Both normal and member funcions in C++ can be overloaded. The oveload mechanic, however, is quite complicated. There can be three results of overload resolution of some function call:
+
 - no function fits -> error
 - one function fits the best
 - multiple functions fits the best -> error
@@ -1057,10 +1099,12 @@ Both normal and member funcions in C++ can be overloaded. The oveload mechanic, 
 The whole algorithm of overload resolution can be found on [cppreference](https://en.cppreference.com/w/cpp/language/overload_resolution).
 
 First, *viable* funcions are determined as functions with the same name and:
+
 - with the same number of parameters
 - with a greater number of parameters if the extra parameters has default arguments
 
 If there are no viable functions, the compilation fails. Otherwise, all viable functions are compared to get the best fit. The comparison has multiple levels. The basic principle is that if only one function fits the rules at certain level, it is chosen as a best fit. If there are multiple such functions, the compilation fails. Levels:
+
 1. Better *conversion* priority (most of the time, the best fit is found here, see conversion priority and ranking bellow)
 
 12. non-template constructor priority
@@ -1069,6 +1113,7 @@ If there are no viable functions, the compilation fails. Otherwise, all viable f
 [cppreference](https://en.cppreference.com/w/cpp/language/overload_resolution#Ranking_of_implicit_conversion_sequences)
 
 When the conversion takes priority during the best viable function search, we say it is *better*. The (incomplete) algorithm of determining *better* conversion works as follows:
+
 1. standard conversion is better than user defined conversion
 2. user defined conversion is better then elipsis (`...`) conversion
 3. comparing two standard conversions:
@@ -1078,6 +1123,7 @@ When the conversion takes priority during the best viable function search, we sa
 	4. ref over const ref if both applicable
 
 #### Conversion sequence ranks
+
 1. **exact match**
 2. **promotion**
 3. **conversion**: includes class to base conversion
@@ -1086,6 +1132,7 @@ When the conversion takes priority during the best viable function search, we sa
 
 ### Constructor argument type resolution in list initialization
 When we use a list initailization **and** it results in a constructor call, it is not immediatelly clear which types will be used for arguments as the initialization list is not an expression. These types are, however, critical for the finding of best viable constructor. The following rules are used to determine the argument types (simplified):
+
 1. 
 
 
@@ -1093,6 +1140,7 @@ When we use a list initailization **and** it results in a constructor call, it i
 For functions that are defined inside declaration (template functions, lambdas), the return type can be automatically deduced if we use the `auto` keyword. 
 
 The decision between value and reference return type is made according to the following rules:
+
 - return type `auto` -> return by value
 - return type `auto&` -> return by reference
 - return type `auto*` -> return by pointer
@@ -1120,6 +1168,7 @@ One of the other approches frequently used in C++ is to **put the function decla
 
 
 ## Usefull STL functions
+
 - [`std::for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each): iterates over iterable objects and call a callable for each iteration
 - [`std::bind`](https://en.cppreference.com/w/cpp/utility/functional/bind): Binds a function call to a variable that can be called
 	- some parameters of the function can be fixed in the variable, while others can be provided for each call
@@ -1152,6 +1201,7 @@ members are private by default.
 
 ## Class Constants
 Class constants can be defined in two ways:
+
 - `static constexpr` member variable if the constant type supports `constexpr` specifier, or
 - `static const` member variable 
 
@@ -1214,17 +1264,20 @@ class To_be_accesssed {
 
 ## Loacal variables initialization/assignment
 [Initialization](https://en.cppreference.com/w/cpp/language/initialization) happens in many **contexts**:
+
 - in the declaration
 - in `new` expression
 - function parameter initialization
 - return value initialization
 
 The **syntax** can be:
+
 - `(<expression list>)`
 - ` = expression list`
 - `{<initializer list>}`
 
 Finally, there are multiple initialization types, the resulting **initialization type** depends on both context and syntax:
+
 - Value initialization: `std::string s{};`
 - Direct initialization: `std::string s{"value"}`
 - Copy initialization: `std::string s = "value"`
@@ -1235,6 +1288,7 @@ Finally, there are multiple initialization types, the resulting **initialization
 
 ### List initialization
 [List initialization](https://en.cppreference.com/w/cpp/language/list_initialization) initializes an object from a list. he list initialization has many forms, including:
+
 - `My_class c{arg_1, arg_2}` 
 - `My_class c = {arg_1, arg_2}`
 - `my_func({arg_1, arg_2})`
@@ -1260,6 +1314,7 @@ My_class o2 = {arg_1, arg_2}; // equivalent
 ```
 
 The list initialization of type `T` from an initializer list results in aggregate initialization if these conditions are fullfilled:
+
 - the initializer list contains more then one element
 - T is an aggregate type
 
@@ -1281,16 +1336,19 @@ std::tuple<int, My_class>{2, My_class{3, 2.5}} // correnct version
 
 ## Member Initialization/Assignment
 There are two ways of member initialization:
+
 - **default member initialization**
 - initialization using **member initializer list**
 
 And then, there is an assignment option in  **constructor body** .
 
 Reference:
+
 - [default member initialization](https://en.cppreference.com/w/cpp/language/data_members#Member_initialization)
 - [constructor and initializer list](https://en.cppreference.comwcplng/w/cpp/language/constructor)
 
 One way or another, **all members should be initialized at the constructor body at latest**, even if we assign them again during all possible use cases. Reason:
+
 - some types can have arbitrary values when unassigned. This can lead to confusion when debugging the class, i.e., the member can appear as initialized even if it is not.
 - easy support for overloading constructors, we can sometimes skip the call to the constructor with all arguments
 - we can avoid default arguments in the constructor
@@ -1339,6 +1397,7 @@ My_class{
 Ordered by priority, i.e., each method makes the methods bellow ignored/ovewritten if applied to the same member.
 
 Type | In-place | works for const members
+
 --|
 --|--
 Constructor body | no | no
@@ -1351,6 +1410,7 @@ Default member initializer | yes, if we use direct initialization | yes
 [cppreference](https://en.cppreference.com/w/cpp/language/member_functions#Special_member_functions)
 
 Special member functions are member functions that are someetimes defined implicitely by the compiler. The special member functions are:
+
 - default (no parameter) constructor
 -   copy Cconstructor
 -   copy sssignment
@@ -1363,6 +1423,7 @@ Along with the comparison operators, these are the only functions that can be *d
 ## Constructor
 ### Defualt Variant
 The default constructor just create an empty object. The default constructor is not implicitly generated if:
+
 - there is anothe constructor declared, including copy and move constructor
 - there is some member that cannot be defaulty initialized
 
@@ -1397,6 +1458,7 @@ This way, we can call another constructor of the same class, or of the base clas
 [cppreference](https://en.cppreference.com/w/cpp/language/copy_constructor)
 
 A copy constructor is called if an object is initialized from another object unless the move constructor is called as a better fit or the call is optimized out by [copy elision](https://en.cppreference.com/w/cpp/language/copy_elision). Some examples:
+
 - initializing a new object from an existing object:
 ```cpp
 My_class a;
@@ -1404,6 +1466,7 @@ My_class a;
 My_class b = a;  // copy constructor called
 My_class c(a);  // copy constructor called
 ```
+
 - passing an object to a function by value:
 ```cpp
 void f(My_class a){...}
@@ -1411,6 +1474,7 @@ void f(My_class a){...}
 My_class a;
 f(a); // copy constructor called
 ```
+
 - returning an object by value where the type is not movable and the compiler cannot optimize the call out.
 -  we call the copy constructor directly
 
@@ -1421,6 +1485,7 @@ The copy constructor for type `T` is implicitely-declared if `T` has no declared
 If some there are some user-defined copy constructors, we can still force the implicit declaration of the copy constructor using the `default` keyword
 
 However, the implicit declaration does not mean that the copy constructor can be used! This is because the **copy constructor can be implicitely defined as deleted**. This happens if any of the following conditions is true:
+
 1. T has a non-static data member that cannot be copied. This can happen if any of the following is true:
 	- it has a deleted copy constructor,
 	- the copy constructor is inaccessible (**protected, private**)
@@ -1452,6 +1517,7 @@ instanceB = instance A
 Move constructor semantic is that the new object takes the ownership of the resources of the old object. The state of the old object is unspecified, but it should not be used anymore. 
 
 Move constructor is typically called when the object is initaialized from xvalue (but not prvalue!) of the same type. Examples:
+
 - returning xvalue: 
 ```cpp
 Type f(){
@@ -1459,6 +1525,7 @@ Type f(){
 	return std::move(t);
 }
 ```
+
 - passing argument as xvalue:
 ```cpp
 f(Type t){
@@ -1467,6 +1534,7 @@ f(Type t){
 Type t
 f(std::move(t)); 
 ```
+
 - initializing from xvalue:
 ```cpp
 Type t;
@@ -1484,6 +1552,7 @@ Type t = T(f()) // no move constructor call, copy elision
 ```
 
 Move constructor is needed:
+
 -   to cheaply move the object out from function if RVO is not possible
 -   to store the object in vector without copying it
 
@@ -1496,6 +1565,7 @@ The move constructor for type `T` is implicitely-declared if `T` has no declared
 If some of the above is declared, we can still force the implicit declaration of the move constructor using the `default` keyword
 
 However, that does not mean that the move constructor can be used! This is because the **move constructor can be implicitely defined as deleted**. This happens if any of the following conditions is true:
+
 1. T has a non-static data member that cannot be moved. A member cannot be moved if any of the following is true:
 	- it has a deleted, inaccessible (protected, private), or ambiguous move constructor,
 	- it is a reference,
@@ -1516,6 +1586,7 @@ To check if the move constructor is accessible, we have to manually check the co
 
 ## Trivial special member functions
 The special member functions are called trivial if they contain no operations other then copying/moving the members and base classes. For a special member function of type `T` to be trivial, all of the following conditions must be true:
+
 - it is implicitly-declared or defaulted
 - `T` has no virtual functions
 - `T` has no virtual base classes
@@ -1532,22 +1603,26 @@ We need destructor only if the object owns some resources that needs to be manua
 
 
 ## Rules
+
 -   if you want to be sure, delete everything you don’t need
 - most likely, either we need no custom constructors, or we need three (move and destructor), or we need all of them.
     
 ## Rules for Typical Object Types
 
 ### Simple Temporary Object
+
 -   the object should live only in some local context
 -   we don’t need anything
 
 ### Unique Object
+
 -   usually represents some real object
 -   usually, we need constructors for passing the ownership:
 	-   move constructor
 	-   move assignment noe sin
 
 ### Default Object
+
 -   copyable object
 -   We need
 	-   copy constructor
@@ -1558,6 +1633,7 @@ We need destructor only if the object owns some resources that needs to be manua
 
 # Const vs non-const 
 The `const` keyword makes the object non-mutable. This means that:
+
 - it cannot be reassigned
 - non-const member functions of the object cannot be called
 
@@ -1567,6 +1643,7 @@ The const keyword is usually used for local variables, function parameters, etc.
 
 ## Avoiding duplication between const and non-const version of the same function
 To solve this problem without threathening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
+
 - one that converts *this* to const, so we can call the const version of the function
 - another one that removes const from the return value
 
@@ -1619,6 +1696,7 @@ class B : public A {
 
 ## Avoiding duplication between const and non-const version of the same function
 To solve this problem without threathening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
+
 - one that converts *this* to const, so we can call the const version of the function
 - another one that removes const from the return value
 
@@ -1653,6 +1731,7 @@ std::cout << "Hello world" << '\r' << std::flush;
 Although we can use strings to work with file paths in C++, the standard format which is also easy to use is [`std::filesystem::path`](https://en.cppreference.com/w/cpp/filesystem/path) from the [filesystem library](https://en.cppreference.com/w/cpp/filesystem).
 
 Basic operations:
+
 - To **create a path**, we jusct call `std::filesystem::path(<string path>)`.
 - We can easily **join two paths** by `auto full_path = <path 1> / <path 2>`;
 - To get the **asolute path**, we call
@@ -1677,6 +1756,7 @@ std::filesystem::copy("C:/temp/data", "c:/data/new", options);
 ```
 
 Note that **unlike the unix `cp` command, the `copy` function does not copy the directoy itself**, even if the destination directory exists. Suppose we have two direcories:
+
 - `C:/temp/new` 
 - `C:/data/`
 
@@ -1703,6 +1783,7 @@ To remove a content of a directory we can use `std::filesystem::remove_all(<path
 
 
 ### Other useful functions
+
 - [`std::filesystem::exists(<path>)`](https://en.cppreference.com/w/cpp/filesystem/exists)
 - [`std::filesystem::is_directory(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_directory)
 - [`std::filesystem::is_regular_file(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_regular_file)
@@ -1772,6 +1853,7 @@ for (YAML::const_iterator it = node.begin(); it != node.end(); ++it) {
 
 # Inheritance
 Inheritance in C++ is similar to other languages, here are the important points:
+
 - To enable overiding, a member function needs to be declared as `virtual`. Otherwise, it will be just hidden in a child with a function with the same name, and the `override` specifier cannot be used (see Shadowing).
 - Multiple inheritance is possible.
 - No interfaces. Instead, you can use abstract class with no data members.
@@ -1842,6 +1924,7 @@ int main()
 
 ### How to call a hidden function?
 There are two ways how to call a hideen function:
+
 1. we can use the `using` declaration in the child to introduce the hidden function:
 	```c++
 	class Child: public Base {
@@ -1852,6 +1935,7 @@ There are two ways how to call a hideen function:
 		}
 	};
 	```
+
 2. Usiang a *fully qualified name* of the method:
 	```c++
 	int main()
@@ -1888,6 +1972,7 @@ delete base;
 ```
 
 But when defining destructor, constructor and move operations are not impliciotely  generated. Moreover, the copy operations are generated enabling a polymorphic copy, which results in slicing.  Therefore, **the best approach for the base class** is to: 
+
 - declare the **virtual destrucor** as default
 - declare the **default constructor**. We need a default constructor, unless we use a diferent constructor and we want to disable the default one.
 - declare the **copy and move operations as protected**. This way, the polymorpic copy is not possible, but proper copy/move operations are generated for every child class.  
@@ -2029,11 +2114,13 @@ However, this solves only the problem of having multiple instances of the same b
 To solve this we need to manually define the copy/move operations of classes in the hierarchy so that the copy/move operations of the base class are called only once. However this can be a complex task. Also, it can backfire later when we extend the hierarchy.
 
 ### Other sources
+
 - [SO answer](https://stackoverflow.com/questions/406081/why-should-i-avoid-multiple-inheritance/407928#407928)
 - [SO answer 2](https://stackoverflow.com/questions/21558/in-c-what-is-a-virtual-base-class/21607#21607)
 
 # Templates
 The templates are a powerful tool for:
+
 - generic programming,
 - zero-overhead interfaces,
 - and metaprogramming.
@@ -2041,6 +2128,7 @@ The templates are a powerful tool for:
 Although they have similar syntax as generics in Java, they are principialy different both in the way they are implemented and in the way they are used.
 
 There are two types of templates:
+
 - function templates
 - class templates
 
@@ -2051,6 +2139,7 @@ Both for classes and functions, the template declaration has the following form:
 template<<template parameters>>
 ```
 The template parameters can be:
+
 - type parameters: `class T`
 - value parameters: `int N`
 - concept parameters: `std::integral T`
@@ -2087,6 +2176,7 @@ To speed up the build it **is also desireble to move any non-template code to so
 
 ## Providing Template Arguments
 A template can be instantiated only if all the template arguments are provided. Arguments can be:
+
 - provided explicitly: `std::vector<int> v;` or `sum<int>(1,2)`
 - deduced 
 	- from the initialization (classes): `std::vector v = {1,2,3};`
@@ -2129,11 +2219,13 @@ The rules for omitting the `<>` are quite complex. Therefore, **it is better to 
 
 ### Rules for omitting the `<>`
 We can ommite the `<>` in the following cases:
+
 - when declaring a variable: `A a;`
 - when using the type in a function call: `f(A());`
 - when instantiating a template class: `class B: public A {};`
 
 We cannot ommite the `<>` in the following cases:
+
 - When we use the template as a nested type: `std::vector<A<>> v;`, not `std::vector<A> v;`
 - in the return type of a function: `A<> f()`, not `A f()`
 - When declaring an alias: `using B = A<>` not `using B = A`
@@ -2152,6 +2244,7 @@ For template classes, there is a restriction that after a default argument is us
 Details on [cppreference](https://en.cppreference.com/w/cpp/language/template_argument_deduction).
 
 Template argument deduction should work for:
+
 - constructors
 - function and operator calls
 - storing the function pointer
@@ -2192,6 +2285,7 @@ Some more details about user defined deduction guides are also on the [Microsoft
 
 #### Implicit deduction guides
 The vast majority of deduction guidedes used in CTAD are implicit. The most important implicit deduction guides are:
+
 - constructor deduction guides
 - copy deduction guides
 
@@ -2282,6 +2376,7 @@ void Object<std::string>::print(std::string value){
 ```
 
 There are two types of template specialization:
+
 - **full specialization**: exact specification for all template arguments
 - [**partial specialization**](https://en.cppreference.com/w/cpp/language/partial_specialization): exact specification for a subset of template arguments and/or non-type template arguments
 
@@ -2304,6 +2399,7 @@ class Object<T, C>{}; // not a full specialization, types are not exactly specif
 ```
 
 While behaving similarly, there are some important differences between the two types:
+
 - **Full specialization is a new type. Therefore, it must be defined in the source file (`.cpp`), just like any other class or function and it must have a separate declaration.** On the other hand, partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
 - **For functions, we cannot provide a partial specialization**. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use `if constexpr` to select the correct implementation:
 
@@ -2388,6 +2484,7 @@ A type trate is a template with a constant that holds the result of the predicat
 
 
 ## Usefull Type Traits
+
 - [`std::is_same`](https://en.cppreference.com/w/cpp/types/is_same)
 - [`std::is_base_of`](https://en.cppreference.com/w/cpp/types/is_base_of)
 - [`std::is_convertible`](https://en.cppreference.com/w/cpp/types/is_convertible)
@@ -2396,6 +2493,7 @@ A type trate is a template with a constant that holds the result of the predicat
 
 ## Replacement for old type traits
 Some of the old type traits are no longer needed as they can be replaced by new language features, which are more readable and less error prone. Some examples:
+
 - [`std::enable_if`](https://en.cppreference.com/w/cpp/types/enable_if) can be replaced by concepts:
 ```cpp
 
@@ -2428,16 +2526,19 @@ The concept can have multiple template parameters. The first one in the declarat
 
 ## Constraints
 Constraints can be composed using `&&` and `||` operatos. For atomic constaints declaration, we can use:
+
 - Type traits:
 ```cpp
 template<class T>
 concept Integral = std::is_integral<T>::value;
 ```
+
 - Concepts: 
 ```cpp
 template<class T>
 concept UnsignedIntegral = Integral<T> && !SignedIntegral<T>;
 ```
+
 - Requires expression:
 ```cpp
 template<typename T>
@@ -2453,10 +2554,12 @@ requires(parameter list){requirements}
 ```
 
 There are four types of requirements that can appear in the requires expression:
+
 - *simple requiremnet*: a requirement that can contain any expression. Evaluates to true if the expression is valid.
 ```cpp
 requires (T x) { x + x; };
 ```
+
 - *type requirement*: a requiremnt checking the validity of a type:
 ```cpp
 requires
@@ -2466,6 +2569,7 @@ requires
     typename Ref<T>;   // required alias template substitution
 };
 ```
+
 - *compound requirement*: Checks the arguments and the return type of some call. It has the form: `{expression} -> return-type-requirement;`
 ```cpp
 requires(T x)
@@ -2502,6 +2606,7 @@ concept Stock = requires(S stock) {
 ```
 
 ## STL Concepts
+
 - [iterator concepts](https://en.cppreference.com/w/cpp/header/iterator)
 
 ## Usefull Patterns
@@ -2569,6 +2674,7 @@ requires(L loadable) {
 In programming, an interface is usualy a set of requirements that restricts the function or template parameters, so that all types fulfiling the requiremnet can be used as arguments.
 
 Therte are two ways how to create an interface in C++:
+
 - using the *polymorphism*
 - using *templates argument restriction*
 
@@ -2668,6 +2774,7 @@ An example: a virtual (abstract) function cannot be a template function ([member
 If the functin accepts `MyContainer<Animal>` we cannot call it with `MyContainer<Cat>`, even if `Cat` is an instance of Animal.
 
 ### Possible solutions for conflicts
+
 -   do not use templates -> more complicated polymorphism (*type erasure* for members/containers)
 -   do not use polymorphism -> use templates for interfaces
 -   an [adapter](https://www.sciencedirect.com/science/article/pii/S0167642309000021) can be used
@@ -2685,6 +2792,7 @@ When we need to store various object in the same member or container, we can use
 
 ## Deciding between template and polymorphism
 Frequently, we need some entity(class, function) to accept multiple objects through some interface. We have to decide, whether we use templates, or polymorphism for that interface. Some decision points:
+
 - We need to return the same type we enter to the class/function -> use templates
 - We have to access the interface (from outside) without knowing the exact type -> use polymorphism
 - We need to restrict the member/parametr type in the child -> use templates for the template parameter
@@ -2692,11 +2800,13 @@ Frequently, we need some entity(class, function) to accept multiple objects thro
 - If there are space considerations, be aware that every parent class adds an 8 byte pointer to the atribute table
 
 In general, the polymorphic interface have the following adventages:
+
 - easy to implement
 - easy to undestand
 - similar to what people know from other languages
 
 On the other hand, the interface using concepts has the following adventages:
+
 - no need for type cast
 - all types check on compile time -> no runtime errors
 - zero overhead
@@ -2708,6 +2818,7 @@ On the other hand, the interface using concepts has the following adventages:
 If we want to iterate over elements in some programming language, we need to fulfill some interface. In Java, this interface is called `Iterable`. Also, there is usually some interface that formalize the underlying work, in Java, for example, it is called `Iterator`. 
 
 In C++, however, the interface for iteration is not handled by polymorphism. Instead, it is handled using type traits and concepts. On top of that, there are multiple interfaces for iteration:
+
 - legacy iteration, e.g., `for (auto it = v.begin(); it != v.end(); ++it)`
 - STL algorithms, e.g., `std::find(v.begin(), v.end(), 42)`
 - STL range algorithms, e.g., `std::ranges::find(v, 42)`
@@ -2748,10 +2859,12 @@ std::vector vec{range.begin(), range.end()}; // in-place vector construction
 
 
 ## Terminology 
+
 - *range*: the object we iterate over (Iterable in Java)
 - *iterator*: the object which does the real work (Iterator in Java)
 
 Usually, a range is composed of two iterators:
+
 - *begin*: points to the beginning of the range, returned by `<range_object>.begin()`
 - *end*: points to the end of the object, returned by  `<range_object>.end()` 
 
@@ -2764,6 +2877,7 @@ Most of the STL *collections* (vector, set,...) are also ranges.
 
 ## How to choose the correct interface?
 when deciding which interface to use, we can use the following rules:
+
 1. **If the number of tasks and the complexity of the tasks is high, use the legacy iteration**. It is hard to write a 20 line for loop with various function calls as algorithm or adaptor and the result would be hard to read.
 1. Otherwise, **if you need to preserve the original range as it is or you need to compose multiple operations, use the STL range adaptors**. 
 1. Otherwise, **use the STL range algorithms**.
@@ -2779,6 +2893,7 @@ Also note that some STL algorithms are principially non-modifying, e.g., `std::r
 In C++ 20 there is a new range library that provides functional operations for iterators. It is similar to functional addon in Java 8.
 
 As explained in the beginning of this chapter, there are two ways how to use the STL ranges:
+
 - using the [range algorithms](https://en.cppreference.com/w/cpp/ranges) (`ranges::<alg name>`) that are invoked eagerly.
 - using the [range views](https://en.cppreference.com/w/cpp/ranges/views) (`ranges::views::<view name>`) that are invoked lazily.
 
@@ -2792,6 +2907,7 @@ Note that due to the lazy nature of the views, **the underlying range has to be 
 A custom view can be created so that it can be chained with STL views. However, it has to satisfy the [view concept](https://en.cppreference.com/w/cpp/ranges/view), and more importantly, it should satisfy the view semantic, i.e., it should be cheap to copy and move (without copying the underlying data).
 
 #### Usefull views
+
 - [`std::views::iota`](https://en.cppreference.com/w/cpp/ranges/iota_view): generates a sequence of numbers
 - [`std::views::filter`](https://en.cppreference.com/w/cpp/ranges/filter_view): filters the elements of the range
 
@@ -2834,6 +2950,7 @@ Note that the most frequently used algorithms have a separate section in the Ite
 
 
 ### Other Resources
+
 -   [https://www.modernescpp.com/index.php/c-20-the-ranges-library](https://www.modernescpp.com/index.php/c-20-the-ranges-library) 
 
 
@@ -2859,6 +2976,7 @@ BOOST_CONCEPT_ASSERT((
 ```
 
 Most likely, the compiler will complain that `boost::range_iterator<R>::type` does not exist for your range `R` . The boost range library generate this type by a macro from the `R::iterator` type. Therefore, make sure that your range has an iterator type defined, either as:
+
 - a type alias to an existing iterator
 - an iterator nested class
  
@@ -2910,16 +3028,19 @@ for(auto const& el: <range>) {
 
 ## Sorting
 There is no sorted view or something simmiler, so in order to sort a range, we need to:
+
 - really sort the object in the range
 - create an adaptor/view from the range, and then sort the view
 
 There are two functions for sorting in the STL algorithm library:
+
 - [`std::sort`](https://en.cppreference.com/w/cpp/algorithm/sort): old
 	- supports parallelization directly by the policy param
 - [`std::ranges::sort`](https://en.cppreference.com/w/cpp/algorithm/ranges/sort): new
 	- supports comparison using projections
 
 There are three types of sorting:
+
 - natural sorting using the `<` operator of `T` : `std::sort(<RANGE<T>>)`
 - sorting using a comparator: `std::sort(<RANGE>, <COMPARATOR>)`, where comparator is a fuction with parameters and return value analogous to the natural sorting operator.
 - sorting using projection (only availeble in `std::ranges::sort`): `std::ranges::sort(<RANGE>, <STANDARD GENERIC COMPARATOR>, <PROJECTION>`
@@ -2952,6 +3073,7 @@ std::ranges::sort(indexes, {}, proj) // sort indexes using the property of objec
 
 ## Transformation
 Transformation alg/views transforms an input range according to a callable. As with other operation, there are thre options:
+
 - classical algorithm: [`std::transform`](https://en.cppreference.com/w/cpp/algorithm/transform) with a direct paralellization using the policy parameter
 - range algorithm: [`std::ranges::transform`](https://en.cppreference.com/w/cpp/algorithm/ranges/transform) with a support for projections
 - range view: [`std::ranges::views::transform`](https://en.cppreference.com/w/cpp/ranges/transform_view) - a lazy variant
@@ -2988,6 +3110,7 @@ There are different requirements for different types of ranges. Moreover, there 
 Here we focus on requirements for ranges. Not however, that the range requirements are more strict than the requirements for the range-based for loop or the legacy STL algorithms. Therefore, the described approach should work for all three cases.
 
 Usually, we proceed as follows:
+
 1. Choose the right range (Iterable) concept for your range from the [STL range concepts](https://en.cppreference.com/w/cpp/ranges).
 	- The most common is the [`std::ranges::input_range`](https://en.cppreference.com/w/cpp/ranges/input_range) concept.
 1. Implement the range concept for the range.
@@ -3014,6 +3137,7 @@ class My_range {
 
 ## Boost Iterator Templates
 The [boost.iterator library](https://www.boost.org/doc/libs/1_77_0/libs/iterator/doc/index.html) provides some templates to implement iteratores easily, typically using some existing iterators and modifying just a small part of it:
+
 - for pointer to type (dereference) iterator, you can use [boost indirect iterator](https://www.boost.org/doc/libs/1_54_0/libs/iterator/doc/indirect_iterator.html)
 - [zip iterator](https://www.boost.org/doc/libs/1_80_0/libs/iterator/doc/zip_iterator.html) for Python like iteration over multiple collections
 - [transform iteratorather useful iterators are also included in [the boost.iterator library](https://www.boost.org/doc/libs/1_787_0/libs/iterator/doc/transform_iterator.html) for using another iterator and just modify the access (`*`) opindex.html). including:
@@ -3022,11 +3146,13 @@ The [boost.iterator library](https://www.boost.org/doc/libs/1_77_0/libs/iterator
 - [gentransform iterator](https://livewww.boost.org/doc/libs/1_787_0/libs/iterator/doc/generattransform_iterator.html)
 
 There are also two general (most powerfull) classes:
+
 - [iterator adapter](https://live.boost.org/doc/libs/1_78_0/libs/iterator/doc/iterator_adaptor.html)
 - iterator facade
 
 
 ## Resources
+
 -   [How to write a legacy iterator](https://internalpointers.com/post/writing-custom-iterators-modern-cpp)
     
 -   [iter_value_t](https://en.cppreference.com/w/cpp/iterator/iter_t)
@@ -3059,6 +3185,7 @@ The return type of lambda functions can be set only using the trailing return ty
 
 ## Specifiers
 Lambda functions can have special specifiers:
+
 - `mutable`: lambda can modify function parameters capture by copy
 
 
@@ -3160,6 +3287,7 @@ std::set_terminate(&terminate_handler_with_stacktrace);
 ```
 
 To create the stacktrace, we can use one of the stacktrace libraries:
+
 - [stacktrace](https://en.cppreference.com/w/cpp/header/stacktrace) header from the standard library if the compiler supports it (C++ 23)
 	- as of 2024-04, only MSVC supports this functionality
 - [cpptrace](https://github.com/jeremy-rifkin/cpptrace)
@@ -3196,6 +3324,7 @@ spdlog::flush_every(std::chrono::seconds(5));
 
 ## Colors
 By default, the logger uses colors for different log levels. However, this capability is lost when:
+
 - using custom sinks or
 - using custom formatters
 
@@ -3222,6 +3351,7 @@ using func = void(int, int)
 ```
 
 The `using`new syntax is more readable, as the alias is at the begining of the expression. But why to use type aliases? Two strong motivations can be:
+
 - **iImprove the readebility**: When we work with a type with a very long declaration, it is wise to use an alias. We can partialy solve this issue by using auto, but that is not a complete solution
 - **Make the refactoring easier**: When w work with aliases, it is easy to change the type we work with, just by redefining the alias. 
 
@@ -3253,6 +3383,7 @@ My_class::number number = 5;
 
 # Constant Expressions
 A constant expression is an expression that can be evaluated at compile time. The result of constant expression can be used in static context, i.e., it can be:
+
 - assigned to a `constexpr` variable,
 - tested for true using `static_assert`
 
@@ -3335,6 +3466,7 @@ std::vector<decltype(j)> numbers;
 ```
 ## The Value Category of `decltype`
 The value category of `decltype` is resolved depending on the value category of an expression inside it:
+
 - `deltype(<XVALUE>)` -> `T&&`
 - `deltype(<LVALUE>)` -> `T&`
 - `deltype(<RVALUE>)` -> `T`
@@ -3344,6 +3476,7 @@ The rvalue conversion can lead to unexpected results, in context, where the valu
 static_assert(std::is_same_v<decltype(0), decltype(std::identity()(0))>); // error
 ```
 The above expressions fails because:
+
 - `decltype(0)`, `0` is an rvalue `->` the `decltype` result is `int`
 - `decltype(std::identity()(0))` result of [`std::identity()`](https://en.cppreference.com/w/cpp/utility/functional/identity) is an xvalue `->` the `decltype` result is `int&&`. Determining Type from Expressions
 Sometimes, it is usefull to declare a type from expression, instead of do it manualy. Using  [`decltype`](https://en.cppreference.com/w/cpp/language/decltype) specifier, we can get the resulting type of an expression as if it was evaluated. Examples:
@@ -3366,6 +3499,7 @@ std::vector<decltype(j)> numbers;
 
 ### Determining the Return Value Type of a Function
 As we can see above, we can use `decltype` to determine the return value type. But also, there is a *type trait* for that: [`std::invoke_result_t`](https://en.cppreference.com/w/cpp/types/result_of) (formerly `std::result_of`). The `std::invoke_result_t` should vbe equal to `decltype` when aplied to return type, with the following limitations:
+
 - we cannot use abstract classes as arguments of `std::invoke_result_t`, while we can use them inside `decltype` (using `std::declval`, see below).
 - 
 
@@ -3459,6 +3593,7 @@ bool b = functor(2)
 ```
 
 Advanteges:
+
 - we do not need an access to instance in the context from which we call the member function
 - we do not have to remember the complex syntax of a pointer to a member function declaration
 - we receive a callable object, which usage is even simpler than using `std::invoke`
@@ -3508,6 +3643,7 @@ int Car::*pSpeed = &Car::speed;
 c1.*pSpeed = 2;
 ```
 Usefull STL functions
+
 - [`std::for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each): iterates over iterable objects and call a callable for each iteration
 - [`std::bind`](https://en.cppreference.com/w/cpp/utility/functional/bind): Binds a function call to a variable that can be called
 	- some parameters of the function can be fixed in the variable, while others can be provided for each call
@@ -3516,6 +3652,7 @@ Usefull STL functions
 
 ## std::function
 The [`std::function`](https://en.cppreference.com/w/cpp/utility/functional/function) template can hold any callable. It can be initialized from:
+
 - function pointer/reference, 
 - member function pointer/reference, 
 - lambda function 
@@ -3659,6 +3796,7 @@ auto max_mem = pmc.PeakWorkingSetSize
 
 # Working with tabular data
 Potential libs similar to Python Pandas:
+
 - [Arrow](https://arrow.apache.org/docs/cpp/)
 - [Dataframe](https://github.com/hosseinmoein/DataFrame)
 
@@ -3686,11 +3824,13 @@ std::variant<int, double> v;
 The `std::variant` can store any of the types specified in the template parameters. 
 
 The **type** of the stored value can be obtained using:
+
 - [`std::holds_alternative`](https://en.cppreference.com/w/cpp/utility/variant/holds_alternative) method that returns a boolean value if the variant stores the type specified in the template parameter or
 - [`std::variant::index`](https://en.cppreference.com/w/cpp/utility/variant/index) method that returns the index of the stored value.
 	- this method can be used also in a **switch statement** as the index is integral
 
 The **value** can be accessed using:
+
 - the [`std::get`](https://en.cppreference.com/w/cpp/utility/variant/get) function, if we know the type stored in the variant or
 - the [`std::get_if`](https://en.cppreference.com/w/cpp/utility/variant/get_if) function if we are guesing the type.
 
@@ -3708,6 +3848,7 @@ std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
 ```
 
 More on variants:
+
 - [cppreference](https://en.cppreference.com/w/cpp/utility/variant)
 - [cppstories](https://www.cppstories.com/2018/06/variant/)
 
@@ -3726,10 +3867,12 @@ For working with Jinja-like templates, we can use the [Inja](https://github.com/
 
 ## Exceptions
 There are the following exceptions types:
+
 - `ParserError` thrown on `parse_template` method
 - `RenderError` thrown on `write` method
 
 ### Render Errors
+
 - `empty expression`: this signalize that some expression is empty. Unfortunatelly, the line number is incorrect (it is always 1). Look for empty conditions, loops, etc. (e.g., `{% if %}`, `{% for %}`, `{% else if %}`).
 
 

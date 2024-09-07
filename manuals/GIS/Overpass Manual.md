@@ -1,4 +1,5 @@
 # Sources
+
 - [wiki/Overpass QL](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL)
 
 # Strucutre
@@ -13,6 +14,7 @@ To wrrito to a specific set, we can use `->.` operator: `<statement>->.<set>` wr
 
 # `out` statement
 All queries should contain an `out` statement that determines the output format.
+
 - `out` is used for data only request
 - `out geom` returns data with all elements associated with their geometry.
 
@@ -57,6 +59,7 @@ rel["admin_level"~".*"];
 node;
 ```
 because we are basically selecting nodes from a set of relations. Solutions:
+
 1) Union statement
 2) Named sets
 
@@ -78,6 +81,7 @@ out geom;
 
 ## Discover the full name of an area
 If we want to know the full name of the area while the above query return multiple results, we can do that in openstreet map:
+
 1. Move the map to see the area
 2. Click the button with cusor and question mark to select the exploration tool
 3. Click inside the area
@@ -87,10 +91,12 @@ If we want to know the full name of the area while the above query return multip
 
 ## Filter areas with duplicite names
 Sometimes, even the full name of the area is not specific enough. In that case, we can use two approaches:
+
 - select the area by the area relation id
 - specify the area by the higher level area (state, country)
 
 ### Select area by ID
+
 1. select the requested area
 2. copy the id and add 3 600 000 000 to it (start with 36 and fill zerose till there are 10 digits in total)
 3. replace `area["name"="<NAME>]` with `area(<ID>)`. **Note that round brackets are used instead of square brackets!**

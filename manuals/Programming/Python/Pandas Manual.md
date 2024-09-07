@@ -68,6 +68,7 @@ df = pd.DataFrame(0, index=range(10), columns=['col1', 'col2'])
 
 ### Generating the index
 As displayed in the above example, we can generate a numerical index using the `range` function. However, there are more options:
+
 - date index with [`date_range`](https://pandas.pydata.org/docs/reference/api/pandas.date_range.html)
     - `pd.date_range(<start date>, <end date>, freq=<frequency>)`
 
@@ -75,6 +76,7 @@ As displayed in the above example, we can generate a numerical index using the `
 
 # Obtaining info about dataset
 For a DataFrame `df`:
+
 - column names: `df.columns`
 - column types: `df.dtypes`
 - number of rows: `len(df)`
@@ -117,6 +119,7 @@ Iterates over columns
 
 ## Iteration with modification
 For modification, the best strategy is to:
+
 1. select what we want to modify (see [selection](#selection))
 1. modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.
 
@@ -161,6 +164,7 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 
 ## Useful filter functions
+
 - null values: `<column selection>.isnull()`
 - non null/nan values: `<column selection>.notnull()`
 - filtring using the string value: `<column selection>.str.<string function>`
@@ -170,11 +174,13 @@ sf = s[s <= 10] # now we have a Series with values from df['col'] less than 10
 
 # Selection
 If we want to select a part of the dataframe (a set of rows and columns) independently of the values of the dataframe (for that, see [filtration](#filtration)), we can use these methods:
+
 - [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html): select by index, works for both rows and columns
 - [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html): select by position, works for both rows and columns
 - `[]`: select by index, works only for columns
 
 There are also other methods that works for selection but does not work for setting values, such as:
+
 - [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html): select by label, works for both rows and columns
 
 The return type of the selection is determined by the number of selected rows and columns. For a single row or column, the result is a series, for multiple rows and columns, the result is a dataframe. If we want to get a dataframe for a single row or column, we can use the `[]` operator with a list of values:
@@ -247,6 +253,7 @@ df.loc[:, df.columns != '<column to skip>']
 [documentation](https://pandas.pydata.org/docs/user_guide/advanced.html#advanced-advanced-hierarchical)
 
 When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:
+
 - using `loc` with slices: simple, but verbose
 - using `loc` with `IndexSlice` object: more readable, but requires the `IndexSlice` object to be created first
 - using `xs` function, neat, but does not support all the features, e.g., it does not support ranges
@@ -282,10 +289,12 @@ dft.loc[idx[:, 15:30], ...]
 
 #### Handeling the `too many indexers` error
 Sometimes, when using the `loc` method, the selection can fail with the `too many indexers` error, because it is ambiguous whether we select by rows or by columns. In that case, we can either  
+
 - use the `axis` parameter to specify the axis to select from:
     ```python
     df.loc(axis=0)[<row selection>]
     ```
+
 - or use the IndexSlice instead.
 
 
@@ -319,6 +328,7 @@ df.sort_values(['col1', 'col2'])
 ```
 
 If we want to use a custom sorting function, we can use the `key` argument. The key function should
+
 - satisfy the classical python sorting interface (see [Python manual](Python%20Manual.md)) and
 - it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. 
 
@@ -395,6 +405,7 @@ For that, we can use the [`reindex`](https://pandas.pydata.org/docs/reference/ap
 df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 ```
 Important parameters:
+
 - `fill_value`: the value to use for missing values. By default, the missing values are filled with `NaN`.
 
 
@@ -409,6 +420,7 @@ df.index = range(5)
 ```
 
 To create more complicated indices, dedicated functions can be used:
+
 - [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables
 
 
@@ -445,6 +457,7 @@ In the groupby object, the columns used for grouping are omitted if each group i
 
 ## Aggregate functions
 For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
+
 - `sum`
 - `mean`
 - `median`
@@ -453,6 +466,7 @@ For the aggregate function, we can use one of the prepared aggregation functions
 - `count`
 
 Transformation functions (value for each row):
+
 - [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html): cumulative sum
 - [`diff`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html): difference between the current and the previous row.
     - the `periods` parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the `abs` function to get the absolute value.
@@ -460,6 +474,7 @@ Transformation functions (value for each row):
 
 ## Custom aggegate function
 Also, there are more general aggregate functions:
+
 -  [`agg`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html) function that is usefull for applying different functions for different columns and
 - [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html): the most flexible function that can be used for custom aggregation and transformation operations.
 
@@ -482,6 +497,7 @@ df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
 
 ### `apply`
 The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html) function takes a custom function as an argument. That custom aggregation function:
+
 - takes a DataFrame/Series (depending on the source object) as the first argument
     - this dataframe/series contains the data for the group (all columns)
 - returns a Series, DataFrame, or a scalar
@@ -489,6 +505,7 @@ The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.D
     - we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.
 
 The process works as follows:
+
 1. The dataframe is split into groups according to the `groupby` function.
 1. The custom function is applied to each group.
 1. The results are combined into a single dataframe.
@@ -513,6 +530,7 @@ df.resample('1H').sum().ffill()
 
 # Joins
 Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:
+
 - [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html): the most general function that has the behavior known from SQL
 - [`join`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html): a more specialized function, 
 
@@ -546,10 +564,12 @@ By default, the indices from both input parameters are preserved. To reset the i
 
 ## Object
 If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the `object` type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
+
 - we round a column with mix of floats and ints: fail (`loop of ufunc does not support argument 0 of type float which has no callable rint method`)
 - we need to apply string functions, but the column contains numbers as well
 
 The solution is usually:
+
 1. fill the missing values with the `fillna` function
 2. convert the column to `str` type using the `astype` function
 3. apply string functions to clear the data
@@ -559,6 +579,7 @@ The solution is usually:
 
 ## Categorical data
 Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
+
 - `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
 - `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
 
@@ -579,6 +600,7 @@ print(df)
 
 ## csv
 For reading csv files, we can use the [`read_csv`](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html) function. Important params:
+
 - `sep`: separator
 - `header`: row number to use as column names. If `None`, no header is used
 - `skiprows`: number of rows to skip from the beginning
@@ -591,6 +613,7 @@ df.to_csv(<file name> [, <other params>])
 ```
 
 Useful parameters:
+
 - `index`: if `False`, the index is not exported
 - `index_label`: the name of the index column
 
@@ -604,6 +627,7 @@ df.to_json(<file name>, orient='records')
 ```
 
 Other important parameters:
+
 - `indent`: the number of spaces to use for indentation
 
 
@@ -614,6 +638,7 @@ df.to_sql(<table name>, <sql alchemy engine> [, <other params>])
 ```
 
 Important params:
+
 - to append, not replace existing records: `if_exists='append'`
 - do not import dataframe index: `index=False`
 
@@ -635,6 +660,7 @@ with tqdm(total=len(data)) as pbar:
 
 # Latex export
 Currently, the [`to_latex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html) function is deprecated. The `Styler` class should be used for latex exports instead. You can get the `Styler` from the DataFrame using the `style` property. The usual workfolow is:
+
 1. Create a `Styler` object from the dataframe using the `style` property.
 1. Apply the desired formatting to the styler object.
 1. Export DataFrame to latex using the `to_latex` method.
@@ -656,12 +682,14 @@ df.style.format(...).to_latex(...)
 ## Formatting the index: columns and row labels
 The columns' and row labels' format is configures by the [`format_index`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format_index.html) function.
 Important parameters:
+
 - `axis`: 0 for rows, 1 for columns (cannot be both)
 - `escape`: by default, the index is not escaped, to do so, we need to set `escape` to `'latex'`.
 
 
 ## Formatting or changing the values
 The values are formated by the [`format`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format.html) function. Important parameters:
+
 - `escape`: by default, the values are not escaped, to do so, we need to set `escape` to `'latex'`.
 - `na_rep`: the string to use for missing values
 - `precision`: the number of decimal places to use for floats
@@ -674,12 +702,14 @@ df.style.format({'col': lambda x: 'yes' if x else 'no'})
 
 ## Hihglighting min/max values
 For highlighting the min/max values, we can use the [`highlight_min`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_min.html) and [`highlight_max`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.highlight_max.html) functions. Important parameters:
+
 - `subset`: the columns in which the highlighting should be applied
 - `props`: the css properties to apply to the highlighted cells
 
 
 ## Hiding some columns, rows, or indices
 For hiding some columns, rows, or indices, we can use the [`hide`](https://pandas.pydata.org/docs/reference/api/pandas.io.formats.style.Styler.hide.html) function. Important Parameters:
+
 - `axis`: 0 for hiding row indices (default), 1 for hiding column names
 - `level`: the level of the multi-index to hide (default is all levels)
 - `subset`: the columns or rows to hide (default is all columns or rows)
@@ -699,6 +729,7 @@ There is no equivalent to the header parameter of the old `to_latex` function in
 
 ## Exporting to latex
 For the export, we use the [`to_latex`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html) function. Important parameters:
+
 - `convert_css`: if `True`, the css properties are converted to latex commands
 - `multirow_align`: the alignment of the multirow cells. Options are `t`, `c`, `b`
 - `hrules`: if set to `True`, the horizontal lines are added to the table, specifically to the top, bottom, and between the header and the body. Note that these hrules are realized as the `\toprule`, `\midrule`, and `\bottomrule` commands from the `booktabs` package, so the package has to be imported  .
@@ -714,6 +745,7 @@ pd.set_option('display.max_rows', 1000)
 ```
 
 Important parameters:
+
 - `display.max_rows`: the maximum number of rows to display
 - `display.max_columns`: the maximum number of columns to display
 - `display.max_colwidth`: the maximum width of a column
@@ -721,6 +753,7 @@ Important parameters:
 
 
 # Other useful functions
+
 - [`drop_duplicates`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html) to quickly drop duplicate rows based on a subset of columns.
 - [`factorize`](https://pandas.pydata.org/docs/reference/api/pandas.factorize.html) to encode a series values as a categorical variable, i.e., assigns a different number to each unique value in series.
 - [`pivot_table`](https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html): function that can aggragate and transform a dataframe in one step. with this function, one can create a pivot table, but also a lot more.
@@ -729,15 +762,18 @@ Important parameters:
 
 ## `pivot_table`
 The pivot table (mega)function do a lot of things at once:
+
 - it aggregates the data
 - it transforms the data
 - it sorts the data due to reindexing
 
 Although this function is very powerfall there are also many pitfalls. The most important ones are:
+
 - column data type change for columns with missing values
 
 ### Column data type change for columns with missing values
 The tranformation often creates row-column combinations that do not exist in the original data. These are filled with `NaN` values. But some data types does not support `NaN` values, and in conclusion, the data type of the columns with missing values is changed to `float`. Possible solutions:
+
 - we can use the `fill_value` parameter to fill the missing values with some value that is supported by the data type (e.g. -1 for integers)
 - we can use the `dropna` parameter to drop the rows with missing values
 - we can change the data type of the columns with missing values prior to calling the `pivot_table` function. For example, the [pandas integer data types](https://pandas.pydata.org/docs/reference/arrays.html#nullable-integer) support `NaN` values.
@@ -745,6 +781,7 @@ The tranformation often creates row-column combinations that do not exist in the
 
 ## `to_datetime`
 The [`to_datetime`](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) function can convert various inputs to datetime. It can be used to both scalars and vectors. Important parameters:
+
 - `unit`: the unit of the input, e.g., `s` for seconds.
 - `origin`: the origin of the input, e.g., `unix` for unix timestamps. It can be also any specific `datetime` object.
 
@@ -793,6 +830,7 @@ gdf = gdf.explode()
 
 ### preprocesssing
 Before inserting a geodataframe into the database, we need to process it a little bit:
+
 1. set the SRID: `gdf.set_crs(epsg=<SRID>, allow_override=True, inplace=True)`
 2. set the geometry: `gdf.set_geometry('geom', inplace=True)`
 3. select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with `pandas`

@@ -16,10 +16,12 @@ ssh <username>@<address> <command>
 
 ## Authentication
 There are two ways to authenticate to the server:
+
 - password
 - private key
 
 Note that the server needs to be properly configured to accept your credentials. Specifically:
+
 - for password authentication, the `PasswordAuthentication` option in `/etc/ssh/sshd_config` has to be set to `yes`. This is often disabled for security reasons.
 - for private key authentication, the public key has to be added to your user account on the server. 
 
@@ -29,6 +31,7 @@ To generate a key pair, use the `ssh-keygen` command.
 
 ### Setting up the private key to be used for ssh connection
 To use a private key for ssh connection, two conditions have to be met:
+
 1. the private key has to have the right permissions:
 	- in Linux, the permissions have to be read/write only for the owner (`600`)
 1. you have to specify that the private key should be used for the connection. This can be done in multiple ways:
@@ -52,6 +55,7 @@ Example:
 ssh -L 1111:localhost:5432 fiedler@its.fel.cvut.cz
 ```
 The *local port* (here `1111`) is arbitrary, we can use any free port. The aplications using the tunnel should then be configured as:
+
 - host=`localhost`
 - port:=`1111`
 
@@ -65,6 +69,7 @@ The connection can be canceled any time byping `exit` to the console.
 
 ### Debugging a SSH tunnel
 This guide suppose that the tunnel creation comman run without any error message.
+
 1. If the tunnel seems to not work, first use a command line tool to be sure:
 	- web browser for HTTP tunnels (remote port 80)
 	- `psql` for postgeSQL tunnels (remote port 5432)
@@ -73,6 +78,7 @@ This guide suppose that the tunnel creation comman run without any error message
 
 
 ## Enabnling SSH Access on Server
+
 1.  install openssh:
 	- `sudo apt update`
     - `sudo apt install openssh-server`
@@ -92,6 +98,7 @@ Note that **the `authorized_keys` file has to have the right permissions**, whic
 
 
 ###  WSL configuration
+
 1. port `22` can be used on Windows, so change the port to `2222` in `sshd_config`
 2. when loging from Windows use `127.0.0.1` as a host
 
@@ -102,6 +109,7 @@ Normally, the SSH client process runs only while the SSH session is active, then
 An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is `ssh-agent`, the rest of the section is dedicated to this agent.
 
 To successfully use the agent, we need to:
+
 1.  start the agent, either manually or automatically on OS startup
 2.  add the keys to the agent (only once)
 
@@ -130,6 +138,7 @@ If the agent is running and the key is listed, the first thing to try is to conn
 
 ## Configuration
 For configuration, we can use the `git config` command. There are three levels of configuration:
+
 - *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
 - *global*: the configuration is applied to all repositories of the current user. This configuration is set by the `--global` parameter.
 - *local*: the configuration is applied only to the current repository. This configuration is set by the `--local` parameter.
@@ -146,6 +155,7 @@ To know that a connection leads to the desired server and not to some impersonat
 <server address> <key type> <key>
 ```
 Each line contains one server record. What is confusing here is that each server can have multiple records, due to:
+
 - different key type (e.g., RSA, ECDSA)
 - key for both host name and IP address (e.g., `github.com` and `140.82.121.3`)
 It is important to delete/updete all of these recorsds in case the server change its keys.
@@ -157,6 +167,7 @@ More info is at this [SO answer](https://security.stackexchange.com/questions/20
 When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
 
 A typical workflow can look like this:
+
 1. execute `screen` to start the screen session
 2. run the long running command
 3. disconnect
@@ -165,6 +176,7 @@ A typical workflow can look like this:
 1. after the command is finished, exit the screen session with `exit`
 
 Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
+
 6. `screen -ls`
 7. read the ID from the output and exec `screen -rd <ID>`
 
@@ -182,6 +194,7 @@ scp <source> "<username>@<address>:'<path with spaces>'"
 ```
 
 ### Problems
+
 - `protocol error: filename does not match request`: This error is triggered if the path contains unexpected characters. Sometimes, it can be triggered even for correct path, if the local console does not match the remote console. In that case, the solution is to use the `-T` parameter to disable the security check.
 
 
@@ -193,6 +206,7 @@ lsof -i -n | grep ssh
 
 
 ## WSL configuration
+
 1.  port `22` can be used on Windows, so change port to `2222` in `sshd_config`
 2.  when loging from Windows use `127.0.0.1` as a host
 
@@ -200,6 +214,7 @@ lsof -i -n | grep ssh
 ## Debugging
 
 **If the server does not respond:**
+
 1.  check the ssh status with: `service ssh status`
 2.  check the ssh port with `sudo netstat -tpln`
 
@@ -220,10 +235,12 @@ To **import** a key, call `gpg --import <keyfile>`.
 
 ## Key expiration
 There is a mechanism for key expiration in GPG. However, it is important to understand that the expiration date is mostly not a security feature! It can be useful in the following cases:
+
 - you lose access to the key, and nobody else can access it as well. In that case, you cannot revoke the key, but you can just wait until the key expires.
 - you set the expiration date for subkeys. For subkeys, the expiration date is a security feature, as it cannot be changed without the main key.
 
 To prolong the expiration date, we can use the `gpg --edit-key <key-id>` command. After using it:
+
 1. choose the key you want to edit by number
 1. now the chosen key should be marked with an asterisk `*`. Enter `expire` 
 1. choose the new expiration date

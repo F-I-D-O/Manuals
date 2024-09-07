@@ -2,6 +2,7 @@
 The easiest way is to use *QuickWKT*
 
 # Count the number of features in area
+
 1. select the right layer
 1. on the top panel, third row, select the tool `Select Features by area or single click`
 1. select features

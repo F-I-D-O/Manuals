@@ -1,9 +1,11 @@
 # Submiting a paper to Arxiv
 Before submitting a preprint to arxiv, you should check whether the journal allows it, and if so, what version of the paper can be submitted to arxiv. Links:
+
 - [Taylor & Francis](https://authorservices.taylorandfrancis.com/research-impact/sharing-versions-of-journal-articles/)
 
 
 Steps on arxiv:
+
 1. First page: details
     - Select arxive as the license type
 1. Second page: files
@@ -15,6 +17,7 @@ Steps on arxiv:
 
 ## Uploading LaTeX source to Arxiv
 The procedure should be as follows:
+
 1. delete any images not used in the paper
 1. check that the pdf looks good
 1. commit and push the changes to master branch

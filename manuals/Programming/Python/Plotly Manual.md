@@ -1,4 +1,5 @@
 In plotly, we have two options:
+
 - plot quickly with plotly express
 - full control using graph objects
 
@@ -6,6 +7,7 @@ Note that these options can hardly be mixed. For example, we cannot use plotly e
 
 
 In general, it is easier to use plotly express, so we should use it if we are not affected by its limitations. **The plotly express cannot**
+
 - create **custom subplots**. However, automatic "facet" subplots (same plot divided between multiple plots using some data attribute) are possible.
 - **z-order** of the traces. For example, we need to first plot a trace using graph objects. Then it is much easier to plot the rest of the traces using graph objects as well.
 
@@ -18,6 +20,7 @@ import plotly.express as px
 ```
 
 ## Common Parameters For All Types of Plots
+
 - `data_frame`: the dataframe to use. Mandatory, first positional parameter.
 - `x`: the name of the column to use as x axis. Mandatory, second positional parameter.
 - `color`: the name of the column to use as color.
@@ -31,10 +34,12 @@ import plotly.express as px
 
 ### Automatic color assignment
 If we use the color parameter of a graph, plotly express plots a trace for each color value and assigns a color to the trace. To customize this color, we can use two parameters:
+
 - `color_discrete_sequence`: list of the colors to be used
 - `color_discrete_map`: dictionary mapping the color values to the colors. 
 
 With the `color_discrete_sequence` parameter, plotly express iterates through the list of colors and assigns the colors to the color values in the order they appear in the data. If the number of colors is less than the number of color values, the colors are reused. If the number of colors is greater, the colors are truncated. Therefore, this parameter is useful only if:
+
 - the number of colors is equal to the number of color values
 - the number of colors is greater than the number of color values and we use categorical colors, so the truncation does not matter.
 
@@ -53,6 +58,7 @@ px.histogram(<dataframe>, <xcol name>)
 The y is then the number of occurences of each value in the x column. 
 
 Important parameters:
+
 - `nbins`: number of bins. 
 
 ### Plotly Histogram Limitations
@@ -73,6 +79,7 @@ px.bar(<dataframe>, <xcol name>, <y col name>)
 ```
 
 Important parameters:
+
 - `barmode`: how to combine the bars in case of multiple traces. Can be `group` (default), `stack` (default in *facet plots*), `relative` or `overlay`.
 - `bargap`: the gap between bars.
 - `bar_groupgap`: the gap between the bars from the same group (only for `barmode = group`).
@@ -154,6 +161,7 @@ fig = px.scatter_3d(<dataframe>, <xcol name>, <y col name>, <z col name>)
 # Plotly Graph Objects
 [documentation](https://plotly.com/python/graph-objects/)
 If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:
+
 - facet plots with more than one metric
 - plots with custom traces *behind* the plotly express traces
 
@@ -163,6 +171,7 @@ from plotly.subplots import make_subplots
 fig = make_subplots(rows=2, cols=2)
 ```
 Important parameters:
+
 - `rows`, `cols`: the number of rows and columns in the figure
 - `shared_xaxes`, `shared_yaxes`: configures the axes sharing. Possible values:
     - `False (default)`: each subplot has its own axes
@@ -177,6 +186,7 @@ Important parameters:
 
 ### Legend
 The name in the legend is determined by the `name` parameter of the trace. To share the legend between multiple traces, the following steps are needed:
+
 1. set the `name` parameter of all traces to the same value
 2. set the `showlegend` parameter of one trace to `True` and to `False` for all other traces
 
@@ -192,6 +202,7 @@ Some more complicated examples are in the [documentation](https://plotly.com/pyt
 
 ### Stacked or grouped bars
 Unlike plotly express, the graph objects do not have the `color` parameter to set the column to use for determining the group to which the bar belongs. There are two options how to create stacked or grouped bars:
+
 - create a trace for each group manually and add them all to the figure
 - crete the figure with plotly express and then extract the traces from the figure
     ```python
@@ -214,6 +225,7 @@ go.Scatter(x, y, ...)
 ```
 
 Important parameters:
+
 - `mode`: the mode of the line. 
     - Can be:
         - `lines`,
@@ -249,6 +261,7 @@ fig.show()
 ```
 
 Importanta parameters:
+
 - `shared_xaxes` and `shared_yaxes`: if `True`, the subplots will share the same x and y axes. 
 - `x_title` and `y_title`: the titles of the x and y axes. 
 - `horizontal_spacing` and `vertical_spacing`: the spacing between the subplots.
@@ -281,6 +294,7 @@ go.Scatter3d(x, y, z, ...)
 
 ### Surface Plots
 There are multiple types of plots that may be considered as surface plots in plotly:
+
 - [**3D surface**](https://plotly.com/python/3d-surface-plots/) (`go.Surface`): a surface plot defined by a grid of x, y, and a 2D array of z values of the shape (|x|, |y|). The surface is plotted for all combinations of x and y, which makes this function suitable only for cases where the surface is defined for all combinations of x and y.
 - [**3D mesh**](https://plotly.com/python/3d-mesh/) (`go.Mesh3d`): a surface plot defined by vertices (points) and faces (connections between the points). The connections are defined by triangles, which can be either defined manually or computed automatically using a triangulation algorithm. 
 - [**Tri-surface**](https://plotly.com/python/trisurf/) (`figure_factory.create_trisurf`): a surface plot created by a triangulation of the data points. It accepts triangles in a single argument. I have to further investigate, how it differs from the 3D mesh plot.
@@ -333,6 +347,7 @@ The figure object can be custommized in many ways.
 
 ## Size and margins
 The size and margins can be set using the `figure.update_layout` function. The specific parameters are:
+
 - `width`: the width of the figure in pixels
 - `height`: the height of the figure in pixels
 - `autosize`: needs to be `False` if we want to set the width and height manually
@@ -355,6 +370,7 @@ For customizing the axes, we can use the `figure.update_xaxes` and `figure.updat
 The range of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the `range` parameter, e.g.: `range=[0, 1]`. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**
 
 Another thing we usually want to customize are the ticks. Important tick parameters are:
+
 - `dtick`: the distance between the ticks
 - `tickvals`: the exact values of the ticks. This overrides the `dtick` parameter.
 - `ticks`: the position of the ticks. Can be `outside`, `inside` or `""` (no ticks, default).
@@ -364,6 +380,7 @@ Another thing we usually want to customize are the ticks. Important tick paramet
 - `tickangle`: the angle of the tick labels in degrees
 
 Other important parameters are:
+
 - `title_text`: the title of the axis. 
 - `linecolor`: the color of the axis line
 - `gridcolor`: the color of the grid lines
@@ -445,6 +462,7 @@ fig.add_annotation(
 
 The legend can be styled using the `figure.update_layout` function. 
 The most important parameters are:
+
 - `legend_title`: the title of the legend
 - `legend`: dictionary containing many parameters
     - `orientation`: `h` or `v` for horizontal or vertical legend
@@ -484,6 +502,7 @@ fig.add_trace(go.Scatter(x=x, y=y, name="Custom name"))
 ```
 
 However, it can be complicated for plotly express functions that plot multiple traces at once, as these determine the `name` parameter automatically from data. For example, when we use the `color` parameter, the `name` parameter is set to the color value. To overcome this, we have two options:
+
 - set the `name` parameter manually for each trace after the figure is created
 - change the data so that the `name` parameter is set automatically to the desired value. 
 
@@ -503,6 +522,7 @@ for trace in fig.data:
 For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. 
 
 Important parameters:
+
 - `x`, `y`: the x and y coordinates of the annotation
 - `text`: the text of the annotation
 - `xref`, `yref`: the coordinate system of the x and y coordinates. Can be `"paper"` or `"data"`.
@@ -532,6 +552,7 @@ fig.update_traces(marker=dict(size=10, line=dict(width=2, color='DarkSlateGrey')
 ```
 
 Marker parameters:
+
 - `size`: the size of the marker in pixels
 - `line`: dictionary containing border parameters
     - `width`: the width of the border in pixels. The default is 0. This setting is ignored for 3d scatter plots, where the border width is always 1 (see [github issue](https://github.com/plotly/plotly.js/issues/3796))
@@ -544,6 +565,7 @@ To add a marker to a hard-coded location, we can add it as a new trace. Note tha
 
 ## Lines
 Lines can be styled using the line parameter of the plotting functions or using the `update_traces` function. Important parameters:
+
 - `color`: the color of the line
 - `width`: the width of the line in pixels
 - `dash`: the dash pattern. Can be
@@ -569,6 +591,7 @@ fig.update_layout(
 )
 ```
 Important parameters:
+
 - `x`, `y`: the x and y coordinates of the title. The origin is the bottom left corner of the figure.
 - `xanchor`, `yanchor`: the position of the title relative to the x and y coordinates. Can be `left`, `center` or `right` for `xanchor` and `top`, `middle` or `bottom` for `yanchor`.
 
@@ -588,6 +611,7 @@ To set the title of an individual subplot, we can use the `subplot_titles` param
 The z-order of the traces cannot be configured. Instead, the traces are drawn in the order they are added to the figure. 
 
 This simple rule has an exception: the webGL traces are always drawn on top of the standard traces. Because all plotly express traces are WebGL traces, they are drawn on top of the graph objects traces added later if those are not WebGL. To overcome this limitation, we have two options:
+
 - not combine plotly express and graph objects traces and convert everything to graph objects for figures with custom traces
 - use the webGL versions of the graph objects traces. Example:
     ```python
@@ -596,6 +620,7 @@ This simple rule has an exception: the webGL traces are always drawn on top of t
 
 
 ## Other Layout Parameters (background, borders, etc.)
+
 - background color: `plot_bgcolor`
 - border: borders are best drawn by showing and mirroring the axes (see the axis section above).
 
@@ -646,6 +671,7 @@ https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4
 [documentation](https://plotly.com/python/discrete-color/)
 
 For colors in plotly, we can use the color scales supplied by plotly express. These are:
+
 - `px.colors.sequential`: sequential color scales
 - `px.colors.diverging`: diverging color scales
 - `px.colors.qualitative`: qualitative color scales
