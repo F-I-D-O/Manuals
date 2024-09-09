@@ -239,8 +239,9 @@ A simple `portfile.cmake` can look like this:
 vcpkg_from_github(
 	OUT_SOURCE_PATH SOURCE_PATH
 	REPO <reo owner>/<repo name>
-	REF <branch name>
+	REF <tag name>
 	SHA512 <hash of the files>
+	HEAD_REF <branch name>
 )
 
 # configure the source code
@@ -255,7 +256,7 @@ vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(PACKAGE_NAME <package name>)
 
 # install the license
-file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
 
 # install the usage file
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
@@ -275,7 +276,7 @@ Explanation:
 	- **if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the `ADD_BIN_TO_PATH` option in the `vcpkg_cmake_install` function**. This is needed as the automatic dll copy to the output dir (`VCPKG_APPLOCAL_DEPS`) is disabelled by the `vcpkg_cmake_build` function. This option solve the problem by prepending the `PATH` environment variable with the path to the vcpkg installed libraries (`<vcpkg root>/installed/<triplet>/bin` for release and `<vcpkg root>/installed/<triplet>/debug/bin` for debug).
 - [`vcpkg_cmake_config_fixup`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup): fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the `CMakeConfig.cmake` and `CMakeConfigVersion.cmake` files.
 	- the `<package name>` is the name of the package, usually the same as the port name
-- `file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)` installs the license file to `share/<port name>/copyright` file. The `copyright` file is obligatory for the package to be accepted to the vcpkg repository.
+- [`vcpkg_install_copyright`](https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_install_copyright) installs the license files listed in the `FILE_LIST` argument to `share/<port name>/copyright` file. The `copyright` file is obligatory for the package to be accepted to the vcpkg repository.
 
 
 The `vcpkg.json` file can look like this:
