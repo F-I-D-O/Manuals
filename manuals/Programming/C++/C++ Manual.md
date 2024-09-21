@@ -1015,6 +1015,18 @@ switch(expression){
 # Functions
 [cppreference](https://en.cppreference.com/w/cpp/language/functions)
 
+## Function Declaration and Definition
+In C and C++, functions must have a:
+- **declaration** (signature) that specifies the function name, return type, and parameters
+- **definition** that specifies the function body
+
+The declaration has to be provided before the first use (call) of the function. The definition can be provided later.
+
+The declaration is typically provided in a header file, so that the function can be used outside the translation unit. The definition is typically provided in a source file.
+
+### Merged Declaration and Definition
+If the function is not used outside the translation unit, the declaration and definition can be merged, i.e., the definition is itself a declaration. However, this is not recommended because after adding a corresponding declaration to one of the included headers (including libraries), the merged declaration/definition will become a definition of that function, which will be manifested as a linker error (multiple definitions of the function). Therefore, to control the visibility of the function, it is better to use other methods, provides in Section [Visibility of Functions](#function-visibility).
+
 
 ## Deciding between free function, member function and static member function
 Basically, you should decide as follows:
@@ -1165,18 +1177,6 @@ namespace {
 This way, the function is visible in the current translation unit, as the namespace is implicitly imported into it, but it is not visible in other translation units, because anonymous namespaces cannot be imported.
 
 One of the other approches frequently used in C++ is to **put the function declaration into the source file** so it cannot be included from the header. This solution is, however, flawed, unsafe, and therefore, **not recommended**. The problem is that this way, the function is still visible to the linker, and can be mistakenly used from another translation unit if somebody declare a function with the same name.
-
-
-## Usefull STL functions
-
-- [`std::for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each): iterates over iterable objects and call a callable for each iteration
-- [`std::bind`](https://en.cppreference.com/w/cpp/utility/functional/bind): Binds a function call to a variable that can be called
-	- some parameters of the function can be fixed in the variable, while others can be provided for each call
-	- each reference parameter has to be wrapped as a `reference_wrapper`
-- [`std:mem_fn`](https://en.cppreference.com/w/cpp/utility/functional/mem_fn): Creates a variable that represents a callable that calls member function
-- [`std::copy`](https://en.cppreference.com/w/cpp/algorithm/copy): Copy elements from one range to another.
-- [`std::accumulate`](https://en.cppreference.com/w/cpp/algorithm/accumulate): computes the sum of some iterable
-- [`std::transform`](https://en.cppreference.com/w/cpp/algorithm/transform): transforms some range and stores it to another. For the output iterator, you can use [`std::back_inserter`](https://en.cppreference.com/w/cpp/iterator/back_inserter).
 
 
 
