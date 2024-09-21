@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -988,8 +991,9 @@ The usual port contain these files:</p>
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO &lt;reo owner&gt;/&lt;repo name&gt;
-    REF &lt;branch name&gt;
+    REF &lt;tag name&gt;
     SHA512 &lt;hash of the files&gt;
+    HEAD_REF &lt;branch name&gt;
 )
 
 # configure the source code
@@ -1004,7 +1008,7 @@ vcpkg_cmake_install()
 vcpkg_cmake_config_fixup(PACKAGE_NAME &lt;package name&gt;)
 
 # install the license
-file(INSTALL &quot;${SOURCE_PATH}/LICENSE.txt&quot; DESTINATION &quot;${CURRENT_PACKAGES_DIR}/share/${PORT}&quot; RENAME copyright)
+vcpkg_install_copyright(FILE_LIST &quot;${SOURCE_PATH}/LICENSE.txt&quot;)
 
 # install the usage file
 file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CURRENT_PACKAGES_DIR}/share/${PORT}&quot;)
@@ -1031,7 +1035,7 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <li>the <code>&lt;package name&gt;</code> is the name of the package, usually the same as the port name</li>
 </ul>
 </li>
-<li><code>file(INSTALL "${SOURCE_PATH}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)</code> installs the license file to <code>share/&lt;port name&gt;/copyright</code> file. The <code>copyright</code> file is obligatory for the package to be accepted to the vcpkg repository.</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_install_copyright"><code>vcpkg_install_copyright</code></a> installs the license files listed in the <code>FILE_LIST</code> argument to <code>share/&lt;port name&gt;/copyright</code> file. The <code>copyright</code> file is obligatory for the package to be accepted to the vcpkg repository.</li>
 </ul>
 <p>The <code>vcpkg.json</code> file can look like this:</p>
 <pre><code class="language-json">{
@@ -1521,14 +1525,12 @@ ml) option enables compilation for a specific hardware.</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

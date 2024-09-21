@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -667,6 +670,14 @@
             
             <li class="nav-item" data-level="1"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#function-declaration-and-definition" class="nav-link">Function Declaration and Definition</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#merged-declaration-and-definition" class="nav-link">Merged Declaration and Definition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#deciding-between-free-function-member-function-and-static-member-function" class="nav-link">Deciding between free function, member function and static member function</a>
               <ul class="nav flex-column">
               </ul>
@@ -708,10 +719,6 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#function-visibility" class="nav-link">Function visibility</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#usefull-stl-functions" class="nav-link">Usefull STL functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -2352,6 +2359,14 @@ In many contexts, the value category of an expression is important in deciding w
 </code></pre>
 <h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/functions">cppreference</a></p>
+<h2 id="function-declaration-and-definition">Function Declaration and Definition<a class="headerlink" href="#function-declaration-and-definition" title="Permanent link">&para;</a></h2>
+<p>In C and C++, functions must have a:
+- <strong>declaration</strong> (signature) that specifies the function name, return type, and parameters
+- <strong>definition</strong> that specifies the function body</p>
+<p>The declaration has to be provided before the first use (call) of the function. The definition can be provided later.</p>
+<p>The declaration is typically provided in a header file, so that the function can be used outside the translation unit. The definition is typically provided in a source file.</p>
+<h3 id="merged-declaration-and-definition">Merged Declaration and Definition<a class="headerlink" href="#merged-declaration-and-definition" title="Permanent link">&para;</a></h3>
+<p>If the function is not used outside the translation unit, the declaration and definition can be merged, i.e., the definition is itself a declaration. However, this is not recommended because after adding a corresponding declaration to one of the included headers (including libraries), the merged declaration/definition will become a definition of that function, which will be manifested as a linker error (multiple definitions of the function). Therefore, to control the visibility of the function, it is better to use other methods, provides in Section <a href="#function-visibility">Visibility of Functions</a>.</p>
 <h2 id="deciding-between-free-function-member-function-and-static-member-function">Deciding between free function, member function and static member function<a class="headerlink" href="#deciding-between-free-function-member-function-and-static-member-function" title="Permanent link">&para;</a></h2>
 <p>Basically, you should decide as follows:</p>
 <ol>
@@ -2478,19 +2493,6 @@ Consequently, most of the times, we can just return the local variable and let t
 </code></pre>
 <p>This way, the function is visible in the current translation unit, as the namespace is implicitly imported into it, but it is not visible in other translation units, because anonymous namespaces cannot be imported.</p>
 <p>One of the other approches frequently used in C++ is to <strong>put the function declaration into the source file</strong> so it cannot be included from the header. This solution is, however, flawed, unsafe, and therefore, <strong>not recommended</strong>. The problem is that this way, the function is still visible to the linker, and can be mistakenly used from another translation unit if somebody declare a function with the same name.</p>
-<h2 id="usefull-stl-functions">Usefull STL functions<a class="headerlink" href="#usefull-stl-functions" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://en.cppreference.com/w/cpp/algorithm/for_each"><code>std::for_each</code></a>: iterates over iterable objects and call a callable for each iteration</li>
-<li><a href="https://en.cppreference.com/w/cpp/utility/functional/bind"><code>std::bind</code></a>: Binds a function call to a variable that can be called<ul>
-<li>some parameters of the function can be fixed in the variable, while others can be provided for each call</li>
-<li>each reference parameter has to be wrapped as a <code>reference_wrapper</code></li>
-</ul>
-</li>
-<li><a href="https://en.cppreference.com/w/cpp/utility/functional/mem_fn"><code>std:mem_fn</code></a>: Creates a variable that represents a callable that calls member function</li>
-<li><a href="https://en.cppreference.com/w/cpp/algorithm/copy"><code>std::copy</code></a>: Copy elements from one range to another.</li>
-<li><a href="https://en.cppreference.com/w/cpp/algorithm/accumulate"><code>std::accumulate</code></a>: computes the sum of some iterable</li>
-<li><a href="https://en.cppreference.com/w/cpp/algorithm/transform"><code>std::transform</code></a>: transforms some range and stores it to another. For the output iterator, you can use <a href="https://en.cppreference.com/w/cpp/iterator/back_inserter"><code>std::back_inserter</code></a>.</li>
-</ul>
 <h2 id="deleting-functions">Deleting functions<a class="headerlink" href="#deleting-functions" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/function#Deleted_functions">cppreference</a></p>
 <p>We can delete functions using the <code>delete</code> keyword. This is mostly used for preventing the usage of copy/move constructors and assignment operators. However, it can be used for any function, as we illustrate in the following example:</p>
@@ -4658,14 +4660,12 @@ std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
