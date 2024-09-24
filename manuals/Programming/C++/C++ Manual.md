@@ -1349,7 +1349,7 @@ Reference:
 
 One way or another, **all members should be initialized at the constructor body at latest**, even if we assign them again during all possible use cases. Reason:
 
-- some types can have arbitrary values when unassigned. This can lead to confusion when debugging the class, i.e., the member can appear as initialized even if it is not.
+- some types (numbers, enums, ...) can have arbitrary values when unassigned. This can lead to confusion when debugging the class, i.e., the member can appear as initialized even if it is not.
 - easy support for overloading constructors, we can sometimes skip the call to the constructor with all arguments
 - we can avoid default arguments in the constructor
 

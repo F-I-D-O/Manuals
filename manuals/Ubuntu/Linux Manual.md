@@ -524,7 +524,33 @@ sudo apt remove <package>
 ```
 
 
-## Changing package repositories
+## Installing non-stable package versions
+On Linux, the stable package versions are usually outdated, sometimes years behind the current version. To install the newer version, we have usually a few options:
+
+- **upgrade the system**: if we use an old version of the system, we can check whether the newer version is available that includes the newer package version. For more, see the [Upgrade](#upgrade) section.
+- **install from source**: We can manually build the package from the source and install it. See the [C++ Workflow](../Programming/C++/C++%20Workflow.md) for more.
+- **install package from an alternative repository**: We can add an alternative repository to the system and install the package from there.
+
+The first two options are covered in different part of this manual. Here, we focus on the third option.
+
+To use an alternative repository, we have to a) add the repository to the system, which is a one time task, and b) install the specific package from the repository.
+
+To **add a repository**, we have to:
+
+1. add the repository to the `/etc/apt/sources.list` (or to a separate file in the `/etc/apt/sources.list.d/` directory). Each repository should has the line that should be added to the file on its website.
+2. `sudo apt update` to update the list of available packages
+
+To **install a package from the repository**:
+```bash
+sudo apt install -t <repository> <package>
+```
+
+### Some useful repositories
+
+- [debian backports](https://backports.debian.org/Instructions/): the repository with the newer versions of the packages for the stable Debian version
+
+
+## Changing default package repositories
 If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:
 ```bash
 curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
@@ -543,7 +569,6 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 
 
 # String Processing
-
 
 ## String filtering with `grep`
 The `grep` command is used to filter lines containing a pattern. The syntax is:
@@ -898,8 +923,14 @@ Insert mode is the normal text mode we know from other editors. To enter insert 
 Visual mode is used for text selection. To enter visual mode, press `v`. To exit visual mode, press `esc`.
 
 
-## Copy text to cliboard
-Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:
+## Copy and paste
+Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim, nor to paste text from outside vim. 
+
+To **copy** text to the system clipboard, we can:
 
 1. select the text using mouse or keyboard
 2. press enter to copy the text to the clipboard
+
+To **paste** text from the system clipboard, we press `Ctrl` + `Shift` + `v`.
+
+
