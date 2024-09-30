@@ -417,7 +417,7 @@ In many context, we have to supply a type with a requirement of being a complete
 ## Aggregate types
 Aggregate types are:
 
-- array types 
+- array types
 - class types that fullfill the following conditions
 	- no private or protected members
 	- no constructores declared (including inherited constructors)
@@ -2556,35 +2556,37 @@ requires(parameter list){requirements}
 There are four types of requirements that can appear in the requires expression:
 
 - *simple requiremnet*: a requirement that can contain any expression. Evaluates to true if the expression is valid.
-```cpp
-requires (T x) { x + x; };
-```
+	```cpp
+	requires (T x) { x + x; };
+	```
 
 - *type requirement*: a requiremnt checking the validity of a type:
-```cpp
-requires
-{
-    typename T::inner; // required nested member name
-    typename S<T>;     // required class template specialization
-    typename Ref<T>;   // required alias template substitution
-};
-```
+	```cpp
+	requires
+	{
+		typename T::inner; // required nested member name
+		typename S<T>;     // required class template specialization
+		typename Ref<T>;   // required alias template substitution
+	};
+	```
 
 - *compound requirement*: Checks the arguments and the return type of some call. It has the form: `{expression} -> return-type-requirement;`
-```cpp
-requires(T x)
-{
-	{*x} -> std::convertible_to<typename T::inner>;
-}
-```
+	```cpp
+	requires(T x)
+	{
+		{*x} -> std::convertible_to<typename T::inner>;
+	}
+	```
+
+	- other [useful type traits](#usefull-type-traits) can be used instead of `std::convertible_to`.
 
 - *Nested requirement*: a require expression inside another requires expression:
-```cpp
-requires(T a, size_t n)
-{
-    requires Same<T*, decltype(&a)>; // nested
-}
-```
+	````cpp
+	requires(T a, size_t n)
+	{
+		requires Same<T*, decltype(&a)>; // nested
+	}
+	````
 
 ## Auto filling the first template argument
 Concepts have a special feature that their first argument can be autoffiled from outer context. Consequentlly, you then fill only the remaining arguments. Examples:
