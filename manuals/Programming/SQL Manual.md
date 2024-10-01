@@ -520,6 +520,22 @@ CREATE VIEW <VIEW NAME> AS <QUERY>
 The view can be modified with `CREATE OR REPLACE VIEW`, however, [existing columns cannot be changed](https://dba.stackexchange.com/questions/586/cant-rename-columns-in-postgresql-views-with-create-or-replace). If you need to change existing columns, drop the view first.
 
 
+# Schemas
+Schema in SQL is a container or namespace for tables, views, and other database objects. This means that we can have multiple objects with the same name in different schemas. 
+
+**The SQL schema should not be confused with the database schema, which is a logical structure of the database.**
+
+Sadly, the concept of SQL schema is not standardized across different database systems. The following table shows how SQL schema is implemented in different systems:
+
+| Database System | Schema concept | default schema |
+|-|-|-|
+| MySQL | Databases are used as schemas | - |
+| PostgreSQL | Multiple schemas in a single database as per the SQL standard | public |
+| Oracle | Each user has an associated schema (user = schema) | user name |
+| SQL Server | Multiple schemas in a single database as per the SQL standard | dbo |
+
+
+
 # Performace Optimization
 When the query is slow, first inspect the following checklist:
 
