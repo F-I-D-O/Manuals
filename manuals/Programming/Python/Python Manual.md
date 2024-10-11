@@ -845,6 +845,32 @@ When working with PostgreSQL databases, we usually use either
 - the [psycopg2](https://www.psycopg.org/) adapter or,
 - the [sqlalchemy](https://www.sqlalchemy.org/).
 
+
+## psycopg2
+[documentation](https://www.psycopg.org/docs/usage.html)
+
+To connect to a database:
+```Python
+con = psycopg2.connect(<connection string>)
+```
+After running this code a new session is created in the database, this session is handeled by the `con` object.
+
+The operation to the database is then done as follows:
+
+1. create a cursor object which represents a database transaction
+    ```Python
+    cur = con.cursor()
+    ```
+2. execute any number of SQL commands
+    ```Python
+    cur.execute(<sql>)
+    ```
+3. commit the transaction
+    ```Python
+    con.commit()
+    ```
+
+
 ## SQLAlchemy
 [Connection documentation](https://docs.sqlalchemy.org/en/20/core/connections.html)
 

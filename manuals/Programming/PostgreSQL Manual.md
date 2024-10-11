@@ -82,59 +82,30 @@ SELECT <COLUMN NAME>-><VARIABLE NAME> AS ...
 ```
 
 
+# Schemas
+[official documentation](https://www.postgresql.org/docs/current/ddl-schemas.html)
 
-# Selecting rows for deletion based on data from another table
-If we want to delete rows from a table based on some condition on data from another table, we can use the `DELETE` statement with a `USING` clause. Example:
+Schemas in PostgreSQL are implemented as namespaces according to the SQL standard. 
+
+
+## Search path
+[official documentation](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH)
+
+Usually, we does not have to qualify the table name with the schema name, as the schema name is in the *search path*.
+
+By default the search path is set to `"$user", public`, which means that the tables are first searched in the schema with the same name as the user, and then in the `public` schema.
+
+To show the current search path, run:
 ```SQL
-DELETE FROM nodes_ways_speeds
-USING nodes_ways
-WHERE
-    nodes_ways_speeds.to_node_ways_id = nodes_ways.id
-	AND nodes_ways.area IN (5,6)
+SHOW search_path;
 ```
 
-
-# Handeling duplicates in the `INSERT` statement
-To handle duplicates on `INSERT`, PostgreSQL provides the `ON CONFLICT` clause (see the [`INSERT`](https://www.postgresql.org/docs/current/sql-insert.html) documentation).
-
-The options are:
-
-- `DO NOTHING`: do nothing
-- `DO UPDATE SET <column name> = <value>`: update the column to the given value
-
-
-# Random oredering
-To order the result set randomly, we can use the `RANDOM()` function in the `ORDER BY` clause:
-```SQL 
-SELECT ...
-FROM ...
-ORDER BY RANDOM()
-```
-
-## Random ordering with a seed (Pseudo-random ordering)
-To receive a determinisic (repeatable) random ordering, we can use the `setseed` function:
+To change the search path, run:
 ```SQL
-SELECT setseed(0.5);
-SELECT ...
-FROM ...
-ORDER BY RANDOM();
+SET search_path TO <schema name list>;
 ```
 
-Note that we need two queries, one for setting the seed and one for the actual query. If we does not have an option to call arbitrary queries, we have to use `UNION`:
-```SQL
-SELECT col_1, ..., col_n FROM (
-	SELECT _, null AS col_1, ..., null AS col_n FROM setseed(0.5)
-	UNION ALL
-	SELECT null AS _, col_1, ..., col_n
-	FROM ...
-	OFFSET 1
-)
-ORDER BY RANDOM()
-```
 
-The `OFFSET 1` is used to skip the first row, which is the result of the `setseed` function.
-
-The union is the only way to guarantee that the seed will be set before the actual query. Other options, such as `WITH` or `SELECT ... FROM (SELECT setseed(0.5))` do not guarantee the order of execution, and produce a different result for each call.
 
 
 
@@ -279,7 +250,7 @@ WHERE param IS NULL OR some_column = param
 
 
 
-# Temporary tables in PostgreSQL
+# Temporary tables
 To use a result set efficiently in a function or procedure, we often use temporary tables. Unlike in other relational database systems, in PostgreSQl, the lifetime of a temporary table is bound to a session. Therefoe, if we call a function that creates a tempoary table multiple times in a single session, we encounter an error, because the table already exists.
 
 To tackle this problem, we need to delete all temporary tables manually. Luckily, there is a special [`DISCARD`](https://www.postgresql.org/docs/current/sql-discard.html) command that can be used to dtop all temporary tables at once:
@@ -312,6 +283,62 @@ $$
 PostgreSQL supports an extended syntax for [window functions](https://www.postgresql.org/docs/current/tutorial-window.html).
 
 We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an [SO answer](https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column).
+
+
+# Various specific tasks
+
+## Selecting rows for deletion based on data from another table
+If we want to delete rows from a table based on some condition on data from another table, we can use the `DELETE` statement with a `USING` clause. Example:
+```SQL
+DELETE FROM nodes_ways_speeds
+USING nodes_ways
+WHERE
+    nodes_ways_speeds.to_node_ways_id = nodes_ways.id
+	AND nodes_ways.area IN (5,6)
+```
+
+
+## Handeling duplicates in the `INSERT` statement
+To handle duplicates on `INSERT`, PostgreSQL provides the `ON CONFLICT` clause (see the [`INSERT`](https://www.postgresql.org/docs/current/sql-insert.html) documentation).
+
+The options are:
+
+- `DO NOTHING`: do nothing
+- `DO UPDATE SET <column name> = <value>`: update the column to the given value
+
+
+## Random oredering
+To order the result set randomly, we can use the `RANDOM()` function in the `ORDER BY` clause:
+```SQL 
+SELECT ...
+FROM ...
+ORDER BY RANDOM()
+```
+
+### Random ordering with a seed (Pseudo-random ordering)
+To receive a determinisic (repeatable) random ordering, we can use the `setseed` function:
+```SQL
+SELECT setseed(0.5);
+SELECT ...
+FROM ...
+ORDER BY RANDOM();
+```
+
+Note that we need two queries, one for setting the seed and one for the actual query. If we does not have an option to call arbitrary queries, we have to use `UNION`:
+```SQL
+SELECT col_1, ..., col_n FROM (
+	SELECT _, null AS col_1, ..., null AS col_n FROM setseed(0.5)
+	UNION ALL
+	SELECT null AS _, col_1, ..., col_n
+	FROM ...
+	OFFSET 1
+)
+ORDER BY RANDOM()
+```
+
+The `OFFSET 1` is used to skip the first row, which is the result of the `setseed` function.
+
+The union is the only way to guarantee that the seed will be set before the actual query. Other options, such as `WITH` or `SELECT ... FROM (SELECT setseed(0.5))` do not guarantee the order of execution, and produce a different result for each call.
 
 
 # PostGis
@@ -698,6 +725,32 @@ Always check which one is needed in each case. For both commands, the path to th
 - setting the `PGDATA` environment variable
 
 
+## Monitoring activity
+To monitor the activity on Linux, we can use the [`pg_activity`](https://github.com/dalibo/pg_activity):
+```bash
+sudo -u postgres pg_activity -U postgres
+```
+
+For a detailed monitoring on all platforms, we can use the *[Cumulative Statistics System](https://www.postgresql.org/docs/current/monitoring-stats.html)*. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:
+- [`pg_stat_activity`](https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW): contains information about the current activity on the server
+
+### `pg_stat_activity`
+The `pg_stat_activity` collection contains information about the current activity on the server. Some activities belong to background processes it is therefore best to query the collection like:
+```SQL
+SELECT * FROM pg_stat_activity WHERE state IS NOT NULL;
+```
+
+
+
+## Kill a hanging query
+To kill the query, run:
+```sql
+SELECT pg_cancel_backend(<PID>)
+```
+The `PID` can be obtained from the [database activity monitoring tool](#monitoring-activity).
+
+
+
 ## Creating new user
 For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
 
@@ -784,7 +837,27 @@ The password for the db superuser is stored in db `postgres`. In order to log th
 
 
 ## Configuration
-The configuration of the PostgreSQL server is stored in the `<postgres data dir>/postgresql.conf` file. 
+[Documentation](https://www.postgresql.org/docs/current/config-setting.html)
+
+PostgreSQL server can be configured using *parameters*. The parameters itself can be set in multiple ways:
+
+- default values are set in the configuration file stored in the `<postgres data dir>/postgresql.conf`.
+- the values can be set at runtime using SQL
+- the values can be set at runtime using shell commands
+
+### Getting and setting parameters at runtime using SQL
+to get the value of a parameter, we can use the [`SHOW`](https://www.postgresql.org/docs/current/sql-show.html) command or the `current_setting` function:
+```PostgreSQL
+SHOW <parameter name>;
+SELECT current_setting('<parameter name>');
+```
+
+To set the value of a parameter, we can use the [`SET`](https://www.postgresql.org/docs/current/sql-set.html) command or the `set_config` function:
+```PostgreSQL
+SET <parameter name> TO <value>;
+SELECT set_config('<parameter name>', '<value>', false);
+```
+If the third parameter of the `set_config` function is set to `true`, the value is set for the current transaction only.
 
 ### Logging
 [Documentation](https://www.postgresql.org/docs/current/runtime-config-logging.html)
@@ -830,6 +903,10 @@ There is no UI available currently, use Navicat or console
 Drag the table in the database explorer and drop it to the location you want it to copy to.
 
 ## Known issues and workarounds
+
+## Cannot delete a database due to DataGrip's own connections
+Before deleting a database we need to close all DataGrip sessions connected to the database. We can do that in the sessions window.
+
 ### DataGrip displays objects that were deleted
 Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
 
@@ -862,21 +939,6 @@ To create diagram from an existing database: right click on the database -> `Gen
 
 
 
-# Kill a hanging query
-To kill a hanging query, we need to complete two steps:
-
-1. identify the query PID
-1. kill the query
-
-To identify the PID of the problematic query, we can use tool such as [`pg_activity`](https://github.com/dalibo/pg_activity):
-```bash
-sudo -u postgres pg_activity -U postgres
-```
-
-To kill the query, run:
-```sql
-SELECT pg_cancel_backend(<PID>)
-```
 
 # Troubleshooting
 If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.
