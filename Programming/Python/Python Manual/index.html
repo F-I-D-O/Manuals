@@ -661,6 +661,10 @@
             
             <li class="nav-item" data-level="1"><a href="#postgresql" class="nav-link">PostgreSQL</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#psycopg2" class="nav-link">psycopg2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#sqlalchemy" class="nav-link">SQLAlchemy</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#executing-statements-without-transaction" class="nav-link">Executing statements without transaction</a>
@@ -1297,6 +1301,24 @@ for i in tqdm(range(100)):
 <li>the <a href="https://www.psycopg.org/">psycopg2</a> adapter or,</li>
 <li>the <a href="https://www.sqlalchemy.org/">sqlalchemy</a>.</li>
 </ul>
+<h2 id="psycopg2">psycopg2<a class="headerlink" href="#psycopg2" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.psycopg.org/docs/usage.html">documentation</a></p>
+<p>To connect to a database:</p>
+<pre><code class="language-Python">con = psycopg2.connect(&lt;connection string&gt;)
+</code></pre>
+<p>After running this code a new session is created in the database, this session is handeled by the <code>con</code> object.</p>
+<p>The operation to the database is then done as follows:</p>
+<ol>
+<li>create a cursor object which represents a database transaction
+    <code>Python
+    cur = con.cursor()</code></li>
+<li>execute any number of SQL commands
+    <code>Python
+    cur.execute(&lt;sql&gt;)</code></li>
+<li>commit the transaction
+    <code>Python
+    con.commit()</code></li>
+</ol>
 <h2 id="sqlalchemy">SQLAlchemy<a class="headerlink" href="#sqlalchemy" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.sqlalchemy.org/en/20/core/connections.html">Connection documentation</a></p>
 <p>SQLAlchemy works with engine objects that represent the application's connection to the database. The engine object is created using the <code>create_engine</code> function:</p>

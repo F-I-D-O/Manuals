@@ -539,7 +539,15 @@
             
             <li class="nav-item" data-level="1"><a href="#managing-packages-with-apt-and-dpkg" class="nav-link">Managing packages with apt and dpkg</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#changing-package-repositories" class="nav-link">Changing package repositories</a>
+            <li class="nav-item" data-level="2"><a href="#installing-non-stable-package-versions" class="nav-link">Installing non-stable package versions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#some-useful-repositories" class="nav-link">Some useful repositories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#changing-default-package-repositories" class="nav-link">Changing default package repositories</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -715,7 +723,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#copy-text-to-cliboard" class="nav-link">Copy text to cliboard</a>
+            <li class="nav-item" data-level="2"><a href="#copy-and-paste" class="nav-link">Copy and paste</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1186,7 +1194,28 @@ SQL)
 <p>To <strong>remove</strong> a package:</p>
 <pre><code class="language-bash">sudo apt remove &lt;package&gt;
 </code></pre>
-<h2 id="changing-package-repositories">Changing package repositories<a class="headerlink" href="#changing-package-repositories" title="Permanent link">&para;</a></h2>
+<h2 id="installing-non-stable-package-versions">Installing non-stable package versions<a class="headerlink" href="#installing-non-stable-package-versions" title="Permanent link">&para;</a></h2>
+<p>On Linux, the stable package versions are usually outdated, sometimes years behind the current version. To install the newer version, we have usually a few options:</p>
+<ul>
+<li><strong>upgrade the system</strong>: if we use an old version of the system, we can check whether the newer version is available that includes the newer package version. For more, see the <a href="#upgrade">Upgrade</a> section.</li>
+<li><strong>install from source</strong>: We can manually build the package from the source and install it. See the <a href="../../Programming/C%2B%2B/C%2B%2B%20Workflow/">C++ Workflow</a> for more.</li>
+<li><strong>install package from an alternative repository</strong>: We can add an alternative repository to the system and install the package from there.</li>
+</ul>
+<p>The first two options are covered in different part of this manual. Here, we focus on the third option.</p>
+<p>To use an alternative repository, we have to a) add the repository to the system, which is a one time task, and b) install the specific package from the repository.</p>
+<p>To <strong>add a repository</strong>, we have to:</p>
+<ol>
+<li>add the repository to the <code>/etc/apt/sources.list</code> (or to a separate file in the <code>/etc/apt/sources.list.d/</code> directory). Each repository should has the line that should be added to the file on its website.</li>
+<li><code>sudo apt update</code> to update the list of available packages</li>
+</ol>
+<p>To <strong>install a package from the repository</strong>:</p>
+<pre><code class="language-bash">sudo apt install -t &lt;repository&gt; &lt;package&gt;
+</code></pre>
+<h3 id="some-useful-repositories">Some useful repositories<a class="headerlink" href="#some-useful-repositories" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://backports.debian.org/Instructions/">debian backports</a>: the repository with the newer versions of the packages for the stable Debian version</li>
+</ul>
+<h2 id="changing-default-package-repositories">Changing default package repositories<a class="headerlink" href="#changing-default-package-repositories" title="Permanent link">&para;</a></h2>
 <p>If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:</p>
 <pre><code class="language-bash">curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
 </code></pre>
@@ -1464,12 +1493,14 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <p>Insert mode is the normal text mode we know from other editors. To enter insert mode, press <code>i</code>. To exit insert mode, press <code>esc</code>.</p>
 <h2 id="visual-mode">Visual Mode<a class="headerlink" href="#visual-mode" title="Permanent link">&para;</a></h2>
 <p>Visual mode is used for text selection. To enter visual mode, press <code>v</code>. To exit visual mode, press <code>esc</code>.</p>
-<h2 id="copy-text-to-cliboard">Copy text to cliboard<a class="headerlink" href="#copy-text-to-cliboard" title="Permanent link">&para;</a></h2>
-<p>Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim. To copy text to the system clipboard, we can:</p>
+<h2 id="copy-and-paste">Copy and paste<a class="headerlink" href="#copy-and-paste" title="Permanent link">&para;</a></h2>
+<p>Vim has its own clipboard for copy-pasting (yank, ...). However, this cannot be used to copy text outside of vim, nor to paste text from outside vim. </p>
+<p>To <strong>copy</strong> text to the system clipboard, we can:</p>
 <ol>
 <li>select the text using mouse or keyboard</li>
 <li>press enter to copy the text to the clipboard</li>
-</ol></div>
+</ol>
+<p>To <strong>paste</strong> text from the system clipboard, we press <code>Ctrl</code> + <code>Shift</code> + <code>v</code>.</p></div>
             </div>
         </div>
 

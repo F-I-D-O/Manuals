@@ -537,6 +537,10 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#cpu-profiling" class="nav-link">CPU Profiling</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#clion_1" class="nav-link">CLion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#vtune" class="nav-link">VTune</a>
               <ul class="nav flex-column">
               </ul>
@@ -807,6 +811,9 @@ Basic usage:</p>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
 <p>There are multiple <a href="https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing">profiler options for C++</a>, but not all the tools are easy to use or maintained.</p>
 <h2 id="cpu-profiling">CPU Profiling<a class="headerlink" href="#cpu-profiling" title="Permanent link">&para;</a></h2>
+<h3 id="clion_1">CLion<a class="headerlink" href="#clion_1" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.jetbrains.com/help/clion/cpu-profiler.html">documentation</a></p>
+<p>CLion profiler is based on the <a href="https://perf.wiki.kernel.org/index.php/Main_Page"><code>perf</code></a> tool and therefore it is available only on Linux (and WSL). However, in WSL, <a href="https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL">currently the profiler does not work</a>. </p>
 <h3 id="vtune">VTune<a class="headerlink" href="#vtune" title="Permanent link">&para;</a></h3>
 <p>VTune can be run ftom the Visual Studio only for VS solution projects. In case of CMake projects, we need to run the VTune GUI and configure the debugging there.</p>
 <h2 id="memory-profiling">Memory Profiling<a class="headerlink" href="#memory-profiling" title="Permanent link">&para;</a></h2>

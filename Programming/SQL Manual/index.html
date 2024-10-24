@@ -568,6 +568,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#schemas" class="nav-link">Schemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#performace-optimization" class="nav-link">Performace Optimization</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#replacing-or" class="nav-link">Replacing OR</a>
@@ -946,6 +951,41 @@ WHERE TABLE_SCHEMA = '&lt;schemaname&gt;';
 </code></pre>
 <h2 id="modifying-the-view">Modifying the view<a class="headerlink" href="#modifying-the-view" title="Permanent link">&para;</a></h2>
 <p>The view can be modified with <code>CREATE OR REPLACE VIEW</code>, however, <a href="https://dba.stackexchange.com/questions/586/cant-rename-columns-in-postgresql-views-with-create-or-replace">existing columns cannot be changed</a>. If you need to change existing columns, drop the view first.</p>
+<h1 id="schemas">Schemas<a class="headerlink" href="#schemas" title="Permanent link">&para;</a></h1>
+<p>Schema in SQL is a container or namespace for tables, views, and other database objects. This means that we can have multiple objects with the same name in different schemas. </p>
+<p><strong>The SQL schema should not be confused with the database schema, which is a logical structure of the database.</strong></p>
+<p>Sadly, the concept of SQL schema is not standardized across different database systems. The following table shows how SQL schema is implemented in different systems:</p>
+<table>
+<thead>
+<tr>
+<th>Database System</th>
+<th>Schema concept</th>
+<th>default schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>Databases are used as schemas</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Multiple schemas in a single database as per the SQL standard</td>
+<td>public</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>Each user has an associated schema (user = schema)</td>
+<td>user name</td>
+</tr>
+<tr>
+<td>SQL Server</td>
+<td>Multiple schemas in a single database as per the SQL standard</td>
+<td>dbo</td>
+</tr>
+</tbody>
+</table>
 <h1 id="performace-optimization">Performace Optimization<a class="headerlink" href="#performace-optimization" title="Permanent link">&para;</a></h1>
 <p>When the query is slow, first inspect the following checklist:</p>
 <ul>

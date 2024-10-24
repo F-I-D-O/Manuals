@@ -388,19 +388,9 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#selecting-rows-for-deletion-based-on-data-from-another-table" class="nav-link">Selecting rows for deletion based on data from another table</a>
+            <li class="nav-item" data-level="1"><a href="#schemas" class="nav-link">Schemas</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#handeling-duplicates-in-the-insert-statement" class="nav-link">Handeling duplicates in the INSERT statement</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#random-oredering" class="nav-link">Random oredering</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#random-ordering-with-a-seed-pseudo-random-ordering" class="nav-link">Random ordering with a seed (Pseudo-random ordering)</a>
+            <li class="nav-item" data-level="2"><a href="#search-path" class="nav-link">Search path</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -444,7 +434,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#temporary-tables-in-postgresql" class="nav-link">Temporary tables in PostgreSQL</a>
+            <li class="nav-item" data-level="1"><a href="#temporary-tables" class="nav-link">Temporary tables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -456,6 +446,27 @@
             
             <li class="nav-item" data-level="1"><a href="#window-functions" class="nav-link">Window functions</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#various-specific-tasks" class="nav-link">Various specific tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#selecting-rows-for-deletion-based-on-data-from-another-table" class="nav-link">Selecting rows for deletion based on data from another table</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#handeling-duplicates-in-the-insert-statement" class="nav-link">Handeling duplicates in the INSERT statement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#random-oredering" class="nav-link">Random oredering</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#random-ordering-with-a-seed-pseudo-random-ordering" class="nav-link">Random ordering with a seed (Pseudo-random ordering)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -580,6 +591,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#monitoring-activity" class="nav-link">Monitoring activity</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#pg_stat_activity" class="nav-link">pg_stat_activity</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#kill-a-hanging-query" class="nav-link">Kill a hanging query</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#creating-new-user" class="nav-link">Creating new user</a>
               <ul class="nav flex-column">
               </ul>
@@ -614,6 +637,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#getting-and-setting-parameters-at-runtime-using-sql" class="nav-link">Getting and setting parameters at runtime using SQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#logging_1" class="nav-link">Logging</a>
               <ul class="nav flex-column">
               </ul>
@@ -655,6 +682,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#known-issues-and-workarounds" class="nav-link">Known issues and workarounds</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cannot-delete-a-database-due-to-datagrips-own-connections" class="nav-link">Cannot delete a database due to DataGrip's own connections</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#datagrip-displays-objects-that-were-deleted" class="nav-link">DataGrip displays objects that were deleted</a>
               <ul class="nav flex-column">
               </ul>
@@ -679,11 +710,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#kill-a-hanging-query" class="nav-link">Kill a hanging query</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -769,46 +795,19 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <p>When we, exceptionally, want to access a variable from a hstore column, we can use the following syntax:</p>
 <pre><code class="language-SQL">SELECT &lt;COLUMN NAME&gt;-&gt;&lt;VARIABLE NAME&gt; AS ...
 </code></pre>
-<h1 id="selecting-rows-for-deletion-based-on-data-from-another-table">Selecting rows for deletion based on data from another table<a class="headerlink" href="#selecting-rows-for-deletion-based-on-data-from-another-table" title="Permanent link">&para;</a></h1>
-<p>If we want to delete rows from a table based on some condition on data from another table, we can use the <code>DELETE</code> statement with a <code>USING</code> clause. Example:</p>
-<pre><code class="language-SQL">DELETE FROM nodes_ways_speeds
-USING nodes_ways
-WHERE
-    nodes_ways_speeds.to_node_ways_id = nodes_ways.id
-    AND nodes_ways.area IN (5,6)
+<h1 id="schemas">Schemas<a class="headerlink" href="#schemas" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.postgresql.org/docs/current/ddl-schemas.html">official documentation</a></p>
+<p>Schemas in PostgreSQL are implemented as namespaces according to the SQL standard. </p>
+<h2 id="search-path">Search path<a class="headerlink" href="#search-path" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH">official documentation</a></p>
+<p>Usually, we does not have to qualify the table name with the schema name, as the schema name is in the <em>search path</em>.</p>
+<p>By default the search path is set to <code>"$user", public</code>, which means that the tables are first searched in the schema with the same name as the user, and then in the <code>public</code> schema.</p>
+<p>To show the current search path, run:</p>
+<pre><code class="language-SQL">SHOW search_path;
 </code></pre>
-<h1 id="handeling-duplicates-in-the-insert-statement">Handeling duplicates in the <code>INSERT</code> statement<a class="headerlink" href="#handeling-duplicates-in-the-insert-statement" title="Permanent link">&para;</a></h1>
-<p>To handle duplicates on <code>INSERT</code>, PostgreSQL provides the <code>ON CONFLICT</code> clause (see the <a href="https://www.postgresql.org/docs/current/sql-insert.html"><code>INSERT</code></a> documentation).</p>
-<p>The options are:</p>
-<ul>
-<li><code>DO NOTHING</code>: do nothing</li>
-<li><code>DO UPDATE SET &lt;column name&gt; = &lt;value&gt;</code>: update the column to the given value</li>
-</ul>
-<h1 id="random-oredering">Random oredering<a class="headerlink" href="#random-oredering" title="Permanent link">&para;</a></h1>
-<p>To order the result set randomly, we can use the <code>RANDOM()</code> function in the <code>ORDER BY</code> clause:</p>
-<pre><code class="language-SQL">SELECT ...
-FROM ...
-ORDER BY RANDOM()
+<p>To change the search path, run:</p>
+<pre><code class="language-SQL">SET search_path TO &lt;schema name list&gt;;
 </code></pre>
-<h2 id="random-ordering-with-a-seed-pseudo-random-ordering">Random ordering with a seed (Pseudo-random ordering)<a class="headerlink" href="#random-ordering-with-a-seed-pseudo-random-ordering" title="Permanent link">&para;</a></h2>
-<p>To receive a determinisic (repeatable) random ordering, we can use the <code>setseed</code> function:</p>
-<pre><code class="language-SQL">SELECT setseed(0.5);
-SELECT ...
-FROM ...
-ORDER BY RANDOM();
-</code></pre>
-<p>Note that we need two queries, one for setting the seed and one for the actual query. If we does not have an option to call arbitrary queries, we have to use <code>UNION</code>:</p>
-<pre><code class="language-SQL">SELECT col_1, ..., col_n FROM (
-    SELECT _, null AS col_1, ..., null AS col_n FROM setseed(0.5)
-    UNION ALL
-    SELECT null AS _, col_1, ..., col_n
-    FROM ...
-    OFFSET 1
-)
-ORDER BY RANDOM()
-</code></pre>
-<p>The <code>OFFSET 1</code> is used to skip the first row, which is the result of the <code>setseed</code> function.</p>
-<p>The union is the only way to guarantee that the seed will be set before the actual query. Other options, such as <code>WITH</code> or <code>SELECT ... FROM (SELECT setseed(0.5))</code> do not guarantee the order of execution, and produce a different result for each call.</p>
 <h1 id="procedures-and-functions">Procedures and functions<a class="headerlink" href="#procedures-and-functions" title="Permanent link">&para;</a></h1>
 <h2 id="calling-a-procedure">Calling a procedure<a class="headerlink" href="#calling-a-procedure" title="Permanent link">&para;</a></h2>
 <p>to exectue a stored procedure, use"</p>
@@ -902,7 +901,7 @@ RETURN;
 <pre><code class="language-SQL">SELECT ... FROM ... 
 WHERE param IS NULL OR some_column = param
 </code></pre>
-<h1 id="temporary-tables-in-postgresql">Temporary tables in PostgreSQL<a class="headerlink" href="#temporary-tables-in-postgresql" title="Permanent link">&para;</a></h1>
+<h1 id="temporary-tables">Temporary tables<a class="headerlink" href="#temporary-tables" title="Permanent link">&para;</a></h1>
 <p>To use a result set efficiently in a function or procedure, we often use temporary tables. Unlike in other relational database systems, in PostgreSQl, the lifetime of a temporary table is bound to a session. Therefoe, if we call a function that creates a tempoary table multiple times in a single session, we encounter an error, because the table already exists.</p>
 <p>To tackle this problem, we need to delete all temporary tables manually. Luckily, there is a special <a href="https://www.postgresql.org/docs/current/sql-discard.html"><code>DISCARD</code></a> command that can be used to dtop all temporary tables at once:</p>
 <pre><code class="language-SQL">DISCARD TEMPORARY;
@@ -923,6 +922,47 @@ $$
 <h1 id="window-functions">Window functions<a class="headerlink" href="#window-functions" title="Permanent link">&para;</a></h1>
 <p>PostgreSQL supports an extended syntax for <a href="https://www.postgresql.org/docs/current/tutorial-window.html">window functions</a>.</p>
 <p>We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an <a href="https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column">SO answer</a>.</p>
+<h1 id="various-specific-tasks">Various specific tasks<a class="headerlink" href="#various-specific-tasks" title="Permanent link">&para;</a></h1>
+<h2 id="selecting-rows-for-deletion-based-on-data-from-another-table">Selecting rows for deletion based on data from another table<a class="headerlink" href="#selecting-rows-for-deletion-based-on-data-from-another-table" title="Permanent link">&para;</a></h2>
+<p>If we want to delete rows from a table based on some condition on data from another table, we can use the <code>DELETE</code> statement with a <code>USING</code> clause. Example:</p>
+<pre><code class="language-SQL">DELETE FROM nodes_ways_speeds
+USING nodes_ways
+WHERE
+    nodes_ways_speeds.to_node_ways_id = nodes_ways.id
+    AND nodes_ways.area IN (5,6)
+</code></pre>
+<h2 id="handeling-duplicates-in-the-insert-statement">Handeling duplicates in the <code>INSERT</code> statement<a class="headerlink" href="#handeling-duplicates-in-the-insert-statement" title="Permanent link">&para;</a></h2>
+<p>To handle duplicates on <code>INSERT</code>, PostgreSQL provides the <code>ON CONFLICT</code> clause (see the <a href="https://www.postgresql.org/docs/current/sql-insert.html"><code>INSERT</code></a> documentation).</p>
+<p>The options are:</p>
+<ul>
+<li><code>DO NOTHING</code>: do nothing</li>
+<li><code>DO UPDATE SET &lt;column name&gt; = &lt;value&gt;</code>: update the column to the given value</li>
+</ul>
+<h2 id="random-oredering">Random oredering<a class="headerlink" href="#random-oredering" title="Permanent link">&para;</a></h2>
+<p>To order the result set randomly, we can use the <code>RANDOM()</code> function in the <code>ORDER BY</code> clause:</p>
+<pre><code class="language-SQL">SELECT ...
+FROM ...
+ORDER BY RANDOM()
+</code></pre>
+<h3 id="random-ordering-with-a-seed-pseudo-random-ordering">Random ordering with a seed (Pseudo-random ordering)<a class="headerlink" href="#random-ordering-with-a-seed-pseudo-random-ordering" title="Permanent link">&para;</a></h3>
+<p>To receive a determinisic (repeatable) random ordering, we can use the <code>setseed</code> function:</p>
+<pre><code class="language-SQL">SELECT setseed(0.5);
+SELECT ...
+FROM ...
+ORDER BY RANDOM();
+</code></pre>
+<p>Note that we need two queries, one for setting the seed and one for the actual query. If we does not have an option to call arbitrary queries, we have to use <code>UNION</code>:</p>
+<pre><code class="language-SQL">SELECT col_1, ..., col_n FROM (
+    SELECT _, null AS col_1, ..., null AS col_n FROM setseed(0.5)
+    UNION ALL
+    SELECT null AS _, col_1, ..., col_n
+    FROM ...
+    OFFSET 1
+)
+ORDER BY RANDOM()
+</code></pre>
+<p>The <code>OFFSET 1</code> is used to skip the first row, which is the result of the <code>setseed</code> function.</p>
+<p>The union is the only way to guarantee that the seed will be set before the actual query. Other options, such as <code>WITH</code> or <code>SELECT ... FROM (SELECT setseed(0.5))</code> do not guarantee the order of execution, and produce a different result for each call.</p>
 <h1 id="postgis">PostGis<a class="headerlink" href="#postgis" title="Permanent link">&para;</a></h1>
 <p>PolsGIS is an extension for PostgreSQL that adds support for spatial data. </p>
 <p>To enable the extension, we need to:</p>
@@ -1227,6 +1267,21 @@ END IF
 <li>using the <code>-D</code> parameter of the <code>pg_ctl</code> command</li>
 <li>setting the <code>PGDATA</code> environment variable</li>
 </ul>
+<h2 id="monitoring-activity">Monitoring activity<a class="headerlink" href="#monitoring-activity" title="Permanent link">&para;</a></h2>
+<p>To monitor the activity on Linux, we can use the <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
+<pre><code class="language-bash">sudo -u postgres pg_activity -U postgres
+</code></pre>
+<p>For a detailed monitoring on all platforms, we can use the <em><a href="https://www.postgresql.org/docs/current/monitoring-stats.html">Cumulative Statistics System</a></em>. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:
+- <a href="https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW"><code>pg_stat_activity</code></a>: contains information about the current activity on the server</p>
+<h3 id="pg_stat_activity"><code>pg_stat_activity</code><a class="headerlink" href="#pg_stat_activity" title="Permanent link">&para;</a></h3>
+<p>The <code>pg_stat_activity</code> collection contains information about the current activity on the server. Some activities belong to background processes it is therefore best to query the collection like:</p>
+<pre><code class="language-SQL">SELECT * FROM pg_stat_activity WHERE state IS NOT NULL;
+</code></pre>
+<h2 id="kill-a-hanging-query">Kill a hanging query<a class="headerlink" href="#kill-a-hanging-query" title="Permanent link">&para;</a></h2>
+<p>To kill the query, run:</p>
+<pre><code class="language-sql">SELECT pg_cancel_backend(&lt;PID&gt;)
+</code></pre>
+<p>The <code>PID</code> can be obtained from the <a href="#monitoring-activity">database activity monitoring tool</a>.</p>
 <h2 id="creating-new-user">Creating new user<a class="headerlink" href="#creating-new-user" title="Permanent link">&para;</a></h2>
 <p>For creating a new user, we can use the <a href="https://www.postgresql.org/docs/current/app-createuser.html"><code>createuser</code></a> command. Important parameters:</p>
 <ul>
@@ -1305,7 +1360,23 @@ END IF
 <li>test if the new password works</li>
 </ol>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>The configuration of the PostgreSQL server is stored in the <code>&lt;postgres data dir&gt;/postgresql.conf</code> file. </p>
+<p><a href="https://www.postgresql.org/docs/current/config-setting.html">Documentation</a></p>
+<p>PostgreSQL server can be configured using <em>parameters</em>. The parameters itself can be set in multiple ways:</p>
+<ul>
+<li>default values are set in the configuration file stored in the <code>&lt;postgres data dir&gt;/postgresql.conf</code>.</li>
+<li>the values can be set at runtime using SQL</li>
+<li>the values can be set at runtime using shell commands</li>
+</ul>
+<h3 id="getting-and-setting-parameters-at-runtime-using-sql">Getting and setting parameters at runtime using SQL<a class="headerlink" href="#getting-and-setting-parameters-at-runtime-using-sql" title="Permanent link">&para;</a></h3>
+<p>to get the value of a parameter, we can use the <a href="https://www.postgresql.org/docs/current/sql-show.html"><code>SHOW</code></a> command or the <code>current_setting</code> function:</p>
+<pre><code class="language-PostgreSQL">SHOW &lt;parameter name&gt;;
+SELECT current_setting('&lt;parameter name&gt;');
+</code></pre>
+<p>To set the value of a parameter, we can use the <a href="https://www.postgresql.org/docs/current/sql-set.html"><code>SET</code></a> command or the <code>set_config</code> function:</p>
+<pre><code class="language-PostgreSQL">SET &lt;parameter name&gt; TO &lt;value&gt;;
+SELECT set_config('&lt;parameter name&gt;', '&lt;value&gt;', false);
+</code></pre>
+<p>If the third parameter of the <code>set_config</code> function is set to <code>true</code>, the value is set for the current transaction only.</p>
 <h3 id="logging_1">Logging<a class="headerlink" href="#logging_1" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.postgresql.org/docs/current/runtime-config-logging.html">Documentation</a></p>
 <p>The logs are stored in the <code>&lt;postgres data dir&gt;/log</code> directory. </p>
@@ -1336,6 +1407,8 @@ END IF
 <h2 id="duplicate-table">Duplicate table<a class="headerlink" href="#duplicate-table" title="Permanent link">&para;</a></h2>
 <p>Drag the table in the database explorer and drop it to the location you want it to copy to.</p>
 <h2 id="known-issues-and-workarounds">Known issues and workarounds<a class="headerlink" href="#known-issues-and-workarounds" title="Permanent link">&para;</a></h2>
+<h2 id="cannot-delete-a-database-due-to-datagrips-own-connections">Cannot delete a database due to DataGrip's own connections<a class="headerlink" href="#cannot-delete-a-database-due-to-datagrips-own-connections" title="Permanent link">&para;</a></h2>
+<p>Before deleting a database we need to close all DataGrip sessions connected to the database. We can do that in the sessions window.</p>
 <h3 id="datagrip-displays-objects-that-were-deleted">DataGrip displays objects that were deleted<a class="headerlink" href="#datagrip-displays-objects-that-were-deleted" title="Permanent link">&para;</a></h3>
 <p>Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:</p>
 <ol>
@@ -1360,18 +1433,6 @@ END IF
 <p>The best way to install the PgAdmin is to use the <a href="https://www.postgresql.org/download/windows/">EDB PostgreSQL installer</a> and uncheck the database installation during the installation configuration. This way, we also install useful tools like <code>psql</code></p>
 <h2 id="diagrams">Diagrams<a class="headerlink" href="#diagrams" title="Permanent link">&para;</a></h2>
 <p>To create diagram from an existing database: right click on the database -&gt; <code>Generate ERD</code></p>
-<h1 id="kill-a-hanging-query">Kill a hanging query<a class="headerlink" href="#kill-a-hanging-query" title="Permanent link">&para;</a></h1>
-<p>To kill a hanging query, we need to complete two steps:</p>
-<ol>
-<li>identify the query PID</li>
-<li>kill the query</li>
-</ol>
-<p>To identify the PID of the problematic query, we can use tool such as <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
-<pre><code class="language-bash">sudo -u postgres pg_activity -U postgres
-</code></pre>
-<p>To kill the query, run:</p>
-<pre><code class="language-sql">SELECT pg_cancel_backend(&lt;PID&gt;)
-</code></pre>
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
 <p>If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.</p>
 <h2 id="select-postgresql-version">Select PostgreSQL version<a class="headerlink" href="#select-postgresql-version" title="Permanent link">&para;</a></h2>
