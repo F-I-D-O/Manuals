@@ -909,6 +909,50 @@ if(a){
 ```
 
 
+## Unions and Variants
+The idea of a union is to store multiple types in the same memory location. Compared to the polymorphism, when we work with pointers and to templates, where the actual type is determined at compile time, the union actually has a shared memory for all the types.
+
+The union can be therefore used in cases where nor polymorphism neither templates are suitable. One example can be storing different unrelated types (e.g., `std::string` and `int`) in a container. We cannot use templates as that require a single type. Nor we can use polymorphism, as the types are unrelated. 
+
+The big disadvantage of unions is that they are not type safe. The compiler cannot check if the type we are accessing is the same as the type we stored. Therefore, we have to be very careful when using unions. Therefore, unless some special case, **we should use [`std::variant`](https://en.cppreference.com/w/cpp/utility/variant) instead of unions**.
+
+### `std::variant`
+The declaration of `std::variant` is similar to the declaration of `std::tuple`:
+```cpp
+std::variant<int, double> v;
+```
+The `std::variant` can store any of the types specified in the template parameters. 
+
+The **type** of the stored value can be obtained using:
+
+- [`std::holds_alternative`](https://en.cppreference.com/w/cpp/utility/variant/holds_alternative) method that returns a boolean value if the variant stores the type specified in the template parameter or
+- [`std::variant::index`](https://en.cppreference.com/w/cpp/utility/variant/index) method that returns the index of the stored value.
+	- this method can be used also in a **switch statement** as the index is integral
+
+The **value** can be accessed using:
+
+- the [`std::get`](https://en.cppreference.com/w/cpp/utility/variant/get) function, if we know the type stored in the variant or
+- the [`std::get_if`](https://en.cppreference.com/w/cpp/utility/variant/get_if) function if we are guesing the type.
+
+Both functions return a pointer to the stored value. Example:
+```cpp
+std::variant<int, double> v = 1;
+std::cout << v.index() << std::endl; // prints 0
+std::cout << *std::get_if<int>(&v) << std::endl; // prints 1
+```
+
+A really usefull feature of `std::variant` is the `std::visit` method, which allows us to call a function on the stored value. The function is selected based on the type of the stored value. Example:
+```cpp
+std::variant<int, double> v = 1;
+std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
+```
+
+More on variants:
+
+- [cppreference](https://en.cppreference.com/w/cpp/utility/variant)
+- [cppstories](https://www.cppstories.com/2018/06/variant/)
+
+
 
 # Value Categories
 [cppreferencepreerecege/value_category).
@@ -3682,6 +3726,30 @@ std::function<int(int, int)> func = static_cast<int(*)(int, int)>add;
 ```
 
 
+# Preprocessor Directives
+The C language has a [preprocessor](https://en.wikipedia.org/wiki/C_preprocessor) that uses a specific syntax to modify the code before the compilation. This preprocessor is also used in C++. The most used tasks are:
+- including files (`#include`): equivalent to Java or Python `import` statement
+- conditional compilation based on OS, compiler, or other conditions
+
+Also, preprocessor had some other purposes, now replaced by other tools:
+- defining constants (`#define`): replaced by `const` and `constexpr`
+- metaprogramming: replaced by templates
+
+A simple **variable** can be defined as: `#define PI 3.14159`. The variable can be used in the code as `PI`. 
+
+**Control structures** are defined as:
+```cpp
+#ifdef <MACRO>
+	...
+#elif <MACRO>
+	...
+#else
+	...
+#endif
+```
+
+
+
 # Testing with Google Test
 ## Private method testing
 The testing of private method is not easy with Google Test, but that is common also for other tets frameworks or even computer languages (see the common manual). Some solutions are described in [this SO question](https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest).
@@ -3705,8 +3773,9 @@ public:
 ```
 
 
+# specific tasks
 
-# Conditional Function Execution
+## Conditional Function Execution
 W know it from other languages: if the function can be run in two (or more) modes, there is a function parameter that controls the execution. Usually, most of the function is the same (otherwise, we eould create multiple fuctions), and the switch controls just a small part.
 
 Unlike in other langueges. C++ has not one, but three options how to implement this.  They are described below in atable together with theai properties.
@@ -3717,7 +3786,7 @@ Unlike in other langueges. C++ has not one, but three options how to implement t
 | compiler optimization | no | yes | yes |
 | conditional code compilation | no | no | yes |
 
-## Function Parameter
+### Function Parameter
 ```cpp
 void(bool switch = true){
 	if(switch){
@@ -3729,7 +3798,7 @@ void(bool switch = true){
 }
 ```
 
-## Template Parameter
+### Template Parameter
 ```cpp
 template<bool S = true>
 void(){
@@ -3742,7 +3811,7 @@ void(){
 }
 ```
 
-## Compiler Directive
+### Compiler Directive
 ```cpp
 void(){
 #ifdef SWITCH
@@ -3753,7 +3822,7 @@ void(){
 }
 ```
 
-# Ignoring warnings for specific line of code
+## Ignoring warnings for specific line of code
 Sometimes, we want to suppress some warnings, mostly in libraries we are including. The syntax is, unfortunatelly, different for each compiler. Example:
 ```cpp
 #if defined(_MSC_VER)
@@ -3783,10 +3852,10 @@ Sometimes, we want to suppress some warnings, mostly in libraries we are includi
 #endif
 ```
 
-# Measuring used resource
+## Measuring used resource
 
-## Memory
-### MSVC
+### Memory
+#### MSVC
 In MSVC, we can measure the peak used memory using the following code: 
 ```cpp
 #include <psapi.h>
@@ -3796,84 +3865,37 @@ K32GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
 auto max_mem = pmc.PeakWorkingSetSize
 ```
 
-# Working with tabular data
+## Working with tabular data
 Potential libs similar to Python Pandas:
 
 - [Arrow](https://arrow.apache.org/docs/cpp/)
 - [Dataframe](https://github.com/hosseinmoein/DataFrame)
 
 
-# Executing external commands
+## Executing external commands
 The support for executing external commands in C++ is unsatisfactory. The most common solution is to use the [`system`](https://en.cppreference.com/w/cpp/utility/program/system) function.
 However, the `system` calls are not portable, e.g., the quotes around the command are not supported in Windows
 
 Another option is to use the Boost [Process](https://www.boost.org/doc/libs/1_82_0/doc/html/process.html) library. 
 
 
-
-# Unions and Variants
-The idea of a union is to store multiple types in the same memory location. Compared to the polymorphism, when we work with pointers and to templates, where the actual type is determined at compile time, the union actually has a shared memory for all the types.
-
-The union can be therefore used in cases where nor polymorphism neither templates are suitable. One example can be storing different unrelated types (e.g., `std::string` and `int`) in a container. We cannot use templates as that require a single type. Nor we can use polymorphism, as the types are unrelated. 
-
-The big disadvantage of unions is that they are not type safe. The compiler cannot check if the type we are accessing is the same as the type we stored. Therefore, we have to be very careful when using unions. Therefore, unless some special case, **we should use [`std::variant`](https://en.cppreference.com/w/cpp/utility/variant) instead of unions**.
-
-## `std::variant`
-The declaration of `std::variant` is similar to the declaration of `std::tuple`:
-```cpp
-std::variant<int, double> v;
-```
-The `std::variant` can store any of the types specified in the template parameters. 
-
-The **type** of the stored value can be obtained using:
-
-- [`std::holds_alternative`](https://en.cppreference.com/w/cpp/utility/variant/holds_alternative) method that returns a boolean value if the variant stores the type specified in the template parameter or
-- [`std::variant::index`](https://en.cppreference.com/w/cpp/utility/variant/index) method that returns the index of the stored value.
-	- this method can be used also in a **switch statement** as the index is integral
-
-The **value** can be accessed using:
-
-- the [`std::get`](https://en.cppreference.com/w/cpp/utility/variant/get) function, if we know the type stored in the variant or
-- the [`std::get_if`](https://en.cppreference.com/w/cpp/utility/variant/get_if) function if we are guesing the type.
-
-Both functions return a pointer to the stored value. Example:
-```cpp
-std::variant<int, double> v = 1;
-std::cout << v.index() << std::endl; // prints 0
-std::cout << *std::get_if<int>(&v) << std::endl; // prints 1
-```
-
-A really usefull feature of `std::variant` is the `std::visit` method, which allows us to call a function on the stored value. The function is selected based on the type of the stored value. Example:
-```cpp
-std::variant<int, double> v = 1;
-std::visit([](auto&& arg) { std::cout << arg << std::endl; }, v); // prints 1
-```
-
-More on variants:
-
-- [cppreference](https://en.cppreference.com/w/cpp/utility/variant)
-- [cppstories](https://www.cppstories.com/2018/06/variant/)
-
-
-# Command Line Interface
+## Command Line Interface
 For CLI, please follow the [CLI manual](../Common.md#command-line-interface). Here we focus on setting up the [TCLAP](http://tclap.sourceforge.net/manual.html) library.
 
 TCLAP use
 
 
-
-
-# Jinja-like Templating
+## Jinja-like Templating
 For working with Jinja-like templates, we can use the [Inja](https://github.com/pantor/inja) template engine. 
 
 
-## Exceptions
+### Exceptions
 There are the following exceptions types:
 
 - `ParserError` thrown on `parse_template` method
 - `RenderError` thrown on `write` method
 
-### Render Errors
+#### Render Errors
 
 - `empty expression`: this signalize that some expression is empty. Unfortunatelly, the line number is incorrect (it is always 1). Look for empty conditions, loops, etc. (e.g., `{% if %}`, `{% for %}`, `{% else if %}`).
 
