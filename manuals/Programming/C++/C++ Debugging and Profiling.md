@@ -319,6 +319,12 @@ To debug multiple targets at once:
 There are multiple [profiler options for C++](https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing), but not all the tools are easy to use or maintained.
 
 ## CPU Profiling
+
+### CLion
+[documentation](https://www.jetbrains.com/help/clion/cpu-profiler.html)
+
+CLion profiler is based on the [`perf`](https://perf.wiki.kernel.org/index.php/Main_Page) tool and therefore it is available only on Linux (and WSL). However, in WSL, [currently the profiler does not work](https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL). 
+
 ### VTune
 VTune can be run ftom the Visual Studio only for VS solution projects. In case of CMake projects, we need to run the VTune GUI and configure the debugging there.
 
