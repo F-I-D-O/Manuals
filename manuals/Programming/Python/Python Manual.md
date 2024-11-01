@@ -158,6 +158,14 @@ class MyClass:
         self.d = None
 ```
 
+## Check if an object contains a member
+To check whether an object contains a member, we can use the `hasattr` function:
+```Python
+if hasattr(obj, 'member'):
+    ...
+```
+
+
 ### Constructor overloading
 Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerfull mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.
 
@@ -292,6 +300,20 @@ Point = namedtuple('Point', ['x', 'y'])
 p = Point(1, 2)
 print(p.x) # 1
 ```
+
+
+# Importing
+In python, we can import whole modules as:
+```Python
+import <module>
+```
+
+Also, we can import specific functions, classes, or variables from the module:
+```Python
+from <module> import <name>
+```
+
+Note that when importing variable, we import the reference to the variable. Therefore, it will become out of sync with the original variable if the original variable is reassigned. Therefore, **importing non-constant variables is not recommended.**
 
 
 
@@ -823,7 +845,45 @@ To save a figure, we can use the `savefig` function. The **`savefig` function ha
 # Docstrings
 For documenting Python code, we use docstrings, special comments soroudned by three quotation marks: `""" docstring """`
 
-Unlike in other languages, there are multiple styles for docstring content.
+Unlike in other languages, there are multiple styles for docstring content. The most common are:
+
+- [Epytext](https://epydoc.sourceforge.net/manual-epytext.html)
+    ```Python
+    """
+    @param <param name>: <param description>
+    @return: <return description>
+    """
+    ```
+- [Google](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
+    ```Python
+    """
+    Args:
+        <param name>: <param description>
+    Returns:
+        <return description>
+    """
+    ```
+- [Numpy](https://numpydoc.readthedocs.io/en/latest/format.html)
+    ```Python
+    """
+    Parameters
+    ----------
+    <param name> : <param type>
+        <param description>
+    Returns
+    -------
+    <return type>
+        <return description>
+    """
+    ```
+- [reStructuredText](https://docutils.sourceforge.io/docs/user/rst/quickref.html)
+    ```Python
+    """
+    :param <param name>: <param description>
+    :return: <return description>
+    """
+    ```
+    
 
 
 

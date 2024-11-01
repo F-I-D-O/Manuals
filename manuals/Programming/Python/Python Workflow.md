@@ -85,6 +85,11 @@ Same as in IDEA:
 ### Enable Progress Bars in output console
 `Run configuration select box` -> `Edit Configurations...` -> Select the configuration -> check the `Emulate terminal in output console`
 
+
+### Setup the Docstring format
+In `Tools` -> `Python Integrated Tools` -> `Docstring format`. 
+
+
 ## Project Configuration
 
 - configure the correct test suite in `File` -> `Settings` -> `Tools` -> `Python Integrated Tools` -> `testing`
