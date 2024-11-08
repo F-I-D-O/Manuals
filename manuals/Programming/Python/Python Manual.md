@@ -486,6 +486,13 @@ p = Path(r"C:\workspace\project\file.txt")
 p = p.as_posix() # 'C:/workspace/project/file.txt'
 ```
 
+### Using `~` as the home directory in paths
+Normally, the `~` character is not recognized as the home directory in Python paths. To enable this, we can use the `expanduser` method:
+```Python
+p = Path("~/project/file.txt")
+p = p.expanduser() # 'C:\\Users\\user\\project\\file.txt'
+```
+
 
 
 ## Working directory
@@ -883,7 +890,7 @@ Unlike in other languages, there are multiple styles for docstring content. The 
     :return: <return description>
     """
     ```
-    
+
 
 
 
