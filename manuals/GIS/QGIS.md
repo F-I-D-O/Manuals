@@ -11,7 +11,8 @@ The easiest way is to use *QuickWKT*
 # Postgis Layers
 
 ## Adding layers
-`Layer` -> `Add Layer`
+To add a layer, use `Layer` -> `Add Layer`. Each layer type has its own option in this menu.
+
 
 ## Temporary layer
 Temporary layers are useful for experimenting. Whether we want to add a point, line, or area, we need a layer for that even if we do not intend to save the result. The right layer for this is the *temporary scratch layer* we can add it by:

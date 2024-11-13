@@ -106,8 +106,11 @@ Bluetooth Command Line Tools is a set off tools that enables command line intera
 ## Standard folder structure
 In Windows, the standard folder structure is completely different for system and user instalation. Details are listed below, but the main difference is that the system instalations are stored in a single root folder for each application (similarly to Android), while the user instalations' files are distributed among multiple folders, depending on the type of the file (similarly to Linux).
 
+The standard folders can be quick-accessed by aliases written in the form `%alias%`. These aliases works in Windows Explorer and Command Prompt. To use them in PowerShell, we have to access them as environment variables, e.g. `$env:alias`.
+
 ### User home folder
 The user home folder is located in `C:\Users\<username>` by default. It is aliased as `%userprofile%`. 
+
 
 ### System instalation folders
 If an application is installed for all users, all its files are usually installed in a single folder per application. The location of the folder depends on the type of the application:

@@ -769,7 +769,7 @@ Important implementation details:
 - do not forget to add `template<>` above the function, this indicates that it is a template specialization.
 
 ### Maps
-The maps has similar requiremnts for keys as the requirements for set value types (see previous section). The hash map type is called [`std::unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map).
+The maps has similar requiremnts for keys as the requirements for set value types (see previous section). The hash map type is called [`std::unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map). Note that [maps require the stored types to be complete](https://stackoverflow.com/a/74965248/1827955).
 
 #### Geeting value by key
 To access the map element, the array operator (`[]`) can be used. Note however, that this operator does not check the existence of the key, even if we do not provide a value. Example:

@@ -1,27 +1,28 @@
-# Compilation
+# Compiler Errors
 
 ## General rules
 
--   Make the code you want to compile reachable.  **In C++, only reachable methods/classes are compiled!**
--   Solve errors that stop the compilation first.
--   Warnings can stay in logs even if solved until the main error is gone and the build is finished
--   Be aware that the cause of the error can be on a different line than the one in the error log!
+- Make the code you want to compile reachable.  **In C++, only reachable methods/classes are compiled!**
+- Solve errors that stop the compilation first.
+- Warnings can stay in logs even if solved until the main error is gone and the build is finished
+- Be aware that the cause of the error can be on a different line than the one in the error log!
 
 ### If the source of the compilation bug cannot be found
 
-1.  read the error examples below
+1. read the error examples below
 2. check that the code follow the [my guidelines](https://drive.google.com/file/d/1fIwSVqSojOxIZFJCvSszu4xEUvfVPA5P/view?usp=sharing) and [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html). 
-3.  read the [cpp reference](http://cppreference.com) for the parts of the problematic code
+3. read the [cpp reference](http://cppreference.com) for the parts of the problematic code
 4. check the *const correctness*. It is a causes a lot of problems.
-5.  try a different compiler, the error message can be more informative
-6.  try to isolate the case in some small example
-7.  copy the project and remove the stuff until the problem is gone
+5. try a different compiler, the error message can be more informative
+6. try to isolate the case in some small example
+7. copy the project and remove the stuff until the problem is gone
 
 ## Practical static assertions
 Test for concept satisfaction:
 ```cpp
 static_assert(My_concept<My_class>);
 ```
+
 ### Useful Predicates
 
 - [`std::is_same_as`](https://en.cppreference.com/w/cpp/types/is_same) for checking the type equality. 
@@ -100,18 +101,18 @@ Possible reasons:
 ## Undefined
 Something like `unresolved external symbol...`.
 
-1.  check that all used files are listed in `CMakeLists.txt` (`add_executable` command…)
-2.  check that all templates are defined in header files
-3.  check that all functions are defined correctly (even `unsigned` vs `unsigned int` can make problems...)
-4.  check this list: [https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?](https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?)
-    
+1. check that all used files are listed in `CMakeLists.txt` (`add_executable` command…)
+2. check that all templates are defined in header files
+3. check that all functions are defined correctly (even `unsigned` vs `unsigned int` can make problems...)
+4. check this list: [https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?](https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?)
+
 
 ## Multiply Defined
 
-1.  Check the recent includes, are all of them correct?
-2.  Check the multiply defined symbol. If it is a function defined in a header file, it has to be static or inline.
-1.  there can be a bug even in an external library!
-    
+1. Check the recent includes, are all of them correct?
+1. Check the multiply defined symbol. If it is a function defined in a header file, it has to be static or inline.
+1. there can be a bug even in an external library!
+
 [https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error](https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error)
 
 
@@ -263,6 +264,7 @@ Warning: set address range perms: large range
 
 
 ## Logical Errors
+
 ### C++ Specific Numerical Errors
 
 - First possible error is *overflow*. **C++ does not handle or report overflow!** The behaviour is undefined.
@@ -274,6 +276,19 @@ In general to prevent the overflow:
 - check each operation for the potential overflow, inluding the unsigned integer overflow with negative numbers
 - if the overflow can happen, cast the types before any arithmetic operation to prevent the overflow
 - also, one have to use the right type in templates like `std::max`
+
+
+# Static code analysis
+Static code analysis is a process of checking the code without running it. The basic static analysis is available in IDEs, or as a part of the compiler. However, there are also more advanced tools available that can check the code for various problems, including:
+
+- memory leaks and memory errors
+- undefined behaviour
+- dead code
+- code style
+
+## Cppcheck
+[Cppcheck](http://cppcheck.sourceforge.net/) is a GUI tool that can be used to check the code for various problems. It is available for Windows and Linux. 
+
 
 # Testing - Google Test
 

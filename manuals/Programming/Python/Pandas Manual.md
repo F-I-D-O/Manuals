@@ -1,5 +1,43 @@
 # Main principles
-Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns). 
+Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns).
+
+
+# Pandas Data Types
+[Documentation of basic data types](https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes)
+
+Mainly, pandas uses the [numpy data types](./Python%20Manual.md#numpy).
+
+## Object
+If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the `object` type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
+
+- we round a column with mix of floats and ints: fail (`loop of ufunc does not support argument 0 of type float which has no callable rint method`)
+- we need to apply string functions, but the column contains numbers as well
+
+The solution is usually:
+
+1. fill the missing values with the `fillna` function
+2. convert the column to `str` type using the `astype` function
+3. apply string functions to clear the data
+4. convert the column to the desired type
+
+
+
+## Categorical data
+Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
+
+- `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
+- `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
+
+
+## Datetime
+Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:
+```python
+df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
+print(df)
+# output:
+# '2021-01-01'
+# '2021-01-01'
+```
 
 
 # Creating a DataFrame
@@ -71,6 +109,18 @@ As displayed in the above example, we can generate a numerical index using the `
 
 - date index with [`date_range`](https://pandas.pydata.org/docs/reference/api/pandas.date_range.html)
     - `pd.date_range(<start date>, <end date>, freq=<frequency>)`
+
+
+## Determining the data type
+By defualt, Pandas infers the data type of the columns by the content. However, this has some limitations:
+
+- The data are processed line by line to avoid excessive memory usage. Therefore, if the data contains a value not compatible with the type inferred from the first batch of data, the previously processed data have to be processed again.
+- If the data are not complete or valid, the data is typically inferred as `object` type, instead of reporting an error.
+
+To specify the data type of the columns we proceed according to the desired data type:
+
+- for **datetime** data, we use the `parse_dates` parameter of the `read_csv` function
+- for **other data types**, we use the `dtype` parameter of the `read_csv` function. 
 
 
 
@@ -559,43 +609,6 @@ It can concatenate dataframes or series and it can concatenate vertically (by ro
 By default, the indices from both input parameters are preserved. To reset the index, we can use the `ignore_index` parameter. Alternatively, to preserve one of the indices, we can set the index of the other dataframe to the index of the first dataframe before the concatenation using the `set_index` function.
 
 
-# Pandas Data Types
-
-
-## Object
-If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the `object` type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:
-
-- we round a column with mix of floats and ints: fail (`loop of ufunc does not support argument 0 of type float which has no callable rint method`)
-- we need to apply string functions, but the column contains numbers as well
-
-The solution is usually:
-
-1. fill the missing values with the `fillna` function
-2. convert the column to `str` type using the `astype` function
-3. apply string functions to clear the data
-4. convert the column to the desired type
-
-
-
-## Categorical data
-Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
-
-- `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
-- `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
-
-
-## Datetime
-Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:
-```python
-df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
-print(df)
-# output:
-# '2021-01-01'
-# '2021-01-01'
-```
-
-
-
 # I/O
 
 ## csv
@@ -629,6 +642,12 @@ df.to_json(<file name>, orient='records')
 Other important parameters:
 
 - `indent`: the number of spaces to use for indentation
+
+
+## Excel
+For reading excel files, we can use the [`read_excel`](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html) function. Important params:
+
+- `sheet_name`: the name of the sheet to read. If `None`, the first sheet is read.
 
 
 ## Insert dataframe into db
