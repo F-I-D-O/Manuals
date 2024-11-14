@@ -316,7 +316,7 @@ If the refactoring options like change signature are not present, try to send th
 Sometimes, the errors disappears by deleting the `.suo` file located in `<project dir>/.vs/<project name>/<VS version>`
 
 
-# Running the debugger
+# Using the debugger
 
 ## Clion
 Unlike in Visual Studio, the Clion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.
@@ -327,6 +327,16 @@ To debug multiple targets at once:
 2. Add a new configuration of type `Compound`
 3. Add the configurations you want to run together using the `+` button
 4. Debug the compound configuration
+
+## Visual Studio
+
+### Debugging polymorphic classes
+Unfortunately, the debugger does not show the actual type of the object when the object is cast to a base class.
+
+To see the object content including the members of the derived class, we have to cast the object to the derived class in the watch window:
+
+- `((Derived_class*) object)` for pointers
+- `((Derived_class&) object)` for references
 
 
 
