@@ -95,3 +95,7 @@ Comparison:
 ## Compact tabs
 
 - **Settings** -> **Appearance & Behavior** -> **New UI** and select `Compact mode`
+
+
+# Licenses
+To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.

@@ -14,7 +14,7 @@
 [cppreference](https://en.cppreference.com/w/cpp/language/types)
 
 ### Integers
-Integer types varies in the sign and size. 
+Integer types varies in the sign and size.
 
 Unfortunatelly, **the minimum sizes guaranteed by the standard are not usable, because the real size is different and it differs even between platforms**. Especially the `long` type. To use an integer with a specific size, or a specific minimal size, we can use [type aliases defined in `cstdint`](https://en.cppreference.com/w/cpp/types/integer)
 
@@ -1834,19 +1834,59 @@ To remove a content of a directory we can use `std::filesystem::remove_all(<path
 - [`std::filesystem::is_empty(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_empty)
 
 
-## Simple line by line IO
+## Manual text IO
+
 ### Input
-For input, we can use `std::ifstream`:
+For input, we can use [`std::ifstream`](https://en.cppreference.com/w/cpp/io/basic_ifstream):
 ```cpp
 std::ifstream file;
 file.open(<path>);
+...
+file.close();
+```
+The important thing is that we need to check whether the `open` call was successful. **The `open` function never throws an exception, even if the file does not exist**, which is a common case. Instead, it only sets the `failbit` of the stream. Without some check, the failure is hidden as an ifstream  in a fail state behaves as if it was empty.
+
+For reading **line by line**, we can use the `std::getline` function:
+```cpp
 std::string line;
 while (std::getline(file, line)) {
 	// do something with the line
 }
-file.close();
 ```
-The important thing is that we need to check whether the `open` call was successful. **The `open` function never throws an exception, even if the file does not exist**, which is a common case. Instead, it only sets the `failbit` of the stream. Without some check, the failure is hidden as an ifstream  in a fail state behaves as if it was empty. 
+
+However, processing the line is currently not very convenient in C++ because functions from other languages like `split` are missing.
+
+For **reading whitespace delimited tokens** we can instead use the [`>>` operator](https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt) on the stream:
+```cpp
+// file content: "01 Smith"
+
+int id;
+std::string name;
+
+file >> id >> name;
+```
+
+If we need to skip some tokens, its best to introduce a dummy string variable:
+```cpp
+// file content: "01 2021-01-01 active Smith"
+
+int id;
+std::string dummy;
+std::string name;
+
+file >> id >> dummy >> dummy >> name;
+```
+
+Conveniently, the input streams have a `bool` operator that states whether the stream is in a state ready for reading. This way, we can easily stop the loop when the file is read, because the `>>` operator returns the stream itself:
+```cpp
+// read the whole file
+while (file >> id >> name) {
+	...
+}
+```
+
+
+
 
 
 ### Output
