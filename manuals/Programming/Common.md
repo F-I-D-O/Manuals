@@ -92,9 +92,13 @@ Comparison:
 
 
 # IntelliJ Config
+
 ## Compact tabs
 
 - **Settings** -> **Appearance & Behavior** -> **New UI** and select `Compact mode`
+
+## Advanced Configuration - Registry
+Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.usePythonToLoadData`. This registry can be accessed by `Help` -> `Find Action...` -> type `Registry` -> find the desired setting.
 
 
 # Licenses

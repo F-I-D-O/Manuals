@@ -71,7 +71,9 @@ Note that the package needs to be properly initialized first, i.e.:
 
 
 # Pycharm
+
 ## Configuration
+
 ### Settings synchronization
 Same as in IDEA:
 
@@ -87,7 +89,11 @@ Same as in IDEA:
 
 
 ### Setup the Docstring format
-In `Tools` -> `Python Integrated Tools` -> `Docstring format`. 
+In `Tools` -> `Python Integrated Tools` -> `Docstring format`.
+
+
+
+
 
 
 ## Project Configuration
@@ -114,6 +120,9 @@ If this does not work, it can be solved by adding the path to the package to the
 1. Click on the arrow next to the interpreter name and choose `Show All...`
 1. Click on the desired interpreter and click on the filetree icon on the top of the window
 1. Add the path to the package to the list of paths
+
+
+
 
 
 
