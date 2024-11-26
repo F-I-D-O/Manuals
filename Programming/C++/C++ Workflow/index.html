@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -506,6 +509,10 @@
             </li>
             <li class="nav-item" data-level="3"><a href="#toolchain-configuration" class="nav-link">Toolchain configuration</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#multiple-wsl-toolchains" class="nav-link">Multiple WSL toolchains</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#project-configuration" class="nav-link">Project configuration</a>
@@ -1170,6 +1177,8 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <li>CMake: <code>C:\Program Files\CMake\bin\cmake.exe</code>, for WSL, leave it as it is</li>
 <li>other fields should be filled automatically</li>
 </ul>
+<h4 id="multiple-wsl-toolchains">Multiple WSL toolchains<a class="headerlink" href="#multiple-wsl-toolchains" title="Permanent link">&para;</a></h4>
+<p>When using multiple WSL toolchains, we need to manually set the compilers. To do so, fill also the <code>C Compiler</code> and <code>C++ Compiler</code> fields in the toolchain settings with the path to the compiler executable.</p>
 <h3 id="project-configuration">Project configuration<a class="headerlink" href="#project-configuration" title="Permanent link">&para;</a></h3>
 <p>Most project settings resides (hereinafter <em>Project settings</em>) in <code>settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>CMake</code>. For each build configuration, add a new template and set:</p>
 <ul>

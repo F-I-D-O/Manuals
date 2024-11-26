@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -410,6 +413,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#setup-the-docstring-format" class="nav-link">Setup the Docstring format</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#project-configuration" class="nav-link">Project Configuration</a>
@@ -428,6 +435,11 @@
             </li>
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#project-structure" class="nav-link">Project Structure</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -517,9 +529,9 @@
 </ul>
 </li>
 </ol>
-<p>The source code for python can be inspected on <a href="https://github.com/python/cpython">GitHub</a>  </p>
+<p>The source code for python can be inspected on <a href="https://github.com/python/cpython">GitHub</a></p>
 <h2 id="command-line">Command line<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
-<p>We execute python scripts from the command line as: <code>python &lt;path to the .py file&gt;</code>. </p>
+<p>We execute python scripts from the command line as: <code>python &lt;path to the .py file&gt;</code>.</p>
 <p>Parameters:</p>
 <ul>
 <li><code>-m</code> executes a module as a script, e.g. <code>python -m venv</code>. This is useful for executing scripts whithout knowing the path to the script.</li>
@@ -569,6 +581,8 @@
 <p><code>Run configuration select box</code> -&gt; <code>Edit Configurations...</code> -&gt; <code>Edit configuration templates</code> -&gt; <code>Python</code> -&gt; uncheck the <code>Run with Python Console</code></p>
 <h3 id="enable-progress-bars-in-output-console">Enable Progress Bars in output console<a class="headerlink" href="#enable-progress-bars-in-output-console" title="Permanent link">&para;</a></h3>
 <p><code>Run configuration select box</code> -&gt; <code>Edit Configurations...</code> -&gt; Select the configuration -&gt; check the <code>Emulate terminal in output console</code></p>
+<h3 id="setup-the-docstring-format">Setup the Docstring format<a class="headerlink" href="#setup-the-docstring-format" title="Permanent link">&para;</a></h3>
+<p>In <code>Tools</code> -&gt; <code>Python Integrated Tools</code> -&gt; <code>Docstring format</code>.</p>
 <h2 id="project-configuration">Project Configuration<a class="headerlink" href="#project-configuration" title="Permanent link">&para;</a></h2>
 <ul>
 <li>configure the correct test suite in <code>File</code> -&gt; <code>Settings</code> -&gt; <code>Tools</code> -&gt; <code>Python Integrated Tools</code> -&gt; <code>testing</code></li>
@@ -578,13 +592,43 @@
 <p>Problem: It can happen that the output printing/logging can be reordered randomly (not matching the order of calls in the source, neither the system console output).
 Solution: <code>Edit Configurations...</code> -&gt; select configuration for the script -&gt; check <code>Emulate terminal in output console</code>.</p>
 <h3 id="pycharm-does-not-recognize-a-locally-installed-package">Pycharm does not recognize a locally installed package<a class="headerlink" href="#pycharm-does-not-recognize-a-locally-installed-package" title="Permanent link">&para;</a></h3>
-<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. This can be solved by adding the path to the package to the interpreter paths:</p>
+<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. If that happens, first try to incalidate the cache by</p>
+<ol>
+<li><code>File</code> -&gt; <code>Invalidate Caches...</code> </li>
+<li>check <code>Clear file system cache and Local History</code> </li>
+<li>click <code>Invalidate and Restart</code></li>
+</ol>
+<p>If this does not work, it can be solved by adding the path to the package to the interpreter paths:</p>
 <ol>
 <li><code>File</code> -&gt; <code>Settings</code> -&gt; <code>Project: &lt;project name&gt;</code> -&gt; <code>Python Interpreter</code></li>
 <li>Click on the arrow next to the interpreter name and choose <code>Show All...</code></li>
 <li>Click on the desired interpreter and click on the filetree icon on the top of the window</li>
 <li>Add the path to the package to the list of paths</li>
 </ol>
+<h1 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h1>
+<p>A typical project structure is:</p>
+<pre><code class="language-plaintext">&lt;project root&gt;/
+├── src/
+│  ├── &lt;package name&gt;
+|      ├── __init__.py
+|      ├── &lt;module files&gt;
+|      ├── resources/
+|      |   ├── &lt;resource files for main module&gt;
+|      ├── &lt;submodule&gt;/
+|          ├── __init__.py
+|          ├── &lt;submodule files&gt;
+|          ├── resources/
+|              ├── &lt;resource files for submodule&gt;
+├── tests/
+│   ├── &lt;test files&gt;
+|   ├── resources/
+|       ├── &lt;resource files for tests&gt;
+├── docs/
+|   ├──&lt;documentation files&gt;
+├── setup.py
+├── README.md
+</code></pre>
+<p>Sometimes, we skip the <code>src</code> directory and put the package directly into the project root. This is typical for projects with a single package.</p>
 <h1 id="jupyter">Jupyter<a class="headerlink" href="#jupyter" title="Permanent link">&para;</a></h1>
 <p>Jupyter can be used both in Pycharm and in a web browser.</p>
 <h2 id="jupyter-in-pycharm">Jupyter in Pycharm<a class="headerlink" href="#jupyter-in-pycharm" title="Permanent link">&para;</a></h2>

@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -360,6 +363,23 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#object" class="nav-link">Object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#datetime" class="nav-link">Datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#creating-a-dataframe" class="nav-link">Creating a DataFrame</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#from-a-dictionary" class="nav-link">From a dictionary</a>
@@ -396,6 +416,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#determining-the-data-type" class="nav-link">Determining the data type</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -603,23 +627,6 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#object" class="nav-link">Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#datetime" class="nav-link">Datetime</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
             <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#csv" class="nav-link">csv</a>
@@ -627,6 +634,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#json" class="nav-link">Json</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#excel" class="nav-link">Excel</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -742,7 +753,37 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="main-principles">Main principles<a class="headerlink" href="#main-principles" title="Permanent link">&para;</a></h1>
-<p>Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns). </p>
+<p>Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and axis 1 is horizontal (columns).</p>
+<h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
+<p><a href="https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes">Documentation of basic data types</a></p>
+<p>Mainly, pandas uses the <a href="../Python%20Manual/#numpy">numpy data types</a>.</p>
+<h2 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h2>
+<p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:</p>
+<ul>
+<li>we round a column with mix of floats and ints: fail (<code>loop of ufunc does not support argument 0 of type float which has no callable rint method</code>)</li>
+<li>we need to apply string functions, but the column contains numbers as well</li>
+</ul>
+<p>The solution is usually:</p>
+<ol>
+<li>fill the missing values with the <code>fillna</code> function</li>
+<li>convert the column to <code>str</code> type using the <code>astype</code> function</li>
+<li>apply string functions to clear the data</li>
+<li>convert the column to the desired type</li>
+</ol>
+<h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
+<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:</p>
+<ul>
+<li><code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.</li>
+<li><code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </li>
+</ul>
+<h2 id="datetime">Datetime<a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h2>
+<p>Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:</p>
+<pre><code class="language-python">df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
+print(df)
+# output:
+# '2021-01-01'
+# '2021-01-01'
+</code></pre>
 <h1 id="creating-a-dataframe">Creating a DataFrame<a class="headerlink" href="#creating-a-dataframe" title="Permanent link">&para;</a></h1>
 <p>The <code>DataFrame</code> class has a constructor that supports multiple formats of input data as well as many configuration parameters. Therefore , for most formats of input data, we can create a dataframe using the constructor. However, we can also crete a dataframe using the <code>from_*</code> functions, and for some formats, these functions are the only way to create a dataframe.</p>
 <h2 id="from-a-dictionary">From a dictionary<a class="headerlink" href="#from-a-dictionary" title="Permanent link">&para;</a></h2>
@@ -791,6 +832,17 @@ df = pd.DataFrame({'col1': d.keys(), 'col2': d.values()})
 <li><code>pd.date_range(&lt;start date&gt;, &lt;end date&gt;, freq=&lt;frequency&gt;)</code></li>
 </ul>
 </li>
+</ul>
+<h2 id="determining-the-data-type">Determining the data type<a class="headerlink" href="#determining-the-data-type" title="Permanent link">&para;</a></h2>
+<p>By defualt, Pandas infers the data type of the columns by the content. However, this has some limitations:</p>
+<ul>
+<li>The data are processed line by line to avoid excessive memory usage. Therefore, if the data contains a value not compatible with the type inferred from the first batch of data, the previously processed data have to be processed again.</li>
+<li>If the data are not complete or valid, the data is typically inferred as <code>object</code> type, instead of reporting an error.</li>
+</ul>
+<p>To specify the data type of the columns we proceed according to the desired data type:</p>
+<ul>
+<li>for <strong>datetime</strong> data, we use the <code>parse_dates</code> parameter of the <code>read_csv</code> function</li>
+<li>for <strong>other data types</strong>, we use the <code>dtype</code> parameter of the <code>read_csv</code> function. </li>
 </ul>
 <h1 id="obtaining-info-about-dataset">Obtaining info about dataset<a class="headerlink" href="#obtaining-info-about-dataset" title="Permanent link">&para;</a></h1>
 <p>For a DataFrame <code>df</code>:</p>
@@ -1186,34 +1238,6 @@ df.resample('1H').sum()
 </code></pre>
 <p>It can concatenate dataframes or series and it can concatenate vertically (by rows, default) or horizontally (by columns)</p>
 <p>By default, the indices from both input parameters are preserved. To reset the index, we can use the <code>ignore_index</code> parameter. Alternatively, to preserve one of the indices, we can set the index of the other dataframe to the index of the first dataframe before the concatenation using the <code>set_index</code> function.</p>
-<h1 id="pandas-data-types">Pandas Data Types<a class="headerlink" href="#pandas-data-types" title="Permanent link">&para;</a></h1>
-<h2 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h2>
-<p>If pandas does not recognize the type of the column, or there are multiple types in the column, it uses the <code>object</code> type. However this may sound like a wonderful solution, it causes many problems, so be sure to avoid object type columns at all costs. Typically, the problem arises when we try to apply a vector operation to the column:</p>
-<ul>
-<li>we round a column with mix of floats and ints: fail (<code>loop of ufunc does not support argument 0 of type float which has no callable rint method</code>)</li>
-<li>we need to apply string functions, but the column contains numbers as well</li>
-</ul>
-<p>The solution is usually:</p>
-<ol>
-<li>fill the missing values with the <code>fillna</code> function</li>
-<li>convert the column to <code>str</code> type using the <code>astype</code> function</li>
-<li>apply string functions to clear the data</li>
-<li>convert the column to the desired type</li>
-</ol>
-<h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
-<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:</p>
-<ul>
-<li><code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.</li>
-<li><code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </li>
-</ul>
-<h2 id="datetime">Datetime<a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h2>
-<p>Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:</p>
-<pre><code class="language-python">df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
-print(df)
-# output:
-# '2021-01-01'
-# '2021-01-01'
-</code></pre>
 <h1 id="io">I/O<a class="headerlink" href="#io" title="Permanent link">&para;</a></h1>
 <h2 id="csv">csv<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
 <p>For reading csv files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function. Important params:</p>
@@ -1239,6 +1263,11 @@ print(df)
 <p>Other important parameters:</p>
 <ul>
 <li><code>indent</code>: the number of spaces to use for indentation</li>
+</ul>
+<h2 id="excel">Excel<a class="headerlink" href="#excel" title="Permanent link">&para;</a></h2>
+<p>For reading excel files, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html"><code>read_excel</code></a> function. Important params:</p>
+<ul>
+<li><code>sheet_name</code>: the name of the sheet to read. If <code>None</code>, the first sheet is read.</li>
 </ul>
 <h2 id="insert-dataframe-into-db">Insert dataframe into db<a class="headerlink" href="#insert-dataframe-into-db" title="Permanent link">&para;</a></h2>
 <p>We can use the <code>to_sql</code> method for that:</p>

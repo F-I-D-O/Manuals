@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -743,6 +746,7 @@
 <h1 id="filesytem">Filesytem<a class="headerlink" href="#filesytem" title="Permanent link">&para;</a></h1>
 <h2 id="standard-folder-structure">Standard folder structure<a class="headerlink" href="#standard-folder-structure" title="Permanent link">&para;</a></h2>
 <p>In Windows, the standard folder structure is completely different for system and user instalation. Details are listed below, but the main difference is that the system instalations are stored in a single root folder for each application (similarly to Android), while the user instalations' files are distributed among multiple folders, depending on the type of the file (similarly to Linux).</p>
+<p>The standard folders can be quick-accessed by aliases written in the form <code>%alias%</code>. These aliases works in Windows Explorer and Command Prompt. To use them in PowerShell, we have to access them as environment variables, e.g. <code>$env:alias</code>.</p>
 <h3 id="user-home-folder">User home folder<a class="headerlink" href="#user-home-folder" title="Permanent link">&para;</a></h3>
 <p>The user home folder is located in <code>C:\Users\&lt;username&gt;</code> by default. It is aliased as <code>%userprofile%</code>. </p>
 <h3 id="system-instalation-folders">System instalation folders<a class="headerlink" href="#system-instalation-folders" title="Permanent link">&para;</a></h3>

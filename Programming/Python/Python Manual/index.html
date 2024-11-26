@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -355,27 +358,87 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#basic-data-types" class="nav-link">Basic Data types</a>
+            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data Types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#numbers" class="nav-link">Numbers</a>
+            <li class="nav-item" data-level="2"><a href="#built-in-data-types" class="nav-link">Built-in data types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#check-whether-a-float-number-is-integer" class="nav-link">Check whether a float number is integer</a>
+            <li class="nav-item" data-level="3"><a href="#numbers" class="nav-link">Numbers</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#check-whether-a-number-is-nan" class="nav-link">Check whether a number is NaN</a>
+            <li class="nav-item" data-level="4"><a href="#check-whether-a-float-number-is-integer" class="nav-link">Check whether a float number is integer</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#string-formatting" class="nav-link">String formatting</a>
+            <li class="nav-item" data-level="4"><a href="#check-whether-a-number-is-nan" class="nav-link">Check whether a number is NaN</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#string-methods" class="nav-link">String methods</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#strings" class="nav-link">Strings</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#string-formatting" class="nav-link">String formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#string-methods" class="nav-link">String methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#enumerations" class="nav-link">Enumerations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#collections-and-generators" class="nav-link">Collections and generators</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#generator" class="nav-link">Generator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#dictionary" class="nav-link">Dictionary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#comprehensions" class="nav-link">Comprehensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="5"><a href="#complex-sorting-using-tuples" class="nav-link">Complex sorting using tuples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#slices" class="nav-link">Slices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#date-and-time" class="nav-link">Date and time</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#datetime-construction" class="nav-link">datetime construction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#accessing-the-parts-of-datetime" class="nav-link">Accessing the parts of datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#intervals" class="nav-link">Intervals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#named-tuples" class="nav-link">Named tuples</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -414,6 +477,10 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#constructor" class="nav-link">Constructor</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#check-if-an-object-contains-a-member" class="nav-link">Check if an object contains a member</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#constructor-overloading" class="nav-link">Constructor overloading</a>
               <ul class="nav flex-column">
               </ul>
@@ -423,59 +490,14 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#built-in-data-structures-and-generators" class="nav-link">Built-in data structures and generators</a>
+            <li class="nav-item" data-level="1"><a href="#importing" class="nav-link">Importing</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#generator" class="nav-link">Generator</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#dictionary" class="nav-link">Dictionary</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#comprehensions" class="nav-link">Comprehensions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#complex-sorting-using-tuples" class="nav-link">Complex sorting using tuples</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#slices" class="nav-link">Slices</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#named-tuples" class="nav-link">Named tuples</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#date-and-time" class="nav-link">Date and time</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#datetime-construction" class="nav-link">datetime construction</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#accessing-the-parts-of-datetime" class="nav-link">Accessing the parts of datetime</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#intervals" class="nav-link">Intervals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
+            <li class="nav-item" data-level="2"><a href="#raising-exceptions" class="nav-link">Raising exceptions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -503,6 +525,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#changing-path-separators" class="nav-link">Changing path separators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#using-as-the-home-directory-in-paths" class="nav-link">Using ~ as the home directory in paths</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -583,8 +609,21 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#calling-external-programs" class="nav-link">Calling external programs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#numpy" class="nav-link">Numpy</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#data-types_1" class="nav-link">Data types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#date-and-time_1" class="nav-link">Date and time</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#initialization" class="nav-link">Initialization</a>
               <ul class="nav flex-column">
               </ul>
@@ -707,21 +746,22 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="basic-data-types">Basic Data types<a class="headerlink" href="#basic-data-types" title="Permanent link">&para;</a></h1>
-<h2 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h2>
+<h1 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h1>
+<h2 id="built-in-data-types">Built-in data types<a class="headerlink" href="#built-in-data-types" title="Permanent link">&para;</a></h2>
+<h3 id="numbers">Numbers<a class="headerlink" href="#numbers" title="Permanent link">&para;</a></h3>
 <p>Python has the following numeric types:</p>
 <ul>
 <li><code>int</code> - integer</li>
 <li><code>float</code> - floating point number</li>
 </ul>
 <p>The <code>int</code> type is unlimited, i.e., it can represent any integer number. The <code>float</code> type is limited by the machine precision, i.e., it can represent only a finite number of real numbers.</p>
-<h3 id="check-whether-a-float-number-is-integer">Check whether a float number is integer<a class="headerlink" href="#check-whether-a-float-number-is-integer" title="Permanent link">&para;</a></h3>
+<h4 id="check-whether-a-float-number-is-integer">Check whether a float number is integer<a class="headerlink" href="#check-whether-a-float-number-is-integer" title="Permanent link">&para;</a></h4>
 <p>To check whether a float number is integer, we can use the <code>is_integer</code> function:</p>
-<h3 id="check-whether-a-number-is-nan">Check whether a number is NaN<a class="headerlink" href="#check-whether-a-number-is-nan" title="Permanent link">&para;</a></h3>
+<h4 id="check-whether-a-number-is-nan">Check whether a number is NaN<a class="headerlink" href="#check-whether-a-number-is-nan" title="Permanent link">&para;</a></h4>
 <p>To check whether a number is NaN, we can use the <code>math.isnan</code> function or the <code>numpyp.isnan</code> function:</p>
-<h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
+<h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
 <p>Strings in Python can be enclosed in single or double quotes (equivalent). The triple quotes can be used for multiline strings.</p>
-<h3 id="string-formatting">String formatting<a class="headerlink" href="#string-formatting" title="Permanent link">&para;</a></h3>
+<h4 id="string-formatting">String formatting<a class="headerlink" href="#string-formatting" title="Permanent link">&para;</a></h4>
 <p>The string formatting can be done in several ways:</p>
 <ul>
 <li>using the <code>f</code> prefix to string literal: <code>f'{&lt;VAR&gt;}'</code></li>
@@ -731,7 +771,7 @@
 <p>The format is specified after the <code>:</code> character (e.g., <code>f'{47:4}'</code> set the width of the number 47 to 4 characters). Most of the format specifiers have default values, so we can omit them (e.g., <code>f'{47:4}'</code> is equivalent to <code>f'{47:4d}'</code>).</p>
 <p>The following are the most common options:</p>
 <p>To use the character <code>{</code> and <code>}</code> in the string, we have to escape them using double braces: <code>{{</code> and <code>}}</code>. </p>
-<h3 id="string-methods">String methods<a class="headerlink" href="#string-methods" title="Permanent link">&para;</a></h3>
+<h4 id="string-methods">String methods<a class="headerlink" href="#string-methods" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>capitalize</code>: capitalize the first letter of the string</li>
 <li><code>lower</code>: convert the string to lowercase</li>
@@ -740,6 +780,131 @@
 <li><code>lstrip</code>: remove leading whitespaces</li>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#str.rstrip"><code>rstrip</code></a>: remove trailing whitespaces</li>
 </ul>
+<h3 id="enumerations">Enumerations<a class="headerlink" href="#enumerations" title="Permanent link">&para;</a></h3>
+<p>For enumerations, we can use the <a href="https://docs.python.org/3/library/enum.html"><code>enum</code></a> module. The basic syntax is:</p>
+<pre><code class="language-Python">from enum import Enum
+
+class MyEnum(Enum):
+    VALUE1 = 1
+    VALUE2 = 2
+</code></pre>
+<h3 id="collections-and-generators">Collections and generators<a class="headerlink" href="#collections-and-generators" title="Permanent link">&para;</a></h3>
+<p>Python has several built-in data structures, most notably <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>. These are less efficient then comparable structures in other languages, but they are very convenient to use.</p>
+<p>Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.</p>
+<h4 id="generator">Generator<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h4>
+<p><a href="https://wiki.python.org/moin/Generators">Python wiki</a></p>
+<p>Generators are mostly used in the iteration, we can iterte them the same way as lists. </p>
+<p>To get the first item of the generator, we can use the <code>next</code> function:</p>
+<pre><code class="language-Python">g = (x for x in range(10))
+first = next(g) # 0
+</code></pre>
+<p>To create a generator function (a function that returns a generator), we can use the <code>yield</code> keyword. The following function returns a generator that yields the numbers 1, 2, and 3:</p>
+<pre><code class="language-Python">def gen():
+    yield 1
+    yield 2
+    yield 3
+</code></pre>
+<p>The <strong>length</strong> of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using <code>len(list(&lt;generator&gt;))</code></p>
+<h4 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h4>
+<p><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Official Manual</a></p>
+<p>Disctionaries are initialized using curly braces (<code>{}</code>) and the <code>:</code> operator:</p>
+<pre><code class="language-Python">d = {
+    'key1': 'value1',
+    'key2': 'value2',
+    ...
+}
+</code></pre>
+<p>Two dictionaries can be merged using the <code>|</code> operator:</p>
+<pre><code class="language-Python">d3 = d1 | d2 
+</code></pre>
+<h4 id="comprehensions">Comprehensions<a class="headerlink" href="#comprehensions" title="Permanent link">&para;</a></h4>
+<p>In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:</p>
+<pre><code class="language-Python">&lt;struct var&gt; = 
+    &lt;op. brace&gt; &lt;member var expr.&gt; for &lt;member var&gt; in &lt;iterable&gt;&lt;cl. brace&gt;
+</code></pre>
+<p>As for literals, we use square braces (<code>[]</code>) for lists, curly braces (<code>{}</code>) for sets, and curly braces with colons for dictionaries. In contrast, we get a generator expression when using round braces (<code>()</code>), not a tuple.</p>
+<p>We can also use the <code>if</code> keyword to filter the elements:</p>
+<pre><code class="language-Python">a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
+</code></pre>
+<h4 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h4>
+<p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
+<p>For sorting, you can use the <code>sorted</code> function. </p>
+<p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
+<h5 id="complex-sorting-using-tuples">Complex sorting using tuples<a class="headerlink" href="#complex-sorting-using-tuples" title="Permanent link">&para;</a></h5>
+<p>If we need to apply some complex sorting, we can use tuples as the key function return value. The tuples have comparison operator defined, the implementation is as follows:</p>
+<ul>
+<li>elements are compared one by one</li>
+<li>on first non-equal element, the comparison result is returned</li>
+</ul>
+<p>This way, we can implement a complex sorting that would normaly require several conditions by storing the condition results in the tuple.</p>
+<h4 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h4>
+<p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
+<pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]
+</code></pre>
+<p>The <code>start</code> and <code>end</code> are inclusive. </p>
+<p>The <code>step</code> is optional and defaults to 1. The start is also optional and defaults to 0. </p>
+<p>Instead of omitting the <code>start</code> and <code>end</code>, we can use the <code>None</code> keyword:</p>
+<pre><code class="language-Python">a = [1, 2, 3, 4, 5]
+a[None:3] # [1, 2, 3]
+</code></pre>
+<p>Sometimes, it is not possible to use the slice syntax:</p>
+<ul>
+<li>when we need to use a variable for the step or,</li>
+<li>when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.</li>
+</ul>
+<p>In such cases, we can use the <code>slice</code> object:</p>
+<pre><code class="language-Python">a[0:10:2] 
+s = slice(0, 10, 2)
+a[s] # equivalent
+</code></pre>
+<p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
+<h3 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.python.org/3/library/datetime.html">Python documentation</a></p>
+<p>The base object for date and time is <a href="https://docs.python.org/3/library/datetime.html#datetime-objects"><code>datetime</code></a></p>
+<h4 id="datetime-construction"><code>datetime</code> construction<a class="headerlink" href="#datetime-construction" title="Permanent link">&para;</a></h4>
+<p>The <code>datetime</code> object can be directly constructed from the parts:</p>
+<pre><code class="language-python">from daterime import datetime
+
+d = datetime(2022, 12, 20, 22, 30, 0) # 2022-12-20 22:30:00
+</code></pre>
+<p>The time part can be ommited.</p>
+<p>We can load the datetime from string using the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior"><code>strptime</code></a> function:</p>
+<pre><code class="language-python">d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
+</code></pre>
+<p>For all possible time formats, check the <a href="https://strftime.org/"><code>strftime</code> cheatsheet</a></p>
+<h4 id="accessing-the-parts-of-datetime">Accessing the parts of <code>datetime</code><a class="headerlink" href="#accessing-the-parts-of-datetime" title="Permanent link">&para;</a></h4>
+<p>The <code>datetime</code> object has the following attributes:</p>
+<ul>
+<li><code>year</code></li>
+<li><code>month</code></li>
+<li><code>day</code></li>
+<li><code>hour</code></li>
+<li><code>minute</code></li>
+<li><code>second</code></li>
+</ul>
+<p>We can also query the day of the week using the <code>weekday()</code> method. The day of the week is represented as an integer, where Monday is 0 and Sunday is 6.</p>
+<h4 id="intervals">Intervals<a class="headerlink" href="#intervals" title="Permanent link">&para;</a></h4>
+<p>There is also a dedicated object for time interval named <a href="https://docs.python.org/3/library/datetime.html#timedelta-objects"><code>timedelta</code></a>. It can be constructed from parts (seconds to days), all parts are optional.</p>
+<p>We can obtain a timedelta by substracting a <code>datetime</code> from another <code>datetime</code>:</p>
+<pre><code class="language-python">d1 = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
+d2 = datetime.strptime('2022-05-20 18:30', '%Y-%m-%d %H:%M')
+interval = d2 - d1 # 30 minutes
+</code></pre>
+<p>We can also add or substract a <code>timedelta</code> object from the <code>datetime</code> object:</p>
+<pre><code class="language-python">d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
+interval = timedelta(hours=1)
+d2 = d + interval # '2022-05-20 19:00'
+</code></pre>
+<h4 id="converting-to-unix-timestamp">Converting to Unix timestamp<a class="headerlink" href="#converting-to-unix-timestamp" title="Permanent link">&para;</a></h4>
+<p>To convert a <code>datetime</code> object to unix timestamp, we can use the <code>timestamp</code> method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that <strong>the timestamp is computed based on the <code>datetime</code> object's timezone, or your local timezone if the <code>datetime</code> object has no timezone information.</strong></p>
+<h3 id="named-tuples">Named tuples<a class="headerlink" href="#named-tuples" title="Permanent link">&para;</a></h3>
+<p>Apart from the standard tuple, Python has a named tuple class that can be created using the <a href="https://docs.python.org/3/library/collections.html#collections.namedtuple"><code>collections.namedtuple</code></a> function. In named tuple, each member has a name and can be accessed using the dot operator:</p>
+<pre><code class="language-Python">from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+print(p.x) # 1
+</code></pre>
 <h2 id="checking-the-type">Checking the type<a class="headerlink" href="#checking-the-type" title="Permanent link">&para;</a></h2>
 <p>To check the exact type:</p>
 <pre><code class="language-python">if type(&lt;VAR&gt;) is &lt;TYPE&gt;:
@@ -822,6 +987,11 @@ message = f&quot;Hello {a:0&gt;4d}&quot; # equivalent
         self.c = 0
         self.d = None
 </code></pre>
+<h2 id="check-if-an-object-contains-a-member">Check if an object contains a member<a class="headerlink" href="#check-if-an-object-contains-a-member" title="Permanent link">&para;</a></h2>
+<p>To check whether an object contains a member, we can use the <code>hasattr</code> function:</p>
+<pre><code class="language-Python">if hasattr(obj, 'member'):
+    ...
+</code></pre>
 <h3 id="constructor-overloading">Constructor overloading<a class="headerlink" href="#constructor-overloading" title="Permanent link">&para;</a></h3>
 <p>Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerfull mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.</p>
 <p>The most clean way is to use a class method as a constructor. Example:</p>
@@ -836,84 +1006,14 @@ message = f&quot;Hello {a:0&gt;4d}&quot; # equivalent
     def from_a(cls, b):
         return cls(0, b)
 </code></pre>
-<h1 id="built-in-data-structures-and-generators">Built-in data structures and generators<a class="headerlink" href="#built-in-data-structures-and-generators" title="Permanent link">&para;</a></h1>
-<p>Python has several built-in data structures, most notably <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>. These are less efficient then comparable structures in other languages, but they are very convenient to use.</p>
-<p>Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.</p>
-<h2 id="generator">Generator<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h2>
-<p><a href="https://wiki.python.org/moin/Generators">Python wiki</a></p>
-<p>Generators are mostly used in the iteration, we can iterte them the same way as lists. </p>
-<p>To get the first item of the generator, we can use the <code>next</code> function:</p>
-<pre><code class="language-Python">g = (x for x in range(10))
-first = next(g) # 0
+<h1 id="importing">Importing<a class="headerlink" href="#importing" title="Permanent link">&para;</a></h1>
+<p>In python, we can import whole modules as:</p>
+<pre><code class="language-Python">import &lt;module&gt;
 </code></pre>
-<p>To create a generator function (a function that returns a generator), we can use the <code>yield</code> keyword. The following function returns a generator that yields the numbers 1, 2, and 3:</p>
-<pre><code class="language-Python">def gen():
-    yield 1
-    yield 2
-    yield 3
+<p>Also, we can import specific functions, classes, or variables from the module:</p>
+<pre><code class="language-Python">from &lt;module&gt; import &lt;name&gt;
 </code></pre>
-<p>The <strong>length</strong> of the generator is not known in advance, to get the length, we have to iterate the generator first, for example using <code>len(list(&lt;generator&gt;))</code></p>
-<h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Official Manual</a></p>
-<p>Disctionaries are initialized using curly braces (<code>{}</code>) and the <code>:</code> operator:</p>
-<pre><code class="language-Python">d = {
-    'key1': 'value1',
-    'key2': 'value2',
-    ...
-}
-</code></pre>
-<p>Two dictionaries can be merged using the <code>|</code> operator:</p>
-<pre><code class="language-Python">d3 = d1 | d2 
-</code></pre>
-<h2 id="comprehensions">Comprehensions<a class="headerlink" href="#comprehensions" title="Permanent link">&para;</a></h2>
-<p>In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:</p>
-<pre><code class="language-Python">&lt;struct var&gt; = 
-    &lt;op. brace&gt; &lt;member var expr.&gt; for &lt;member var&gt; in &lt;iterable&gt;&lt;cl. brace&gt;
-</code></pre>
-<p>As for literals, we use square braces (<code>[]</code>) for lists, curly braces (<code>{}</code>) for sets, and curly braces with colons for dictionaries. In contrast, we get a generator expression when using round braces (<code>()</code>), not a tuple.</p>
-<p>We can also use the <code>if</code> keyword to filter the elements:</p>
-<pre><code class="language-Python">a = [it for it in range(10) if it % 2 == 0] # [0, 2, 4, 6, 8]
-</code></pre>
-<h2 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.python.org/3/howto/sorting.html">Official Manual</a></p>
-<p>For sorting, you can use the <code>sorted</code> function. </p>
-<p>Instead of using comparators, Python has a different concept of <em>key functions</em> for custom sorting. The key function is a function that is applied to each element before sorting. For any expected object, the key function should return a value that can be compared.</p>
-<h2 id="complex-sorting-using-tuples">Complex sorting using tuples<a class="headerlink" href="#complex-sorting-using-tuples" title="Permanent link">&para;</a></h2>
-<p>If we need to apply some complex sorting, we can use tuples as the key function return value. The tuples have comparison operator defined, the implementation is as follows:</p>
-<ul>
-<li>elements are compared one by one</li>
-<li>on first non-equal element, the comparison result is returned</li>
-</ul>
-<p>This way, we can implement a complex sorting that would normaly require several conditions by storing the condition results in the tuple.</p>
-<h2 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">&para;</a></h2>
-<p>Many Python data structures support slicing: selecting a subset of elements. The syntax is:</p>
-<pre><code class="language-Python">&lt;object&gt;[&lt;start&gt;:&lt;end&gt;:&lt;step&gt;]
-</code></pre>
-<p>The <code>start</code> and <code>end</code> are inclusive. </p>
-<p>The <code>step</code> is optional and defaults to 1. The start is also optional and defaults to 0. </p>
-<p>Instead of omitting the <code>start</code> and <code>end</code>, we can use the <code>None</code> keyword:</p>
-<pre><code class="language-Python">a = [1, 2, 3, 4, 5]
-a[None:3] # [1, 2, 3]
-</code></pre>
-<p>Sometimes, it is not possible to use the slice syntax:</p>
-<ul>
-<li>when we need to use a variable for the step or,</li>
-<li>when the object use the slice syntax for something else, e.g., for selecting columns in a Pandas dataframe.</li>
-</ul>
-<p>In such cases, we can use the <code>slice</code> object:</p>
-<pre><code class="language-Python">a[0:10:2] 
-s = slice(0, 10, 2)
-a[s] # equivalent
-</code></pre>
-<p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
-<h2 id="named-tuples">Named tuples<a class="headerlink" href="#named-tuples" title="Permanent link">&para;</a></h2>
-<p>Apart from the standard tuple, Python has a named tuple class that can be created using the <a href="https://docs.python.org/3/library/collections.html#collections.namedtuple"><code>collections.namedtuple</code></a> function. In named tuple, each member has a name and can be accessed using the dot operator:</p>
-<pre><code class="language-Python">from collections import namedtuple
-
-Point = namedtuple('Point', ['x', 'y'])
-p = Point(1, 2)
-print(p.x) # 1
-</code></pre>
+<p>Note that when importing variable, we import the reference to the variable. Therefore, it will become out of sync with the original variable if the original variable is reassigned. Therefore, <strong>importing non-constant variables is not recommended.</strong></p>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.python.org/3/tutorial/errors.html">documentation</a></p>
 <p>Syntax:</p>
@@ -921,46 +1021,21 @@ print(p.x) # 1
     &lt;code that can raise exception&gt;
 except &lt;ERROR TYPE&gt; as &lt;ERROR VAR&gt;:
     &lt;ERROR HANDELING&gt;
+finally:
+    &lt;code that is executed always&gt;
 </code></pre>
-<h1 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h1>
-<p><a href="https://docs.python.org/3/library/datetime.html">Python documentation</a></p>
-<p>The base object for date and time is <a href="https://docs.python.org/3/library/datetime.html#datetime-objects"><code>datetime</code></a></p>
-<h2 id="datetime-construction"><code>datetime</code> construction<a class="headerlink" href="#datetime-construction" title="Permanent link">&para;</a></h2>
-<p>The <code>datetime</code> object can be directly constructed from the parts:</p>
-<pre><code class="language-python">from daterime import datetime
-
-d = datetime(2022, 12, 20, 22, 30, 0) # 2022-12-20 22:30:00
+<p>The <code>except</code> and <code>finally</code> blocks are optional. In other words, we can handle errors without having any default cleanup code, and we can have cleanup code without handling errors.</p>
+<h2 id="raising-exceptions">Raising exceptions<a class="headerlink" href="#raising-exceptions" title="Permanent link">&para;</a></h2>
+<p>To raise an exception, we can use the <code>raise</code> keyword:</p>
+<pre><code class="language-Python">raise ValueError('message')
 </code></pre>
-<p>The time part can be ommited.</p>
-<p>We can load the datetime from string using the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior"><code>strptime</code></a> function:</p>
-<pre><code class="language-python">d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
+<p>Sometimes, we want just to re-raise an exception after some partial exception handling. In such cases, we can use the <code>raise</code> keyword without arguments:</p>
+<pre><code class="language-Python">try:
+    ...
+except:
+    ...
+    raise
 </code></pre>
-<p>For all possible time formats, check the <a href="https://strftime.org/"><code>strftime</code> cheatsheet</a></p>
-<h2 id="accessing-the-parts-of-datetime">Accessing the parts of <code>datetime</code><a class="headerlink" href="#accessing-the-parts-of-datetime" title="Permanent link">&para;</a></h2>
-<p>The <code>datetime</code> object has the following attributes:</p>
-<ul>
-<li><code>year</code></li>
-<li><code>month</code></li>
-<li><code>day</code></li>
-<li><code>hour</code></li>
-<li><code>minute</code></li>
-<li><code>second</code></li>
-</ul>
-<p>We can also query the day of the week using the <code>weekday()</code> method. The day of the week is represented as an integer, where Monday is 0 and Sunday is 6.</p>
-<h2 id="intervals">Intervals<a class="headerlink" href="#intervals" title="Permanent link">&para;</a></h2>
-<p>There is also a dedicated object for time interval named <a href="https://docs.python.org/3/library/datetime.html#timedelta-objects"><code>timedelta</code></a>. It can be constructed from parts (seconds to days), all parts are optional.</p>
-<p>We can obtain a timedelta by substracting a <code>datetime</code> from another <code>datetime</code>:</p>
-<pre><code class="language-python">d1 = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
-d2 = datetime.strptime('2022-05-20 18:30', '%Y-%m-%d %H:%M')
-interval = d2 - d1 # 30 minutes
-</code></pre>
-<p>We can also add or substract a <code>timedelta</code> object from the <code>datetime</code> object:</p>
-<pre><code class="language-python">d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
-interval = timedelta(hours=1)
-d2 = d + interval # '2022-05-20 19:00'
-</code></pre>
-<h2 id="converting-to-unix-timestamp">Converting to Unix timestamp<a class="headerlink" href="#converting-to-unix-timestamp" title="Permanent link">&para;</a></h2>
-<p>To convert a <code>datetime</code> object to unix timestamp, we can use the <code>timestamp</code> method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that <strong>the timestamp is computed based on the <code>datetime</code> object's timezone, or your local timezone if the <code>datetime</code> object has no timezone information.</strong></p>
 <h1 id="filesystem">Filesystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h1>
 <p>There are three ways commonlz used to work with filesystem in Python:</p>
 <ul>
@@ -1030,6 +1105,11 @@ p = Path(*p.parts[:index]) # 'C:\\workspace'
 method:</p>
 <pre><code class="language-Python">p = Path(r&quot;C:\workspace\project\file.txt&quot;)
 p = p.as_posix() # 'C:/workspace/project/file.txt'
+</code></pre>
+<h3 id="using-as-the-home-directory-in-paths">Using <code>~</code> as the home directory in paths<a class="headerlink" href="#using-as-the-home-directory-in-paths" title="Permanent link">&para;</a></h3>
+<p>Normally, the <code>~</code> character is not recognized as the home directory in Python paths. To enable this, we can use the <code>expanduser</code> method:</p>
+<pre><code class="language-Python">p = Path(&quot;~/project/file.txt&quot;)
+p = p.expanduser() # 'C:\\Users\\user\\project\\file.txt'
 </code></pre>
 <h2 id="working-directory">Working directory<a class="headerlink" href="#working-directory" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1180,7 +1260,22 @@ a: List[int] = [1, 2, 3]
 a: int
 for a in ... # ok
 </code></pre>
+<h1 id="calling-external-programs">Calling external programs<a class="headerlink" href="#calling-external-programs" title="Permanent link">&para;</a></h1>
+<p>To call an external program, we use the <a href="https://docs.python.org/3/library/subprocess.html"><code>subprocess</code></a> module. Most of the time, we use the <a href="https://docs.python.org/3/library/subprocess.html#subprocess.run"><code>run</code></a> function:</p>
+<pre><code class="language-Python">import subprocess
+
+subprocess.run(['ls', '-l'])
+</code></pre>
 <h1 id="numpy">Numpy<a class="headerlink" href="#numpy" title="Permanent link">&para;</a></h1>
+<h2 id="data-types_1">Data types<a class="headerlink" href="#data-types_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes">Documentation of basic data types</a></p>
+<h3 id="date-and-time_1">Date and time<a class="headerlink" href="#date-and-time_1" title="Permanent link">&para;</a></h3>
+<p><a href="https://numpy.org/doc/2.1/reference/arrays.datetime.html">Documentation</a></p>
+<p>Numpy use the <code>datetime64</code> data type for date and time. This type has its internal resolution, which can be anyting from nanoseconds to years. The resolution is displayed in the type name, e.g., <code>datetime64[ns]</code> and it is determined</p>
+<ul>
+<li>automatically from the input data if dtype is not specified or specified as <code>datetime64</code> or </li>
+<li>by the <code>dtype</code> parameter if specified as <code>datetime64[&lt;resolution&gt;]</code>.</li>
+</ul>
 <h2 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h2>
 <p>We can create the new array as:</p>
 <ul>
@@ -1284,7 +1379,41 @@ sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith(
 <p>To save a figure, we can use the <code>savefig</code> function. The <strong><code>savefig</code> function has to be called before the <code>show</code> function, otherwise the figure will be empty</strong>.</p>
 <h1 id="docstrings">Docstrings<a class="headerlink" href="#docstrings" title="Permanent link">&para;</a></h1>
 <p>For documenting Python code, we use docstrings, special comments soroudned by three quotation marks: <code>""" docstring """</code></p>
-<p>Unlike in other languages, there are multiple styles for docstring content.</p>
+<p>Unlike in other languages, there are multiple styles for docstring content. The most common are:</p>
+<ul>
+<li><a href="https://epydoc.sourceforge.net/manual-epytext.html">Epytext</a>
+    <code>Python
+    """
+    @param &lt;param name&gt;: &lt;param description&gt;
+    @return: &lt;return description&gt;
+    """</code></li>
+<li><a href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google</a>
+    <code>Python
+    """
+    Args:
+        &lt;param name&gt;: &lt;param description&gt;
+    Returns:
+        &lt;return description&gt;
+    """</code></li>
+<li><a href="https://numpydoc.readthedocs.io/en/latest/format.html">Numpy</a>
+    <code>Python
+    """
+    Parameters
+    ----------
+    &lt;param name&gt; : &lt;param type&gt;
+        &lt;param description&gt;
+    Returns
+    -------
+    &lt;return type&gt;
+        &lt;return description&gt;
+    """</code></li>
+<li><a href="https://docutils.sourceforge.io/docs/user/rst/quickref.html">reStructuredText</a>
+    <code>Python
+    """
+    :param &lt;param name&gt;: &lt;param description&gt;
+    :return: &lt;return description&gt;
+    """</code></li>
+</ul>
 <h1 id="progress-bars">Progress bars<a class="headerlink" href="#progress-bars" title="Permanent link">&para;</a></h1>
 <p>For displaying progress bars, we can use the <code>tqdm</code> library. It is very simple to use:</p>
 <pre><code class="language-Python">from tqdm import tqdm
@@ -1389,7 +1518,7 @@ finally:
 <p>There are various libraries for working with geometry in Python:</p>
 <ul>
 <li><a href="https://scikit-spatial.readthedocs.io/en/stable/index.html"><code>scipy.spatial</code></a>: for basic geometry operations</li>
-<li><code>shapely</code></li>
+<li><a href="https://pypi.org/project/shapely/"><code>shapely</code></a></li>
 <li><code>geopandas</code>: for gis data</li>
 </ul></div>
             </div>

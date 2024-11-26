@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -537,7 +540,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#managing-packages-with-apt-and-dpkg" class="nav-link">Managing packages with apt and dpkg</a>
+            <li class="nav-item" data-level="1"><a href="#managing-packages" class="nav-link">Managing packages</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#installing-non-stable-package-versions" class="nav-link">Installing non-stable package versions</a>
               <ul class="nav flex-column">
@@ -549,6 +552,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#changing-default-package-repositories" class="nav-link">Changing default package repositories</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#possible-issues" class="nav-link">Possible issues</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#the-repository-repo-no-longer-has-a-release-file" class="nav-link">The repository '&lt;repo&gt;' no longer has a Release file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1172,7 +1183,7 @@ SQL)
 <li>create a single change user command and pass all the commands as a single parameter (e.g., with the heredoc syntax)</li>
 <li>move commands to a separate script and execute the script as a different user</li>
 </ol>
-<h1 id="managing-packages-with-apt-and-dpkg">Managing packages with <code>apt</code> and <code>dpkg</code><a class="headerlink" href="#managing-packages-with-apt-and-dpkg" title="Permanent link">&para;</a></h1>
+<h1 id="managing-packages">Managing packages<a class="headerlink" href="#managing-packages" title="Permanent link">&para;</a></h1>
 <p>To <strong>update the list</strong> of possible updates:</p>
 <pre><code class="language-bash">sudo apt update
 </code></pre>
@@ -1227,6 +1238,13 @@ SQL)
 <li>change the mirror with the script: <code>apt-mirror-updater -c &lt;mirror URL&gt;</code></li>
 </ol>
 <p>Note that the <code>apt-mirror-updater</code> script can also measure the bandwidth, however, the result does not seem to be reliable.</p>
+<h2 id="possible-issues">Possible issues<a class="headerlink" href="#possible-issues" title="Permanent link">&para;</a></h2>
+<h3 id="the-repository-repo-no-longer-has-a-release-file"><code>The repository '&lt;repo&gt;' no longer has a Release file</code><a class="headerlink" href="#the-repository-repo-no-longer-has-a-release-file" title="Permanent link">&para;</a></h3>
+<p>This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:</p>
+<ul>
+<li>change the repository to a newer one manually or</li>
+<li>change the url of all repositories to <code>http://old-releases.ubuntu.com/ubuntu/</code> and then upgrade the system to the newer version.</li>
+</ul>
 <h1 id="string-processing">String Processing<a class="headerlink" href="#string-processing" title="Permanent link">&para;</a></h1>
 <h2 id="string-filtering-with-grep">String filtering with <code>grep</code><a class="headerlink" href="#string-filtering-with-grep" title="Permanent link">&para;</a></h2>
 <p>The <code>grep</code> command is used to filter lines containing a pattern. The syntax is:</p>

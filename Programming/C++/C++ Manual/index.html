@@ -319,6 +319,9 @@
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -890,7 +893,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function_1" class="nav-link">Avoiding duplication between const and non-const version of the same function</a>
+            <li class="nav-item" data-level="2"><a href="#constnon-const-overloads-and-inheritance" class="nav-link">Const/non const overloads and inheritance</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -923,7 +926,7 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#simple-line-by-line-io" class="nav-link">Simple line by line IO</a>
+            <li class="nav-item" data-level="2"><a href="#manual-text-io" class="nav-link">Manual text IO</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#input" class="nav-link">Input</a>
               <ul class="nav flex-column">
@@ -1541,7 +1544,7 @@
 <h2 id="arithmetic-types">Arithmetic Types<a class="headerlink" href="#arithmetic-types" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/types">cppreference</a></p>
 <h3 id="integers">Integers<a class="headerlink" href="#integers" title="Permanent link">&para;</a></h3>
-<p>Integer types varies in the sign and size. </p>
+<p>Integer types varies in the sign and size.</p>
 <p>Unfortunatelly, <strong>the minimum sizes guaranteed by the standard are not usable, because the real size is different and it differs even between platforms</strong>. Especially the <code>long</code> type. To use an integer with a specific size, or a specific minimal size, we can use <a href="https://en.cppreference.com/w/cpp/types/integer">type aliases defined in <code>cstdint</code></a></p>
 <h3 id="overflow-and-underflow">Overflow and Underflow<a class="headerlink" href="#overflow-and-underflow" title="Permanent link">&para;</a></h3>
 <p>The overflow (and underflow) is a common problem in most programming languages. The problem in C++ is that:</p>
@@ -2165,7 +2168,7 @@ struct std::hash&lt;std::unordered_set&lt;const Request*&gt;&gt; {
 <li>do not forget to add <code>template&lt;&gt;</code> above the function, this indicates that it is a template specialization.</li>
 </ul>
 <h3 id="maps">Maps<a class="headerlink" href="#maps" title="Permanent link">&para;</a></h3>
-<p>The maps has similar requiremnts for keys as the requirements for set value types (see previous section). The hash map type is called <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a>.</p>
+<p>The maps has similar requiremnts for keys as the requirements for set value types (see previous section). The hash map type is called <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a>. Note that <a href="https://stackoverflow.com/a/74965248/1827955">maps require the stored types to be complete</a>.</p>
 <h4 id="geeting-value-by-key">Geeting value by key<a class="headerlink" href="#geeting-value-by-key" title="Permanent link">&para;</a></h4>
 <p>To access the map element, the array operator (<code>[]</code>) can be used. Note however, that this operator does not check the existence of the key, even if we do not provide a value. Example:</p>
 <pre><code class="language-cpp">std::unordered_map&lt;int,std::string&gt; map;
@@ -2905,9 +2908,9 @@ Type t = T(f()) // no move constructor call, copy elision
 <li>non-const member functions of the object cannot be called</li>
 </ul>
 <p>The const keyword is usually used for local variables, function parameters, etc.</p>
-<p><strong>For members, the const keyword should not be used</strong>, as it sometimes breaks the move operations on the object. For example we cannot move f om a const <code>std::unique_ptr&lt;T&gt;</code> object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const <code>std::unique_ptr&lt;T&gt;</code>  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.</p>
+<p><strong>For members, the const keyword should not be used</strong>, as it sometimes breaks the move operations on the object. For example we cannot move from a const <code>std::unique_ptr&lt;T&gt;</code> object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const <code>std::unique_ptr&lt;T&gt;</code>  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.</p>
 <h2 id="avoiding-duplication-between-const-and-non-const-version-of-the-same-function">Avoiding duplication between const and non-const version of the same function<a class="headerlink" href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function" title="Permanent link">&para;</a></h2>
-<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
+<p>To solve this problem without threatening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
 <ul>
 <li>one that converts <em>this</em> to const, so we can call the const version of the function</li>
 <li>another one that removes const from the return value</li>
@@ -2923,8 +2926,8 @@ Content&amp; get_content(unsigned index){
 }
 
 </code></pre>
-<p>there are no common supercalss or i## Const/non const overloads and inheritance
-Normally, the compiler can safely choose the best match between const and non-const overloads. The problem can happen when each version is in a different place in the class hierarchy. Example:</p>
+<h2 id="constnon-const-overloads-and-inheritance">Const/non const overloads and inheritance<a class="headerlink" href="#constnon-const-overloads-and-inheritance" title="Permanent link">&para;</a></h2>
+<p>Normally, the compiler can safely choose the best match between const and non-const overloads. The problem can happen when each version is in a different place in the class hierarchy. Example:</p>
 <pre><code class="language-cpp">class Base {
 public:
     const int&amp; get() const {
@@ -2952,23 +2955,6 @@ test.get(); // ambiguous function error
     using Base:get;
     using A:get;
 };
-</code></pre>
-<h2 id="avoiding-duplication-between-const-and-non-const-version-of-the-same-function_1">Avoiding duplication between const and non-const version of the same function<a class="headerlink" href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function_1" title="Permanent link">&para;</a></h2>
-<p>To solve this problem without threathening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
-<ul>
-<li>one that converts <em>this</em> to const, so we can call the const version of the function</li>
-<li>another one that removes const from the return value</li>
-</ul>
-<p>Example:</p>
-<pre><code class="language-cpp">const Content&amp; get_content(unsigned index) const {
-    Content content = ... // complicated code to get the right content
-    return content;
-}
-
-Content&amp; get_content(unsigned index){
-    return const_cast&lt;Content&amp;&gt;(std::as_const(this*).get_content());
-}
-
 </code></pre>
 <h1 id="io-and-filesystem">IO and Filesystem<a class="headerlink" href="#io-and-filesystem" title="Permanent link">&para;</a></h1>
 <p>The simple way to print to standard input is:</p>
@@ -3024,18 +3010,45 @@ std::filesystem::copy(&quot;C:/temp/data&quot;, &quot;c:/data/new&quot;, options
 <li><a href="https://en.cppreference.com/w/cpp/filesystem/is_regular_file"><code>std::filesystem::is_regular_file(&lt;path&gt;)</code></a></li>
 <li><a href="https://en.cppreference.com/w/cpp/filesystem/is_empty"><code>std::filesystem::is_empty(&lt;path&gt;)</code></a></li>
 </ul>
-<h2 id="simple-line-by-line-io">Simple line by line IO<a class="headerlink" href="#simple-line-by-line-io" title="Permanent link">&para;</a></h2>
+<h2 id="manual-text-io">Manual text IO<a class="headerlink" href="#manual-text-io" title="Permanent link">&para;</a></h2>
 <h3 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
-<p>For input, we can use <code>std::ifstream</code>:</p>
+<p>For input, we can use <a href="https://en.cppreference.com/w/cpp/io/basic_ifstream"><code>std::ifstream</code></a>:</p>
 <pre><code class="language-cpp">std::ifstream file;
 file.open(&lt;path&gt;);
-std::string line;
+...
+file.close();
+</code></pre>
+<p>The important thing is that we need to check whether the <code>open</code> call was successful. <strong>The <code>open</code> function never throws an exception, even if the file does not exist</strong>, which is a common case. Instead, it only sets the <code>failbit</code> of the stream. Without some check, the failure is hidden as an ifstream  in a fail state behaves as if it was empty.</p>
+<p>For reading <strong>line by line</strong>, we can use the <code>std::getline</code> function:</p>
+<pre><code class="language-cpp">std::string line;
 while (std::getline(file, line)) {
     // do something with the line
 }
-file.close();
 </code></pre>
-<p>The important thing is that we need to check whether the <code>open</code> call was successful. <strong>The <code>open</code> function never throws an exception, even if the file does not exist</strong>, which is a common case. Instead, it only sets the <code>failbit</code> of the stream. Without some check, the failure is hidden as an ifstream  in a fail state behaves as if it was empty. </p>
+<p>However, processing the line is currently not very convenient in C++ because functions from other languages like <code>split</code> are missing.</p>
+<p>For <strong>reading whitespace delimited tokens</strong> we can instead use the <a href="https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt"><code>&gt;&gt;</code> operator</a> on the stream:</p>
+<pre><code class="language-cpp">// file content: &quot;01 Smith&quot;
+
+int id;
+std::string name;
+
+file &gt;&gt; id &gt;&gt; name;
+</code></pre>
+<p>If we need to skip some tokens, its best to introduce a dummy string variable:</p>
+<pre><code class="language-cpp">// file content: &quot;01 2021-01-01 active Smith&quot;
+
+int id;
+std::string dummy;
+std::string name;
+
+file &gt;&gt; id &gt;&gt; dummy &gt;&gt; dummy &gt;&gt; name;
+</code></pre>
+<p>Conveniently, the input streams have a <code>bool</code> operator that states whether the stream is in a state ready for reading. This way, we can easily stop the loop when the file is read, because the <code>&gt;&gt;</code> operator returns the stream itself:</p>
+<pre><code class="language-cpp">// read the whole file
+while (file &gt;&gt; id &gt;&gt; name) {
+    ...
+}
+</code></pre>
 <h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
 <p>For line by line output, we use <code>std::ofstream</code>:</p>
 <pre><code class="language-cpp">std::ofstream file;
