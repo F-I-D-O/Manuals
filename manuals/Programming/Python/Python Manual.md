@@ -766,7 +766,7 @@ subprocess.run(['ls', '-l'])
 ### Date and time
 [Documentation](https://numpy.org/doc/2.1/reference/arrays.datetime.html)
 
-Numpy use the `datetime64` data type for date and time. This type has its internal resoulution, which can be anyting from nanoseconds to years. The resolution is displayed in the type name, e.g., `datetime64[ns]` and it is determined
+Numpy use the `datetime64` data type for date and time. This type has its internal resolution, which can be anyting from nanoseconds to years. The resolution is displayed in the type name, e.g., `datetime64[ns]` and it is determined
 
 - automatically from the input data if dtype is not specified or specified as `datetime64` or 
 - by the `dtype` parameter if specified as `datetime64[<resolution>]`.

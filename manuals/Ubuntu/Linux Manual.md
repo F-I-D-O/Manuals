@@ -489,7 +489,7 @@ To execute commands as a different user, we have several options. Every option p
 3. move commands to a separate script and execute the script as a different user
 
 
-# Managing packages with `apt` and `dpkg`
+# Managing packages
 To **update the list** of possible updates:
 ```bash
 sudo apt update
@@ -566,6 +566,13 @@ To change the repositories to the best mirror, we need to replace the mirror in 
 
 Note that the `apt-mirror-updater` script can also measure the bandwidth, however, the result does not seem to be reliable.
 
+## Possible issues
+
+### `The repository '<repo>' no longer has a Release file`
+This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:
+
+- change the repository to a newer one manually or
+- change the url of all repositories to `http://old-releases.ubuntu.com/ubuntu/` and then upgrade the system to the newer version.
 
 
 # String Processing
@@ -804,7 +811,7 @@ To check the priorities, call `update-alternatives --query java`. The newly inst
 Python has to be executed with `python3` by default, instead of `python`.
 
 
-## GCC 
+## GCC
 GCC is typically installed by default and itts minor versions are updated with the system updates. However, if we need a major version update, we have to install it manually as a new package:
 ```bash
 sudo apt install gcc-<version>

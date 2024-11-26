@@ -1683,10 +1683,10 @@ The `const` keyword makes the object non-mutable. This means that:
 
 The const keyword is usually used for local variables, function parameters, etc.
 
-**For members, the const keyword should not be used**, as it sometimes breaks the move operations on the object. For example we cannot move f om a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
+**For members, the const keyword should not be used**, as it sometimes breaks the move operations on the object. For example we cannot move from a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
 
 ## Avoiding duplication between const and non-const version of the same function
-To solve this problem without threathening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
+To solve this problem without threatening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
 
 - one that converts *this* to const, so we can call the const version of the function
 - another one that removes const from the return value
@@ -1704,7 +1704,7 @@ Content& get_content(unsigned index){
 
 ```
 
- there are no common supercalss or i## Const/non const overloads and inheritance
+## Const/non const overloads and inheritance
 Normally, the compiler can safely choose the best match between const and non-const overloads. The problem can happen when each version is in a different place in the class hierarchy. Example:
 ```cpp
 class Base {
@@ -1736,25 +1736,6 @@ class B : public A {
 	using Base:get;
 	using A:get;
 };
-``` 
-
-## Avoiding duplication between const and non-const version of the same function
-To solve this problem without threathening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
-
-- one that converts *this* to const, so we can call the const version of the function
-- another one that removes const from the return value
-
-Example:
-```cpp
-const Content& get_content(unsigned index) const {
-	Content content = ... // complicated code to get the right content
-	return content;
-}
-
-Content& get_content(unsigned index){
-	return const_cast<Content&>(std::as_const(this*).get_content());
-}
-
 ```
 
 

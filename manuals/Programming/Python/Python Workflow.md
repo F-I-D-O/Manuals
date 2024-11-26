@@ -1,11 +1,11 @@
 # Dev Stack
 I use the following stack:
 
--  the latest Python, 64 bit
--  pip as the package manager
--  Pycharm IDE
--  pytest test suite
--  Visual Studio for deugging native code
+- the latest Python, 64 bit
+- pip as the package manager
+- Pycharm IDE
+- pytest test suite
+- Visual Studio for deugging native code
 
 
 # Python
@@ -18,11 +18,11 @@ Python should be installed from the [official web page](https://www.python.org/)
 	- Include documentation
 	- Check download debug symbols to enable native code debugging
 
-The source code for python can be inspected on [GitHub](https://github.com/python/cpython)	
+The source code for python can be inspected on [GitHub](https://github.com/python/cpython)
 
 
 ## Command line
-We execute python scripts from the command line as: `python <path to the .py file>`. 
+We execute python scripts from the command line as: `python <path to the .py file>`.
 
 Parameters:
 
@@ -123,9 +123,33 @@ If this does not work, it can be solved by adding the path to the package to the
 
 
 
+# Project Structure
+A typical project structure is:
 
+```plaintext
+<project root>/
+├── src/
+│  ├── <package name>
+|      ├── __init__.py
+|      ├── <module files>
+|      ├── resources/
+|      |   ├── <resource files for main module>
+|      ├── <submodule>/
+|          ├── __init__.py
+|          ├── <submodule files>
+|          ├── resources/
+|              ├── <resource files for submodule>
+├── tests/
+│   ├── <test files>
+|   ├── resources/
+|       ├── <resource files for tests>
+├── docs/
+|   ├──<documentation files>
+├── setup.py
+├── README.md
+```
 
-
+Sometimes, we skip the `src` directory and put the package directly into the project root. This is typical for projects with a single package.
 
 # Jupyter
 Jupyter can be used both in Pycharm and in a web browser.

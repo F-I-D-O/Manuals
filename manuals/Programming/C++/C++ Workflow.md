@@ -17,10 +17,10 @@ There are various toolchains available on Windows and Linux, but we limit this g
 
 ## MSYS2 (Windows)
 
--   [download](https://www.msys2.org/)
--   follow the installation guide on the homepage
--   install MinGW64 using: `pacman -S mingw-w64-x86_64-gcc`
-    
+- [download](https://www.msys2.org/)
+- follow the installation guide on the homepage
+- install MinGW64 using: `pacman -S mingw-w64-x86_64-gcc`
+
 
 ## MSVC (Windows)
 
@@ -420,18 +420,21 @@ In Clion, there are two types of surround with templates: `surrond with` and `su
 ### Toolchain configuration
 Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolchain and set:
 
--   Name to whatever you want
--   The environment should point to your toolchain:
-	-   MSVC: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community`
-	-   MSYS: `C:\MSYS2` 
-	-   WSL: From the drop-down list, choose the environment you configured for using with CLion in the previous steps
--   Credentials (WSL) click to the setting button next to the credentials and fill
-	-   host: `localhost`
-	-   port: `2222`
-	-   user and password according to your WSL system credentials
--   Architecture (non WSL): amd64
--   CMake: `C:\Program Files\CMake\bin\cmake.exe`, for WSL, leave it as it is
--   other fields should be filled automatically
+- Name to whatever you want
+- The environment should point to your toolchain:
+	- MSVC: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community`
+	- MSYS: `C:\MSYS2` 
+	- WSL: From the drop-down list, choose the environment you configured for using with CLion in the previous steps
+- Credentials (WSL) click to the setting button next to the credentials and fill
+	- host: `localhost`
+	- port: `2222`
+	- user and password according to your WSL system credentials
+- Architecture (non WSL): amd64
+- CMake: `C:\Program Files\CMake\bin\cmake.exe`, for WSL, leave it as it is
+- other fields should be filled automatically
+
+#### Multiple WSL toolchains
+When using multiple WSL toolchains, we need to manually set the compilers. To do so, fill also the `C Compiler` and `C++ Compiler` fields in the toolchain settings with the path to the compiler executable.
 
 ### Project configuration
 Most project settings resides (hereinafter *Project settings*) in `settings` -> `Build, Execution, Deployment` -> `CMake`. For each build configuration, add a new template and set:

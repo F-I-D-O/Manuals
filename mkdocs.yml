@@ -50,6 +50,7 @@ nav:
   - Linux Manual: Ubuntu/Linux Manual.md
 - Windows:
   - Excel Manual: Windows/Excel Manual.md
+  - PowerPoint: Windows/PowerPoint.md
   - Powershell Manual: Windows/Powershell Manual.md
   - VSCode: Windows/VSCode.md
   - Windows Manual: Windows/Windows Manual.md
@@ -68,8 +69,8 @@ nav:
   - Photopea: Images/Photopea.md
 - Arxiv: Arxiv.md
 - index: index.md
+- Markdown: Markdown.md
 - Network: Network.md
-- PowerPoint: PowerPoint.md
 - Security: Security.md
 - vscode: vscode.md
 - Web Tricks: Web Tricks.md
