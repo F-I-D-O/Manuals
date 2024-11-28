@@ -130,10 +130,6 @@ If we need to apply some complex sorting, we can use tuples as the key function 
 This way, we can implement a complex sorting that would normaly require several conditions by storing the condition results in the tuple.
 
 
-
-
-
-
 #### Slices
 Many Python data structures support slicing: selecting a subset of elements. The syntax is:
 ```Python
@@ -162,6 +158,16 @@ a[s] # equivalent
 ```
 
 Here, the parameters can be ommited as well. We can select everything by using `slice(None)`, which is equivalent to `slice(None, None, None)`.
+
+
+#### Copying collections
+If we copy a complex collection (e.g., a list of dictionaries), we typically want to create a deep copy so that the original collection is not modified. We can use the `copy` module for that:
+```Python
+import copy
+
+a = [{'a': 1}, {'b': 2}]
+b = copy.deepcopy(a)
+```
 
 
 ### Date and time
@@ -392,6 +398,34 @@ from <module> import <name>
 
 Note that when importing variable, we import the reference to the variable. Therefore, it will become out of sync with the original variable if the original variable is reassigned. Therefore, **importing non-constant variables is not recommended.**
 
+The module path can absolute or relative (starting with `.`). Absolute imports are recommended, as they are more robust and less error-prone.
+
+## Resolving absolute module paths
+If the path is absolute, it is resolved as follows:
+
+1. The already imported modules are searched
+2. The built-in modules are searched
+3. The module is searched in the *import path* which is a list of directories stored in the `sys.path` variable. The `sys.path` variable typically contains the following directories:
+    - the directory of the script that is executed (`''` in case of the interactive shell),
+    - the directories in the `PYTHONPATH` environment variable,
+    - the standard library directories (e.g., `/usr/lib/python3.9`), and
+    - the site-packages directory.
+
+
+## Resolving relative module paths
+Relative imports can only be used in packages (directories with `__init__.py` file). The relative path may start with
+
+- `.`: relative to the current module,
+- `..` relative to the parent module.
+
+
+## Imports in tests
+The tests are located outside the main package, so we cannot use the absolute import starting with the package name. One option is to use relative imports. But a better option is to use absolute imports starting from the *project root*. We can do that, because test suites like `pytest` add the *project root* to the `sys.path` variable.
+
+The project root is typically determined automatically by the test suite, e.g. by searching for the `setup.py` file. Therefore, if the `tests` directory is located in the same directory as the `setup.py` file, we can import as follows:
+```Python
+import tests/common
+```
 
 
 # Exceptions
@@ -755,6 +789,21 @@ To call an external program, we use the [`subprocess`](https://docs.python.org/3
 import subprocess
 
 subprocess.run(['ls', '-l'])
+```
+
+
+# Loading resources
+Resources can be loaded using the [`importlib.resources`](https://docs.python.org/3/library/importlib.resources.html) module. This way, we can handle files but also resources stored in an archive.
+
+The basic usage is:
+```Python
+import importlib.resources
+
+file = importlib.resources.files('package').joinpath('file.txt')
+
+# send the file to the function expecting a file-like object
+
+my_function(importlib.resources.as_file(file))
 ```
 
 

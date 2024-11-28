@@ -177,10 +177,16 @@ Best use the [official installation guide](https://github.com/ipython-contrib/ju
 # Debugging
 Pycharm contains a good debuger for python code. However, it cannot step into most standard library functions, as those are native, implemented in C/C++. For that, we need mixed python/native debugging.
 
-# Testing
+# Testing with Pytest
 To run pytest, simply go to the folder and run `pytest`. Arguments:
 
 - `-x`: stop on first failure
+
+## Fixtures
+Fixtures are used to set up the environment for more than one test. If defined in the `conftest.py` file, they are available for all tests in the project. 
+
+Fixtures are defined using the `@pytest.fixture` decorator. The fixture can be used in the test function by passing the fixture name as an argument.
+
 
 # Mixed Python-native debugging
 In theory, there are two ways how to debug python native code:

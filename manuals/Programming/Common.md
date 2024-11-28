@@ -61,6 +61,13 @@ There are many types of exceptions, encapsulating different types of error descr
 
 # Tests
 
+Common terms in testing:
+
+- **Test case**: a single test that checks a single aspect of the code.
+- **Test suite**: a collection of test cases.
+- **Test runner**: a tool that runs the test suite and reports the results.
+- **Test fixture**: a set of initial conditions for a test case. Typically, it is a function that is run before *each* test case and that sets up the environment for the test case.
+
 ## Testing private methods
 An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.
 

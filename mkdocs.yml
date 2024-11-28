@@ -74,6 +74,7 @@ nav:
 - Security: Security.md
 - vscode: vscode.md
 - Web Tricks: Web Tricks.md
+- YAML: YAML.md
 site_name: Manuals
 theme:
   name: mkdocs
