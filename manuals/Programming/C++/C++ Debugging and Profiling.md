@@ -101,10 +101,18 @@ Possible reasons:
 ## Undefined
 Something like `unresolved external symbol...`.
 
+For symbols that should come from your code:
+
 1. check that all used files are listed in `CMakeLists.txt` (`add_executable` command…)
 2. check that all templates are defined in header files
 3. check that all functions are defined correctly (even `unsigned` vs `unsigned int` can make problems...)
-4. check this list: [https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?](https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?)
+
+For symbols that should come from a library:
+
+1. check that all necessary libraries are linked in `CMakeLists.txt`
+1. check that all libraries configured for linking in `CMakeLists.txt` are available on the system
+
+If none of the above works, check this list: [https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?](https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?)
 
 
 ## Multiply Defined

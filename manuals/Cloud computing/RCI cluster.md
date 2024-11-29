@@ -82,16 +82,29 @@ Unlike in Linux installation we controll, we cannot build the C++ lib in the Gur
 1. copy the `src` dir from the RCI Gurobi module located at `mnt/appl/software/Gurobi/<desired version>` to our home
 2. run make located in `src/build`
 3. copy the `libgurobi_c++.a` to the `lib` subfolder of your project
-4. configure the searching for the C++ lib in `FindGUROVI.cmake` file:
-```cmake
-find_library(GUROBI_CXX_LIBRARY
-    NAMES gurobi_c++
-    HINTS ${PROJECT_SOURCE_DIR}
-    PATH_SUFFIXES lib
-    NO_CMAKE_ENVIRONMENT_PATH
-    REQUIRED
-)
-```
+4. configure the searching for the C++ lib in `FindGUROBI.cmake` file:
+
+    ```cmake
+    # Find the Gurobi C library
+    find_library(GUROBI_LIBRARY
+        NAMES gurobi<version>
+        HINTS ${GUROBI_DIR} $ENV{GUROBI_HOME}
+        PATH_SUFFIXES lib
+    )
+
+    # Find the Gurobi C++ library
+    find_library(GUROBI_CXX_LIBRARY
+        NAMES gurobi_c++
+        HINTS ${PROJECT_SOURCE_DIR}
+        PATH_SUFFIXES lib
+        NO_CMAKE_ENVIRONMENT_PATH
+        REQUIRED
+    )
+
+    # Find the Gurobi C++ debug library. We don't need it on RCI, but it may be required in CMakelists.txt. Therefore, we supply the release version as a debug version.
+    set(GUROBI_CXX_DEBUG_LIBRARY ${GUROBI_CXX_LIBRARY})
+
+    ```
 
 5. if the CMake cache is already generated, delete it.
 6. Generate the CMake cache and build the project
