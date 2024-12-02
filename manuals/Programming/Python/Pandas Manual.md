@@ -894,3 +894,6 @@ Finally, we can execute the query using an `sqlalchemy` connection:
 ```Python
 sqlalchemy_connection.execute(insert_statement, list_to_insert)
 ```
+
+## Exporting geodataframe to a file
+The geodataframe can be exported to a file using the [`to_file`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_file.html#geopandas.GeoDataFrame.to_file) method. The format is determined by the file extension. 

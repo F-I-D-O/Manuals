@@ -344,6 +344,7 @@ net start FDResPub
 
 
 ## PC wakes up or cannot enter sleep
+
 ### 1 Find the source
 Using the Event viwer
 
@@ -351,16 +352,18 @@ Using the Event viwer
 2. go to `windows logs` -> `system`
 3. In case of wake up
 	1. inspect the logs when the wake up happened and search for the Information log with the message *"The system has returned from a low power state."*
-	2. There is a wake up source in the end of the log message. If the soure is Unknown go to the next section
+	2. There is a wake up source in the end of the log message. If the soure is Unknown go to the command line section
 4. In case of not entering sleep
 	1. Search for the any *kernel power* event 
-	2. If there is an event stating: *The system is entering connected standby*, it means that the modern fake sleep is present in the system, replacing the real sleep mode. 
+	2. If there is an event stating: *The system is entering connected standby*, it means that the modern fake sleep is present in the system, replacing the real sleep mode.
 
 Using command line (admin):
+
  1. Try `powercfg -lastwake`
  2. If the results are not know, try to call `powercfg -devicequery wake_armed` to get the list of devices that can wake the computer
 
 ### 2 Solve the problem
+
 #### Device waken up by network adapter
 
 1. Open device manager and search for the specific network adapter 
