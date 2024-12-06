@@ -247,6 +247,17 @@ There are two possible scenarios:
 ##  Update pull request
 If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.
 
+
+# Creating a GitHub Release
+To create a release:
+
+1. In the repository, under the `Releases` heading, click `Create a new release`
+1. Click on the `Choose a tag` dropdown
+1. Select an existing tag or create a new one by filling the text field with the tag name and clicking `Create new tag` button
+1. Fill the `Release title` and `Description` fields
+1. Click `Publish release`
+ 
+
 # Repository Migration
 
 https://github.com/piceaTech/node-gitlab-2-github

@@ -925,6 +925,36 @@ def my_func(param_1, param_2):
 
 
 
+# Singletons
+[SO question](https://stackoverflow.com/questions/6760685/what-is-the-best-way-of-implementing-singleton-in-python)
+
+There are several ways how to implement a singleton in Python. The most common are:
+
+- using a module-level variable
+- using the `__new__` method in combination with a base class
+- use a metaclass
+- using a decorator
+
+## Module-level variable
+The most simple way is to use a module-level variable. **Note taht if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!**
+```Python
+class Singleton:
+    def __init__(self):
+        self.initialized = False
+
+    def init(self, init_param):
+        if not self.initialized:
+            self.initialized = True
+            # do the initialization
+
+singleton = Singleton()
+
+# initialization
+singleton.init(init_param)
+```
+
+
+
 
 
 # Jupyter
@@ -1097,6 +1127,11 @@ with sqlalchemy_engine.connect() as conn:
     conn.execute("<sql>")
     conn.commit()
 ```
+
+
+### Getting the affected rowcount
+The result object returned by the `execute` method has the `rowcount` attribute that contains the number of affected rows.
+
 
 ## Executing multiple statements at once
 To execute multiple statements at once, for example when executing a script, it is best to use the `execute` method of the psycopg2 connection object. Moreover, to safely handle errors, it is best to catch the exceptions and manually rollback the transaction in case of an error:

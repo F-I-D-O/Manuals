@@ -109,4 +109,24 @@ Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.use
 
 
 # Licenses
-To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.
+Licensing has two parts:
+
+- add the `LICENSE` file to the root of the project if not already present and
+- add the license to the top of each source file.
+
+The first part is easy, just copy the license text to an empty file named `LICENSE` at the root of the project. To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.
+
+The second part can be automated using the [licenseheaders fork]() of the original [licenseheaders](https://github.com/johann-petrak/licenseheaders) project. A typical usage is:
+```bash
+licenseheaders -t mit -o "Czech Technical University in Prague" -cy -n ShoDi -u "https://github.com/aicenter/ShoDi" -d C:\Workspaces\AIC\shortest-distances\
+```
+where:
+
+- `-t mit` specifies the template to use (MIT license in this case),
+- `-o "Czech Technical University in Prague"` specifies the organization name,
+- `-cy` specifies to replace the years in the existing headers with the current year,
+- `-n ShoDi` specifies the project name,
+- `-u "https://github.com/aicenter/ShoDi"` specifies the project URL,
+- `-d C:\Workspaces\AIC\shortest-distances\` specifies the directory to process.
+
+
