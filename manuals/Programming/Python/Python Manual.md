@@ -714,6 +714,48 @@ Reader parameters:
 - `delimiter` - the delimiter character
 
 
+## JSON
+[Official Manual](https://docs.python.org/3/library/json.html)
+
+TO read a JSON file:
+```Python
+import json
+
+with open('file.json', 'r') as f:
+    data = json.load(f)
+```
+
+To write a JSON file:
+```Python
+import json
+
+data = {'a': 1, 'b': 2}
+
+with open('file.json', 'w') as f:
+    json.dump(data, f)
+```
+
+Important parameters:
+
+- `indent`: the number of spaces used for indentation. This also enables other pretty-printing functionalities, like newlines after each element.
+
+
+### Custom serialization
+The `json` module can serialize only basic types. If we need to serialize custom objects, we have to provide a custom serialization class. We then supply the class to the `cls` parameter of the `dump` function.
+
+The serialization class is usually a subclass of the `JSONEncoder` class. The class has to implement the `default` method, which is called for each object that cannot be serialized by the standard serialization methods. Example:
+```Python
+import json
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, MyCustomClass):
+            return obj.to_json()
+        return super().default(obj)
+```
+
+
+
 ## HDF5
 HDF5 is a binary file format for storing large amounts of data. The `h5py` module provides a Python interface for working with HDF5 files.
 
