@@ -459,11 +459,17 @@ except:
 ```
 
 
+# Assertions
+In Python, assertions are executed by defult. They can be disabled by running python with the `-O` or `-OO` flag.
 
+The syntax is:
+```Python
+assert <condition>, <message>
+```
 
 
 # Filesystem
-There are three ways commonlz used to work with filesystem in Python:
+There are three ways commonly used to work with filesystem in Python:
 
 - manipulate paths as strings
 - [`os.path`](https://docs.python.org/3/library/os.path.html)
