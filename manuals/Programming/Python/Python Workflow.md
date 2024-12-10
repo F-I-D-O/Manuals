@@ -240,17 +240,14 @@ Finally, create a new Python project (either clean, or from existing code) and c
 
 ## Steps
 
-1. add license  
-2. check that setup.py contains all requirements - pipreqs
+1. [licensing](common.md#licenses)
+2. check that setup.py contains all requirements: `pipreqs`
 3. release
 4. update the min version in dependencies
 
-## License 
-
-
 ## Release
 
-1. raise version
-2. run sdist
+1. raise version in `setup.py`
+2. run `sdist`
 	- in Pycharm: `Tools` -> `Run setup.py task` -> `sdist`
 3. upload to pypi: `twine upload dist/*`

@@ -108,7 +108,14 @@ Comparison:
 Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.usePythonToLoadData`. This registry can be accessed by `Help` -> `Find Action...` -> type `Registry` -> find the desired setting.
 
 
-# Licenses
+# Releasing the software
+When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:
+
+- **Versioning**: update the version number in the distribution files (e.g., `setup.py`, `pom.xml`, `package.json`, etc.).
+- **Changelog**: update the changelog file with the new version and the changes.
+- **License**: check if the license is present in all files and if it is up-to-date.
+
+## Licenses
 Licensing has two parts:
 
 - add the `LICENSE` file to the root of the project if not already present and
