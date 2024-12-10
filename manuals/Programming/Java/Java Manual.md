@@ -412,7 +412,7 @@ The following classes are intended for working with date and time in Java:
 - [`LocalTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html): time without date
 - [`LocalDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html): date and time
 
-The `LocalDateTime` als has its timezone/localization aware counterpart:
+The `LocalDateTime` also has its timezone/localization aware counterpart:
 
 - [`ZonedDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html): date and time with timezone
 
