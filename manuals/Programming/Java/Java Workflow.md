@@ -125,18 +125,30 @@ Fix: right click on the project or pom file -> `Maven` -> `Reload project`
 These may be new environment variables, which were not present when Idea was started. Restart Idea to see the new environment variables.
 
 
-# Set Java version for project
-There are two options to set:
+### Idea does not set the correct classpath
+Sometimes, Idea does not set the correct classpath for the project, and in consequence, there are errors reported in the editor, and the project fails to run (but compiles).
+
+Solution: Invalidate the cache and restart Idea. This can be done by clicking `File` -> `Invalidate Caches / Restart...` -> `Invalidate and Restart`.
+
+
+# Java version
+[list of Java versions](https://en.wikipedia.org/wiki/Java_version_history)
+
+There are multiple java versions to set:
 
 - *source* version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to **compile** the source code.
 - *target* version determines the least version of java that can be used to **run** your java application.
+- *compile* version is the actual version used for compiling the code
+- *runtime* version is the actual version used to run the Java program
 
-The target version can be higher than the source version, but not he other way around. most of the time, however, we use the same version for source and for target.
+The target version can be higher than the source version, but not he other way around. Most of the time, however, we use the same version for source and for target. The actual version used for compilation must be equal or higher than the source version. The actual version used for running the program must be equal or higher than the target version.
 
 Usually, these versions needs to be set:
 
-1. in the project compilation tool (maven) to configure the project compilation
-2. in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.
+1. in the project compilation tool (maven) to configure the project maven compilation
+2. in the IDE project properties to:
+	- configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.
+	- configure the runtime environment for the program execution
 
 Sometimes, the Java version used for running Maven has to be also set because it cannot be lower then the Java version used for project compilation using Maven.
 
@@ -233,10 +245,34 @@ Unfortunatelly, it is also necessary to enable preview features in the IDE confi
 	1. add `--enable-preview` to `Settings` -> `Build, Execution, Deployment` -> `Compiler` -> `Java Compiler` -> `Override compiler parameters per-module`
 	2. add `--enable-preview` to run configuration -> `Build and run` vm options
 
-## Gurobi
+
+## Problems
+
+### Runtime version error
+A typical runtime version error is:
+```
+java.lang.UnsupportedClassVersionError: <executed class> has been compiled by a more recent version of the Java Runtime (class file version <higher version>), this version of the Java Runtime only recognizes class file versions up to <lower version>
+```
+
+First, we schould check the reported versions. There are two possible scenarios:
+
+- The `<lower version>` is unexpectedly low. This means that we run the program with a lower version of JDK then the one we compiled it with. 
+	- The solution is to set a different JDK to run the program.
+- The `<higher version>` is unexpectedly high. This means that the class was compiled on some other machine, we have uninstalled the newest JDK, or we have set the wrong JDK in the compilation settings.  
+	- The solution is to clean the project and recompile it. If it does not help, the problem can be in oneof the dependencies.
+	
+#### Check the version of java required at runtime	
+There are various tactics, here listed from the easiest to the most universal:
+
+- check the library documentation
+- check the library `pom.xml` file
+- check the `MANIFEST.MF` file in the library jar
+- check the class file version using [javap](https://docs.oracle.com/en/java/javase/11/tools/javap.html): `javap -v <class file>`
+
+# Gurobi
 Gurobi is a commercial project not contained in any public maven repositories. It is necessary to [install the gurobi maven artifact](http://fido.ninja/manuals/add-gurobi-java-interface-maven) manualy.
 
-### Potential problems
+## Potential problems
 
 - `unsatisfied linker error`: Check if the gurobi version in the error log matches the gurobi version installed.
 

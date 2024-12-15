@@ -171,6 +171,8 @@ Additionally, we need to add a backend of our choice. For example, we can use th
 
 The SLF4J library detects the available backend automatically. 
 
+Note that **for some backends, the newest version may not be supported by the SLF4J library.** In such cases, SLF4J does not detect the backend and reports fallback to the `nop` backend. For the list of supported backend versions, see the [SLF4J manual](https://www.slf4j.org/manual.html#projectDep).
+
 
 
 # Genericity
