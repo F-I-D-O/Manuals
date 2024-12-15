@@ -1,17 +1,28 @@
 # Usefull Comands
-## Check Ubuntu Version
+
+## Versions
+
+### Check Ubuntu Version
 ```bash
 lsb_release -a
 ```
+
+### Check OS Distribution and Version
+```bash
+cat /etc/*-release
+```
+
+### Checking glibc version
+```bash
+ldd --version
+```
+
+
 ## Printing used ports
 ```bash
 sudo lsof -i -P
 ```
 
-## Checking GLIBC version
-```
-ldd --version
-```
 
 ## Exit codes
 Exit code of the last command: `$?`

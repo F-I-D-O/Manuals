@@ -485,33 +485,63 @@ For packages without the CMake support, we have to use lower-level cmake command
 
 
 ### Standard way: `find_package`
-The [`find_package`](https://cmake.org/cmake/help/latest/command/find_package.html) command is the primary way of obtaining correct variables for a library including:
+The [`find_package`](https://cmake.org/cmake/help/latest/command/find_package.html) command is the primary command for dependencies. It tries to find the correct variables for a library. The command sets:
 
+- the `<PackageName>_FOUND` variable to `TRUE` or `1` if the package is found
 - include paths
 - linking paths
 - platform/toolchain specific enviromental variables
 
-There are two types of package (library) info search:
+There are two modes of operation for the command
 
-- *module*, which uses cmake scripts provided by CMake or OS. The modules are typically provided only for the most used libraries (e.g. boost). All modules provided by CMake are listed in the [documentation](https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules).
-- *config* which uses CMake scripts provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager. 
+- *module mode*, which uses the `Find<library name>` cmake scripts, typically provided not by the library developers, but somebody else who wants the libraries to be accessible by CMake. All modules provided by CMake itself are listed in the [documentation](https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules).
+- *config mode* which uses CMake scripts with name `<PackageName>Config.cmake` or `<lowercasePackageName>-config.cmake` provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager.
 
-Unless specified, the module mode is used. To force a speciic mode, we can use the `MODULE`/`CONFIG` parameters.
+To decide the operation mode, the `find_package` command uses the following logic:
+
+- if the `MODULE` parameter is used, the module mode is used
+- if the `CONFIG` or `No_MODULE` parameter is used, the config mode is used
+- if some parameters from the full (advanced) signature of the `find_package` command are used (e.g.: `NAMES`), the config mode is used
+- otherwise, by default, the module mode is used with the fallback to the config mode if the module is not found
 
 
-#### Config packages
-Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. 
+#### Config mode
+Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake.
 
 The configuration files are executed as follows:
 
 1. Package version file: `<package name>-config-version.cmake` or `<package name>ConfigVersion.cmake`. This file handles the version compatibility, i.e., it ensures that the installed version of the package is compatible with the version requested in the `find_package` command.
 1. Package configuration file: `<package name>-config.cmake` or `<package name>Config.cmake`.
 
+The process of searching for these files is very complex. For the full description, see the [documentation](https://cmake.org/cmake/help/latest/command/find_package.html#search-procedure). The most important steps are:
 
-#### Module Packages
+1. Search the directory specified by the `CMAKE_FIND_PACKAGE_REDIRECT_DIR` variable. Typically, this variable is set to `<build dir>/CMakeFiles/pkgRedirects`.
+2. Search specified subdirectories of a `<prefix path>`. Multiple `<prefix path>` variables are considered in the following order:
+    1. Package-specific prefix paths, in the following order:
+        1. `<PackageName>_ROOT` CMake variable
+        2. `<PACKAGENAME>_ROOT}` CMake variable
+        3. `<PackageName>_ROOT` environment variable
+        4. `<PACKAGENAME>_ROOT}` environment variable
+    1. Prefix paths specified in CMake cache variables, in the following order:
+        1. `CMAKE_PREFIX_PATH` CMake variable
+        2. `CMAKE_FRAMEWORK_PATH` CMake variable
+        3. `CMAKE_APPBUNDLE_PATH` CMake variable
+    1. Prefix paths specified in CMake environment variables, in the following order:
+        1. `<PackageName>_DIR` CMake variable
+        1. `CMAKE_PREFIX_PATH` environment variable
+        1. `CMAKE_FRAMEWORK_PATH` environment variable
+        1. `CMAKE_APPBUNDLE_PATH` environment variable
+    1. And much more...
+
+
+
+#### Module mode
 Module packages are packages that are not cmake projects themselves, but are hooked into cmake using custom find module scrips. These scripts are automatically executed by `find_package`.
 
-They are located in e.g.: `CMake/share/cmake-3.22/Modules/Find<package name>.cmake`. 
+The find module script is named `Find<package name>.cmake`. The `find_package` command searches for these scripts in:
+
+1. the `CMAKE_MODULE_PATH` directories, and then  
+1. int the CMake installation, e.g.: `CMake/share/cmake-3.22/Modules/Find<package name>.cmake`.
 
 
 ### Searching for include directories with `find_path`
@@ -747,7 +777,26 @@ endforeach()
 ## Linking configuration
 For linking, use the [`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html) command.
 
+The general syntax is:
+```cmake
+target_link_libraries(<target name> <library 1> <library 2> ...)
+```
+
+We can use multiple commands for a single target:
+```cmake
+target_link_libraries(<target name> <library 1>)
+target_link_libraries(<target name> <library 2>)
+```
+
 Make sure that you **always link against all the libraries that are needed for the target to work!** Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advanced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.
+
+The `<library>` can be:
+
+- a **library target name**: The name of the target that is defined using the `add_library` command.
+- a **full path to the library file**
+- a **library name**: The name of the library without any prefix (e.g., `-l`) or suffix (e.g., `.a`, `.so`, `.dll`).
+- a **link flag**: A flag that is passed to the linker. 
+- a **generator expression**: A generator expression that is evaluated during the CMakelists.txt configuration to one of the above options.
 
 
 
@@ -1119,7 +1168,7 @@ Get-Content CMakeCache.txt | Select-String -Pattern "CMAKE_GENERATOR"
 ```
 
 
-# Debugging CMake 
+# Debugging CMake
 
 ## Debugging CMake using CLion CMake debugger
 [documentation](https://www.jetbrains.com/help/clion/cmake-debug.html)
@@ -1139,3 +1188,35 @@ We can get the complete output of the CMake configuration by running the `cmake`
 cmake --trace <dir> *> cmake_trace.txt
 ```
 If we want to also expand the variables, we can use the `--trace-expand` option.
+
+
+# Ctest
+[documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html)
+
+The `ctest` executable run the tests configured with CMake and reports the results. 
+
+It can run in three modes:
+
+- **Run Tests** mode (default): runs the tests and reports the results
+- **Build and Test** mode: builds the tests and then runs them
+    - activated by the `--build-and-test` argument
+- **Dashboard** mode: run CTest as a client of the [CDash](https://www.cdash.org/) dashboard application.
+    - activated by one of the `-D` (`--dahboard`), `-M` (`--test-model`), `-S` (`--script`), or `-SP` (`--script-new-process`) arguments
+
+Important parameters for all modes:
+
+- `-C <config>`: specifies the configuration to use (e.g., `Debug`, `Release`, etc.)
+- `-V`: verbose output
+- `-VV`: very verbose output
+- `-O <file>`: output the results to a file
+
+## Dashboard mode
+There are two main ways to use the dashboard mode:
+
+- configure the dashboard mode using the `-D` argument together with the dahsboard command line arguments
+- configure the dashboard mode using a cmake script and then run the script using the `-S` or `-SP` argument
+
+### Using the Dashboard mode configured by the script
+When run with the `-S` or `-SP` argument, the `ctest` executable runs the script that configures the dashboard mode. The `-SP` mode only differs in that it runs the script in a new process. 
+
+

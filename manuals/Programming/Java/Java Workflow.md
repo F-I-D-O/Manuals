@@ -241,6 +241,22 @@ Gurobi is a commercial project not contained in any public maven repositories. I
 - `unsatisfied linker error`: Check if the gurobi version in the error log matches the gurobi version installed.
 
 
+# Testing with JUnit
+[homepage](https://junit.org/junit5/)
+
+First, we need to add the JUnit dependency to `pom.xml`:
+```xml
+<dependency>
+	<groupId>org.junit.jupiter</groupId>
+	<artifactId>junit-jupiter</artifactId>
+	<version><version></version>
+	<scope>test</scope>
+</dependency>
+```
+
+In test files, we just mark any test method with the `@Test` imorted as `org.junit.jupiter.api.Test`. Assertions are then imported statically from `org.junit.jupiter.api.Assertions`.
+
+
 
 # Make part of the project optional
 Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:

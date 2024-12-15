@@ -385,7 +385,7 @@ Other important class is the [`Files`](https://docs.oracle.com/javase/8/docs/api
 - `exists`
 - `isDirectory`
 - `isRegularFile`
--  methods for iterating over files (see next section)
+- methods for iterating over files (see next section)
 
 
 ## Iterating over files in a directory
@@ -398,9 +398,9 @@ Both methods return a `Stream<Path>` object.
 
 
 ## Creating a directory
-The directory can be created from any `Path` object using the `Files.createDirectory` method. 
+The directory can be created from any `Path` object using the `Files.createDirectory` method.
 
-We can also create a directory from a `File` object using the `mkdir` and `mkdirs` methods. 
+We can also create a directory from a `File` object using the `mkdir` and `mkdirs` methods.
 
 
 # Date and Time
@@ -415,6 +415,16 @@ The following classes are intended for working with date and time in Java:
 The `LocalDateTime` also has its timezone/localization aware counterpart:
 
 - [`ZonedDateTime`](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html): date and time with timezone
+
+## Rounding
+There is no built-in method for rounding the date and time, we need to set the fields manually. For example, to round the time to the nearest hour:
+```Java
+LocalDateTime ldt = LocalDateTime.now();
+if(ldt.getMinute() >= 30){
+    ldt = ldt.plusHours(1);
+}
+ldt = ldt.withMinute(0).withSecond(0).withNano(0);
+```
 
 
 # Lambda expressions

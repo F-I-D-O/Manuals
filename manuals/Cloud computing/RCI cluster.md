@@ -133,3 +133,6 @@ Main params
     - `-i` Input setting, here followed by no param indicating that the input stream is closed
 osed
 
+# Access the RCI cluster using JetBrains Gateway
+When connecting to the RCI cluster, we have to use the `login2` or `login3` nodes. The `login1` node has an outdated version of `glibc` which is not compatible with the JetBrains Gateway.
+

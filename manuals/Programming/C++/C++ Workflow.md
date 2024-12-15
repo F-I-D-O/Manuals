@@ -701,6 +701,16 @@ Other alternative is to implement the refactoring manually, with a help of some 
 As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.
 
 
+# Standard Library
+There are two standard libraries in context of C++:
+
+- [**C++ Standard Library**](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library): contains the standard C++ features described in the C++ standard.
+	- On Linux, it is called `libstdc++` (GNU) or `libc++` (LLVM).
+	- On Windows, there are two libraries: `UCRTBASE.dll` and `VCRUNTIME140.dll`
+- **C Standard Library**: contains the standard C features described in the C standard.
+	- On Linux, it is called [`glibc`](https://en.wikipedia.org/wiki/Glibc). To get the version, run `ldd --version`
+	- on Windows, same as the C++ standard library
+
 # Exporting symbols for shared libraries
 
 When creating a shared library, we have to specify which symbols are exported. These are the only symbols that can be directly used from the client code. This is done using special keywords. Because the keywords are different for different compilers, usually, some macros are used instead. Typically, these macros:

@@ -10,11 +10,18 @@ Python has the following numeric types:
 
 The `int` type is unlimited, i.e., it can represent any integer number. The `float` type is limited by the machine precision, i.e., it can represent only a finite number of real numbers.
 
-#### Check whether a float number is integer
+#### Check if a float number is integer
 To check whether a float number is integer, we can use the `is_integer` function:
 
-#### Check whether a number is NaN
+#### Check if a number is NaN
 To check whether a number is NaN, we can use the `math.isnan` function or the `numpyp.isnan` function:
+
+#### Rounding
+To **round** a number, use the `round` function. 
+
+For **rounding up**, use the `math.ceil` function. 
+
+For **rounding down**, use the `math.floor` function.
 
 
 ### Strings
