@@ -1,7 +1,9 @@
 # Slide design
 Slide design should not be set separately for each slide but globaly for the whole presentation. This can be done by configuring the theme in the slide master view: `View` > `Master Views` > `Slide Master`. 
 
-On the left, we can select a type of the slide to edit, while on the right, we edit the style for that style type. On the left, the top slide, larger than the others is the *master slide*. It represents the default design for the whole theme. 
+On the left, we can select a type of the slide to edit, while on the right, we edit the style for that style type. On the left, the top slide, larger than the others is the *master slide*. It represents the default design for the whole theme.
+
+
 
 
 ## Shareing the theme
@@ -25,6 +27,15 @@ To select which of the elements should be configured for all slides, click on `M
 
 ## Edit the layout slide
 
+# Object design
+Sometimes, it is usefull to copy the design of an object. To do so:
+
+1. select the object
+2. Go to `Home` and click on the `Format Painter` button.
+3. Click on the object to which the design should be copied.
+
+If we want multiple objects to have the same design, we use the same procedure, but double-click on the `Format Painter` button. 
+
 
 # Symbols
 
@@ -45,6 +56,10 @@ This way a new table is created.
 
 
 # Text formatting
+
+## Bullets and numbering
+There is a limitation in PowerPoint that the bullets and numbering have only one level, no indentation is possible. The exception is the *placeholder* text, which can have multiple levels.
+
 ## Subscript and superscript
 First, select the text to adjust, then:
 

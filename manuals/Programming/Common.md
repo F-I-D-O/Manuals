@@ -98,14 +98,23 @@ Comparison:
 | Sorting | *O(n log n)* (sorting) | *O(n log n)* (sorting) + *O(n)* (duplicates check) | *0* or *O(n)* if we need to left the source collection unsorted | *0* or *O(1)* in case of new collection |
 
 
-# IntelliJ Config
+# JetBrains Products 
 
-## Compact tabs
+## Configuration
+
+### Compact tabs
 
 - **Settings** -> **Appearance & Behavior** -> **New UI** and select `Compact mode`
 
-## Advanced Configuration - Registry
+### Advanced Configuration - Registry
 Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.usePythonToLoadData`. This registry can be accessed by `Help` -> `Find Action...` -> type `Registry` -> find the desired setting.
+
+
+## Troubleshooting
+
+
+### Update is paused and does not resume even after closing the IDE
+Probably, the IDE installation directory is blocked by some other process. Try to close the WSL. If it does not help, find out which process is blocking the directory (On Windows: `C:\Users\<User>\AppData\Local\Programs\<IDE name>`)
 
 
 # Releasing the software

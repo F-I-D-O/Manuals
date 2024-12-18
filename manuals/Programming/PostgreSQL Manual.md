@@ -1,3 +1,6 @@
+
+
+
 # Data types
 [official documentation](https://www.postgresql.org/docs/current/datatype.html)
 
@@ -226,7 +229,7 @@ DROP TABLE target_ways;
 RETURN;
 ```
 
-Note that for these constructs, the return type needs to be a `table` or `setof` type. The `RETURN QUERY` cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead. 
+Note that for these constructs, the return type needs to be a `table` or `setof` type. The `RETURN QUERY` cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
 
 
 ## Deciding the language
@@ -283,6 +286,15 @@ $$
 PostgreSQL supports an extended syntax for [window functions](https://www.postgresql.org/docs/current/tutorial-window.html).
 
 We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an [SO answer](https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column).
+
+
+# Return data from `INSERT`, `UPDATE`, and `DELETE` statements
+In PostgreSQL, the `INSERT`, `UPDATE`, and `DELETE` statements can return data with the `RETURNING` clause. The syntax is as follows:
+```SQL
+INSERT INTO <table name> ... RETURNING <column name>
+```
+
+This is especially useful when inserting data into a table with an auto-incrementing column, as we can retrieve the value of the column after the insert.
 
 
 # Various specific tasks
@@ -732,6 +744,7 @@ sudo -u postgres pg_activity -U postgres
 ```
 
 For a detailed monitoring on all platforms, we can use the *[Cumulative Statistics System](https://www.postgresql.org/docs/current/monitoring-stats.html)*. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:
+
 - [`pg_stat_activity`](https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW): contains information about the current activity on the server
 
 ### `pg_stat_activity`
