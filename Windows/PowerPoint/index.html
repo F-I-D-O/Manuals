@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Programming/Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -375,6 +379,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#object-design" class="nav-link">Object design</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#symbols" class="nav-link">Symbols</a>
               <ul class="nav flex-column">
               </ul>
@@ -391,6 +400,10 @@
             
             <li class="nav-item" data-level="1"><a href="#text-formatting" class="nav-link">Text formatting</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#bullets-and-numbering" class="nav-link">Bullets and numbering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
               <ul class="nav flex-column">
               </ul>
@@ -404,7 +417,7 @@
 
 <h1 id="slide-design">Slide design<a class="headerlink" href="#slide-design" title="Permanent link">&para;</a></h1>
 <p>Slide design should not be set separately for each slide but globaly for the whole presentation. This can be done by configuring the theme in the slide master view: <code>View</code> &gt; <code>Master Views</code> &gt; <code>Slide Master</code>. </p>
-<p>On the left, we can select a type of the slide to edit, while on the right, we edit the style for that style type. On the left, the top slide, larger than the others is the <em>master slide</em>. It represents the default design for the whole theme. </p>
+<p>On the left, we can select a type of the slide to edit, while on the right, we edit the style for that style type. On the left, the top slide, larger than the others is the <em>master slide</em>. It represents the default design for the whole theme.</p>
 <h2 id="shareing-the-theme">Shareing the theme<a class="headerlink" href="#shareing-the-theme" title="Permanent link">&para;</a></h2>
 <p>The theme can be exported in the slide master view by clicking: <code>Edit theme</code> &gt; <code>Save current theme</code>. </p>
 <p>The theme can be imported in the slide master view by clicking: <code>Edit theme</code> &gt; <code>Browse for themes</code>. </p>
@@ -420,6 +433,14 @@ Note that the configuration here applies to all slides. Therefore, if we want to
 </ul>
 <p>To select which of the elements should be configured for all slides, click on <code>Master Layout</code> -&gt; <code>Master Layout</code> and select the elements to be configured.</p>
 <h2 id="edit-the-layout-slide">Edit the layout slide<a class="headerlink" href="#edit-the-layout-slide" title="Permanent link">&para;</a></h2>
+<h1 id="object-design">Object design<a class="headerlink" href="#object-design" title="Permanent link">&para;</a></h1>
+<p>Sometimes, it is usefull to copy the design of an object. To do so:</p>
+<ol>
+<li>select the object</li>
+<li>Go to <code>Home</code> and click on the <code>Format Painter</code> button.</li>
+<li>Click on the object to which the design should be copied.</li>
+</ol>
+<p>If we want multiple objects to have the same design, we use the same procedure, but double-click on the <code>Format Painter</code> button. </p>
 <h1 id="symbols">Symbols<a class="headerlink" href="#symbols" title="Permanent link">&para;</a></h1>
 <ul>
 <li>arrow: write <code>==&gt;</code> and press space.</li>
@@ -435,6 +456,8 @@ Note that the configuration here applies to all slides. Therefore, if we want to
 </ol>
 <p>This way a new table is created. </p>
 <h1 id="text-formatting">Text formatting<a class="headerlink" href="#text-formatting" title="Permanent link">&para;</a></h1>
+<h2 id="bullets-and-numbering">Bullets and numbering<a class="headerlink" href="#bullets-and-numbering" title="Permanent link">&para;</a></h2>
+<p>There is a limitation in PowerPoint that the bullets and numbering have only one level, no indentation is possible. The exception is the <em>placeholder</em> text, which can have multiple levels.</p>
 <h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
 <p>First, select the text to adjust, then:</p>
 <ul>
@@ -448,12 +471,14 @@ Note that the configuration here applies to all slides. Therefore, if we want to
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

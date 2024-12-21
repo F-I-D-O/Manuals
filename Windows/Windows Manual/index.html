@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Programming/Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -934,18 +938,20 @@ net start FDResPub
 <li>go to <code>windows logs</code> -&gt; <code>system</code></li>
 <li>In case of wake up<ol>
 <li>inspect the logs when the wake up happened and search for the Information log with the message <em>"The system has returned from a low power state."</em></li>
-<li>There is a wake up source in the end of the log message. If the soure is Unknown go to the next section</li>
+<li>There is a wake up source in the end of the log message. If the soure is Unknown go to the command line section</li>
 </ol>
 </li>
 <li>In case of not entering sleep<ol>
 <li>Search for the any <em>kernel power</em> event </li>
-<li>If there is an event stating: <em>The system is entering connected standby</em>, it means that the modern fake sleep is present in the system, replacing the real sleep mode. </li>
+<li>If there is an event stating: <em>The system is entering connected standby</em>, it means that the modern fake sleep is present in the system, replacing the real sleep mode.</li>
 </ol>
 </li>
 </ol>
-<p>Using command line (admin):
- 1. Try <code>powercfg -lastwake</code>
- 2. If the results are not know, try to call <code>powercfg -devicequery wake_armed</code> to get the list of devices that can wake the computer</p>
+<p>Using command line (admin):</p>
+<ol>
+<li>Try <code>powercfg -lastwake</code></li>
+<li>If the results are not know, try to call <code>powercfg -devicequery wake_armed</code> to get the list of devices that can wake the computer</li>
+</ol>
 <h3 id="2-solve-the-problem">2 Solve the problem<a class="headerlink" href="#2-solve-the-problem" title="Permanent link">&para;</a></h3>
 <h4 id="device-waken-up-by-network-adapter">Device waken up by network adapter<a class="headerlink" href="#device-waken-up-by-network-adapter" title="Permanent link">&para;</a></h4>
 <ol>
@@ -978,12 +984,14 @@ Solution: Go to the app setting and select the correct camera</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

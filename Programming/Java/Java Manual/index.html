@@ -8,17 +8,14 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Java Programming Guide - Manuals</title>
+        <title>Java Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Java Programming Guide</a>
+    <a href="./" class="dropdown-item active">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -487,6 +491,10 @@
             
             <li class="nav-item" data-level="1"><a href="#date-and-time" class="nav-link">Date and Time</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#rounding" class="nav-link">Rounding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -764,6 +772,7 @@ boolean matches = myString.matches(myRegex);
 &lt;/dependency&gt;
 </code></pre>
 <p>The SLF4J library detects the available backend automatically. </p>
+<p>Note that <strong>for some backends, the newest version may not be supported by the SLF4J library.</strong> In such cases, SLF4J does not detect the backend and reports fallback to the <code>nop</code> backend. For the list of supported backend versions, see the <a href="https://www.slf4j.org/manual.html#projectDep">SLF4J manual</a>.</p>
 <h1 id="genericity">Genericity<a class="headerlink" href="#genericity" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">Oracle official tutorial for Java 8</a></p>
 <p>Like many other languages, Java offers generic types with the classical syntax:</p>
@@ -961,8 +970,8 @@ E genEnumInst = Enum.valueOf(enumClass, &quot;RED&quot;);
 </ul>
 <p>Both methods return a <code>Stream&lt;Path&gt;</code> object.</p>
 <h2 id="creating-a-directory">Creating a directory<a class="headerlink" href="#creating-a-directory" title="Permanent link">&para;</a></h2>
-<p>The directory can be created from any <code>Path</code> object using the <code>Files.createDirectory</code> method. </p>
-<p>We can also create a directory from a <code>File</code> object using the <code>mkdir</code> and <code>mkdirs</code> methods. </p>
+<p>The directory can be created from any <code>Path</code> object using the <code>Files.createDirectory</code> method.</p>
+<p>We can also create a directory from a <code>File</code> object using the <code>mkdir</code> and <code>mkdirs</code> methods.</p>
 <h1 id="date-and-time">Date and Time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.baeldung.com/java-8-date-time-intro">Baeldung tutorial</a></p>
 <p>The following classes are intended for working with date and time in Java:</p>
@@ -971,10 +980,18 @@ E genEnumInst = Enum.valueOf(enumClass, &quot;RED&quot;);
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html"><code>LocalTime</code></a>: time without date</li>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html"><code>LocalDateTime</code></a>: date and time</li>
 </ul>
-<p>The <code>LocalDateTime</code> als has its timezone/localization aware counterpart:</p>
+<p>The <code>LocalDateTime</code> also has its timezone/localization aware counterpart:</p>
 <ul>
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html"><code>ZonedDateTime</code></a>: date and time with timezone</li>
 </ul>
+<h2 id="rounding">Rounding<a class="headerlink" href="#rounding" title="Permanent link">&para;</a></h2>
+<p>There is no built-in method for rounding the date and time, we need to set the fields manually. For example, to round the time to the nearest hour:</p>
+<pre><code class="language-Java">LocalDateTime ldt = LocalDateTime.now();
+if(ldt.getMinute() &gt;= 30){
+    ldt = ldt.plusHours(1);
+}
+ldt = ldt.withMinute(0).withSecond(0).withNano(0);
+</code></pre>
 <h1 id="lambda-expressions">Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikipedia.org/wiki/Anonymous_function#Java">wiki</a></p>
 <p>An important thing about lambda expressions in Java is that we can only use them to create types satisfying some functional interface. This means that:</p>
@@ -1289,12 +1306,14 @@ while(iterator.hasNext()){
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

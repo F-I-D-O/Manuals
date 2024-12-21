@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -860,15 +864,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#setting-special-member-functions-to-default" class="nav-link">Setting special member functions to default</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#rules" class="nav-link">Rules</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#rules-for-typical-object-types" class="nav-link">Rules for Typical Object Types</a>
+            <li class="nav-item" data-level="2"><a href="#typical-usage" class="nav-link">Typical usage</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#simple-temporary-object" class="nav-link">Simple Temporary Object</a>
               <ul class="nav flex-column">
@@ -2128,10 +2124,15 @@ std::istringstream ss(&quot;2011-Feb-18 23:12:34&quot;);
 ss &gt;&gt; std::get_time(&amp;tm, &quot;%Y-%b-%d %H:%M:%S&quot;);
 </code></pre>
 <h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<p>In C++, the collections are implemented as templates, so they can store any type. The most common collections are:</p>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/container/array">std::array</a></li>
 <li><a href="https://en.cppreference.com/w/cpp/container/vector">std::vector</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_set">std::unordered_set</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map">std::unordered_map</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/pair">std::pair</a> and <a href="https://en.cppreference.com/w/cpp/utility/tuple">std::tuple</a></li>
 </ul>
+<p>Currently, the collection semantic requirmenets are not imposed on the whole connection, bu on its member functions instead. Depending on the function used, there are different requirements for the stored types. This adds a lot of flexibility, as we can, for example, use move only types in collections when we refrain from using functions that require copying. On the other hand, it can make the debugging harder, as the compiler usually does not recognize the methods that caused the template to have stricter requirements but instead complains on the place where the template is instantiated.</p>
 <h3 id="sets">Sets<a class="headerlink" href="#sets" title="Permanent link">&para;</a></h3>
 <p>Normal set collection for C++ is <a href="https://en.cppreference.com/w/cpp/container/unordered_set"><code>std::unordered_set</code></a>. By default, the set uses a <code>Hash</code>, <code>KeyEqual</code> and <code>Allocator</code> template params provided by std functions. However, they need to exist, specifically:</p>
 <ul>
@@ -2178,19 +2179,58 @@ a = map[1] // a == map[1] == &quot;&quot; unintuitively, the default value is in
 </code></pre>
 <p>Therefore, <strong>if we just read from the map, it is safer to use the <code>at()</code></strong> member function.</p>
 <h4 id="inserting-into-map">Inserting into map<a class="headerlink" href="#inserting-into-map" title="Permanent link">&para;</a></h4>
-<p>There are three options:</p>
+<p>There are five options:</p>
 <ol>
-<li><code>map[key] = value;</code> or</li>
-<li><code>map.insert({key, value});</code></li>
-<li><code>map.emplace(key, value);</code></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map/operator_at"><code>map[key] = value;</code></a> or</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map/emplace"><code>map.insert({key, value})</code></a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map/emplace"><code>map.emplace(key, value);</code></a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map/try_emplace"><code>map.try_emplace(key, value);</code></a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map/insert_or_assign"><code>map.insert_or_assign(key, value);</code></a></li>
 </ol>
-<p>There are some considerations with these options:</p>
-<ul>
-<li>1 inserts the <code>value</code> into the map even if the <code>key</code> already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (<code>true</code> if the insertion happend).</li>
-<li>1 requires the value to be default <em>constructible</em> and <em>assignable</em></li>
-<li>3 avoids the creation of temporary objects, it sends references to <code>key</code> and <code>value</code> directly to the map.  </li>
-<li>3 ignores the insertion if the key already exists.</li>
-</ul>
+<p>The following table summarizes the differences:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>If key exists</th>
+<th>constructs in place</th>
+<th>returns value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>map[key] = value;</code></td>
+<td>overwrites</td>
+<td>no</td>
+<td>a reference to the value</td>
+</tr>
+<tr>
+<td><code>map.insert({key, value});</code></td>
+<td>does not overwrite</td>
+<td>no</td>
+<td>a pair of iterator to value and bool set to true if insertion took place</td>
+</tr>
+<tr>
+<td><code>map.emplace(key, value);</code></td>
+<td>does not overwrite</td>
+<td>yes</td>
+<td>a pair of iterator to value and bool set to true if insertion took place</td>
+</tr>
+<tr>
+<td><code>map.try_emplace(key, value);</code></td>
+<td>does not overwrite</td>
+<td>yes</td>
+<td>same as emplace</td>
+</tr>
+<tr>
+<td><code>map.insert_or_assign(key, value);</code></td>
+<td>overwrites</td>
+<td>yes</td>
+<td>a pair of iterator to value and bool set to true if insertion took place</td>
+</tr>
+</tbody>
+</table>
+<p>There is only a small difference between <code>emplace</code> and <code>try_emplace</code>: the <code>try_emplace</code> does not create a new value if the key already exists, while the <code>emplace</code> can create a new value even if the key already exists (in which case, the value is then discarded).</p>
 <h3 id="tuples">Tuples<a class="headerlink" href="#tuples" title="Permanent link">&para;</a></h3>
 <p>We have two standard class templates for tuples:</p>
 <ul>
@@ -2288,7 +2328,7 @@ if(a){
 <p>The declaration of <code>std::variant</code> is similar to the declaration of <code>std::tuple</code>:</p>
 <pre><code class="language-cpp">std::variant&lt;int, double&gt; v;
 </code></pre>
-<p>The <code>std::variant</code> can store any of the types specified in the template parameters. </p>
+<p>The <code>std::variant</code> can store any of the types specified in the template parameters. The only requirement is that the types are default constructible. Also, incompatible types cannot be stored in <code>std::variant</code>, as we cannot use them as template arguments. However, we can use pointers or references to incompatible types instead.</p>
 <p>The <strong>type</strong> of the stored value can be obtained using:</p>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/utility/variant/holds_alternative"><code>std::holds_alternative</code></a> method that returns a boolean value if the variant stores the type specified in the template parameter or</li>
@@ -2706,24 +2746,58 @@ std::tuple&lt;int, My_class&gt;{2, My_class{3, 2.5}} // correnct version
 </code></pre>
 <h3 id="comparison-table">Comparison Table<a class="headerlink" href="#comparison-table" title="Permanent link">&para;</a></h3>
 <p>Ordered by priority, i.e., each method makes the methods bellow ignored/ovewritten if applied to the same member.</p>
-<p>Type | In-place | works for const members</p>
-<p>--|
---|--
-Constructor body | no | no
-Member initializer list | yes | yes
-Default member initializer | yes, if we use direct initialization | yes</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>In-place</th>
+<th>works for const members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constructor body</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Member initializer list</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Default member initializer</td>
+<td>yes, if we use direct initialization</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 <h1 id="constructors-and-special-member-functions">Constructors and Special Member Functions<a class="headerlink" href="#constructors-and-special-member-functions" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/member_functions#Special_member_functions">cppreference</a></p>
 <p>Special member functions are member functions that are someetimes defined implicitely by the compiler. The special member functions are:</p>
 <ul>
 <li>default (no parameter) constructor</li>
-<li>copy Cconstructor</li>
-<li>copy sssignment</li>
+<li>copy constructor</li>
+<li>copy assignment</li>
 <li>move constructor</li>
 <li>move assignment</li>
 <li>destructor</li>
 </ul>
-<p>Along with the comparison operators, these are the only functions that can be <em>defaulted</em> (see below).</p>
+<p>These functions can be:</p>
+<ul>
+<li>defined implicitely by the compiler</li>
+<li>deleted implicitely by the compiler</li>
+<li><em>defaulted</em>, i.e., defined by the compiler on our request
+    <code>cpp
+    My_class() = default;</code><ul>
+<li>Along with the comparison operators, these are the only functions that can be  (see below).</li>
+</ul>
+</li>
+<li><em>deleted</em>, i.e., disabled by the compiler on our request
+    <code>cpp
+    My_class(const My_class&amp;) = delete;</code></li>
+</ul>
+<p>By default, all special member functions are defined implicitely if the members satisfy the requirements (see below). However, if we define any of the special member functions, the implicit definition is disabled. Therefore, <strong>typically, we define all special member functions or none of them.</strong></p>
 <h2 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h2>
 <h3 id="defualt-variant">Defualt Variant<a class="headerlink" href="#defualt-variant" title="Permanent link">&para;</a></h3>
 <p>The default constructor just create an empty object. The default constructor is not implicitly generated if:</p>
@@ -2869,13 +2943,9 @@ Type t = T(f()) // no move constructor call, copy elision
 </ul>
 <h2 id="destructor">Destructor<a class="headerlink" href="#destructor" title="Permanent link">&para;</a></h2>
 <p>We need destructor only if the object owns some resources that needs to be manually deallocated</p>
-<h2 id="setting-special-member-functions-to-default">Setting special member functions to default<a class="headerlink" href="#setting-special-member-functions-to-default" title="Permanent link">&para;</a></h2>
-<h2 id="rules">Rules<a class="headerlink" href="#rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li>if you want to be sure, delete everything you don’t need</li>
-<li>most likely, either we need no custom constructors, or we need three (move and destructor), or we need all of them.</li>
-</ul>
-<h2 id="rules-for-typical-object-types">Rules for Typical Object Types<a class="headerlink" href="#rules-for-typical-object-types" title="Permanent link">&para;</a></h2>
+<h2 id="typical-usage">Typical usage<a class="headerlink" href="#typical-usage" title="Permanent link">&para;</a></h2>
+<p>It's mostly better to delete everything you don’t need. Most likely, either
+- we need no custom constructors, or we need three (move and destructor), or we need all of them.</p>
 <h3 id="simple-temporary-object">Simple Temporary Object<a class="headerlink" href="#simple-temporary-object" title="Permanent link">&para;</a></h3>
 <ul>
 <li>the object should live only in some local context</li>
@@ -2886,7 +2956,7 @@ Type t = T(f()) // no move constructor call, copy elision
 <li>usually represents some real object</li>
 <li>usually, we need constructors for passing the ownership:<ul>
 <li>move constructor</li>
-<li>move assignment noe sin</li>
+<li>move assignment</li>
 </ul>
 </li>
 </ul>
@@ -3346,28 +3416,30 @@ template&lt;&lt;function template parameters&gt;&gt;
 <p>For simplicity, we include the <code>tpp</code> files at the end of corresponding header files. If we need to speed up the compilation, we can include the <code>tpp</code> files only in the source files that needs the implementations , as described on <a href="https://softwareengineering.stackexchange.com/questions/373916/c-preferred-method-of-dealing-with-implementation-for-large-templates">SE</a></p>
 <p>To speed up the build it <strong>is also desireble to move any non-template code to source files</strong>, even through inheritance, if needed.</p>
 <h2 id="providing-template-arguments">Providing Template Arguments<a class="headerlink" href="#providing-template-arguments" title="Permanent link">&para;</a></h2>
-<p>A template can be instantiated only if all the template arguments are provided. Arguments can be:</p>
+<p>A template can be instantiated only if all the template arguments are provided.</p>
+<p>The <strong>templete arguments need to be complete types</strong>.</p>
+<p>Arguments can be</p>
 <ul>
-<li>provided explicitly: <code>std::vector&lt;int&gt; v;</code> or <code>sum&lt;int&gt;(1,2)</code></li>
-<li>deduced <ul>
+<li>provided explicitly: <code>std::vector&lt;int&gt; v;</code> or <code>sum&lt;int&gt;(1,2)</code>,</li>
+<li>deduced<ul>
 <li>from the initialization (classes): <code>std::vector v = {1,2,3};</code></li>
-<li>from the context (functions): <code>sum(1,2);</code></li>
+<li>from the context (functions): <code>sum(1,2);</code>, or</li>
 </ul>
 </li>
-<li>defaulted: </li>
-</ul>
-<pre><code class="language-cpp">template&lt;class T = int&gt;
-class A {};
-
-template&lt;class T = int&gt;
-int sum&lt;T&gt;(T a, T b = 0) {
+<li>
+<p>defaulted</p>
+<p>```cpp
+template<class T = int>
+class A {};</p>
+<p>template<class T = int>
+int sum<T>(T a, T b = 0) {
     return a + b;
-}
-
-auto s = sum(1, 2);
-
-A a();
-</code></pre>
+}</p>
+<p>auto s = sum(1, 2);</p>
+<p>A a();
+```</p>
+</li>
+</ul>
 <p>If we want the template arguments to be deduced or defaulted, we usually  use the <code>&lt;&gt;</code>:</p>
 <pre><code class="language-cpp">template&lt;class T = int&gt;
 class A {};
@@ -3525,34 +3597,37 @@ class Object&lt;T, C&gt;{}; // not a full specialization, types are not exactly 
 <p>While behaving similarly, there are some important differences between the two types:</p>
 <ul>
 <li><strong>Full specialization is a new type. Therefore, it must be defined in the source file (<code>.cpp</code>), just like any other class or function and it must have a separate declaration.</strong> On the other hand, partial specialization is still just a template, so it must be defined in the header file (<code>.h</code> or <code>.tpp</code>).</li>
-<li><strong>For functions, we cannot provide a partial specialization</strong>. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use <code>if constexpr</code> to select the correct implementation:</li>
-</ul>
-<pre><code class="language-cpp">template&lt;class T, class C&gt;
-class Object{
-public:
-    bool process(T value, C config){
-        if constexpr (std::is_same_v&lt;T, std::string&gt;){
-            return process_string(value, config);
-        } 
-        else {
-            return process_value(value, config);
+<li><strong>For functions, we cannot provide a partial specialization</strong>. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use <code>if constexpr</code> to select the correct implementation:
+    <code>cpp
+    template&lt;class T, class C&gt;
+    class Object{
+    public:
+        bool process(T value, C config){
+            if constexpr (std::is_same_v&lt;T, std::string&gt;){
+                return process_string(value, config);
+            } 
+            else {
+                return process_value(value, config);
+            }
         }
-    }
-};
+    };</code><ul>
+<li>Note that here, the <code>if constexpr</code> requires the corresponding <code>else</code> branch. Otherwise, the code cannot be discarded during the compilation. Example:
+    ```cpp
+    template<class T, class C>
+    class Object{
+    public:
+        bool process(T value, C config){
+            if constexpr (std::is_same_v<T, std::string>){
+                return process_string(value, config);
+            } <pre><code>    return process_value(value, config); // this compiles even if T is std::string
+}
 </code></pre>
-<p>Note that here, the <code>if constexpr</code> requires the corresponding <code>else</code> branch. Otherwise, the code cannot be discarded during the compilation. Example:</p>
-<pre><code class="language-cpp">template&lt;class T, class C&gt;
-class Object{
-public:
-    bool process(T value, C config){
-        if constexpr (std::is_same_v&lt;T, std::string&gt;){
-            return process_string(value, config);
-        } 
-
-        return process_value(value, config); // this compiles even if T is std::string
-    }
-};
-</code></pre>
+<p>};
+```</p>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="templates-and-namespaces">Templates and Namespaces<a class="headerlink" href="#templates-and-namespaces" title="Permanent link">&para;</a></h2>
 <p>If the templated code resides in a namespace, it can be tempting to save few lines of code by sorrounding both <code>.h</code> and <code>.tpp</code> files using one namespace expression:</p>
 <pre><code class="language-cpp">// structs.h hile
@@ -4698,12 +4773,14 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -501,6 +505,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="4"><a href="#set-up-the-new-nova-engine" class="nav-link">Set up the new Nova engine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="4"><a href="#set-up-new-surround-with-template" class="nav-link">Set up new surround with template</a>
               <ul class="nav flex-column">
               </ul>
@@ -655,6 +663,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#standard-library" class="nav-link">Standard Library</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -1155,6 +1168,8 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <h4 id="set-default-layout">Set default layout<a class="headerlink" href="#set-default-layout" title="Permanent link">&para;</a></h4>
 <p><code>Window</code> -&gt; <code>Layouts</code> -&gt; <code>Save changes in current layout</code></p>
+<h4 id="set-up-the-new-nova-engine">Set up the new Nova engine<a class="headerlink" href="#set-up-the-new-nova-engine" title="Permanent link">&para;</a></h4>
+<p>The new Nova engine is a new Clion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to <code>settings</code> -&gt; <code>Advanced Settings</code> and under <code>Clion</code> check the <code>Use the ReSharper C++ language engine (Clion Nova)</code>.</p>
 <h4 id="set-up-new-surround-with-template">Set up new surround with template<a class="headerlink" href="#set-up-new-surround-with-template" title="Permanent link">&para;</a></h4>
 <p>In Clion, there are two types of surround with templates: <code>surrond with</code> and <code>surround with live template</code>. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. </p>
 <h3 id="toolchain-configuration">Toolchain configuration<a class="headerlink" href="#toolchain-configuration" title="Permanent link">&para;</a></h3>
@@ -1420,6 +1435,20 @@ we can find it be examining the compiler executable stored in <code>C:\Program F
 <p>Other alternative is to implement the refactoring manually, with a help of some compiler tools like <a href="https://clang.llvm.org/docs/RefactoringEngine.html">clang Refactoring Engine</a> (<a href="https://github.com/realincubus/clang-refactor">example project</a>). </p>
 <h2 id="changing-method-signature">Changing Method Signature<a class="headerlink" href="#changing-method-signature" title="Permanent link">&para;</a></h2>
 <p>As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.</p>
+<h1 id="standard-library">Standard Library<a class="headerlink" href="#standard-library" title="Permanent link">&para;</a></h1>
+<p>There are two standard libraries in context of C++:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library"><strong>C++ Standard Library</strong></a>: contains the standard C++ features described in the C++ standard.<ul>
+<li>On Linux, it is called <code>libstdc++</code> (GNU) or <code>libc++</code> (LLVM).</li>
+<li>On Windows, there are two libraries: <code>UCRTBASE.dll</code> and <code>VCRUNTIME140.dll</code></li>
+</ul>
+</li>
+<li><strong>C Standard Library</strong>: contains the standard C features described in the C standard.<ul>
+<li>On Linux, it is called <a href="https://en.wikipedia.org/wiki/Glibc"><code>glibc</code></a>. To get the version, run <code>ldd --version</code></li>
+<li>on Windows, same as the C++ standard library</li>
+</ul>
+</li>
+</ul>
 <h1 id="exporting-symbols-for-shared-libraries">Exporting symbols for shared libraries<a class="headerlink" href="#exporting-symbols-for-shared-libraries" title="Permanent link">&para;</a></h1>
 <p>When creating a shared library, we have to specify which symbols are exported. These are the only symbols that can be directly used from the client code. This is done using special keywords. Because the keywords are different for different compilers, usually, some macros are used instead. Typically, these macros:</p>
 <ul>
@@ -1534,12 +1563,14 @@ ml) option enables compilation for a specific hardware.</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

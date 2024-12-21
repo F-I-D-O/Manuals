@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -364,11 +368,15 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#numbers" class="nav-link">Numbers</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#check-whether-a-float-number-is-integer" class="nav-link">Check whether a float number is integer</a>
+            <li class="nav-item" data-level="4"><a href="#check-if-a-float-number-is-integer" class="nav-link">Check if a float number is integer</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#check-whether-a-number-is-nan" class="nav-link">Check whether a number is NaN</a>
+            <li class="nav-item" data-level="4"><a href="#check-if-a-number-is-nan" class="nav-link">Check if a number is NaN</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#rounding" class="nav-link">Rounding</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -413,6 +421,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="4"><a href="#slices" class="nav-link">Slices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#copying-collections" class="nav-link">Copying collections</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -492,6 +504,18 @@
             
             <li class="nav-item" data-level="1"><a href="#importing" class="nav-link">Importing</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#resolving-absolute-module-paths" class="nav-link">Resolving absolute module paths</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#resolving-relative-module-paths" class="nav-link">Resolving relative module paths</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#imports-in-tests" class="nav-link">Imports in tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -501,6 +525,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#assertions" class="nav-link">Assertions</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -583,6 +612,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#json" class="nav-link">JSON</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#custom-serialization" class="nav-link">Custom serialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#hdf5" class="nav-link">HDF5</a>
               <ul class="nav flex-column">
               </ul>
@@ -610,6 +647,11 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#calling-external-programs" class="nav-link">Calling external programs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#loading-resources" class="nav-link">Loading resources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -666,6 +708,15 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#singletons" class="nav-link">Singletons</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#module-level-variable" class="nav-link">Module-level variable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#jupyter" class="nav-link">Jupyter</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#memory" class="nav-link">Memory</a>
@@ -707,6 +758,10 @@
             <li class="nav-item" data-level="2"><a href="#sqlalchemy" class="nav-link">SQLAlchemy</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#executing-statements-without-transaction" class="nav-link">Executing statements without transaction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#getting-the-affected-rowcount" class="nav-link">Getting the affected rowcount</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -755,10 +810,14 @@
 <li><code>float</code> - floating point number</li>
 </ul>
 <p>The <code>int</code> type is unlimited, i.e., it can represent any integer number. The <code>float</code> type is limited by the machine precision, i.e., it can represent only a finite number of real numbers.</p>
-<h4 id="check-whether-a-float-number-is-integer">Check whether a float number is integer<a class="headerlink" href="#check-whether-a-float-number-is-integer" title="Permanent link">&para;</a></h4>
+<h4 id="check-if-a-float-number-is-integer">Check if a float number is integer<a class="headerlink" href="#check-if-a-float-number-is-integer" title="Permanent link">&para;</a></h4>
 <p>To check whether a float number is integer, we can use the <code>is_integer</code> function:</p>
-<h4 id="check-whether-a-number-is-nan">Check whether a number is NaN<a class="headerlink" href="#check-whether-a-number-is-nan" title="Permanent link">&para;</a></h4>
+<h4 id="check-if-a-number-is-nan">Check if a number is NaN<a class="headerlink" href="#check-if-a-number-is-nan" title="Permanent link">&para;</a></h4>
 <p>To check whether a number is NaN, we can use the <code>math.isnan</code> function or the <code>numpyp.isnan</code> function:</p>
+<h4 id="rounding">Rounding<a class="headerlink" href="#rounding" title="Permanent link">&para;</a></h4>
+<p>To <strong>round</strong> a number, use the <code>round</code> function. </p>
+<p>For <strong>rounding up</strong>, use the <code>math.ceil</code> function. </p>
+<p>For <strong>rounding down</strong>, use the <code>math.floor</code> function.</p>
 <h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
 <p>Strings in Python can be enclosed in single or double quotes (equivalent). The triple quotes can be used for multiline strings.</p>
 <h4 id="string-formatting">String formatting<a class="headerlink" href="#string-formatting" title="Permanent link">&para;</a></h4>
@@ -858,6 +917,13 @@ s = slice(0, 10, 2)
 a[s] # equivalent
 </code></pre>
 <p>Here, the parameters can be ommited as well. We can select everything by using <code>slice(None)</code>, which is equivalent to <code>slice(None, None, None)</code>.</p>
+<h4 id="copying-collections">Copying collections<a class="headerlink" href="#copying-collections" title="Permanent link">&para;</a></h4>
+<p>If we copy a complex collection (e.g., a list of dictionaries), we typically want to create a deep copy so that the original collection is not modified. We can use the <code>copy</code> module for that:</p>
+<pre><code class="language-Python">import copy
+
+a = [{'a': 1}, {'b': 2}]
+b = copy.deepcopy(a)
+</code></pre>
 <h3 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h3>
 <p><a href="https://docs.python.org/3/library/datetime.html">Python documentation</a></p>
 <p>The base object for date and time is <a href="https://docs.python.org/3/library/datetime.html#datetime-objects"><code>datetime</code></a></p>
@@ -1014,6 +1080,31 @@ message = f&quot;Hello {a:0&gt;4d}&quot; # equivalent
 <pre><code class="language-Python">from &lt;module&gt; import &lt;name&gt;
 </code></pre>
 <p>Note that when importing variable, we import the reference to the variable. Therefore, it will become out of sync with the original variable if the original variable is reassigned. Therefore, <strong>importing non-constant variables is not recommended.</strong></p>
+<p>The module path can absolute or relative (starting with <code>.</code>). Absolute imports are recommended, as they are more robust and less error-prone.</p>
+<h2 id="resolving-absolute-module-paths">Resolving absolute module paths<a class="headerlink" href="#resolving-absolute-module-paths" title="Permanent link">&para;</a></h2>
+<p>If the path is absolute, it is resolved as follows:</p>
+<ol>
+<li>The already imported modules are searched</li>
+<li>The built-in modules are searched</li>
+<li>The module is searched in the <em>import path</em> which is a list of directories stored in the <code>sys.path</code> variable. The <code>sys.path</code> variable typically contains the following directories:<ul>
+<li>the directory of the script that is executed (<code>''</code> in case of the interactive shell),</li>
+<li>the directories in the <code>PYTHONPATH</code> environment variable,</li>
+<li>the standard library directories (e.g., <code>/usr/lib/python3.9</code>), and</li>
+<li>the site-packages directory.</li>
+</ul>
+</li>
+</ol>
+<h2 id="resolving-relative-module-paths">Resolving relative module paths<a class="headerlink" href="#resolving-relative-module-paths" title="Permanent link">&para;</a></h2>
+<p>Relative imports can only be used in packages (directories with <code>__init__.py</code> file). The relative path may start with</p>
+<ul>
+<li><code>.</code>: relative to the current module,</li>
+<li><code>..</code> relative to the parent module.</li>
+</ul>
+<h2 id="imports-in-tests">Imports in tests<a class="headerlink" href="#imports-in-tests" title="Permanent link">&para;</a></h2>
+<p>The tests are located outside the main package, so we cannot use the absolute import starting with the package name. One option is to use relative imports. But a better option is to use absolute imports starting from the <em>project root</em>. We can do that, because test suites like <code>pytest</code> add the <em>project root</em> to the <code>sys.path</code> variable.</p>
+<p>The project root is typically determined automatically by the test suite, e.g. by searching for the <code>setup.py</code> file. Therefore, if the <code>tests</code> directory is located in the same directory as the <code>setup.py</code> file, we can import as follows:</p>
+<pre><code class="language-Python">import tests/common
+</code></pre>
 <h1 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.python.org/3/tutorial/errors.html">documentation</a></p>
 <p>Syntax:</p>
@@ -1036,8 +1127,13 @@ except:
     ...
     raise
 </code></pre>
+<h1 id="assertions">Assertions<a class="headerlink" href="#assertions" title="Permanent link">&para;</a></h1>
+<p>In Python, assertions are executed by defult. They can be disabled by running python with the <code>-O</code> or <code>-OO</code> flag.</p>
+<p>The syntax is:</p>
+<pre><code class="language-Python">assert &lt;condition&gt;, &lt;message&gt;
+</code></pre>
 <h1 id="filesystem">Filesystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h1>
-<p>There are three ways commonlz used to work with filesystem in Python:</p>
+<p>There are three ways commonly used to work with filesystem in Python:</p>
 <ul>
 <li>manipulate paths as strings</li>
 <li><a href="https://docs.python.org/3/library/os.path.html"><code>os.path</code></a></li>
@@ -1215,6 +1311,37 @@ with open('file.csv', 'r') as f:
 <ul>
 <li><code>delimiter</code> - the delimiter character</li>
 </ul>
+<h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.python.org/3/library/json.html">Official Manual</a></p>
+<p>TO read a JSON file:</p>
+<pre><code class="language-Python">import json
+
+with open('file.json', 'r') as f:
+    data = json.load(f)
+</code></pre>
+<p>To write a JSON file:</p>
+<pre><code class="language-Python">import json
+
+data = {'a': 1, 'b': 2}
+
+with open('file.json', 'w') as f:
+    json.dump(data, f)
+</code></pre>
+<p>Important parameters:</p>
+<ul>
+<li><code>indent</code>: the number of spaces used for indentation. This also enables other pretty-printing functionalities, like newlines after each element.</li>
+</ul>
+<h3 id="custom-serialization">Custom serialization<a class="headerlink" href="#custom-serialization" title="Permanent link">&para;</a></h3>
+<p>The <code>json</code> module can serialize only basic types. If we need to serialize custom objects, we have to provide a custom serialization class. We then supply the class to the <code>cls</code> parameter of the <code>dump</code> function.</p>
+<p>The serialization class is usually a subclass of the <code>JSONEncoder</code> class. The class has to implement the <code>default</code> method, which is called for each object that cannot be serialized by the standard serialization methods. Example:</p>
+<pre><code class="language-Python">import json
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, MyCustomClass):
+            return obj.to_json()
+        return super().default(obj)
+</code></pre>
 <h2 id="hdf5">HDF5<a class="headerlink" href="#hdf5" title="Permanent link">&para;</a></h2>
 <p>HDF5 is a binary file format for storing large amounts of data. The <code>h5py</code> module provides a Python interface for working with HDF5 files.</p>
 <p><a href="https://stackoverflow.com/questions/28170623/how-to-read-hdf5-files-in-python">An example of reading a dataset from an HDF5 file on SO</a></p>
@@ -1265,6 +1392,17 @@ for a in ... # ok
 <pre><code class="language-Python">import subprocess
 
 subprocess.run(['ls', '-l'])
+</code></pre>
+<h1 id="loading-resources">Loading resources<a class="headerlink" href="#loading-resources" title="Permanent link">&para;</a></h1>
+<p>Resources can be loaded using the <a href="https://docs.python.org/3/library/importlib.resources.html"><code>importlib.resources</code></a> module. This way, we can handle files but also resources stored in an archive.</p>
+<p>The basic usage is:</p>
+<pre><code class="language-Python">import importlib.resources
+
+file = importlib.resources.files('package').joinpath('file.txt')
+
+# send the file to the function expecting a file-like object
+
+my_function(importlib.resources.as_file(file))
 </code></pre>
 <h1 id="numpy">Numpy<a class="headerlink" href="#numpy" title="Permanent link">&para;</a></h1>
 <h2 id="data-types_1">Data types<a class="headerlink" href="#data-types_1" title="Permanent link">&para;</a></h2>
@@ -1352,6 +1490,31 @@ def my_func():
 def my_func(param_1, param_2):
     # do something
     return result
+</code></pre>
+<h1 id="singletons">Singletons<a class="headerlink" href="#singletons" title="Permanent link">&para;</a></h1>
+<p><a href="https://stackoverflow.com/questions/6760685/what-is-the-best-way-of-implementing-singleton-in-python">SO question</a></p>
+<p>There are several ways how to implement a singleton in Python. The most common are:</p>
+<ul>
+<li>using a module-level variable</li>
+<li>using the <code>__new__</code> method in combination with a base class</li>
+<li>use a metaclass</li>
+<li>using a decorator</li>
+</ul>
+<h2 id="module-level-variable">Module-level variable<a class="headerlink" href="#module-level-variable" title="Permanent link">&para;</a></h2>
+<p>The most simple way is to use a module-level variable. <strong>Note taht if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!</strong></p>
+<pre><code class="language-Python">class Singleton:
+    def __init__(self):
+        self.initialized = False
+
+    def init(self, init_param):
+        if not self.initialized:
+            self.initialized = True
+            # do the initialization
+
+singleton = Singleton()
+
+# initialization
+singleton.init(init_param)
 </code></pre>
 <h1 id="jupyter">Jupyter<a class="headerlink" href="#jupyter" title="Permanent link">&para;</a></h1>
 <h2 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h2>
@@ -1491,6 +1654,8 @@ engine = create_engine('postgresql://user:password@localhost:5432/dbname')
     conn.execute(&quot;&lt;sql&gt;&quot;)
     conn.commit()
 </code></pre>
+<h3 id="getting-the-affected-rowcount">Getting the affected rowcount<a class="headerlink" href="#getting-the-affected-rowcount" title="Permanent link">&para;</a></h3>
+<p>The result object returned by the <code>execute</code> method has the <code>rowcount</code> attribute that contains the number of affected rows.</p>
 <h2 id="executing-multiple-statements-at-once">Executing multiple statements at once<a class="headerlink" href="#executing-multiple-statements-at-once" title="Permanent link">&para;</a></h2>
 <p>To execute multiple statements at once, for example when executing a script, it is best to use the <code>execute</code> method of the psycopg2 connection object. Moreover, to safely handle errors, it is best to catch the exceptions and manually rollback the transaction in case of an error:</p>
 <pre><code class="language-Python">conn = psycopg2.connect(&lt;connection string&gt;)
@@ -1528,12 +1693,14 @@ finally:
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

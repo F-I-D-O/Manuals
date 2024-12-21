@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -331,7 +335,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Java%20Programming%20Guide/" class="nav-link">
+                                <a rel="prev" href="../Java%20Manual/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -446,12 +450,16 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-set-the-correct-classpath" class="nav-link">Idea does not set the correct classpath</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#set-java-version-for-project" class="nav-link">Set Java version for project</a>
+            <li class="nav-item" data-level="1"><a href="#java-version" class="nav-link">Java version</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#setting-java-version-in-maven" class="nav-link">Setting Java version in Maven</a>
               <ul class="nav flex-column">
@@ -473,14 +481,32 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#gurobi" class="nav-link">Gurobi</a>
+            <li class="nav-item" data-level="2"><a href="#problems" class="nav-link">Problems</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#potential-problems" class="nav-link">Potential problems</a>
+            <li class="nav-item" data-level="3"><a href="#runtime-version-error" class="nav-link">Runtime version error</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#check-the-version-of-java-required-at-runtime" class="nav-link">Check the version of java required at runtime</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#gurobi" class="nav-link">Gurobi</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#potential-problems" class="nav-link">Potential problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#testing-with-junit" class="nav-link">Testing with JUnit</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -610,17 +636,27 @@
 <p>Fix: right click on the project or pom file -&gt; <code>Maven</code> -&gt; <code>Reload project</code></p>
 <h3 id="idea-does-not-see-environment-variables">Idea does not see environment variables<a class="headerlink" href="#idea-does-not-see-environment-variables" title="Permanent link">&para;</a></h3>
 <p>These may be new environment variables, which were not present when Idea was started. Restart Idea to see the new environment variables.</p>
-<h1 id="set-java-version-for-project">Set Java version for project<a class="headerlink" href="#set-java-version-for-project" title="Permanent link">&para;</a></h1>
-<p>There are two options to set:</p>
+<h3 id="idea-does-not-set-the-correct-classpath">Idea does not set the correct classpath<a class="headerlink" href="#idea-does-not-set-the-correct-classpath" title="Permanent link">&para;</a></h3>
+<p>Sometimes, Idea does not set the correct classpath for the project, and in consequence, there are errors reported in the editor, and the project fails to run (but compiles).</p>
+<p>Solution: Invalidate the cache and restart Idea. This can be done by clicking <code>File</code> -&gt; <code>Invalidate Caches / Restart...</code> -&gt; <code>Invalidate and Restart</code>.</p>
+<h1 id="java-version">Java version<a class="headerlink" href="#java-version" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Java_version_history">list of Java versions</a></p>
+<p>There are multiple java versions to set:</p>
 <ul>
 <li><em>source</em> version determines the least version of java that supports all language tools used in the source code. It is the least version that can be used to <strong>compile</strong> the source code.</li>
 <li><em>target</em> version determines the least version of java that can be used to <strong>run</strong> your java application.</li>
+<li><em>compile</em> version is the actual version used for compiling the code</li>
+<li><em>runtime</em> version is the actual version used to run the Java program</li>
 </ul>
-<p>The target version can be higher than the source version, but not he other way around. most of the time, however, we use the same version for source and for target.</p>
+<p>The target version can be higher than the source version, but not he other way around. Most of the time, however, we use the same version for source and for target. The actual version used for compilation must be equal or higher than the source version. The actual version used for running the program must be equal or higher than the target version.</p>
 <p>Usually, these versions needs to be set:</p>
 <ol>
-<li>in the project compilation tool (maven) to configure the project compilation</li>
-<li>in the IDE project properties, to configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.</li>
+<li>in the project compilation tool (maven) to configure the project maven compilation</li>
+<li>in the IDE project properties to:<ul>
+<li>configure the compilation of individual files, which is executed in the background to report the compilation errors at real time.</li>
+<li>configure the runtime environment for the program execution</li>
+</ul>
+</li>
 </ol>
 <p>Sometimes, the Java version used for running Maven has to be also set because it cannot be lower then the Java version used for project compilation using Maven.</p>
 <p><a href="https://stackoverflow.com/questions/38882080/specifying-java-version-in-maven-differences-between-properties-and-compiler-p">SO explanation</a></p>
@@ -697,12 +733,47 @@
 </ol>
 </li>
 </ul>
-<h2 id="gurobi">Gurobi<a class="headerlink" href="#gurobi" title="Permanent link">&para;</a></h2>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<h3 id="runtime-version-error">Runtime version error<a class="headerlink" href="#runtime-version-error" title="Permanent link">&para;</a></h3>
+<p>A typical runtime version error is:</p>
+<pre><code>java.lang.UnsupportedClassVersionError: &lt;executed class&gt; has been compiled by a more recent version of the Java Runtime (class file version &lt;higher version&gt;), this version of the Java Runtime only recognizes class file versions up to &lt;lower version&gt;
+</code></pre>
+<p>First, we schould check the reported versions. There are two possible scenarios:</p>
+<ul>
+<li>The <code>&lt;lower version&gt;</code> is unexpectedly low. This means that we run the program with a lower version of JDK then the one we compiled it with. <ul>
+<li>The solution is to set a different JDK to run the program.</li>
+</ul>
+</li>
+<li>The <code>&lt;higher version&gt;</code> is unexpectedly high. This means that the class was compiled on some other machine, we have uninstalled the newest JDK, or we have set the wrong JDK in the compilation settings.  <ul>
+<li>The solution is to clean the project and recompile it. If it does not help, the problem can be in oneof the dependencies.</li>
+</ul>
+</li>
+</ul>
+<h4 id="check-the-version-of-java-required-at-runtime">Check the version of java required at runtime<a class="headerlink" href="#check-the-version-of-java-required-at-runtime" title="Permanent link">&para;</a></h4>
+<p>There are various tactics, here listed from the easiest to the most universal:</p>
+<ul>
+<li>check the library documentation</li>
+<li>check the library <code>pom.xml</code> file</li>
+<li>check the <code>MANIFEST.MF</code> file in the library jar</li>
+<li>check the class file version using <a href="https://docs.oracle.com/en/java/javase/11/tools/javap.html">javap</a>: <code>javap -v &lt;class file&gt;</code></li>
+</ul>
+<h1 id="gurobi">Gurobi<a class="headerlink" href="#gurobi" title="Permanent link">&para;</a></h1>
 <p>Gurobi is a commercial project not contained in any public maven repositories. It is necessary to <a href="http://fido.ninja/manuals/add-gurobi-java-interface-maven">install the gurobi maven artifact</a> manualy.</p>
-<h3 id="potential-problems">Potential problems<a class="headerlink" href="#potential-problems" title="Permanent link">&para;</a></h3>
+<h2 id="potential-problems">Potential problems<a class="headerlink" href="#potential-problems" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>unsatisfied linker error</code>: Check if the gurobi version in the error log matches the gurobi version installed.</li>
 </ul>
+<h1 id="testing-with-junit">Testing with JUnit<a class="headerlink" href="#testing-with-junit" title="Permanent link">&para;</a></h1>
+<p><a href="https://junit.org/junit5/">homepage</a></p>
+<p>First, we need to add the JUnit dependency to <code>pom.xml</code>:</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+    &lt;version&gt;&lt;version&gt;&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>In test files, we just mark any test method with the <code>@Test</code> imorted as <code>org.junit.jupiter.api.Test</code>. Assertions are then imported statically from <code>org.junit.jupiter.api.Assertions</code>.</p>
 <h1 id="make-part-of-the-project-optional">Make part of the project optional<a class="headerlink" href="#make-part-of-the-project-optional" title="Permanent link">&para;</a></h1>
 <p>Sometimes we want to make a part of the project optional, so that it is not required at runtime or even at compile time. This is useful if that part of the project is:</p>
 <ul>
@@ -780,12 +851,14 @@ else{
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

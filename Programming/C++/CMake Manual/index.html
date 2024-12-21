@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -515,11 +519,11 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#standard-way-find_package" class="nav-link">Standard way: find_package</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#config-packages" class="nav-link">Config packages</a>
+            <li class="nav-item" data-level="4"><a href="#config-mode" class="nav-link">Config mode</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#module-packages" class="nav-link">Module Packages</a>
+            <li class="nav-item" data-level="4"><a href="#module-mode" class="nav-link">Module mode</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -577,6 +581,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#linking-configuration" class="nav-link">Linking configuration</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#checking-the-full-path-to-a-linked-library" class="nav-link">Checking the full path to a linked library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#handling-runtime-dependencies-in-the-output-directory" class="nav-link">Handling runtime dependencies in the output directory</a>
@@ -694,6 +702,27 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#getting-a-a-complete-output-of-the-cmake-configuration" class="nav-link">Getting a a complete output of the CMake configuration</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ctest" class="nav-link">Ctest</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#dashboard-mode" class="nav-link">Dashboard mode</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#using-the-dashboard-mode-configured-by-the-script" class="nav-link">Using the Dashboard mode configured by the script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#problems" class="nav-link">Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#warning-name-library-version-mismatched-error" class="nav-link">Warning! &lt;name&gt; library version mismatched error</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1086,28 +1115,67 @@ endif()
 </ul>
 <p>For packages without the CMake support, we have to use lower-level cmake commands like <code>find_path</code> or <code>find_libraries</code>. For convinience, we can put these command to our own <code>Find&lt;name&gt;</code> script taht can be used by multiple project or even shared. </p>
 <h3 id="standard-way-find_package">Standard way: <code>find_package</code><a class="headerlink" href="#standard-way-find_package" title="Permanent link">&para;</a></h3>
-<p>The <a href="https://cmake.org/cmake/help/latest/command/find_package.html"><code>find_package</code></a> command is the primary way of obtaining correct variables for a library including:</p>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/find_package.html"><code>find_package</code></a> command is the primary command for dependencies. It tries to find the correct variables for a library. The command sets:</p>
 <ul>
+<li>the <code>&lt;PackageName&gt;_FOUND</code> variable to <code>TRUE</code> or <code>1</code> if the package is found</li>
 <li>include paths</li>
 <li>linking paths</li>
 <li>platform/toolchain specific enviromental variables</li>
 </ul>
-<p>There are two types of package (library) info search:</p>
+<p>There are two modes of operation for the command</p>
 <ul>
-<li><em>module</em>, which uses cmake scripts provided by CMake or OS. The modules are typically provided only for the most used libraries (e.g. boost). All modules provided by CMake are listed in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules">documentation</a>.</li>
-<li><em>config</em> which uses CMake scripts provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager. </li>
+<li><em>module mode</em>, which uses the <code>Find&lt;library name&gt;</code> cmake scripts, typically provided not by the library developers, but somebody else who wants the libraries to be accessible by CMake. All modules provided by CMake itself are listed in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules">documentation</a>.</li>
+<li><em>config mode</em> which uses CMake scripts with name <code>&lt;PackageName&gt;Config.cmake</code> or <code>&lt;lowercasePackageName&gt;-config.cmake</code> provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager.</li>
 </ul>
-<p>Unless specified, the module mode is used. To force a speciic mode, we can use the <code>MODULE</code>/<code>CONFIG</code> parameters.</p>
-<h4 id="config-packages">Config packages<a class="headerlink" href="#config-packages" title="Permanent link">&para;</a></h4>
-<p>Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake. </p>
+<p>To decide the operation mode, the <code>find_package</code> command uses the following logic:</p>
+<ul>
+<li>if the <code>MODULE</code> parameter is used, the module mode is used</li>
+<li>if the <code>CONFIG</code> or <code>No_MODULE</code> parameter is used, the config mode is used</li>
+<li>if some parameters from the full (advanced) signature of the <code>find_package</code> command are used (e.g.: <code>NAMES</code>), the config mode is used</li>
+<li>otherwise, by default, the module mode is used with the fallback to the config mode if the module is not found</li>
+</ul>
+<h4 id="config-mode">Config mode<a class="headerlink" href="#config-mode" title="Permanent link">&para;</a></h4>
+<p>Config packages are CMake modules that were created as cmake projects by their developers. They are therefore naturally integrated into Cmake.</p>
 <p>The configuration files are executed as follows:</p>
 <ol>
 <li>Package version file: <code>&lt;package name&gt;-config-version.cmake</code> or <code>&lt;package name&gt;ConfigVersion.cmake</code>. This file handles the version compatibility, i.e., it ensures that the installed version of the package is compatible with the version requested in the <code>find_package</code> command.</li>
 <li>Package configuration file: <code>&lt;package name&gt;-config.cmake</code> or <code>&lt;package name&gt;Config.cmake</code>.</li>
 </ol>
-<h4 id="module-packages">Module Packages<a class="headerlink" href="#module-packages" title="Permanent link">&para;</a></h4>
+<p>The process of searching for these files is very complex. For the full description, see the <a href="https://cmake.org/cmake/help/latest/command/find_package.html#search-procedure">documentation</a>. The most important steps are:</p>
+<ol>
+<li>Search the directory specified by the <code>CMAKE_FIND_PACKAGE_REDIRECT_DIR</code> variable. Typically, this variable is set to <code>&lt;build dir&gt;/CMakeFiles/pkgRedirects</code>.</li>
+<li>Search specified subdirectories of a <code>&lt;prefix path&gt;</code>. Multiple <code>&lt;prefix path&gt;</code> variables are considered in the following order:<ol>
+<li>Package-specific prefix paths, in the following order:<ol>
+<li><code>&lt;PackageName&gt;_ROOT</code> CMake variable</li>
+<li><code>&lt;PACKAGENAME&gt;_ROOT}</code> CMake variable</li>
+<li><code>&lt;PackageName&gt;_ROOT</code> environment variable</li>
+<li><code>&lt;PACKAGENAME&gt;_ROOT}</code> environment variable</li>
+</ol>
+</li>
+<li>Prefix paths specified in CMake cache variables, in the following order:<ol>
+<li><code>CMAKE_PREFIX_PATH</code> CMake variable</li>
+<li><code>CMAKE_FRAMEWORK_PATH</code> CMake variable</li>
+<li><code>CMAKE_APPBUNDLE_PATH</code> CMake variable</li>
+</ol>
+</li>
+<li>Prefix paths specified in CMake environment variables, in the following order:<ol>
+<li><code>&lt;PackageName&gt;_DIR</code> CMake variable</li>
+<li><code>CMAKE_PREFIX_PATH</code> environment variable</li>
+<li><code>CMAKE_FRAMEWORK_PATH</code> environment variable</li>
+<li><code>CMAKE_APPBUNDLE_PATH</code> environment variable</li>
+</ol>
+</li>
+<li>And much more...</li>
+</ol>
+</li>
+</ol>
+<h4 id="module-mode">Module mode<a class="headerlink" href="#module-mode" title="Permanent link">&para;</a></h4>
 <p>Module packages are packages that are not cmake projects themselves, but are hooked into cmake using custom find module scrips. These scripts are automatically executed by <code>find_package</code>.</p>
-<p>They are located in e.g.: <code>CMake/share/cmake-3.22/Modules/Find&lt;package name&gt;.cmake</code>. </p>
+<p>The find module script is named <code>Find&lt;package name&gt;.cmake</code>. The <code>find_package</code> command searches for these scripts in:</p>
+<ol>
+<li>the <code>CMAKE_MODULE_PATH</code> directories, and then  </li>
+<li>int the CMake installation, e.g.: <code>CMake/share/cmake-3.22/Modules/Find&lt;package name&gt;.cmake</code>.</li>
+</ol>
 <h3 id="searching-for-include-directories-with-find_path">Searching for include directories with <code>find_path</code><a class="headerlink" href="#searching-for-include-directories-with-find_path" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/find_path.html"><code>find_path</code></a> command is intended to find the path (e.g., an include directory).
 A simple syntax is:</p>
@@ -1326,7 +1394,27 @@ endforeach()
 </code></pre>
 <h2 id="linking-configuration">Linking configuration<a class="headerlink" href="#linking-configuration" title="Permanent link">&para;</a></h2>
 <p>For linking, use the <a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code></a> command.</p>
+<p>The general syntax is:</p>
+<pre><code class="language-cmake">target_link_libraries(&lt;target name&gt; &lt;library 1&gt; &lt;library 2&gt; ...)
+</code></pre>
+<p>We can use multiple commands for a single target:</p>
+<pre><code class="language-cmake">target_link_libraries(&lt;target name&gt; &lt;library 1&gt;)
+target_link_libraries(&lt;target name&gt; &lt;library 2&gt;)
+</code></pre>
 <p>Make sure that you <strong>always link against all the libraries that are needed for the target to work!</strong> Do not rely on the linker errors, these may not appear due to library preloading, indirect linkage, advanced linker heuristics, etc. The result is that on one machine the code will work, but on another, it will fail. To find out if and how to link against a library, refer to the documentation of the library.</p>
+<p>The <code>&lt;library&gt;</code> can be:</p>
+<ul>
+<li>a <strong>library target name</strong>: The name of the target that is defined using the <code>add_library</code> command.</li>
+<li>a <strong>full path to the library file</strong></li>
+<li>a <strong>library name</strong>: The name of the library without any prefix (e.g., <code>-l</code>) or suffix (e.g., <code>.a</code>, <code>.so</code>, <code>.dll</code>).</li>
+<li>a <strong>link flag</strong>: A flag that is passed to the linker. </li>
+<li>a <strong>generator expression</strong>: A generator expression that is evaluated during the CMakelists.txt configuration to one of the above options.</li>
+</ul>
+<h3 id="checking-the-full-path-to-a-linked-library">Checking the full path to a linked library<a class="headerlink" href="#checking-the-full-path-to-a-linked-library" title="Permanent link">&para;</a></h3>
+<p>Sometimes, it can be usefull to check the full path to a linked library. This can be done using the <code>get_target_property</code> command:</p>
+<pre><code class="language-cmake">get_target_property(LIB_PATH &lt;library name&gt; IMPORTED_LOCATION)
+message(STATUS &quot;LIB_PATH=${LIB_PATH}&quot;)
+</code></pre>
 <h2 id="handling-runtime-dependencies-in-the-output-directory">Handling runtime dependencies in the output directory<a class="headerlink" href="#handling-runtime-dependencies-in-the-output-directory" title="Permanent link">&para;</a></h2>
 <p>When linking dynamically (e.g., by using dynamic toochain, which is default on Windows), the runtime dependencies must be available at runtime, otherwise the program will not run. On Windows, this is usually solved by copying the runtime dependencies to the output directory. There are several ways how to do that.</p>
 <ul>
@@ -1641,7 +1729,59 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <p>We can get the complete output of the CMake configuration by running the <code>cmake</code> command with the <code>--trace</code> option. This can be especially useful when investigating included scripts, as the debuggers usually cannot step into CMake calls. Usually, the output is very long, so it is recommended to redirect it to a file:</p>
 <pre><code class="language-powershell">cmake --trace &lt;dir&gt; *&gt; cmake_trace.txt
 </code></pre>
-<p>If we want to also expand the variables, we can use the <code>--trace-expand</code> option.</p></div>
+<p>If we want to also expand the variables, we can use the <code>--trace-expand</code> option.</p>
+<h1 id="ctest">Ctest<a class="headerlink" href="#ctest" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">documentation</a></p>
+<p>The <code>ctest</code> executable run the tests configured with CMake and reports the results. </p>
+<p>It can run in three modes:</p>
+<ul>
+<li><strong>Run Tests</strong> mode (default): runs the tests and reports the results</li>
+<li><strong>Build and Test</strong> mode: builds the tests and then runs them<ul>
+<li>activated by the <code>--build-and-test</code> argument</li>
+</ul>
+</li>
+<li><strong>Dashboard</strong> mode: run CTest as a client of the <a href="https://www.cdash.org/">CDash</a> dashboard application.<ul>
+<li>activated by one of the <code>-D</code> (<code>--dahboard</code>), <code>-M</code> (<code>--test-model</code>), <code>-S</code> (<code>--script</code>), or <code>-SP</code> (<code>--script-new-process</code>) arguments</li>
+</ul>
+</li>
+</ul>
+<p>Important parameters for all modes:</p>
+<ul>
+<li><code>-C &lt;config&gt;</code>: specifies the configuration to use (e.g., <code>Debug</code>, <code>Release</code>, etc.)</li>
+<li><code>-V</code>: verbose output</li>
+<li><code>-VV</code>: very verbose output</li>
+<li><code>-O &lt;file&gt;</code>: output the results to a file</li>
+</ul>
+<h2 id="dashboard-mode">Dashboard mode<a class="headerlink" href="#dashboard-mode" title="Permanent link">&para;</a></h2>
+<p>There are two main ways to use the dashboard mode:</p>
+<ul>
+<li>configure the dashboard mode using the <code>-D</code> argument together with the dahsboard command line arguments</li>
+<li>configure the dashboard mode using a cmake script and then run the script using the <code>-S</code> or <code>-SP</code> argument</li>
+</ul>
+<h3 id="using-the-dashboard-mode-configured-by-the-script">Using the Dashboard mode configured by the script<a class="headerlink" href="#using-the-dashboard-mode-configured-by-the-script" title="Permanent link">&para;</a></h3>
+<p>When run with the <code>-S</code> or <code>-SP</code> argument, the <code>ctest</code> executable runs the script that configures the dashboard mode. The <code>-SP</code> mode only differs in that it runs the script in a new process. </p>
+<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<h3 id="warning-name-library-version-mismatched-error"><code>Warning! &lt;name&gt; library version mismatched error</code><a class="headerlink" href="#warning-name-library-version-mismatched-error" title="Permanent link">&para;</a></h3>
+<p>This error typically occures when the library <code>&lt;name&gt;</code> used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:</p>
+<ol>
+<li>The library relies on the <code>PATH</code> variable to find the library at runtime, but the path used during the build is specified manually.</li>
+<li>There is another library with the same name earlier in the <code>PATH</code> variable, and the version differs.</li>
+</ol>
+<p>The solution is:</p>
+<ol>
+<li>Identify the path used incorrectly at runtime</li>
+<li>Move the problematic path after the correct path in the <code>PATH</code> variable</li>
+</ol>
+<p>The identification step can be hard here, as the ctest does not report the real path to the library used at runtime, but the path where this library was compiled. In other words, the <code>Installation point</code> under the <code>General Information</code> is incorrect. </p>
+<p>The identification of the real path to the problematic library can be done as follows:</p>
+<ol>
+<li>build the tests manually using CMake</li>
+<li>run a single test in the debugger and break</li>
+<li>open the Process Explorer</li>
+<li><code>View</code> -&gt; <code>Lower Pane View</code> -&gt; <code>DLLs</code></li>
+<li>click on the test process</li>
+<li>In the Lower Pane View, there is a list of all DLLs loaded by the test process. Find the problematic library and check the path to it.</li>
+</ol></div>
             </div>
         </div>
 
@@ -1649,12 +1789,14 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

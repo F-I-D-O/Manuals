@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -448,6 +452,11 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#window-functions" class="nav-link">Window functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#return-data-from-insert-update-and-delete-statements" class="nav-link">Return data from INSERT, UPDATE, and DELETE statements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -887,7 +896,7 @@ SELECT ...;
 DROP TABLE target_ways;
 RETURN;
 </code></pre>
-<p>Note that for these constructs, the return type needs to be a <code>table</code> or <code>setof</code> type. The <code>RETURN QUERY</code> cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead. </p>
+<p>Note that for these constructs, the return type needs to be a <code>table</code> or <code>setof</code> type. The <code>RETURN QUERY</code> cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.</p>
 <h2 id="deciding-the-language">Deciding the language<a class="headerlink" href="#deciding-the-language" title="Permanent link">&para;</a></h2>
 <p>For simple statements, we can use the SQL language. We need the PL/pgSQL if:</p>
 <ul>
@@ -925,6 +934,11 @@ $$
 <h1 id="window-functions">Window functions<a class="headerlink" href="#window-functions" title="Permanent link">&para;</a></h1>
 <p>PostgreSQL supports an extended syntax for <a href="https://www.postgresql.org/docs/current/tutorial-window.html">window functions</a>.</p>
 <p>We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an <a href="https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column">SO answer</a>.</p>
+<h1 id="return-data-from-insert-update-and-delete-statements">Return data from <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements<a class="headerlink" href="#return-data-from-insert-update-and-delete-statements" title="Permanent link">&para;</a></h1>
+<p>In PostgreSQL, the <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements can return data with the <code>RETURNING</code> clause. The syntax is as follows:</p>
+<pre><code class="language-SQL">INSERT INTO &lt;table name&gt; ... RETURNING &lt;column name&gt;
+</code></pre>
+<p>This is especially useful when inserting data into a table with an auto-incrementing column, as we can retrieve the value of the column after the insert.</p>
 <h1 id="various-specific-tasks">Various specific tasks<a class="headerlink" href="#various-specific-tasks" title="Permanent link">&para;</a></h1>
 <h2 id="selecting-rows-for-deletion-based-on-data-from-another-table">Selecting rows for deletion based on data from another table<a class="headerlink" href="#selecting-rows-for-deletion-based-on-data-from-another-table" title="Permanent link">&para;</a></h2>
 <p>If we want to delete rows from a table based on some condition on data from another table, we can use the <code>DELETE</code> statement with a <code>USING</code> clause. Example:</p>
@@ -1274,8 +1288,10 @@ END IF
 <p>To monitor the activity on Linux, we can use the <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
 <pre><code class="language-bash">sudo -u postgres pg_activity -U postgres
 </code></pre>
-<p>For a detailed monitoring on all platforms, we can use the <em><a href="https://www.postgresql.org/docs/current/monitoring-stats.html">Cumulative Statistics System</a></em>. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:
-- <a href="https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW"><code>pg_stat_activity</code></a>: contains information about the current activity on the server</p>
+<p>For a detailed monitoring on all platforms, we can use the <em><a href="https://www.postgresql.org/docs/current/monitoring-stats.html">Cumulative Statistics System</a></em>. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:</p>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW"><code>pg_stat_activity</code></a>: contains information about the current activity on the server</li>
+</ul>
 <h3 id="pg_stat_activity"><code>pg_stat_activity</code><a class="headerlink" href="#pg_stat_activity" title="Permanent link">&para;</a></h3>
 <p>The <code>pg_stat_activity</code> collection contains information about the current activity on the server. Some activities belong to background processes it is therefore best to query the collection like:</p>
 <pre><code class="language-SQL">SELECT * FROM pg_stat_activity WHERE state IS NOT NULL;
@@ -1453,12 +1469,14 @@ SELECT set_config('&lt;parameter name&gt;', '&lt;value&gt;', false);
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

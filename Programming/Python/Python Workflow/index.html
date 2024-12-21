@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -471,6 +475,22 @@
             
             <li class="nav-item" data-level="1"><a href="#testing" class="nav-link">Testing</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#pycharm-configuration" class="nav-link">Pycharm Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pytest" class="nav-link">Pytest</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#fixtures" class="nav-link">Fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#mocking" class="nav-link">Mocking</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -651,10 +671,22 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
 <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
 <p>Pycharm contains a good debuger for python code. However, it cannot step into most standard library functions, as those are native, implemented in C/C++. For that, we need mixed python/native debugging.</p>
 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
+<h2 id="pycharm-configuration">Pycharm Configuration<a class="headerlink" href="#pycharm-configuration" title="Permanent link">&para;</a></h2>
+<p>By default, all exceptions are handled by test frameworks, and therefore, the debugger does not stop on them. To stop on exceptions in test, we need to edit the breakpoint configuration -&gt; <code>Activation policy</code> :</p>
+<ul>
+<li>check <code>On raise</code></li>
+<li>check <code>Ignore library files</code></li>
+</ul>
+<h2 id="pytest">Pytest<a class="headerlink" href="#pytest" title="Permanent link">&para;</a></h2>
 <p>To run pytest, simply go to the folder and run <code>pytest</code>. Arguments:</p>
 <ul>
 <li><code>-x</code>: stop on first failure</li>
 </ul>
+<h3 id="fixtures">Fixtures<a class="headerlink" href="#fixtures" title="Permanent link">&para;</a></h3>
+<p>Fixtures are used to set up the environment for more than one test. If defined in the <code>conftest.py</code> file, they are available for all tests in the project. </p>
+<p>Fixtures are defined using the <code>@pytest.fixture</code> decorator. The fixture can be used in the test function by passing the fixture name as an argument.</p>
+<h3 id="mocking">Mocking<a class="headerlink" href="#mocking" title="Permanent link">&para;</a></h3>
+<p>For mocking, we can use the <code>pytest-mock</code> package. After installation, we can use the <code>mocker</code> fixture in any test function. </p>
 <h1 id="mixed-python-native-debugging">Mixed Python-native debugging<a class="headerlink" href="#mixed-python-native-debugging" title="Permanent link">&para;</a></h1>
 <p>In theory, there are two ways how to debug python native code:</p>
 <ul>
@@ -696,15 +728,15 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
 <h1 id="releasing-libraries-to-pypi">Releasing libraries to PyPi<a class="headerlink" href="#releasing-libraries-to-pypi" title="Permanent link">&para;</a></h1>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <ol>
-<li>add license headers: https://github.com/johann-petrak/licenseheaders</li>
-<li>check that setup.py contains all requirements - pipreqs</li>
+<li><a href="common.md#licenses">licensing</a></li>
+<li>check that setup.py contains all requirements: <code>pipreqs</code></li>
 <li>release</li>
 <li>update the min version in dependencies</li>
 </ol>
 <h2 id="release">Release<a class="headerlink" href="#release" title="Permanent link">&para;</a></h2>
 <ol>
-<li>raise version</li>
-<li>run sdist<ul>
+<li>raise version in <code>setup.py</code></li>
+<li>run <code>sdist</code><ul>
 <li>in Pycharm: <code>Tools</code> -&gt; <code>Run setup.py task</code> -&gt; <code>sdist</code></li>
 </ul>
 </li>
@@ -717,12 +749,14 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

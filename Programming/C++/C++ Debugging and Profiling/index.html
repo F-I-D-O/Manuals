@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Ubuntu/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -382,11 +386,7 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#errors-with-a-missing-copy-constructor" class="nav-link">Errors with a missing copy constructor</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#we-want-to-copy-the-object-but-the-copy-constructor-is-missing" class="nav-link">We want to copy the object, but the copy constructor is missing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#we-do-not-want-to-copy-the-object-but-the-copy-constructor-is-still-called" class="nav-link">We do not want to copy the object, but the copy constructor is still called</a>
+            <li class="nav-item" data-level="3"><a href="#copy-constructor-is-called-against-the-will" class="nav-link">Copy constructor is called against the will</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -622,21 +622,32 @@ Get_type&lt;&lt;TYPE TO GET&gt;&gt; my_type{};
 <h2 id="errors-with-a-missing-copy-constructor">Errors with a missing copy constructor<a class="headerlink" href="#errors-with-a-missing-copy-constructor" title="Permanent link">&para;</a></h2>
 <p>e.g. <code>error C2280: 'Solution&lt;N&gt;::Solution(const Solution&lt;N&gt; &amp;)': attempting to reference a deleted function</code></p>
 <p>These can be split into two groups:</p>
-<h3 id="we-want-to-copy-the-object-but-the-copy-constructor-is-missing">We want to copy the object, but the copy constructor is missing<a class="headerlink" href="#we-want-to-copy-the-object-but-the-copy-constructor-is-missing" title="Permanent link">&para;</a></h3>
-<h3 id="we-do-not-want-to-copy-the-object-but-the-copy-constructor-is-still-called">We do not want to copy the object, but the copy constructor is still called<a class="headerlink" href="#we-do-not-want-to-copy-the-object-but-the-copy-constructor-is-still-called" title="Permanent link">&para;</a></h3>
-<p>First, check if the class is move-constructible in the first place:</p>
-<pre><code class="language-cpp">static_assert(std::is_move_constructible&lt;Solution&lt;Cordeau_node&gt;&gt;::value);
-</code></pre>
-<p>If the above check fails, check why the move constructor is not present. Possible reasons, why the move constructor is not available:</p>
-<ol>
+<ul>
+<li>We want to copy the object, but the copy constructor is missing</li>
+<li>We do not want to copy the object, but the copy constructor is still called</li>
+</ul>
+<p>The firs case can be resolved easily. Below, we discuss the second case.</p>
+<h3 id="copy-constructor-is-called-against-the-will">Copy constructor is called against the will<a class="headerlink" href="#copy-constructor-is-called-against-the-will" title="Permanent link">&para;</a></h3>
+<p>There are two possible reasons for this:</p>
+<ul>
+<li>We perform an operation that requires a copy without realizing it. In this case, check the scenarios that can cause the copy in the <a href="../C%2B%2B%20Manual/#copy-constructor">C++ Manual</a><ul>
+<li>Especially take care in case of STL collections, as those can display the error in the place of template instantiation, not in the place of the copy (see the <a href="../C%2B%2B%20Manual/#collections">Collection Manual</a>).</li>
+</ul>
+</li>
+<li>We perform an operation that requires a move, but the move constructor is not available. In this case, change the code so that the move constructor is defined.<ul>
+<li>To check if the class is move-constructible:
+<code>cpp
+static_assert(std::is_move_constructible&lt;Solution&lt;Cordeau_node&gt;&gt;::value);</code></li>
+<li>Possible reasons, why the move constructor is not available:</li>
 <li>Move constructor is not implicitly declared due to a broken rule of five, i.e., one of the other constructors/assignments/destructors is defined</li>
 <li>Implicitly declared move constructor is deleted. Possible reasons:<ul>
 <li>the class have a member that cannot be moved from</li>
-<li>const member</li>
+<li>const members</li>
 </ul>
 </li>
-</ol>
-<p>If the check passes, and the copy constructor is still being called:</p>
+</ul>
+</li>
+</ul>
 <h2 id="errors-with-missing-move-constructor">Errors with missing move constructor<a class="headerlink" href="#errors-with-missing-move-constructor" title="Permanent link">&para;</a></h2>
 <p>First, we should check whether the object's type <code>T</code> is movable using <code>static_assert(std::is_move_constructible_v&lt;T&gt;)</code></p>
 <p>If the static assertion is false:</p>
@@ -671,12 +682,18 @@ Get_type&lt;&lt;TYPE TO GET&gt;&gt; my_type{};
 <h1 id="linker-errors">Linker Errors<a class="headerlink" href="#linker-errors" title="Permanent link">&para;</a></h1>
 <h2 id="undefined">Undefined<a class="headerlink" href="#undefined" title="Permanent link">&para;</a></h2>
 <p>Something like <code>unresolved external symbol...</code>.</p>
+<p>For symbols that should come from your code:</p>
 <ol>
 <li>check that all used files are listed in <code>CMakeLists.txt</code> (<code>add_executable</code> command…)</li>
 <li>check that all templates are defined in header files</li>
 <li>check that all functions are defined correctly (even <code>unsigned</code> vs <code>unsigned int</code> can make problems...)</li>
-<li>check this list: <a href="https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?">https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?</a></li>
 </ol>
+<p>For symbols that should come from a library:</p>
+<ol>
+<li>check that all necessary libraries are linked in <code>CMakeLists.txt</code></li>
+<li>check that all libraries configured for linking in <code>CMakeLists.txt</code> are available on the system</li>
+</ol>
+<p>If none of the above works, check this list: <a href="https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?">https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?</a></p>
 <h2 id="multiply-defined">Multiply Defined<a class="headerlink" href="#multiply-defined" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Check the recent includes, are all of them correct?</li>
@@ -881,12 +898,14 @@ Basic usage:</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -77,7 +74,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Java/Java%20Programming%20Guide/" class="dropdown-item">Java Programming Guide</a>
+    <a href="../../Programming/Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
 </li>
             
 <li>
@@ -208,14 +205,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ubuntu <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="./" class="dropdown-item active">Linux Manual</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -277,6 +268,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
     <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
@@ -295,6 +290,15 @@
                                     
 <li>
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -331,12 +335,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../LaTeX/LaTeX%20workflow/" class="nav-link">
+                                <a rel="prev" href="../../Images/Photopea/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Windows/Excel%20Manual/" class="nav-link">
+                                <a rel="next" href="../../Arxiv/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -360,15 +364,23 @@
             
             <li class="nav-item" data-level="1"><a href="#usefull-comands" class="nav-link">Usefull Comands</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#check-ubuntu-version" class="nav-link">Check Ubuntu Version</a>
+            <li class="nav-item" data-level="2"><a href="#versions" class="nav-link">Versions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#check-ubuntu-version" class="nav-link">Check Ubuntu Version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#check-os-distribution-and-version" class="nav-link">Check OS Distribution and Version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#checking-glibc-version" class="nav-link">Checking glibc version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#printing-used-ports" class="nav-link">Printing used ports</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#checking-glibc-version" class="nav-link">Checking GLIBC version</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -746,14 +758,18 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="usefull-comands">Usefull Comands<a class="headerlink" href="#usefull-comands" title="Permanent link">&para;</a></h1>
-<h2 id="check-ubuntu-version">Check Ubuntu Version<a class="headerlink" href="#check-ubuntu-version" title="Permanent link">&para;</a></h2>
+<h2 id="versions">Versions<a class="headerlink" href="#versions" title="Permanent link">&para;</a></h2>
+<h3 id="check-ubuntu-version">Check Ubuntu Version<a class="headerlink" href="#check-ubuntu-version" title="Permanent link">&para;</a></h3>
 <pre><code class="language-bash">lsb_release -a
+</code></pre>
+<h3 id="check-os-distribution-and-version">Check OS Distribution and Version<a class="headerlink" href="#check-os-distribution-and-version" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">cat /etc/*-release
+</code></pre>
+<h3 id="checking-glibc-version">Checking glibc version<a class="headerlink" href="#checking-glibc-version" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">ldd --version
 </code></pre>
 <h2 id="printing-used-ports">Printing used ports<a class="headerlink" href="#printing-used-ports" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">sudo lsof -i -P
-</code></pre>
-<h2 id="checking-glibc-version">Checking GLIBC version<a class="headerlink" href="#checking-glibc-version" title="Permanent link">&para;</a></h2>
-<pre><code>ldd --version
 </code></pre>
 <h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
 <p>Exit code of the last command: <code>$?</code></p>
@@ -1526,12 +1542,14 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

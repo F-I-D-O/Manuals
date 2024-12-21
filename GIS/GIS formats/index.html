@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Slurm - Manuals</title>
+        <title>GIS formats - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -246,37 +246,37 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../Lmod/" class="dropdown-item">Lmod</a>
+    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
 </li>
                                     
 <li>
-    <a href="../RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Slurm</a>
+    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+    <a href="./" class="dropdown-item active">GIS formats</a>
 </li>
                                     
 <li>
-    <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+    <a href="../Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
 </li>
                                     
 <li>
-    <a href="../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+    <a href="../QGIS/" class="dropdown-item">QGIS</a>
 </li>
                                 </ul>
                             </li>
@@ -335,12 +335,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../RCI%20cluster/" class="nav-link">
+                                <a rel="prev" href="../../Cloud%20computing/Slurm/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../GIS/GIS%20formats/" class="nav-link">
+                                <a rel="next" href="../Overpass%20Manual/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -362,36 +362,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-level="2"><a href="#shapefile" class="nav-link">Shapefile</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#srun" class="nav-link">srun</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sbatch" class="nav-link">sbatch</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#squeue" class="nav-link">squeue</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sinfo" class="nav-link">sinfo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#scancel" class="nav-link">scancel</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sacctmgr" class="nav-link">sacctmgr</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#determining-why-the-job-was-killed" class="nav-link">Determining why the job was killed</a>
+            <li class="nav-item" data-level="2"><a href="#geojson" class="nav-link">GeoJSON</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#geography-markup-language-gml" class="nav-link">Geography Markup Language (GML)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -400,62 +381,76 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
-<h2 id="srun"><a href="https://slurm.schedmd.com/srun.html"><code>srun</code></a><a class="headerlink" href="#srun" title="Permanent link">&para;</a></h2>
-<p>Run the task in the current shell in blocking mode, i.e., the console will be blocked till the task finishes. This command is only useful if we expect that the resources will be available immediatelly and the task will finish quickly. Otherwise, we should use <code>sbatch</code>.</p>
-<p>Params:</p>
+<p>When we do not want to store the GIS data in a database for some reason, we need to choose from one of the GIS formats. The most common GIS formats are:</p>
 <ul>
-<li><code>--pty</code> runs the in terminal mode. Output and error streams are closed for everything except the first task.</li>
-<li><code>-i</code> Input setting. If followed by no param, it indicates that the input stream is closed.</li>
+<li><a href="https://en.wikipedia.org/wiki/Shapefile">Shapefile</a>,</li>
+<li><a href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>, and</li>
+<li><a href="https://en.wikipedia.org/wiki/GPS_Exchange_Format">GPS Exchange Format (GPX)</a>.</li>
 </ul>
-<h2 id="sbatch"><a href="https://slurm.schedmd.com/sbatch.html">sbatch</a><a class="headerlink" href="#sbatch" title="Permanent link">&para;</a></h2>
-<p>Request the execution of a task, with the required resources specified as <code>sbatch</code> parameters. The plain call with all resources defaulted is:</p>
-<pre><code class="language-bash">sbatch &lt;bash script&gt;
-</code></pre>
-<p>Note that the <code>&lt;bash script&gt;</code> here realy needs to be a bash script, it cannot be an arbitrary command or executable.</p>
-<p>Important parameters:</p>
+<p>There are also less common formats:</p>
 <ul>
-<li><code>-n, --ntasks</code>: maximum number of tasks/threads that will be allocated by the job<ul>
-<li>default is one task per node</li>
+<li><a href="https://en.wikipedia.org/wiki/Geography_Markup_Language">Geography Markup Language (GML)</a></li>
 </ul>
-</li>
-<li><code>-N, --nodes</code>: number of allocated nodes. <ul>
-<li>default: minimum nodes that are needed to allocate resources according to other parameters (e.g., <code>--ntasks</code>, <code>--mem</code>).</li>
-</ul>
-</li>
-<li><code>--mem</code> maximum memory that will be allocated by the job. The suffix G stands for gigabytes, by default, it uses megabytes. Example: <code>--mem=40G</code>.</li>
-<li><code>-t, --time</code>: time limit. possible formats are <code>&lt;minutes&gt;</code>, <code>&lt;minutes:seconds&gt;</code>, <code>&lt;hours:minutes:seconds&gt;</code>, <code>&lt;days-hours&gt;</code>, <code>&lt;days-hours:minutes&gt;</code>, and <code>&lt;days-hours:minutes:seconds&gt;</code>. <ul>
-<li>default: partition time limit</li>
-</ul>
-</li>
-<li><code>-p</code>, <code>--partition=</code>: partition name</li>
-<li><code>-o</code>, <code>--output=</code>: job's output file name. The default name is <code>slurm-&lt;JOB ID&gt;.out</code></li>
-</ul>
-<h2 id="squeue"><a href="https://slurm.schedmd.com/squeue.html">squeue</a><a class="headerlink" href="#squeue" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>--me</code> filter just my jobs</li>
-<li><code>-u &lt;username&gt;</code> filter just a specific user</li>
-<li><code>--start</code> print the expected start time and the nodes planed to run the task</li>
-<li><code>-w --nodelist</code> filter jobs running (but not planned) on specific nodes. The format for nodelist is <code>&lt;name&gt;[&lt;range&gt;]</code>, e.g., <code>n[05-06]</code>.</li>
-</ul>
-<h2 id="sinfo"><a href="https://slurm.schedmd.com/sinfo.html">sinfo</a><a class="headerlink" href="#sinfo" title="Permanent link">&para;</a></h2>
-<p>Prints information about the computer cluster.</p>
-<h2 id="scancel"><a href="https://slurm.schedmd.com/scancel.html">scancel</a><a class="headerlink" href="#scancel" title="Permanent link">&para;</a></h2>
-<p>The <code>scancel</code> command cancels the execution of a job specified by the ID (firsta argument). </p>
-<p>To instead cancel jobs by name, use the <code>--name</code> option. Note however, that <strong>full name has to be specified and no wildcards are allowed</strong>. To cancel all jobs with a certain name, we have to mess with various linux commands instead:</p>
-<pre><code class="language-bash">squeue --me | awk '/smod_cha/ {print $1}' | xargs scancel
-</code></pre>
-<h2 id="sacctmgr"><a href="https://slurm.schedmd.com/sacctmgr.html">sacctmgr</a><a class="headerlink" href="#sacctmgr" title="Permanent link">&para;</a></h2>
-<p>For viewing and modifying Slurm account information. The most important command for users is <code>show</code> (or <code>list</code>, which is equivalent). Baset on the parameter, it shows different information:</p>
-<ul>
-<li><code>show associations</code>: associations between users and accounts</li>
-<li><code>show qos</code>: quality of service: limits and priorities for each group-queue combination</li>
-</ul>
-<h1 id="determining-why-the-job-was-killed">Determining why the job was killed<a class="headerlink" href="#determining-why-the-job-was-killed" title="Permanent link">&para;</a></h1>
-<p>Usually, the error message is at the end of the output file. Message meaning:</p>
-<ul>
-<li><code>Detected 1 oom_kill event in ...</code>: oom stands for out of memory. The job was killed because it exceeded the memory limit.</li>
-</ul></div>
+<p>Each of the formats has its adventages and disadventages, summarized in the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>File type</th>
+<th>Supported geometry types</th>
+<th>Multiple geometry types in a file</th>
+<th>CRS</th>
+<th>QGIS support</th>
+<th>extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shapefile</td>
+<td>Binary</td>
+<td>Point, Line, Polygon</td>
+<td>No</td>
+<td>Variable</td>
+<td>yes</td>
+<td>.shp, .shx, .dbf</td>
+</tr>
+<tr>
+<td>GeoJSON</td>
+<td>Text (JSON)</td>
+<td>Point, Line, Polygon</td>
+<td>Yes</td>
+<td>WGS84<a href="https://www.rfc-editor.org/rfc/rfc7946#section-4">[source]</a></td>
+<td>yes</td>
+<td>.geojson</td>
+</tr>
+<tr>
+<td>GPS Exchange Format</td>
+<td>Text (XML)</td>
+<td>Point, Line</td>
+<td>Yes</td>
+<td>WGS84</td>
+<td>yes</td>
+<td>.gpx</td>
+</tr>
+<tr>
+<td>GML</td>
+<td>Text (XML)</td>
+<td>Point, Line, Polygon</td>
+<td>Yes</td>
+<td>Variable</td>
+<td>limited</td>
+<td>.gml</td>
+</tr>
+</tbody>
+</table>
+<h2 id="shapefile">Shapefile<a class="headerlink" href="#shapefile" title="Permanent link">&para;</a></h2>
+<h2 id="geojson">GeoJSON<a class="headerlink" href="#geojson" title="Permanent link">&para;</a></h2>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7946">specification</a></p>
+<p>Geojson is a JSON format for encoding a variety of geographic data structures.</p>
+<p>Note that <strong>GeoJSON applications expect coordinates to be in the WGS84 coordinate reference system</strong> (CRS). If the coordinates are in a different CRS, applications may not be able to interpret the data correctly.</p>
+<h2 id="geography-markup-language-gml">Geography Markup Language (GML)<a class="headerlink" href="#geography-markup-language-gml" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.ogc.org/publications/standard/gml/">specification</a></p>
+<p>The GML is similar to GeoJSON, but it is based on XML. The problem with GML is that it is not widely used nowadays, and it is not supported by many GIS applications.</p></div>
             </div>
         </div>
 
