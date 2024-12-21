@@ -798,6 +798,12 @@ The `<library>` can be:
 - a **link flag**: A flag that is passed to the linker. 
 - a **generator expression**: A generator expression that is evaluated during the CMakelists.txt configuration to one of the above options.
 
+### Checking the full path to a linked library
+Sometimes, it can be usefull to check the full path to a linked library. This can be done using the `get_target_property` command:
+```cmake
+get_target_property(LIB_PATH <library name> IMPORTED_LOCATION)
+message(STATUS "LIB_PATH=${LIB_PATH}")
+```
 
 
 ## Handling runtime dependencies in the output directory
@@ -1218,5 +1224,30 @@ There are two main ways to use the dashboard mode:
 
 ### Using the Dashboard mode configured by the script
 When run with the `-S` or `-SP` argument, the `ctest` executable runs the script that configures the dashboard mode. The `-SP` mode only differs in that it runs the script in a new process. 
+
+
+## Problems
+
+### `Warning! <name> library version mismatched error`
+This error typically occures when the library `<name>` used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:
+
+1. The library relies on the `PATH` variable to find the library at runtime, but the path used during the build is specified manually.
+1. There is another library with the same name earlier in the `PATH` variable, and the version differs.
+
+The solution is:
+
+1. Identify the path used incorrectly at runtime
+1. Move the problematic path after the correct path in the `PATH` variable
+
+The identification step can be hard here, as the ctest does not report the real path to the library used at runtime, but the path where this library was compiled. In other words, the `Installation point` under the `General Information` is incorrect. 
+
+The identification of the real path to the problematic library can be done as follows:
+
+1. build the tests manually using CMake
+1. run a single test in the debugger and break
+1. open the Process Explorer
+1. `View` -> `Lower Pane View` -> `DLLs`
+1. click on the test process
+1. In the Lower Pane View, there is a list of all DLLs loaded by the test process. Find the problematic library and check the path to it.
 
 

@@ -42,24 +42,27 @@ e.g. `error C2280: 'Solution<N>::Solution(const Solution<N> &)': attempting to r
 
 These can be split into two groups:
 
-### We want to copy the object, but the copy constructor is missing
+- We want to copy the object, but the copy constructor is missing
+- We do not want to copy the object, but the copy constructor is still called
 
-### We do not want to copy the object, but the copy constructor is still called
+The firs case can be resolved easily. Below, we discuss the second case.
 
-First, check if the class is move-constructible in the first place:
+### Copy constructor is called against the will
+There are two possible reasons for this:
 
-```cpp
-static_assert(std::is_move_constructible<Solution<Cordeau_node>>::value);
-```
-  
-If the above check fails, check why the move constructor is not present. Possible reasons, why the move constructor is not available:
+- We perform an operation that requires a copy without realizing it. In this case, check the scenarios that can cause the copy in the [C++ Manual](C++%20Manual.md#copy-constructor)
+    - Especially take care in case of STL collections, as those can display the error in the place of template instantiation, not in the place of the copy (see the [Collection Manual](C++%20Manual.md#collections)).
+- We perform an operation that requires a move, but the move constructor is not available. In this case, change the code so that the move constructor is defined.
+    - To check if the class is move-constructible:
+    ```cpp
+    static_assert(std::is_move_constructible<Solution<Cordeau_node>>::value);
+    ```
+    - Possible reasons, why the move constructor is not available:
+      - Move constructor is not implicitly declared due to a broken rule of five, i.e., one of the other constructors/assignments/destructors is defined
+      - Implicitly declared move constructor is deleted. Possible reasons:
+          - the class have a member that cannot be moved from
+          - const members
 
-1.  Move constructor is not implicitly declared due to a broken rule of five, i.e., one of the other constructors/assignments/destructors is defined
-2.  Implicitly declared move constructor is deleted. Possible reasons:
-	-  the class have a member that cannot be moved from
-    -   const member
-    
-If the check passes, and the copy constructor is still being called:
 
 ## Errors with missing move constructor
 First, we should check whether the object's type `T` is movable using `static_assert(std::is_move_constructible_v<T>)`

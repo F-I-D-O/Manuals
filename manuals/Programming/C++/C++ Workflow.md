@@ -409,8 +409,13 @@ Vcpkg has it s own `find_package` macro in the toolchain file. It executes the s
 ## Clion
 
 ### Configuration
+
 #### Set default layout
 `Window` -> `Layouts` -> `Save changes in current layout`
+
+
+#### Set up the new Nova engine
+The new Nova engine is a new Clion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to `settings` -> `Advanced Settings` and under `Clion` check the `Use the ReSharper C++ language engine (Clion Nova)`.
 
 
 #### Set up new surround with template

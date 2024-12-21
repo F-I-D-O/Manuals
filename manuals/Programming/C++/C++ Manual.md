@@ -724,9 +724,16 @@ ss >> std::get_time(&tm, "%Y-%b-%d %H:%M:%S");
 
 
 ## Collections
+In C++, the collections are implemented as templates, so they can store any type. The most common collections are:
 
 - [std::array](https://en.cppreference.com/w/cpp/container/array)
 - [std::vector](https://en.cppreference.com/w/cpp/container/vector)
+- [std::unordered_set](https://en.cppreference.com/w/cpp/container/unordered_set)
+- [std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)
+- [std::pair](https://en.cppreference.com/w/cpp/utility/pair) and [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple)
+
+Currently, the collection semantic requirmenets are not imposed on the whole connection, bu on its member functions instead. Depending on the function used, there are different requirements for the stored types. This adds a lot of flexibility, as we can, for example, use move only types in collections when we refrain from using functions that require copying. On the other hand, it can make the debugging harder, as the compiler usually does not recognize the methods that caused the template to have stricter requirements but instead complains on the place where the template is instantiated.
+
 
 ### Sets
 Normal set collection for C++ is [`std::unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set). By default, the set uses a `Hash`, `KeyEqual` and `Allocator` template params provided by std functions. However, they need to exist, specifically:
@@ -783,18 +790,26 @@ a = map[1] // a == map[1] == "" unintuitively, the default value is inserted if 
 Therefore, **if we just read from the map, it is safer to use the `at()`** member function.
 
 #### Inserting into map
-There are three options:
+There are five options:
 
-1. `map[key] = value;` or
-2. `map.insert({key, value});`
-3. `map.emplace(key, value);`
+1. [`map[key] = value;`](https://en.cppreference.com/w/cpp/container/unordered_map/operator_at) or
+2. [`map.insert({key, value})`](https://en.cppreference.com/w/cpp/container/unordered_map/emplace)
+3. [`map.emplace(key, value);`](https://en.cppreference.com/w/cpp/container/unordered_map/emplace)
+4. [`map.try_emplace(key, value);`](https://en.cppreference.com/w/cpp/container/unordered_map/try_emplace)
+5. [`map.insert_or_assign(key, value);`](https://en.cppreference.com/w/cpp/container/unordered_map/insert_or_assign)
 
-There are some considerations with these options:
+The following table summarizes the differences:
 
-- 1 inserts the `value` into the map even if the `key` already exists, overwriting the previous value. 2 and 3 do not overwrite the new value, instead, they return the position in the map and the indicator of success (`true` if the insertion happend).
-- 1 requires the value to be default *constructible* and *assignable*
-- 3 avoids the creation of temporary objects, it sends references to `key` and `value` directly to the map.  
-- 3 ignores the insertion if the key already exists.
+| Method | If key exists | constructs in place | returns value |
+| --- | --- | --- | --- |
+| `map[key] = value;` | overwrites | no | a reference to the value |
+| `map.insert({key, value});` | does not overwrite | no | a pair of iterator to value and bool set to true if insertion took place |
+| `map.emplace(key, value);` | does not overwrite | yes | a pair of iterator to value and bool set to true if insertion took place |
+| `map.try_emplace(key, value);` | does not overwrite | yes | same as emplace |
+| `map.insert_or_assign(key, value);` | overwrites | yes | a pair of iterator to value and bool set to true if insertion took place |
+
+There is only a small difference between `emplace` and `try_emplace`: the `try_emplace` does not create a new value if the key already exists, while the `emplace` can create a new value even if the key already exists (in which case, the value is then discarded).
+
 
 ### Tuples
 We have two standard class templates for tuples:
@@ -921,7 +936,7 @@ The declaration of `std::variant` is similar to the declaration of `std::tuple`:
 ```cpp
 std::variant<int, double> v;
 ```
-The `std::variant` can store any of the types specified in the template parameters. 
+The `std::variant` can store any of the types specified in the template parameters. The only requirement is that the types are default constructible. Also, incompatible types cannot be stored in `std::variant`, as we cannot use them as template arguments. However, we can use pointers or references to incompatible types instead.
 
 The **type** of the stored value can be obtained using:
 
@@ -1428,6 +1443,7 @@ My_class{
 	My_class(): member{1}{
 	}
 ```
+
 ### Constructor Body
 ```C++
 My_class{
@@ -1440,13 +1456,11 @@ My_class{
 ### Comparison Table
 Ordered by priority, i.e., each method makes the methods bellow ignored/ovewritten if applied to the same member.
 
-Type | In-place | works for const members
-
---|
---|--
-Constructor body | no | no
-Member initializer list | yes | yes
-Default member initializer | yes, if we use direct initialization | yes
+| Type | In-place | works for const members |
+|--|--|--|
+| Constructor body | no | no |
+| Member initializer list | yes | yes |
+| Default member initializer | yes, if we use direct initialization | yes |
 
 
 
@@ -1456,15 +1470,30 @@ Default member initializer | yes, if we use direct initialization | yes
 Special member functions are member functions that are someetimes defined implicitely by the compiler. The special member functions are:
 
 - default (no parameter) constructor
--   copy Cconstructor
--   copy sssignment
--   move constructor
--   move assignment
--   destructor
+- copy constructor
+- copy assignment
+- move constructor
+- move assignment
+- destructor
 
-Along with the comparison operators, these are the only functions that can be *defaulted* (see below).
+These functions can be:
+
+- defined implicitely by the compiler
+- deleted implicitely by the compiler
+- *defaulted*, i.e., defined by the compiler on our request
+	```cpp
+	My_class() = default;
+	```
+	- Along with the comparison operators, these are the only functions that can be  (see below).
+- *deleted*, i.e., disabled by the compiler on our request
+	```cpp
+	My_class(const My_class&) = delete;
+	```
+
+By default, all special member functions are defined implicitely if the members satisfy the requirements (see below). However, if we define any of the special member functions, the implicit definition is disabled. Therefore, **typically, we define all special member functions or none of them.**
 
 ## Constructor
+
 ### Defualt Variant
 The default constructor just create an empty object. The default constructor is not implicitly generated if:
 
@@ -1597,8 +1626,8 @@ Type t = T(f()) // no move constructor call, copy elision
 
 Move constructor is needed:
 
--   to cheaply move the object out from function if RVO is not possible
--   to store the object in vector without copying it
+- to cheaply move the object out from function if RVO is not possible
+- to store the object in vector without copying it
 
 Note that a single class can have multiple move constructors, e.g.: both `Type(Type&&)` and `Type(const Type&&)`.
 
@@ -1642,37 +1671,30 @@ The special member functions are called trivial if they contain no operations ot
 We need destructor only if the object owns some resources that needs to be manually deallocated
 
 
-## Setting special member functions to default
-
-
-
-## Rules
-
--   if you want to be sure, delete everything you don’t need
-- most likely, either we need no custom constructors, or we need three (move and destructor), or we need all of them.
-    
-## Rules for Typical Object Types
+## Typical usage
+It's mostly better to delete everything you don’t need. Most likely, either
+- we need no custom constructors, or we need three (move and destructor), or we need all of them.
 
 ### Simple Temporary Object
 
--   the object should live only in some local context
--   we don’t need anything
+- the object should live only in some local context
+- we don’t need anything
 
 ### Unique Object
 
--   usually represents some real object
--   usually, we need constructors for passing the ownership:
-	-   move constructor
-	-   move assignment noe sin
+- usually represents some real object
+- usually, we need constructors for passing the ownership:
+	- move constructor
+	- move assignment
 
 ### Default Object
 
--   copyable object
--   We need
-	-   copy constructor
-	-   copy assignment
-	-   move constructor
-	-   move assignment
+- copyable object
+- We need
+	- copy constructor
+	- copy assignment
+	- move constructor
+	- move assignment
 
 
 # Const vs non-const 
@@ -2240,27 +2262,31 @@ To speed up the build it **is also desireble to move any non-template code to so
 
 
 ## Providing Template Arguments
-A template can be instantiated only if all the template arguments are provided. Arguments can be:
+A template can be instantiated only if all the template arguments are provided.
 
-- provided explicitly: `std::vector<int> v;` or `sum<int>(1,2)`
-- deduced 
+The **templete arguments need to be complete types**.
+
+Arguments can be
+
+- provided explicitly: `std::vector<int> v;` or `sum<int>(1,2)`,
+- deduced
 	- from the initialization (classes): `std::vector v = {1,2,3};`
-	- from the context (functions): `sum(1,2);`
-- defaulted: 
+	- from the context (functions): `sum(1,2);`, or
+- defaulted
 
-```cpp
-template<class T = int>
-class A {};
+	```cpp
+	template<class T = int>
+	class A {};
 
-template<class T = int>
-int sum<T>(T a, T b = 0) {
-	return a + b;
-}
+	template<class T = int>
+	int sum<T>(T a, T b = 0) {
+		return a + b;
+	}
 
-auto s = sum(1, 2);
+	auto s = sum(1, 2);
 
-A a();
-```
+	A a();
+	```
 
 
 If we want the template arguments to be deduced or defaulted, we usually  use the `<>`:
@@ -2467,35 +2493,34 @@ While behaving similarly, there are some important differences between the two t
 
 - **Full specialization is a new type. Therefore, it must be defined in the source file (`.cpp`), just like any other class or function and it must have a separate declaration.** On the other hand, partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
 - **For functions, we cannot provide a partial specialization**. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use `if constexpr` to select the correct implementation:
-
-```cpp
-template<class T, class C>
-class Object{
-public:
-	bool process(T value, C config){
-		if constexpr (std::is_same_v<T, std::string>){
-			return process_string(value, config);
-		} 
-		else {
-			return process_value(value, config);
+	```cpp
+	template<class T, class C>
+	class Object{
+	public:
+		bool process(T value, C config){
+			if constexpr (std::is_same_v<T, std::string>){
+				return process_string(value, config);
+			} 
+			else {
+				return process_value(value, config);
+			}
 		}
-	}
-};
-```
-Note that here, the `if constexpr` requires the corresponding `else` branch. Otherwise, the code cannot be discarded during the compilation. Example:
-```cpp
-template<class T, class C>
-class Object{
-public:
-	bool process(T value, C config){
-		if constexpr (std::is_same_v<T, std::string>){
-			return process_string(value, config);
-		} 
+	};
+	```
+	- Note that here, the `if constexpr` requires the corresponding `else` branch. Otherwise, the code cannot be discarded during the compilation. Example:
+		```cpp
+		template<class T, class C>
+		class Object{
+		public:
+			bool process(T value, C config){
+				if constexpr (std::is_same_v<T, std::string>){
+					return process_string(value, config);
+				} 
 
-		return process_value(value, config); // this compiles even if T is std::string
-	}
-};
-```
+				return process_value(value, config); // this compiles even if T is std::string
+			}
+		};
+		```
 
 
 ## Templates and Namespaces

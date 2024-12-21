@@ -38,3 +38,24 @@ So finally, how to decide between static and dynamic libraries?
 - We use a GPL library and we do not want to make the source code available -> dynamic libraries.
 - Users are expected to only use a fraction of the library -> static libraries.
 - Otherwise -> it does not matter.
+
+
+# Runing a program depending on a native library
+When running a program that depends on a native library, the operating system must be able to find the library. This search has a special logic and, most importantly, **there is no guarantee** that
+
+- the library found is the one that the program was compiled and linked against, or
+- that the library will be found at all.
+
+A typical problem scenario:
+
+1. The program is compiled and linked against a new version of the library.
+2. An older version of the library is installed in a location that is searched before the location of the new version.
+3. The library API has changed between the two versions.
+4. The program crashes at runtime
+
+The **search order** differs between operating systems. Here, we present only the  short (incomplete) order. See official documentation ([Windows](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order)) for full version. On Windows:
+
+1. The directory containing the executable
+1. The system directory and the Windows directory
+1. The CWD (folder where the program is run)
+1. The directories listed in the PATH environment variable in the order they are listed
