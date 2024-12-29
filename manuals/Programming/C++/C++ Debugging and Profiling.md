@@ -302,18 +302,27 @@ Static code analysis is a process of checking the code without running it. The b
 
 
 # Testing - Google Test
+Google test is a c++ testing framework that can be used to write unit tests. As it is not officially shipped with vcpkg, we have to use `FetchContent` to download it. The basic usage is as follows:
+
+1. Add the `googletest` to the project using `FetchContent`
+2. Add the test target using `add_executable` 
+3. Link the test target with the `gtest` and `gtest_main` targets
+
+Optionally, if we want the tests to be run automatically by the `ctest`, we add the `gtest_discover_tests` command to the `CMakeLists.txt`.
+
 
 ## Debugging tests
 
 To debug a test, you need to run it with the flag some flags:
 
--   `--gtest_break_on_failure`. This flag breaks the test on a failed test or failed assertion.
--   `--gtest_catch_exceptions=0`. This flag stops google test from catching exceptions, hence the program breaks at the place where the exception occurred, which is what you want
--   `--gtest_filter=Some_test_prefix*` for choosing just some tests
+- `--gtest_break_on_failure`. This flag breaks the test on a failed test or failed assertion.
+- `--gtest_catch_exceptions=0`. This flag stops google test from catching exceptions, hence the program breaks at the place where the exception occurred, which is what you want
+- `--gtest_filter=Some_test_prefix*` for choosing just some tests
 
 Also, you need to run tests from Visual Studio, otherwise, the program ends when clicking on the retry button.
 
 # Visual Studio Errors
+
 ## False errors appears in a file / in many files
 
 1. close visual studio

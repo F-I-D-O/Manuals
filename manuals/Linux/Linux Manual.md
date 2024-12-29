@@ -163,6 +163,9 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 
 
 # Bash
+[documentation](https://www.gnu.org/software/bash/manual/bash.html)
+[wiki](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
+
 ## General Remarks
 
 - It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error
@@ -171,7 +174,26 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 - space around `=`, which is typical in other languages, is not allowed in bash 
 - bash does not support any data structures, only arrays
 
+## Bash modes and environment initialization
+Bash can run in several modes. These modes have some effect, but mainly, it affects the initialization of the environment, i.e., which files are executed at the start of the shell. The modes are:
 
+- **login shell**: mode is used when the user logs in. 
+	- also used when the shell is run with the `-l`, `--login` parameter
+- **interactive shell**: mode is used when the user interacts with the shell.
+	- also used when the shell is run with the `-i` parameter
+- **non-interactive shell**: mode is used when the shell is run in a script.
+	- this shell mode is used when we run commands over ssh or wsl
+
+The execution of the initialization files is displayed in the image below:
+
+![Bash initialization files](Bash%20environment%20loading.png)
+
+Note that the initialized environment persists in the system. In other words, the environment variables set in the files processed by the login shell are available even in the non-interactive non-login shells opened later on. However, there are still cases when the environment variables are not available because the login shell has not been run, e.g.:
+
+- when the shell is run over ssh as a command: `ssh user@host <command>`
+- when the shell is run from wsl as a command: `wsl <command>`
+
+In those cases, if we need the environment variables, we have to run the login or interactive shell explicitly, e.g.: `wsl bash -lc <command>`.
 
 ## Variables
 Variables can be defined as:

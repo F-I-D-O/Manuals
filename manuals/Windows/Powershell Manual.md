@@ -5,6 +5,17 @@ The PowerShell script files have the `.ps1` extension.
 
 In addition to system commands, PowerShell can also execute native PowerShell commands called [cmdlets](https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands).
 
+
+## New PowerShell
+The PowerShell Integrated in Windows is version 5. You can recognize it by the iconical blue background color. This old version has some important limitations (e. g. [it cannot pass arguments containing arguments with spaces](https://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments)).
+
+Therefore, it is best to install the [new PowerShell](https://github.com/PowerShell/PowerShell) first.
+
+
+## Quick Edit / Insert Mode
+PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit `enter`.
+
+
 ## Script Blocks
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks)
 
@@ -85,17 +96,17 @@ The advanced usage of parameters is described in the [documentation](https://lea
 
 
 
+# Quoting
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules)
 
+In PowerShell, there are two types of quoting:
 
+- `"` (double quotes): for expandable strings. These strings can contain variables and expressions that are evaluated.
+    - non-basic variables need to be wrapped by expression `$()`, e.g. `$($PSVersionTable.PSVersion)`
+    - To separate the variable from the following text, use `${}`. Example: `${myVar}Text`
+    - to escape (not evaluate) the `$` sign, use the backtick: `` echo "`$myVar" `` prints `$myVar`
+- `'` (single quotes): for literal strings. These strings are not evaluated.
 
-# Important Aspects
-## New PowerShell
-The PowerShell Integrated in Windows is version 5. You can recognize it by the iconical blue background color. This old version has some important limitations (e. g. [it cannot pass arguments containing arguments with spaces](https://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments)).
-
-Therefore, it is best to install the [new PowerShell](https://github.com/PowerShell/PowerShell) first.
-
-## Quick Edit / Insert Mode
-PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit `enter`.
 
 ## Arguments starting with `-` and containing `.`
 If a program argument starts with `-`, **and** contains `.` it needs to be wrapped by `'`. Otherwise, the argument will be split on the dot. Example:
@@ -129,8 +140,7 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 'args=\"''arg1 with space'' arg2\"'
 ```
 
-## No Output for EXE file
-Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
+
 
 
 # Command execution
@@ -138,6 +148,9 @@ Normal commands are executed by just typing them. However, if the command contai
 ```PowerShell
 & "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
 ```
+
+## No Output for EXE file
+Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
 
 # Variables
 Variables are defined by the `$` sign. Example:
@@ -499,3 +512,9 @@ To translate an alias to a command, use the `Get-Alias` command. Example:
 ```PowerShell
 Get-Alias ls # returns Get-ChildItem
 ```
+
+## Get the path of the current script
+To get the path of the current script, use the `$PSCommandPath` variable.
+
+
+

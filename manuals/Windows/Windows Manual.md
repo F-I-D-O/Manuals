@@ -302,6 +302,11 @@ As the git on Windows runs in MinGW, it does not use the Windows SSH command. Th
 git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 ```
 
+# WSL
+
+## Translate Windows Path to Linux Path
+To translate a Windows path to a Linux path, we can use the `wslpath` command, which is available in Ubuntu WSL distributions. 
+
 
 # Dual Boot
 

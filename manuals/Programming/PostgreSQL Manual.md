@@ -776,6 +776,17 @@ To delete a database, we can use the [`dropdb`](https://www.postgresql.org/docs/
 
 ## Granting privileges
 
+
+### Grant privileges for a database
+To give privileges for creating new tables and other objects in a database:
+```SQL
+GRANT ALL PRIVILEGES ON DATABASE <db name> TO <user name>;
+```
+
+To give privileges for existing objects, it is best to change the owner of the objects.
+
+
+
 ### Grant privileges for database schema
 To grant all privileges for a database schema to a user, we can use the following command:
 ```SQL
@@ -786,6 +797,8 @@ To grant only the `SELECT` privilege, use:
 ```SQL
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO <user name>;
 ```
+
+
 
 
 ## Upgrading the database cluster
