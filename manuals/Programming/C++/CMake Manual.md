@@ -720,9 +720,11 @@ The usual workflow is:
     FetchContent_Declare(
         <NAME>
         <SPECIFICATION>
+        DOWNLOAD_EXTRACT_TIMESTAMP ON
     )
     ```
     - The specification can be either a URL or a git repository.
+    - The `DOWNLOAD_EXTRACT_TIMESTAMP` option ensures that the timestamp of the downloaded files is preserved. This is useful when the dependency is downloaded multiple times, and we want to avoid unnecessary rebuilds.
 2. Configure the dependency using the [`FetchContent_MakeAvailable`](https://cmake.org/cmake/help/latest/module/FetchContent.html#command:fetchcontent_makeavailable) command:
     ```cmake
     FetchContent_MakeAvailable(<NAME>)
@@ -1247,7 +1249,7 @@ Then, we can run the tests using the `ctest` command.
 ## CTest
 [documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html)
 
-The `ctest` executable run the tests configured with CMake and reports the results. 
+The `ctest` executable run the tests configured with CMake and reports the results.
 
 It can run in three modes:
 
@@ -1266,10 +1268,10 @@ Important parameters for all modes:
 - `-VV`: very verbose output
 - `-O <file>`: output the results to a file
 
-## Run Tests mode (default)
+### Run Tests mode (default)
 The default run mode expects the project to be configured and built. It simply runs the tests and reports the results. For multi-configurations generators, we have to specify the configuration using the `-C` argument.
 
-## Build and Test mode
+### Build and Test mode
 The build and test mode is activated by the `--build-and-test` argument. 
 
 Unlike the `cmake` command, the `ctest` command does not choose the generator automatically. Instead, we have to supply the generator using the `--build-generator` argument.
@@ -1278,7 +1280,7 @@ Other useful arguments:
 
 - `--build-options`: additional options for the `cmake` command, e.g., `--toolchain <path>` to specify the toolchain file
 
-## Dashboard mode
+### Dashboard mode
 [CDash documentation at cmake.org](https://cmake.org/cmake/help/book/mastering-cmake/chapter/CDash.html)
 
 Unlike the previous two modes, the dashboard mode facilitates every phase of the testing process, namely:
@@ -1297,7 +1299,7 @@ There are two main ways to use the dashboard mode:
 - configure the dashboard mode using the `-D` argument together with the dahsboard command line arguments
 - configure the dashboard mode using a cmake script and then run the script using the `-S` or `-SP` argument
 
-### Using the Dashboard mode configured by the script
+#### Using the Dashboard mode configured by the script
 When run with the `-S` or `-SP` argument, the `ctest` executable runs the script that configures the dashboard mode. The `-SP` mode only differs in that it runs the script in a new process.
 
 The script has to manage all the dashboard mode phases. For each phase, there is a corresponding command `cmake_<phase>` that has to be called. The commands are:
@@ -1326,7 +1328,7 @@ The above commands depend on some cmake variables (some of them can be replaced 
 - `CTEST_BUILD_COMMAND`: the command that builds the project. Typically `cmake --build` command with some arguments.
 
 
-### Configuring the Dashboard 
+#### Configuring the Dashboard 
 To see the results of the process in a nice GUI, we need a project on a CDash server. We can either use the public CDash server or set up our own server. 
 
 To use the public CDash server, we have to:
@@ -1336,9 +1338,9 @@ To use the public CDash server, we have to:
 1. download the `CTestConfig.cmake` file from the project page and put it in the project directory (the directory where the `CMakeLists.txt` file is located)
 
 
-## Problems
+### Problems
 
-### `Warning! <name> library version mismatched error`
+#### `Warning! <name> library version mismatched error`
 This error typically occures when the library `<name>` used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:
 
 1. The library relies on the `PATH` variable to find the library at runtime, but the path used during the build is specified manually.
@@ -1359,5 +1361,18 @@ The identification of the real path to the problematic library can be done as fo
 1. `View` -> `Lower Pane View` -> `DLLs`
 1. click on the test process
 1. In the Lower Pane View, there is a list of all DLLs loaded by the test process. Find the problematic library and check the path to it.
+
+## Test fixtures
+In CMake, there is no dirrect suppor for fixtures as we know them from other testing frameworks. Instead, we define the setup and teardown code as separate tests and then, we use a `set_tests_properties` command to set up the dependencies between the tests. Example:
+```cmake
+add_test(NAME setup COMMAND <setup command>)
+add_test(NAME test1 COMMAND <test 1 command>)
+add_test(NAME test2 COMMAND <test 2 command>)
+add_test(NAME teardown COMMAND <teardown command>)
+
+set_tests_properties(test1, test2 PROPERTIES FIXTURES_REQUIRED my_test_suite)
+set_tests_properties(setup PROPERTIES FIXTURES_SETUP my_test_suite)
+set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
+```
 
 

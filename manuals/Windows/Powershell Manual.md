@@ -149,6 +149,13 @@ Normal commands are executed by just typing them. However, if the command contai
 & "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
 ```
 
+## Print the exit code
+To print the exit code of the last command, there are two options:
+
+- `$?`: returns `True` if the last command was successful, `False` otherwise
+- `$LastExitCode` variable contains the exit code of the last command
+
+
 ## No Output for EXE file
 Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
 

@@ -152,19 +152,69 @@ To install vcpkg:
 
 To install a package, run `vcpkg install package`.
 
-## Changing the default triplet
-To change the default triplet, add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
 
-- `x64-linux` for Linux Compilers
-- `x64-windows` for MSVC
-- `x64-MinGW` for MinGW
-    
 ## CMake Integration
 [documentation](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration)
 
 By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: `vcpkg/scripts/buildsystems/vcpkg.cmake`. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. 
 
 The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.
+
+
+## Directory Structure
+vcpkg has the following directory structure:
+
+- `buildtrees`: contains the build directories for each installed package. Each build directory contains the build logs.
+- `installed`: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:
+	- `bin`: contains the shared libraries
+	- `debug`: contains the debug version of everything in a similar structure as the triplet directory
+	- `examples`: contains example binaries
+	- `include`: contains the header files
+	- `lib`: contains the static libraries
+	- `share`: contains the cmake scripts and other files needed for the integration of the package into a cmake project
+	- `tools`: contains the executables installed with vcpkg packages
+- `ports`: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by `git pull` in case you need to update the list of available packages.
+- `scripts`: various scripts
+	- `toolchains`: cmake files that configure the toolchains. There is a special file for each platform (windows, linux, etc.)
+- `triplets`: contains the triplet files.
+
+### Modules
+Vcpkg has it s own `find_package` macro in the toolchain file. It executes the script: `vcpkg/installed/<tripplet>/share/<package name>/vcpkg-cmake-wrapper.cmake`, if exists. Then, it executes the cmake scripts in that directory using the standard `find_package`, like a cmake config package.
+
+## Triplets
+[documentation](https://learn.microsoft.com/en-us/vcpkg/concepts/triplets)
+
+Vcpkg supports installing packages built for multiple platforms and compilers in the same vcpkg installation. To do this, vcpkg uses the concept of *triplets*. A triplet is definition of target environment. Usually, the triplet defines three things:
+
+- the target platform (e.g., x64, arm)
+- the target operating system (e.g., windows, linux)
+- the target compiler (e.g., msvc, gcc)
+
+The triplet definition is stored in the triplet file in the `<vcpkg root>/triplets` directory.
+
+### Changing the default triplet
+To change the default triplet, add a new system variable `VCPKG_DEFAULT_TRIPLET`, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:
+
+- `x64-linux` for Linux Compilers
+- `x64-windows` for MSVC
+- `x64-MinGW` for MinGW
+
+
+### Using a custom triplet
+If you need to test a specific system environment with vcpkg, you can use a custom triplet.
+
+Typically, you can **create** such a triplet by copying an existing one and modifying it. Typically, you just modify the [triplet variables](https://learn.microsoft.com/en-us/vcpkg/users/triplets) in the file.
+
+To **use** the custom triplet add two arguments to the vcpkg command:
+
+- `--triplet <triplet name>`: the name of the custom triplet
+- `--overlay-triplets=<path to the directory containing the custom triplet>`: the path to the directory containing the custom triplet file
+
+To **change the compiler**, it is a little bit more complicated, as there is no triplet variable for the compiler. Instead, we need to provide a custom toolchain:
+
+1. copy an existing toolchain file from the `<vcpkg root>/scripts/toolchains`.
+1. modify the toolchain file to use the desired compiler, e.g., by setting the `CMAKE_CXX_COMPILER` variable.
+1. in the custom triplet file, set the `VCPKG_CHAINLOAD_TOOLCHAIN_FILE` variable to point to the custom toolchain file.
 
 ## Update
 
@@ -385,22 +435,7 @@ Then, the submission process is as follows:
 
 
 
-## Directory Structure
-vcpkg has the following directory structure:
 
-- `buildtrees`: contains the build directories for each installed package. Each build directory contains the build logs.
-- `installed`: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:
-	- `bin`: contains the shared libraries
-	- `debug`: contains the debug version of everything in a similar structure as the triplet directory
-	- `examples`: contains example binaries
-	- `include`: contains the header files
-	- `lib`: contains the static libraries
-	- `share`: contains the cmake scripts and other files needed for the integration of the package into a cmake project
-	- `tools`: contains the executables installed with vcpkg packages
-- `ports`: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by `git pull` in case you need to update the list of available packages.
-
-### Modules
-Vcpkg has it s own `find_package` macro in the toolchain file. It executes the script: `vcpkg/installed/<tripplet>/share/<package name>/vcpkg-cmake-wrapper.cmake`, if exists. Then, it executes the cmake scripts in that directory using the standard `find_package`, like a cmake config package.
 
 
 
@@ -866,13 +901,6 @@ Note that this can break the git commits, so it is necessary to also configure g
 ```
 git config core.ignorecase false
 ```
-
-
-
-# Installation and Publishing
-Here, we describe how to make some library or executable available in the system (*installation*) and how to distribute it to other users (*publishing*).
-
-## Vcpkg
 
 
 

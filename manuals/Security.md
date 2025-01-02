@@ -79,28 +79,43 @@ This guide suppose that the tunnel creation comman run without any error message
 
 ## Enabnling SSH Access on Server
 
-1.  install openssh:
+1. install openssh:
 	- `sudo apt update`
-    - `sudo apt install openssh-server`
-2.  configure access
-	- password:
-		1.  open `/etc/ssh/sshd_config`
-		2.  set `PasswordAuothentication yes`
-		3.  after restrat you can log in with the user and password used in Ubuntu
-	- keys: TODO
+	- `sudo apt install openssh-server`
+2. configure password access
+	1. open `/etc/ssh/sshd_config`
+	2. set `PasswordAuothentication yes`
+	3. after restrat you can log in with the user and password used in Ubuntu
 3. restart the ssh server: `sudo service ssh restart`
 
 
 ### Enabling key authentication for a user
-The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the `~/.ssh/authorized_keys` file. 
+The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the `~/.ssh/authorized_keys` file.
 
 Note that **the `authorized_keys` file has to have the right permissions**, which is read/write only for the owner, and read only for the group and others (`644`).
 
 
-###  WSL configuration
+### WSL configuration
 
-1. port `22` can be used on Windows, so change the port to `2222` in `sshd_config`
+1. port `22` can be used on Windows, so change the port to `2222`
 2. when loging from Windows use `127.0.0.1` as a host
+
+To change the port:
+
+- on older systems:
+	- change the port in the `/etc/ssh/sshd_config` file
+	- restart the ssh server: `sudo service ssh restart`
+- on newer systems:
+	1. `mkdir /etc/systemd/system/ssh.socket.d`
+	2. `vim /etc/systemd/system/ssh.socket.d/<some name>.conf`
+	3. add the following content:
+		```conf
+		[Socket]
+		ListenStream=
+		ListenStream=2222
+		```
+	4. `systemctl daemon-reload`
+	5. `systemctl restart ssh.socket`
 
 
 ## SSH Agent
@@ -205,18 +220,12 @@ lsof -i -n | grep ssh
 ```
 
 
-## WSL configuration
-
-1.  port `22` can be used on Windows, so change port to `2222` in `sshd_config`
-2.  when loging from Windows use `127.0.0.1` as a host
-
-
 ## Debugging
 
 **If the server does not respond:**
 
-1.  check the ssh status with: `service ssh status`
-2.  check the ssh port with `sudo netstat -tpln`
+1. check the ssh status with: `service ssh status`
+2. check the ssh port with `sudo netstat -tpln`
 
 **If the key is not accepted:**
 Check the log file: `sudo tail -c 5000 /var/log/auth.log`

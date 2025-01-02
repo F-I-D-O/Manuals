@@ -3774,14 +3774,17 @@ std::function<int(int, int)> func = static_cast<int(*)(int, int)>add;
 
 # Preprocessor Directives
 The C language has a [preprocessor](https://en.wikipedia.org/wiki/C_preprocessor) that uses a specific syntax to modify the code before the compilation. This preprocessor is also used in C++. The most used tasks are:
+
 - including files (`#include`): equivalent to Java or Python `import` statement
 - conditional compilation based on OS, compiler, or other conditions
 
 Also, preprocessor had some other purposes, now replaced by other tools:
+
 - defining constants (`#define`): replaced by `const` and `constexpr`
+	- A simple constant can be defined as: `#define PI 3.14159`. The variable can be used in the code as `PI`.
 - metaprogramming: replaced by templates
 
-A simple **variable** can be defined as: `#define PI 3.14159`. The variable can be used in the code as `PI`. 
+
 
 **Control structures** are defined as:
 ```cpp
@@ -3794,9 +3797,54 @@ A simple **variable** can be defined as: `#define PI 3.14159`. The variable can 
 #endif
 ```
 
+Instead of `#ifdef <MACRO>`, we can use `#if defined(<MACRO>)`. In this case, we can use multiple conditions in one `#if` directive:
+```cpp
+#if defined(MACRO_1) && defined(MACRO_2)
+	...
+#endif
+```
+
+## Predefined macros for detecting compiler, OS, etc.
+To detect the **Operating system**, use:
+
+- `#ifdef _WIN32` for Windows
+- `#ifdef __linux__` for Linux
+- `#ifdef unix` for Unix-like systems (but not MacOS)
+- `#ifdef __APPLE__` for MacOS
+
+
+
+# Resources
+In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. 
+
+Moreover, there is no built-in way how to determine the localtion of the running executable so that we can load the resources from the same directory. Typically, this has to be implemented for each platform separately:
+
+```cpp
+#include <iostream>
+#include <filesystem>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
+std::string get_executable_path() {
+    char buffer[1024];
+#ifdef _WIN32
+    GetModuleFileNameA(NULL, buffer, sizeof(buffer));
+#else
+    ssize_t count = readlink("/proc/self/exe", buffer, sizeof(buffer));
+    if (count == -1) throw std::runtime_error("Failed to get executable path");
+    buffer[count] = '\0';
+#endif
+    return std::filesystem::path(buffer).parent_path().string();
+}
+```
+
 
 
 # Testing with Google Test
+
 ## Private method testing
 The testing of private method is not easy with Google Test, but that is common also for other tets frameworks or even computer languages (see the common manual). Some solutions are described in [this SO question](https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest).
 
@@ -3901,6 +3949,7 @@ Sometimes, we want to suppress some warnings, mostly in libraries we are includi
 ## Measuring used resource
 
 ### Memory
+
 #### MSVC
 In MSVC, we can measure the peak used memory using the following code: 
 ```cpp
