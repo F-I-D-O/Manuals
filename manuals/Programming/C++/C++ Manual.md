@@ -3414,6 +3414,16 @@ To save performance in case of an intensive logging, we can set an extended flus
 spdlog::flush_every(std::chrono::seconds(5));
 ```
 
+## Levels
+The log levels are defined in the [`spdlog::level::level_enum`](https://github.com/gabime/spdlog/blob/v1.x/include/spdlog/common.h#L231). The levels are:
+
+- `trace`
+- `debug`
+- `info`
+- `warn`
+- `error`
+- `critical`
+
 ## Colors
 By default, the logger uses colors for different log levels. However, this capability is lost when:
 
@@ -3427,7 +3437,9 @@ auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 auto logger = std::make_shared<spdlog::logger>("console", console_sink);
 logger->set_pattern("[%^%l%$] %v");
 ```
-Here `%^` and `%$` are the color start and end markers. 
+Here `%^` and `%$` are the color start and end markers.
+
+
 
 
 

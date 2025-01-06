@@ -452,6 +452,8 @@ Then, the submission process is as follows:
 #### Set up the new Nova engine
 The new Nova engine is a new Clion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to `settings` -> `Advanced Settings` and under `Clion` check the `Use the ReSharper C++ language engine (Clion Nova)`.
 
+Apart from the new features, the Nova engine can prevent some false errors that are caused by the clangd engine used by the old Clion engine.
+
 
 #### Set up new surround with template
 In Clion, there are two types of surround with templates: `surrond with` and `surround with live template`. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. 
@@ -493,32 +495,29 @@ Most project settings resides (hereinafter *Project settings*) in `settings` -> 
 #### WSL extra configuration
 The CLion does not see the WSL's environment variables (as of 2023-03, see [here](https://intellij-support.jetbrains.com/hc/en-us/community/posts/5633934229906-Programs-cannot-get-environment-variables-from-wsl)). To fix it, go to *Project settings* and set add the necessary environment variables to `Environment` field. 
 
-
-### WSL configuration - Deprecated
-Clion connects to WSL through SSH. Therefore, you need to configure SSH in WSL. To do it, run the following script:
-
-```
-wget https://raw.githubusercontent.com/JetBrains/clion-wsl/master/ubuntu_setup_env.sh && bash ubuntu_setup_env.sh
-```
-  
-Next, It’s necessary to modify the WSL/create the WSL initialization script to fix a CMake issue when connecting from CLion. Download the wsl.conf file, and put it in /etc/.  The restart the WSL (wsl.exe -t Ubuntu-20.04)
-
-
-### Configuring only some CMake profiles
+#### Configuring only some CMake profiles
 When we click on the CMake reconiguration button, all profiles are reconfigured. Unfortunately, there is no way how to configure only some profiles. To work around this, we can deactivate the profiles we do not want to configure. To do so:
 
 1. go to `settings` -> `Build, Execution, Deployment` -> `CMake` 
-2. select the profile you want to deactivate
-2. uncheck the `Enable profile` checkbox located at the top of the profile settings
+1. select the profile you want to deactivate
+1. uncheck the `Enable profile` checkbox located at the top of the profile settings
 
 
-    
+### Problems
+
+#### Editor reports errors despite the code compiles in all compilers
+This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.
+
+
+
+
 ## Visual Studio
+
 ### Installation
 
-1.   Install Visual Studio
-2.   Open/Create a CMake project
-3.  Install ReSharper C++
+1. Install Visual Studio
+2. Open/Create a CMake project
+3. Install ReSharper C++
 
 ### Setting Synchronization
 
