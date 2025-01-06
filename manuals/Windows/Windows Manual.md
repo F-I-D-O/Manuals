@@ -34,6 +34,20 @@ This can happen if the output is too long or wide for the terminal.
 If a command outputs a text in Windows console host but passes it to a text editor in Windows Terminal, the possible cause is the font size. The default size in Windows Terminal is 12, which is much larger than the 16 in Windows Console Host (default). To fix it, change the font size in Windows Terminal to 10 which corresponds to the 16 in Windows Console Host.
 
 
+## Command Prompt
+Compared to PowerShell or Linux shells, the Command Prompt is very limited. Therefore, we describe only the most important commands. For more advanced commands, use PowerShell.
+
+To **change the current directory**, use the `cd` command. However, in the Command Prompt, this command cannot be used to change the drive. To change the drive, use the drive letter followed by a colon, e.g., command `D:` changes the drive to `D:`.
+
+
+## Character Encoding
+By default, Windows use the local ANSI code page for the character encoding, both in Command Prompt and PowerShell. We can change this encoding in an active console window, for example, command `chcp 65001` changes the encoding to UTF-8 in Command Prompt. To do a permanent change, we have to edit Windows settings:
+
+1. Open the Windows settings
+2. Go to `Time & language` -> `Language & region` -> `Administrative language settings`
+3. Click on the `Change system locale...` button
+4. Check the `Beta: Use Unicode UTF-8 for worldwide language support` checkbox
+
 
 # Keyboard Shortcuts
 
