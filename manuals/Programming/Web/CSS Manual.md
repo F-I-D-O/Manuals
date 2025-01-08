@@ -1,4 +1,5 @@
 # Layout options
+
 ## Grid Layout
 For complex pages. See the [tutorial](https://css-tricks.com/snippets/css/complete-guide-grid/).
 
@@ -13,14 +14,8 @@ Oldschool layout use floats.
 With tables...
 
 # Practical Selectors
+
 ## Last Child of a Specific Parent
-```
+```css
 #parent > :last-child
 ```
-
-> Written with [StackEdit](https://stackedit.io/).
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYzNTg0Nzc1OCwxMTkxNTA0NzM2LDE1Nz
-kzNjEwNjYsNTA3NTYzNzA4LDczMDk5ODExNl19
-
--->

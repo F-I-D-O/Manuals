@@ -832,7 +832,7 @@ auto p = std::pair<int, constr std::string&>(...)
 
 Also, beware that the RVO does not apply for tuple members. **This means that if we store values types in the tuple, the types are copied/moved, and in conclusion, they have to by copyable/movable!** This is the reason why we frequently use smart pointers in tuples even though we would reurn directly by value if we returned a single value.
 
-##### Creating tuples with `std::make_pair`/`std::make_tuple`
+##### Creating tuples with `std::make_pair` or `std::make_tuple`
 **TLDR: from C++17, there is no reason to use `make_pair`/`make_tuple`**.
 
 There are also factory methods `make_pair`/`make_tuple`. Before C++17, argument deduction did not work for constructors, so there is a dedicated  method for creating tuples. However, now we can just call the constructor and the template arguments are deduced from the constructor arguments. Also, the `make_pair`/`make_tuple` functions can only produce tuples containing values, not references (even if we specify the reference type in the `make_pair`/`make_tuple` template argument, the returned tuple will be value-typed). 
@@ -848,7 +848,7 @@ auto hello = std::get<1>(tuple);
 #### Unpacking tuples into variables
 There are two scenarios of unpacking tuples into variables:
 
-- unpacking into **new variables**: for that, we use structured binding. 
+- unpacking into **new variables**: for that, we use *structured binding*.
 - unpacking into **existing variables**: for that, we use `std::tie` function.
 
 ##### Structured binding 

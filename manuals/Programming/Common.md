@@ -134,6 +134,10 @@ Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.use
 Probably, the IDE installation directory is blocked by some other process. Try to close the WSL. If it does not help, find out which process is blocking the directory (On Windows: `C:\Users\<User>\AppData\Local\Programs\<IDE name>`)
 
 
+### Output console inserts new line when \r is used
+This is unfortunately a default behavior of the IDE output console. To mitigate this, we have to emulate the console. To do this, open the run configuration and check the `Emulate terminal in output console` option.
+
+
 # Releasing the software
 When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:
 
