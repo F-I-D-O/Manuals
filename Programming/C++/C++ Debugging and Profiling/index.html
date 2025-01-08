@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -826,6 +829,13 @@ Basic usage:</p>
 <h2 id="cppcheck">Cppcheck<a class="headerlink" href="#cppcheck" title="Permanent link">&para;</a></h2>
 <p><a href="http://cppcheck.sourceforge.net/">Cppcheck</a> is a GUI tool that can be used to check the code for various problems. It is available for Windows and Linux. </p>
 <h1 id="testing-google-test">Testing - Google Test<a class="headerlink" href="#testing-google-test" title="Permanent link">&para;</a></h1>
+<p>Google test is a c++ testing framework that can be used to write unit tests. As it is not officially shipped with vcpkg, we have to use <code>FetchContent</code> to download it. The basic usage is as follows:</p>
+<ol>
+<li>Add the <code>googletest</code> to the project using <code>FetchContent</code></li>
+<li>Add the test target using <code>add_executable</code> </li>
+<li>Link the test target with the <code>gtest</code> and <code>gtest_main</code> targets</li>
+</ol>
+<p>Optionally, if we want the tests to be run automatically by the <code>ctest</code>, we add the <code>gtest_discover_tests</code> command to the <code>CMakeLists.txt</code>.</p>
 <h2 id="debugging-tests">Debugging tests<a class="headerlink" href="#debugging-tests" title="Permanent link">&para;</a></h2>
 <p>To debug a test, you need to run it with the flag some flags:</p>
 <ul>
@@ -898,14 +908,12 @@ Basic usage:</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

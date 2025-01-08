@@ -12,10 +12,13 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -364,6 +367,14 @@
             
             <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#new-powershell" class="nav-link">New PowerShell</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#quick-edit-insert-mode" class="nav-link">Quick Edit / Insert Mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#script-blocks" class="nav-link">Script Blocks</a>
               <ul class="nav flex-column">
               </ul>
@@ -375,16 +386,8 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#important-aspects" class="nav-link">Important Aspects</a>
+            <li class="nav-item" data-level="1"><a href="#quoting" class="nav-link">Quoting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#new-powershell" class="nav-link">New PowerShell</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#quick-edit-insert-mode" class="nav-link">Quick Edit / Insert Mode</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#arguments-starting-with-and-containing" class="nav-link">Arguments starting with - and containing .</a>
               <ul class="nav flex-column">
               </ul>
@@ -393,15 +396,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#no-output-for-exe-file" class="nav-link">No Output for EXE file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-level="1"><a href="#command-execution" class="nav-link">Command execution</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#print-the-exit-code" class="nav-link">Print the exit code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#no-output-for-exe-file" class="nav-link">No Output for EXE file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -572,6 +579,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#get-the-path-of-the-current-script" class="nav-link">Get the path of the current script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -583,6 +594,11 @@
 <p>PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt. </p>
 <p>The PowerShell script files have the <code>.ps1</code> extension. </p>
 <p>In addition to system commands, PowerShell can also execute native PowerShell commands called <a href="https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands">cmdlets</a>.</p>
+<h2 id="new-powershell">New PowerShell<a class="headerlink" href="#new-powershell" title="Permanent link">&para;</a></h2>
+<p>The PowerShell Integrated in Windows is version 5. You can recognize it by the iconical blue background color. This old version has some important limitations (e. g. <a href="https://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">it cannot pass arguments containing arguments with spaces</a>).</p>
+<p>Therefore, it is best to install the <a href="https://github.com/PowerShell/PowerShell">new PowerShell</a> first.</p>
+<h2 id="quick-edit-insert-mode">Quick Edit / Insert Mode<a class="headerlink" href="#quick-edit-insert-mode" title="Permanent link">&para;</a></h2>
+<p>PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit <code>enter</code>.</p>
 <h2 id="script-blocks">Script Blocks<a class="headerlink" href="#script-blocks" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks">documentation</a></p>
 <p>A basic unit of execution in PowerShell is a script block. A script block can be:</p>
@@ -648,12 +664,18 @@ param($param1, $param2)
 }
 </code></pre>
 <p>The advanced usage of parameters is described in the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters">documentation</a>.</p>
-<h1 id="important-aspects">Important Aspects<a class="headerlink" href="#important-aspects" title="Permanent link">&para;</a></h1>
-<h2 id="new-powershell">New PowerShell<a class="headerlink" href="#new-powershell" title="Permanent link">&para;</a></h2>
-<p>The PowerShell Integrated in Windows is version 5. You can recognize it by the iconical blue background color. This old version has some important limitations (e. g. <a href="https://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">it cannot pass arguments containing arguments with spaces</a>).</p>
-<p>Therefore, it is best to install the <a href="https://github.com/PowerShell/PowerShell">new PowerShell</a> first.</p>
-<h2 id="quick-edit-insert-mode">Quick Edit / Insert Mode<a class="headerlink" href="#quick-edit-insert-mode" title="Permanent link">&para;</a></h2>
-<p>PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit <code>enter</code>.</p>
+<h1 id="quoting">Quoting<a class="headerlink" href="#quoting" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules">documentation</a></p>
+<p>In PowerShell, there are two types of quoting:</p>
+<ul>
+<li><code>"</code> (double quotes): for expandable strings. These strings can contain variables and expressions that are evaluated.<ul>
+<li>non-basic variables need to be wrapped by expression <code>$()</code>, e.g. <code>$($PSVersionTable.PSVersion)</code></li>
+<li>To separate the variable from the following text, use <code>${}</code>. Example: <code>${myVar}Text</code></li>
+<li>to escape (not evaluate) the <code>$</code> sign, use the backtick: <code>echo "`$myVar"</code> prints <code>$myVar</code></li>
+</ul>
+</li>
+<li><code>'</code> (single quotes): for literal strings. These strings are not evaluated.</li>
+</ul>
 <h2 id="arguments-starting-with-and-containing">Arguments starting with <code>-</code> and containing <code>.</code><a class="headerlink" href="#arguments-starting-with-and-containing" title="Permanent link">&para;</a></h2>
 <p>If a program argument starts with <code>-</code>, <strong>and</strong> contains <code>.</code> it needs to be wrapped by <code>'</code>. Otherwise, the argument will be split on the dot. Example:</p>
 <pre><code>mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
@@ -676,12 +698,18 @@ Example:</li>
 <p>Single quotes <code>'</code> are esceped by duble single quote: <code>''</code>. Example can be passing a list of args, where some of them contains space:</p>
 <pre><code>'args=\&quot;''arg1 with space'' arg2\&quot;'
 </code></pre>
-<h2 id="no-output-for-exe-file">No Output for EXE file<a class="headerlink" href="#no-output-for-exe-file" title="Permanent link">&para;</a></h2>
-<p>Some errors are unfortunatelly not reported by powershell (e.g. <a href="https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls">missing dll</a>). The solution is to run such program in cmd, which reports the error.</p>
 <h1 id="command-execution">Command execution<a class="headerlink" href="#command-execution" title="Permanent link">&para;</a></h1>
 <p>Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the <code>&amp;</code> operator has to be used. Example:</p>
 <pre><code class="language-PowerShell">&amp; &quot;C:\Program Files\Java\jdk1.8.0_181\bin\java.exe&quot; -version
 </code></pre>
+<h2 id="print-the-exit-code">Print the exit code<a class="headerlink" href="#print-the-exit-code" title="Permanent link">&para;</a></h2>
+<p>To print the exit code of the last command, there are two options:</p>
+<ul>
+<li><code>$?</code>: returns <code>True</code> if the last command was successful, <code>False</code> otherwise</li>
+<li><code>$LastExitCode</code> variable contains the exit code of the last command</li>
+</ul>
+<h2 id="no-output-for-exe-file">No Output for EXE file<a class="headerlink" href="#no-output-for-exe-file" title="Permanent link">&para;</a></h2>
+<p>Some errors are unfortunatelly not reported by powershell (e.g. <a href="https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls">missing dll</a>). The solution is to run such program in cmd, which reports the error.</p>
 <h1 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
 <p>Variables are defined by the <code>$</code> sign. Example:</p>
 <pre><code class="language-PowerShell">$myVar = &quot;Hello, World!&quot;
@@ -944,7 +972,9 @@ exit
 <h2 id="translate-alias-to-command">Translate alias to command<a class="headerlink" href="#translate-alias-to-command" title="Permanent link">&para;</a></h2>
 <p>To translate an alias to a command, use the <code>Get-Alias</code> command. Example:</p>
 <pre><code class="language-PowerShell">Get-Alias ls # returns Get-ChildItem
-</code></pre></div>
+</code></pre>
+<h2 id="get-the-path-of-the-current-script">Get the path of the current script<a class="headerlink" href="#get-the-path-of-the-current-script" title="Permanent link">&para;</a></h2>
+<p>To get the path of the current script, use the <code>$PSCommandPath</code> variable.</p></div>
             </div>
         </div>
 
@@ -952,14 +982,12 @@ exit
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

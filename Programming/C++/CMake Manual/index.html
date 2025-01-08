@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -371,7 +374,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-level="1"><a href="#the-cmake-command" class="nav-link">The cmake command</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#configuration-generating-build-scripts" class="nav-link">Configuration: Generating Build scripts</a>
               <ul class="nav flex-column">
@@ -379,7 +382,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#usefull-arguments" class="nav-link">Usefull arguments</a>
+            <li class="nav-item" data-level="3"><a href="#other-usefull-arguments" class="nav-link">Other Usefull arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -468,6 +471,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#file-operations" class="nav-link">File operations</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#path-operations" class="nav-link">Path operations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#path-decomposition" class="nav-link">Path decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
@@ -691,6 +702,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#display-available-generators" class="nav-link">Display available generators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -707,22 +722,42 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ctest" class="nav-link">Ctest</a>
+            <li class="nav-item" data-level="1"><a href="#testing-with-cmake" class="nav-link">Testing with CMake</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#dashboard-mode" class="nav-link">Dashboard mode</a>
+            <li class="nav-item" data-level="2"><a href="#ctest" class="nav-link">CTest</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#using-the-dashboard-mode-configured-by-the-script" class="nav-link">Using the Dashboard mode configured by the script</a>
+            <li class="nav-item" data-level="3"><a href="#run-tests-mode-default" class="nav-link">Run Tests mode (default)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#build-and-test-mode" class="nav-link">Build and Test mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#dashboard-mode" class="nav-link">Dashboard mode</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#using-the-dashboard-mode-configured-by-the-script" class="nav-link">Using the Dashboard mode configured by the script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#configuring-the-dashboard" class="nav-link">Configuring the Dashboard</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#problems" class="nav-link">Problems</a>
+            <li class="nav-item" data-level="3"><a href="#problems" class="nav-link">Problems</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#warning-name-library-version-mismatched-error" class="nav-link">Warning! &lt;name&gt; library version mismatched error</a>
+            <li class="nav-item" data-level="4"><a href="#warning-name-library-version-mismatched-error" class="nav-link">Warning! &lt;name&gt; library version mismatched error</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#test-fixtures" class="nav-link">Test fixtures</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -752,16 +787,17 @@
 <p>CMake not only supports multiple platforms but also multiple build systems on each platform. These build systems are called <em>generators</em>. To get a list of available generators, run:</p>
 <pre><code class="language-bash">cmake -E capabilities
 </code></pre>
-<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
+<h1 id="the-cmake-command">The <code>cmake</code> command<a class="headerlink" href="#the-cmake-command" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake.1.html">documentation</a></p>
 <h2 id="configuration-generating-build-scripts">Configuration: Generating Build scripts<a class="headerlink" href="#configuration-generating-build-scripts" title="Permanent link">&para;</a></h2>
 <p>General syntax is:</p>
-<pre><code class="language-bash">cmake &lt;dir&gt;
+<pre><code class="language-bash">cmake &lt;source dir&gt;
 </code></pre>
-<p>Here <code>&lt;dir&gt;</code> is the <code>CMakeLists.txt</code> directory. The build scripts are build in current directory.</p>
+<p>Here <code>&lt;source dir&gt;</code> is the <code>CMakeLists.txt</code> directory. The build scripts are build in current directory.</p>
 <p>We can set any cache variable using the <code>-D</code> argument. Example:</p>
-<pre><code class="language-bash">cmake &lt;dir&gt; -D &lt;variable name&gt;=&lt;variable value&gt;
+<pre><code class="language-bash">cmake &lt;source dir&gt; -D &lt;variable name&gt;=&lt;variable value&gt;
 # or equivalently
-cmake &lt;dir&gt; -D&lt;variable name&gt;=&lt;variable value&gt;
+cmake &lt;source dir&gt; -D&lt;variable name&gt;=&lt;variable value&gt;
 </code></pre>
 <h3 id="toolchain-file">Toolchain file<a class="headerlink" href="#toolchain-file" title="Permanent link">&para;</a></h3>
 <p>To work with package managers, a link to toolchain file has to be provided as an argument. For <code>vcpkg</code>, the argument is as follows:</p>
@@ -772,14 +808,12 @@ cmake &lt;dir&gt; --toolchain &lt;vcpkg location&gt;/scripts/buildsystems/vcpkg.
 cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsystems/vcpkg.cmake
 </code></pre>
 <p>Note that the toolchain is only loaded at the beginnning of the generation process. Once you forgot it, <strong>you need to delete the build scripts diectory content to make this argument work</strong> for subsequent cmake commands.</p>
-<h3 id="usefull-arguments">Usefull arguments<a class="headerlink" href="#usefull-arguments" title="Permanent link">&para;</a></h3>
+<h3 id="other-usefull-arguments">Other Usefull arguments<a class="headerlink" href="#other-usefull-arguments" title="Permanent link">&para;</a></h3>
 <ul>
+<li><code>-B &lt;build dir&gt;</code> to specify the build directory. By default, the build directory is the current directory.</li>
 <li><code>-LH</code> to see cmake nonadvanced variables together with the description. </li>
 <li><code>-LHA</code> to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.</li>
-<li><code>-D</code>: To change build options (<code>option</code> in <code>CMakeLists.txt</code>), run cmake with <code>-D &lt;option name&gt;=&lt;option value&gt; &lt;build dir&gt;</code>. Example: </li>
 </ul>
-<pre><code class="language-cmake">cmake -D BUILD_TESTING=OFF .
-</code></pre>
 <h3 id="legacy-arguments">Legacy arguments<a class="headerlink" href="#legacy-arguments" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>-H</code>: to specify the source directory (where the <code>CMakeLists.txt</code> file is located). Now it is specified as the positional argument or using <code>-S</code>.</li>
@@ -873,11 +907,26 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <pre><code class="language-cmake">message(STATUS &quot;dir=$ENV{dir}&quot;)
 </code></pre>
 <h3 id="built-in-variables">Built-in variables<a class="headerlink" href="#built-in-variables" title="Permanent link">&para;</a></h3>
-<p>There are some variable generated by default by CMake. These are:</p>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html">documentation</a></p>
+<p>There are some variable generated by default by CMake when run in the <em>config</em> mode. The most usefule are:</p>
 <ul>
 <li><code>CMAKE_CURRENT_SOURCE_DIR</code>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_BINARY_DIR.html"><code>CMAKE_CURRENT_BINARY_DIR</code></a>: the directory where the build scripts are located and where the build process is executed.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_LIST_DIR.html"><code>CMAKE_CURRENT_LIST_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_SOURCE_DIR.html"><code>PROJECT_SOURCE_DIR</code></a>: the nearest directory up in the directory tree where the <code>CMakeLists.txt</code> with the <code>project</code> command is located.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_ID.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_ID</code></a>: the compiler ID for the language <code>&lt;LANG&gt;</code>.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_VERSION.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_VERSION</code></a>: the compiler version for the language <code>&lt;LANG&gt;</code>.</li>
+</ul>
+<p>In the <em>script</em> mode, there are fewer variables available. To get <strong>the current working directory</strong>, we can use any of the following variables:</p>
+<ul>
+<li><code>CMAKE_SOURCE_DIR</code></li>
+<li><code>CMAKE_CURRENT_SOURCE_DIR</code></li>
+<li><code>CMAKE_BINARY_DIR</code></li>
+<li><code>CMAKE_CURRENT_BINARY_DIR</code></li>
+</ul>
+<p>Other useful variables for the script mode are:</p>
+<ul>
+<li><code>CMAKE_CURRENT_LIST_DIR</code>: the directory where the currently processed script is located</li>
 </ul>
 <p>There are also variables for installation directories typical for Unix systems. Touse them, we have to include the <a href="https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html"><code>GNUInstallDirs</code> module</a>. The variables have two formats:</p>
 <ul>
@@ -985,6 +1034,16 @@ endif()</code></p>
 <li><code>RENAME &lt;from&gt; &lt;to&gt;</code> - renames/moves a file or directory. The <code>&lt;from&gt;</code> must exist, and the parent directory of <code>&lt;to&gt;</code> must exist. </li>
 <li><code>REMOVE &lt;file&gt;</code> - remove a file </li>
 <li><code>REMOVE_RECURSE &lt;directory&gt;</code> - remove a directory and all its content</li>
+</ul>
+<h2 id="path-operations">Path operations<a class="headerlink" href="#path-operations" title="Permanent link">&para;</a></h2>
+<p>Path operations are performed using the <a href="https://cmake.org/cmake/help/latest/command/cmake_path.html"><code>cmake_path</code></a> command. The sytax for this command varies based on the subcommand. </p>
+<h3 id="path-decomposition">Path decomposition<a class="headerlink" href="#path-decomposition" title="Permanent link">&para;</a></h3>
+<p>The syntax for the path decomposition is:</p>
+<pre><code class="language-cmake">cmake_path(GET &lt;path&gt; &lt;path part&gt; &lt;output variable&gt;)
+</code></pre>
+<p>Here, <code>&lt;path part&gt;</code> can be:</p>
+<ul>
+<li><code>PARENT_PATH</code> - the parent directory of the path</li>
 </ul>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>Functions are defined using the <a href="https://cmake.org/cmake/help/latest/command/function.html"><code>function</code></a> command. The syntax is:</p>
@@ -1324,8 +1383,10 @@ endif()
     FetchContent_Declare(
         &lt;NAME&gt;
         &lt;SPECIFICATION&gt;
+        DOWNLOAD_EXTRACT_TIMESTAMP ON
     )</code><ul>
 <li>The specification can be either a URL or a git repository.</li>
+<li>The <code>DOWNLOAD_EXTRACT_TIMESTAMP</code> option ensures that the timestamp of the downloaded files is preserved. This is useful when the dependency is downloaded multiple times, and we want to avoid unnecessary rebuilds.</li>
 </ul>
 </li>
 <li>Configure the dependency using the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html#command:fetchcontent_makeavailable"><code>FetchContent_MakeAvailable</code></a> command:
@@ -1712,6 +1773,9 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <p>If the configuration step is already done, we can show the generator used for the configuration by reading the <code>CMAKE_GENERATOR</code> variable from the <code>CMakeCache.txt</code> file:</p>
 <pre><code class="language-powershell">Get-Content CMakeCache.txt | Select-String -Pattern &quot;CMAKE_GENERATOR&quot;
 </code></pre>
+<h2 id="display-available-generators">Display available generators<a class="headerlink" href="#display-available-generators" title="Permanent link">&para;</a></h2>
+<p>Unfortunately, there is no way how to display the available generators on the machine [<a href="https://gitlab.kitware.com/cmake/cmake/-/issues/25397">source</a>]. We can only list the generators that are compatible with the system by running the <code>cmake --help</code>.</p>
+<p>However, typically, the default generator marked with the <code>*</code> is available.</p>
 <h1 id="debugging-cmake">Debugging CMake<a class="headerlink" href="#debugging-cmake" title="Permanent link">&para;</a></h1>
 <h2 id="debugging-cmake-using-clion-cmake-debugger">Debugging CMake using CLion CMake debugger<a class="headerlink" href="#debugging-cmake-using-clion-cmake-debugger" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.jetbrains.com/help/clion/cmake-debug.html">documentation</a></p>
@@ -1730,9 +1794,19 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <pre><code class="language-powershell">cmake --trace &lt;dir&gt; *&gt; cmake_trace.txt
 </code></pre>
 <p>If we want to also expand the variables, we can use the <code>--trace-expand</code> option.</p>
-<h1 id="ctest">Ctest<a class="headerlink" href="#ctest" title="Permanent link">&para;</a></h1>
+<h1 id="testing-with-cmake">Testing with CMake<a class="headerlink" href="#testing-with-cmake" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Testing%20With%20CMake%20and%20CTest.html">documentation</a></p>
+<p>CMake has a built-in capability for organizing and running tests. This is useful, because for testing, we usually need information about the build configuration, which is already available in CMake. </p>
+<p>To enable testing in a project, we have to:</p>
+<ol>
+<li>add <code>include(CTest)</code> to the <code>CMakeLists.txt</code> file,</li>
+<li>add the individual tests using the <code>add_test</code> command, and</li>
+<li>configure the project</li>
+</ol>
+<p>Then, we can run the tests using the <code>ctest</code> command.</p>
+<h2 id="ctest">CTest<a class="headerlink" href="#ctest" title="Permanent link">&para;</a></h2>
 <p><a href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">documentation</a></p>
-<p>The <code>ctest</code> executable run the tests configured with CMake and reports the results. </p>
+<p>The <code>ctest</code> executable run the tests configured with CMake and reports the results.</p>
 <p>It can run in three modes:</p>
 <ul>
 <li><strong>Run Tests</strong> mode (default): runs the tests and reports the results</li>
@@ -1742,6 +1816,8 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 </li>
 <li><strong>Dashboard</strong> mode: run CTest as a client of the <a href="https://www.cdash.org/">CDash</a> dashboard application.<ul>
 <li>activated by one of the <code>-D</code> (<code>--dahboard</code>), <code>-M</code> (<code>--test-model</code>), <code>-S</code> (<code>--script</code>), or <code>-SP</code> (<code>--script-new-process</code>) arguments</li>
+<li>this mode facilitates every phase of the testing process, from updating the source code to running the tests and collecting the results</li>
+<li>if configured correctly, the results can be displayed on the CDash server dashboard</li>
 </ul>
 </li>
 </ul>
@@ -1752,16 +1828,79 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <li><code>-VV</code>: very verbose output</li>
 <li><code>-O &lt;file&gt;</code>: output the results to a file</li>
 </ul>
-<h2 id="dashboard-mode">Dashboard mode<a class="headerlink" href="#dashboard-mode" title="Permanent link">&para;</a></h2>
+<h3 id="run-tests-mode-default">Run Tests mode (default)<a class="headerlink" href="#run-tests-mode-default" title="Permanent link">&para;</a></h3>
+<p>The default run mode expects the project to be configured and built. It simply runs the tests and reports the results. For multi-configurations generators, we have to specify the configuration using the <code>-C</code> argument.</p>
+<h3 id="build-and-test-mode">Build and Test mode<a class="headerlink" href="#build-and-test-mode" title="Permanent link">&para;</a></h3>
+<p>The build and test mode is activated by the <code>--build-and-test</code> argument. </p>
+<p>Unlike the <code>cmake</code> command, the <code>ctest</code> command does not choose the generator automatically. Instead, we have to supply the generator using the <code>--build-generator</code> argument.</p>
+<p>Other useful arguments:</p>
+<ul>
+<li><code>--build-options</code>: additional options for the <code>cmake</code> command, e.g., <code>--toolchain &lt;path&gt;</code> to specify the toolchain file</li>
+</ul>
+<h3 id="dashboard-mode">Dashboard mode<a class="headerlink" href="#dashboard-mode" title="Permanent link">&para;</a></h3>
+<p><a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CDash.html">CDash documentation at cmake.org</a></p>
+<p>Unlike the previous two modes, the dashboard mode facilitates every phase of the testing process, namely:</p>
+<ul>
+<li>updating the source code from the version control system</li>
+<li>configuring the project</li>
+<li>building the project</li>
+<li>running the tests</li>
+<li>collecting the results</li>
+<li>submitting the results to the CDash server</li>
+</ul>
+<p>This is iteself a strong argument for using the dashboard mode but the main advantage is that in this mode, we can see the results of the process on the CDash server dashboard. However, this feature requires some extra configuration.</p>
 <p>There are two main ways to use the dashboard mode:</p>
 <ul>
 <li>configure the dashboard mode using the <code>-D</code> argument together with the dahsboard command line arguments</li>
 <li>configure the dashboard mode using a cmake script and then run the script using the <code>-S</code> or <code>-SP</code> argument</li>
 </ul>
-<h3 id="using-the-dashboard-mode-configured-by-the-script">Using the Dashboard mode configured by the script<a class="headerlink" href="#using-the-dashboard-mode-configured-by-the-script" title="Permanent link">&para;</a></h3>
-<p>When run with the <code>-S</code> or <code>-SP</code> argument, the <code>ctest</code> executable runs the script that configures the dashboard mode. The <code>-SP</code> mode only differs in that it runs the script in a new process. </p>
-<h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
-<h3 id="warning-name-library-version-mismatched-error"><code>Warning! &lt;name&gt; library version mismatched error</code><a class="headerlink" href="#warning-name-library-version-mismatched-error" title="Permanent link">&para;</a></h3>
+<h4 id="using-the-dashboard-mode-configured-by-the-script">Using the Dashboard mode configured by the script<a class="headerlink" href="#using-the-dashboard-mode-configured-by-the-script" title="Permanent link">&para;</a></h4>
+<p>When run with the <code>-S</code> or <code>-SP</code> argument, the <code>ctest</code> executable runs the script that configures the dashboard mode. The <code>-SP</code> mode only differs in that it runs the script in a new process.</p>
+<p>The script has to manage all the dashboard mode phases. For each phase, there is a corresponding command <code>cmake_&lt;phase&gt;</code> that has to be called. The commands are:</p>
+<ul>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_start.html"><code>ctest_start</code></a>: Initializes the dashboard mode. The only required parameter is a positional parameter mode or model, which is one of the following:<ul>
+<li><code>Continuous</code>: for continuous integration</li>
+<li><code>Nightly</code>: for nightly builds</li>
+<li><code>Experimental</code>: for local testing</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_update.html"><code>ctest_update</code></a>: Updates the source code from version control (Git, SVN, etc.)<ul>
+<li>optional phase</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_configure.html"><code>ctest_configure</code></a>: Configures the project</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_build.html"><code>ctest_build</code></a>: Builds the project<ul>
+<li>optional phase</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_test.html"><code>ctest_test</code></a>: Runs the tests</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_coverage.html"><code>ctest_coverage</code></a>: Collects the coverage information<ul>
+<li>optional phase</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_memcheck.html"><code>ctest_memcheck</code></a>: Runs the memory check<ul>
+<li>optional phase</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/command/ctest_submit.html"><code>ctest_submit</code></a>: Submits the results to the CDash server</li>
+</ul>
+<p>The above commands depend on some cmake variables (some of them can be replaced by additional arguments of the command):</p>
+<ul>
+<li><code>CTEST_SOURCE_DIRECTORY</code>: the source directory of the project (the directory where the <code>CMakeLists.txt</code> file is located)</li>
+<li><code>CTEST_BINARY_DIRECTORY</code>: the build directory of the project</li>
+<li><code>CTEST_CONFIGURE_COMMAND</code>: the command that configures the project. Typically <code>cmake</code> command with some arguments.</li>
+<li><code>CTEST_BUILD_COMMAND</code>: the command that builds the project. Typically <code>cmake --build</code> command with some arguments.</li>
+</ul>
+<h4 id="configuring-the-dashboard">Configuring the Dashboard<a class="headerlink" href="#configuring-the-dashboard" title="Permanent link">&para;</a></h4>
+<p>To see the results of the process in a nice GUI, we need a project on a CDash server. We can either use the public CDash server or set up our own server. </p>
+<p>To use the public CDash server, we have to:</p>
+<ol>
+<li>create an account on the <a href="https://my.cdash.org">CDash server</a></li>
+<li>create a project on the server</li>
+<li>download the <code>CTestConfig.cmake</code> file from the project page and put it in the project directory (the directory where the <code>CMakeLists.txt</code> file is located)</li>
+</ol>
+<h3 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
+<h4 id="warning-name-library-version-mismatched-error"><code>Warning! &lt;name&gt; library version mismatched error</code><a class="headerlink" href="#warning-name-library-version-mismatched-error" title="Permanent link">&para;</a></h4>
 <p>This error typically occures when the library <code>&lt;name&gt;</code> used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:</p>
 <ol>
 <li>The library relies on the <code>PATH</code> variable to find the library at runtime, but the path used during the build is specified manually.</li>
@@ -1781,7 +1920,18 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <li><code>View</code> -&gt; <code>Lower Pane View</code> -&gt; <code>DLLs</code></li>
 <li>click on the test process</li>
 <li>In the Lower Pane View, there is a list of all DLLs loaded by the test process. Find the problematic library and check the path to it.</li>
-</ol></div>
+</ol>
+<h2 id="test-fixtures">Test fixtures<a class="headerlink" href="#test-fixtures" title="Permanent link">&para;</a></h2>
+<p>In CMake, there is no dirrect suppor for fixtures as we know them from other testing frameworks. Instead, we define the setup and teardown code as separate tests and then, we use a <code>set_tests_properties</code> command to set up the dependencies between the tests. Example:</p>
+<pre><code class="language-cmake">add_test(NAME setup COMMAND &lt;setup command&gt;)
+add_test(NAME test1 COMMAND &lt;test 1 command&gt;)
+add_test(NAME test2 COMMAND &lt;test 2 command&gt;)
+add_test(NAME teardown COMMAND &lt;teardown command&gt;)
+
+set_tests_properties(test1, test2 PROPERTIES FIXTURES_REQUIRED my_test_suite)
+set_tests_properties(setup PROPERTIES FIXTURES_SETUP my_test_suite)
+set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
+</code></pre></div>
             </div>
         </div>
 
@@ -1789,14 +1939,12 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

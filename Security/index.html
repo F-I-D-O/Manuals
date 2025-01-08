@@ -12,10 +12,13 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -440,10 +443,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#wsl-configuration_1" class="nav-link">WSL configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-level="2"><a href="#debugging" class="nav-link">Debugging</a>
               <ul class="nav flex-column">
               </ul>
@@ -544,26 +543,42 @@
 <li><code>sudo apt install openssh-server</code></li>
 </ul>
 </li>
-<li>configure access<ul>
-<li>password:<ol>
+<li>configure password access<ol>
 <li>open <code>/etc/ssh/sshd_config</code></li>
 <li>set <code>PasswordAuothentication yes</code></li>
 <li>after restrat you can log in with the user and password used in Ubuntu</li>
 </ol>
 </li>
-<li>keys: TODO</li>
-</ul>
-</li>
 <li>restart the ssh server: <code>sudo service ssh restart</code></li>
 </ol>
 <h3 id="enabling-key-authentication-for-a-user">Enabling key authentication for a user<a class="headerlink" href="#enabling-key-authentication-for-a-user" title="Permanent link">&para;</a></h3>
-<p>The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the <code>~/.ssh/authorized_keys</code> file. </p>
+<p>The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the <code>~/.ssh/authorized_keys</code> file.</p>
 <p>Note that <strong>the <code>authorized_keys</code> file has to have the right permissions</strong>, which is read/write only for the owner, and read only for the group and others (<code>644</code>).</p>
 <h3 id="wsl-configuration">WSL configuration<a class="headerlink" href="#wsl-configuration" title="Permanent link">&para;</a></h3>
 <ol>
-<li>port <code>22</code> can be used on Windows, so change the port to <code>2222</code> in <code>sshd_config</code></li>
+<li>port <code>22</code> can be used on Windows, so change the port to <code>2222</code></li>
 <li>when loging from Windows use <code>127.0.0.1</code> as a host</li>
 </ol>
+<p>To change the port:</p>
+<ul>
+<li>on older systems:<ul>
+<li>change the port in the <code>/etc/ssh/sshd_config</code> file</li>
+<li>restart the ssh server: <code>sudo service ssh restart</code></li>
+</ul>
+</li>
+<li>on newer systems:<ol>
+<li><code>mkdir /etc/systemd/system/ssh.socket.d</code></li>
+<li><code>vim /etc/systemd/system/ssh.socket.d/&lt;some name&gt;.conf</code></li>
+<li>add the following content:
+    <code>conf
+    [Socket]
+    ListenStream=
+    ListenStream=2222</code></li>
+<li><code>systemctl daemon-reload</code></li>
+<li><code>systemctl restart ssh.socket</code></li>
+</ol>
+</li>
+</ul>
 <h2 id="ssh-agent">SSH Agent<a class="headerlink" href="#ssh-agent" title="Permanent link">&para;</a></h2>
 <p>Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.</p>
 <p>An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is <code>ssh-agent</code>, the rest of the section is dedicated to this agent.</p>
@@ -639,11 +654,6 @@ It is important to delete/updete all of these recorsds in case the server change
 <p>To list all active connections on a server, we can use the <code>lsof</code> command and filter the output for the ssh connections:</p>
 <pre><code class="language-bash">lsof -i -n | grep ssh
 </code></pre>
-<h2 id="wsl-configuration_1">WSL configuration<a class="headerlink" href="#wsl-configuration_1" title="Permanent link">&para;</a></h2>
-<ol>
-<li>port <code>22</code> can be used on Windows, so change port to <code>2222</code> in <code>sshd_config</code></li>
-<li>when loging from Windows use <code>127.0.0.1</code> as a host</li>
-</ol>
 <h2 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h2>
 <p><strong>If the server does not respond:</strong></p>
 <ol>
@@ -680,14 +690,12 @@ Check the log file: <code>sudo tail -c 5000 /var/log/auth.log</code></p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

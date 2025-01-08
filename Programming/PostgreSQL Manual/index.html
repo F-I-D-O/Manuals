@@ -12,10 +12,13 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -625,6 +628,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#granting-privileges" class="nav-link">Granting privileges</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#grant-privileges-for-a-database" class="nav-link">Grant privileges for a database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#grant-privileges-for-database-schema" class="nav-link">Grant privileges for database schema</a>
               <ul class="nav flex-column">
               </ul>
@@ -1309,6 +1316,11 @@ END IF
 <h2 id="deleting-database">Deleting database<a class="headerlink" href="#deleting-database" title="Permanent link">&para;</a></h2>
 <p>To delete a database, we can use the <a href="https://www.postgresql.org/docs/current/app-dropdb.html"><code>dropdb</code></a> command: <code>dropdb &lt;db name&gt;</code></p>
 <h2 id="granting-privileges">Granting privileges<a class="headerlink" href="#granting-privileges" title="Permanent link">&para;</a></h2>
+<h3 id="grant-privileges-for-a-database">Grant privileges for a database<a class="headerlink" href="#grant-privileges-for-a-database" title="Permanent link">&para;</a></h3>
+<p>To give privileges for creating new tables and other objects in a database:</p>
+<pre><code class="language-SQL">GRANT ALL PRIVILEGES ON DATABASE &lt;db name&gt; TO &lt;user name&gt;;
+</code></pre>
+<p>To give privileges for existing objects, it is best to change the owner of the objects.</p>
 <h3 id="grant-privileges-for-database-schema">Grant privileges for database schema<a class="headerlink" href="#grant-privileges-for-database-schema" title="Permanent link">&para;</a></h3>
 <p>To grant all privileges for a database schema to a user, we can use the following command:</p>
 <pre><code class="language-SQL">GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO &lt;user name&gt;;
@@ -1469,14 +1481,12 @@ SELECT set_config('&lt;parameter name&gt;', '&lt;value&gt;', false);
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

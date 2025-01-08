@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -607,7 +610,7 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="4"><a href="#creating-tuples" class="nav-link">Creating tuples</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#creating-tuples-with-stdmake_pairstdmake_tuple" class="nav-link">Creating tuples with std::make_pair/std::make_tuple</a>
+            <li class="nav-item" data-level="5"><a href="#creating-tuples-with-stdmake_pair-or-stdmake_tuple" class="nav-link">Creating tuples with std::make_pair or std::make_tuple</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1319,6 +1322,10 @@
             
             <li class="nav-item" data-level="1"><a href="#logging" class="nav-link">Logging</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#levels" class="nav-link">Levels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#colors" class="nav-link">Colors</a>
               <ul class="nav flex-column">
               </ul>
@@ -1450,6 +1457,15 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#preprocessor-directives" class="nav-link">Preprocessor Directives</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#predefined-macros-for-detecting-compiler-os-etc" class="nav-link">Predefined macros for detecting compiler, OS, etc.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#resources_1" class="nav-link">Resources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -2248,7 +2264,7 @@ a = map[1] // a == map[1] == &quot;&quot; unintuitively, the default value is in
 <pre><code class="language-cpp">auto p = std::pair&lt;int, constr std::string&amp;&gt;(...)
 </code></pre>
 <p>Also, beware that the RVO does not apply for tuple members. <strong>This means that if we store values types in the tuple, the types are copied/moved, and in conclusion, they have to by copyable/movable!</strong> This is the reason why we frequently use smart pointers in tuples even though we would reurn directly by value if we returned a single value.</p>
-<h5 id="creating-tuples-with-stdmake_pairstdmake_tuple">Creating tuples with <code>std::make_pair</code>/<code>std::make_tuple</code><a class="headerlink" href="#creating-tuples-with-stdmake_pairstdmake_tuple" title="Permanent link">&para;</a></h5>
+<h5 id="creating-tuples-with-stdmake_pair-or-stdmake_tuple">Creating tuples with <code>std::make_pair</code> or <code>std::make_tuple</code><a class="headerlink" href="#creating-tuples-with-stdmake_pair-or-stdmake_tuple" title="Permanent link">&para;</a></h5>
 <p><strong>TLDR: from C++17, there is no reason to use <code>make_pair</code>/<code>make_tuple</code></strong>.</p>
 <p>There are also factory methods <code>make_pair</code>/<code>make_tuple</code>. Before C++17, argument deduction did not work for constructors, so there is a dedicated  method for creating tuples. However, now we can just call the constructor and the template arguments are deduced from the constructor arguments. Also, the <code>make_pair</code>/<code>make_tuple</code> functions can only produce tuples containing values, not references (even if we specify the reference type in the <code>make_pair</code>/<code>make_tuple</code> template argument, the returned tuple will be value-typed). </p>
 <h4 id="accessing-tuple-members">Accessing tuple members<a class="headerlink" href="#accessing-tuple-members" title="Permanent link">&para;</a></h4>
@@ -2259,7 +2275,7 @@ auto hello = std::get&lt;1&gt;(tuple);
 <h4 id="unpacking-tuples-into-variables">Unpacking tuples into variables<a class="headerlink" href="#unpacking-tuples-into-variables" title="Permanent link">&para;</a></h4>
 <p>There are two scenarios of unpacking tuples into variables:</p>
 <ul>
-<li>unpacking into <strong>new variables</strong>: for that, we use structured binding. </li>
+<li>unpacking into <strong>new variables</strong>: for that, we use <em>structured binding</em>.</li>
 <li>unpacking into <strong>existing variables</strong>: for that, we use <code>std::tie</code> function.</li>
 </ul>
 <h5 id="structured-binding">Structured binding<a class="headerlink" href="#structured-binding" title="Permanent link">&para;</a></h5>
@@ -4344,6 +4360,16 @@ spdlog::set_default_logger(logger);
 <p>To save performance in case of an intensive logging, we can set an extended flushing period:</p>
 <pre><code class="language-cpp">spdlog::flush_every(std::chrono::seconds(5));
 </code></pre>
+<h2 id="levels">Levels<a class="headerlink" href="#levels" title="Permanent link">&para;</a></h2>
+<p>The log levels are defined in the <a href="https://github.com/gabime/spdlog/blob/v1.x/include/spdlog/common.h#L231"><code>spdlog::level::level_enum</code></a>. The levels are:</p>
+<ul>
+<li><code>trace</code></li>
+<li><code>debug</code></li>
+<li><code>info</code></li>
+<li><code>warn</code></li>
+<li><code>error</code></li>
+<li><code>critical</code></li>
+</ul>
 <h2 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h2>
 <p>By default, the logger uses colors for different log levels. However, this capability is lost when:</p>
 <ul>
@@ -4356,7 +4382,7 @@ spdlog::set_default_logger(logger);
 auto logger = std::make_shared&lt;spdlog::logger&gt;(&quot;console&quot;, console_sink);
 logger-&gt;set_pattern(&quot;[%^%l%$] %v&quot;);
 </code></pre>
-<p>Here <code>%^</code> and <code>%$</code> are the color start and end markers. </p>
+<p>Here <code>%^</code> and <code>%$</code> are the color start and end markers.</p>
 <h1 id="type-aliases">Type Aliases<a class="headerlink" href="#type-aliases" title="Permanent link">&para;</a></h1>
 <p>Type aliases are short names bound to some other types. We can introduce it either with <code>typedef</code> or with <code>using</code> keyword. Examples (equvalent):</p>
 <pre><code class="language-cpp">typedef int number;
@@ -4609,13 +4635,19 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
 <pre><code>std::function&lt;int(int, int)&gt; func = static_cast&lt;int(*)(int, int)&gt;add;
 </code></pre>
 <h1 id="preprocessor-directives">Preprocessor Directives<a class="headerlink" href="#preprocessor-directives" title="Permanent link">&para;</a></h1>
-<p>The C language has a <a href="https://en.wikipedia.org/wiki/C_preprocessor">preprocessor</a> that uses a specific syntax to modify the code before the compilation. This preprocessor is also used in C++. The most used tasks are:
-- including files (<code>#include</code>): equivalent to Java or Python <code>import</code> statement
-- conditional compilation based on OS, compiler, or other conditions</p>
-<p>Also, preprocessor had some other purposes, now replaced by other tools:
-- defining constants (<code>#define</code>): replaced by <code>const</code> and <code>constexpr</code>
-- metaprogramming: replaced by templates</p>
-<p>A simple <strong>variable</strong> can be defined as: <code>#define PI 3.14159</code>. The variable can be used in the code as <code>PI</code>. </p>
+<p>The C language has a <a href="https://en.wikipedia.org/wiki/C_preprocessor">preprocessor</a> that uses a specific syntax to modify the code before the compilation. This preprocessor is also used in C++. The most used tasks are:</p>
+<ul>
+<li>including files (<code>#include</code>): equivalent to Java or Python <code>import</code> statement</li>
+<li>conditional compilation based on OS, compiler, or other conditions</li>
+</ul>
+<p>Also, preprocessor had some other purposes, now replaced by other tools:</p>
+<ul>
+<li>defining constants (<code>#define</code>): replaced by <code>const</code> and <code>constexpr</code><ul>
+<li>A simple constant can be defined as: <code>#define PI 3.14159</code>. The variable can be used in the code as <code>PI</code>.</li>
+</ul>
+</li>
+<li>metaprogramming: replaced by templates</li>
+</ul>
 <p><strong>Control structures</strong> are defined as:</p>
 <pre><code class="language-cpp">#ifdef &lt;MACRO&gt;
     ...
@@ -4624,6 +4656,42 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
 #else
     ...
 #endif
+</code></pre>
+<p>Instead of <code>#ifdef &lt;MACRO&gt;</code>, we can use <code>#if defined(&lt;MACRO&gt;)</code>. In this case, we can use multiple conditions in one <code>#if</code> directive:</p>
+<pre><code class="language-cpp">#if defined(MACRO_1) &amp;&amp; defined(MACRO_2)
+    ...
+#endif
+</code></pre>
+<h2 id="predefined-macros-for-detecting-compiler-os-etc">Predefined macros for detecting compiler, OS, etc.<a class="headerlink" href="#predefined-macros-for-detecting-compiler-os-etc" title="Permanent link">&para;</a></h2>
+<p>To detect the <strong>Operating system</strong>, use:</p>
+<ul>
+<li><code>#ifdef _WIN32</code> for Windows</li>
+<li><code>#ifdef __linux__</code> for Linux</li>
+<li><code>#ifdef unix</code> for Unix-like systems (but not MacOS)</li>
+<li><code>#ifdef __APPLE__</code> for MacOS</li>
+</ul>
+<h1 id="resources_1">Resources<a class="headerlink" href="#resources_1" title="Permanent link">&para;</a></h1>
+<p>In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. </p>
+<p>Moreover, there is no built-in way how to determine the localtion of the running executable so that we can load the resources from the same directory. Typically, this has to be implemented for each platform separately:</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;filesystem&gt;
+#ifdef _WIN32
+#include &lt;windows.h&gt;
+#else
+#include &lt;unistd.h&gt;
+#endif
+
+std::string get_executable_path() {
+    char buffer[1024];
+#ifdef _WIN32
+    GetModuleFileNameA(NULL, buffer, sizeof(buffer));
+#else
+    ssize_t count = readlink(&quot;/proc/self/exe&quot;, buffer, sizeof(buffer));
+    if (count == -1) throw std::runtime_error(&quot;Failed to get executable path&quot;);
+    buffer[count] = '\0';
+#endif
+    return std::filesystem::path(buffer).parent_path().string();
+}
 </code></pre>
 <h1 id="testing-with-google-test">Testing with Google Test<a class="headerlink" href="#testing-with-google-test" title="Permanent link">&para;</a></h1>
 <h2 id="private-method-testing">Private method testing<a class="headerlink" href="#private-method-testing" title="Permanent link">&para;</a></h2>
@@ -4773,14 +4841,12 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

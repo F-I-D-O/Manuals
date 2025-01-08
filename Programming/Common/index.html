@@ -12,10 +12,13 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -423,6 +426,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#output-console-inserts-new-line-when-r-is-used" class="nav-link">Output console inserts new line when \r is used</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -493,6 +500,28 @@
 </ul>
 <p>There are many types of exceptions, encapsulating different types of error description data. However, to begin with, it is not important to use some specific exception type. Using some general exception class is always much better than not using exceptions at all.</p>
 <h1 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h1>
+<p>There are many types of software tests:</p>
+<ul>
+<li><strong>Unit tests</strong>: The most common and known ype of tests. They test individual units of code, e.g., functions, classes, or modules.</li>
+<li><strong>Integration tests</strong>: test how different units of code work together.</li>
+<li><strong>Functional tests</strong>: test the functionality of the software from the user's perspective.</li>
+<li><a href="https://en.wikipedia.org/wiki/Smoke_testing_(software)"><strong>Smoke tests</strong></a>: Test the minimum functionality of the software.<ul>
+<li>sometimes, it just builds the software. In this case, it may be called a <em>build verification test</em>.</li>
+<li>sometimes, it runs the software with a minimal set of inputs. This way, we can check if the runtime libraries are correctly linked and if the software can be executed.</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Regression_testing"><strong>Regression tests</strong></a>: test if the new version of the software behaves the same as the previous one. This can mean testing the equivalence of:<ul>
+<li>the output of the software,</li>
+<li>the performance of the software,</li>
+<li>the compilation time or the size of the binary,..</li>
+</ul>
+</li>
+</ul>
+<p>Test cases for each test type can be written using two main approaches:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Black-box_testing"><strong>Black-box testing</strong></a>: the test cases are written without knowing the internal structure of the software. It does not require any knowledge of the implementation details. However, it can be less effective in finding bugs: multiple test cases can test the same functionality, and some functionalities can be left untested.</li>
+<li><a href="https://en.wikipedia.org/wiki/White-box_testing"><strong>White-box testing</strong></a>: the test cases are written with the knowledge of the internal structure of the software. It can be more effective in finding bugs, but it requires a deep understanding of the software. It can also lead to a situation where the tests are too tightly coupled with the implementation, and the tests need to be rewritten when the implementation changes.</li>
+</ul>
 <p>Common terms in testing:</p>
 <ul>
 <li><strong>Test case</strong>: a single test that checks a single aspect of the code.</li>
@@ -541,6 +570,8 @@
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="update-is-paused-and-does-not-resume-even-after-closing-the-ide">Update is paused and does not resume even after closing the IDE<a class="headerlink" href="#update-is-paused-and-does-not-resume-even-after-closing-the-ide" title="Permanent link">&para;</a></h3>
 <p>Probably, the IDE installation directory is blocked by some other process. Try to close the WSL. If it does not help, find out which process is blocking the directory (On Windows: <code>C:\Users\&lt;User&gt;\AppData\Local\Programs\&lt;IDE name&gt;</code>)</p>
+<h3 id="output-console-inserts-new-line-when-r-is-used">Output console inserts new line when \r is used<a class="headerlink" href="#output-console-inserts-new-line-when-r-is-used" title="Permanent link">&para;</a></h3>
+<p>This is unfortunately a default behavior of the IDE output console. To mitigate this, we have to emulate the console. To do this, open the run configuration and check the <code>Emulate terminal in output console</code> option.</p>
 <h1 id="releasing-the-software">Releasing the software<a class="headerlink" href="#releasing-the-software" title="Permanent link">&para;</a></h1>
 <p>When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:</p>
 <ul>
@@ -574,14 +605,12 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,10 +12,13 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -376,6 +379,14 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#command-prompt" class="nav-link">Command Prompt</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#character-encoding" class="nav-link">Character Encoding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -601,6 +612,15 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#wsl" class="nav-link">WSL</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#translate-windows-path-to-linux-path" class="nav-link">Translate Windows Path to Linux Path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#dual-boot" class="nav-link">Dual Boot</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" class="nav-link">Make Windows Work after Linux Uninstall if the Bootloader is Grub</a>
@@ -695,6 +715,17 @@
 <h3 id="windows-terminal-pass-stdout-to-text-editor-instead-displaying-it">Windows terminal pass stdout to text editor instead displaying it<a class="headerlink" href="#windows-terminal-pass-stdout-to-text-editor-instead-displaying-it" title="Permanent link">&para;</a></h3>
 <p>This can happen if the output is too long or wide for the terminal. </p>
 <p>If a command outputs a text in Windows console host but passes it to a text editor in Windows Terminal, the possible cause is the font size. The default size in Windows Terminal is 12, which is much larger than the 16 in Windows Console Host (default). To fix it, change the font size in Windows Terminal to 10 which corresponds to the 16 in Windows Console Host.</p>
+<h2 id="command-prompt">Command Prompt<a class="headerlink" href="#command-prompt" title="Permanent link">&para;</a></h2>
+<p>Compared to PowerShell or Linux shells, the Command Prompt is very limited. Therefore, we describe only the most important commands. For more advanced commands, use PowerShell.</p>
+<p>To <strong>change the current directory</strong>, use the <code>cd</code> command. However, in the Command Prompt, this command cannot be used to change the drive. To change the drive, use the drive letter followed by a colon, e.g., command <code>D:</code> changes the drive to <code>D:</code>.</p>
+<h2 id="character-encoding">Character Encoding<a class="headerlink" href="#character-encoding" title="Permanent link">&para;</a></h2>
+<p>By default, Windows use the local ANSI code page for the character encoding, both in Command Prompt and PowerShell. We can change this encoding in an active console window, for example, command <code>chcp 65001</code> changes the encoding to UTF-8 in Command Prompt. To do a permanent change, we have to edit Windows settings:</p>
+<ol>
+<li>Open the Windows settings</li>
+<li>Go to <code>Time &amp; language</code> -&gt; <code>Language &amp; region</code> -&gt; <code>Administrative language settings</code></li>
+<li>Click on the <code>Change system locale...</code> button</li>
+<li>Check the <code>Beta: Use Unicode UTF-8 for worldwide language support</code> checkbox</li>
+</ol>
 <h1 id="keyboard-shortcuts">Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h1>
 <ul>
 <li><code>Alt</code> + <code>Shift</code>: change input language</li>
@@ -895,6 +926,9 @@ REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
 <p>As the git on Windows runs in MinGW, it does not use the Windows SSH command. That can be problematic if we want to debug the SSH connection using the env variable or configuring an ssh key agent. To force git to use the Windows SSH, we need to set the <code>sshCommand</code> config variable to the path to the Windows SSH:</p>
 <pre><code class="language-PowerShell">git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 </code></pre>
+<h1 id="wsl">WSL<a class="headerlink" href="#wsl" title="Permanent link">&para;</a></h1>
+<h2 id="translate-windows-path-to-linux-path">Translate Windows Path to Linux Path<a class="headerlink" href="#translate-windows-path-to-linux-path" title="Permanent link">&para;</a></h2>
+<p>To translate a Windows path to a Linux path, we can use the <code>wslpath</code> command, which is available in Ubuntu WSL distributions. </p>
 <h1 id="dual-boot">Dual Boot<a class="headerlink" href="#dual-boot" title="Permanent link">&para;</a></h1>
 <h2 id="make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub">Make Windows Work after Linux Uninstall if the Bootloader is Grub<a class="headerlink" href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" title="Permanent link">&para;</a></h2>
 <ol>
@@ -984,14 +1018,12 @@ Solution: Go to the app setting and select the correct camera</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -424,12 +427,28 @@
             
             <li class="nav-item" data-level="1"><a href="#vcpkg" class="nav-link">vcpkg</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#changing-the-default-triplet" class="nav-link">Changing the default triplet</a>
+            <li class="nav-item" data-level="2"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
+            <li class="nav-item" data-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#modules" class="nav-link">Modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#triplets" class="nav-link">Triplets</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#changing-the-default-triplet" class="nav-link">Changing the default triplet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#using-a-custom-triplet" class="nav-link">Using a custom triplet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#update" class="nav-link">Update</a>
@@ -484,14 +503,6 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#modules" class="nav-link">Modules</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -529,14 +540,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#wsl-configuration-deprecated" class="nav-link">WSL configuration - Deprecated</a>
+            <li class="nav-item" data-level="4"><a href="#configuring-only-some-cmake-profiles" class="nav-link">Configuring only some CMake profiles</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#configuring-only-some-cmake-profiles" class="nav-link">Configuring only some CMake profiles</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#problems" class="nav-link">Problems</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" class="nav-link">Editor reports errors despite the code compiles in all compilers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -723,15 +738,6 @@
             
             <li class="nav-item" data-level="1"><a href="#handling-case-insensitivity" class="nav-link">Handling Case Insensitivity</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#installation-and-publishing" class="nav-link">Installation and Publishing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#vcpkg_1" class="nav-link">Vcpkg</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -931,17 +937,63 @@ The structure inside the project element is as follows (only the most important 
 </li>
 </ol>
 <p>To install a package, run <code>vcpkg install package</code>.</p>
-<h2 id="changing-the-default-triplet">Changing the default triplet<a class="headerlink" href="#changing-the-default-triplet" title="Permanent link">&para;</a></h2>
+<h2 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">documentation</a></p>
+<p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
+<p>The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.</p>
+<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
+<p>vcpkg has the following directory structure:</p>
+<ul>
+<li><code>buildtrees</code>: contains the build directories for each installed package. Each build directory contains the build logs.</li>
+<li><code>installed</code>: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:<ul>
+<li><code>bin</code>: contains the shared libraries</li>
+<li><code>debug</code>: contains the debug version of everything in a similar structure as the triplet directory</li>
+<li><code>examples</code>: contains example binaries</li>
+<li><code>include</code>: contains the header files</li>
+<li><code>lib</code>: contains the static libraries</li>
+<li><code>share</code>: contains the cmake scripts and other files needed for the integration of the package into a cmake project</li>
+<li><code>tools</code>: contains the executables installed with vcpkg packages</li>
+</ul>
+</li>
+<li><code>ports</code>: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</li>
+<li><code>scripts</code>: various scripts<ul>
+<li><code>toolchains</code>: cmake files that configure the toolchains. There is a special file for each platform (windows, linux, etc.)</li>
+</ul>
+</li>
+<li><code>triplets</code>: contains the triplet files.</li>
+</ul>
+<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
+<p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
+<h2 id="triplets">Triplets<a class="headerlink" href="#triplets" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/triplets">documentation</a></p>
+<p>Vcpkg supports installing packages built for multiple platforms and compilers in the same vcpkg installation. To do this, vcpkg uses the concept of <em>triplets</em>. A triplet is definition of target environment. Usually, the triplet defines three things:</p>
+<ul>
+<li>the target platform (e.g., x64, arm)</li>
+<li>the target operating system (e.g., windows, linux)</li>
+<li>the target compiler (e.g., msvc, gcc)</li>
+</ul>
+<p>The triplet definition is stored in the triplet file in the <code>&lt;vcpkg root&gt;/triplets</code> directory.</p>
+<h3 id="changing-the-default-triplet">Changing the default triplet<a class="headerlink" href="#changing-the-default-triplet" title="Permanent link">&para;</a></h3>
 <p>To change the default triplet, add a new system variable <code>VCPKG_DEFAULT_TRIPLET</code>, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:</p>
 <ul>
 <li><code>x64-linux</code> for Linux Compilers</li>
 <li><code>x64-windows</code> for MSVC</li>
 <li><code>x64-MinGW</code> for MinGW</li>
 </ul>
-<h2 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h2>
-<p><a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">documentation</a></p>
-<p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
-<p>The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.</p>
+<h3 id="using-a-custom-triplet">Using a custom triplet<a class="headerlink" href="#using-a-custom-triplet" title="Permanent link">&para;</a></h3>
+<p>If you need to test a specific system environment with vcpkg, you can use a custom triplet.</p>
+<p>Typically, you can <strong>create</strong> such a triplet by copying an existing one and modifying it. Typically, you just modify the <a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets">triplet variables</a> in the file.</p>
+<p>To <strong>use</strong> the custom triplet add two arguments to the vcpkg command:</p>
+<ul>
+<li><code>--triplet &lt;triplet name&gt;</code>: the name of the custom triplet</li>
+<li><code>--overlay-triplets=&lt;path to the directory containing the custom triplet&gt;</code>: the path to the directory containing the custom triplet file</li>
+</ul>
+<p>To <strong>change the compiler</strong>, it is a little bit more complicated, as there is no triplet variable for the compiler. Instead, we need to provide a custom toolchain:</p>
+<ol>
+<li>copy an existing toolchain file from the <code>&lt;vcpkg root&gt;/scripts/toolchains</code>.</li>
+<li>modify the toolchain file to use the desired compiler, e.g., by setting the <code>CMAKE_CXX_COMPILER</code> variable.</li>
+<li>in the custom triplet file, set the <code>VCPKG_CHAINLOAD_TOOLCHAIN_FILE</code> variable to point to the custom toolchain file.</li>
+</ol>
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <ol>
 <li><code>git pull</code></li>
@@ -1145,24 +1197,6 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <li>push the branch to the forked vcpkg repository</li>
 <li>open the forked repository in the browser and create a new pull request to the main vcpkg repository</li>
 </ol>
-<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
-<p>vcpkg has the following directory structure:</p>
-<ul>
-<li><code>buildtrees</code>: contains the build directories for each installed package. Each build directory contains the build logs.</li>
-<li><code>installed</code>: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:<ul>
-<li><code>bin</code>: contains the shared libraries</li>
-<li><code>debug</code>: contains the debug version of everything in a similar structure as the triplet directory</li>
-<li><code>examples</code>: contains example binaries</li>
-<li><code>include</code>: contains the header files</li>
-<li><code>lib</code>: contains the static libraries</li>
-<li><code>share</code>: contains the cmake scripts and other files needed for the integration of the package into a cmake project</li>
-<li><code>tools</code>: contains the executables installed with vcpkg packages</li>
-</ul>
-</li>
-<li><code>ports</code>: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</li>
-</ul>
-<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
-<p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
 <h1 id="ide">IDE<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h1>
 <h2 id="clion">Clion<a class="headerlink" href="#clion" title="Permanent link">&para;</a></h2>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
@@ -1170,6 +1204,7 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <p><code>Window</code> -&gt; <code>Layouts</code> -&gt; <code>Save changes in current layout</code></p>
 <h4 id="set-up-the-new-nova-engine">Set up the new Nova engine<a class="headerlink" href="#set-up-the-new-nova-engine" title="Permanent link">&para;</a></h4>
 <p>The new Nova engine is a new Clion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to <code>settings</code> -&gt; <code>Advanced Settings</code> and under <code>Clion</code> check the <code>Use the ReSharper C++ language engine (Clion Nova)</code>.</p>
+<p>Apart from the new features, the Nova engine can prevent some false errors that are caused by the clangd engine used by the old Clion engine.</p>
 <h4 id="set-up-new-surround-with-template">Set up new surround with template<a class="headerlink" href="#set-up-new-surround-with-template" title="Permanent link">&para;</a></h4>
 <p>In Clion, there are two types of surround with templates: <code>surrond with</code> and <code>surround with live template</code>. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. </p>
 <h3 id="toolchain-configuration">Toolchain configuration<a class="headerlink" href="#toolchain-configuration" title="Permanent link">&para;</a></h3>
@@ -1216,18 +1251,16 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 </ul>
 <h4 id="wsl-extra-configuration">WSL extra configuration<a class="headerlink" href="#wsl-extra-configuration" title="Permanent link">&para;</a></h4>
 <p>The CLion does not see the WSL's environment variables (as of 2023-03, see <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/5633934229906-Programs-cannot-get-environment-variables-from-wsl">here</a>). To fix it, go to <em>Project settings</em> and set add the necessary environment variables to <code>Environment</code> field. </p>
-<h3 id="wsl-configuration-deprecated">WSL configuration - Deprecated<a class="headerlink" href="#wsl-configuration-deprecated" title="Permanent link">&para;</a></h3>
-<p>Clion connects to WSL through SSH. Therefore, you need to configure SSH in WSL. To do it, run the following script:</p>
-<pre><code>wget https://raw.githubusercontent.com/JetBrains/clion-wsl/master/ubuntu_setup_env.sh &amp;&amp; bash ubuntu_setup_env.sh
-</code></pre>
-<p>Next, It’s necessary to modify the WSL/create the WSL initialization script to fix a CMake issue when connecting from CLion. Download the wsl.conf file, and put it in /etc/.  The restart the WSL (wsl.exe -t Ubuntu-20.04)</p>
-<h3 id="configuring-only-some-cmake-profiles">Configuring only some CMake profiles<a class="headerlink" href="#configuring-only-some-cmake-profiles" title="Permanent link">&para;</a></h3>
+<h4 id="configuring-only-some-cmake-profiles">Configuring only some CMake profiles<a class="headerlink" href="#configuring-only-some-cmake-profiles" title="Permanent link">&para;</a></h4>
 <p>When we click on the CMake reconiguration button, all profiles are reconfigured. Unfortunately, there is no way how to configure only some profiles. To work around this, we can deactivate the profiles we do not want to configure. To do so:</p>
 <ol>
 <li>go to <code>settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>CMake</code> </li>
 <li>select the profile you want to deactivate</li>
 <li>uncheck the <code>Enable profile</code> checkbox located at the top of the profile settings</li>
 </ol>
+<h3 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
+<h4 id="editor-reports-errors-despite-the-code-compiles-in-all-compilers">Editor reports errors despite the code compiles in all compilers<a class="headerlink" href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" title="Permanent link">&para;</a></h4>
+<p>This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.</p>
 <h2 id="visual-studio">Visual Studio<a class="headerlink" href="#visual-studio" title="Permanent link">&para;</a></h2>
 <h3 id="installation_2">Installation<a class="headerlink" href="#installation_2" title="Permanent link">&para;</a></h3>
 <ol>
@@ -1552,10 +1585,7 @@ ml) option enables compilation for a specific hardware.</p>
 </code></pre>
 <p>Note that this can break the git commits, so it is necessary to also configure git in your case-sensitive repo:</p>
 <pre><code>git config core.ignorecase false
-</code></pre>
-<h1 id="installation-and-publishing">Installation and Publishing<a class="headerlink" href="#installation-and-publishing" title="Permanent link">&para;</a></h1>
-<p>Here, we describe how to make some library or executable available in the system (<em>installation</em>) and how to distribute it to other users (<em>publishing</em>).</p>
-<h2 id="vcpkg_1">Vcpkg<a class="headerlink" href="#vcpkg_1" title="Permanent link">&para;</a></h2></div>
+</code></pre></div>
             </div>
         </div>
 
@@ -1563,14 +1593,12 @@ ml) option enables compilation for a specific hardware.</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
