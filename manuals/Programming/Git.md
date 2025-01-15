@@ -248,7 +248,9 @@ There are two possible scenarios:
 If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.
 
 
-# Creating a GitHub Release
+# GitHub
+
+## Creating a GitHub Release
 To create a release:
 
 1. In the repository, under the `Releases` heading, click `Create a new release`
@@ -256,8 +258,55 @@ To create a release:
 1. Select an existing tag or create a new one by filling the text field with the tag name and clicking `Create new tag` button
 1. Fill the `Release title` and `Description` fields
 1. Click `Publish release`
- 
 
-# Repository Migration
+
+## GitHub CLI
+Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
+
+Typically, we need to authenticate the tool first by calling [`gh auth login`](https://cli.github.com/manual/gh_auth_login). There are two options for authentication:
+
+- browser authentication (default)
+- token authentication: suitable for automation
+	- only the old token type can be used, the fine-grained tokens are not supported yet
+
+
+### Token Authentication
+To authenticate using a token, we first need to create a token:
+
+1. Go to `Settings` -> `Developer settings` -> `Personal access tokens`
+1. Click `Tokens (classic)`
+1. Click `Generate new token` -> `Generate new token (classic)`
+1. Fill the token description and select the scopes
+1. Click `Generate token`
+
+Then we can authenticate using the token. We can either
+
+- suply the token to the `gh auth login` command:
+	```PowerShell
+	gh auth login -h github.com -p ssh --skip-ssh-key --with-token <TOKEN>
+	```
+- or set the environment variable `GH_TOKEN` to the token value and call commands without authentication.
+
+
+### Managing realeases
+Required permissions:
+
+- `public_repo` if the repository is public
+- `repo` if the repository is private
+
+To **create** a release, we can the [`gh release create`](https://cli.github.com/manual/gh_release_create) command:
+```PowerShell
+gh release create <TAG> --repo <REPO> --title <TITLE> --generate-notes
+```
+Here, the `<REPO>` is the full url of the repository, e.g. `git@github.com:F-I-D-O/Future-Config.git`
+
+To **delete** a release, we can call the [`gh release delete`](https://cli.github.com/manual/gh_release_delete) command:
+```PowerShell
+gh release delete <TAG> --repo <REPO> --cleanup-tag -y
+```
+
+
+
+## Repository Migration
 
 https://github.com/piceaTech/node-gitlab-2-github

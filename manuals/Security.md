@@ -255,6 +255,36 @@ To prolong the expiration date, we can use the `gpg --edit-key <key-id>` command
 1. choose the new expiration date
 1. save the changes by `save`
 
+
 ## Troubleshooting
+
 ### `partial length invalid for packet type 63`
 This can happen if the private key has a wrong encoding. It can be fixed by cnverting the key file to ASCII encoding.
+
+
+## Storing passwords for the command line tools
+Sometimes, we need to store passwords for the command line tools on the local machine. For non-sensitive passwords, we can just store them in a file that is not versioned. However, for sensitive passwords and authentication tokens, we should not store them in plain text. We have two options:
+
+- Use a Credential Manager, or
+- Encrypt the file where the passwords are stored.
+
+### Credential Managers
+There are plenty of credential managers available for each OS. If we want to avoid the differences between the OS, we can use the python [keyring](https://pypi.org/project/keyring/) package.
+
+### Python keyring
+[homepage](https://pypi.org/project/keyring/)
+
+The keyring package is a Python library that provides a way to store passwords in a secure way. It uses a system-specific backend to store the passwords. 
+
+To manage the passwords, we can use the `keyring` command provided by the package. The basic usage is:
+```bash
+keyring set <service> <username> # set the password. After running this command, the password is prompted
+keyring get <service> <username> # get the password
+```
+
+To use the keyring in a Python script, we use the `keyring` package:
+```python
+import keyring
+
+password = keyring.get_password("service", "username")
+```

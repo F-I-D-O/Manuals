@@ -33,6 +33,9 @@
 - `(?<=)` positive lookbehind. Same as positive lookahead, but it looks behind.
 - `(?<!)` negative lookbehind. Same as negative lookahead, but it looks behind.
 
+## Capture the same group multiple times
+Sometimes, it would be useful to capture the same pattern multiple times in a separate groups dynamically, without specifying the number of repetitions. 
+Unfortunately, this is not possible with just regex. Instead we need to specify the pattern and use the programming language to capture the group multiple times (e.g., in Python, we can use `re.findall()`).
 
 
 # Principles
@@ -94,6 +97,8 @@ Replace
 ```Regex
 ([AÁBCČDEFGHIJKLMNOPQRŘSŠTUÚVWXYZŽ]{1}[aábcčdďeéěfghchiíjklmnňoópqrřsštťuúůvwxyýzžw]+ *){2,3}
 ```
+
+
 
 
 

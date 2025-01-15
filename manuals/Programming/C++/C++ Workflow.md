@@ -422,15 +422,24 @@ Before publishing the port, we should check for the following:
 	- the port should work for both Windows and Linux and on both platforms, the port should support both static and dynamic linking.
 - the [PR checklist](https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist) is followed
 
-Then, the submission process is as follows:
+Then, the submission process is as follows (The *emphezised* steps are not needed in case of fixing a failed release, i.e., when the release was rejected by vcpkg):
 
-1. copy the port to the vcpkg repository
-2. remove the manual `SOURCE_PATH` overrides and uncomment the `vcpkg_from_github` call
-3. test the port locally withouth the `--overlay-ports` option
-4. format the `vcpkg.json` file using the `vcpkg format-manifest <path to the vcpkg.json file>` command
-5. create a new branch and commit the changes to that branch
-6. push the branch to the forked vcpkg repository
-1. open the forked repository in the browser and create a new pull request to the main vcpkg repository
+1. *create a fork of the vcpkg repository*
+1. commit and push the changes to the project repository if not done yet
+1. create or replace a release in the projects GitHub repository
+1. in portfile change the version in the `vcpkg_from_github` call to the new version
+1. copy the port (`portfile.cmake` and `vcpkg.json`) to the vcpkg repository
+1. remove the local `SOURCE_PATH` overrides and uncomment the `vcpkg_from_github` call
+1. in portfile, assign the correct hash to the `vcpkg_from_github` call
+1. change the version in the `vcpkg.json` file to the new version
+1. test the port installation locally without the `--overlay-ports` option
+1. format the `vcpkg.json` file using the `vcpkg format-manifest <path to the vcpkg.json file>` command
+1. *create a new branch for the package*
+1. commit the changes to the package branch in the vcpkg repository
+1. update the port version using the `vcpkg x-add-version <port name>` command
+1. commit again to the package branch in the vcpkg repository
+1. push the branch to the forked vcpkg repository
+1. *open the forked repository in the browser and create a new pull request to the main vcpkg repository*
 
 
 

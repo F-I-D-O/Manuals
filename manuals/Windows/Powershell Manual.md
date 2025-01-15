@@ -168,6 +168,7 @@ To print the variable, just type its name. Example:
 ```PowerShell
 $myVar
 ```
+
 ## Environment variables
 They are accessed by the `$env:` prefix. Example:
 ```PowerShell
@@ -471,6 +472,20 @@ $argString = $args -join ' '
 Start-Process "pwsh" -Verb RunAs -ArgumentList "-noexit -File `"$PSCommandPath`" $argString"
 exit
 ```
+
+
+# PowerShell History
+To iterate over the commands used in the past, we use the `up arrow` and `down arrow` keys.
+
+To list the history, use the `Get-History` command.
+
+To **clear** the history, use the [`Clear-History`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-history) command:
+
+- `Clear-History -Id <id>`: clear the command with the specified id (use `Get-History` to get the id)
+- `Clear-History -Count <count>`: clear the last `count` commands
+- `Clear-History -CommandLine <pattern>`: clear the commands that match the pattern. The pattern use the simple matching (e.g. `*` is the wildcard), and have to be wrapped in quotes if it contains spaces.
+
+
 
 
 # Usefull Commands

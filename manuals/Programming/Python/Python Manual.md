@@ -705,6 +705,16 @@ shutil.rmtree(p, onerror=lambda func, path, _: (os.chmod(path, stat.S_IWRITE), f
 ```
 
 
+## Working with temporary files
+The [`tempfile`](https://docs.python.org/3/library/tempfile.html) module provides a convenient way to work with temporary files. 
+
+To create a temporary file, we can use the [`NamedTemporaryFile`](https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile) function:
+```Python
+import tempfile
+
+with tempfile.NamedTemporaryFile() as f:
+    f.write(<data>)
+```
 
 
 # I/O
@@ -845,6 +855,14 @@ import subprocess
 
 subprocess.run(['ls', '-l'])
 ```
+
+Important parameters:
+
+- `env`: A dictionary with the environment variables. 
+    - Note that the default environment obtained from the parent process is not extended, but replaced by the provided dictionary. Therefore, if we want to extend the environment, we have to initialize the dictionary with the parent environment:
+        ```Python
+        env = os.environ.copy()
+        ```
 
 
 # Loading resources
@@ -1227,4 +1245,14 @@ There are various libraries for working with geometry in Python:
 - [`shapely`](https://pypi.org/project/shapely/)
 - `geopandas`: for gis data
 
+# Downloading files
+To download files from the internet, we can use the `requests` library. The basic usage is:
+```Python
+import requests
+
+response = requests.get(<url>)
+
+with open(<filename>, 'wb') as f:
+    f.write(response.content)
+```
 
