@@ -539,4 +539,15 @@ Get-Alias ls # returns Get-ChildItem
 To get the path of the current script, use the `$PSCommandPath` variable.
 
 
+## Compute the hash of a file
+To compute the hash of a file, use the `Get-FileHash` command. Example:
+```PowerShell
+Get-FileHash "C:\Users\user\file.txt"
+```
+
+Important parameters:
+
+- `-Algorithm`: the algorithm used for hashing. The default is `SHA256`. Other options are `SHA1`, `SHA256`, `SHA384`, `SHA512`, `MD5`
+
+
 

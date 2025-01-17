@@ -674,6 +674,26 @@ except:
 Other methods like `os.access` or using `tempfile` module are not reliable on Windows (see e.g.: https://github.com/python/cpython/issues/66305).
 
 
+## Copying files and directories
+For copying files and directories, we can use the `shutil` module. The most used method is `copy2`, which copies the file with all metadata:
+```Python
+import shutil
+
+p1 = Path("C:/workspace/project/file.txt")
+p2 = Path("C:/workspace/project/file2.txt")
+
+shutil.copy2(p1, p2)
+```
+
+The `copy2` method can also copy into a directory:
+```Python
+p1 = Path("C:/workspace/project/file.txt")
+p2 = Path("C:/workspace/project2")
+
+shutil.copy2(p1, p2) # the new file will be 'C:/workspace/project2/file.txt'
+```
+
+
 ## Deleting files and directories
 To delete a file, we can use the `unlink` method of the `Path` object:
 ```Python
@@ -716,8 +736,35 @@ with tempfile.NamedTemporaryFile() as f:
     f.write(<data>)
 ```
 
+Unlike normal files, we can both read and write to the temporary file using a single file object. However, we must return the file pointer to the beginning of the file:
+```Python
+with open('file.txt', 'rw') as f:
+    f.write('data')
+    f.seek(0)
+    data = f.read()
+```
+
 
 # I/O
+For simple file operations, we can use the `open` function. A simple file read is done as follows:
+```Python
+with open('file.txt', 'r') as f:
+    data = f.read()
+```
+
+A simple file write is done as follows:
+```Python
+with open('file.txt', 'w') as f:
+    f.write('data')
+```
+
+By default, the `open` function opens the file in text mode. To open the file in binary mode, we have to use the `b` flag:
+```Python
+with open('file.txt', 'rb') as f:
+    data = f.read()
+```
+
+
 
 ## CSV
 [Official Manual](https://docs.python.org/3/library/csv.html)
@@ -941,11 +988,23 @@ The basic syntax for regex search is:
 ```Python
 result = re.search(<pattern>, <string>)
 if result: # pattern matches
-    group = result.group(<group index>)) # print the first group
+    group = result.group(<group index>) # print the first group
 ```
 
 The 0th group is the whole match, as usual.
 
+
+To substitute the matched pattern, we can use the `sub` function:
+```Python
+pattern = re.compile(r'(\d+)')
+result = pattern.sub(r'[\1]', '123') # '[123]'
+```
+
+Sometimes, we need to use numbers around the group index. In such cases, we have to use the `\<group index><<number>>` notation:
+```Python
+pattern = re.compile(r'(\d+)')
+result = pattern.sub(r'\g<1>2025', '123') # '1232025'
+```
 
 # Lambda functions
 Lambda functions in python have the following syntax:

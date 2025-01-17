@@ -71,6 +71,7 @@ rel["admin_level"~".*"];
 node;
 );
 ```
+
 # Select Area Boundary
 Sometimes, it is usefull to check the boundary of the named area. However, the administrative level differ for various areas cities, countries, so the `admin_level` relation cannot be used for that. Luckilly, there is an option to use the `pivot` filter. Example:
 ```
