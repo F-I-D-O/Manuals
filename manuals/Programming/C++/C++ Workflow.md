@@ -429,6 +429,7 @@ Then, the submission process is as follows (The *emphezised* steps are not neede
 1. create or replace a release in the projects GitHub repository
 1. update the verison in the `vcpkg_from_github` call in `portfile.cmake`
 1. update the version in the `vcpkg.json` file
+1. pull from the vcpgk fork repository
 1. copy the port (`portfile.cmake`, `vcpkg.json` and `usage`) to the vcpkg repository
 1. remove the local `SOURCE_PATH` overrides and uncomment the `vcpkg_from_github` call
 1. in portfile, assign the correct hash to the `vcpkg_from_github` call
@@ -440,12 +441,6 @@ Then, the submission process is as follows (The *emphezised* steps are not neede
 1. commit again to the package branch in the vcpkg repository
 1. push the branch to the forked vcpkg repository
 1. *open the forked repository in the browser and create a new pull request to the main vcpkg repository*
-
-
-
-
-
-
 
 
 # IDE

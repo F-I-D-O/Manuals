@@ -13,15 +13,15 @@ The following scheme shows the operations that can be performed between the work
 
 
 # Configuration
-The git configuration is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command. 
+The git configuration is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command.
 
 To display the active configuration in the command line, call:
-```
+```bash
 git config --list
 ```
 
 We can also show whether the configuration results from the system, user or local configuration file:
-```
+```bash
 git config --list --show-origin
 ```
 
@@ -29,20 +29,19 @@ git config --list --show-origin
 
 ## Rewrite remote with local changes without merging
 
-````
+```bash
 git push -f
-````
+```
 
-## Go back to branch:
+## Go back to branch
 
-````
+```bash
 git revert --no-commit 0766c053..HEAD
-
-````
+```
 
 ## Untrack files, but not delete them locally:
 
-```
+```bash
 git rm --cached <FILEPATH>
 ```
 
@@ -52,12 +51,31 @@ usefull params:
 - `-n` dry run
 
 
-## Add remote
+# Remote Repositories
+[Git Basics manual](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
 
+Normally, we have a single remote repository, which is typically called `origin`. In this repository, we share the code with other developers. In this case we don't have to care about the remote repository handling, because the remote is automatically set to the repository we cloned from.
+
+However, sometimes we need to work with multiple remote repositories. In this case, we have to add remotes manually and also specify the remote repository when we push or pull.
+
+To **add a remote**, we call:
+
+```bash
+git remote add <remote name> <URL>
 ```
-git remote add origin <URL>
+Where the remote and `<URL>` is is the link we use to clone the repository.
+
+To **list remotes**, we call:
+
+```bash
+git remote -v
 ```
-Where `origin` is the name of the remote and `<URL>` is is the link we use to clone the repository.
+
+Then we need to specify the remote when we want to use a command that interacts with the remote repository and we want to use a remote other than the default one. For example, to push to a remote repository, instead of just `git push`, we call:
+
+```bash
+git push <remote name> <branch name>
+```
 
 
 # Reverting
@@ -68,6 +86,7 @@ When we want to revert  something using git there are multiple options depending
 - [`git read-tree`](https://git-scm.com/docs/git-read-tree): similar to checkout, but does not require a cleanup before
 
 The following table shows the differences between the commands:
+
 | Command | revrerts commits | overwrite local changes |  delete files committed after `<commit>` |
 | --- | --- | --- | --- |
 | `git checkout <commit>` | no | yes | no |
@@ -216,11 +235,11 @@ Sometimes, it's necessary to tweak the command to help it locate the moved files
 - `-X rename-threshold=25`: Changing the threshold is important for languages that changes the file content when moving it with automatic refactoring (especially important for Java files, which usually have tons of imports)
 - `-X ignore-space-change`
 
-## Revert merge:
+## Revert merge
 
-````
+```bash
 git revert -m 1
-````
+```
 
 Note that when the merge is reverted, the changes cannot be merged again, because they predates the revert!
 
