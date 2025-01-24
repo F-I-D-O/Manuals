@@ -1,3 +1,11 @@
+# Variables
+
+To check if a local variable is defined, we can use the `locals` function:
+```Python
+if 'my_variable' in locals():
+    print('Variable exists')
+```
+
 # Data Types
 
 ## Built-in data types
@@ -693,6 +701,8 @@ p2 = Path("C:/workspace/project2")
 shutil.copy2(p1, p2) # the new file will be 'C:/workspace/project2/file.txt'
 ```
 
+Other methods and the comparison are described in a [SO question](https://stackoverflow.com/questions/123198/how-to-copy-files).
+
 
 ## Deleting files and directories
 To delete a file, we can use the `unlink` method of the `Path` object:
@@ -905,11 +915,31 @@ subprocess.run(['ls', '-l'])
 
 Important parameters:
 
+- `check`: if set to `True`, the function raises an exception if the return code is not 0. Default is `False`.
+- `text`, or `universal_newlines`: if set to `True`, the function returns the output as a string. Default is `None`.
 - `env`: A dictionary with the environment variables. 
     - Note that the default environment obtained from the parent process is not extended, but replaced by the provided dictionary. Therefore, if we want to extend the environment, we have to initialize the dictionary with the parent environment:
         ```Python
         env = os.environ.copy()
         ```
+
+
+However, the `subprocess.run` method has some limitations. Notably, it cannot both capture and stream the output. To achieve this, and some other advanced features, we have to use the subprocess.Popen class.
+
+
+## `subprocess.Popen`
+The [`subprocess.Popen`](https://docs.python.org/3/library/subprocess.html#subprocess.Popen) class provides more control over the process. The basic usage is:
+```Python
+p = subprocess.Popen(['ls', '-l']) # start the process
+
+# now we can communicate with the process, stream the output, etc.
+
+p.wait() # wait for the process to finish
+
+# now we can get the return code, continue with the code, etc.
+```
+
+
 
 
 # Loading resources

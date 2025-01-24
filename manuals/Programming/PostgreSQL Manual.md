@@ -110,7 +110,39 @@ SET search_path TO <schema name list>;
 
 
 
+# Editing the database
+The commands for editing the database mostly follows the SQL standard. 
 
+## Creating objects (tables, indexes, etc.)
+The syntax for creating objects is mostly the same as in the SQL standard: 
+```SQL
+CREATE <object type> <object name> <object parameters>
+```
+
+## `IF NOT EXISTS` modifier
+An important modifier is the `IF NOT EXISTS` clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:
+
+- `TABLE`
+- `INDEX`
+- `SEQUENCE`
+- `VIEW`
+- `MATERIALIZED VIEW`
+- `PROCEDURE`
+- `FUNCTION`
+- `TRIGGER`
+
+However, it is not available for:
+
+- `DATABASE`
+- `SCHEMA`
+- `USER`
+- `CONSTRAINT`
+
+For these objects, we have to use some workaround. There are three options in general:
+
+1. check if the object exists before creating it ([SO example with Constraint](https://stackoverflow.com/a/6804058/1827955))
+2. delete the object before creating it
+3. catch the error and ignore it ([SO example with Constraint](https://stackoverflow.com/a/32526723/1827955))
 
 
 
