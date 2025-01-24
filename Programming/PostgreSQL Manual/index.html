@@ -407,6 +407,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#editing-the-database" class="nav-link">Editing the database</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#procedures-and-functions" class="nav-link">Procedures and functions</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#calling-a-procedure" class="nav-link">Calling a procedure</a>
@@ -827,6 +840,37 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <p>To change the search path, run:</p>
 <pre><code class="language-SQL">SET search_path TO &lt;schema name list&gt;;
 </code></pre>
+<h1 id="editing-the-database">Editing the database<a class="headerlink" href="#editing-the-database" title="Permanent link">&para;</a></h1>
+<p>The commands for editing the database mostly follows the SQL standard. </p>
+<h2 id="creating-objects-tables-indexes-etc">Creating objects (tables, indexes, etc.)<a class="headerlink" href="#creating-objects-tables-indexes-etc" title="Permanent link">&para;</a></h2>
+<p>The syntax for creating objects is mostly the same as in the SQL standard: </p>
+<pre><code class="language-SQL">CREATE &lt;object type&gt; &lt;object name&gt; &lt;object parameters&gt;
+</code></pre>
+<h2 id="if-not-exists-modifier"><code>IF NOT EXISTS</code> modifier<a class="headerlink" href="#if-not-exists-modifier" title="Permanent link">&para;</a></h2>
+<p>An important modifier is the <code>IF NOT EXISTS</code> clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:</p>
+<ul>
+<li><code>TABLE</code></li>
+<li><code>INDEX</code></li>
+<li><code>SEQUENCE</code></li>
+<li><code>VIEW</code></li>
+<li><code>MATERIALIZED VIEW</code></li>
+<li><code>PROCEDURE</code></li>
+<li><code>FUNCTION</code></li>
+<li><code>TRIGGER</code></li>
+</ul>
+<p>However, it is not available for:</p>
+<ul>
+<li><code>DATABASE</code></li>
+<li><code>SCHEMA</code></li>
+<li><code>USER</code></li>
+<li><code>CONSTRAINT</code></li>
+</ul>
+<p>For these objects, we have to use some workaround. There are three options in general:</p>
+<ol>
+<li>check if the object exists before creating it (<a href="https://stackoverflow.com/a/6804058/1827955">SO example with Constraint</a>)</li>
+<li>delete the object before creating it</li>
+<li>catch the error and ignore it (<a href="https://stackoverflow.com/a/32526723/1827955">SO example with Constraint</a>)</li>
+</ol>
 <h1 id="procedures-and-functions">Procedures and functions<a class="headerlink" href="#procedures-and-functions" title="Permanent link">&para;</a></h1>
 <h2 id="calling-a-procedure">Calling a procedure<a class="headerlink" href="#calling-a-procedure" title="Permanent link">&para;</a></h2>
 <p>to exectue a stored procedure, use"</p>

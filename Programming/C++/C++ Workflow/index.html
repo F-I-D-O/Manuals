@@ -1187,15 +1187,25 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 </li>
 <li>the <a href="https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist">PR checklist</a> is followed</li>
 </ul>
-<p>Then, the submission process is as follows:</p>
+<p>Then, the submission process is as follows (The <em>emphezised</em> steps are not needed in case of fixing a failed release, i.e., when the release was rejected by vcpkg):</p>
 <ol>
-<li>copy the port to the vcpkg repository</li>
-<li>remove the manual <code>SOURCE_PATH</code> overrides and uncomment the <code>vcpkg_from_github</code> call</li>
-<li>test the port locally withouth the <code>--overlay-ports</code> option</li>
+<li><em>create a fork of the vcpkg repository</em></li>
+<li>commit and push the changes to the project repository if not done yet</li>
+<li>create or replace a release in the projects GitHub repository</li>
+<li>update the verison in the <code>vcpkg_from_github</code> call in <code>portfile.cmake</code></li>
+<li>update the version in the <code>vcpkg.json</code> file</li>
+<li>pull from the vcpgk fork repository</li>
+<li>copy the port (<code>portfile.cmake</code>, <code>vcpkg.json</code> and <code>usage</code>) to the vcpkg repository</li>
+<li>remove the local <code>SOURCE_PATH</code> overrides and uncomment the <code>vcpkg_from_github</code> call</li>
+<li>in portfile, assign the correct hash to the <code>vcpkg_from_github</code> call</li>
+<li>test the port installation locally without the <code>--overlay-ports</code> option</li>
 <li>format the <code>vcpkg.json</code> file using the <code>vcpkg format-manifest &lt;path to the vcpkg.json file&gt;</code> command</li>
-<li>create a new branch and commit the changes to that branch</li>
+<li><em>create a new branch for the package</em></li>
+<li>commit the changes to the package branch in the vcpkg repository</li>
+<li>update the port version using the <code>vcpkg x-add-version &lt;port name&gt;</code> command</li>
+<li>commit again to the package branch in the vcpkg repository</li>
 <li>push the branch to the forked vcpkg repository</li>
-<li>open the forked repository in the browser and create a new pull request to the main vcpkg repository</li>
+<li><em>open the forked repository in the browser and create a new pull request to the main vcpkg repository</em></li>
 </ol>
 <h1 id="ide">IDE<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h1>
 <h2 id="clion">Clion<a class="headerlink" href="#clion" title="Permanent link">&para;</a></h2>

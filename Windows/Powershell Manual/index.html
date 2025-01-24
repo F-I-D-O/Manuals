@@ -553,6 +553,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#powershell-history" class="nav-link">PowerShell History</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#usefull-commands" class="nav-link">Usefull Commands</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#file-encoding-conversion" class="nav-link">File Encoding Conversion</a>
@@ -580,6 +585,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#get-the-path-of-the-current-script" class="nav-link">Get the path of the current script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compute-the-hash-of-a-file" class="nav-link">Compute the hash of a file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -946,6 +955,15 @@ if (!$myWindowsPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Admin
 Start-Process &quot;pwsh&quot; -Verb RunAs -ArgumentList &quot;-noexit -File `&quot;$PSCommandPath`&quot; $argString&quot;
 exit
 </code></pre>
+<h1 id="powershell-history">PowerShell History<a class="headerlink" href="#powershell-history" title="Permanent link">&para;</a></h1>
+<p>To iterate over the commands used in the past, we use the <code>up arrow</code> and <code>down arrow</code> keys.</p>
+<p>To list the history, use the <code>Get-History</code> command.</p>
+<p>To <strong>clear</strong> the history, use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-history"><code>Clear-History</code></a> command:</p>
+<ul>
+<li><code>Clear-History -Id &lt;id&gt;</code>: clear the command with the specified id (use <code>Get-History</code> to get the id)</li>
+<li><code>Clear-History -Count &lt;count&gt;</code>: clear the last <code>count</code> commands</li>
+<li><code>Clear-History -CommandLine &lt;pattern&gt;</code>: clear the commands that match the pattern. The pattern use the simple matching (e.g. <code>*</code> is the wildcard), and have to be wrapped in quotes if it contains spaces.</li>
+</ul>
 <h1 id="usefull-commands">Usefull Commands<a class="headerlink" href="#usefull-commands" title="Permanent link">&para;</a></h1>
 <h2 id="file-encoding-conversion">File Encoding Conversion<a class="headerlink" href="#file-encoding-conversion" title="Permanent link">&para;</a></h2>
 <p><code>gc [INPUT PATH] | Out-File -en [ENCODING] [OUTPUT PATH]</code></p>
@@ -974,7 +992,15 @@ exit
 <pre><code class="language-PowerShell">Get-Alias ls # returns Get-ChildItem
 </code></pre>
 <h2 id="get-the-path-of-the-current-script">Get the path of the current script<a class="headerlink" href="#get-the-path-of-the-current-script" title="Permanent link">&para;</a></h2>
-<p>To get the path of the current script, use the <code>$PSCommandPath</code> variable.</p></div>
+<p>To get the path of the current script, use the <code>$PSCommandPath</code> variable.</p>
+<h2 id="compute-the-hash-of-a-file">Compute the hash of a file<a class="headerlink" href="#compute-the-hash-of-a-file" title="Permanent link">&para;</a></h2>
+<p>To compute the hash of a file, use the <code>Get-FileHash</code> command. Example:</p>
+<pre><code class="language-PowerShell">Get-FileHash &quot;C:\Users\user\file.txt&quot;
+</code></pre>
+<p>Important parameters:</p>
+<ul>
+<li><code>-Algorithm</code>: the algorithm used for hashing. The default is <code>SHA256</code>. Other options are <code>SHA1</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>MD5</code></li>
+</ul></div>
             </div>
         </div>
 

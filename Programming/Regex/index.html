@@ -379,6 +379,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#capture-the-same-group-multiple-times" class="nav-link">Capture the same group multiple times</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -473,6 +477,9 @@
 <li><code>(?&lt;=)</code> positive lookbehind. Same as positive lookahead, but it looks behind.</li>
 <li><code>(?&lt;!)</code> negative lookbehind. Same as negative lookahead, but it looks behind.</li>
 </ul>
+<h2 id="capture-the-same-group-multiple-times">Capture the same group multiple times<a class="headerlink" href="#capture-the-same-group-multiple-times" title="Permanent link">&para;</a></h2>
+<p>Sometimes, it would be useful to capture the same pattern multiple times in a separate groups dynamically, without specifying the number of repetitions. 
+Unfortunately, this is not possible with just regex. Instead we need to specify the pattern and use the programming language to capture the group multiple times (e.g., in Python, we can use <code>re.findall()</code>).</p>
 <h1 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h1>
 <h2 id="non-capturing-groups">Non-capturing groups<a class="headerlink" href="#non-capturing-groups" title="Permanent link">&para;</a></h2>
 <p>Non-capturing groups are groups that helps to specify the match but they are not captured. They are useful when we want to use the group content to specify the match, but we don't want to capture/consume the group. Some of them can be replaced, but usually with a more complicated regex.</p>

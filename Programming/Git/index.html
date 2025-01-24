@@ -381,7 +381,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#go-back-to-branch" class="nav-link">Go back to branch:</a>
+            <li class="nav-item" data-level="2"><a href="#go-back-to-branch" class="nav-link">Go back to branch</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -389,10 +389,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#add-remote" class="nav-link">Add remote</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#remote-repositories" class="nav-link">Remote Repositories</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -449,7 +450,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#revert-merge" class="nav-link">Revert merge:</a>
+            <li class="nav-item" data-level="2"><a href="#revert-merge" class="nav-link">Revert merge</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -470,13 +471,28 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
+            <li class="nav-item" data-level="1"><a href="#github" class="nav-link">GitHub</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+            <li class="nav-item" data-level="2"><a href="#github-cli" class="nav-link">GitHub CLI</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#token-authentication" class="nav-link">Token Authentication</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#managing-realeases" class="nav-link">Managing realeases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -496,33 +512,42 @@
 <p>The following scheme shows the operations that can be performed between the working tree, index, HEAD and the remote repository (blue arrows represent the typical workflow):
 <img alt="Git Operations" src="../Git%20Operations.png" /></p>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
-<p>The git configuration is stored in the <code>.gitconfig</code> file in the user's home directory. It can be edited by editing the file directly, or by calling <code>git config</code> command. </p>
+<p>The git configuration is stored in the <code>.gitconfig</code> file in the user's home directory. It can be edited by editing the file directly, or by calling <code>git config</code> command.</p>
 <p>To display the active configuration in the command line, call:</p>
-<pre><code>git config --list
+<pre><code class="language-bash">git config --list
 </code></pre>
 <p>We can also show whether the configuration results from the system, user or local configuration file:</p>
-<pre><code>git config --list --show-origin
+<pre><code class="language-bash">git config --list --show-origin
 </code></pre>
 <h1 id="basic-tasks">Basic Tasks<a class="headerlink" href="#basic-tasks" title="Permanent link">&para;</a></h1>
 <h2 id="rewrite-remote-with-local-changes-without-merging">Rewrite remote with local changes without merging<a class="headerlink" href="#rewrite-remote-with-local-changes-without-merging" title="Permanent link">&para;</a></h2>
-<pre><code>git push -f
+<pre><code class="language-bash">git push -f
 </code></pre>
-<h2 id="go-back-to-branch">Go back to branch:<a class="headerlink" href="#go-back-to-branch" title="Permanent link">&para;</a></h2>
-<pre><code>git revert --no-commit 0766c053..HEAD
-
+<h2 id="go-back-to-branch">Go back to branch<a class="headerlink" href="#go-back-to-branch" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">git revert --no-commit 0766c053..HEAD
 </code></pre>
 <h2 id="untrack-files-but-not-delete-them-locally">Untrack files, but not delete them locally:<a class="headerlink" href="#untrack-files-but-not-delete-them-locally" title="Permanent link">&para;</a></h2>
-<pre><code>git rm --cached &lt;FILEPATH&gt;
+<pre><code class="language-bash">git rm --cached &lt;FILEPATH&gt;
 </code></pre>
 <p>usefull params:</p>
 <ul>
 <li><code>-r</code>: recursive - deletes content of directories</li>
 <li><code>-n</code> dry run</li>
 </ul>
-<h2 id="add-remote">Add remote<a class="headerlink" href="#add-remote" title="Permanent link">&para;</a></h2>
-<pre><code>git remote add origin &lt;URL&gt;
+<h1 id="remote-repositories">Remote Repositories<a class="headerlink" href="#remote-repositories" title="Permanent link">&para;</a></h1>
+<p><a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">Git Basics manual</a></p>
+<p>Normally, we have a single remote repository, which is typically called <code>origin</code>. In this repository, we share the code with other developers. In this case we don't have to care about the remote repository handling, because the remote is automatically set to the repository we cloned from.</p>
+<p>However, sometimes we need to work with multiple remote repositories. In this case, we have to add remotes manually and also specify the remote repository when we push or pull.</p>
+<p>To <strong>add a remote</strong>, we call:</p>
+<pre><code class="language-bash">git remote add &lt;remote name&gt; &lt;URL&gt;
 </code></pre>
-<p>Where <code>origin</code> is the name of the remote and <code>&lt;URL&gt;</code> is is the link we use to clone the repository.</p>
+<p>Where the remote and <code>&lt;URL&gt;</code> is is the link we use to clone the repository.</p>
+<p>To <strong>list remotes</strong>, we call:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Then we need to specify the remote when we want to use a command that interacts with the remote repository and we want to use a remote other than the default one. For example, to push to a remote repository, instead of just <code>git push</code>, we call:</p>
+<pre><code class="language-bash">git push &lt;remote name&gt; &lt;branch name&gt;
+</code></pre>
 <h1 id="reverting">Reverting<a class="headerlink" href="#reverting" title="Permanent link">&para;</a></h1>
 <p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:</p>
 <ul>
@@ -530,13 +555,43 @@
 <li><a href="https://git-scm.com/docs/git-reset"><code>git reset</code></a> for reverting commits and effectively rewriting the history.</li>
 <li><a href="https://git-scm.com/docs/git-read-tree"><code>git read-tree</code></a>: similar to checkout, but does not require a cleanup before</li>
 </ul>
-<p>The following table shows the differences between the commands:
-| Command | revrerts commits | overwrite local changes |  delete files committed after <code>&lt;commit&gt;</code> |
-| --- | --- | --- | --- |
-| <code>git checkout &lt;commit&gt;</code> | no | yes | no |
-| <code>git read-tree -m -u &lt;commit&gt;</code> | no | yes | yes |
-| <code>git reset --soft &lt;commit&gt;</code> | yes | no | no |
-| <code>git reset --hard &lt;commit&gt;</code> | yes | yes | yes |</p>
+<p>The following table shows the differences between the commands:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>revrerts commits</th>
+<th>overwrite local changes</th>
+<th>delete files committed after <code>&lt;commit&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git checkout &lt;commit&gt;</code></td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>git read-tree -m -u &lt;commit&gt;</code></td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>git reset --soft &lt;commit&gt;</code></td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>git reset --hard &lt;commit&gt;</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
 <p>To decide between the commands, the first consideration should be whether we want to preserve the history or not:</p>
 <ul>
 <li>we want to reach a specific state in the history and commit the changes as a new commit -&gt; use <code>git checkout</code> or <code>git read-tree</code></li>
@@ -649,8 +704,8 @@ This is the content of the file in the branch we are merging
 <li><code>-X rename-threshold=25</code>: Changing the threshold is important for languages that changes the file content when moving it with automatic refactoring (especially important for Java files, which usually have tons of imports)</li>
 <li><code>-X ignore-space-change</code></li>
 </ul>
-<h2 id="revert-merge">Revert merge:<a class="headerlink" href="#revert-merge" title="Permanent link">&para;</a></h2>
-<pre><code>git revert -m 1
+<h2 id="revert-merge">Revert merge<a class="headerlink" href="#revert-merge" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">git revert -m 1
 </code></pre>
 <p>Note that when the merge is reverted, the changes cannot be merged again, because they predates the revert!</p>
 <h1 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
@@ -676,7 +731,8 @@ This is the content of the file in the branch we are merging
 </ul>
 <h2 id="update-pull-request">Update pull request<a class="headerlink" href="#update-pull-request" title="Permanent link">&para;</a></h2>
 <p>If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.</p>
-<h1 id="creating-a-github-release">Creating a GitHub Release<a class="headerlink" href="#creating-a-github-release" title="Permanent link">&para;</a></h1>
+<h1 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h1>
+<h2 id="creating-a-github-release">Creating a GitHub Release<a class="headerlink" href="#creating-a-github-release" title="Permanent link">&para;</a></h2>
 <p>To create a release:</p>
 <ol>
 <li>In the repository, under the <code>Releases</code> heading, click <code>Create a new release</code></li>
@@ -685,7 +741,46 @@ This is the content of the file in the branch we are merging
 <li>Fill the <code>Release title</code> and <code>Description</code> fields</li>
 <li>Click <code>Publish release</code></li>
 </ol>
-<h1 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h1>
+<h2 id="github-cli">GitHub CLI<a class="headerlink" href="#github-cli" title="Permanent link">&para;</a></h2>
+<p>Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the <a href="https://cli.github.com/">GitHub CLI page</a>. The main command is <code>gh</code>.</p>
+<p>Typically, we need to authenticate the tool first by calling <a href="https://cli.github.com/manual/gh_auth_login"><code>gh auth login</code></a>. There are two options for authentication:</p>
+<ul>
+<li>browser authentication (default)</li>
+<li>token authentication: suitable for automation<ul>
+<li>only the old token type can be used, the fine-grained tokens are not supported yet</li>
+</ul>
+</li>
+</ul>
+<h3 id="token-authentication">Token Authentication<a class="headerlink" href="#token-authentication" title="Permanent link">&para;</a></h3>
+<p>To authenticate using a token, we first need to create a token:</p>
+<ol>
+<li>Go to <code>Settings</code> -&gt; <code>Developer settings</code> -&gt; <code>Personal access tokens</code></li>
+<li>Click <code>Tokens (classic)</code></li>
+<li>Click <code>Generate new token</code> -&gt; <code>Generate new token (classic)</code></li>
+<li>Fill the token description and select the scopes</li>
+<li>Click <code>Generate token</code></li>
+</ol>
+<p>Then we can authenticate using the token. We can either</p>
+<ul>
+<li>suply the token to the <code>gh auth login</code> command:
+    <code>PowerShell
+    gh auth login -h github.com -p ssh --skip-ssh-key --with-token &lt;TOKEN&gt;</code></li>
+<li>or set the environment variable <code>GH_TOKEN</code> to the token value and call commands without authentication.</li>
+</ul>
+<h3 id="managing-realeases">Managing realeases<a class="headerlink" href="#managing-realeases" title="Permanent link">&para;</a></h3>
+<p>Required permissions:</p>
+<ul>
+<li><code>public_repo</code> if the repository is public</li>
+<li><code>repo</code> if the repository is private</li>
+</ul>
+<p>To <strong>create</strong> a release, we can the <a href="https://cli.github.com/manual/gh_release_create"><code>gh release create</code></a> command:</p>
+<pre><code class="language-PowerShell">gh release create &lt;TAG&gt; --repo &lt;REPO&gt; --title &lt;TITLE&gt; --generate-notes
+</code></pre>
+<p>Here, the <code>&lt;REPO&gt;</code> is the full url of the repository, e.g. <code>git@github.com:F-I-D-O/Future-Config.git</code></p>
+<p>To <strong>delete</strong> a release, we can call the <a href="https://cli.github.com/manual/gh_release_delete"><code>gh release delete</code></a> command:</p>
+<pre><code class="language-PowerShell">gh release delete &lt;TAG&gt; --repo &lt;REPO&gt; --cleanup-tag -y
+</code></pre>
+<h2 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h2>
 <p>https://github.com/piceaTech/node-gitlab-2-github</p></div>
             </div>
         </div>
