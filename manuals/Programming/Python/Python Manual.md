@@ -851,10 +851,14 @@ The `sys` module provides access to the command line arguments. They are stored 
 # Logging
 [Official Manual](https://docs.python.org/3/howto/logging.html)
 
+The logging itself is then done using the `logging` module methods:
+```Python
+logging.info("message")
+logging.warning("message %s", "with parameter")
+```
+
 A simple logging configuration:
 ```Python
-import logging
-
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(levelname)s %(message)s',
@@ -865,13 +869,17 @@ logging.basicConfig(
 )
 ```
 
-The logging itself is then done using the `logging` module methods:
+Note that this configuration can be done only once. Therefore, it should not be done in a library as it prevents the user from configuring the logging.
+
+To **set the level** for a specific logger, we use the `setLevel` method:
+`logger.setLevel(logging.DEBUG)`. We can also use a string representation of the level, e.g., `logger.setLevel('DEBUG')`.
+
+To **check the level** of the logger, we can use the [`isEnabledFor`](https://docs.python.org/3/library/logging.html#logging.Logger.isEnabledFor) method:
 ```Python
-logging.info("message")
-logging.warning("message %s", "with parameter")
+if logger.isEnabledFor(logging.DEBUG):
+    ...
 ```
-
-
+This can be useful for avoiding expensive computations needed just for logging if the logging level is set to a higher level.
 
 # Type hints
 [Official Manual](https://docs.python.org/3/library/typing.html)
@@ -1116,7 +1124,38 @@ singleton.init(init_param)
 ```
 
 
+# Testing with pytest
+Pytest is a simple testing framework for Python. It uses the `assert` statement for testing. The tests are defined in functions with the `test_` prefix.
 
+## Fixtures
+Fixtures are used to set up the environment for more than one test. If defined in the `conftest.py` file, they are available for all tests in the project.
+
+Fixtures are defined using the `@pytest.fixture` decorator. The fixture can be used in the test function by passing the fixture name as an argument. The fixture has the following structure:
+```Python
+@pytest.fixture
+def my_fixture():
+    # code for setting up the environment
+    yield # the test is executed here
+    # clean up code
+```
+
+
+## Mocking
+For mocking, we can use the `pytest-mock` package. After installation, we can use the `mocker` fixture in any test function.
+
+
+## Capturing output
+[Documentation](https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html)
+
+To capture the output, we can use the `capsys` fixture:
+```Python
+def test_output(capsys):
+    print('hello')
+    captured = capsys.readouterr()
+    assert captured.out == 'hello\n'
+```
+
+Similarly, we can inspect the standard error output using the `captured.err` attribute.
 
 
 # Jupyter

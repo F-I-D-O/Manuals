@@ -171,6 +171,7 @@ Text mode shortcuts:
 
 
 ## Web Browser Configuration
+
 ### Install Extension Manager with basic extensions
 Best use the [official installation guide](https://github.com/ipython-contrib/jupyter_contrib_nbextensions). The extensions then can be toggled on in the Nbextensions tab in the jupyter homepage. Be sure to unselect the *disable configuration for nbextensions without explicit compatibility (they may break your notebook environment, but can be useful to show for nbextension development)* checkbox, otherwise, all extensions will be disabled.
 
@@ -190,14 +191,7 @@ To run pytest, simply go to the folder and run `pytest`. Arguments:
 
 - `-x`: stop on first failure
 
-### Fixtures
-Fixtures are used to set up the environment for more than one test. If defined in the `conftest.py` file, they are available for all tests in the project. 
-
-Fixtures are defined using the `@pytest.fixture` decorator. The fixture can be used in the test function by passing the fixture name as an argument.
-
-
-### Mocking
-For mocking, we can use the `pytest-mock` package. After installation, we can use the `mocker` fixture in any test function. 
+For mocking, we need to install the `pytest-mock` package, otherwise we get an error `fixture 'mocker' not found`.
 
 
 # Mixed Python-native debugging

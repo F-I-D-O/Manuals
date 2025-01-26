@@ -119,7 +119,7 @@ The syntax for creating objects is mostly the same as in the SQL standard:
 CREATE <object type> <object name> <object parameters>
 ```
 
-## `IF NOT EXISTS` modifier
+### `IF NOT EXISTS` modifier
 An important modifier is the `IF NOT EXISTS` clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:
 
 - `TABLE`
@@ -130,11 +130,11 @@ An important modifier is the `IF NOT EXISTS` clause that prevents errors when th
 - `PROCEDURE`
 - `FUNCTION`
 - `TRIGGER`
+- `SCHEMA`
 
 However, it is not available for:
 
 - `DATABASE`
-- `SCHEMA`
 - `USER`
 - `CONSTRAINT`
 
