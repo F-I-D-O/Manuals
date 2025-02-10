@@ -263,8 +263,24 @@ There are two possible scenarios:
 	4. Commit and push the changes to the fork
 	5. Create a pull request from the fork to the original repository
 
-##  Update pull request
+## Update pull request
 If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.
+
+
+# Showing the state in the command line
+Mostly, we use GUI tools to show the state of the repository. However, sometimes we may need to show the state in the command line. The following commands can be useful:
+
+- `git status`: shows the state of the repository
+- `git log`: shows the history of the repository
+- `git diff`: shows the changes between the working tree and the index
+
+## `git log`
+The `git log` shows the history of the repository. It is the analogue of the main view in GitExtensions. The most useful parameters are:
+
+- `--oneline`: shows the history in a compact form
+- `--graph`: shows the history as a graph
+- `--all`: shows the history of all branches, not only the current one
+- `--decorate`: shows the names of the branches and tags, not only the commit hashes
 
 
 # GitHub
@@ -329,3 +345,20 @@ gh release delete <TAG> --repo <REPO> --cleanup-tag -y
 ## Repository Migration
 
 https://github.com/piceaTech/node-gitlab-2-github
+
+
+
+# Troubleshooting
+
+## GUI tools show no history, git log results in errors
+This may be due to broken refs in `.git/refs/`. Possible errors:
+
+- `your current branch appears to be broken` -> the checked out branch is broken
+- `fatal: bad object: <ref>` -> the ref is broken
+
+
+To fix the issue, we can copy the refs from the `.git/logs/refs/`:
+
+1. find the broken file in `.git/refs/`
+2. find the corresponding file in `.git/logs/refs/`
+3. copy the hash from the last line, second column and write it to the broken file
