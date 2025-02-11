@@ -127,6 +127,20 @@ If none of the above works, check this list: [https://stackoverflow.com/question
 [https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error](https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error)
 
 
+## `LINK : fatal error LNK1181: cannot open input file`
+This means that the linker cannot find the specified library file. To daiagnose this, look at how the file is specified in the target's `vxproj` file:
+
+1. Open the target's `vxproj` file in a text editor
+2. Find the `Link` element
+3. Check the `AdditionalDependencies` attribute of the `Link` element. The path to the library file should be there.
+
+With exception of the standard libraries, the path should be either absolute (for installed libraries, like vcpkg libraries) or relative to the project directory (for libraries that are distributed with the project). Two cases can happen:
+
+- The path looks correct: double check that hte library file is present on the specified path
+- The path is incorrect, e.g., the library is specified only by its name. This means that the `vxproj` file is not generated correctly, i.e., the problem is in the configuration phase.
+    - note that **CMake does not check the validity of the targets specified in the `target_link_libraries` command!**
+
+
 
 # Runtime errors
 **First, identify the exception context**. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the `Exception Settings` and check the exception type there.

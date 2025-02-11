@@ -325,6 +325,7 @@ Notable variable expressions:
 
 - `$<TARGET_FILE_DIR:<target name>>` - the directory where the target will be built
 - [`$<TARGET_RUNTIME_DLLS:<target name>>`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) - the list of runtime dependencies of the target
+    - note that this property is only available (and necessary) for MSBuild generator and it is only available in the `POST_BUILD` phase.
 
 ### Evaluating generator expressions during configuration
 In case we need to see the evaluated generator expressions during cmake configuration, we can try to cheat using the following command:
@@ -824,10 +825,23 @@ Make sure that you **always link against all the libraries that are needed for t
 The `<library>` can be:
 
 - a **library target name**: The name of the target that is defined using the `add_library` command.
+    - this is the way how to link against vcpkg libraries
+    - check the usage file of the library for the correct target name
 - a **full path to the library file**
 - a **library name**: The name of the library without any prefix (e.g., `-l`) or suffix (e.g., `.a`, `.so`, `.dll`).
-- a **link flag**: A flag that is passed to the linker. 
+    - this works for the system libraries and other libraries that are in the system path
+- a **link flag**: A flag that is passed to the linker.
+    - for libraries integrated with the linker
 - a **generator expression**: A generator expression that is evaluated during the CMakelists.txt configuration to one of the above options.
+
+**Note that cmake does not check the validity of the supplied `<library>` argument!**. Always check the documentation of the library to find out how to link against it. If we want to double-check that the supplied `<library>` is valid, we can:
+
+- for the library target name, check the presence of the target:
+    ```cmake
+    if(NOT TARGET <library>)
+        message(FATAL_ERROR "The target <library> does not exist!")
+    endif()
+    ```
 
 ### Checking the full path to a linked library
 Sometimes, it can be usefull to check the full path to a linked library. This can be done using the `get_target_property` command:
