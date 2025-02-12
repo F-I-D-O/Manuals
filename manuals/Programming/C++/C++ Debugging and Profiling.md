@@ -128,7 +128,7 @@ If none of the above works, check this list: [https://stackoverflow.com/question
 
 
 ## `LINK : fatal error LNK1181: cannot open input file`
-This means that the linker cannot find the specified library file. To daiagnose this, look at how the file is specified in the target's `vxproj` file:
+The [error LNK1181](https://learn.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-error-lnk1181?view=msvc-170) means that the linker cannot find the specified library file. To daiagnose this, look at how the file is specified in the target's `vxproj` file:
 
 1. Open the target's `vxproj` file in a text editor
 2. Find the `Link` element

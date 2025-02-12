@@ -319,7 +319,17 @@ git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 # WSL
 
 ## Translate Windows Path to Linux Path
-To translate a Windows path to a Linux path, we can use the `wslpath` command, which is available in Ubuntu WSL distributions. 
+To translate a Windows path to a Linux path, we can use the `wslpath` command, which is available in Ubuntu WSL distributions.
+
+## Execute commands from the Windows
+We can directly execute commands in the WSL from the Windows command line without logging into the WSL with the [`wsl`](https://learn.microsoft.com/en-us/windows/wsl/basic-commands) command. The syntax is:
+```PowerShell
+wsl <command>
+```
+
+Important arguments:
+
+- `-u <user>, --user <user>`: run the command as the specified user. This can be useful for running the command as the root user.
 
 
 # Dual Boot
