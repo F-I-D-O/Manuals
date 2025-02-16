@@ -133,7 +133,8 @@ The propertis for each configuration are structured as follows:
 		3. `sudo rm <INSTALLER>`
 	-   add cmake executable to path
 
-Other details about CMake can be found in the CMake Manual.
+Other details about CMake can be found in the [CMake Manual](CMake%20Manual.md).
+
 
 # vcpkg
 Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager. 
@@ -441,6 +442,26 @@ Then, the submission process is as follows (The *emphezised* steps are not neede
 1. commit again to the package branch in the vcpkg repository
 1. push the branch to the forked vcpkg repository
 1. *open the forked repository in the browser and create a new pull request to the main vcpkg repository*
+
+
+# Typical directory structure
+The typical directory structure for a C++ project is as follows:
+
+- `data`: the directory containing the data files, including test data and default configuration files
+- `include`: the directory containing public header files
+	- this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory
+	- the projects own headers should be in the `include/<project name>` directory to mimic the installation directory structure
+- `install`: the directory containing the installation scripts. Only needed for library projects or projects that are meant to be distributed
+- `port`: the directory containing the vcpkg port files. Only needed for libraries that are meant to be distributed via vcpkg
+- `src`: the directory containing the source files and private headers
+- `test`: the directory containing the test files
+- `<various build dirs>`: the directories containing the build files.
+
+The root directory typically contains the following files:
+
+- `.gitignore`: the git ignore file
+- `CMakeLists.txt`: the main cmake file
+- `CTestConfig.cmake`: the CTest configuration file
 
 
 # IDE

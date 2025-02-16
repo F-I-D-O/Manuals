@@ -16,6 +16,7 @@
 - **Change signature**: `Ctrl` + `G`
 - **Text transform**: `Ctrl` + `T`
     - ` + U`: to upper case
+    - ` + T`: toggle case
 - **Surround with**: `Ctrl` + `W`
 
 
@@ -90,6 +91,7 @@ An urgent need to test privete method accompanied with a lack of knowledge of ho
 
 The possible approaches are:
 
+- **Do not directly test the private method**: Sometimes, the private method can be tested indirectly using a public method with minimal effort. This way, we test both the private method, and its interaction with the public method.
 - **Makeing the method public**: Only recommended if the method should be exposed, i.e., its functionality is not limited to the class itself.
 - **Move the method to a different class**: Maybe, the method is correcly marked as private in the current context, but it can also be extracted to its own class, where it will become the main method of the class. This applies to methods that can be used in other contexts, or for methods contained in large classes.
 - **Mark the method as internal and make it public**: This is a strategy that can be always applied with minimum effort. Various ways how to signalize that the method is intended for internal use are:

@@ -47,3 +47,10 @@ By default, the linter will check more than 50 rules. Not all of them are based 
     "MD013": false
 }
 ```
+
+# Handling of special characters
+
+To use backticks (`` ` ``) in code, use double backticks:
+```markdown
+``code with `backticks` inside``
+```

@@ -3796,9 +3796,13 @@ Also, preprocessor had some other purposes, now replaced by other tools:
 	- A simple constant can be defined as: `#define PI 3.14159`. The variable can be used in the code as `PI`.
 - metaprogramming: replaced by templates
 
+# Include
+There are two types of include directives. For both types, the behavior is implementation dependent. However, the most common behavior is:
 
+- `#include <file>`: the file is searched in the system directories
+- `#include "file"`: the file is searched relative to the current file
 
-**Control structures** are defined as:
+## Control structures
 ```cpp
 #ifdef <MACRO>
 	...

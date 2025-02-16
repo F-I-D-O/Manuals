@@ -1201,11 +1201,8 @@ The behavior of the `option` command is as follows:
 
 
 
-
-
-
-
 # CMake Directory Structure
+
 ## System Find_XXX.cmake files
 The system find scripts are located in the `CMake/share/cmake-<version>/Modules/` directory.
 
