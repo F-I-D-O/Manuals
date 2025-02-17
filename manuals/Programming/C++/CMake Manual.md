@@ -271,6 +271,7 @@ To print all variables related to HDF5 lib, call `dump_cmake_variables(HDF)` aft
 
 
 ## Control structures
+
 ### `if`
 The [`if`](https://cmake.org/cmake/help/latest/command/if.html) command has the following syntax:
 ```cmake
@@ -281,7 +282,7 @@ elseif(<condition>)
 else()
 ...
 endif()
-``` 
+```
 
 The condition can be:
 
@@ -726,6 +727,7 @@ The usual workflow is:
     ```
     - The specification can be either a URL or a git repository.
     - The `DOWNLOAD_EXTRACT_TIMESTAMP` option ensures that the timestamp of the downloaded files is preserved. This is useful when the dependency is downloaded multiple times, and we want to avoid unnecessary rebuilds.
+    Note that **this option shoud be placed before the URL option**. This is because it was introduced in CMake 3.21, so if it is placed after the URL and the CMake version is lower than 3.21, the `FetchContent_Declare` command will fail as the option will be considered a part of the URL.
 2. Configure the dependency using the [`FetchContent_MakeAvailable`](https://cmake.org/cmake/help/latest/module/FetchContent.html#command:fetchcontent_makeavailable) command:
     ```cmake
     FetchContent_MakeAvailable(<NAME>)
@@ -1243,10 +1245,11 @@ cmake --trace <dir> *> cmake_trace.txt
 If we want to also expand the variables, we can use the `--trace-expand` option.
 
 
+
 # Testing with CMake
 [documentation](https://cmake.org/cmake/help/book/mastering-cmake/chapter/Testing%20With%20CMake%20and%20CTest.html)
 
-CMake has a built-in capability for organizing and running tests. This is useful, because for testing, we usually need information about the build configuration, which is already available in CMake. 
+CMake has a built-in capability for organizing and running tests. This is useful, because for testing, we usually need information about the build configuration, which is already available in CMake.
 
 To enable testing in a project, we have to:
 
@@ -1257,7 +1260,30 @@ To enable testing in a project, we have to:
 Then, we can run the tests using the `ctest` command.
 
 
-## CTest
+
+## Adding tests
+The [`add_test`](https://cmake.org/cmake/help/latest/command/add_test.html) command is used to add a test to the project. The syntax is:
+```cmake
+add_test(NAME <test name> COMMAND <command>)
+```
+By default, the command is executed in the build directory. Therefore, we can directly call the project executable by using the target name.
+
+We can also modify the test (e.g.: check the output of the test) using the [`set_property`](https://cmake.org/cmake/help/latest/command/set_property.html) command:
+```cmake
+set_property(TEST <test name> PROPERTY <property name> <property value>)
+```
+
+The most useful properties are:
+
+- [`PASS_REGULAR_EXPRESSION`](https://cmake.org/cmake/help/latest/prop_test/PASS_REGULAR_EXPRESSION.html#prop_test:PASS_REGULAR_EXPRESSION): a regular expression that the output of the test has to match:
+    ```cmake
+    set_property(TEST <test name> PROPERTY PASS_REGULAR_EXPRESSION "expected output")
+    ```
+
+
+
+
+## CTest execution
 [documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html)
 
 The `ctest` executable run the tests configured with CMake and reports the results.
@@ -1349,7 +1375,7 @@ To use the public CDash server, we have to:
 1. download the `CTestConfig.cmake` file from the project page and put it in the project directory (the directory where the `CMakeLists.txt` file is located)
 
 
-### Problems
+## Problems
 
 #### `Warning! <name> library version mismatched error`
 This error typically occures when the library `<name>` used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:

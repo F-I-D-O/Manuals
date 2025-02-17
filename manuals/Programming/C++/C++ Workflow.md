@@ -804,7 +804,6 @@ Finally, we can store the export header file in the source directory and include
 
 
 ## Marking the Symbols
-
 Usually, we mark the following symbols for export:
 
 - classes: `class <export macro> MyClass{...}`
@@ -814,11 +813,13 @@ Other symbols does not have to be exported as they are automatically exported by
 
 - enums and enum classes
 - constants
-For shared libraries, we have to export symbols. Becasue of the differences between the compilers, and to support using the same headers for both shared and static libraries it is better to use macros
+- templates
 
-The macro from the `GenerateExportHeader` is named `<target name>_EXPORT`, we can check the exact name in the export header file.
+Additionaly, only the symbols needed by external code should be exported. The exeption is when the the interface use templates. In this case, all symbols used by the template (but not the template itself) should be exported.
 
-Only the symbols needed by external code should be exported. The exeption is when the the interface use templates. In this case, all symbols used by the template should be exported.
+The `<export macro>` from the `GenerateExportHeader` is named `<target name>_EXPORT`, we can check the exact name in the export header file.
+
+
 
 
 ## CMake Configuration
@@ -848,6 +849,11 @@ Using the same runtime library is crucial when using the MSVC compiler. At lover
 		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 	endif()
 	```
+
+If the mismatch occurs, it is manifested depending on the situation:
+
+- when we link to a dynamic runtime library, but static dependencies are used, the linker will throw an error, typically for each static dependency
+- when we link to a static runtime library, but dynamic dependencies are used, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.
 
 
  # Compilation for a specific CPU

@@ -880,6 +880,53 @@ Basic setup:
 ```
 The style parameter is optional. The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
 
+The style can be further customized by:
+
+- editing the processed bibliography data (`\DeclareSourcemap` command)
+- editing the bibliography printing (e.g., `\AtEveryBibitem` command)
+
+
+#### Customizing the bibliography printing
+The bibliography printing can be customized using the `\AtEveryBibitem` command. Example:
+```latex
+\AtEveryBibitem{
+    \clearfield{urldate} % remove the url date
+}
+```
+
+Inside the `\AtEveryBibitem` command, we can use some control structures:
+
+- `\iffieldundef{<field>}{<true>}{<false>}`: if the field is undefined, execute the true branch, otherwise execute the false branch.
+
+
+#### Customizing the bibliography data
+The bibliography data can be customized using the `\DeclareSourcemap` command. Example:
+```latex
+\DeclareSourcemap{
+    \maps{
+        \map{
+            \step[fieldset=urldate, null] % remove the url date
+        }
+    }
+}
+```
+
+Inside the `\map` command, we can use conditional statements:
+
+- `\pernottype{<type>}`: execute the following steps only if the entry type is not `<type>`
+
+In each step, we can use multiple conditions, e.g:
+```latex
+\DeclareSourcemap{
+    \maps{
+        \map{
+            \step[
+                fieldset=urldate, fieldvalue={2022-01-01}, null] % remove the url date if it is 2022-01-01
+        }
+    }
+}
+```
+
 
 #### Handle overflowing URLs in bibliography
 Sometimes, the links overflow the bibliography. To fix this, we can use the following commands:
@@ -892,6 +939,8 @@ Sometimes, the links overflow the bibliography. To fix this, we can use the foll
 \biburlucskip=0mu plus 1mu\relax
 \biburllcskip=0mu plus 1mu\relax
 ```
+
+
 
 
 

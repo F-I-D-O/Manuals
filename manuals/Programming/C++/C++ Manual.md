@@ -3796,7 +3796,7 @@ Also, preprocessor had some other purposes, now replaced by other tools:
 	- A simple constant can be defined as: `#define PI 3.14159`. The variable can be used in the code as `PI`.
 - metaprogramming: replaced by templates
 
-# Include
+## Include
 There are two types of include directives. For both types, the behavior is implementation dependent. However, the most common behavior is:
 
 - `#include <file>`: the file is searched in the system directories
@@ -3828,6 +3828,16 @@ To detect the **Operating system**, use:
 - `#ifdef unix` for Unix-like systems (but not MacOS)
 - `#ifdef __APPLE__` for MacOS
 
+
+## Debugging preprocessor directives
+Sometimes, it may be usefull to print the value of a macro, or show which branch of the `#if` directive was taken. This can be done using the `#pragma message` directive:
+```cpp
+#ifdef MACRO
+	#pragma message("MACRO is defined")
+#else
+	#pragma message("MACRO is not defined")
+#endif
+```
 
 
 # Resources

@@ -261,7 +261,7 @@ The program should now break on the first problem. The details are displayed in 
 More at [Microsoft learn](https://learn.microsoft.com/en-us/cpp/linux/linux-asan-configuration?view=msvc-170&viewFallbackFrom=vs-2019#install-the-asan-debug-symbols)
 
 
-### Using Valgrinfd to debug memory errors
+### Using Valgrind to debug memory errors
 Valgrind is a toolbox for debugging C/C++ code. The most famous tool is calle [Memcheck](https://valgrind.org/docs/manual/mc-manual.html) and is intended for memory error detection.
 Basic usage:
 ```bash

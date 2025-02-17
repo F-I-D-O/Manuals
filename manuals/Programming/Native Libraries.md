@@ -14,6 +14,8 @@ Each operating system has its own way of loading and using native libraries. Als
 | Windows          | .lib                     | .dll                      |
 | Linux            | .a                       | .so                       |
 
+
+
 # Deciding between static and dynamic libraries
 When deciding between static and dynamic libraries, there are a few things to consider:
 
