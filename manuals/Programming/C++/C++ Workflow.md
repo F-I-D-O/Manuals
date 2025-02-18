@@ -444,26 +444,6 @@ Then, the submission process is as follows (The *emphezised* steps are not neede
 1. *open the forked repository in the browser and create a new pull request to the main vcpkg repository*
 
 
-# Typical directory structure
-The typical directory structure for a C++ project is as follows:
-
-- `data`: the directory containing the data files, including test data and default configuration files
-- `include`: the directory containing public header files
-	- this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory
-	- the projects own headers should be in the `include/<project name>` directory to mimic the installation directory structure
-- `install`: the directory containing the installation scripts. Only needed for library projects or projects that are meant to be distributed
-- `port`: the directory containing the vcpkg port files. Only needed for libraries that are meant to be distributed via vcpkg
-- `src`: the directory containing the source files and private headers
-- `test`: the directory containing the test files
-- `<various build dirs>`: the directories containing the build files.
-
-The root directory typically contains the following files:
-
-- `.gitignore`: the git ignore file
-- `CMakeLists.txt`: the main cmake file
-- `CTestConfig.cmake`: the CTest configuration file
-
-
 # IDE
 
 ## Clion
@@ -669,10 +649,43 @@ The version which the [compiler support table](https://en.cppreference.com/w/cpp
 we can find it be examining the compiler executable stored in `C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64`.
 
 ### Problems & solutions
-#### Cannot regenerate Cmak cache
+
+#### Cannot regenerate Cmake cache
 go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz contains a line with `disable = true`. Just delete the file, or the specific line.
-    
-# Installing Library Dependencies
+
+
+# Typical directory structure
+The typical directory structure for a C++ project is as follows:
+
+- `data`: the directory containing the data files, including test data and default configuration files
+- `include`: the directory containing public header files
+	- this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory
+	- the projects own headers should be in the `include/<project name>` directory to mimic the installation directory structure
+- `install`: the directory containing the installation scripts. Only needed for library projects or projects that are meant to be distributed
+- `port`: the directory containing the vcpkg port files. Only needed for libraries that are meant to be distributed via vcpkg
+- `src`: the directory containing the source files and private headers
+- `test`: the directory containing the test files
+- `<various build dirs>`: the directories containing the build files.
+
+The root directory typically contains the following files:
+
+- `.gitignore`: the git ignore file
+- `CMakeLists.txt`: the main cmake file
+- `CTestConfig.cmake`: the CTest configuration file
+
+
+
+# Dependencies
+Unlike in Python and Java, that have pip and maven, C++ does not have a standard package manager. Instead, there are plenty of ways how to install the dependencies and CMake then tries to find them. In the following table, we list the most common ways how to install the dependencies together with theri pros and cons.
+
+| Method | Platform-independent | Automatic install of the dependency tree | Can install build configuration tools | Support easily determined |
+| --- | --- | --- | --- | --- |
+| CMake `--install` | yes | no | yes | no |
+| vcpkg | yes | yes | yes | yes |
+| CMake `FetchContent` | yes | no | no | no |
+| CMake `ExternalProject` | yes | 
+
+
 
 ## Vcpkg Libraries
 

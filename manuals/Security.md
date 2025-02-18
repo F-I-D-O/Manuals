@@ -262,7 +262,7 @@ To prolong the expiration date, we can use the `gpg --edit-key <key-id>` command
 This can happen if the private key has a wrong encoding. It can be fixed by cnverting the key file to ASCII encoding.
 
 
-## Storing passwords for the command line tools
+# Storing passwords for the command line tools
 Sometimes, we need to store passwords for the command line tools on the local machine. For non-sensitive passwords, we can just store them in a file that is not versioned. However, for sensitive passwords and authentication tokens, we should not store them in plain text. We have two options:
 
 - Use a Credential Manager, or

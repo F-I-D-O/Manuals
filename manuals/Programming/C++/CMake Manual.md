@@ -139,6 +139,10 @@ Usually, we want to use a different directory when testing the installation. To 
 cmake -DCMAKE_INSTALL_PREFIX=<test install dir> <source dir>
 ```
 
+**A note for Windows installations**: The default `CMAKE_INSTALL_PREFIX` is `C:/Program Files (x86)/<project name>`, even if the project is a 64-bit project. To override this, configure the project with the following argument:
+```bash
+cmake <other arguments> -A x64
+```
 
 ## CMake command-line tools
 [documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html#run-a-command-line-tool)
@@ -413,6 +417,38 @@ if(NOT DEFINED <variable>)
 endif()
 ```
 
+# Useful functions
+
+## `message`
+The [`message`](https://cmake.org/cmake/help/latest/command/message.html) command is used to print messages during the configuration process. The syntax is:
+```cmake
+message(<mode> <message>)
+```
+
+The `<mode>` can be:
+
+- `STATUS` - the message is printed as a status message
+- `WARNING` - the message is printed as a warning
+- `AUTHOR_WARNING` - the message is printed as an author warning
+- `SEND_ERROR` - the message is printed as an error and the configuration process is stopped
+- `FATAL_ERROR` - the message is printed as a fatal error and the configuration process is stopped
+- `DEPRECATION` - the message is printed as a deprecation warning
+
+## `find_program`
+The [`find_program`](https://cmake.org/cmake/help/latest/command/find_program.html) command is used to find an executable in the system. It's adventages over providing our own path/logic is:
+
+- it is cross-platform - it automatically searches for the executable with the correct extension for the current platform
+- it can be configured to raise an error if the executable is not found
+- it can automatically search for the executable in the system paths
+
+The syntax is:
+```cmake
+find_program(<variable name> <executable name> [OTHER_ARGUMENTS])
+```
+The full path to the executable is stored in the `<variable name>` variable. The `OTHER_ARGUMENTS` are:
+
+- `REQUIRED`: if the executable is not found, the configuration process is stopped
+- `HINTS <path>`, `PATHS <path>`: the path where the executable should be searched. `HINTS` and `PATHS` are equivalent exept the priority: `HINTS` are searched before the standard paths, `PATHS` are searched at the end with the lowest priority.
 
 
 # CMakeLists.txt
