@@ -299,6 +299,7 @@ Each expression can use some of the supported operators:
 - comparison operators: `EQUAL`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
 - file operators: `EXISTS`, `IS_DIRECTORY`, `IS_REGULAR_FILE`, `IS_SYMLINK`, `IS_ABSOLUTE`, `IS_RELATIVE`, `IS_NEWER_THAN`, `IS_OLDER_THAN`
 - string operators: `MATCHES`, `LESS`, `GREATER`, `LESS_EQUAL`, `GREATER_EQUAL`, `STREQUAL`, `STRLESS`, `STRGREATER`, `STRLESS_EQUAL`, `STRGREATER_EQUAL`
+    - The `MATCHES` operator requires a regex, not a simplified filesystem filter pattern. See the [regex documentation](https://cmake.org/cmake/help/latest/command/string.html#regex-specification) for more.
 - version operators: `VERSION_EQUAL`, `VERSION_LESS`, `VERSION_GREATER`, `VERSION_LESS_EQUAL`, `VERSION_GREATER_EQUAL`
     - these are ment to be used with version string variables created by the `find_package` command:
 
@@ -923,7 +924,7 @@ One can think that we can solve that by using the same output directory for the 
 
 To enable installation, we have to provide several commands and do some adjustments in the `CMakeLists.txt` file. Specific steps depends on what we want to achieve.
 
-The minimal installation that installs only binaries can be set up using two commands:
+The minimal installation that installs only binaries and headers can be set up using two commands:
 
 - Install binaries with the [`install(TARGETS...`](https://cmake.org/cmake/help/latest/command/install.html#targets) command. The basic syntax is:
     ```cmake
@@ -945,7 +946,7 @@ The minimal installation that installs only binaries can be set up using two com
         )
         ```
 
-This command provides the `install` target that builds all targets (it depends on the `all` target) and then installs the project, which means that it copies the binary files to the installation directory.
+These commands provide the `install` target that builds all targets (it depends on the `all` target) and then installs the project, which means that it copies the binary files to the installation directory.
 
 
 ### Install CMake files
@@ -1132,6 +1133,15 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/<export header file> DESTINATION <inst
 ```
 
 
+### Installation of executables
+Executables are installed just like libraries. There are two differences:
+
+- we do not need to export the executables, so we skip the `EXPORT` parameter of the `install(TARGETS...` command
+- on windows, when linking the executable to shared libraries and not using vcpkg, we have to manually copy the runtime dependencies to the installation bin directory. As this is done after build, we can use the [`TARGET_RUNTIME_DLLS`](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#genex:TARGET_RUNTIME_DLLS) generator expression:
+    ```cmake
+    install(FILES $<TARGET_RUNTIME_DLLS:<target name>> DESTINATION ${CMAKE_INSTALL_BINDIR})
+    ```
+
 ### Specific configuration for frequentlly used libraries
 
 - for google test, we want to prevent the installation of the `gtest` targets. To do that, turn it off before the gtets config in the `CMakeLists.txt` file:
@@ -1205,7 +1215,9 @@ There are different ways to execute external commands in the `CMakeLists.txt`, t
 - **build time**: use the [`add_custom_command`](https://cmake.org/cmake/help/latest/command/add_custom_command.html) command
     - can be run both before and after the build step using the `PRE_BUILD` and `POST_BUILD` options
 
+To both commands, we can pass the `COMMAND` as a list of strings, where the first string is the command to execute.
 
+Additionally, when using the `add_custom_command` command, we can to use the `COMMAND_EXPAND_LISTS` option to expand the generator expressions in the command.
 
 # CMake Cache
 CMake has two types of variables:

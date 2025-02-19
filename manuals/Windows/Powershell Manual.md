@@ -51,15 +51,16 @@ $myFunction = {
 }
 ```
 
-Parameters can be typed. Example:
+Parameters can be **typed**. Example:
 ```PowerShell
 $myFunction = {
     param([int]$param1, [string]$param2, [switch]$param3)
     # do something
 }
 ```
+The [`switch` type](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.5#switch-parameters) is a boolean parameter that does not require a value. It is set to `True` if the parameter is present.
 
-Parameters can be mandatory. Example:
+Parameters can be **mandatory**. Example:
 ```PowerShell
 $myFunction = {
     param(
@@ -71,7 +72,7 @@ $myFunction = {
 }
 ```
 
-We can also validate the parameters. Example:
+We can also **validate** the parameters. Example:
 ```PowerShell
 $myFunction = {
     param(
@@ -144,9 +145,17 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 
 
 # Command execution
-Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the `&` operator has to be used. Example:
+Normal commands are executed by just typing them. 
+
+However, if the **command contains a space**, we have to wrap it in quotes. In this case, the `&` operator has to be used:
 ```PowerShell
 & "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
+```
+
+We can also **wrap the command and its arguments in a string**. Then we can execute the whole string using the [`Invoke-Expression`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression) command. Example:
+```PowerShell
+$command = "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe -version"
+Invoke-Expression $command
 ```
 
 ## Print the exit code
