@@ -1133,6 +1133,20 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/<export header file> DESTINATION <inst
 ```
 
 
+### Support both Debug and Release builds
+In vcpkg, the Debug and Release builds are separated automatically, so the side-by-side installation of Debug and Release builds is supported out of the box. However, for other installations, e.g., when installing the package using the CMake `install` command, we have to take care of this ourselves. 
+
+The standard way to do that is to add a postfix to all targets so that the debug binaries can be distinguished from the release binaries and one installation does not overwrite the other. For that, set the [`DEBUG_POSTFIX` property](https://cmake.org/cmake/help/latest/prop_tgt/DEBUG_POSTFIX.html) for each target:
+```cmake
+set_target_properties(
+    <target name>
+	PROPERTIES DEBUG_POSTFIX <postfix>
+)
+```
+
+Usually, the postfix is `d` is used for debug builds. When using this postfix, no further configuration is needed, the correct binary will be used in the client depending on its own configuration.
+
+
 ### Installation of executables
 Executables are installed just like libraries. There are two differences:
 
