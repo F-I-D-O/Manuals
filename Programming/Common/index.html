@@ -466,6 +466,7 @@
 <li><strong>Change signature</strong>: <code>Ctrl</code> + <code>G</code></li>
 <li><strong>Text transform</strong>: <code>Ctrl</code> + <code>T</code><ul>
 <li><code>+ U</code>: to upper case</li>
+<li><code>+ T</code>: toggle case</li>
 </ul>
 </li>
 <li><strong>Surround with</strong>: <code>Ctrl</code> + <code>W</code></li>
@@ -533,6 +534,7 @@
 <p>An urgent need to test privete method accompanied with a lack of knowledge of how to do it is a common problem. In almost all programming languages, the testing of private methods is obsturcted by the language itself, i.e., the test frameworks does not have a special access to private methods. In this section we disscuss the usuall solutions to this problem. These implementation is specific  to a particular language, but the general ideas are the same.</p>
 <p>The possible approaches are:</p>
 <ul>
+<li><strong>Do not directly test the private method</strong>: Sometimes, the private method can be tested indirectly using a public method with minimal effort. This way, we test both the private method, and its interaction with the public method.</li>
 <li><strong>Makeing the method public</strong>: Only recommended if the method should be exposed, i.e., its functionality is not limited to the class itself.</li>
 <li><strong>Move the method to a different class</strong>: Maybe, the method is correcly marked as private in the current context, but it can also be extracted to its own class, where it will become the main method of the class. This applies to methods that can be used in other contexts, or for methods contained in large classes.</li>
 <li><strong>Mark the method as internal and make it public</strong>: This is a strategy that can be always applied with minimum effort. Various ways how to signalize that the method is intended for internal use are:<ul>

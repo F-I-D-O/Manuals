@@ -638,13 +638,14 @@ param($param1, $param2)
     # do something
 }
 </code></pre>
-<p>Parameters can be typed. Example:</p>
+<p>Parameters can be <strong>typed</strong>. Example:</p>
 <pre><code class="language-PowerShell">$myFunction = {
     param([int]$param1, [string]$param2, [switch]$param3)
     # do something
 }
 </code></pre>
-<p>Parameters can be mandatory. Example:</p>
+<p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.5#switch-parameters"><code>switch</code> type</a> is a boolean parameter that does not require a value. It is set to <code>True</code> if the parameter is present.</p>
+<p>Parameters can be <strong>mandatory</strong>. Example:</p>
 <pre><code class="language-PowerShell">$myFunction = {
     param(
         [Parameter(Mandatory)][int]$param1, 
@@ -654,7 +655,7 @@ param($param1, $param2)
     # do something
 }
 </code></pre>
-<p>We can also validate the parameters. Example:</p>
+<p>We can also <strong>validate</strong> the parameters. Example:</p>
 <pre><code class="language-PowerShell">$myFunction = {
     param(
         [Parameter(Mandatory)][ValidateRange(0, 100)][int]$param1, 
@@ -708,8 +709,13 @@ Example:</li>
 <pre><code>'args=\&quot;''arg1 with space'' arg2\&quot;'
 </code></pre>
 <h1 id="command-execution">Command execution<a class="headerlink" href="#command-execution" title="Permanent link">&para;</a></h1>
-<p>Normal commands are executed by just typing them. However, if the command contains a space, wrapping it in quotes does not work. In this case, the <code>&amp;</code> operator has to be used. Example:</p>
+<p>Normal commands are executed by just typing them. </p>
+<p>However, if the <strong>command contains a space</strong>, we have to wrap it in quotes. In this case, the <code>&amp;</code> operator has to be used:</p>
 <pre><code class="language-PowerShell">&amp; &quot;C:\Program Files\Java\jdk1.8.0_181\bin\java.exe&quot; -version
+</code></pre>
+<p>We can also <strong>wrap the command and its arguments in a string</strong>. Then we can execute the whole string using the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression"><code>Invoke-Expression</code></a> command. Example:</p>
+<pre><code class="language-PowerShell">$command = &quot;C:\Program Files\Java\jdk1.8.0_181\bin\java.exe -version&quot;
+Invoke-Expression $command
 </code></pre>
 <h2 id="print-the-exit-code">Print the exit code<a class="headerlink" href="#print-the-exit-code" title="Permanent link">&para;</a></h2>
 <p>To print the exit code of the last command, there are two options:</p>

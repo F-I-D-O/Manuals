@@ -1348,6 +1348,10 @@
             
             <li class="nav-item" data-level="1"><a href="#constant-expressions" class="nav-link">Constant Expressions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#compile-time-branching" class="nav-link">Compile Time Branching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1458,7 +1462,19 @@
             
             <li class="nav-item" data-level="1"><a href="#preprocessor-directives" class="nav-link">Preprocessor Directives</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#include" class="nav-link">Include</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#control-structures_1" class="nav-link">Control structures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#predefined-macros-for-detecting-compiler-os-etc" class="nav-link">Predefined macros for detecting compiler, OS, etc.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#debugging-preprocessor-directives" class="nav-link">Debugging preprocessor directives</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -3610,37 +3626,45 @@ class Object&lt;int, C&gt;{}; // not a full specialization, as C is not specifie
 template&lt;std::integral T, My_concept C&gt;
 class Object&lt;T, C&gt;{}; // not a full specialization, types are not exactly specified
 </code></pre>
-<p>While behaving similarly, there are some important differences between the two types:</p>
+<p>While behaving similarly, there are some important <strong>differences between the full and partial specialization</strong>:</p>
 <ul>
-<li><strong>Full specialization is a new type. Therefore, it must be defined in the source file (<code>.cpp</code>), just like any other class or function and it must have a separate declaration.</strong> On the other hand, partial specialization is still just a template, so it must be defined in the header file (<code>.h</code> or <code>.tpp</code>).</li>
-<li><strong>For functions, we cannot provide a partial specialization</strong>. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use <code>if constexpr</code> to select the correct implementation:
-    <code>cpp
-    template&lt;class T, class C&gt;
-    class Object{
-    public:
-        bool process(T value, C config){
-            if constexpr (std::is_same_v&lt;T, std::string&gt;){
-                return process_string(value, config);
-            } 
-            else {
-                return process_value(value, config);
-            }
-        }
-    };</code><ul>
-<li>Note that here, the <code>if constexpr</code> requires the corresponding <code>else</code> branch. Otherwise, the code cannot be discarded during the compilation. Example:
+<li>
+<p><strong>Declaration and definition:</strong></p>
+<ul>
+<li>
+<p>Full specialization is a new type. Therefore, it must be declared in the header and defined in the source file (<code>.cpp</code>).</p>
+<ul>
+<li>
+<p>additionaly, if the full specialization is a member of a class, the declaration must be outside the class:
     ```cpp
-    template<class T, class C>
+    template&lt;&gt;
     class Object{
     public:
-        bool process(T value, C config){
-            if constexpr (std::is_same_v<T, std::string>){
-                return process_string(value, config);
-            } <pre><code>    return process_value(value, config); // this compiles even if T is std::string
+        // member function template
+        template<class T>
+        void print(T value){
+            ... // template definition
+        }</p>
+<pre><code>// template full specialization declaration - wrong. This will not compile in GCC
+template&lt;&gt;
+void print(std::string value){
+    ... // template definition
 }
 </code></pre>
-<p>};
+<p>};</p>
+<p>// template full specialization declaration - correct
+template&lt;&gt;
+void Object::print(std::string value);
 ```</p>
 </li>
+</ul>
+</li>
+<li>
+<p>Partial specialization is still just a template, so it must be defined in the header file (<code>.h</code> or <code>.tpp</code>).</p>
+</li>
+<li><strong>For functions, we cannot provide a partial specialization</strong>. </li>
+<li>For member functions we can solve this by specializing the whole class. </li>
+<li>For free functions, we have to use other techniques like <a href="#compile-time-branching">compile-time branching</a>.</li>
 </ul>
 </li>
 </ul>
@@ -4417,13 +4441,41 @@ public:
 My_class::number number = 5;
 </code></pre>
 <h1 id="constant-expressions">Constant Expressions<a class="headerlink" href="#constant-expressions" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.cppreference.com/w/cpp/language/constant_expression">cppreference</a>.</p>
 <p>A constant expression is an expression that can be evaluated at compile time. The result of constant expression can be used in static context, i.e., it can be:</p>
 <ul>
 <li>assigned to a <code>constexpr</code> variable,</li>
 <li>tested for true using <code>static_assert</code></li>
 </ul>
 <p>Unfortunatelly, <a href="https://stackoverflow.com/a/47538175/1827955">there is no universal way how to determine if an expression is a constant expression</a>.</p>
-<p>More on <a href="https://en.cppreference.com/w/cpp/language/constant_expression">cppreference</a>.</p>
+<h2 id="compile-time-branching">Compile Time Branching<a class="headerlink" href="#compile-time-branching" title="Permanent link">&para;</a></h2>
+<p>For compile time branching, we can use the <code>if constexpr</code>:</p>
+<pre><code class="language-cpp">template&lt;class T, class C&gt;
+class Object{
+public:
+    bool process(T value, C config){
+        if constexpr (std::is_same_v&lt;T, std::string&gt;){
+            return process_string(value, config);
+        } 
+        else {
+            return process_value(value, config);
+        }
+    }
+};
+</code></pre>
+<p>Note that here, the <code>if constexpr</code> requires the corresponding <code>else</code> branch. Otherwise, the code cannot be discarded during the compilation. Example:</p>
+<pre><code class="language-cpp">template&lt;class T, class C&gt;
+class Object{
+public:
+    bool process(T value, C config){
+        if constexpr (std::is_same_v&lt;T, std::string&gt;){
+            return process_string(value, config);
+        } 
+
+        return process_value(value, config); // this compiles even if T is std::string
+    }
+};
+</code></pre>
 <h1 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h1>
 <p>The regex patern is stored in a <code>std::regex</code> object:</p>
 <pre><code class="language-cpp">const std::regex regex{R&quot;regex(Plan (\d+))regex&quot;};
@@ -4648,7 +4700,13 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
 </li>
 <li>metaprogramming: replaced by templates</li>
 </ul>
-<p><strong>Control structures</strong> are defined as:</p>
+<h2 id="include">Include<a class="headerlink" href="#include" title="Permanent link">&para;</a></h2>
+<p>There are two types of include directives. For both types, the behavior is implementation dependent. However, the most common behavior is:</p>
+<ul>
+<li><code>#include &lt;file&gt;</code>: the file is searched in the system directories</li>
+<li><code>#include "file"</code>: the file is searched relative to the current file</li>
+</ul>
+<h2 id="control-structures_1">Control structures<a class="headerlink" href="#control-structures_1" title="Permanent link">&para;</a></h2>
 <pre><code class="language-cpp">#ifdef &lt;MACRO&gt;
     ...
 #elif &lt;MACRO&gt;
@@ -4670,6 +4728,14 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
 <li><code>#ifdef unix</code> for Unix-like systems (but not MacOS)</li>
 <li><code>#ifdef __APPLE__</code> for MacOS</li>
 </ul>
+<h2 id="debugging-preprocessor-directives">Debugging preprocessor directives<a class="headerlink" href="#debugging-preprocessor-directives" title="Permanent link">&para;</a></h2>
+<p>Sometimes, it may be usefull to print the value of a macro, or show which branch of the <code>#if</code> directive was taken. This can be done using the <code>#pragma message</code> directive:</p>
+<pre><code class="language-cpp">#ifdef MACRO
+    #pragma message(&quot;MACRO is defined&quot;)
+#else
+    #pragma message(&quot;MACRO is not defined&quot;)
+#endif
+</code></pre>
 <h1 id="resources_1">Resources<a class="headerlink" href="#resources_1" title="Permanent link">&para;</a></h1>
 <p>In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. </p>
 <p>Moreover, there is no built-in way how to determine the localtion of the running executable so that we can load the resources from the same directory. Typically, this has to be implemented for each platform separately:</p>

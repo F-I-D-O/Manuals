@@ -618,6 +618,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#execute-commands-from-the-windows" class="nav-link">Execute commands from the Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -928,7 +932,15 @@ REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
 </code></pre>
 <h1 id="wsl">WSL<a class="headerlink" href="#wsl" title="Permanent link">&para;</a></h1>
 <h2 id="translate-windows-path-to-linux-path">Translate Windows Path to Linux Path<a class="headerlink" href="#translate-windows-path-to-linux-path" title="Permanent link">&para;</a></h2>
-<p>To translate a Windows path to a Linux path, we can use the <code>wslpath</code> command, which is available in Ubuntu WSL distributions. </p>
+<p>To translate a Windows path to a Linux path, we can use the <code>wslpath</code> command, which is available in Ubuntu WSL distributions.</p>
+<h2 id="execute-commands-from-the-windows">Execute commands from the Windows<a class="headerlink" href="#execute-commands-from-the-windows" title="Permanent link">&para;</a></h2>
+<p>We can directly execute commands in the WSL from the Windows command line without logging into the WSL with the <a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands"><code>wsl</code></a> command. The syntax is:</p>
+<pre><code class="language-PowerShell">wsl &lt;command&gt;
+</code></pre>
+<p>Important arguments:</p>
+<ul>
+<li><code>-u &lt;user&gt;, --user &lt;user&gt;</code>: run the command as the specified user. This can be useful for running the command as the root user.</li>
+</ul>
 <h1 id="dual-boot">Dual Boot<a class="headerlink" href="#dual-boot" title="Permanent link">&para;</a></h1>
 <h2 id="make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub">Make Windows Work after Linux Uninstall if the Bootloader is Grub<a class="headerlink" href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" title="Permanent link">&para;</a></h2>
 <ol>

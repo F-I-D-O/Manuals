@@ -411,10 +411,10 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -846,7 +846,7 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <p>The syntax for creating objects is mostly the same as in the SQL standard: </p>
 <pre><code class="language-SQL">CREATE &lt;object type&gt; &lt;object name&gt; &lt;object parameters&gt;
 </code></pre>
-<h2 id="if-not-exists-modifier"><code>IF NOT EXISTS</code> modifier<a class="headerlink" href="#if-not-exists-modifier" title="Permanent link">&para;</a></h2>
+<h3 id="if-not-exists-modifier"><code>IF NOT EXISTS</code> modifier<a class="headerlink" href="#if-not-exists-modifier" title="Permanent link">&para;</a></h3>
 <p>An important modifier is the <code>IF NOT EXISTS</code> clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:</p>
 <ul>
 <li><code>TABLE</code></li>
@@ -857,11 +857,11 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <li><code>PROCEDURE</code></li>
 <li><code>FUNCTION</code></li>
 <li><code>TRIGGER</code></li>
+<li><code>SCHEMA</code></li>
 </ul>
 <p>However, it is not available for:</p>
 <ul>
 <li><code>DATABASE</code></li>
-<li><code>SCHEMA</code></li>
 <li><code>USER</code></li>
 <li><code>CONSTRAINT</code></li>
 </ul>

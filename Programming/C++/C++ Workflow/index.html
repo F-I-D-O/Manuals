@@ -624,7 +624,7 @@
             </li>
             <li class="nav-item" data-level="3"><a href="#problems-solutions" class="nav-link">Problems &amp; solutions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#cannot-regenerate-cmak-cache" class="nav-link">Cannot regenerate Cmak cache</a>
+            <li class="nav-item" data-level="4"><a href="#cannot-regenerate-cmake-cache" class="nav-link">Cannot regenerate Cmake cache</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -635,7 +635,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#installing-library-dependencies" class="nav-link">Installing Library Dependencies</a>
+            <li class="nav-item" data-level="1"><a href="#typical-directory-structure" class="nav-link">Typical directory structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#vcpkg-libraries" class="nav-link">Vcpkg Libraries</a>
               <ul class="nav flex-column">
@@ -919,7 +924,7 @@ The structure inside the project element is as follows (only the most important 
 </ul>
 </li>
 </ul>
-<p>Other details about CMake can be found in the CMake Manual.</p>
+<p>Other details about CMake can be found in the <a href="../CMake%20Manual/">CMake Manual</a>.</p>
 <h1 id="vcpkg">vcpkg<a class="headerlink" href="#vcpkg" title="Permanent link">&para;</a></h1>
 <p>Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager. </p>
 <p>VCpkg can work in two modes:</p>
@@ -1391,9 +1396,72 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <p>The version which the <a href="https://en.cppreference.com/w/cpp/compiler_support">compiler support table</a> refers to is the version of the compiler (<code>cl.exe</code>).
 we can find it be examining the compiler executable stored in <code>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64</code>.</p>
 <h3 id="problems-solutions">Problems &amp; solutions<a class="headerlink" href="#problems-solutions" title="Permanent link">&para;</a></h3>
-<h4 id="cannot-regenerate-cmak-cache">Cannot regenerate Cmak cache<a class="headerlink" href="#cannot-regenerate-cmak-cache" title="Permanent link">&para;</a></h4>
+<h4 id="cannot-regenerate-cmake-cache">Cannot regenerate Cmake cache<a class="headerlink" href="#cannot-regenerate-cmake-cache" title="Permanent link">&para;</a></h4>
 <p>go to <code>./vs</code> and look for file named <code>CmakeWorkspaceSettings</code>. It most likelz contains a line with <code>disable = true</code>. Just delete the file, or the specific line.</p>
-<h1 id="installing-library-dependencies">Installing Library Dependencies<a class="headerlink" href="#installing-library-dependencies" title="Permanent link">&para;</a></h1>
+<h1 id="typical-directory-structure">Typical directory structure<a class="headerlink" href="#typical-directory-structure" title="Permanent link">&para;</a></h1>
+<p>The typical directory structure for a C++ project is as follows:</p>
+<ul>
+<li><code>data</code>: the directory containing the data files, including test data and default configuration files</li>
+<li><code>include</code>: the directory containing public header files<ul>
+<li>this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory</li>
+<li>the projects own headers should be in the <code>include/&lt;project name&gt;</code> directory to mimic the installation directory structure</li>
+</ul>
+</li>
+<li><code>install</code>: the directory containing the installation scripts. Only needed for library projects or projects that are meant to be distributed</li>
+<li><code>port</code>: the directory containing the vcpkg port files. Only needed for libraries that are meant to be distributed via vcpkg</li>
+<li><code>src</code>: the directory containing the source files and private headers</li>
+<li><code>test</code>: the directory containing the test files</li>
+<li><code>&lt;various build dirs&gt;</code>: the directories containing the build files.</li>
+</ul>
+<p>The root directory typically contains the following files:</p>
+<ul>
+<li><code>.gitignore</code>: the git ignore file</li>
+<li><code>CMakeLists.txt</code>: the main cmake file</li>
+<li><code>CTestConfig.cmake</code>: the CTest configuration file</li>
+</ul>
+<h1 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h1>
+<p>Unlike in Python and Java, that have pip and maven, C++ does not have a standard package manager. Instead, there are plenty of ways how to install the dependencies and CMake then tries to find them. In the following table, we list the most common ways how to install the dependencies together with theri pros and cons.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Platform-independent</th>
+<th>Automatic install of the dependency tree</th>
+<th>Can install build configuration tools</th>
+<th>Support easily determined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMake <code>--install</code></td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>vcpkg</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>CMake <code>FetchContent</code></td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>CMake <code>ExternalProject</code></td>
+<td>yes</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="vcpkg-libraries">Vcpkg Libraries<a class="headerlink" href="#vcpkg-libraries" title="Permanent link">&para;</a></h2>
 <ol>
 <li>type <code>vcpkg list</code>, if the library you need is not listed, continue to the next steps</li>
@@ -1521,11 +1589,11 @@ generate_export_header(&lt;target name&gt;)
 <p>Other symbols does not have to be exported as they are automatically exported by the compiler:</p>
 <ul>
 <li>enums and enum classes</li>
-<li>constants
-For shared libraries, we have to export symbols. Becasue of the differences between the compilers, and to support using the same headers for both shared and static libraries it is better to use macros</li>
+<li>constants</li>
+<li>templates</li>
 </ul>
-<p>The macro from the <code>GenerateExportHeader</code> is named <code>&lt;target name&gt;_EXPORT</code>, we can check the exact name in the export header file.</p>
-<p>Only the symbols needed by external code should be exported. The exeption is when the the interface use templates. In this case, all symbols used by the template should be exported.</p>
+<p>Additionaly, only the symbols needed by external code should be exported. The exeption is when the the interface use templates. In this case, all symbols used by the template (but not the template itself) should be exported.</p>
+<p>The <code>&lt;export macro&gt;</code> from the <code>GenerateExportHeader</code> is named <code>&lt;target name&gt;_EXPORT</code>, we can check the exact name in the export header file.</p>
 <h2 id="cmake-configuration">CMake Configuration<a class="headerlink" href="#cmake-configuration" title="Permanent link">&para;</a></h2>
 <p>Now the shared library build should work correctly. However, the static library build will be full of warnings, because the export macro is not intended for static libraries. The same is true for executables. Therefore, we need to set a special property for each target that uses the export header and is not a shared library:</p>
 <pre><code class="language-cmake">target_compile_definitions(&lt;static/executable target name&gt; PUBLIC &lt;static condition macro &gt;)
@@ -1547,6 +1615,11 @@ if (VCPKG_TARGET_TRIPLET MATCHES "-static")
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;")
 endif()</code></p>
 </li>
+</ul>
+<p>If the mismatch occurs, it is manifested depending on the situation:</p>
+<ul>
+<li>when we link to a dynamic runtime library, but static dependencies are used, the linker will throw an error, typically for each static dependency</li>
+<li>when we link to a static runtime library, but dynamic dependencies are used, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.</li>
 </ul>
 <p># Compilation for a specific CPU
  ## MSVC

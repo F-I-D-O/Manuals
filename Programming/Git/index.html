@@ -471,6 +471,15 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#showing-the-state-in-the-command-line" class="nav-link">Showing the state in the command line</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#git-log" class="nav-link">git log</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#github" class="nav-link">GitHub</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
@@ -490,6 +499,15 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#gui-tools-show-no-history-git-log-results-in-errors" class="nav-link">GUI tools show no history, git log results in errors</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -731,6 +749,21 @@ This is the content of the file in the branch we are merging
 </ul>
 <h2 id="update-pull-request">Update pull request<a class="headerlink" href="#update-pull-request" title="Permanent link">&para;</a></h2>
 <p>If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.</p>
+<h1 id="showing-the-state-in-the-command-line">Showing the state in the command line<a class="headerlink" href="#showing-the-state-in-the-command-line" title="Permanent link">&para;</a></h1>
+<p>Mostly, we use GUI tools to show the state of the repository. However, sometimes we may need to show the state in the command line. The following commands can be useful:</p>
+<ul>
+<li><code>git status</code>: shows the state of the repository</li>
+<li><code>git log</code>: shows the history of the repository</li>
+<li><code>git diff</code>: shows the changes between the working tree and the index</li>
+</ul>
+<h2 id="git-log"><code>git log</code><a class="headerlink" href="#git-log" title="Permanent link">&para;</a></h2>
+<p>The <code>git log</code> shows the history of the repository. It is the analogue of the main view in GitExtensions. The most useful parameters are:</p>
+<ul>
+<li><code>--oneline</code>: shows the history in a compact form</li>
+<li><code>--graph</code>: shows the history as a graph</li>
+<li><code>--all</code>: shows the history of all branches, not only the current one</li>
+<li><code>--decorate</code>: shows the names of the branches and tags, not only the commit hashes</li>
+</ul>
 <h1 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h1>
 <h2 id="creating-a-github-release">Creating a GitHub Release<a class="headerlink" href="#creating-a-github-release" title="Permanent link">&para;</a></h2>
 <p>To create a release:</p>
@@ -781,7 +814,20 @@ This is the content of the file in the branch we are merging
 <pre><code class="language-PowerShell">gh release delete &lt;TAG&gt; --repo &lt;REPO&gt; --cleanup-tag -y
 </code></pre>
 <h2 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h2>
-<p>https://github.com/piceaTech/node-gitlab-2-github</p></div>
+<p>https://github.com/piceaTech/node-gitlab-2-github</p>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<h2 id="gui-tools-show-no-history-git-log-results-in-errors">GUI tools show no history, git log results in errors<a class="headerlink" href="#gui-tools-show-no-history-git-log-results-in-errors" title="Permanent link">&para;</a></h2>
+<p>This may be due to broken refs in <code>.git/refs/</code>. Possible errors:</p>
+<ul>
+<li><code>your current branch appears to be broken</code> -&gt; the checked out branch is broken</li>
+<li><code>fatal: bad object: &lt;ref&gt;</code> -&gt; the ref is broken</li>
+</ul>
+<p>To fix the issue, we can copy the refs from the <code>.git/logs/refs/</code>:</p>
+<ol>
+<li>find the broken file in <code>.git/refs/</code></li>
+<li>find the corresponding file in <code>.git/logs/refs/</code></li>
+<li>copy the hash from the last line, second column and write it to the broken file</li>
+</ol></div>
             </div>
         </div>
 

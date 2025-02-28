@@ -693,6 +693,14 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#biblatex-styling" class="nav-link">Biblatex styling</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#customizing-the-bibliography-printing" class="nav-link">Customizing the bibliography printing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#customizing-the-bibliography-data" class="nav-link">Customizing the bibliography data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="4"><a href="#handle-overflowing-urls-in-bibliography" class="nav-link">Handle overflowing URLs in bibliography</a>
               <ul class="nav flex-column">
               </ul>
@@ -1496,6 +1504,45 @@ a_{x^*} % correct print
 \printbibliography
 </code></pre>
 <p>The style parameter is optional. The styles available for biblatex are listed <a href="https://ctan.org/topic/biblatex">on CTAN</a>.</p>
+<p>The style can be further customized by:</p>
+<ul>
+<li>editing the processed bibliography data (<code>\DeclareSourcemap</code> command)</li>
+<li>editing the bibliography printing (e.g., <code>\AtEveryBibitem</code> command)</li>
+</ul>
+<h4 id="customizing-the-bibliography-printing">Customizing the bibliography printing<a class="headerlink" href="#customizing-the-bibliography-printing" title="Permanent link">&para;</a></h4>
+<p>The bibliography printing can be customized using the <code>\AtEveryBibitem</code> command. Example:</p>
+<pre><code class="language-latex">\AtEveryBibitem{
+    \clearfield{urldate} % remove the url date
+}
+</code></pre>
+<p>Inside the <code>\AtEveryBibitem</code> command, we can use some control structures:</p>
+<ul>
+<li><code>\iffieldundef{&lt;field&gt;}{&lt;true&gt;}{&lt;false&gt;}</code>: if the field is undefined, execute the true branch, otherwise execute the false branch.</li>
+</ul>
+<h4 id="customizing-the-bibliography-data">Customizing the bibliography data<a class="headerlink" href="#customizing-the-bibliography-data" title="Permanent link">&para;</a></h4>
+<p>The bibliography data can be customized using the <code>\DeclareSourcemap</code> command. Example:</p>
+<pre><code class="language-latex">\DeclareSourcemap{
+    \maps{
+        \map{
+            \step[fieldset=urldate, null] % remove the url date
+        }
+    }
+}
+</code></pre>
+<p>Inside the <code>\map</code> command, we can use conditional statements:</p>
+<ul>
+<li><code>\pernottype{&lt;type&gt;}</code>: execute the following steps only if the entry type is not <code>&lt;type&gt;</code></li>
+</ul>
+<p>In each step, we can use multiple conditions, e.g:</p>
+<pre><code class="language-latex">\DeclareSourcemap{
+    \maps{
+        \map{
+            \step[
+                fieldset=urldate, fieldvalue={2022-01-01}, null] % remove the url date if it is 2022-01-01
+        }
+    }
+}
+</code></pre>
 <h4 id="handle-overflowing-urls-in-bibliography">Handle overflowing URLs in bibliography<a class="headerlink" href="#handle-overflowing-urls-in-bibliography" title="Permanent link">&para;</a></h4>
 <p>Sometimes, the links overflow the bibliography. To fix this, we can use the following commands:</p>
 <pre><code class="language-latex">\setcounter{biburllcpenalty}{100}

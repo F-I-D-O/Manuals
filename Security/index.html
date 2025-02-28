@@ -464,7 +464,10 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#storing-passwords-for-the-command-line-tools" class="nav-link">Storing passwords for the command line tools</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#storing-passwords-for-the-command-line-tools" class="nav-link">Storing passwords for the command line tools</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#credential-managers" class="nav-link">Credential Managers</a>
               <ul class="nav flex-column">
@@ -472,8 +475,6 @@
             </li>
             <li class="nav-item" data-level="3"><a href="#python-keyring" class="nav-link">Python keyring</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
               </ul>
@@ -695,7 +696,7 @@ Check the log file: <code>sudo tail -c 5000 /var/log/auth.log</code></p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="partial-length-invalid-for-packet-type-63"><code>partial length invalid for packet type 63</code><a class="headerlink" href="#partial-length-invalid-for-packet-type-63" title="Permanent link">&para;</a></h3>
 <p>This can happen if the private key has a wrong encoding. It can be fixed by cnverting the key file to ASCII encoding.</p>
-<h2 id="storing-passwords-for-the-command-line-tools">Storing passwords for the command line tools<a class="headerlink" href="#storing-passwords-for-the-command-line-tools" title="Permanent link">&para;</a></h2>
+<h1 id="storing-passwords-for-the-command-line-tools">Storing passwords for the command line tools<a class="headerlink" href="#storing-passwords-for-the-command-line-tools" title="Permanent link">&para;</a></h1>
 <p>Sometimes, we need to store passwords for the command line tools on the local machine. For non-sensitive passwords, we can just store them in a file that is not versioned. However, for sensitive passwords and authentication tokens, we should not store them in plain text. We have two options:</p>
 <ul>
 <li>Use a Credential Manager, or</li>

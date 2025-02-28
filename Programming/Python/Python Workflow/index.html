@@ -484,14 +484,6 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#pytest" class="nav-link">Pytest</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#fixtures" class="nav-link">Fixtures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#mocking" class="nav-link">Mocking</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
               </ul>
@@ -685,11 +677,7 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
 <ul>
 <li><code>-x</code>: stop on first failure</li>
 </ul>
-<h3 id="fixtures">Fixtures<a class="headerlink" href="#fixtures" title="Permanent link">&para;</a></h3>
-<p>Fixtures are used to set up the environment for more than one test. If defined in the <code>conftest.py</code> file, they are available for all tests in the project. </p>
-<p>Fixtures are defined using the <code>@pytest.fixture</code> decorator. The fixture can be used in the test function by passing the fixture name as an argument.</p>
-<h3 id="mocking">Mocking<a class="headerlink" href="#mocking" title="Permanent link">&para;</a></h3>
-<p>For mocking, we can use the <code>pytest-mock</code> package. After installation, we can use the <code>mocker</code> fixture in any test function. </p>
+<p>For mocking, we need to install the <code>pytest-mock</code> package, otherwise we get an error <code>fixture 'mocker' not found</code>.</p>
 <h1 id="mixed-python-native-debugging">Mixed Python-native debugging<a class="headerlink" href="#mixed-python-native-debugging" title="Permanent link">&para;</a></h1>
 <p>In theory, there are two ways how to debug python native code:</p>
 <ul>

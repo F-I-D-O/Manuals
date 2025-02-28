@@ -432,6 +432,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#link-fatal-error-lnk1181-cannot-open-input-file" class="nav-link">LINK : fatal error LNK1181: cannot open input file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -487,7 +491,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#using-valgrinfd-to-debug-memory-errors" class="nav-link">Using Valgrinfd to debug memory errors</a>
+            <li class="nav-item" data-level="3"><a href="#using-valgrind-to-debug-memory-errors" class="nav-link">Using Valgrind to debug memory errors</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -704,6 +708,21 @@ static_assert(std::is_move_constructible&lt;Solution&lt;Cordeau_node&gt;&gt;::va
 <li>there can be a bug even in an external library!</li>
 </ol>
 <p><a href="https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error">https://stackoverflow.com/questions/30180145/general-techniques-for-debugging-the-multiple-definition-of-error</a></p>
+<h2 id="link-fatal-error-lnk1181-cannot-open-input-file"><code>LINK : fatal error LNK1181: cannot open input file</code><a class="headerlink" href="#link-fatal-error-lnk1181-cannot-open-input-file" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://learn.microsoft.com/en-us/cpp/error-messages/tool-errors/linker-tools-error-lnk1181?view=msvc-170">error LNK1181</a> means that the linker cannot find the specified library file. To daiagnose this, look at how the file is specified in the target's <code>vxproj</code> file:</p>
+<ol>
+<li>Open the target's <code>vxproj</code> file in a text editor</li>
+<li>Find the <code>Link</code> element</li>
+<li>Check the <code>AdditionalDependencies</code> attribute of the <code>Link</code> element. The path to the library file should be there.</li>
+</ol>
+<p>With exception of the standard libraries, the path should be either absolute (for installed libraries, like vcpkg libraries) or relative to the project directory (for libraries that are distributed with the project). Two cases can happen:</p>
+<ul>
+<li>The path looks correct: double check that hte library file is present on the specified path</li>
+<li>The path is incorrect, e.g., the library is specified only by its name. This means that the <code>vxproj</code> file is not generated correctly, i.e., the problem is in the configuration phase.<ul>
+<li>note that <strong>CMake does not check the validity of the targets specified in the <code>target_link_libraries</code> command!</strong></li>
+</ul>
+</li>
+</ul>
 <h1 id="runtime-errors">Runtime errors<a class="headerlink" href="#runtime-errors" title="Permanent link">&para;</a></h1>
 <p><strong>First, identify the exception context</strong>. To do that, look at the line where the exception is thrown. If the throwing line is not on the call stack, it is possible that the debugger does not break on the particular exception type. to change that go to the <code>Exception Settings</code> and check the exception type there.</p>
 <p>If the cause of the exception is not clear from the context, it may be usefull to <strong>check the exception details</strong>. First, look at the exception message. The easiest way is to catch the exception in the code and print the message. In Google Test, there is a catch-all handler, just run the test without the <code>--gtest_break_on_failure</code> flag. </p>
@@ -787,7 +806,7 @@ To check whether the virtual table is corrupted, add the following watch to the 
 </ol>
 <p>The program should now break on the first problem. The details are displayed in the output window</p>
 <p>More at <a href="https://learn.microsoft.com/en-us/cpp/linux/linux-asan-configuration?view=msvc-170&amp;viewFallbackFrom=vs-2019#install-the-asan-debug-symbols">Microsoft learn</a></p>
-<h3 id="using-valgrinfd-to-debug-memory-errors">Using Valgrinfd to debug memory errors<a class="headerlink" href="#using-valgrinfd-to-debug-memory-errors" title="Permanent link">&para;</a></h3>
+<h3 id="using-valgrind-to-debug-memory-errors">Using Valgrind to debug memory errors<a class="headerlink" href="#using-valgrind-to-debug-memory-errors" title="Permanent link">&para;</a></h3>
 <p>Valgrind is a toolbox for debugging C/C++ code. The most famous tool is calle <a href="https://valgrind.org/docs/manual/mc-manual.html">Memcheck</a> and is intended for memory error detection.
 Basic usage:</p>
 <pre><code class="language-bash">valgrind --leak-check=yes &lt;program&gt; &lt;program arguments&gt;
