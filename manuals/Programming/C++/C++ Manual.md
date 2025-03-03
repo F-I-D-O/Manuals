@@ -2489,38 +2489,37 @@ template<std::integral T, My_concept C>
 class Object<T, C>{}; // not a full specialization, types are not exactly specified
 ```
 
-While behaving similarly, there are some important differences between the two types:
+While behaving similarly, there are some important **differences between the full and partial specialization**:
 
-- **Full specialization is a new type. Therefore, it must be defined in the source file (`.cpp`), just like any other class or function and it must have a separate declaration.** On the other hand, partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
-- **For functions, we cannot provide a partial specialization**. For member functions we can solve this by specializing the whole class. The solution for any function is to alloow all types in the function and use `if constexpr` to select the correct implementation:
-	```cpp
-	template<class T, class C>
-	class Object{
-	public:
-		bool process(T value, C config){
-			if constexpr (std::is_same_v<T, std::string>){
-				return process_string(value, config);
-			} 
-			else {
-				return process_value(value, config);
-			}
-		}
-	};
-	```
-	- Note that here, the `if constexpr` requires the corresponding `else` branch. Otherwise, the code cannot be discarded during the compilation. Example:
-		```cpp
-		template<class T, class C>
-		class Object{
-		public:
-			bool process(T value, C config){
-				if constexpr (std::is_same_v<T, std::string>){
-					return process_string(value, config);
-				} 
+- **Declaration and definition:**
+	- Full specialization is a new type. Therefore, it must be declared in the header and defined in the source file (`.cpp`).
+		- additionaly, if the full specialization is a member of a class, the declaration must be outside the class:
+			```cpp
+			template<>
+			class Object{
+			public:
+				// member function template
+				template<class T>
+				void print(T value){
+					... // template definition
+				}
 
-				return process_value(value, config); // this compiles even if T is std::string
-			}
-		};
-		```
+				// template full specialization declaration - wrong. This will not compile in GCC
+				template<>
+				void print(std::string value){
+					... // template definition
+				}
+			};
+
+			// template full specialization declaration - correct
+			template<>
+			void Object::print(std::string value);
+			```
+
+	- Partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
+- **For functions, we cannot provide a partial specialization**. 
+	- For member functions we can solve this by specializing the whole class. 
+	- For free functions, we have to use other techniques like [compile-time branching](#compile-time-branching).
 
 
 ## Templates and Namespaces
@@ -3486,6 +3485,8 @@ My_class::number number = 5;
 ```
 
 # Constant Expressions
+[cppreference](https://en.cppreference.com/w/cpp/language/constant_expression).
+
 A constant expression is an expression that can be evaluated at compile time. The result of constant expression can be used in static context, i.e., it can be:
 
 - assigned to a `constexpr` variable,
@@ -3493,7 +3494,38 @@ A constant expression is an expression that can be evaluated at compile time. Th
 
 Unfortunatelly, [there is no universal way how to determine if an expression is a constant expression](https://stackoverflow.com/a/47538175/1827955).
 
-More on [cppreference](https://en.cppreference.com/w/cpp/language/constant_expression).
+## Compile Time Branching
+For compile time branching, we can use the `if constexpr`:
+```cpp
+template<class T, class C>
+class Object{
+public:
+	bool process(T value, C config){
+		if constexpr (std::is_same_v<T, std::string>){
+			return process_string(value, config);
+		} 
+		else {
+			return process_value(value, config);
+		}
+	}
+};
+```
+
+Note that here, the `if constexpr` requires the corresponding `else` branch. Otherwise, the code cannot be discarded during the compilation. Example:
+```cpp
+template<class T, class C>
+class Object{
+public:
+	bool process(T value, C config){
+		if constexpr (std::is_same_v<T, std::string>){
+			return process_string(value, config);
+		} 
+
+		return process_value(value, config); // this compiles even if T is std::string
+	}
+};
+``` 
+
 
 # Regular expressions
 The regex patern is stored in a `std::regex` object:
