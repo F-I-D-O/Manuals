@@ -160,12 +160,13 @@ fig = px.scatter_3d(<dataframe>, <xcol name>, <y col name>, <z col name>)
 
 # Plotly Graph Objects
 [documentation](https://plotly.com/python/graph-objects/)
+
 If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:
 
 - facet plots with more than one metric
 - plots with custom traces *behind* the plotly express traces
 
-To make the figure from scratch, we can use the [`make_subplots`](https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html) function from the `plotly.subplots` module. Example:
+To **make the figure from scratch**, we can use the [`make_subplots`](https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html) function from the `plotly.subplots` module. Example:
 ```python
 from plotly.subplots import make_subplots
 fig = make_subplots(rows=2, cols=2)
@@ -178,8 +179,15 @@ Important parameters:
     - `True`: only one axis per row (for `shared_xaxes`) or column (for `shared_yaxes`). 
     - `row` or `col`: equivalent to `True`, applicable only to `shared_xaxes` or `shared_yaxes`, respectively.
     - `all`: all subplots share the same axes
-- `horizontal_spacing`, `vertical_spacing`: the spacing between the subplots in relative units, values are in the range `[0, 1]`. The default is `0.2` for both, which means that the spacing is 20% of the figure width/height.
-- `subplot_titles`: the titles of the subplots. 
+- `horizontal_spacing`, `vertical_spacing`: the spacing between the subplots in relative units, values are in the range `[0, 1]`. 
+    - The default is `0.2` for both, which means that the space between each subplot is 20% of the figure width/height.
+- `subplot_titles`: the titles of the subplots.
+
+For **adding traces** to the figure, we can use the [`add_trace`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_trace) function. Important parameters:
+
+- `row`, `col`: the row and column of the subplot where to add the trace. 
+    - Both parameters have to be set.
+    - The numbering starts from 1.
 
 
 ## Common Parameters For All Types of Plots
