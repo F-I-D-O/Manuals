@@ -188,6 +188,23 @@ Variables are set using the [`set`](https://cmake.org/cmake/help/latest/command/
 set(<variable name> <variable value>)
 ```
 
+## The `option` command
+The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a **boolean** variable that can:
+
+- be set by the user using the `-D` argument when running the `cmake` command,
+- have a default value,
+- have a description that will be printed when the variable is set, and
+- set a cache variable (see [CMake cache](#cmake-cache)).
+
+The syntax is:
+```cmake
+option(<option name> <option description> <default value>)
+```
+The behavior of the `option` command is as follows:
+
+- If variable is already set (either a cache variable or a normal variable), the `option` command is ignored.
+- Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.
+
 ### Enviromental variables
 We can use environmental variables using the `ENV` variable:
 ```cmake
@@ -1277,15 +1294,7 @@ The rule is that once a cache variable is set, it is not changed when the `cmake
 
 
 
-## The `option` command
-The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a cache variable that can be set by the user. The syntax is:
-```cmake
-option(<option name> <option description> <default value>)
-```
-The behavior of the `option` command is as follows:
 
-- If variable is already set (either a cache variable or a normal variable), the `option` command is ignored.
-- Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.
 
 
 

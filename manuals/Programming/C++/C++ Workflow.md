@@ -26,39 +26,6 @@ There are various toolchains available on Windows and Linux, but we limit this g
 
 -   install [Visual Studio 2019 Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
 
-
-### Choosing the runtime library
-[official documentation](https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library)
-
-When compiling with MSVC, it is crucial to choose the correct runtime library. Typically, both the compiled target and all its dependencies have to use the same runtime library. The following options are available:
-
-| Option | Copiler flag | MSBuild name | Description | Linged library |
-|--------|--------------|--------------|-------------|----------------|
-| Multi-threaded Dynamic | `/MD` | `MultiThreadedDLL` | The default option. The application uses the dynamic version of the runtime library.  | `msvcrt.lib` |
-| Multi-threaded Dynamic Debug | `/MDd` |  `MultiThreadedDebugDLL` | The debug version of the dynamic runtime library. | `msvcrtd.lib` |
-| Multi-threaded Static | `/MT` | `MultiThreaded` | The application uses the static version of the runtime library. | `libcmt.lib` |
-| Multi-threaded Static Debug | `/MTd` | `MultiThreadedDebug` | The debug version of the static runtime library. | `libcmtd.lib` |
-| DLL | `/LD` | | The application is compiled as a DLL. | - |
-| DLL Debug | `/LDd` | | The debug version of the DLL. | - |
-
-By default, the `/MD`/`/MDd` flags are used depending on the build type. 
-
-When the mismatch occurs, we usually get the following error message:
-```plaintext
-LNK2038 mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MTd_StaticDebug' in ..
-```
-To determine if the type of the runtime library used by the target, we can explore the build script for the target, For MSBuild, the runtime library is set by the `RuntimeLibrary` property.
-
-To determine the runtime library used by a library, we can use the [dumpbin](https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-reference) tool.
-This tool is part of the Visual Studio installation and can be run from the Developer Command Prompt or Developer PowerShell. The following command will display the runtime library used by the library:
-```bash
-dumpbin /directives <path to the library>
-```
-
-#### Resources
-
-- [Standard library description](https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-library-features)
-
 ### Common Compiler Flags
 
 - [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
@@ -778,15 +745,96 @@ Other alternative is to implement the refactoring manually, with a help of some 
 As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.
 
 
-# Standard Library
-There are two standard libraries in context of C++:
 
-- [**C++ Standard Library**](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library): contains the standard C++ features described in the C++ standard.
-	- On Linux, it is called `libstdc++` (GNU) or `libc++` (LLVM).
-	- On Windows, there are two libraries: `UCRTBASE.dll` and `VCRUNTIME140.dll`
-- **C Standard Library**: contains the standard C features described in the C standard.
-	- On Linux, it is called [`glibc`](https://en.wikipedia.org/wiki/Glibc). To get the version, run `ldd --version`
-	- on Windows, same as the C++ standard library
+# Standard Library
+The strucure and organization of the [standard library](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) is different on Windows and Linux.
+
+On **Windows** (specificly when using MSVC) the library is called MSVC C Runtime (CRT). It is divided between:
+
+- `VCRuntime<version>.dll`: contains the parts that interacts with the OS
+	- new versions are released with new versions of Visual Studio
+- `ucrtbase.dll`: contains other parts of the CRT
+	- non-versioned, the same for all versions of Visual Studio
+- many other libraries
+
+On **Linux**, the library is divided between C and C++ standard libraries:
+
+- C++ Standard Library: contains the standard C++ features described in the C++ standard.
+	- GNU: `libstdc++`
+	- LLVM: `libc++`
+- [C Standard Library (`glibc`)](https://en.wikipedia.org/wiki/Glibc): contains the standard C features described in the C standard.
+	- To get the version, run `ldd --version`
+
+## Linking to the Standard Library
+On both platforms:
+
+- the standard library is linked automatically
+- the standard library is linked dynamically by default
+
+However, Windows and Linux have different attitudes towards static linking of the standard library:
+
+- **Windows**: static linking is pretty common and easy to setup:
+	- pros: easy way to distribute the application to older systems, possibly decades old
+	- cons: even begginers have to check that the executable and all its dependencies link to the same (static vs dynamic) version of the CRT
+- **Linux**: static linking is not common and not recommended:
+	- pros: the mismatch of the standard library linking between the executable and the dependencies is not a problem
+	- cons: the executable is typically not portable to other systems, unless the same version of the standard library is installed (`glibc` is usually stable, but `libstdc++` and `libc++` are not)
+
+
+### Setting up the correct CRT with MSVC
+[official documentation](https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library)
+
+It is critical to set the runtime library for the executable we are building so that it matches the runtime library used by the dependencies. If the mismatch occurs, it is manifested depending on the situation:
+
+- when we link to a dynamic CRT, but dependencies link to a static CRT, the linker will throw an error, typically for each such dependency
+	```plaintext
+	LNK2038 mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MTd_StaticDebug' in ..
+	```
+- when we link to a staticCRT, but dependencies link to a dynamic CRT, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.
+
+The CRT is set by compiler flags (see the table below). 
+
+- These flags are typically passed to the compiler by the build system based on the build configuration files (e.g., `MSBuild` files).
+- They affect all parts of the CRT
+
+If we generate thes files by the IDE (Visual Studio), we have to set the CRT in the IDE. If they are generated by **CMake**, there are three possible situations:
+
+- we use the dynamic CRT (default): nothing has to be done
+- the build is handled by vcpkg (libraries installed with `vcpgk install`): the runtime library is set by the [`VCPKG_CRT_LINKAGE`](https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage) variable in the triplet file. Nothing has to be done.
+- we use the static CRT: we have to set the `CMAKE_MSVC_RUNTIME_LIBRARY` variable in the `CMakeLists.txt` file. if we use vcpgk libraries, we should set it based on the triplet used:
+	```cmake
+	if (VCPKG_TARGET_TRIPLET MATCHES "-static")
+		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+	endif()
+	```
+
+To **determine if the type of the runtime library used by the target**, we can explore the build script for the target, For MSBuild, the runtime library is set by the `RuntimeLibrary` property. To **determine the runtime library used by a library**, we can use the [dumpbin](https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-reference) tool.
+This tool is part of the Visual Studio installation and can be run from the Developer Command Prompt or Developer PowerShell. The following command will display the runtime library used by the library:
+```bash
+dumpbin /directives <path to the library>
+```
+
+The following **compiler flags** are available:
+
+| Option | Copiler flag | MSBuild name | Description | Linged library |
+|--------|--------------|--------------|-------------|----------------|
+| Multi-threaded Dynamic | `/MD` | `MultiThreadedDLL` | The default option. The application uses the dynamic version of the runtime library.  | `msvcrt.lib` |
+| Multi-threaded Dynamic Debug | `/MDd` |  `MultiThreadedDebugDLL` | The debug version of the dynamic runtime library. | `msvcrtd.lib` |
+| Multi-threaded Static | `/MT` | `MultiThreaded` | The application uses the static version of the runtime library. | `libcmt.lib` |
+| Multi-threaded Static Debug | `/MTd` | `MultiThreadedDebug` | The debug version of the static runtime library. | `libcmtd.lib` |
+| DLL | `/LD` | | The application is compiled as a DLL. | - |
+| DLL Debug | `/LDd` | | The debug version of the DLL. | - |
+
+By default, the `/MD`/`/MDd` flags are used depending on the build type.
+
+
+## Resouces
+
+- [MSVC CRT on Wikipedia](https://en.wikipedia.org/wiki/Microsoft_Windows_library_files#CRT)
+- [CRT reorganization blogpost from 2015](https://devblogs.microsoft.com/cppblog/introducing-the-universal-crt/)
+- [GitHub repo with the relesed CRT sources, useful information, and links](https://github.com/huangqinjin/ucrt)
+
+
 
 # Exporting symbols for shared libraries
 
@@ -850,27 +898,9 @@ The static condition macro from the `GenerateExportHeader` is named `<target nam
 
 
 
-# Ensuring the same runtime library (MSVC) usage
-Using the same runtime library is crucial when using the MSVC compiler. At lover levels, the runtime library is set by compiler flags (see the [MSVC section](#msvc-windows)). These flags are automatically passed to the compiler by the build system based on the build configuration files (e.g., `MSBuild` files). If we generate thes files by the IDE (Visual Studio), we have to set the runtime library in the IDE. If they are generated by CMake, there are three possible situations:
+# Compilation for a specific CPU
 
-- we use the dynamic runtime library (default): nothing has to be done
-- the build is handled by vcpkg (libraries installed with `vcpgk install`): the runtime library is set by the [`VCPKG_CRT_LINKAGE`](https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage) variable in the triplet file. Nothing has to be done.
-- we use the static runtime library: we have to set the `CMAKE_MSVC_RUNTIME_LIBRARY` variable in the `CMakeLists.txt` file. if we use vcpgk, we should set it based on the triplet used:
-
-	```cmake
-	if (VCPKG_TARGET_TRIPLET MATCHES "-static")
-		set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-	endif()
-	```
-
-If the mismatch occurs, it is manifested depending on the situation:
-
-- when we link to a dynamic runtime library, but static dependencies are used, the linker will throw an error, typically for each static dependency
-- when we link to a static runtime library, but dynamic dependencies are used, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.
-
-
- # Compilation for a specific CPU
- ## MSVC
+## MSVC
  MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.
 
 The command for the compiler is: `/arch:<set name> (see [MSVC documentation](https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170) for details).
