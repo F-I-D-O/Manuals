@@ -188,6 +188,18 @@ Variables are set using the [`set`](https://cmake.org/cmake/help/latest/command/
 set(<variable name> <variable value>)
 ```
 
+### Variable types
+CMake has two types of variables:
+
+- **string variables**: the most common type of variable. A string variable is created if the `<variable value>` is a single word or a quoted string. Example:
+    ```cmake
+    set(dir "C:/Program Files")
+    ```
+- **list variables**: a list variable is created if the `<variable value>` is a list of words. Example:
+    ```cmake
+    set(dirs "C:/Program Files" "C:/Program Files (x86)")
+    ```
+
 ## The `option` command
 The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a **boolean** variable that can:
 
@@ -377,7 +389,7 @@ To perform file operations, use the [`file`](https://cmake.org/cmake/help/latest
 
 
 ## Path operations
-Path operations are performed using the [`cmake_path`](https://cmake.org/cmake/help/latest/command/cmake_path.html) command. The sytax for this command varies based on the subcommand. 
+Path operations are performed using the [`cmake_path`](https://cmake.org/cmake/help/latest/command/cmake_path.html) command. The sytax for this command varies based on the subcommand.
 
 ### Path decomposition
 The syntax for the path decomposition is:
@@ -387,6 +399,13 @@ cmake_path(GET <path> <path part> <output variable>)
 Here, `<path part>` can be:
 
 - `PARENT_PATH` - the parent directory of the path
+
+
+## List operations
+For list operations, use the [`list`](https://cmake.org/cmake/help/latest/command/list.html) command. The most useful subcommands are:
+
+- [`APPEND`](https://cmake.org/cmake/help/latest/command/list.html#append) - append an element to the list: `list(APPEND <list name> <elements>)`
+- [`JOIN`](https://cmake.org/cmake/help/latest/command/list.html#join) - join the list elements into a string: `list(JOIN <list name> <separator> <output variable>)`
 
 
 ## Functions
@@ -1521,4 +1540,9 @@ set_tests_properties(setup PROPERTIES FIXTURES_SETUP my_test_suite)
 set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
 ```
 
+## Running tests not related to any CMake project
+There is no way how to run tests that are not related to any CMake project directly using the `ctest` command, and we cannot add such tests in the ctest starter script. The minimal solution is to:
 
+- create a dummy CMake project that only contains the tests (no targets, etc.)
+- skip the build step in the ctest starter script
+- run the tests starter normally using the `ctest` command

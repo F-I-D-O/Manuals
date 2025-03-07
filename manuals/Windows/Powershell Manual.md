@@ -1,7 +1,7 @@
 # Introduction
-PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt. 
+PowerShell is the new command line interface for Windows that replaces the old command prompt. It is superior in almost every aspect so it is recommended to use it instead of the old command prompt.
 
-The PowerShell script files have the `.ps1` extension. 
+The PowerShell script files have the `.ps1` extension.
 
 In addition to system commands, PowerShell can also execute native PowerShell commands called [cmdlets](https://learn.microsoft.com/en-us/powershell/scripting/powershell-commands).
 
@@ -14,6 +14,11 @@ Therefore, it is best to install the [new PowerShell](https://github.com/PowerSh
 
 ## Quick Edit / Insert Mode
 PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit `enter`.
+
+## Resources
+
+- [Microsoft documentation](https://learn.microsoft.com/en-us/powershell/scripting/overview)
+- [SS64](https://ss64.com/ps/)
 
 
 ## Script Blocks
@@ -143,19 +148,70 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 
 
 
-
 # Command execution
-Normal commands are executed by just typing them. 
+There are several ways how to execute a command in PowerShell:
 
-However, if the **command contains a space**, we have to wrap it in quotes. In this case, the `&` operator has to be used:
+- The standard way is to just type the command.
+- Another option is the `&` operator: `& <command> <arguments>`. This way, we can
+    - **execute a program with spaces in the path**: `"C:/Program Files/a/a"` does not work, but `& "C:/Program Files/a/a"` does
+    - prepare the command or arguments dynamically:
+        ```PowerShell
+        $command = 'ls'
+        & $command # prints the content of the current directory
+        $command $ # prints ls
+        ```
+- The third option is to use the [`Invoke-Expression`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression) command. This command executes a string as a command with arguments. Example:
+    ```PowerShell
+    $argument = "--version"
+    Invoke-Expression "java $argument"
+    ```
+
+## Using the call (`&`) operator
+
+- [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators#call-operator-)
+- [ss64 documentation](https://ss64.com/ps/call.html)
+
+The syntax is `& <command> <arguments>`. Here:
+
+- `<command>` is the command to be executed. If the path to the command contains spaces, it has to be wrapped in quotes.
+- `<arguments>` are either
+    - inline arguments, e.g.: `& vcpkg list x64-windows-static`
+    - array of arguments, e.g.: `& vcpkg @("list", "x64-windows-static")`
+
+
+Note that **passing the array of arguments to a cmdlet does not work as expected**. Cmdlets uses special named parameters. For example the `ls` (alias for `Get-ChildItem` cmdlet) has the `-Depth` parameter that can have an integer value. However, the cmdlet expects such arguments to be passed as key-value pairs. For inline parameters, the key-value pairs are automatically created from the positionally passed arguments. But this is not the case for the array of arguments. So:
 ```PowerShell
-& "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe" -version
+& ls -Depth 2 # works
+& ls @("-Depth", 2) # does not work. Each element of the array is treated as a separate positional argument -> a path is expected
+```
+Unfortunatelly, there is no nice solution for this, if we want to use the call operator (there is no such problem with `Invoke-Expression`). There are two options:
+
+- pass the arguments as key-value pairs. Example:
+    ```PowerShell
+    $params = @{"Depth" = 2}
+    & ls @params # this unrolls the dictionary into key-value pairs
+    ```
+    - do not mistake the second line with `& ls $params`. This would pass the dictionary as a single argument.
+- use the code block and pass the arguments inside it. Example:
+    ```PowerShell
+    & {ls -Depth 2}
+    ```
+
+
+## Using the Invoke-Expression command
+The [`Invoke-Expression`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression) command executes a string as a command with arguments. Example:
+```PowerShell
+$argument = "--version"
+Invoke-Expression "java $argument"
 ```
 
-We can also **wrap the command and its arguments in a string**. Then we can execute the whole string using the [`Invoke-Expression`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression) command. Example:
+A big caution is needed when using the `Invoke-Expression` as its typical usage **with double-quoted strings triggers expression evaluation twice**, which can lead to unexpected behavior. Example:
 ```PowerShell
-$command = "C:\Program Files\Java\jdk1.8.0_181\bin\java.exe -version"
-Invoke-Expression $command
+# we want to print $test
+echo $test # prints nothing as variable is not defined
+echo `$test # prints $test standard escape solution
+Invoke-Expression "echo `$test" # prints nothing as variable is not defined. The problem is that the escape character is evaluated during the first string evaluation, and then, during the Invoke-Expression evaluation, there is no escape character.
+Invoke-Expression 'echo `$test' # prints $test. The single quotes prevent the evaluation of the escape character during the first string evaluation.
 ```
 
 ## Print the exit code
@@ -167,6 +223,8 @@ To print the exit code of the last command, there are two options:
 
 ## No Output for EXE file
 Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
+
+
 
 # Variables
 Variables are defined by the `$` sign. Example:
@@ -381,9 +439,17 @@ Get-Process | Select-Object -Property Name, Id
 
 
 # Arrays
-To creante an array, use the `@()` operator: `a = @()` To add an element to an array, use the `+=` operator: `a += 1`. The arrays can be iterated over using the `foreach` loop.
+To **create** an array, use the `@()` operator: `a = @()`.
 
+To **add an element** to an array, use the `+=` operator: `a += 1`. The same operator can be used to **append** one array to another: `a += @("1", "bar")`.
 
+The arrays can be **iterated** over using the `foreach` loop.
+
+To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:
+```PowerShell
+$a = @("foo", "bar")
+"$a" # prints "foo bar"
+```
 
 # Network
 

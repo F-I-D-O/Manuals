@@ -104,9 +104,9 @@ Other details about CMake can be found in the [CMake Manual](CMake%20Manual.md).
 
 
 # vcpkg
-Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager. 
+Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager.
 
-VCpkg can work in two modes:
+Vcpkg can work in two modes:
 
 - **Classic mode**: vcpkg is installed centrally. This mode is useful for development and testing.
 - [**Manifest mode**](https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode): vcpkg is installed in the project directory. This mode is useful for deployment. 
@@ -118,8 +118,23 @@ To install vcpkg:
 1. for classic mode, add the vcpkg directory to `PATH`, so the program can be run from anywhere
 	- Beware that to run it with sudo on linux, [it is not that easy](https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing).
 
-To install a package, run `vcpkg install package`.
+## Basic coomands
 
+### Install a package
+To install a package, use the `install <package name>` command. Important options are:
+
+- `--triplet <triplet>`: the target triplet. 
+
+### Remove a package
+To remove a package, use the `remove <package name>` command. Important options are:
+
+- `--triplet <triplet>`: the target triplet.
+
+### Search for a package
+To search for a package, use the `search <package name>` command. 
+
+### List installed packages
+To list the installed packages, use the `list` command. The first positional argument is the triplet filter, e.g., `list x64-windows` lists only the packages for the `x64-windows` triplet.
 
 ## CMake Integration
 [documentation](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration)

@@ -16,6 +16,19 @@ There are also simple links where the URL is used as the link text, these are ca
 <http://example.com>
 ```
 
+We can also create local links to headings in the same document:
+```markdown
+[Link text](#<heading>)
+```
+Here, `<heading>` is the heading text 
+
+- in lowercase,
+- with spaces replaced by hyphens,
+- with all special characters removed,
+- two or more hyphens are replaced by one hyphen,
+- and, in case of a heading with the same text, a number is added at the end.
+
+
 ## Images
 Images can be added to a markdown file by using the following syntax:
 ```markdown
