@@ -997,6 +997,74 @@ To create diagram from an existing database: right click on the database -> `Gen
 
 
 
+# Testing with PgTAP
+[PgTAP](https://pgtap.org/) is the only testing framework for PostgreSQL.
+
+## Installation
+
+### Linux
+If you are using Linux, you may (depending on your distribution) be able to use you distribution’s package management system to install pgTAP. For instance, on Debian, Ubuntu, or Linux Mint pgTAP can be installed with the command: `sudo apt-get install pgtap`
+
+On other systems pgTAP has to be downloaded and built. First, download pgTAP from [PGXN](https://pgxn.org/dist/pgtap/) (click the green download button in the upper-right). Extract the downloaded zip file, and (at the command line) navigate to the extracted folder.
+
+To build pgTAP and install it into a PostgreSQL database, run the following commands:
+
+``` sh
+make
+make install
+make installcheck
+```
+
+### Windows
+To install pgtap for PostgreSQL on Windows, follow these steps:
+
+1. Clone the [pgtap repository](https://github.com/theory/pgtap)
+2. Open PowerShell (`pwsh`) as an Administrator
+    - it is necessary to copy files into the `ProgramFiles` directory.
+1. run the [`pgtap_install.ps1`](https://gist.github.com/F-I-D-O/7752c29590f2867ce502590453ed04e7) script as an administrator with the following command:
+    ``` PowerShell
+    pgtap_install.ps1 <path to pgtap clone>
+    ```
+    - This script will copy the necessary files to the PostgreSQL installation directory.
+
+These instructions were adapted from [issue#192](https://github.com/theory/pgtap/issues/192#issuecomment-960033060) of the pgtap repository.
+
+
+## Basic Usage
+The basic test can look like this:
+```SQL
+BEGIN; -- Start a transaction
+
+-- Specify that we plan to run 2 tests
+SELECT plan(2);
+
+-- Test 1: Check if basic arithmetic works as expected
+SELECT is(1 + 1, 2, '1 + 1 equals 2');
+
+-- Test 2: Verify string concatenation
+SELECT is('Hello ' || 'World', 'Hello World', 'String concatenation works');
+--
+
+-- Run the tests and return results
+SELECT * FROM finish();
+
+ROLLBACK; -- Rollback the transaction
+```
+
+here, we create two assertions using the `is` function from the `pgtap` library. Then, we run the tests using the `finish` function. The whole test is wrapped in a transaction, so the database is not modified by the test.
+
+To execute the test, we can:
+
+- run the test SQL directly in the SQL console or with the `psql` command
+- use the `pg_prove` command to run the test from the command line
+
+## `pg_prove`
+The `pg_prove` is a Perl test runner that can be used to run the pgtap tests. We need to install it first using `cpanm TAP::Parser::SourceHandler::pgTAP`.
+
+Then, we can use it as:
+```bash
+pg_prove -d <db name> -U <user name> <test file>
+```
 
 # Troubleshooting
 If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.
