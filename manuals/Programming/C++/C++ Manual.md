@@ -28,17 +28,17 @@ The overflow (and underflow) is a common problem in most programming languages. 
 In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:
 
 - the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:
-```cpp
-short a = 32767;
-short b = 1;
-int c = a + b; // overflow happens beffore the assignment
-```
-A solution to this problem is to use a numeric cast of the opperands (even one is enouhg):
-```cpp
-short a = 32767;
-short b = 1;
-int c = static_cast<int>(a) + b;
-```
+	```cpp
+	short a = 32767;
+	short b = 1;
+	int c = a + b; // overflow happens beffore the assignment
+	```
+	A solution to this problem is to use a numeric cast of the opperands (even one is enouhg):
+	```cpp
+	short a = 32767;
+	short b = 1;
+	int c = static_cast<int>(a) + b;
+	```
 
 
 #### Detecting overflows
@@ -1933,6 +1933,42 @@ The **iteration** over the keys is done using `YAML::const_iterator`:
 for (YAML::const_iterator it = node.begin(); it != node.end(); ++it) {
 	std::string key = it->first.as<std::string>();
 	YAML::Node value = it->second;
+}
+```
+
+## HDF
+
+To load data from HDF5 files, the HDF5 C++ API can be used. Typical usage:
+
+```cpp
+#include <H5Cpp.h>
+
+const H5::H5File file("file.h5", H5F_ACC_RDONLY);
+
+const H5::DataSet dataset = file.openDataSet("dataset");
+const H5::DataSpace dataspace = dataset.getSpace();
+hsize_t dims[2];
+dataspace.getSimpleExtentDims(dims);
+H5::DataSpace memspace(2, dims);
+
+dataset.read(
+	<pointer where to store the data>,
+	H5::PredType::<data type>,
+	memspace,
+	dataspace
+);
+```
+
+If we do not know the dataset name, we can get the name by index:
+```cpp
+std::string dataset_name = file.getObjnameByIdx(0); // get the first dataset name
+```
+
+To check if the dataset exists, we can use the `exists` method of the file:
+```cpp
+const H5::H5File file("file.h5", H5F_ACC_RDONLY);
+if (file.exists("dataset")) {
+	...
 }
 ```
 
