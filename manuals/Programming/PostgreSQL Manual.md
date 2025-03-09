@@ -148,26 +148,51 @@ For these objects, we have to use some workaround. There are three options in ge
 
 
 # Procedures and functions
-## Calling a procedure
-to exectue a stored procedure, use"
+To store a set of SQL commands for later use, PostgreSQL provides two options: procedures and functions. Both are similar and can use SQL, PL/pgSQL, or other languages supported by PostgreSQL. The key differences are:
+
+- functions return a value, while procedures do not. However, procedures can return a value using an `OUT` parameter.
+- functions can be called in SQL queries, while procedures require a separate `CALL` statement.
+	- functions: `... SELECT <function name>(<function arguments>) ...`
+	- procedures: `CALL <procedure name>(<procedure arguments>);`
+- procedures can manage transactions, while functions cannot.
+
+
+## Functions
+To call a function, we use the `SELECT` statement:
 ```SQL
-CALL <procedure name>(<procedure arguments>)
+SELECT * FROM <function signature>
 ```
 
-Unlike in programing languages, there is no implicit type cast of the program arguments, including literals. Therefore, we need to cast all parameters explicitely, as in the following example:
+To create a function, we use the [CREATE FUNCTION statement](https://www.postgresql.org/docs/12/sql-createfunction.html).
 
+Unlike for procedures, we need to specify a return type for function, either as an `OUT`/`INOUT` parameter, or using the `RETURNS` clause. To return tabular data, we use [`TABLE`](https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE) return type:
 ```SQL
-CREATE OR REPLACE PROCEDURE compute_speeds_for_segments(target_area_id smallint)
-...
-
-CALL compute_speeds_for_segments(1::smallint);
+RETURNS TABLE(<param 1 name> <param 1 type>, ..., <param n name> <param n type>)
 ```
 
 
-## Creating a procedure
-[documentation](https://www.postgresql.org/docs/current/sql-createprocedure.html)
+### `RETURN NEXT` and `RETURN QUERY`
+Sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In PG/plSQL, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs.
+These constructs prepare the result, and **does not return from the function**. Instead, use an empty `RETURN` to return from the function. Example:
 
-The syntax is as follows:
+```SQL 
+RETURN QUERY
+SELECT ...;
+DROP TABLE target_ways;
+RETURN;
+```
+
+Note that for these constructs, the return type needs to be a `table` or `setof` type. The `RETURN QUERY` cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
+
+
+## Procedures
+To exectue a stored procedure, use:
+```SQL
+CALL <procedure name>(<procedure arguments>);
+```
+
+To create a procedure, use the [`CREATE PROCEDURE` command](
+https://www.postgresql.org/docs/current/sql-createprocedure.html). The syntax is as follows:
 ```SQL
 CREATE PROCEDURE <name> (<params>)
 LANGUAGE <language name>
@@ -189,9 +214,18 @@ BEGIN ATOMIC
 END
 ```
 
-There are some differences between those syntaxes (e.g., the second one works only for SQL and is evaluated/checked for validity at the time of creation), bot in most cases, they are interchangable. 
+There are some differences between those syntaxes (e.g., the second one works only for SQL and is evaluated/checked for validity at the time of creation), but in most cases, they are interchangable.
 
-For more details, check the [manual](https://www.postgresql.org/docs/current/sql-createprocedure.html).
+
+## Function and procedure parameters
+Unlike in programing languages, there is no implicit type cast of the program arguments, including literals. Therefore, we need to cast all parameters explicitely, as in the following example:
+
+```SQL
+CREATE OR REPLACE PROCEDURE compute_speeds_for_segments(target_area_id smallint)
+...
+
+CALL compute_speeds_for_segments(1::smallint);
+```
 
 
 ## Variables
@@ -235,33 +269,6 @@ EXAMPLE with `SELECT` as rvalue:
 ```PostgreSQL
 customer_name = (SELECT name FROM customers WHERE id = 1)
 ```
-
-
-
-## Functions
-[Functions](https://www.postgresql.org/docs/12/sql-createfunction.html) in PostgreSQL have a similar syntax to procedures. 
-
-Unlike for procedures, we need to specify a return type for function, either as an `OUT`/`INOUT` parameter, or using the `RETURNS` clause. To return tabular data, we use [`TABLE`](https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE) return type:
-```SQL
-RETURNS TABLE(<param 1 name> <param 1 type>, ..., <param n name> <param n type>)
-```
-To select the result of a function with the return type above, call:
-```SQL
-SELECT * FROM <function signature>
-```
-
-### `RETURN NEXT` and `RETURN QUERY`
-Sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In PG/plSQL, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs.
-These constructs prepare the result, and **does not return from the function**. Instead, use an empty `RETURN` to return from the function. Example:
-
-```SQL 
-RETURN QUERY
-SELECT ...;
-DROP TABLE target_ways;
-RETURN;
-```
-
-Note that for these constructs, the return type needs to be a `table` or `setof` type. The `RETURN QUERY` cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
 
 
 ## Deciding the language
