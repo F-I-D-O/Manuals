@@ -913,6 +913,30 @@ for a in ... # ok
 ```
 
 
+## Common type hints
+
+### Language types
+
+- `None`
+- Numeric types:
+    - `int`,
+    - `float`,
+- `bool`
+- `str`
+- Collection types:
+    - `list`, or `List[<type>]`,
+    - `tuple`, or `Tuple[<type>, ...]`,
+    - `set`, or `Set[<type>]`,
+    - `dict`, or `Dict[<key type>, <value type>]`,
+- Iterables:
+    - `Iterable[<type>]` - any iterable
+    - `Sequence[<type>]` - iterable with random access (`[]` operator)
+- `Any` - any type
+- `Union[<type>, ...]` - any of the specified types
+- `Optional[<type>]` - the specified type or `None`
+- `Callable[[<arg type>, ...], <return type>]` - a function with specified arguments and return type
+
+
 # Calling external programs
 To call an external program, we use the [`subprocess`](https://docs.python.org/3/library/subprocess.html) module. Most of the time, we use the [`run`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function:
 ```Python
