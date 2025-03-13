@@ -1257,7 +1257,6 @@ Unlike in other languages, there are multiple styles for docstring content. The 
 
 
 
-
 # Progress bars
 For displaying progress bars, we can use the `tqdm` library. It is very simple to use:
 ```Python
@@ -1268,6 +1267,14 @@ for i in tqdm(range(100)):
 Important parameters:
 
 - `desc`: description of the progress bar
+
+## TQDM in Jupyter
+When using `tqdm` in Jupyter, the basic progress bar may not work (it may print other logs repeatedly). In such cases, we can change the import to:
+```Python
+from tqdm.notebook import tqdm
+```
+
+If the code can be called both from Jupyter and from console, we can use `autonotebook
 
 
 # PostgreSQL

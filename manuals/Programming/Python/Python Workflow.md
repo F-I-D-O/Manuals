@@ -122,6 +122,14 @@ If this does not work, it can be solved by adding the path to the package to the
 1. Add the path to the package to the list of paths
 
 
+### No problems found in the code of a single project
+This can be due to a broken Idea settings. To fix:
+
+1. Close Pycharm
+1. Move the `.idea` folder from the project directory to a backup location
+1. Start Pycharm and open the project again
+
+
 
 # Project Structure
 A typical project structure is:

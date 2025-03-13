@@ -560,7 +560,7 @@ The process works as follows:
 1. The custom function is applied to each group.
 1. The results are combined into a single dataframe.
 
-In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and compining aggreate results is done by the `apply` function.
+In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and combining aggreate results is done by the `apply` function.
 
 
 
