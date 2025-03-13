@@ -937,6 +937,15 @@ for a in ... # ok
 - `Callable[[<arg type>, ...], <return type>]` - a function with specified arguments and return type
 
 
+### Pandas types
+Pandas does not provide type hints. We can use the types itself, but this is only partially useful. We can use `Series` as a hint, but we cannot specify the inner type (e.g.: `Series[int]`). For that, we can use a wrapper library called [`pandera`](https://pandera.readthedocs.io/):
+```Python
+from pandera.typing import Series
+
+a: Series[int]
+```
+[Officiall documentation for Pandera data types](https://pandera.readthedocs.io/)
+
 # Calling external programs
 To call an external program, we use the [`subprocess`](https://docs.python.org/3/library/subprocess.html) module. Most of the time, we use the [`run`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function:
 ```Python
@@ -1193,6 +1202,23 @@ ipython_vars = ['In', 'Out', 'exit', 'quit', 'get_ipython', 'ipython_vars']
 # Get a sorted list of the objects and their sizes
 sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith('_') and x not in sys.modules and x not in ipython_vars], key=lambda x: x[1], reverse=True)
 ```
+
+## Reloding modules with autoreload
+When modules are imported they are not reloaded unless the kernel is restarted. In python scripts, this does not matter, we just execute the script again. However, when working with notebooks , it may be inconvenient to reload the kernel and all necessary cells just because of a small change in the imported module. Instead, we can use the [`autoreload` extension](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html).
+
+First, we have to load the extension:
+```Python
+%load_ext autoreload
+```
+
+Then, we configure the autoreload with `%autoreload <mode>`. The most common modes are:
+
+- `now` (default): reload all modules immediately (if not excluded by the `%aimport` magic)
+    - This is useful especially if the automatic reloading does not work as expected.
+- `0`, `off`: disable autoreload
+- `1`, `explicit`: reload modules that were imported using the `%aimport` magic every time before executing the Python code
+- `2`, `all`: reload all modules (except those excluded by `%aimport`) every time before executing the Python code
+- `3`, `complete`: same as `2`, but also add any new objects in the module
 
 # Plotting
 There are several libraries for plotting in Python. The most common are:
