@@ -550,6 +550,7 @@ The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.D
 
 - takes a DataFrame/Series (depending on the source object) as the first argument
     - this dataframe/series contains the data for the group (all columns)
+    - the **key** of each particular group can be accessed using the `name` attribute of the dataframe/series
 - returns a Series, DataFrame, or a scalar
     - when a scalar is returned, the result is a series with the scalar value for each group
     - we do not have to reduce the data to a single value or a single row, we can just transform the data arbitrarily.
@@ -803,6 +804,7 @@ The [`to_datetime`](https://pandas.pydata.org/docs/reference/api/pandas.to_datet
 
 - `unit`: the unit of the input, e.g., `s` for seconds.
 - `origin`: the origin of the input, e.g., `unix` for unix timestamps. It can be also any specific `datetime` object.
+- `format`: the format of the input, e.g., `%Y-%m-%d` for `2021-01-01`.
 
 
 ## `squeeze`
