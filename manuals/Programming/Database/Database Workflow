@@ -1,0 +1,60 @@
+# DataGrip
+
+## Import Formats
+DataGrip can handle imports only from separator baset files (csv, tsv).
+
+## View Geometry
+In the reuslt window/tab, click on the gear wheel -> `Show GeoView`. However, the **geoviewer has a fixed WGS84 projection, so you have to project the result to this projection first**.
+
+##  Create a spatial Index
+There is currently no GUI tool for that in DataGrip. Just add a normal index and modify the auto generated statement by changing `<column>` to `USING GIST(<column>)` at the end of the statement.
+
+
+## Filter out store procedures
+
+1. right-click on `routines`
+1. click `open table`
+1. sort by type
+
+
+## Creating functions and procedures
+There is no UI available currently, use Navicat or console
+
+
+## Duplicate table
+Drag the table in the database explorer and drop it to the location you want it to copy to.
+
+## Known issues and workarounds
+
+## Cannot delete a database due to DataGrip's own connections
+Before deleting a database we need to close all DataGrip sessions connected to the database. We can do that in the sessions window.
+
+### DataGrip displays objects that were deleted
+Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
+
+1. right-click on database connection (root object in the database explorer)
+1. click on `Diagnostics` -> `Force refresh`
+
+
+
+# Navicat
+## Cannot connect to db
+Symptoms:
+
+- cant connect to db server: `Could not connect`
+- after editing the connection and trying to save it (ok button): `connection is being used`
+
+Try:
+
+1. close navicat
+2. open navicat, edit connection
+1. click test connection
+1. click ok, and start the connection by double click
+
+
+
+# PgAdmin
+The best way to install the PgAdmin is to use the [EDB PostgreSQL installer](https://www.postgresql.org/download/windows/) and uncheck the database installation during the installation configuration. This way, we also install useful tools like `psql`
+
+## Diagrams
+To create diagram from an existing database: right click on the database -> `Generate ERD`

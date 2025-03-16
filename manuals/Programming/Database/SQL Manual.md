@@ -1,6 +1,22 @@
 SQL is a standard for relational databases. There is no complete implementation of the standard. The standard is not free, you have to pay for it. Therefore, it is sometimes hard to say what exactly is SQL and what is not.
 
 
+# Operators
+**Comparison** operators:
+
+- `=`: equal
+- `<>` or `!=`: not equal
+- `>`: greater than
+- `<`: less than
+- `>=`: greater or equal
+- `<=`: less or equal
+
+**String** operators:
+
+- `||`: concatenation
+- `LIKE`: pattern matching
+
+
 # Literals
 In SQL, there are three basic types of literals:
 

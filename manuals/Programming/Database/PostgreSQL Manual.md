@@ -26,24 +26,30 @@ In PostgreSQL, sequences are used for auto-incrementing columns. When you are cr
 When updating an aexisting column, a manual intervention is required:
 
 1. change the column to some numerical datatype
-2. create the sequence:
-```SQL
-CREATE SEQUENCE <SEQUENCE NAME> OWNED BY <TABLE NAME>.<COLUMN NAME>;
-```
-
-3. adjust the value of the sequence:
-```SQL
-SELECT setval(pg_get_serial_sequence('<TABLE NAME>', '<COLUMN NAME>'), max(<COLUMN NAME>)) FROM <TABLE NAME>;
-```
-
-3. set the column to be incremented by the sequence:
-```SQL
-ALTER TABLE <TABLE NAME>
-   ALTER COLUMN <COLUMN NAME> SET DEFAULT nextval('<SEQUENCE NAME>');
-```
+1. create the sequence:
+	```SQL
+	CREATE SEQUENCE <SEQUENCE NAME> OWNED BY <TABLE NAME>.<COLUMN NAME>;
+	```
+1. adjust the value of the sequence:
+	```SQL
+	SELECT setval(pg_get_serial_sequence('<TABLE NAME>', '<COLUMN NAME>'), max(<COLUMN NAME>)) FROM <TABLE NAME>;
+	```
+1. set the column to be incremented by the sequence:
+	```SQL
+	ALTER TABLE <TABLE NAME>
+	ALTER COLUMN <COLUMN NAME> SET DEFAULT nextval('<SEQUENCE NAME>');
+	```
 
 
 ## Strings
+[official documentation](https://www.postgresql.org/docs/current/datatype-character.html)
+
+The most important string type is `text`, it is a variable unlimited length string, like we know it from programming languages.
+
+Other types are:
+
+- `name`: An internal type for database object names. It is limited to 63 characters.
+
 There are many string function available, including the `format` function that works similarly to the C format function. For all functions, check the [documentation](https://www.postgresql.org/docs/9.1/functions-string.html).
 
 
@@ -218,6 +224,12 @@ There are some differences between those syntaxes (e.g., the second one works on
 
 
 ## Function and procedure parameters
+The definition of parameters of functions and procedures are composed of three parts:
+
+1. mode: `IN`, `OUT`, or `INOUT` (optional, default is `IN`)
+2. name: the name of the parameter (optional, default for `OUT` parameters generated)
+3. type: the type of the parameter
+
 Unlike in programing languages, there is no implicit type cast of the program arguments, including literals. Therefore, we need to cast all parameters explicitely, as in the following example:
 
 ```SQL
@@ -251,7 +263,9 @@ The, the value of a variable can be change using the classical assignment syntax
 <variable name> = <varianle value>;
 ```
 
-Be carful to **not use a variable name equal to the name of some of the columns** used in the same context, which results in a name clash. 
+Be carful to **not use a variable name equal to the name of some of the columns** used in the same context, which results in a name clash.
+
+Nothe that **`:=` is also a valid assignment operator**. There is no difference between `=` and `:=` in plpgsql. The `:=` operator is sometimes preferred to avoid confusion with the `=` operator used for comparison. 
 
 
 ### Assigning a value to a variable using SQL
@@ -939,68 +953,6 @@ By default, only errors are logged. To logg statements, we need to change the `l
 
 ## Garbage collection and optimization
 There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.  
-
-
-
-# DataGrip
-## Import Formats
-DataGrip can handle imports only from separator baset files (csv, tsv).
-
-## View Geometry
-In the reuslt window/tab, click on the gear wheel -> `Show GeoView`. However, the **geoviewer has a fixed WGS84 projection, so you have to project the result to this projection first**.
-
-##  Create a spatial Index
-There is currently no GUI tool for that in DataGrip. Just add a normal index and modify the auto generated statement by changing `<column>` to `USING GIST(<column>)` at the end of the statement.
-
-
-## Filter out store procedures
-
-1. right-click on `routines`
-1. click `open table`
-1. sort by type
-
-
-## Creating functions and procedures
-There is no UI available currently, use Navicat or console
-
-
-## Duplicate table
-Drag the table in the database explorer and drop it to the location you want it to copy to.
-
-## Known issues and workarounds
-
-## Cannot delete a database due to DataGrip's own connections
-Before deleting a database we need to close all DataGrip sessions connected to the database. We can do that in the sessions window.
-
-### DataGrip displays objects that were deleted
-Sometimes, DataGrip displays objects that were deleted. Additionally, it it displays errors when trying to refresh the view. Solution:
-
-1. right-click on database connection (root object in the database explorer)
-1. click on `Diagnostics` -> `Force refresh`
-
-
-
-# Navicat
-## Cannot connect to db
-Symptoms:
-
-- cant connect to db server: `Could not connect`
-- after editing the connection and trying to save it (ok button): `connection is being used`
-
-Try:
-
-1. close navicat
-2. open navicat, edit connection
-1. click test connection
-1. click ok, and start the connection by double click
-
-
-
-# PgAdmin
-The best way to install the PgAdmin is to use the [EDB PostgreSQL installer](https://www.postgresql.org/download/windows/) and uncheck the database installation during the installation configuration. This way, we also install useful tools like `psql`
-
-## Diagrams
-To create diagram from an existing database: right click on the database -> `Generate ERD`
 
 
 
