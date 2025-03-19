@@ -1,4 +1,4 @@
-
+fido7382
 
 
 # Data types
@@ -94,7 +94,7 @@ SELECT <COLUMN NAME>-><VARIABLE NAME> AS ...
 # Schemas
 [official documentation](https://www.postgresql.org/docs/current/ddl-schemas.html)
 
-Schemas in PostgreSQL are implemented as namespaces according to the SQL standard. 
+Schemas in PostgreSQL are implemented as namespaces according to the SQL standard. They are intended to organize the database objects into logical groups. Unfortunately, they cannot be nested, so they can hardly be used as a replacement for namespaces/packages/modules in programming languages.
 
 
 ## Search path
@@ -152,7 +152,6 @@ For these objects, we have to use some workaround. There are three options in ge
 
 
 
-
 # Procedures and functions
 To store a set of SQL commands for later use, PostgreSQL provides two options: procedures and functions. Both are similar and can use SQL, PL/pgSQL, or other languages supported by PostgreSQL. The key differences are:
 
@@ -161,6 +160,40 @@ To store a set of SQL commands for later use, PostgreSQL provides two options: p
 	- functions: `... SELECT <function name>(<function arguments>) ...`
 	- procedures: `CALL <procedure name>(<procedure arguments>);`
 - procedures can manage transactions, while functions cannot.
+
+
+## Syntax
+Both functions and procedures have the following syntax:
+
+```SQL
+CREATE OR REPLACE <FUNCTION/PROCEDURE> <name> (<parameters>)
+<return definition - only for functions>
+LANGUAGE <language name>
+AS
+<body>
+```
+where `<body>` can be both a delimited string:
+
+```SQL
+AS $$
+<function content>
+$$
+```
+
+OR an active SQL body, if we use SQL language (since PostgreSQL 14):
+
+```SQL
+BEGIN ATOMIC
+	<sql statements>
+END
+```
+
+There are some differences between those syntaxes (e.g., the second one works only for SQL and is evaluated/checked for validity at the time of creation), but in most cases, they are interchangable.
+
+The `<function content>` depends on the language used:
+
+- for SQL, it is a set of SQL statements
+- for PL/pgSQL, it is a *block*. See the [functions and procedures](#functions-and-procedures) section of the PL/pgSQL chapter.
 
 
 ## Functions
@@ -204,23 +237,7 @@ CREATE PROCEDURE <name> (<params>)
 LANGUAGE <language name>
 <procedure body>
 ```
-, while `<procedure body>` can be both a delimited string:
 
-```SQL
-AS $$
-<sql statements>
-$$
-```
-
-OR an active SQL body (since PostgreSQL 14):
-
-```SQL
-BEGIN ATOMIC
-	<sql statements>
-END
-```
-
-There are some differences between those syntaxes (e.g., the second one works only for SQL and is evaluated/checked for validity at the time of creation), but in most cases, they are interchangable.
 
 
 ## Function and procedure parameters
@@ -303,6 +320,10 @@ Example:
 SELECT ... FROM ... 
 WHERE param IS NULL OR some_column = param
 ```
+
+
+## Organizing functions and procedures
+A natural task that emerge if there is a lot of functions and procedures is to organize them into packages. Unfortunately, PostgreSQL does not support any such feature. The closest thing is a schema, however, schemas are not suitable for this purpose, as they cannot be nested.
 
 
 
@@ -512,6 +533,28 @@ The first three parameters are obvious. The cost parameter does not have any eff
 - procedures
 - `DO` command
 
+## Blocks
+[Documentation](https://www.postgresql.org/docs/8.1/plpgsql-structure.html)
+
+The base components of PL/pgSQL is a *block*. It's syntax is as follows:
+```SQL
+DECLARE
+	<variable declarations>
+BEGIN
+	<statements>
+END
+```
+Here, the `DECLARE` part is optional.
+
+In a block, each statement or declaration ends with a semicolon.
+
+We can nest the blocks, i.e., we can put a block inside another block, between the `BEGIN` and `END` keywords. In this case, we put a semicolon after the inner block. Only the outer block that contains the whole content of the function/procedure/`DO` command does not require a semicolon.
+
+
+## Functions and procedures
+
+The syntax of a PL/pgSQL function content is a *block*
+
 
 ## Branching
 PL/pgSQL has the following branching:
@@ -538,6 +581,72 @@ We can add parameters by using the `%` placeholder:
 RAISE NOTICE 'Some message %', <variable or SQL command>;
 ```
 For more, see the [documentation](https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html).
+
+
+## Executing functions
+
+In SQL, any function is executed using the `SELECT` statement:
+```SQL
+SELECT * FROM <function name>(<function arguments>); -- for functions with return value
+
+SELECT <function name>(<function arguments>); -- for functions returning void or if we do not care about the return value
+```
+
+In PL/pgSQL, the second syntax where the return value is not used is not allowed. Instead, we have to use the `PERFORM` statement:
+```SQL
+PERFORM <function name>(<function arguments>);
+```
+
+## Exceptions
+In PL/pgSQL, we can have both exceptions raised by the database and exceptions that are manually raised in user code.
+
+
+### Handling exceptions
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-ERROR-TRAPPING)
+
+In PL/pgSQL, we can handle exceptions by extending the block with the `EXCEPTION` part. The syntax is as follows:
+```SQL
+BEGIN
+	...
+EXCEPTION
+	WHEN <exception condition> THEN
+		<exception handling>
+END
+```
+
+The list of valid exception names can be found in the [documentation](https://www.postgresql.org/docs/current/errcodes-appendix.html). The most common exceptions are:
+
+
+- `P0001`, `raise_exception`: A user-raised exception that does not specify the SQLSTATE.
+- `00000`, `successful_completion`: The normal completion of a statement. No exception should ever be raised with this SQLSTATE.
+
+The `<exception handling>` part can be any valid PL/pgSQL code. It can contain multiple statements and can be nested.
+
+The `<exception condition>` can have three forms:
+
+- `WHEN <exception name>`: catches the exception with the specified name
+- `WHEN SQLSTATE '<SQLSTATE>'`: catches the exception with the specified SQLSTATE
+- `WHEN OTHERS`: catches all exceptions that are not caught by the previous `WHEN` clauses
+
+There can be many `WHEN` clauses in a single `EXCEPTION` block. If there is no matching `WHEN` clause for the exception, the exception is propagated as if there was no `EXCEPTION` block at all.
+
+Note that the **code `00000` cannot be caught by the `WHEN '00000'` clause. Such condition is interpreted as `WHEN OTHERS`**.
+
+When handling an exception, we can use two special built-in variables:
+
+- `SQLSTATE`: the SQLSTATE of the exception - a five-character code that specifies the exception type
+- `SQLERRM`: the error message of the exception
+
+### Raising exceptions
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html)
+
+To raise an exception, we use the `RAISE` statement, the same as for logging. The difference is in the level parameter, which we must set to `EXCEPTION` (default):
+```SQL
+RAISE EXCEPTION 'Some message'; -- exception
+RAISE 'Some message'; -- exception
+RAISE <another level> 'Some message'; -- just a message
+```
+
 
 
 
@@ -774,189 +883,9 @@ SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '<db name>');
 
 
 
-# Managing the database clusters
-As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.
-
-## Starting, stopping, and restarting the cluster
-
-Sometimes it is needed to restart the cluster. There are two commands:
-
-- `pg_ctl restart`: restarts the cluster
-- `pg_ctl reload`: reloads the configuration of the cluster
-
-Always check which one is needed in each case. For both commands, the path to the `data` directory of the cluster is needed. We can specify it in two ways:
-
-- using the `-D` parameter of the `pg_ctl` command
-- setting the `PGDATA` environment variable
-
-
-## Monitoring activity
-To monitor the activity on Linux, we can use the [`pg_activity`](https://github.com/dalibo/pg_activity):
-```bash
-sudo -u postgres pg_activity -U postgres
-```
-
-For a detailed monitoring on all platforms, we can use the *[Cumulative Statistics System](https://www.postgresql.org/docs/current/monitoring-stats.html)*. It contains collections of statistics that can be accessed similarly to tables. The difference is that these collections are server-wide and can be accessed from any database or scheme. Important collections:
-
-- [`pg_stat_activity`](https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW): contains information about the current activity on the server
-
-### `pg_stat_activity`
-The `pg_stat_activity` collection contains information about the current activity on the server. Some activities belong to background processes it is therefore best to query the collection like:
-```SQL
-SELECT * FROM pg_stat_activity WHERE state IS NOT NULL;
-```
-
-
-
-## Kill a hanging query
-To kill the query, run:
-```sql
-SELECT pg_cancel_backend(<PID>)
-```
-The `PID` can be obtained from the [database activity monitoring tool](#monitoring-activity).
-
-
-
-## Creating new user
-For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
-
-- `-P` or `--pwprompt`: prompt for password. If not used, the user will be created without a password.
-
-
-## Deleting database
-To delete a database, we can use the [`dropdb`](https://www.postgresql.org/docs/current/app-dropdb.html) command: `dropdb <db name>`
-
-
-## Granting privileges
-
-
-### Grant privileges for a database
-To give privileges for creating new tables and other objects in a database:
-```SQL
-GRANT ALL PRIVILEGES ON DATABASE <db name> TO <user name>;
-```
-
-To give privileges for existing objects, it is best to change the owner of the objects.
-
-
-
-### Grant privileges for database schema
-To grant all privileges for a database schema to a user, we can use the following command:
-```SQL
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO <user name>;
-```
-
-To grant only the `SELECT` privilege, use:
-```SQL
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO <user name>;
-```
-
-
-
-
-## Upgrading the database cluster
-With PostgreSQL version 9.3 and later, we can upgrade easily even between major versions using the [`pg_upgrade`](https://www.postgresql.org/docs/current/pgupgrade.html) command. We can even skip versions, e.g., upgrade from 12 to 16. 
-
-The process is described in the pg_upgrade manual, however, usually, most of the steps are not necessary as they apply only to very specific cases. On top of that, some aspects important for the upgrade are not mentioned in the manual.
-
-The steps for a typical ubuntu/debian installation are:
-
-1. stop the new cluster using `systemctl stop postgresql@<version>-main`
-2. run the `pg_upgrade` command with `--check` to check the compatibility
-3. stop the old cluster using `systemctl stop postgresql`
-4. run the `pg_upgrade` command without `--check` to perform the upgrade
-5. apply all actions recommended by the `pg_upgrade` output
-1. change the `port` in the `/etc/postgresql/<version>/main/postgresql.conf` file of the new cluster to the original port (usually 5432)
-6. start the new cluster using `systemctl start postgresql@<version>-main` an check if the connection works
-
-The standard `pg_upgrade` command looks like this:
-```bash
-sudo -u postgres pg_upgrade --link -j <number of cores> -b <old bin dir> -d <old data dir> -D <new data dir> -o 'config_file=<old conf file>' -O 'config_file=<new conf file>'
-```
-Description:
-
-- `--link`: links the old data directory to the new one instead of copying the data. Fastest migration method.
-- `<old bin dir>`: The `bin` directory of the old cluster.
-	- usually `/usr/lib/postgresql/<old version>/bin`
-- `<old/new data dir>`: The `data` directory of the cluster.
-	- usually `/var/lib/postgresql/<old/new version>/main`.
-	- Can be found using `pg_lsclusters`
-- `<old/new conf file>`: The path to the `postgresql.conf` file.
-	- usually `/etc/postgresql/<old/new version>/main/postgresql.conf`
-
-## Upgrading extensions
-Some PostgreSQL extensions uses separate libraries. These are installed fro each version of the PostgreSQL server separately. If a library is not foun on the new cluster, it is detected by the `pg_upgrade` command automaticly. In that case, you have to install the library according to the instructions of the library provider.
-
-
-## Managing access to the database
-To manage access to the database, we can use the `pg_hba.conf` file. 
-
-This file is located in the `data` directory of the PostgreSQL installation. Unfortunately, the location of the `data` directory is not standardized, and the variants are many. However, there is a remedy, just execute the following SQL command:
-```SQL
-SHOW hba_file
-```
-
-[Documentation](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html)
-
-
-### Lost Password to the Postgres Server
-The password for the db superuser is stored in db `postgres`. In order to log there and change it, the whole authentification has to be turned off, and then we can proceed with changing the password. Steps:
-
-1. find the `pg_hba.conf file` 
-	- usually located in `C:\Program Files\PostgreSQL\13\data`
-2. backup the file and replace all occurances of `scram-sha-256` in the file with `trust`
-3. restart the posgreSQL service
-	- in the Windows service management, there should be a service for postgresql running
-4. change the password for the superuser
-	1. `psql -U postgres`
-	2.  `ALTER USER postgres WITH password 'yourpassword';` (do not forget the semicolon at the end!)
-5. restore the `pg_hba.conf` file from backup
-6. restart the postgreSQL service again
-7. test if the new password works
-
-
-## Configuration
-[Documentation](https://www.postgresql.org/docs/current/config-setting.html)
-
-PostgreSQL server can be configured using *parameters*. The parameters itself can be set in multiple ways:
-
-- default values are set in the configuration file stored in the `<postgres data dir>/postgresql.conf`.
-- the values can be set at runtime using SQL
-- the values can be set at runtime using shell commands
-
-### Getting and setting parameters at runtime using SQL
-to get the value of a parameter, we can use the [`SHOW`](https://www.postgresql.org/docs/current/sql-show.html) command or the `current_setting` function:
-```PostgreSQL
-SHOW <parameter name>;
-SELECT current_setting('<parameter name>');
-```
-
-To set the value of a parameter, we can use the [`SET`](https://www.postgresql.org/docs/current/sql-set.html) command or the `set_config` function:
-```PostgreSQL
-SET <parameter name> TO <value>;
-SELECT set_config('<parameter name>', '<value>', false);
-```
-If the third parameter of the `set_config` function is set to `true`, the value is set for the current transaction only.
-
-### Logging
-[Documentation](https://www.postgresql.org/docs/current/runtime-config-logging.html)
-
-The logs are stored in the `<postgres data dir>/log` directory. 
-
-By default, only errors are logged. To logg statements, we need to change the `log_statement` parameter. Valid values are:
-
-- `none`: no statements are logged
-- `ddl`: only DDL statements are logged
-- `mod`: only statements that modify the database are logged
-- `all`: all statements are logged
-
-
-## Garbage collection and optimization
-There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.  
-
-
-
 # Testing with PgTAP
+[Official documentation](https://pgtap.org/documentation.html)
+
 [PgTAP](https://pgtap.org/) is the only testing framework for PostgreSQL.
 
 ## Installation
@@ -989,8 +918,8 @@ To install pgtap for PostgreSQL on Windows, follow these steps:
 These instructions were adapted from [issue#192](https://github.com/theory/pgtap/issues/192#issuecomment-960033060) of the pgtap repository.
 
 
-## Basic Usage
-The basic test can look like this:
+## Basic Usage - Test scripts
+The easiest way to write tests in PgTAP is to write procedural SQL scripts that contain the tests. The basic test can look like this:
 ```SQL
 BEGIN; -- Start a transaction
 
@@ -1024,6 +953,36 @@ Then, we can use it as:
 ```bash
 pg_prove -d <db name> -U <user name> <test file>
 ```
+
+
+## Test functions
+Instead of writing the tests in a procedural SQL script, we can write them as functions (**but not procedures!**). This can help as organizing tests and also to prepare the data for the tests.
+
+There is also a runner function [`runtests`](https://pgtap.org/documentation.html#runtests) that can be used to run multiple tests at once:
+```SQL
+SELECT * FROM runtests();
+```
+
+This function has four variants:
+
+- `runtests()`,
+- `runtests(<schema>)`,
+- `runtests(<pattern>)`, and
+- `runtests(<schema>, <pattern>)`.
+
+The `schema` parameter is used to specify the schema where the tests are searched. The `pattern` parameter is used to specify the pattern that the test names must match. The pattern uses the same syntax as the `LIKE` operator in SQL.
+
+### Fixtues
+Sometimes, we need to call some functions before and after the tests. We can indeed call these functions in from the test functions, but in case we need to run the same functions for multiple tests, it is desirable to automate this process using fixtures. The `runtests` function supports fixtures, it recognize them by the prefix. Again, only functions, not procedures are supported. The following fixtures are supported:
+
+- `startup`: runs before the tests
+- `setup`: runs before each test
+- `teardown`: runs after each test
+- `shutdown`: runs after the tests
+
+Unfortunatelly, the **fixture search does not reflect the `<pattern>`**. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.
+
+
 
 # Troubleshooting
 If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.
