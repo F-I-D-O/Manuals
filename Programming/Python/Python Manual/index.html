@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -307,6 +325,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
@@ -659,6 +680,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#common-type-hints" class="nav-link">Common type hints</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#language-types" class="nav-link">Language types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#pandas-types" class="nav-link">Pandas types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -760,6 +793,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#reloding-modules-with-autoreload" class="nav-link">Reloding modules with autoreload</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -783,6 +820,10 @@
             
             <li class="nav-item" data-level="1"><a href="#progress-bars" class="nav-link">Progress bars</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#tqdm-in-jupyter" class="nav-link">TQDM in Jupyter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1482,6 +1523,41 @@ a: List[int] = [1, 2, 3]
 a: int
 for a in ... # ok
 </code></pre>
+<h2 id="common-type-hints">Common type hints<a class="headerlink" href="#common-type-hints" title="Permanent link">&para;</a></h2>
+<h3 id="language-types">Language types<a class="headerlink" href="#language-types" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>None</code></li>
+<li>Numeric types:<ul>
+<li><code>int</code>,</li>
+<li><code>float</code>,</li>
+</ul>
+</li>
+<li><code>bool</code></li>
+<li><code>str</code></li>
+<li>Collection types:<ul>
+<li><code>list</code>, or <code>List[&lt;type&gt;]</code>,</li>
+<li><code>tuple</code>, or <code>Tuple[&lt;type&gt;, ...]</code>,</li>
+<li><code>set</code>, or <code>Set[&lt;type&gt;]</code>,</li>
+<li><code>dict</code>, or <code>Dict[&lt;key type&gt;, &lt;value type&gt;]</code>,</li>
+</ul>
+</li>
+<li>Iterables:<ul>
+<li><code>Iterable[&lt;type&gt;]</code> - any iterable</li>
+<li><code>Sequence[&lt;type&gt;]</code> - iterable with random access (<code>[]</code> operator)</li>
+</ul>
+</li>
+<li><code>Any</code> - any type</li>
+<li><code>Union[&lt;type&gt;, ...]</code> - any of the specified types</li>
+<li><code>Optional[&lt;type&gt;]</code> - the specified type or <code>None</code></li>
+<li><code>Callable[[&lt;arg type&gt;, ...], &lt;return type&gt;]</code> - a function with specified arguments and return type</li>
+</ul>
+<h3 id="pandas-types">Pandas types<a class="headerlink" href="#pandas-types" title="Permanent link">&para;</a></h3>
+<p>Pandas does not provide type hints. We can use the types itself, but this is only partially useful. We can use <code>Series</code> as a hint, but we cannot specify the inner type (e.g.: <code>Series[int]</code>). For that, we can use a wrapper library called <a href="https://pandera.readthedocs.io/"><code>pandera</code></a>:</p>
+<pre><code class="language-Python">from pandera.typing import Series
+
+a: Series[int]
+</code></pre>
+<p><a href="https://pandera.readthedocs.io/">Officiall documentation for Pandera data types</a></p>
 <h1 id="calling-external-programs">Calling external programs<a class="headerlink" href="#calling-external-programs" title="Permanent link">&para;</a></h1>
 <p>To call an external program, we use the <a href="https://docs.python.org/3/library/subprocess.html"><code>subprocess</code></a> module. Most of the time, we use the <a href="https://docs.python.org/3/library/subprocess.html#subprocess.run"><code>run</code></a> function:</p>
 <pre><code class="language-Python">import subprocess
@@ -1672,6 +1748,22 @@ ipython_vars = ['In', 'Out', 'exit', 'quit', 'get_ipython', 'ipython_vars']
 # Get a sorted list of the objects and their sizes
 sorted([(x, sys.getsizeof(globals().get(x))) for x in dir() if not x.startswith('_') and x not in sys.modules and x not in ipython_vars], key=lambda x: x[1], reverse=True)
 </code></pre>
+<h2 id="reloding-modules-with-autoreload">Reloding modules with autoreload<a class="headerlink" href="#reloding-modules-with-autoreload" title="Permanent link">&para;</a></h2>
+<p>When modules are imported they are not reloaded unless the kernel is restarted. In python scripts, this does not matter, we just execute the script again. However, when working with notebooks , it may be inconvenient to reload the kernel and all necessary cells just because of a small change in the imported module. Instead, we can use the <a href="https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html"><code>autoreload</code> extension</a>.</p>
+<p>First, we have to load the extension:</p>
+<pre><code class="language-Python">%load_ext autoreload
+</code></pre>
+<p>Then, we configure the autoreload with <code>%autoreload &lt;mode&gt;</code>. The most common modes are:</p>
+<ul>
+<li><code>now</code> (default): reload all modules immediately (if not excluded by the <code>%aimport</code> magic)<ul>
+<li>This is useful especially if the automatic reloading does not work as expected.</li>
+</ul>
+</li>
+<li><code>0</code>, <code>off</code>: disable autoreload</li>
+<li><code>1</code>, <code>explicit</code>: reload modules that were imported using the <code>%aimport</code> magic every time before executing the Python code</li>
+<li><code>2</code>, <code>all</code>: reload all modules (except those excluded by <code>%aimport</code>) every time before executing the Python code</li>
+<li><code>3</code>, <code>complete</code>: same as <code>2</code>, but also add any new objects in the module</li>
+</ul>
 <h1 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h1>
 <p>There are several libraries for plotting in Python. The most common are:</p>
 <ul>
@@ -1734,6 +1826,11 @@ for i in tqdm(range(100)):
 <ul>
 <li><code>desc</code>: description of the progress bar</li>
 </ul>
+<h2 id="tqdm-in-jupyter">TQDM in Jupyter<a class="headerlink" href="#tqdm-in-jupyter" title="Permanent link">&para;</a></h2>
+<p>When using <code>tqdm</code> in Jupyter, the basic progress bar may not work (it may print other logs repeatedly). In such cases, we can change the import to:</p>
+<pre><code class="language-Python">from tqdm.notebook import tqdm
+</code></pre>
+<p>If the code can be called both from Jupyter and from console, we can use `autonotebook</p>
 <h1 id="postgresql">PostgreSQL<a class="headerlink" href="#postgresql" title="Permanent link">&para;</a></h1>
 <p>When working with PostgreSQL databases, we usually use either</p>
 <ul>

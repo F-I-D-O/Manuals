@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -307,6 +325,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
@@ -957,6 +978,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#hdf" class="nav-link">HDF</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1583,17 +1608,17 @@
 <h4 id="dangerous-situations">Dangerous situations<a class="headerlink" href="#dangerous-situations" title="Permanent link">&para;</a></h4>
 <p>In addition to the usual suspects like assigning a value to a variable of a smaller type, there are some less obvious situations that can cause overflows. Some examples:</p>
 <ul>
-<li>the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:</li>
+<li>the result of an arithmetic operation is assigned to a variable of large enough type, but the overflow happens before the assignment itself:
+    <code>cpp
+    short a = 32767;
+    short b = 1;
+    int c = a + b; // overflow happens beffore the assignment</code>
+    A solution to this problem is to use a numeric cast of the opperands (even one is enouhg):
+    <code>cpp
+    short a = 32767;
+    short b = 1;
+    int c = static_cast&lt;int&gt;(a) + b;</code></li>
 </ul>
-<pre><code class="language-cpp">short a = 32767;
-short b = 1;
-int c = a + b; // overflow happens beffore the assignment
-</code></pre>
-<p>A solution to this problem is to use a numeric cast of the opperands (even one is enouhg):</p>
-<pre><code class="language-cpp">short a = 32767;
-short b = 1;
-int c = static_cast&lt;int&gt;(a) + b;
-</code></pre>
 <h4 id="detecting-overflows">Detecting overflows<a class="headerlink" href="#detecting-overflows" title="Permanent link">&para;</a></h4>
 <p>There are some methods how to detect overflows automatically by suppliying arguments to the compiler. These are summarized here:</p>
 <ul>
@@ -3182,6 +3207,34 @@ if (node[&quot;key&quot;]) {
 <pre><code class="language-cpp">for (YAML::const_iterator it = node.begin(); it != node.end(); ++it) {
     std::string key = it-&gt;first.as&lt;std::string&gt;();
     YAML::Node value = it-&gt;second;
+}
+</code></pre>
+<h2 id="hdf">HDF<a class="headerlink" href="#hdf" title="Permanent link">&para;</a></h2>
+<p>To load data from HDF5 files, the HDF5 C++ API can be used. Typical usage:</p>
+<pre><code class="language-cpp">#include &lt;H5Cpp.h&gt;
+
+const H5::H5File file(&quot;file.h5&quot;, H5F_ACC_RDONLY);
+
+const H5::DataSet dataset = file.openDataSet(&quot;dataset&quot;);
+const H5::DataSpace dataspace = dataset.getSpace();
+hsize_t dims[2];
+dataspace.getSimpleExtentDims(dims);
+H5::DataSpace memspace(2, dims);
+
+dataset.read(
+    &lt;pointer where to store the data&gt;,
+    H5::PredType::&lt;data type&gt;,
+    memspace,
+    dataspace
+);
+</code></pre>
+<p>If we do not know the dataset name, we can get the name by index:</p>
+<pre><code class="language-cpp">std::string dataset_name = file.getObjnameByIdx(0); // get the first dataset name
+</code></pre>
+<p>To check if the dataset exists, we can use the <code>exists</code> method of the file:</p>
+<pre><code class="language-cpp">const H5::H5File file(&quot;file.h5&quot;, H5F_ACC_RDONLY);
+if (file.exists(&quot;dataset&quot;)) {
+    ...
 }
 </code></pre>
 <h1 id="inheritance">Inheritance<a class="headerlink" href="#inheritance" title="Permanent link">&para;</a></h1>

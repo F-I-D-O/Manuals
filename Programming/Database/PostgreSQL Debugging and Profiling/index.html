@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>mkdocs - Manuals</title>
+        <title>PostgreSQL Debugging and Profiling - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
@@ -69,19 +69,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+    <a href="../Database%20Workflow/" class="dropdown-item">Database Workflow</a>
 </li>
             
 <li>
-    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+    <a href="./" class="dropdown-item active">PostgreSQL Debugging and Profiling</a>
 </li>
             
 <li>
-    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
 </li>
             
 <li>
-    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+    <a href="../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
     </ul>
   </li>
@@ -147,31 +147,31 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
 </li>
             
 <li>
-    <a href="../css/" class="dropdown-item">css</a>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
 </li>
             
 <li>
-    <a href="../Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+    <a href="../../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
 </li>
             
 <li>
-    <a href="../htaccess/" class="dropdown-item">htaccess</a>
+    <a href="../../Web/htaccess/" class="dropdown-item">htaccess</a>
 </li>
             
 <li>
-    <a href="../JavaScript/" class="dropdown-item">JavaScript</a>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
 </li>
             
 <li>
-    <a href="../Jekyll/" class="dropdown-item">Jekyll</a>
+    <a href="../../Web/Jekyll/" class="dropdown-item">Jekyll</a>
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">mkdocs</a>
+    <a href="../../Web/mkdocs/" class="dropdown-item">mkdocs</a>
 </li>
     </ul>
   </li>
@@ -359,12 +359,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Jekyll/" class="nav-link">
+                                <a rel="prev" href="../Database%20Workflow/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Common/" class="nav-link">
+                                <a rel="next" href="../PostgreSQL%20Manual/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -386,14 +386,9 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#known-limitations" class="nav-link">Known limitations</a>
+            <li class="nav-item" data-level="1"><a href="#debugging" class="nav-link">Debugging</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#left-sidebar-overlaps-the-main-content" class="nav-link">Left sidebar overlaps the main content</a>
+            <li class="nav-item" data-level="2"><a href="#debugging-with-pgadmin" class="nav-link">Debugging with pgAdmin</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -404,21 +399,31 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p><a href="https://www.mkdocs.org/">https://www.mkdocs.org/</a></p>
-<p>update steps:</p>
-<ol>
-<li>generate navigation: `python .\generate_nav.py</li>
-<li>generate site: <code>mkdocs build</code></li>
-<li>deploy: <code>mkdocs gh-deploy</code></li>
-</ol>
-<h1 id="known-limitations">Known limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h1>
-<p>MkDocs use the <a href="https://python-markdown.github.io/">Python-Markdown</a> parser which does not follow the CommonMark specification. Therefore, some markdown elements may not work as expected:</p>
+<h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
+<p>There is a debugger included in PostgreSQL. However its support in IDEs is limited: </p>
 <ul>
-<li>lists has to be separated by an empty line, otherwise they will be rendered as simple text.</li>
+<li>DataGrip: No built-in support.<ul>
+<li>there is a <a href="https://plugins.jetbrains.com/plugin/18419-postgresql-debugger">plugin</a> but it is outdated.</li>
 </ul>
-<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
-<h2 id="left-sidebar-overlaps-the-main-content">Left sidebar overlaps the main content<a class="headerlink" href="#left-sidebar-overlaps-the-main-content" title="Permanent link">&para;</a></h2>
-<p>This can be caused by too long words in the left sidebar. To fix this, find the problematic header and split the long word.</p></div>
+</li>
+<li>pgAdmin: There is a <a href="https://www.pgadmin.org/docs/pgadmin4/latest/debugger.html">debugger</a>.</li>
+</ul>
+<h2 id="debugging-with-pgadmin">Debugging with pgAdmin<a class="headerlink" href="#debugging-with-pgadmin" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.pgadmin.org/docs/pgadmin4/latest/debugger.html">oficial documentation</a></p>
+<p>First, it is necessary to activate the debugger on the server:</p>
+<ol>
+<li>Open the <code>postgresql.conf</code> file</li>
+<li>Set the <code>shared_preload_libraries</code> parameter to <code>&lt;PostgreSQL installation directory&gt;/lib/plugin_debugger</code></li>
+<li>Restart the server</li>
+</ol>
+<p>Then, the debugger extension must be installed on target database:</p>
+<pre><code class="language-sql">CREATE EXTENSION pldbgapi;
+</code></pre>
+<p>Now, we can debug a function:</p>
+<ol>
+<li>Right-click on the function in the <code>pgAdmin</code> tree and select <code>Debugging</code> &gt; <code>Set Breakpoint</code></li>
+<li>Call the function, the debugger will stop at the breakpoint</li>
+</ol></div>
             </div>
         </div>
 

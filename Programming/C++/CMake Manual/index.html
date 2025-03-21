@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -307,6 +325,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
@@ -435,6 +456,14 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#variable-types" class="nav-link">Variable types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#the-option-command" class="nav-link">The option command</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#enviromental-variables" class="nav-link">Enviromental variables</a>
               <ul class="nav flex-column">
               </ul>
@@ -483,6 +512,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#list-operations" class="nav-link">List operations</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
@@ -709,10 +742,6 @@
             
             <li class="nav-item" data-level="1"><a href="#cmake-cache" class="nav-link">CMake Cache</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#the-option-command" class="nav-link">The option command</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -794,6 +823,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#test-fixtures" class="nav-link">Test fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#running-tests-not-related-to-any-cmake-project" class="nav-link">Running tests not related to any CMake project</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -938,6 +971,32 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <p>Variables are set using the <a href="https://cmake.org/cmake/help/latest/command/set.html"><code>set</code></a> command:</p>
 <pre><code class="language-cmake">set(&lt;variable name&gt; &lt;variable value&gt;)
 </code></pre>
+<h3 id="variable-types">Variable types<a class="headerlink" href="#variable-types" title="Permanent link">&para;</a></h3>
+<p>CMake has two types of variables:</p>
+<ul>
+<li><strong>string variables</strong>: the most common type of variable. A string variable is created if the <code>&lt;variable value&gt;</code> is a single word or a quoted string. Example:
+    <code>cmake
+    set(dir "C:/Program Files")</code></li>
+<li><strong>list variables</strong>: a list variable is created if the <code>&lt;variable value&gt;</code> is a list of words. Example:
+    <code>cmake
+    set(dirs "C:/Program Files" "C:/Program Files (x86)")</code></li>
+</ul>
+<h2 id="the-option-command">The <code>option</code> command<a class="headerlink" href="#the-option-command" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/option.html"><code>option</code></a> command is used to define a <strong>boolean</strong> variable that can:</p>
+<ul>
+<li>be set by the user using the <code>-D</code> argument when running the <code>cmake</code> command,</li>
+<li>have a default value,</li>
+<li>have a description that will be printed when the variable is set, and</li>
+<li>set a cache variable (see <a href="#cmake-cache">CMake cache</a>).</li>
+</ul>
+<p>The syntax is:</p>
+<pre><code class="language-cmake">option(&lt;option name&gt; &lt;option description&gt; &lt;default value&gt;)
+</code></pre>
+<p>The behavior of the <code>option</code> command is as follows:</p>
+<ul>
+<li>If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.</li>
+<li>Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</li>
+</ul>
 <h3 id="enviromental-variables">Enviromental variables<a class="headerlink" href="#enviromental-variables" title="Permanent link">&para;</a></h3>
 <p>We can use environmental variables using the <code>ENV</code> variable:</p>
 <pre><code class="language-cmake">if(DEFINED ENV{&lt;name&gt;})
@@ -1088,7 +1147,7 @@ endforeach()
 <li><code>REMOVE_RECURSE &lt;directory&gt;</code> - remove a directory and all its content</li>
 </ul>
 <h2 id="path-operations">Path operations<a class="headerlink" href="#path-operations" title="Permanent link">&para;</a></h2>
-<p>Path operations are performed using the <a href="https://cmake.org/cmake/help/latest/command/cmake_path.html"><code>cmake_path</code></a> command. The sytax for this command varies based on the subcommand. </p>
+<p>Path operations are performed using the <a href="https://cmake.org/cmake/help/latest/command/cmake_path.html"><code>cmake_path</code></a> command. The sytax for this command varies based on the subcommand.</p>
 <h3 id="path-decomposition">Path decomposition<a class="headerlink" href="#path-decomposition" title="Permanent link">&para;</a></h3>
 <p>The syntax for the path decomposition is:</p>
 <pre><code class="language-cmake">cmake_path(GET &lt;path&gt; &lt;path part&gt; &lt;output variable&gt;)
@@ -1096,6 +1155,12 @@ endforeach()
 <p>Here, <code>&lt;path part&gt;</code> can be:</p>
 <ul>
 <li><code>PARENT_PATH</code> - the parent directory of the path</li>
+</ul>
+<h2 id="list-operations">List operations<a class="headerlink" href="#list-operations" title="Permanent link">&para;</a></h2>
+<p>For list operations, use the <a href="https://cmake.org/cmake/help/latest/command/list.html"><code>list</code></a> command. The most useful subcommands are:</p>
+<ul>
+<li><a href="https://cmake.org/cmake/help/latest/command/list.html#append"><code>APPEND</code></a> - append an element to the list: <code>list(APPEND &lt;list name&gt; &lt;elements&gt;)</code></li>
+<li><a href="https://cmake.org/cmake/help/latest/command/list.html#join"><code>JOIN</code></a> - join the list elements into a string: <code>list(JOIN &lt;list name&gt; &lt;separator&gt; &lt;output variable&gt;)</code></li>
 </ul>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>Functions are defined using the <a href="https://cmake.org/cmake/help/latest/command/function.html"><code>function</code></a> command. The syntax is:</p>
@@ -1888,15 +1953,6 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <li>by using the <code>-C</code> option: <code>cmake -C &lt;cache file&gt; &lt;dir&gt;</code></li>
 </ul>
 <p>The rule is that once a cache variable is set, it is not changed when the <code>cmake</code> command is run again (that is why it is called cache :) ). Moreover, the cache variables are not overwritten by the <code>set</code> command in the <code>CMakeLists.txt</code> file. In other words, the <code>set</code> command in the <code>CMakeLists.txt</code> is only used to set the default value of the variable. If the variable is already set in the cache, the <code>set</code> command is ignored. However, the cache variables can be still overridden from the <code>CMakeLists.txt</code> if the <code>set</code> command is used without the <code>CACHE</code> option (by normal variables).</p>
-<h2 id="the-option-command">The <code>option</code> command<a class="headerlink" href="#the-option-command" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://cmake.org/cmake/help/latest/command/option.html"><code>option</code></a> command is used to define a cache variable that can be set by the user. The syntax is:</p>
-<pre><code class="language-cmake">option(&lt;option name&gt; &lt;option description&gt; &lt;default value&gt;)
-</code></pre>
-<p>The behavior of the <code>option</code> command is as follows:</p>
-<ul>
-<li>If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.</li>
-<li>Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</li>
-</ul>
 <h1 id="cmake-directory-structure">CMake Directory Structure<a class="headerlink" href="#cmake-directory-structure" title="Permanent link">&para;</a></h1>
 <h2 id="system-find_xxxcmake-files">System Find_XXX.cmake files<a class="headerlink" href="#system-find_xxxcmake-files" title="Permanent link">&para;</a></h2>
 <p>The system find scripts are located in the <code>CMake/share/cmake-&lt;version&gt;/Modules/</code> directory.</p>
@@ -2090,7 +2146,14 @@ add_test(NAME teardown COMMAND &lt;teardown command&gt;)
 set_tests_properties(test1, test2 PROPERTIES FIXTURES_REQUIRED my_test_suite)
 set_tests_properties(setup PROPERTIES FIXTURES_SETUP my_test_suite)
 set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
-</code></pre></div>
+</code></pre>
+<h2 id="running-tests-not-related-to-any-cmake-project">Running tests not related to any CMake project<a class="headerlink" href="#running-tests-not-related-to-any-cmake-project" title="Permanent link">&para;</a></h2>
+<p>There is no way how to run tests that are not related to any CMake project directly using the <code>ctest</code> command, and we cannot add such tests in the ctest starter script. The minimal solution is to:</p>
+<ul>
+<li>create a dummy CMake project that only contains the tests (no targets, etc.)</li>
+<li>skip the build step in the ctest starter script</li>
+<li>run the tests starter normally using the <code>ctest</code> command</li>
+</ul></div>
             </div>
         </div>
 

@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -307,6 +325,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
@@ -1184,6 +1205,7 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <ul>
 <li>takes a DataFrame/Series (depending on the source object) as the first argument<ul>
 <li>this dataframe/series contains the data for the group (all columns)</li>
+<li>the <strong>key</strong> of each particular group can be accessed using the <code>name</code> attribute of the dataframe/series</li>
 </ul>
 </li>
 <li>returns a Series, DataFrame, or a scalar<ul>
@@ -1198,7 +1220,7 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <li>The custom function is applied to each group.</li>
 <li>The results are combined into a single dataframe.</li>
 </ol>
-<p>In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and compining aggreate results is done by the <code>apply</code> function.</p>
+<p>In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and combining aggreate results is done by the <code>apply</code> function.</p>
 <h2 id="time-aggregation">Time aggregation<a class="headerlink" href="#time-aggregation" title="Permanent link">&para;</a></h2>
 <p>We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html"><code>resample</code></a> function. Example:</p>
 <pre><code class="language-Python">df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1D'))
@@ -1408,6 +1430,7 @@ Important parameters:</p>
 <ul>
 <li><code>unit</code>: the unit of the input, e.g., <code>s</code> for seconds.</li>
 <li><code>origin</code>: the origin of the input, e.g., <code>unix</code> for unix timestamps. It can be also any specific <code>datetime</code> object.</li>
+<li><code>format</code>: the format of the input, e.g., <code>%Y-%m-%d</code> for <code>2021-01-01</code>.</li>
 </ul>
 <h2 id="squeeze"><code>squeeze</code><a class="headerlink" href="#squeeze" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.squeeze.html"><code>squeeze</code></a> function removes the unnecessary dimension from a dataframe or series. It is usefull when we want to convert a dataframe with a single column to a series, or a series with a single value to a scalar.</p>

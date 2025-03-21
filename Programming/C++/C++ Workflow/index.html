@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -309,6 +327,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
                             <li class="navitem">
@@ -378,14 +399,6 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#msvc-windows" class="nav-link">MSVC (Windows)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#choosing-the-runtime-library" class="nav-link">Choosing the runtime library</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#resources" class="nav-link">Resources</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
             <li class="nav-item" data-level="3"><a href="#common-compiler-flags" class="nav-link">Common Compiler Flags</a>
               <ul class="nav flex-column">
               </ul>
@@ -427,6 +440,26 @@
             
             <li class="nav-item" data-level="1"><a href="#vcpkg" class="nav-link">vcpkg</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#basic-coomands" class="nav-link">Basic coomands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#install-a-package" class="nav-link">Install a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#remove-a-package" class="nav-link">Remove a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#search-for-a-package" class="nav-link">Search for a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#list-installed-packages" class="nav-link">List installed packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
               <ul class="nav flex-column">
               </ul>
@@ -688,6 +721,18 @@
             
             <li class="nav-item" data-level="1"><a href="#standard-library" class="nav-link">Standard Library</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#linking-to-the-standard-library" class="nav-link">Linking to the Standard Library</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#setting-up-the-correct-crt-with-msvc" class="nav-link">Setting up the correct CRT with MSVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#resouces" class="nav-link">Resouces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -705,15 +750,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#resouces" class="nav-link">Resouces</a>
+            <li class="nav-item" data-level="2"><a href="#resouces_1" class="nav-link">Resouces</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ensuring-the-same-runtime-library-msvc-usage" class="nav-link">Ensuring the same runtime library (MSVC) usage</a>
+            <li class="nav-item" data-level="1"><a href="#compilation-for-a-specific-cpu" class="nav-link">Compilation for a specific CPU</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#msvc" class="nav-link">MSVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#building" class="nav-link">Building</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
@@ -772,77 +821,6 @@
 <h2 id="msvc-windows">MSVC (Windows)<a class="headerlink" href="#msvc-windows" title="Permanent link">&para;</a></h2>
 <ul>
 <li>install <a href="https://visualstudio.microsoft.com/cs/vs/">Visual Studio 2019 Comunity Edition</a></li>
-</ul>
-<h3 id="choosing-the-runtime-library">Choosing the runtime library<a class="headerlink" href="#choosing-the-runtime-library" title="Permanent link">&para;</a></h3>
-<p><a href="https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library">official documentation</a></p>
-<p>When compiling with MSVC, it is crucial to choose the correct runtime library. Typically, both the compiled target and all its dependencies have to use the same runtime library. The following options are available:</p>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Copiler flag</th>
-<th>MSBuild name</th>
-<th>Description</th>
-<th>Linged library</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Multi-threaded Dynamic</td>
-<td><code>/MD</code></td>
-<td><code>MultiThreadedDLL</code></td>
-<td>The default option. The application uses the dynamic version of the runtime library.</td>
-<td><code>msvcrt.lib</code></td>
-</tr>
-<tr>
-<td>Multi-threaded Dynamic Debug</td>
-<td><code>/MDd</code></td>
-<td><code>MultiThreadedDebugDLL</code></td>
-<td>The debug version of the dynamic runtime library.</td>
-<td><code>msvcrtd.lib</code></td>
-</tr>
-<tr>
-<td>Multi-threaded Static</td>
-<td><code>/MT</code></td>
-<td><code>MultiThreaded</code></td>
-<td>The application uses the static version of the runtime library.</td>
-<td><code>libcmt.lib</code></td>
-</tr>
-<tr>
-<td>Multi-threaded Static Debug</td>
-<td><code>/MTd</code></td>
-<td><code>MultiThreadedDebug</code></td>
-<td>The debug version of the static runtime library.</td>
-<td><code>libcmtd.lib</code></td>
-</tr>
-<tr>
-<td>DLL</td>
-<td><code>/LD</code></td>
-<td></td>
-<td>The application is compiled as a DLL.</td>
-<td>-</td>
-</tr>
-<tr>
-<td>DLL Debug</td>
-<td><code>/LDd</code></td>
-<td></td>
-<td>The debug version of the DLL.</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<p>By default, the <code>/MD</code>/<code>/MDd</code> flags are used depending on the build type. </p>
-<p>When the mismatch occurs, we usually get the following error message:</p>
-<pre><code class="language-plaintext">LNK2038 mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MTd_StaticDebug' in ..
-</code></pre>
-<p>To determine if the type of the runtime library used by the target, we can explore the build script for the target, For MSBuild, the runtime library is set by the <code>RuntimeLibrary</code> property.</p>
-<p>To determine the runtime library used by a library, we can use the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-reference">dumpbin</a> tool.
-This tool is part of the Visual Studio installation and can be run from the Developer Command Prompt or Developer PowerShell. The following command will display the runtime library used by the library:</p>
-<pre><code class="language-bash">dumpbin /directives &lt;path to the library&gt;
-</code></pre>
-<h4 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-library-features">Standard library description</a></li>
 </ul>
 <h3 id="common-compiler-flags">Common Compiler Flags<a class="headerlink" href="#common-compiler-flags" title="Permanent link">&para;</a></h3>
 <ul>
@@ -926,8 +904,8 @@ The structure inside the project element is as follows (only the most important 
 </ul>
 <p>Other details about CMake can be found in the <a href="../CMake%20Manual/">CMake Manual</a>.</p>
 <h1 id="vcpkg">vcpkg<a class="headerlink" href="#vcpkg" title="Permanent link">&para;</a></h1>
-<p>Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager. </p>
-<p>VCpkg can work in two modes:</p>
+<p>Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager.</p>
+<p>Vcpkg can work in two modes:</p>
 <ul>
 <li><strong>Classic mode</strong>: vcpkg is installed centrally. This mode is useful for development and testing.</li>
 <li><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode"><strong>Manifest mode</strong></a>: vcpkg is installed in the project directory. This mode is useful for deployment. </li>
@@ -941,7 +919,21 @@ The structure inside the project element is as follows (only the most important 
 </ul>
 </li>
 </ol>
-<p>To install a package, run <code>vcpkg install package</code>.</p>
+<h2 id="basic-coomands">Basic coomands<a class="headerlink" href="#basic-coomands" title="Permanent link">&para;</a></h2>
+<h3 id="install-a-package">Install a package<a class="headerlink" href="#install-a-package" title="Permanent link">&para;</a></h3>
+<p>To install a package, use the <code>install &lt;package name&gt;</code> command. Important options are:</p>
+<ul>
+<li><code>--triplet &lt;triplet&gt;</code>: the target triplet. </li>
+</ul>
+<h3 id="remove-a-package">Remove a package<a class="headerlink" href="#remove-a-package" title="Permanent link">&para;</a></h3>
+<p>To remove a package, use the <code>remove &lt;package name&gt;</code> command. Important options are:</p>
+<ul>
+<li><code>--triplet &lt;triplet&gt;</code>: the target triplet.</li>
+</ul>
+<h3 id="search-for-a-package">Search for a package<a class="headerlink" href="#search-for-a-package" title="Permanent link">&para;</a></h3>
+<p>To search for a package, use the <code>search &lt;package name&gt;</code> command. </p>
+<h3 id="list-installed-packages">List installed packages<a class="headerlink" href="#list-installed-packages" title="Permanent link">&para;</a></h3>
+<p>To list the installed packages, use the <code>list</code> command. The first positional argument is the triplet filter, e.g., <code>list x64-windows</code> lists only the packages for the <code>x64-windows</code> triplet.</p>
 <h2 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">documentation</a></p>
 <p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
@@ -1547,18 +1539,140 @@ we can find it be examining the compiler executable stored in <code>C:\Program F
 <h2 id="changing-method-signature">Changing Method Signature<a class="headerlink" href="#changing-method-signature" title="Permanent link">&para;</a></h2>
 <p>As of 2023-10, there is no reliable way how to change the method signature in C++. The most efficient tool is the method signature refactorin in either CLion or ReSharper C++. However, it does not work in all cases, so it is necessary to check and fix the code manually.</p>
 <h1 id="standard-library">Standard Library<a class="headerlink" href="#standard-library" title="Permanent link">&para;</a></h1>
-<p>There are two standard libraries in context of C++:</p>
+<p>The strucure and organization of the <a href="https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library">standard library</a> is different on Windows and Linux.</p>
+<p>On <strong>Windows</strong> (specificly when using MSVC) the library is called MSVC C Runtime (CRT). It is divided between:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library"><strong>C++ Standard Library</strong></a>: contains the standard C++ features described in the C++ standard.<ul>
-<li>On Linux, it is called <code>libstdc++</code> (GNU) or <code>libc++</code> (LLVM).</li>
-<li>On Windows, there are two libraries: <code>UCRTBASE.dll</code> and <code>VCRUNTIME140.dll</code></li>
+<li><code>VCRuntime&lt;version&gt;.dll</code>: contains the parts that interacts with the OS<ul>
+<li>new versions are released with new versions of Visual Studio</li>
 </ul>
 </li>
-<li><strong>C Standard Library</strong>: contains the standard C features described in the C standard.<ul>
-<li>On Linux, it is called <a href="https://en.wikipedia.org/wiki/Glibc"><code>glibc</code></a>. To get the version, run <code>ldd --version</code></li>
-<li>on Windows, same as the C++ standard library</li>
+<li><code>ucrtbase.dll</code>: contains other parts of the CRT<ul>
+<li>non-versioned, the same for all versions of Visual Studio</li>
 </ul>
 </li>
+<li>many other libraries</li>
+</ul>
+<p>On <strong>Linux</strong>, the library is divided between C and C++ standard libraries:</p>
+<ul>
+<li>C++ Standard Library: contains the standard C++ features described in the C++ standard.<ul>
+<li>GNU: <code>libstdc++</code></li>
+<li>LLVM: <code>libc++</code></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Glibc">C Standard Library (<code>glibc</code>)</a>: contains the standard C features described in the C standard.<ul>
+<li>To get the version, run <code>ldd --version</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="linking-to-the-standard-library">Linking to the Standard Library<a class="headerlink" href="#linking-to-the-standard-library" title="Permanent link">&para;</a></h2>
+<p>On both platforms:</p>
+<ul>
+<li>the standard library is linked automatically</li>
+<li>the standard library is linked dynamically by default</li>
+</ul>
+<p>However, Windows and Linux have different attitudes towards static linking of the standard library:</p>
+<ul>
+<li><strong>Windows</strong>: static linking is pretty common and easy to setup:<ul>
+<li>pros: easy way to distribute the application to older systems, possibly decades old</li>
+<li>cons: even begginers have to check that the executable and all its dependencies link to the same (static vs dynamic) version of the CRT</li>
+</ul>
+</li>
+<li><strong>Linux</strong>: static linking is not common and not recommended:<ul>
+<li>pros: the mismatch of the standard library linking between the executable and the dependencies is not a problem</li>
+<li>cons: the executable is typically not portable to other systems, unless the same version of the standard library is installed (<code>glibc</code> is usually stable, but <code>libstdc++</code> and <code>libc++</code> are not)</li>
+</ul>
+</li>
+</ul>
+<h3 id="setting-up-the-correct-crt-with-msvc">Setting up the correct CRT with MSVC<a class="headerlink" href="#setting-up-the-correct-crt-with-msvc" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library">official documentation</a></p>
+<p>It is critical to set the runtime library for the executable we are building so that it matches the runtime library used by the dependencies. If the mismatch occurs, it is manifested depending on the situation:</p>
+<ul>
+<li>when we link to a dynamic CRT, but dependencies link to a static CRT, the linker will throw an error, typically for each such dependency
+    <code>plaintext
+    LNK2038 mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MTd_StaticDebug' in ..</code></li>
+<li>when we link to a staticCRT, but dependencies link to a dynamic CRT, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.</li>
+</ul>
+<p>The CRT is set by compiler flags (see the table below). </p>
+<ul>
+<li>These flags are typically passed to the compiler by the build system based on the build configuration files (e.g., <code>MSBuild</code> files).</li>
+<li>They affect all parts of the CRT</li>
+</ul>
+<p>If we generate thes files by the IDE (Visual Studio), we have to set the CRT in the IDE. If they are generated by <strong>CMake</strong>, there are three possible situations:</p>
+<ul>
+<li>we use the dynamic CRT (default): nothing has to be done</li>
+<li>the build is handled by vcpkg (libraries installed with <code>vcpgk install</code>): the runtime library is set by the <a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage"><code>VCPKG_CRT_LINKAGE</code></a> variable in the triplet file. Nothing has to be done.</li>
+<li>we use the static CRT: we have to set the <code>CMAKE_MSVC_RUNTIME_LIBRARY</code> variable in the <code>CMakeLists.txt</code> file. if we use vcpgk libraries, we should set it based on the triplet used:
+    <code>cmake
+    if (VCPKG_TARGET_TRIPLET MATCHES "-static")
+        set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;")
+    endif()</code></li>
+</ul>
+<p>To <strong>determine if the type of the runtime library used by the target</strong>, we can explore the build script for the target, For MSBuild, the runtime library is set by the <code>RuntimeLibrary</code> property. To <strong>determine the runtime library used by a library</strong>, we can use the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-reference">dumpbin</a> tool.
+This tool is part of the Visual Studio installation and can be run from the Developer Command Prompt or Developer PowerShell. The following command will display the runtime library used by the library:</p>
+<pre><code class="language-bash">dumpbin /directives &lt;path to the library&gt;
+</code></pre>
+<p>The following <strong>compiler flags</strong> are available:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Copiler flag</th>
+<th>MSBuild name</th>
+<th>Description</th>
+<th>Linged library</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-threaded Dynamic</td>
+<td><code>/MD</code></td>
+<td><code>MultiThreadedDLL</code></td>
+<td>The default option. The application uses the dynamic version of the runtime library.</td>
+<td><code>msvcrt.lib</code></td>
+</tr>
+<tr>
+<td>Multi-threaded Dynamic Debug</td>
+<td><code>/MDd</code></td>
+<td><code>MultiThreadedDebugDLL</code></td>
+<td>The debug version of the dynamic runtime library.</td>
+<td><code>msvcrtd.lib</code></td>
+</tr>
+<tr>
+<td>Multi-threaded Static</td>
+<td><code>/MT</code></td>
+<td><code>MultiThreaded</code></td>
+<td>The application uses the static version of the runtime library.</td>
+<td><code>libcmt.lib</code></td>
+</tr>
+<tr>
+<td>Multi-threaded Static Debug</td>
+<td><code>/MTd</code></td>
+<td><code>MultiThreadedDebug</code></td>
+<td>The debug version of the static runtime library.</td>
+<td><code>libcmtd.lib</code></td>
+</tr>
+<tr>
+<td>DLL</td>
+<td><code>/LD</code></td>
+<td></td>
+<td>The application is compiled as a DLL.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>DLL Debug</td>
+<td><code>/LDd</code></td>
+<td></td>
+<td>The debug version of the DLL.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>By default, the <code>/MD</code>/<code>/MDd</code> flags are used depending on the build type.</p>
+<h2 id="resouces">Resouces<a class="headerlink" href="#resouces" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Microsoft_Windows_library_files#CRT">MSVC CRT on Wikipedia</a></li>
+<li><a href="https://devblogs.microsoft.com/cppblog/introducing-the-universal-crt/">CRT reorganization blogpost from 2015</a></li>
+<li><a href="https://github.com/huangqinjin/ucrt">GitHub repo with the relesed CRT sources, useful information, and links</a></li>
 </ul>
 <h1 id="exporting-symbols-for-shared-libraries">Exporting symbols for shared libraries<a class="headerlink" href="#exporting-symbols-for-shared-libraries" title="Permanent link">&para;</a></h1>
 <p>When creating a shared library, we have to specify which symbols are exported. These are the only symbols that can be directly used from the client code. This is done using special keywords. Because the keywords are different for different compilers, usually, some macros are used instead. Typically, these macros:</p>
@@ -1599,31 +1713,13 @@ generate_export_header(&lt;target name&gt;)
 <pre><code class="language-cmake">target_compile_definitions(&lt;static/executable target name&gt; PUBLIC &lt;static condition macro &gt;)
 </code></pre>
 <p>The static condition macro from the <code>GenerateExportHeader</code> is named <code>&lt;target name&gt;_STATIC_DEFINE</code>. If not clear, we can find the exact macros' names in the export header file.</p>
-<h2 id="resouces">Resouces<a class="headerlink" href="#resouces" title="Permanent link">&para;</a></h2>
+<h2 id="resouces_1">Resouces<a class="headerlink" href="#resouces_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://decovar.dev/blog/2021/03/08/cmake-cpp-library/">tutorial on decovar</a></li>
 </ul>
-<h1 id="ensuring-the-same-runtime-library-msvc-usage">Ensuring the same runtime library (MSVC) usage<a class="headerlink" href="#ensuring-the-same-runtime-library-msvc-usage" title="Permanent link">&para;</a></h1>
-<p>Using the same runtime library is crucial when using the MSVC compiler. At lover levels, the runtime library is set by compiler flags (see the <a href="#msvc-windows">MSVC section</a>). These flags are automatically passed to the compiler by the build system based on the build configuration files (e.g., <code>MSBuild</code> files). If we generate thes files by the IDE (Visual Studio), we have to set the runtime library in the IDE. If they are generated by CMake, there are three possible situations:</p>
-<ul>
-<li>we use the dynamic runtime library (default): nothing has to be done</li>
-<li>the build is handled by vcpkg (libraries installed with <code>vcpgk install</code>): the runtime library is set by the <a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_crt_linkage"><code>VCPKG_CRT_LINKAGE</code></a> variable in the triplet file. Nothing has to be done.</li>
-<li>
-<p>we use the static runtime library: we have to set the <code>CMAKE_MSVC_RUNTIME_LIBRARY</code> variable in the <code>CMakeLists.txt</code> file. if we use vcpgk, we should set it based on the triplet used:</p>
-<p><code>cmake
-if (VCPKG_TARGET_TRIPLET MATCHES "-static")
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;")
-endif()</code></p>
-</li>
-</ul>
-<p>If the mismatch occurs, it is manifested depending on the situation:</p>
-<ul>
-<li>when we link to a dynamic runtime library, but static dependencies are used, the linker will throw an error, typically for each static dependency</li>
-<li>when we link to a static runtime library, but dynamic dependencies are used, the linker proceeds without errors, but the program crashes at runtime. Typically, some allocation/deallocation error occurs.</li>
-</ul>
-<p># Compilation for a specific CPU
- ## MSVC
- MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.</p>
+<h1 id="compilation-for-a-specific-cpu">Compilation for a specific CPU<a class="headerlink" href="#compilation-for-a-specific-cpu" title="Permanent link">&para;</a></h1>
+<h2 id="msvc">MSVC<a class="headerlink" href="#msvc" title="Permanent link">&para;</a></h2>
+<p>MSVC cannot compile for a specific CPU or CPU series. It can, however, use new instructions sets more efficiently if it compiles the code without the support for CPUs thad does not support these instruction sets.</p>
 <p>The command for the compiler is: `/arch:<set name> (see <a href="https://learn.microsoft.com/en-us/cpp/build/reference/arch-x64?view=msvc-170">MSVC documentation</a> for details).</p>
 <p>## GCC
  In GCC, the <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html"><code>march</code></a> option enables compilation for a specific hardware.

@@ -65,6 +65,28 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Java</a>
     <ul class="dropdown-menu">
             
@@ -179,7 +201,7 @@
 </li>
                                     
 <li>
-    <a href="../../PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
 <li>
@@ -188,10 +210,6 @@
                                     
 <li>
     <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
-</li>
-                                    
-<li>
-    <a href="../../SQL%20Manual/" class="dropdown-item">SQL Manual</a>
 </li>
                                 </ul>
                             </li>
@@ -307,6 +325,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
@@ -732,13 +753,13 @@ fig.update_yaxes(title_text=&quot;Comp. time relative to IH&quot;, row=1, col=1)
 <pre><code class="language-python">fig = px.scatter_3d(&lt;dataframe&gt;, &lt;xcol name&gt;, &lt;y col name&gt;, &lt;z col name&gt;)
 </code></pre>
 <h1 id="plotly-graph-objects">Plotly Graph Objects<a class="headerlink" href="#plotly-graph-objects" title="Permanent link">&para;</a></h1>
-<p><a href="https://plotly.com/python/graph-objects/">documentation</a>
-If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:</p>
+<p><a href="https://plotly.com/python/graph-objects/">documentation</a></p>
+<p>If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:</p>
 <ul>
 <li>facet plots with more than one metric</li>
 <li>plots with custom traces <em>behind</em> the plotly express traces</li>
 </ul>
-<p>To make the figure from scratch, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html"><code>make_subplots</code></a> function from the <code>plotly.subplots</code> module. Example:</p>
+<p>To <strong>make the figure from scratch</strong>, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html"><code>make_subplots</code></a> function from the <code>plotly.subplots</code> module. Example:</p>
 <pre><code class="language-python">from plotly.subplots import make_subplots
 fig = make_subplots(rows=2, cols=2)
 </code></pre>
@@ -752,8 +773,19 @@ fig = make_subplots(rows=2, cols=2)
 <li><code>all</code>: all subplots share the same axes</li>
 </ul>
 </li>
-<li><code>horizontal_spacing</code>, <code>vertical_spacing</code>: the spacing between the subplots in relative units, values are in the range <code>[0, 1]</code>. The default is <code>0.2</code> for both, which means that the spacing is 20% of the figure width/height.</li>
-<li><code>subplot_titles</code>: the titles of the subplots. </li>
+<li><code>horizontal_spacing</code>, <code>vertical_spacing</code>: the spacing between the subplots in relative units, values are in the range <code>[0, 1]</code>. <ul>
+<li>The default is <code>0.2</code> for both, which means that the space between each subplot is 20% of the figure width/height.</li>
+</ul>
+</li>
+<li><code>subplot_titles</code>: the titles of the subplots.</li>
+</ul>
+<p>For <strong>adding traces</strong> to the figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_trace"><code>add_trace</code></a> function. Important parameters:</p>
+<ul>
+<li><code>row</code>, <code>col</code>: the row and column of the subplot where to add the trace. <ul>
+<li>Both parameters have to be set.</li>
+<li>The numbering starts from 1.</li>
+</ul>
+</li>
 </ul>
 <h2 id="common-parameters-for-all-types-of-plots_1">Common Parameters For All Types of Plots<a class="headerlink" href="#common-parameters-for-all-types-of-plots_1" title="Permanent link">&para;</a></h2>
 <h3 id="legend">Legend<a class="headerlink" href="#legend" title="Permanent link">&para;</a></h3>
