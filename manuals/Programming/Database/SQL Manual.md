@@ -103,6 +103,16 @@ The difference between them is that `UNION` discards duplicate rows, while `UNIO
 The `UNUION` statement appends one `SELECT` statement to another, but some statements that appears to be part of the `SELECT` needs to stay outside (i.e., be specified just once for the whole union), namely `ORDER BY`, and `LIMIT`. In contrast, the `GROUP BY` and `HAVING` statement stays inside each individual select.
 
 
+## Select hardcoded values
+For selecting hardcoded values, we can use the `VALUES` statement. The syntax is:
+```sql
+VALUES (<column 1>, <column 2>, ...), (<column 1>, <column 2>, ...), ...
+```
+Full example of selecting hardcoded values:
+```sql
+SELECT * FROM (VALUES (1, 'a'), (2, 'b')) AS t (id, label)
+```
+
 
 # JOIN
 Classical syntax:

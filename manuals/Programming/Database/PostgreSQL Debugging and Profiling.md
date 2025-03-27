@@ -1,3 +1,6 @@
+# Interpreting Error Messages
+If there is an error in a function, the line number of the error refers to the line number in the function body (from the opening quotes), not including the function declaration. 
+
 # Debugging
 There is a debugger included in PostgreSQL. However its support in IDEs is limited: 
 
