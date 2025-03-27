@@ -60,7 +60,7 @@ There are many string function available, including the `format` function that w
 
 arrays are declared as `<type>[]`, e.g., `integer[]`. The type can be any type, including composite types.
 
-To compute array **length**, use `array_length(contracted_vertices, 1)` where `1` stands for the first dimension.
+To compute array **length**, use `array_length(<array>, 1)` where `1` stands for the first dimension. Note that **most of the array functions return `NULL` if the array is empty.**
 
 To cretea an **array literal**, we use single quatation and curly brackets: `'{1, 2, 3}'`.
 
@@ -486,10 +486,13 @@ SELECT st_intersection(
 
 
 # PgRouting
+[documentation](https://docs.pgrouting.org/latest/en/index.html)
+
+
 [PgRouting](https://pgrouting.org/) is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
 
-- finding the strongly connected components: [`pgr_strongComponents](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
-- graph contraction/simplification
+- finding the strongly connected components: [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
+- [graph contraction/simplification](https://docs.pgrouting.org/latest/en/contraction-family.html)
 
 
 ## Finding strongly connected components
