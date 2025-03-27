@@ -1,3 +1,6 @@
+This manual covers the usage of the LaTeX language to typeset document. It is about the language itself and about ways how to achieve specific layouts/features.
+
+For typography matter, see the [typography manual](https://github.com/F-I-D-O/typography/blob/master/main.pdf).
 
 # Document structure
 The document structure is well documented [on wikibooks](https://en.wikibooks.org/wiki/LaTeX/Document_Structure). The basic structure is:
@@ -64,13 +67,21 @@ Appart from sections and chapters, the book class also supports top level parts 
 
 
 
-# Escape characters
-LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:
+# Escape characters and commands
+LaTeX uses many special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:
 
 | Character | Escape sequence |
 | --- | --- |
 | `[` | `{[}` |
 | `]` | `{]}` |
+
+When we need to print \LaTeX commands, it is better to escape the whole command, not just the special characters. There are three ways how to escape the whole command: `\string<command>`, `\verb|<command>|`, and `\begin{verbatim}<command>\end{verbatim}`. The difference between the two are summarized in the following table:
+
+| Command | spaces allowed | new lines allowed | can be used in floats  | automatically changes the font |
+| --- | --- | --- | --- | --- |
+| `\string` | no | no | yes | no |
+| `\verb` | yes | no | no | yes |
+| `\verbatim` | yes | yes | no | yes |
 
 
 # Special characters
@@ -196,7 +207,7 @@ The following list types are available:
 More typoes of lists like questions or checklists can be created using external packages.
 
 
-## Units, numbers, and currency
+## Units, numbers, and currency with `siunitx`
 Units are usually typeset with a small space between the number and the unit. Normal space should be avoidedas it is too wide. Also, we sometimes want a special separator in large numbers. For these purposes, the best practice is to use the [`siunitx`](https://ctan.org/pkg/siunitx) package. 
 
 Eith `siunitx`, the units are typeset using the `\SI` command. Example:
@@ -214,6 +225,26 @@ The currecnies that have the currency sign before the number are also typeset us
 \SI{10}[\$]{}
 ```
 
+### `siunitx` `\per` problems
+[SE thread](https://tex.stackexchange.com/questions/55895/per-kwh-produces-a-wrong-output)
+
+To express a relation between two units we ofthe use the `/` symbol, which we can replace with the `\per` command when using `siunitx`. Example:
+```latex
+\SI{10}{\meter\per\second} % 10 m/s
+```
+
+However, the output is not always as expected:
+```latex
+\SI{10}[\$]{\per\kWH} % $10 h/kW 
+```
+
+The solution is to redefine the `\kWH` command:
+```latex
+\AtBeginDocument{\DeclareSIUnit{\kWh}{kWh}}
+
+\SI{10}[\$]{\per\kWh} % $10/kWh
+```
+
 
 ## Quotes
 The quotes are typeset using the `csquotes` package. The quotes are typeset using the `\enquote` command. Example:
@@ -229,41 +260,6 @@ The quotes are typeset using the `csquotes` package. The quotes are typeset usin
 - `\km`: kilometer
 - `\km\per\hour`: kilometer per hour
 - `\percent`: percent
-
-
-
-# Boxes
-[wiki](https://en.wikibooks.org/wiki/LaTeX/Boxes)
-
-Everythign in LaTeX is a box. Each character is a box, stored in a larger box for each word, and analogically for each line, paragraph, etc. Most of the time we just set properties for the boxes, but sometimes we need to create a box manually to format or position the content. The following table presents the most common box commands:
-
-| Command | paragraph | witdth | 
-| --- | --- | --- |
-| `\parbox` | single | fixed |
-| `\pbox` | single | flexible |
-| `\minipage` | multiple | fixed |
-
-The first two parameters are shared for these commands:
-
-- `pos`: the position of the box, e.g., `t` for top, `b` for bottom, `c` for center. **The position refers to the part of the box that is aligned with the surrounding text.**
-- `height`: the height of the box. 
-
-The `parbox` and `minipage` share another two parameters that follows:
-
-- `contentpos`: the position of the content inside the box, e.g., `t` for top, `b` for bottom, `c` for center. 
-- `width`: the width of the box.
-
-
-## Make a box wider than the text width
-To make a box wider than the text width, we can use the `\adjustwidth` command from the [`changepage`](https://ctan.org/pkg/changepage) package. Example:
-```latex
-\begin{adjustwidth}{-1cm}{-1cm}
-    ... content
-\end{adjustwidth}
-```
-The box above will be 1cm wider on each side than the text width.
-
-
 
 
 
@@ -340,7 +336,7 @@ The float environment for tables is `table`. However, the rows and columns are w
 
 - `tabular`: the default environment that is sufficient for simple tables
 - `tabulary`: the environment that allows to create columns with automatic width. If the main or only issue of the table is that it needs to fit a specific width, this is the environment to use.
-- `tblr`: the `tblr` environment from the [`tabulararray`](https://ctan.org/pkg/tabularray) package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that **it does not support automatic column width**. 
+- `tblr`: the `tblr` environment from the [`tabularray`](https://ctan.org/pkg/tabularray) package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that **it does not support automatic column width**. 
 
 
 ### Column types
