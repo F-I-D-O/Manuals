@@ -209,19 +209,45 @@ Unlike for procedures, we need to specify a return type for function, either as 
 RETURNS TABLE(<param 1 name> <param 1 type>, ..., <param n name> <param n type>)
 ```
 
+### Returning data
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING)
 
-### `RETURN NEXT` and `RETURN QUERY`
-Sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In PG/plSQL, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs.
-These constructs prepare the result, and **does not return from the function**. Instead, use an empty `RETURN` to return from the function. Example:
+When using SQL language, we can return the data just by executing a `SELECT` statement:
+```SQL
+CREATE OR REPLACE FUNCTION <function name> (<parameters>)
+LANGUAGE SQL
+AS
+$$
+SELECT ...
+$$
+```
+
+When using PL/pgSQL, we have to use the `RETURN` statement. To make it even more complicated, there are three versions of the `RETURN` statement:
+
+- `RETURN <expression>`: This one is for:
+	- returning a single scalar value
+	- return from function with return type `void`. In this case, the `<expression>` is empty.
+- `RETURN NEXT <expression>` and `RETURN QUERY <query>`: These are for returning a set of rows.
+
+As the `RETURN NEXT` and `RETURN QUERY` do not terminate the function, we can mix them with the `RETURN` statement. Additionally, the `RETURN QUERY` can be used multiple times in a single function and therefore, it is valid to use all three versions in a single function.
+
+
+#### `RETURN NEXT` and `RETURN QUERY`
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING-RETURN-NEXT)
+
+For returning a set of rows (`table` or `setof` type) in `PL/PgSQL` , we have to use the `RETURN NEXT` or `RETURN QUERY` statement. Besides the fact that these statements are used for returning a set of rows, there is another important difference between them and the `RETURN` statement: **they do not terminate the execution of the function**. This is useful as sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In `PG/plSQL`, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs. Example:
 
 ```SQL 
-RETURN QUERY
-SELECT ...;
+RETURN QUERY SELECT ...;
 DROP TABLE target_ways;
 RETURN;
 ```
 
-Note that for these constructs, the return type needs to be a `table` or `setof` type. The `RETURN QUERY` cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
+The `RETURN QUERY` differs from `RETURN NEXT` in following ways:
+
+- its argument is a query, not an expression. Therefore we can use it directly with the `SELECT` statement, instead of using a variable.
+- it appends the result of the query to the result set. Therefore, it can be used multiple times in a single function.
+- it cannot be used for returning a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
 
 
 ## Procedures
@@ -506,28 +532,6 @@ SELECT st_intersection(
 - [`ST_Area`](https://postgis.net/docs/ST_Area.html): computes the area of a geometry. The units of the result are the same as the units of the `SRID` of the geometry (use UTM coordinate system for getting the area in square meters).
 
 
-# PgRouting
-[documentation](https://docs.pgrouting.org/latest/en/index.html)
-
-
-[PgRouting](https://pgrouting.org/) is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
-
-- finding the strongly connected components: [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
-- [graph contraction/simplification](https://docs.pgrouting.org/latest/en/contraction-family.html)
-
-
-## Finding strongly connected components
-The function [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0) finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:
-
-- `id`, 
-- `source`,
-- `target`, 
-- `cost`,
-- `reverse_cost`.
-
-The first three parameters are obvious. The cost parameter does not have any effect. **You should provide a negative `reverse_cost`, othervise, the edge will be considered as bidirectional!**
-
-
 
 # PL/pgSQL
 [PL/pgSQL](https://www.postgresql.org/docs/current/plpgsql.html) is a procedural language available in PostgreSQL databases. It can be used inside:
@@ -574,6 +578,8 @@ END IF
 ```
 
 ## Logging
+[documentation](https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html).
+
 Basic logging can be done using the `RAISE` command:
 ```SQL
 RAISE NOTICE 'Some message';
@@ -581,9 +587,15 @@ RAISE NOTICE 'Some message';
 
 We can add parameters by using the `%` placeholder:
 ```SQL
-RAISE NOTICE 'Some message %', <variable or SQL command>;
+RAISE NOTICE 'Some message %', <expression>;
 ```
-For more, see the [documentation](https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html).
+
+Only scalar expressions are allowed as parameters. If we need to log multiple rows, we have to use a loop:
+```SQL
+FOR row IN SELECT ... LOOP
+	RAISE NOTICE 'Some message %, %', row.column_1, row.column_2;
+END LOOP;
+```
 
 
 ## Executing functions
@@ -886,6 +898,50 @@ SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '<db name>');
 
 
 
+# PgRouting
+[documentation](https://docs.pgrouting.org/latest/en/index.html)
+
+
+[PgRouting](https://pgrouting.org/) is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
+
+- finding the strongly connected components: [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
+- [graph contraction/simplification](https://docs.pgrouting.org/latest/en/contraction-family.html)
+- creating vertices from edges: [`pgr_createVerticesTable`](https://docs.pgrouting.org/latest/en/pgr_createVerticesTable.html)
+
+
+## Finding strongly connected components
+The function [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0) finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:
+
+- `id`, 
+- `source`,
+- `target`, 
+- `cost`,
+- `reverse_cost`.
+
+The first three parameters are obvious. The cost parameter does not have any effect. **You should provide a negative `reverse_cost`, othervise, the edge will be considered as bidirectional!**
+
+
+## Creating vertices from edges
+The function [`pgr_createVerticesTable`](https://docs.pgrouting.org/latest/en/pgr_createVerticesTable.html) creates a table of vertices from a table of edges. The function has the following parameters:
+
+- `edges_table`: the name of the table with edges. It must be a standard table, temporary tables are not supported.
+- `the_geom`: the name of the geometry column in the `edges_table`
+- `source`: the name of the source column in the `edges_table`
+- `target`: the name of the target column in the `edges_table`
+
+The return value is `OK` if the function was successful and `FAIL` if it was not.
+
+The created vertices table is named `<edges_table>_vertices_pgr` and contains the following columns:
+
+- `id`: the id of the vertex
+- `the_geom`: the geometry of the vertex
+- `cnt`: the number of edges that are connected to the vertex
+- `chk`: an integer that indicates if the vertex might have a problem. 
+- `ein`: the number of incoming edges
+- `eout`: the number of outgoing edges
+
+
+
 # Testing with PgTAP
 [Official documentation](https://pgtap.org/documentation.html)
 
@@ -958,7 +1014,7 @@ pg_prove -d <db name> -U <user name> <test file>
 ```
 
 
-## Test functions
+## Test as functions
 Instead of writing the tests in a procedural SQL script, we can write them as functions (**but not procedures!**). This can help as organizing tests and also to prepare the data for the tests.
 
 There is also a runner function [`runtests`](https://pgtap.org/documentation.html#runtests) that can be used to run multiple tests at once:
@@ -985,6 +1041,14 @@ Sometimes, we need to call some functions before and after the tests. We can ind
 
 Unfortunatelly, the **fixture search does not reflect the `<pattern>`**. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.
 
+
+## Test assertions
+PgTAP provides a set of functions that works as test assertions. Notable functions are:
+
+- `ok(<condition>, <message>)`: checks if the `<condition>` is true
+	- the `<message>` is optional
+- [`throws_ok(<sql>, <error_code>, <error_message>, <message>)`](get_ways_in_target_area_): checks if the `<sql>` throws an exception 
+	- all parameters except the `<sql>` are optional
 
 
 # Troubleshooting
