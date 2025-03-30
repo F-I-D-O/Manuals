@@ -77,6 +77,25 @@ For using the members of an array in the `SELECT` or `JOIN`, we have to first sp
 If we want to also keep the array index, we can use the `WITH ORDINALITY` expression, as shown in the [manual](https://www.postgresql.org/docs/current/functions-srf.html) or on [SO](https://stackoverflow.com/questions/8760419/postgresql-unnest-with-element-number).
 
 
+### Converting a result set (query result) to an array
+We can convert a query result to an array, either by returning a single column or by creating a multi-dimensional array. There are two ways to do that:
+
+- using the `array_agg` function:
+	```SQL
+	SELECT array_agg(<column name>) FROM <table name>;
+	```
+- using the `array` function:
+	```SQL
+	SELECT array(<query>);
+	```
+
+### Creating an array to a result set
+The opposite operation to the section above is to convert an array to a result set. This can be done using the `unnest` function:
+```SQL
+SELECT unnest(<array>) AS <column name>;
+```
+
+
 ## hstore
 A specific feature of PostgreSQL is the [`hstore`](https://www.postgresql.org/docs/current/hstore.html) column type. It enables to store structured data in a single column. It can be used to dump variables that we do not plan to utilize in the database (i.e., in the SELECT, JOIN statements) frequently. 
 
@@ -905,7 +924,7 @@ SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '<db name>');
 [PgRouting](https://pgrouting.org/) is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:
 
 - finding the strongly connected components: [`pgr_strongComponents`](https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0)
-- [graph contraction/simplification](https://docs.pgrouting.org/latest/en/contraction-family.html)
+- [graph contraction/simplification](https://docs.pgrouting.org/latest/en/contraction-family.html): [`pgr_contraction`](https://docs.pgrouting.org/latest/en/pgr_contraction.html)
 - creating vertices from edges: [`pgr_createVerticesTable`](https://docs.pgrouting.org/latest/en/pgr_createVerticesTable.html)
 
 
@@ -939,6 +958,12 @@ The created vertices table is named `<edges_table>_vertices_pgr` and contains th
 - `chk`: an integer that indicates if the vertex might have a problem. 
 - `ein`: the number of incoming edges
 - `eout`: the number of outgoing edges
+
+Note that **only the `id`, and `the_geom` columns are filled with data. The other columns are filled with `NULL`.** 
+
+To fill the `cnt` and `chk` columns, we can use the [`pgr_analyzeGraph`](https://docs.pgrouting.org/latest/en/pgr_analyzeGraph.html) function. 
+
+To fill all columns, we need to use the [`pgr_analyzeOneway`](https://docs.pgrouting.org/latest/en/pgr_analyzeOneway.html) function. However, this function is cumbersome to use, as it requires a lot of parameters.
 
 
 
@@ -1049,6 +1074,33 @@ PgTAP provides a set of functions that works as test assertions. Notable functio
 	- the `<message>` is optional
 - [`throws_ok(<sql>, <error_code>, <error_message>, <message>)`](get_ways_in_target_area_): checks if the `<sql>` throws an exception 
 	- all parameters except the `<sql>` are optional
+
+
+# XML
+[documentation](https://www.postgresql.org/docs/current/functions-xml.html)
+
+PostgreSQL has a built-in support for XML. 
+
+Important functions:
+
+- [`xpath(<path>, <text>, <namespace bindings>)`](https://www.postgresql.org/docs/current/functions-xml.html#FUNCTIONS-XML-PROCESSING-XPATH): returns an array of XML nodes that match the given `<path>` evaluated on the given `<text>`. 
+
+
+## Handling XML namespaces
+All XML methods in PostgreSQL require the namespace bindings to be specified, as per the XPath standard. The only exception is when work with XML documents that do not use namespaces.
+
+We specify the namespace bindings as an array of arrays, where each inner array has two elements: the prefix and the namespace URI. Example:
+```SQL
+SELECT xpath(
+	'/ns:root/ns:child', 
+	'<root xmlns:ns="http://example.com/ns"><child>...</child></root>', 
+	ARRAY[ARRAY['ns', 'http://example.com/ns']]);
+```
+
+Note that the namespace prefixes specified in the bindings are completely unrelated to the prefixes used in the XML document. They may be the same, but they do not have to be. 
+
+Also don't forget that XPath requires the namespace prefixes even for the default namespace. 
+
 
 
 # Troubleshooting
