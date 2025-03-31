@@ -48,6 +48,7 @@ Only the most common axis specifiers are listed here.
 - `<name>`, `child::<name>`: selects child nodes with the specified name.
 - `/<name>`, `descendant::<name>`: selects descendant nodes with the specified name.
 - `..`, `parent`: selects the parent node of the current node.
+- `.`, `self`: selects the current node.
 
 
 ## Node tests

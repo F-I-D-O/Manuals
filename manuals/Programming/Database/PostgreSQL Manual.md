@@ -1087,6 +1087,8 @@ Important functions:
 
 - [`xpath(<path>, <text>, <namespace bindings>)`](https://www.postgresql.org/docs/current/functions-xml.html#FUNCTIONS-XML-PROCESSING-XPATH): returns an array of XML nodes that match the given `<path>` evaluated on the given `<text>`. 
 
+Besides functions, there is a powerful [`XMLTABLE` expression](#xmltable) that can be used to extract tabular data from XML documents.
+
 
 ## Handling XML namespaces
 All XML methods in PostgreSQL require the namespace bindings to be specified, as per the XPath standard. The only exception is when work with XML documents that do not use namespaces.
@@ -1102,6 +1104,50 @@ SELECT xpath(
 Note that the namespace prefixes specified in the bindings are completely unrelated to the prefixes used in the XML document. They may be the same, but they do not have to be. 
 
 Also don't forget that XPath requires the namespace prefixes even for the default namespace. 
+
+
+
+## `XMLTABLE`
+[Documentation](https://www.postgresql.org/docs/current/functions-xml.html#FUNCTIONS-XML-PROCESSING-XMLTABLE)
+
+`XMLTABLE` expression can extract tabular data from XML documents. The syntax is as follows:
+```SQL
+XMLTABLE(
+	[XMLNAMESPACES(<namespace bindings>),]
+	<xpath expression>, PASSING <xml document expression> 
+	COLUMNS
+		<column name> <data type> PATH <xpath relative expression>,
+		...
+		<column name> <data type> PATH <xpath relative expression>
+)
+```
+
+If the XML document contains namespaces, we have to specify the namespace bindings in the `XMLNAMESPACES` clause. The `<namespace bindings>` is a comma-separated list of namespace bindings in the format `<namespace URI> AS <prefix>`. Example:
+```SQL
+ XMLNAMESPACES(
+	'http://graphml.graphdrawing.org/xmlns' AS dns,
+	'http://www.yworks.com/xml/yfiles-common/3.0' AS y
+)
+```
+The `<xpath expression>` is an XPath expression that specifies the path to the XML nodes from which we want to extract data. The `<xpath relative expression>` is then another XPath expression that is relative to the `<xpath expression>` and specifies the path to the XML nodes or attributes used to fill a specific column.
+
+The `<xml document expression>` is an expression that evaluates to an XML document. Typically, it is a column in the select statement, or a subquery. Example:
+```SQL
+SELECT some_element FROM xml_documents, XMLTABLE(
+	XMLNAMESPACES(...),
+	'/dns:graph/dns:node' PASSING xml_document.xml_data
+	COLUMNS some_element TEXT PATH ...
+) FROM xml_documents WHERE id = 1;
+```
+
+Note that the *`XMLTABLE`* expression may only be used in the `FROM` clause. Therefore, if we, for example, need to join the result of the `XMLTABLE`, instead of using: 
+```SQL
+JOIN XMLTABLE(...)
+```
+we have to use:
+```SQL
+JOIN (SELECT <columns> FROM XMLTABLE(...))
+```
 
 
 
