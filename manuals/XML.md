@@ -57,6 +57,7 @@ Only the most common axis specifiers are listed here.
 - `@<name>`: selects attributes with the specified name.
 - `*[<number>]`: selects the node at the specified index (1-based).
 - `*[last()]`: selects the last node in the current context.
+- `*[@<attribute>='<value>']`: selects nodes with the specified attribute value.
 
 
 ## Namespaces in XPath

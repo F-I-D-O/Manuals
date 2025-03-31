@@ -596,6 +596,8 @@ IF <condition> THEN
 END IF
 ```
 
+Note that `NULL` values are treated the same as in SQL: **if the condition evaluates to `NULL`, the branch is not executed**. This is different from other programming languages, where `NULL` is treated as `false`.
+
 ## Logging
 [documentation](https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html).
 

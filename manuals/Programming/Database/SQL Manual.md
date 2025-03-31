@@ -29,6 +29,38 @@ When we need a constant value for other types, we usually use either a construct
 **String literals can also span multiple lines**, we do not need any operator to split the line (unlike in Python and despite the JetBrains IDEs adds a string concatenation operator automatically on newline).
 
 
+# NULL in SQL
+[wiki](https://en.wikipedia.org/wiki/Null_(SQL))
+
+In SQL `NULL` is a marker for missing values. 
+
+When using NULL as an operand, it propagates, meaning that the operation returns NULL:
+```SQL
+SELECT 1 + NULL; -- returns NULL
+SELECT 'The value is ' || NULL; -- returns NULL
+```
+This may be counterintuitive, especially in the case of comparison operators:
+```SQL
+SELECT 1 = NULL; -- returns NULL
+SELECT 1 != NULL; -- returns NULL
+SELECT NULL = NULL; -- returns NULL
+```
+
+The only exception are logical operators:
+```SQL
+SELECT TRUE OR NULL; -- returns TRUE
+SELECT FALSE AND NULL; -- returns FALSE
+```
+
+To solve the problem with comparison operators, SQL has special operators `IS NULL` and `IS NOT NULL`:
+```SQL
+SELECT 1 IS NULL; -- returns FALSE
+SELECT 1 IS NOT NULL; -- returns TRUE
+SELECT NULL IS NULL; -- returns TRUE
+SELECT NULL IS NOT NULL; -- returns FALSE
+```
+Basically, for any `a` that evaluates to `NULL`, `a IS NULL` returns `TRUE`, while `a IS NOT NULL` returns `FALSE`. For any other value of `a`, the opposite is true.
+
 
 # WITH
 Statement for defining variables pointing to temporary data, that can be used in the related `SELECT` statement. Usage:
