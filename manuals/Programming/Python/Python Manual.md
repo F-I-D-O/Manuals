@@ -1376,6 +1376,20 @@ With modifying statements, the situation is more complicated as SQLAlchemy uses 
 Note that **the old `execute` method of the engine object is not available anymore** in newer versions of SQLAlchemy. 
 
 
+### Statements with parameters
+Sometimes it is desirable to use parameters in the SQL statements:
+
+- it prevents SQL injection in case of user input,
+- the provided parameters are automatically escaped, so we don't have to worry `:` in the SQL statement.
+
+The syntax is:
+```Python
+connection.execute("INSERT INTO table VALUES (:param1, :param2)", param1=1, param2=2)
+
+# or
+
+connection.execute("INSERT INTO table VALUES (:param1, :param2)", {'param1': 1, 'param2': 2})
+```
 
 ### Executing statements without transaction
 By default, sqlalchemy executes sql statements in a transaction. However, some statements (e.g., `CREATE DATABASE`) cannot be executed in a transaction. To execute such statements, we have to use the `execution_options` method:

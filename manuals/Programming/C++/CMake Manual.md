@@ -889,12 +889,28 @@ target_compile_definitions(<target name> <SCOPE> <definition 1> <definition 2> .
 
 
 ## Include directories
+Typically, **we only need to include the headers for non-standard packages**, as the standard cmake config packages include the headers automatically from the packege config files that are read by the `find_package` command. 
+
 To include the headers, we need to use a `inlude_directories` (global), or better `target_include_directories` command. The difference:
 
 - **target specification**: `target_include_directories` specifies the include directories for a specific target, while `include_directories` specifies the include directories for all targets in the current directory.
 - **mode specification**: `target_include_directories` specifies the mode of the include directories (e.g., `PUBLIC`, `PRIVATE`, `INTERFACE`), while `include_directories` behaves simillar to `PRIVATE`. Therefore, for libraries, the `target_include_directories` has to be used.
 
-### Inspect the Include directories
+### Debugging the include directories
+If the headers are not found during the compilation of a CMake target, there are several steps we should take to debug the issue:
+
+1. Locate the missing header file. If the file does not exist, the package may not be installed at all.
+2. Check that the include in the source code match the header location. Sometimes, the package is moved into a subdirectory, without notification (e.g., we have to change `#include <header.h>` to `#include <package/header.h>`).
+3. Check the include paths for the problematic target:
+    ```cmake
+    message(STATUS "Listing include directories for DARP-benchmark target:")
+    get_target_property(DARP-benchmark-include-test DARP-benchmark INCLUDE_DIRECTORIES)
+    foreach(dir ${DARP-benchmark-include-test})
+        message(STATUS "dir='${dir}'")
+    endforeach()
+    ```
+
+#### Inspect the global include directories
 All the global include directories are stored in the `INCLUDE_DIRECTORIES` property, to print them, add this to the `CMakeLists.txt` file:
 ```cmake
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
