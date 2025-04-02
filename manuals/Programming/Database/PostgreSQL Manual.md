@@ -58,11 +58,12 @@ There are many string function available, including the `format` function that w
 - [arrays](https://www.postgresql.org/docs/current/arrays.html)
 - [array functions and operators](https://www.postgresql.org/docs/8.4/functions-array.html)
 
-arrays are declared as `<type>[]`, e.g., `integer[]`. The type can be any type, including composite types.
+Arrays are **declared** as `<type>[]`, e.g., `integer[]`. The type can be any type, including composite types.
+
+Array **literals** are declared using we use single quatation and curly brackets, e.g., `'{1, 2, 3}'`. For the same purpose, we can use the `ARRAY` constructtor sytax: `ARRAY[1, 2, 3]`. If we use the `ARRAY` constructor with an empty array, we have to specify the type of the array, e.g., `ARRAY[]::integer[]`. 
 
 To compute array **length**, use `array_length(<array>, 1)` where `1` stands for the first dimension. Note that **most of the array functions return `NULL` if the array is empty.**
 
-To cretea an **array literal**, we use single quatation and curly brackets: `'{1, 2, 3}'`.
 
 To check that some value match at least some member of the array, we use `ANY`:
 ```SQL
@@ -78,16 +79,18 @@ If we want to also keep the array index, we can use the `WITH ORDINALITY` expres
 
 
 ### Converting a result set (query result) to an array
-We can convert a query result to an array, either by returning a single column or by creating a multi-dimensional array. There are two ways to do that:
+There are two ways to convert a result set to array in PostgreSQL:
 
-- using the `array_agg` function:
-	```SQL
-	SELECT array_agg(<column name>) FROM <table name>;
-	```
-- using the `array` function:
+- If we want to convert the whole result set to a single array, we use the [array constructor](https://www.postgresql.org/docs/current/sql-expressions.html#SQL-SYNTAX-ARRAY-CONSTRUCTORS):
 	```SQL
 	SELECT array(<query>);
 	```
+- If the query aggregates the rows and we want to create an array for each group, we use the `array_agg` function (see [aggregate functions](https://www.postgresql.org/docs/current/functions-aggregate.html#FUNCTIONS-AGGREGATES)):
+	```SQL
+	SELECT array_agg(<column name>) FROM <table name>;
+	```
+	- note that counterintuitively, **the `array_agg` function returns `NULL` if the result set is empty, not an empty array.**
+
 
 ### Creating an array to a result set
 The opposite operation to the section above is to convert an array to a result set. This can be done using the `unnest` function:
@@ -299,51 +302,6 @@ CREATE OR REPLACE PROCEDURE compute_speeds_for_segments(target_area_id smallint)
 ...
 
 CALL compute_speeds_for_segments(1::smallint);
-```
-
-
-## Variables
-In PostgreSQL, all variables must be [*declared*](https://www.postgresql.org/docs/current/plpgsql-declarations.html) before assignmant in the `DECLARE` block which is before the sql body of the function/procedure/`DO`. The syntax is:
-```SQL
-<variable name> <variable type>[ = <varianle value>];
-```
-
-Example:
-```PostgreSQL
-CREATE OR REPLACE PROCEDURE compute_speeds_for_segments()
-	LANGUAGE plpgsql
-AS
-$$
-DECLARE
-	dataset_quality smallint = 1;
-BEGIN
-	...
-```
-
-The, the value of a variable can be change using the classical assignment syntax:
-```SQL
-<variable name> = <varianle value>;
-```
-
-Be carful to **not use a variable name equal to the name of some of the columns** used in the same context, which results in a name clash.
-
-Nothe that **`:=` is also a valid assignment operator**. There is no difference between `=` and `:=` in plpgsql. The `:=` operator is sometimes preferred to avoid confusion with the `=` operator used for comparison. 
-
-
-### Assigning a value to a variable using SQL
-There are two options how to assign a value to a variable using SQL:
-
-- using the `INTO` clause in the `SELECT` statement
-- using a `SELECT` statement as rvlaue of the assignment
-
-Example with `INTO`:
-```PostgreSQL
-SELECT name INTO customer_name FROM customers WHERE id = 1
-```
-
-EXAMPLE with `SELECT` as rvalue:
-```PostgreSQL
-customer_name = (SELECT name FROM customers WHERE id = 1)
 ```
 
 
@@ -575,6 +533,55 @@ Here, the `DECLARE` part is optional.
 In a block, each statement or declaration ends with a semicolon.
 
 We can nest the blocks, i.e., we can put a block inside another block, between the `BEGIN` and `END` keywords. In this case, we put a semicolon after the inner block. Only the outer block that contains the whole content of the function/procedure/`DO` command does not require a semicolon.
+
+## Variables
+In PL/PgSQL, all variables must be [*declared*](https://www.postgresql.org/docs/current/plpgsql-declarations.html) before assignmant in the `DECLARE` block which is before the sql body of the function/procedure/`DO`. The syntax is:
+```SQL
+<variable name> <variable type>[ = <varianle value>];
+```
+
+Example:
+```PostgreSQL
+CREATE OR REPLACE PROCEDURE compute_speeds_for_segments()
+	LANGUAGE plpgsql
+AS
+$$
+DECLARE
+	dataset_quality smallint = 1;
+BEGIN
+	...
+```
+
+The, the value of a variable can be change using the classical assignment syntax:
+```SQL
+<variable name> = <varianle value>;
+```
+
+Be carful to **not use a variable name equal to the name of some of the columns** used in the same context, which results in a name clash.
+
+Nothe that **`:=` is also a valid assignment operator**. There is no difference between `=` and `:=` in plpgsql. The `:=` operator is sometimes preferred to avoid confusion with the `=` operator used for comparison. 
+
+
+### Assigning a value to a variable using SQL
+There are two options how to assign a value to a variable using SQL:
+
+- using the `INTO` clause in the `SELECT` statement
+- using a `SELECT` statement as rvlaue of the assignment
+
+Example with `INTO`:
+```PostgreSQL
+SELECT name INTO customer_name FROM customers WHERE id = 1
+```
+
+EXAMPLE with `SELECT` as rvalue:
+```PostgreSQL
+customer_name = (SELECT name FROM customers WHERE id = 1)
+```
+
+Note that the behavior of the assignment may not be intuitive:
+
+- **if the `SELECT` statement returns no rows, the variable is set to `NULL`**
+- if the `SELECT` statement returns more than one row, an error is raised
 
 
 ## Functions and procedures
