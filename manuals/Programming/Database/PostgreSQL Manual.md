@@ -50,7 +50,7 @@ Other types are:
 
 - `name`: An internal type for database object names. It is limited to 63 characters.
 
-There are many string function available, including the `format` function that works similarly to the C format function. For all functions, check the [documentation](https://www.postgresql.org/docs/9.1/functions-string.html).
+There are many string function available, including the [`format`](https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-FORMAT) function that works similarly to the C format function. For all functions, check the [documentation](https://www.postgresql.org/docs/9.1/functions-string.html).
 
 
 ## Arrays
