@@ -616,7 +616,7 @@ std::string s = "hello"; // s stores a copy of the string literal "hello"
 
 
 ### String Literals
-[cppreference]](https://en.cppreference.com/w/cpp/language/string_literal)
+[cppreference](https://en.cppreference.com/w/cpp/language/string_literal)
 
  The standard string literal is writen as `"literal"`. However, we need to escape some **special characters** in such literals, therefore, a *raw string* literal is sometimes more desirable: `R"(literal)"`.
  
