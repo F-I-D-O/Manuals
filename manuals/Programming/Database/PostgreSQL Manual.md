@@ -50,7 +50,15 @@ Other types are:
 
 - `name`: An internal type for database object names. It is limited to 63 characters.
 
-There are many string function available, including the [`format`](https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-FORMAT) function that works similarly to the C format function. For all functions, check the [documentation](https://www.postgresql.org/docs/9.1/functions-string.html).
+There are many string function available, For all functions, check the [documentation](https://www.postgresql.org/docs/9.1/functions-string.html).
+
+### Formatting strings
+For formatting strings, we can use the [`format`](https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-FORMAT). Unlike in other languages, there are different types:
+
+- `%I`: SQL identifier. This one is used for, e.g., table names. The string is quoted if necessary.
+- `%L`: SQL Literal. Automatically quotes the string if it is not `NULL`.
+- `%s`: String. For everything else.
+
 
 
 ## Arrays
@@ -979,12 +987,12 @@ To fill all columns, we need to use the [`pgr_analyzeOneway`](https://docs.pgrou
 # Testing with PgTAP
 [Official documentation](https://pgtap.org/documentation.html)
 
-[PgTAP](https://pgtap.org/) is the only testing framework for PostgreSQL.
+[PgTAP](https://pgtap.org/) is the only testing framework for PostgreSQL. It is a system framwork: it requires administrative privileges to install.
 
 ## Installation
 
 ### Linux
-If you are using Linux, you may (depending on your distribution) be able to use you distribution’s package management system to install pgTAP. For instance, on Debian, Ubuntu, or Linux Mint pgTAP can be installed with the command: `sudo apt-get install pgtap`
+If you are using Linux, you may (depending on your distribution) be able to use you distribution's package management system to install pgTAP. For instance, on Debian, Ubuntu, or Linux Mint pgTAP can be installed with the command: `sudo apt-get install pgtap`
 
 On other systems pgTAP has to be downloaded and built. First, download pgTAP from [PGXN](https://pgxn.org/dist/pgtap/) (click the green download button in the upper-right). Extract the downloaded zip file, and (at the command line) navigate to the extracted folder.
 
@@ -1051,6 +1059,9 @@ pg_prove -d <db name> -U <user name> <test file>
 ## Test as functions
 Instead of writing the tests in a procedural SQL script, we can write them as functions (**but not procedures!**). This can help as organizing tests and also to prepare the data for the tests.
 
+Test functions must return the `SETOF TEXT` type. This correspond to the type returned by the provided [test assertions](#test-assertions).
+
+### Test runner
 There is also a runner function [`runtests`](https://pgtap.org/documentation.html#runtests) that can be used to run multiple tests at once:
 ```SQL
 SELECT * FROM runtests();
@@ -1065,7 +1076,7 @@ This function has four variants:
 
 The `schema` parameter is used to specify the schema where the tests are searched. The `pattern` parameter is used to specify the pattern that the test names must match. The pattern uses the same syntax as the `LIKE` operator in SQL.
 
-### Fixtues
+### Fixtures
 Sometimes, we need to call some functions before and after the tests. We can indeed call these functions in from the test functions, but in case we need to run the same functions for multiple tests, it is desirable to automate this process using fixtures. The `runtests` function supports fixtures, it recognize them by the prefix. Again, only functions, not procedures are supported. The following fixtures are supported:
 
 - `startup`: runs before the tests
@@ -1073,16 +1084,68 @@ Sometimes, we need to call some functions before and after the tests. We can ind
 - `teardown`: runs after each test
 - `shutdown`: runs after the tests
 
-Unfortunatelly, the **fixture search does not reflect the `<pattern>`**. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.
+Unfortunatelly, the **fixture search does not reflect the filtration `<pattern>`**. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.
+
+Also note that all the fixtures are executed for all the tests, not just the ones with the matching name. Therefore they cannot be used for preparing the data for individual tests.
+
+
+### Rolling back
+All tests are executed in a transaction and each test is then in a subtransaction. All database changes are rolled back except the ones that are in the `startup` and `shutdown` fixtures [[source]](https://groups.google.com/g/pgtap-users/c/enU925h6cxU/m/fb0-S3kqBwAJ?pli=1). Additionally, some changes, e.g. the sequence numbers cannot be rolled back.
 
 
 ## Test assertions
-PgTAP provides a set of functions that works as test assertions. Notable functions are:
+PgTAP provides a set of functions that works as test assertions. All functions have an optional `<message>` parameter. Notable functions are:
 
 - `ok(<condition>, <message>)`: checks if the `<condition>` is true
-	- the `<message>` is optional
-- [`throws_ok(<sql>, <error_code>, <error_message>, <message>)`](get_ways_in_target_area_): checks if the `<sql>` throws an exception 
+- `is(<computed>, <expected>, <message>)` or `isnt(<computed>, <not expected>, <message>)`: checks if `<computed>` and `<expected>` are the same, or not (respectively).
+- `matches(<text>, <pattern>, <message>)` or `doesnt_match(<text>, <pattern>, <message>)`: checks if `<text>` matches the `<pattern>` where `<pattern>` is a regular expression, or not (respectively).
+- `alike(<text>, <pattern>, <message>)` or `unalike(<text>, <pattern>, <message>)`: checks if `<text>` is similar to `<pattern>`, or not (respectively). The `LIKE` operator is used for the comparison.
+- `cmp_ok(<computed>, <operator>, <expected>, <message>)`: checks if `<computed>` is related to `<expected>` by the `<operator>`. The `<operator>` can be one of the following: `=`, `!=`, `>`, `>=`, `<`, `<=`.
+- `isa_ok(<value>, <type>, <message>)`: checks if `<value>` is of type `<type>`.
+- `throws_ok(<sql>, <error_code>, <error_message>, <message>)`: checks if the `<sql>` throws an exception.
 	- all parameters except the `<sql>` are optional
+- `lives_ok(<sql>, <message>)`: checks if the `<sql>` does not throw an exception.
+
+Additionaly, if the test condition is complicated, we can just manually return using the `pass(<message>)` or `fail(<message>)` functions.
+
+### Result set assertions
+
+- `results_eq(<sql>, <sql>, <description>)`: Compares two SQL query results row-by-row for equality, ensuring integrity and order.
+- `results_eq(<sql>, <array>, <description>)`: Compares SQL query results to an array.
+- `results_eq(<cursor>, <cursor>, <description>)`: Compares results from two cursors.
+- `results_eq(<sql>, <cursor>, <description>)`: Compares SQL query results to cursor results.
+- `results_eq(<cursor>, <array>, <description>)`: Compares cursor results to an array.
+- `results_ne(<...>, <description>)`: The inverse of `results_eq()`. Checks if result sets are not equal (accepts the same argument variations as `results_eq`).
+- `set_eq(<...>, <description>)`: Compares result sets for equality, ignoring order (accepts the same argument variations as `results_eq`).
+- `set_ne(<...>, <description>)`: The inverse of `set_eq()`. Checks if result sets are not equal, ignoring order (accepts the same argument variations as `results_eq`).
+- `set_has(<sql>, <sql>, <description>)`: Checks if the first query's results contain all rows returned by the second query, ignoring order.
+- `set_hasnt(<sql>, <sql>, <description>)`: The inverse of `set_has`. Checks if the first query's results do not contain all rows from the second query.
+- `bag_eq(<sql>, <sql>, <description>)`: Compares result sets like `set_eq` but considers duplicate rows. If a row appears N times in the first query, it must appear N times in the second.
+- `bag_ne(<sql>, <sql>, <description>)`: The inverse of `bag_eq()`.
+- `is_empty(<sql>, <description>)`: Checks that the SQL query returns no rows.
+- `isnt_empty(<sql>, <description>)`: Checks that the SQL query returns at least one row.
+- `row_eq(<sql>, <record>, <description>)`: Checks that the SQL query returns a single row identical to the provided `<record>`.
+
+
+## Additional functions( Diagnostics )
+The function `diag(<sql>)`, can be used for outputting diagnostic messages. For example:
+``` sql
+-- Output a diagnostic message if the collation is not en_US.UTF-8.
+SELECT diag(
+     E'These tests expect LC_COLLATE to be en_US.UTF-8,\n',
+     'but yours is set to ', setting, E'.\n',
+     'As a result, some tests may fail. YMMV.'
+)
+  FROM pg_settings
+ WHERE name = 'lc_collate'
+   AND setting <> 'en_US.UTF-8';
+```
+which outputs
+```plaintext
+# These tests expect LC_COLLATE to be en_US.UTF-8,
+# but yours is set to en_US.ISO8859-1.
+# As a result, some tests may fail. YMMV.
+```
 
 
 # XML

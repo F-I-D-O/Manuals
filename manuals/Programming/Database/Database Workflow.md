@@ -60,6 +60,14 @@ The best way to install the PgAdmin is to use the [EDB PostgreSQL installer](htt
 To create diagram from an existing database: right click on the database -> `Generate ERD`
 
 
+# Visual Studio Code
+A limited support for PostgreSQL is available as an extension in VS Code.
+
+Limitations:
+
+- syntax highlighting works only for basic SQL commands, no support for, e.g., PL/pgSQL. [[source]](https://github.com/Borvik/vscode-postgres/issues/167)
+
+
 
 # PostgreSQL
 As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.

@@ -326,14 +326,14 @@ Optionally, if we want the tests to be run automatically by the `ctest`, we add 
 
 
 ## Debugging tests
+For test debugging, some google test options may be usefull:
 
-To debug a test, you need to run it with the flag some flags:
+- `--gtest_break_on_failure`: breaks the test on a failed test or failed assertion.
+- `--gtest_catch_exceptions=0`: stops google test from catching exceptions, hence the program crashes on an unhandled exception.
+  - Without this, we cannot use breakpoints on unhandled exceptions.
+  - Note that this way, we will not see the exception message, as C++ default exception handler does not print the message.
+- `--gtest_filter=Some_test_prefix*`: filter tests by name. Astrix (`*`) can be used as a wildcard for both prefix and suffix. The pattern is `<test_suite_name>.<test_name>`.
 
-- `--gtest_break_on_failure`. This flag breaks the test on a failed test or failed assertion.
-- `--gtest_catch_exceptions=0`. This flag stops google test from catching exceptions, hence the program breaks at the place where the exception occurred, which is what you want
-- `--gtest_filter=Some_test_prefix*` for choosing just some tests
-
-Also, you need to run tests from Visual Studio, otherwise, the program ends when clicking on the retry button.
 
 # Visual Studio Errors
 

@@ -4032,6 +4032,7 @@ Sometimes, we want to suppress some warnings, mostly in libraries we are includi
 	#pragma clang diagnostic pop
 #endif
 ```
+Here, the `<WARNING CODE>` is the code of the warning to be suppressed without the `C` prefix.
 
 **Note that warnings related to the preprocessor macros cannot be suppressed this way in GCC** due to a [bug](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431) (fixed in GCC 13). The same is true for conditions:
 ```cpp
