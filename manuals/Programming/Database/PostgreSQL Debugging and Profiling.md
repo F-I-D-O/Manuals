@@ -1,5 +1,8 @@
 # Interpreting Error Messages
-If there is an error in a function, the line number of the error refers to the line number in the function body (from the opening quotes), not including the function declaration. 
+If there is an error in a function, the line number of the error refers to the line number in the function body (from the opening quotes), not including the function declaration.
+
+## Unsafe query: Update statement without where clause updates all table rows
+This is actually a warning raised by DataGrip, not a real error. We can safely ignore it, or disable the warning in `Settings` > `Database` > `Query Execution`, just uncheck `Show warnings before running potentially unsafe queries`.
 
 # Debugging
 There is a debugger included in PostgreSQL. However its support in IDEs is limited: 

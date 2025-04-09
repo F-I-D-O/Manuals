@@ -145,17 +145,13 @@ SET search_path TO <schema name list>;
 ```
 
 
-
-# Editing the database
-The commands for editing the database mostly follows the SQL standard. 
-
-## Creating objects (tables, indexes, etc.)
+# Creating objects (tables, indexes, etc.)
 The syntax for creating objects is mostly the same as in the SQL standard: 
 ```SQL
 CREATE <object type> <object name> <object parameters>
 ```
 
-### `IF NOT EXISTS` modifier
+## `IF NOT EXISTS` modifier
 An important modifier is the `IF NOT EXISTS` clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:
 
 - `TABLE`
@@ -179,6 +175,20 @@ For these objects, we have to use some workaround. There are three options in ge
 1. check if the object exists before creating it ([SO example with Constraint](https://stackoverflow.com/a/6804058/1827955))
 2. delete the object before creating it
 3. catch the error and ignore it ([SO example with Constraint](https://stackoverflow.com/a/32526723/1827955))
+
+
+## `CREATE TABLE AS`
+[documentation](https://www.postgresql.org/docs/current/sql-createtableas.html)
+
+The `CREATE TABLE AS` syntax is mostly equivalent to the SQL standard. An addition is the `WITH NO DATA` which we can put after the `SELECT` statement:
+
+```PostgreSQL
+CREATE TABLE <table name> AS
+SELECT <select statement>
+WITH NO DATA
+```
+
+This way, we use the result of the `SELECT` statement to create the table structure, but the table is empty.
 
 
 
@@ -1128,7 +1138,7 @@ Additionaly, if the test condition is complicated, we can just manually return u
 
 
 ## Additional functions( Diagnostics )
-The function `diag(<sql>)`, can be used for outputting diagnostic messages. For example:
+The function [`diag(<string>, <string>, ...)`](https://pgtap.org/documentation.html#diag), can be used for outputting diagnostic messages. For example:
 ``` sql
 -- Output a diagnostic message if the collation is not en_US.UTF-8.
 SELECT diag(
@@ -1146,7 +1156,7 @@ which outputs
 # but yours is set to en_US.ISO8859-1.
 # As a result, some tests may fail. YMMV.
 ```
-
+This function basically concatenates all the arguments and outputs them as a single line of text. All the arguments have to be strings.
 
 # XML
 [documentation](https://www.postgresql.org/docs/current/functions-xml.html)

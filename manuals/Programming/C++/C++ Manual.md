@@ -1919,7 +1919,11 @@ For csv output, we can usually use the general line-by-line approach.
 
 
 ## YAML
-For YAML, we can use the [yaml-cpp](https://github.com/jbeder/yaml-cpp/) library.
+For YAML, we can use the [yaml-cpp](https://github.com/jbeder/yaml-cpp/) library. We can load
+
+- from file using `YAML::LoadFile(<path>)`
+- from string using `YAML::Load(<string>)`
+	- for some reason, the `YAML::Load` function does not work with objects separated by indentation, so we need to use `{}` to separate the objects. 
 
 To test whether a `YAML::Node` **contains a certain key**, we may use the `[]` operator, as it does not create a new node (unlike the stl containers):
 ```cpp
