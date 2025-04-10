@@ -727,7 +727,21 @@ For other diagnostic fields, see the [documentation](https://www.postgresql.org/
 
 
 ## Transaction management
-By default, PostgreSQL starts a transaction at the beginning of the outermost *block*, and end it at the end of the block. We can manually commit or rollback the transa
+By default, PostgreSQL starts a transaction at the beginning of the outermost *block*, and end it at the end of the block.
+
+We can manually commit or rollback the transaction, but only inside a procedure that is on a procedure-only call stack:
+
+- `procedure 1 -> procedure 2 -> procedure 3`: all three procedures can commit or rollback the transaction
+- `procedure 1 -> function 2 -> procedure 3`: only procedure 1 can commit or rollback the transaction
+- `function 1 -> procedure 2 -> function 3`: neither procedure nor function can commit or rollback the transaction.
+
+### Subtransactions
+So far, we covered the top-level transactions. However, there are also subtransactions. Subtransactions cannot be handled manually, however, we can manipulate them, if we know the logic of the automatic subtransaction management.
+
+The subtransactions are started:
+
+- inside each block with the exception management
+	- these subtransactions are rolled back if an exception is raised
 
 
 # `psql`
