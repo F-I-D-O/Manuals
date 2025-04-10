@@ -244,50 +244,13 @@ SELECT * FROM <function signature>
 
 To create a function, we use the [CREATE FUNCTION statement](https://www.postgresql.org/docs/12/sql-createfunction.html).
 
-Unlike for procedures, we need to specify a return type for function, either as an `OUT`/`INOUT` parameter, or using the `RETURNS` clause. To return tabular data, we use [`TABLE`](https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE) return type:
+Unlike for procedures, we need to specify a return type for function, either as an `OUT`/`INOUT` parameter, or using the `RETURNS` clause. To return tabular data, we use [`TABLE`](https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE) or `SETOF <row type>` return type:
 ```SQL
 RETURNS TABLE(<param 1 name> <param 1 type>, ..., <param n name> <param n type>)
+RETURNS SETOF <row type>
 ```
 
-### Returning data
-[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING)
-
-When using SQL language, we can return the data just by executing a `SELECT` statement:
-```SQL
-CREATE OR REPLACE FUNCTION <function name> (<parameters>)
-LANGUAGE SQL
-AS
-$$
-SELECT ...
-$$
-```
-
-When using PL/pgSQL, we have to use the `RETURN` statement. To make it even more complicated, there are three versions of the `RETURN` statement:
-
-- `RETURN <expression>`: This one is for:
-	- returning a single scalar value
-	- return from function with return type `void`. In this case, the `<expression>` is empty.
-- `RETURN NEXT <expression>` and `RETURN QUERY <query>`: These are for returning a set of rows.
-
-As the `RETURN NEXT` and `RETURN QUERY` do not terminate the function, we can mix them with the `RETURN` statement. Additionally, the `RETURN QUERY` can be used multiple times in a single function and therefore, it is valid to use all three versions in a single function.
-
-
-#### `RETURN NEXT` and `RETURN QUERY`
-[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING-RETURN-NEXT)
-
-For returning a set of rows (`table` or `setof` type) in `PL/PgSQL` , we have to use the `RETURN NEXT` or `RETURN QUERY` statement. Besides the fact that these statements are used for returning a set of rows, there is another important difference between them and the `RETURN` statement: **they do not terminate the execution of the function**. This is useful as sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In `PG/plSQL`, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs. Example:
-
-```SQL 
-RETURN QUERY SELECT ...;
-DROP TABLE target_ways;
-RETURN;
-```
-
-The `RETURN QUERY` differs from `RETURN NEXT` in following ways:
-
-- its argument is a query, not an expression. Therefore we can use it directly with the `SELECT` statement, instead of using a variable.
-- it appends the result of the query to the result set. Therefore, it can be used multiple times in a single function.
-- it cannot be used for returning a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
+**Note that `TABLE` and `SETOF` types can only be used as a return type of a function.**
 
 
 ## Procedures
@@ -303,7 +266,6 @@ CREATE PROCEDURE <name> (<params>)
 LANGUAGE <language name>
 <procedure body>
 ```
-
 
 
 ## Function and procedure parameters
@@ -603,8 +565,47 @@ Note that the behavior of the assignment may not be intuitive:
 
 
 ## Functions and procedures
+The root of a PL/pgSQL function content is a [*block*](#blocks).
 
-The syntax of a PL/pgSQL function content is a *block*
+### Returning data
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING)
+
+When using SQL language, we can return the data just by executing a `SELECT` statement:
+```SQL
+CREATE OR REPLACE FUNCTION <function name> (<parameters>)
+LANGUAGE SQL
+AS
+$$
+SELECT ...
+$$
+```
+
+When using PL/pgSQL, we have to use the `RETURN` statement. To make it even more complicated, there are three versions of the `RETURN` statement:
+
+- `RETURN <expression>`: This one is for:
+	- returning a single scalar value
+	- return from function with return type `void`. In this case, the `<expression>` is empty.
+- `RETURN NEXT <expression>` and `RETURN QUERY <query>`: These are for returning a set of rows.
+
+As the `RETURN NEXT` and `RETURN QUERY` do not terminate the function, we can mix them with the `RETURN` statement. Additionally, the `RETURN QUERY` can be used multiple times in a single function and therefore, it is valid to use all three versions in a single function.
+
+
+#### `RETURN NEXT` and `RETURN QUERY`
+[Documentation](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING-RETURN-NEXT)
+
+For returning a set of rows (`table` or `setof` type) in `PL/PgSQL` , we have to use the `RETURN NEXT` or `RETURN QUERY` statement. Besides the fact that these statements are used for returning a set of rows, there is another important difference between them and the `RETURN` statement: **they do not terminate the execution of the function**. This is useful as sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In `PG/plSQL`, we can also use the [`RETURN NEXT` and `RETURN QUERY`](https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING) constructs. Example:
+
+```PostgreSQL
+RETURN QUERY SELECT ...;
+DROP TABLE target_ways;
+RETURN;
+```
+
+The `RETURN QUERY` differs from `RETURN NEXT` in following ways:
+
+- its argument is a query, not an expression. Therefore we can use it directly with the `SELECT` statement, instead of using a variable.
+- it appends the result of the query to the result set. Therefore, it can be used multiple times in a single function.
+- it cannot be used for returning a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.
 
 
 ## Branching
@@ -675,11 +676,13 @@ EXCEPTION
 END
 ```
 
-The list of valid exception names can be found in the [documentation](https://www.postgresql.org/docs/current/errcodes-appendix.html). The most common exceptions are:
+The list of built-in exception codes can be found in the [documentation](https://www.postgresql.org/docs/current/errcodes-appendix.html). The most common exceptions are:
 
 
 - `P0001`, `raise_exception`: A user-raised exception that does not specify the SQLSTATE.
 - `00000`, `successful_completion`: The normal completion of a statement. No exception should ever be raised with this SQLSTATE.
+
+Apart from the built-in codes, we can introduce our own. They have to be five characters long and start with a letter.
 
 The `<exception handling>` part can be any valid PL/pgSQL code. It can contain multiple statements and can be nested.
 
@@ -722,6 +725,9 @@ Note that this constract is not available in the SQL queries but only in a PL/pg
 
 For other diagnostic fields, see the [documentation](https://www.postgresql.org/docs/current/plpgsql-statements.html#PLPGSQL-STATEMENTS-DIAGNOSTICS).
 
+
+## Transaction management
+By default, PostgreSQL starts a transaction at the beginning of the outermost *block*, and end it at the end of the block. We can manually commit or rollback the transa
 
 
 # `psql`

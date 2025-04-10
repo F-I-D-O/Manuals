@@ -66,6 +66,7 @@ A limited support for PostgreSQL is available as an extension in VS Code.
 Limitations:
 
 - syntax highlighting works only for basic SQL commands, no support for, e.g., PL/pgSQL. [[source]](https://github.com/Borvik/vscode-postgres/issues/167)
+- outline view does not work for SQL files
 
 
 
