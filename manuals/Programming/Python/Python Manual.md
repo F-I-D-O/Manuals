@@ -682,6 +682,19 @@ except:
 Other methods like `os.access` or using `tempfile` module are not reliable on Windows (see e.g.: https://github.com/python/cpython/issues/66305).
 
 
+## Creating directories
+To create a directory, we can use the [`mkdir`](https://docs.python.org/3/library/pathlib.html#pathlib.Path.mkdir) method of the `Path` object:
+```Python
+p = Path("C:/workspace/project")
+p.mkdir()
+```
+Important parameters:
+
+- `parents`: if set to `True`, the directory will be created even if the parent directories do not exist. Default is `False`.
+- `exist_ok`: if set to `True`, the directory will not be created if it already exists. Default is `False`.
+
+
+
 ## Copying files and directories
 For copying files and directories, we can use the `shutil` module. The most used method is `copy2`, which copies the file with all metadata:
 ```Python
