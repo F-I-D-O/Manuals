@@ -114,6 +114,18 @@ Two dictionaries can be merged using the `|` operator:
 d3 = d1 | d2 
 ```
 
+#### Set
+[Documentation](https://docs.python.org/3/library/stdtypes.html#set)
+
+Sets are initialized using curly braces (`{}`) or the `set` function:
+```Python
+s = {1, 2, 3}
+s = set([1, 2, 3])
+```
+
+To **add** elements to the set, we use either the [`add`](https://docs.python.org/3/library/stdtypes.html#frozenset.add) for a single element or the [`update`](https://docs.python.org/3/library/stdtypes.html#frozenset.update) for multiple elements. In both cases, a union of the set and the new elements is computed, i.e., no exception is raised if an element is already in the set.
+
+
 #### Comprehensions
 In addition to literals, Python has a convinient way of creating basic data structures: the comprehensions. The basic syntax is:
 ```Python
@@ -924,6 +936,29 @@ for a: int in ... # error
 a: int
 for a in ... # ok
 ```
+
+## Circular type hints
+Unfortunately, Python currently does not support circular type hints. However, [it should be possible to use circular type hints since Python 3.14](https://stackoverflow.com/questions/33533148/how-do-i-type-hint-a-method-with-the-type-of-the-enclosing-class).
+
+There are two types of circular type hints:
+
+- we need to refer the type while defining it. For that, we use the [`Self`](https://docs.python.org/3/library/typing.html#typing.Self) type:
+    ```Python
+    class MyClass:
+        def get_me(self) -> Self:
+            return self
+    ```
+- two or more types refer to each other. For that, use a string representation of the type:
+    ```Python
+    class ClassA:
+        def __init__(self, b: 'ClassB'):
+            self.b = b
+
+    class ClassB:
+        def set_a(self, a: ClassA):
+            self.a = a
+    ```
+
 
 
 ## Common type hints
