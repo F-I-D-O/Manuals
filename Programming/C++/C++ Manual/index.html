@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
@@ -2102,7 +2103,7 @@ Reference wrapper is a class template that can be used to store references in co
 std::string s = &quot;hello&quot;; // s stores a copy of the string literal &quot;hello&quot;
 </code></pre>
 <h3 id="string-literals">String Literals<a class="headerlink" href="#string-literals" title="Permanent link">&para;</a></h3>
-<p>[cppreference]](https://en.cppreference.com/w/cpp/language/string_literal)</p>
+<p><a href="https://en.cppreference.com/w/cpp/language/string_literal">cppreference</a></p>
 <p>The standard string literal is writen as <code>"literal"</code>. However, we need to escape some <strong>special characters</strong> in such literals, therefore, a <em>raw string</em> literal is sometimes more desirable: <code>R"(literal)"</code>.</p>
 <p>If our literal contains <code>(</code> or <code>)</code>, this is stil not enough, however, the delimiter can be extended to any string with a maximum length of 16 characters, for example:
  <code>R"lit(literal)lit"</code>. </p>
@@ -3196,7 +3197,14 @@ std::string content(std::istreambuf_iterator&lt;char&gt;{file}, {});
 <h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
 <p>For csv output, we can usually use the general line-by-line approach.</p>
 <h2 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h2>
-<p>For YAML, we can use the <a href="https://github.com/jbeder/yaml-cpp/">yaml-cpp</a> library.</p>
+<p>For YAML, we can use the <a href="https://github.com/jbeder/yaml-cpp/">yaml-cpp</a> library. We can load</p>
+<ul>
+<li>from file using <code>YAML::LoadFile(&lt;path&gt;)</code></li>
+<li>from string using <code>YAML::Load(&lt;string&gt;)</code><ul>
+<li>for some reason, the <code>YAML::Load</code> function does not work with objects separated by indentation, so we need to use <code>{}</code> to separate the objects. </li>
+</ul>
+</li>
+</ul>
 <p>To test whether a <code>YAML::Node</code> <strong>contains a certain key</strong>, we may use the <code>[]</code> operator, as it does not create a new node (unlike the stl containers):</p>
 <pre><code class="language-cpp">YAML::Node node;
 if (node[&quot;key&quot;]) {
@@ -4913,6 +4921,7 @@ void(){
     #pragma clang diagnostic pop
 #endif
 </code></pre>
+<p>Here, the <code>&lt;WARNING CODE&gt;</code> is the code of the warning to be suppressed without the <code>C</code> prefix.</p>
 <p><strong>Note that warnings related to the preprocessor macros cannot be suppressed this way in GCC</strong> due to a <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431">bug</a> (fixed in GCC 13). The same is true for conditions:</p>
 <pre><code class="language-cpp">#if 0
     #pragma sdhdhs // unknown pragma raises warning, despite unreachcable
@@ -4960,12 +4969,14 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

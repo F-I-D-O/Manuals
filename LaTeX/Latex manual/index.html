@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/C%2B%2B/C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../../Programming/C%2B%2B/C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
@@ -411,7 +412,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#escape-characters" class="nav-link">Escape characters</a>
+            <li class="nav-item" data-level="1"><a href="#escape-characters-and-commands" class="nav-link">Escape characters and commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -467,8 +468,12 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#units-numbers-and-currency" class="nav-link">Units, numbers, and currency</a>
+            <li class="nav-item" data-level="2"><a href="#units-numbers-and-currency-with-siunitx" class="nav-link">Units, numbers, and currency with siunitx</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#siunitx-per-problems" class="nav-link">siunitx \per problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#quotes" class="nav-link">Quotes</a>
@@ -477,15 +482,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#boxes" class="nav-link">Boxes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#make-a-box-wider-than-the-text-width" class="nav-link">Make a box wider than the text width</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -640,9 +636,9 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#boxes_1" class="nav-link">Boxes</a>
+            <li class="nav-item" data-level="1"><a href="#boxes" class="nav-link">Boxes</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#make-a-box-wider-than-the-text-width_1" class="nav-link">Make a box wider than the text width</a>
+            <li class="nav-item" data-level="2"><a href="#make-a-box-wider-than-the-text-width" class="nav-link">Make a box wider than the text width</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -802,6 +798,8 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<p>This manual covers the usage of the LaTeX language to typeset document. It is about the language itself and about ways how to achieve specific layouts/features.</p>
+<p>For typography matter, see the <a href="https://github.com/F-I-D-O/typography/blob/master/main.pdf">typography manual</a>.</p>
 <h1 id="document-structure">Document structure<a class="headerlink" href="#document-structure" title="Permanent link">&para;</a></h1>
 <p>The document structure is well documented <a href="https://en.wikibooks.org/wiki/LaTeX/Document_Structure">on wikibooks</a>. The basic structure is:</p>
 <pre><code class="language-latex">\documentclass[&lt;options&gt;]{&lt;class&gt;}
@@ -852,8 +850,8 @@
 <li><code>\mainmatter</code>: the main matter of the document, i.e., the main content. The page numbering is in arabic numerals, and the page numbering is reset to 1.</li>
 <li><code>\backmatter</code>: the back matter of the document, i.e., the bibliography, appendices, etc. The page numbering is in arabic numerals. Chapters are not numbered.</li>
 </ul>
-<h1 id="escape-characters">Escape characters<a class="headerlink" href="#escape-characters" title="Permanent link">&para;</a></h1>
-<p>LaTeX uses man6y special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:</p>
+<h1 id="escape-characters-and-commands">Escape characters and commands<a class="headerlink" href="#escape-characters-and-commands" title="Permanent link">&para;</a></h1>
+<p>LaTeX uses many special characters which needs to be escaped. Unfortunatelly, there is no single escape character, instead, there are many. The following table lists the most common escape characters:</p>
 <table>
 <thead>
 <tr>
@@ -869,6 +867,41 @@
 <tr>
 <td><code>]</code></td>
 <td><code>{]}</code></td>
+</tr>
+</tbody>
+</table>
+<p>When we need to print \LaTeX commands, it is better to escape the whole command, not just the special characters. There are three ways how to escape the whole command: <code>\string&lt;command&gt;</code>, <code>\verb|&lt;command&gt;|</code>, and <code>\begin{verbatim}&lt;command&gt;\end{verbatim}</code>. The difference between the two are summarized in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>spaces allowed</th>
+<th>new lines allowed</th>
+<th>can be used in floats</th>
+<th>automatically changes the font</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\string</code></td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>\verb</code></td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>\verbatim</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -954,7 +987,7 @@ Some text at the bottom
 <li><code>description</code>: description list. Items can have a label, which is specified as an optional argument of the <code>\item</code> command. </li>
 </ul>
 <p>More typoes of lists like questions or checklists can be created using external packages.</p>
-<h2 id="units-numbers-and-currency">Units, numbers, and currency<a class="headerlink" href="#units-numbers-and-currency" title="Permanent link">&para;</a></h2>
+<h2 id="units-numbers-and-currency-with-siunitx">Units, numbers, and currency with <code>siunitx</code><a class="headerlink" href="#units-numbers-and-currency-with-siunitx" title="Permanent link">&para;</a></h2>
 <p>Units are usually typeset with a small space between the number and the unit. Normal space should be avoidedas it is too wide. Also, we sometimes want a special separator in large numbers. For these purposes, the best practice is to use the <a href="https://ctan.org/pkg/siunitx"><code>siunitx</code></a> package. </p>
 <p>Eith <code>siunitx</code>, the units are typeset using the <code>\SI</code> command. Example:</p>
 <pre><code class="language-latex">\SI{10}{\meter}
@@ -964,6 +997,19 @@ Some text at the bottom
 </code></pre>
 <p>The currecnies that have the currency sign before the number are also typeset using the <code>\SI</code> command, but we need to use the optional argument for prefix:</p>
 <pre><code class="language-latex">\SI{10}[\$]{}
+</code></pre>
+<h3 id="siunitx-per-problems"><code>siunitx</code> <code>\per</code> problems<a class="headerlink" href="#siunitx-per-problems" title="Permanent link">&para;</a></h3>
+<p><a href="https://tex.stackexchange.com/questions/55895/per-kwh-produces-a-wrong-output">SE thread</a></p>
+<p>To express a relation between two units we ofthe use the <code>/</code> symbol, which we can replace with the <code>\per</code> command when using <code>siunitx</code>. Example:</p>
+<pre><code class="language-latex">\SI{10}{\meter\per\second} % 10 m/s
+</code></pre>
+<p>However, the output is not always as expected:</p>
+<pre><code class="language-latex">\SI{10}[\$]{\per\kWH} % $10 h/kW 
+</code></pre>
+<p>The solution is to redefine the <code>\kWH</code> command:</p>
+<pre><code class="language-latex">\AtBeginDocument{\DeclareSIUnit{\kWh}{kWh}}
+
+\SI{10}[\$]{\per\kWh} % $10/kWh
 </code></pre>
 <h2 id="quotes">Quotes<a class="headerlink" href="#quotes" title="Permanent link">&para;</a></h2>
 <p>The quotes are typeset using the <code>csquotes</code> package. The quotes are typeset using the <code>\enquote</code> command. Example:</p>
@@ -976,52 +1022,6 @@ Some text at the bottom
 <li><code>\km\per\hour</code>: kilometer per hour</li>
 <li><code>\percent</code>: percent</li>
 </ul>
-<h1 id="boxes">Boxes<a class="headerlink" href="#boxes" title="Permanent link">&para;</a></h1>
-<p><a href="https://en.wikibooks.org/wiki/LaTeX/Boxes">wiki</a></p>
-<p>Everythign in LaTeX is a box. Each character is a box, stored in a larger box for each word, and analogically for each line, paragraph, etc. Most of the time we just set properties for the boxes, but sometimes we need to create a box manually to format or position the content. The following table presents the most common box commands:</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>paragraph</th>
-<th>witdth</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\parbox</code></td>
-<td>single</td>
-<td>fixed</td>
-</tr>
-<tr>
-<td><code>\pbox</code></td>
-<td>single</td>
-<td>flexible</td>
-</tr>
-<tr>
-<td><code>\minipage</code></td>
-<td>multiple</td>
-<td>fixed</td>
-</tr>
-</tbody>
-</table>
-<p>The first two parameters are shared for these commands:</p>
-<ul>
-<li><code>pos</code>: the position of the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. <strong>The position refers to the part of the box that is aligned with the surrounding text.</strong></li>
-<li><code>height</code>: the height of the box. </li>
-</ul>
-<p>The <code>parbox</code> and <code>minipage</code> share another two parameters that follows:</p>
-<ul>
-<li><code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. </li>
-<li><code>width</code>: the width of the box.</li>
-</ul>
-<h2 id="make-a-box-wider-than-the-text-width">Make a box wider than the text width<a class="headerlink" href="#make-a-box-wider-than-the-text-width" title="Permanent link">&para;</a></h2>
-<p>To make a box wider than the text width, we can use the <code>\adjustwidth</code> command from the <a href="https://ctan.org/pkg/changepage"><code>changepage</code></a> package. Example:</p>
-<pre><code class="language-latex">\begin{adjustwidth}{-1cm}{-1cm}
-    ... content
-\end{adjustwidth}
-</code></pre>
-<p>The box above will be 1cm wider on each side than the text width.</p>
 <h1 id="floats">Floats<a class="headerlink" href="#floats" title="Permanent link">&para;</a></h1>
 <p>The following environments are floats:</p>
 <ul>
@@ -1089,7 +1089,7 @@ Some text at the bottom
 <ul>
 <li><code>tabular</code>: the default environment that is sufficient for simple tables</li>
 <li><code>tabulary</code>: the environment that allows to create columns with automatic width. If the main or only issue of the table is that it needs to fit a specific width, this is the environment to use.</li>
-<li><code>tblr</code>: the <code>tblr</code> environment from the <a href="https://ctan.org/pkg/tabularray"><code>tabulararray</code></a> package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that <strong>it does not support automatic column width</strong>. </li>
+<li><code>tblr</code>: the <code>tblr</code> environment from the <a href="https://ctan.org/pkg/tabularray"><code>tabularray</code></a> package is the most up to date tabular environment that support many features. Also, it splits the table presentation from the table content, which can make generating tables from code easier. The only downside is that <strong>it does not support automatic column width</strong>. </li>
 </ul>
 <h3 id="column-types">Column types<a class="headerlink" href="#column-types" title="Permanent link">&para;</a></h3>
 <p>The column types are specified in the argument of the <code>tabular</code> or equivalent environment. The following column types are available by default:</p>
@@ -1350,7 +1350,7 @@ There are two types of enviroments for, depending on the purpose:</p>
     \label{fig:my_figure}
 \end{figure}
 </code></pre>
-<h1 id="boxes_1">Boxes<a class="headerlink" href="#boxes_1" title="Permanent link">&para;</a></h1>
+<h1 id="boxes">Boxes<a class="headerlink" href="#boxes" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Boxes">wiki</a></p>
 <p>Everythign in LaTeX is a box. Each character is a box, stored in a larger box for each word, and analogically for each line, paragraph, etc. Most of the time we just set properties for the boxes, but sometimes we need to create a box manually to format or position the content. The following table presents the most common box commands:</p>
 <table>
@@ -1389,7 +1389,7 @@ There are two types of enviroments for, depending on the purpose:</p>
 <li><code>contentpos</code>: the position of the content inside the box, e.g., <code>t</code> for top, <code>b</code> for bottom, <code>c</code> for center. </li>
 <li><code>width</code>: the width of the box.</li>
 </ul>
-<h2 id="make-a-box-wider-than-the-text-width_1">Make a box wider than the text width<a class="headerlink" href="#make-a-box-wider-than-the-text-width_1" title="Permanent link">&para;</a></h2>
+<h2 id="make-a-box-wider-than-the-text-width">Make a box wider than the text width<a class="headerlink" href="#make-a-box-wider-than-the-text-width" title="Permanent link">&para;</a></h2>
 <p>To make a box wider than the text width, we can use the <code>\adjustwidth</code> command from the <a href="https://ctan.org/pkg/changepage"><code>changepage</code></a> package. Example:</p>
 <pre><code class="language-latex">\begin{adjustwidth}{-1cm}{-1cm}
     ... content
@@ -1751,12 +1751,14 @@ a_{x^*} % correct print
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -12,13 +12,10 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/C%2B%2B/C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../../Programming/C%2B%2B/C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
@@ -396,7 +397,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#postgis-layers" class="nav-link">Postgis Layers</a>
+            <li class="nav-item" data-level="1"><a href="#layers" class="nav-link">Layers</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#adding-layers" class="nav-link">Adding layers</a>
               <ul class="nav flex-column">
@@ -410,6 +411,15 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#postgis-layer" class="nav-link">Postgis layer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#debugging" class="nav-link">Debugging</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -426,14 +436,34 @@
 <li>select features</li>
 <li>Open the attribute table for layer. In the heder, there should be the number of selected features</li>
 </ol>
-<h1 id="postgis-layers">Postgis Layers<a class="headerlink" href="#postgis-layers" title="Permanent link">&para;</a></h1>
+<h1 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h1>
 <h2 id="adding-layers">Adding layers<a class="headerlink" href="#adding-layers" title="Permanent link">&para;</a></h2>
 <p>To add a layer, use <code>Layer</code> -&gt; <code>Add Layer</code>. Each layer type has its own option in this menu.</p>
 <h2 id="temporary-layer">Temporary layer<a class="headerlink" href="#temporary-layer" title="Permanent link">&para;</a></h2>
 <p>Temporary layers are useful for experimenting. Whether we want to add a point, line, or area, we need a layer for that even if we do not intend to save the result. The right layer for this is the <em>temporary scratch layer</em> we can add it by:</p>
 <p><code>Layer</code> -&gt; <code>Create layer</code> -&gt; <code>New Temporary Scratch Layer...</code></p>
 <h2 id="invalid-layer">Invalid layer<a class="headerlink" href="#invalid-layer" title="Permanent link">&para;</a></h2>
-<p>The layer can be marked as invalid because of a missing or invalid index column. <strong>Each Postgis layer needs an id column consisting of unique integer values</strong>.</p></div>
+<p>The layer can be marked as invalid because of a missing or invalid index column. <strong>Each Postgis layer needs an id column consisting of unique integer values</strong>.</p>
+<h2 id="postgis-layer">Postgis layer<a class="headerlink" href="#postgis-layer" title="Permanent link">&para;</a></h2>
+<p>Postgis layers are layers that are loaded from a Postgis database. A postgis layer can be created from:</p>
+<ul>
+<li>a table,</li>
+<li>a view,</li>
+<li>or a query.</li>
+</ul>
+<p>In all cases, the layer data has to fulfill the following requirements:</p>
+<ul>
+<li>the layer has to have a column with unique integer values (id) that is used as a primary key,</li>
+<li>the layer has to have a column with geometry data, and</li>
+<li>the layer definition must not modify the data in the database (due to read-only transaction mode).<ul>
+<li><code>nextval()</code> is therefore not allowed</li>
+<li>creating temporary tables is not allowed</li>
+</ul>
+</li>
+</ul>
+<h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
+<p>As an open-source project, QGIS has many bugs.</p>
+<p>Frequently, the program does not behave as expected, but no problem is reported. In such cases, the best way to find out what is going on is to open the log window: <code>View</code> -&gt; <code>Panels</code> -&gt; <code>Log Messages</code>.</p></div>
             </div>
         </div>
 
@@ -441,12 +471,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

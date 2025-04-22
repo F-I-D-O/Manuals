@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
@@ -638,8 +639,12 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#include-directories" class="nav-link">Include directories</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#inspect-the-include-directories" class="nav-link">Inspect the Include directories</a>
+            <li class="nav-item" data-level="3"><a href="#debugging-the-include-directories" class="nav-link">Debugging the include directories</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#inspect-the-global-include-directories" class="nav-link">Inspect the global include directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1601,12 +1606,26 @@ Note that <strong>this option shoud be placed before the URL option</strong>. Th
 <pre><code class="language-cmake">target_compile_definitions(&lt;target name&gt; &lt;SCOPE&gt; &lt;definition 1&gt; &lt;definition 2&gt; ...)
 </code></pre>
 <h2 id="include-directories">Include directories<a class="headerlink" href="#include-directories" title="Permanent link">&para;</a></h2>
+<p>Typically, <strong>we only need to include the headers for non-standard packages</strong>, as the standard cmake config packages include the headers automatically from the packege config files that are read by the <code>find_package</code> command. </p>
 <p>To include the headers, we need to use a <code>inlude_directories</code> (global), or better <code>target_include_directories</code> command. The difference:</p>
 <ul>
 <li><strong>target specification</strong>: <code>target_include_directories</code> specifies the include directories for a specific target, while <code>include_directories</code> specifies the include directories for all targets in the current directory.</li>
 <li><strong>mode specification</strong>: <code>target_include_directories</code> specifies the mode of the include directories (e.g., <code>PUBLIC</code>, <code>PRIVATE</code>, <code>INTERFACE</code>), while <code>include_directories</code> behaves simillar to <code>PRIVATE</code>. Therefore, for libraries, the <code>target_include_directories</code> has to be used.</li>
 </ul>
-<h3 id="inspect-the-include-directories">Inspect the Include directories<a class="headerlink" href="#inspect-the-include-directories" title="Permanent link">&para;</a></h3>
+<h3 id="debugging-the-include-directories">Debugging the include directories<a class="headerlink" href="#debugging-the-include-directories" title="Permanent link">&para;</a></h3>
+<p>If the headers are not found during the compilation of a CMake target, there are several steps we should take to debug the issue:</p>
+<ol>
+<li>Locate the missing header file. If the file does not exist, the package may not be installed at all.</li>
+<li>Check that the include in the source code match the header location. Sometimes, the package is moved into a subdirectory, without notification (e.g., we have to change <code>#include &lt;header.h&gt;</code> to <code>#include &lt;package/header.h&gt;</code>).</li>
+<li>Check the include paths for the problematic target:
+    <code>cmake
+    message(STATUS "Listing include directories for DARP-benchmark target:")
+    get_target_property(DARP-benchmark-include-test DARP-benchmark INCLUDE_DIRECTORIES)
+    foreach(dir ${DARP-benchmark-include-test})
+        message(STATUS "dir='${dir}'")
+    endforeach()</code></li>
+</ol>
+<h4 id="inspect-the-global-include-directories">Inspect the global include directories<a class="headerlink" href="#inspect-the-global-include-directories" title="Permanent link">&para;</a></h4>
 <p>All the global include directories are stored in the <code>INCLUDE_DIRECTORIES</code> property, to print them, add this to the <code>CMakeLists.txt</code> file:</p>
 <pre><code class="language-cmake">get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
@@ -2161,12 +2180,14 @@ set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

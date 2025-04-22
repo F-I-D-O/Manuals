@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../C%2B%2B/C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../../C%2B%2B/C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
@@ -402,11 +403,23 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#formatting-strings" class="nav-link">Formatting strings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#working-with-the-array-members-individualy" class="nav-link">Working with the array members individualy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#converting-a-result-set-query-result-to-an-array" class="nav-link">Converting a result set (query result) to an array</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#creating-an-array-to-a-result-set" class="nav-link">Creating an array to a result set</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -428,14 +441,14 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#editing-the-database" class="nav-link">Editing the database</a>
+            <li class="nav-item" data-level="1"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
+            <li class="nav-item" data-level="2"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#create-table-as" class="nav-link">CREATE TABLE AS</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -449,10 +462,6 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#return-next-and-return-query" class="nav-link">RETURN NEXT and RETURN QUERY</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#procedures" class="nav-link">Procedures</a>
@@ -461,14 +470,6 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#function-and-procedure-parameters" class="nav-link">Function and procedure parameters</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#assigning-a-value-to-a-variable-using-sql" class="nav-link">Assigning a value to a variable using SQL</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#deciding-the-language" class="nav-link">Deciding the language</a>
@@ -556,23 +557,30 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pgrouting" class="nav-link">PgRouting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#finding-strongly-connected-components" class="nav-link">Finding strongly connected components</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
             <li class="nav-item" data-level="1"><a href="#plpgsql" class="nav-link">PL/pgSQL</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#blocks" class="nav-link">Blocks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#assigning-a-value-to-a-variable-using-sql" class="nav-link">Assigning a value to a variable using SQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#functions-and-procedures" class="nav-link">Functions and procedures</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#returning-data" class="nav-link">Returning data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#return-next-and-return-query" class="nav-link">RETURN NEXT and RETURN QUERY</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#branching" class="nav-link">Branching</a>
@@ -601,6 +609,14 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#query-diagnostics" class="nav-link">Query diagnostics</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#transaction-management" class="nav-link">Transaction management</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#subtransactions" class="nav-link">Subtransactions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -666,6 +682,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#pgrouting" class="nav-link">PgRouting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#finding-strongly-connected-components" class="nav-link">Finding strongly connected components</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#creating-vertices-from-edges" class="nav-link">Creating vertices from edges</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#testing-with-pgtap" class="nav-link">Testing with PgTAP</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
@@ -688,12 +717,45 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#test-functions" class="nav-link">Test functions</a>
+            <li class="nav-item" data-level="2"><a href="#test-as-functions" class="nav-link">Test as functions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#fixtues" class="nav-link">Fixtues</a>
+            <li class="nav-item" data-level="3"><a href="#test-runner" class="nav-link">Test runner</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#fixtures" class="nav-link">Fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#rolling-back" class="nav-link">Rolling back</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#test-assertions" class="nav-link">Test assertions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#result-set-assertions" class="nav-link">Result set assertions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#additional-functions-diagnostics" class="nav-link">Additional functions( Diagnostics )</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#xml" class="nav-link">XML</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#handling-xml-namespaces" class="nav-link">Handling XML namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#xmltable" class="nav-link">XMLTABLE</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -759,15 +821,22 @@
 <ul>
 <li><code>name</code>: An internal type for database object names. It is limited to 63 characters.</li>
 </ul>
-<p>There are many string function available, including the <code>format</code> function that works similarly to the C format function. For all functions, check the <a href="https://www.postgresql.org/docs/9.1/functions-string.html">documentation</a>.</p>
+<p>There are many string function available, For all functions, check the <a href="https://www.postgresql.org/docs/9.1/functions-string.html">documentation</a>.</p>
+<h3 id="formatting-strings">Formatting strings<a class="headerlink" href="#formatting-strings" title="Permanent link">&para;</a></h3>
+<p>For formatting strings, we can use the <a href="https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-FORMAT"><code>format</code></a>. Unlike in other languages, there are different types:</p>
+<ul>
+<li><code>%I</code>: SQL identifier. This one is used for, e.g., table names. The string is quoted if necessary.</li>
+<li><code>%L</code>: SQL Literal. Automatically quotes the string if it is not <code>NULL</code>.</li>
+<li><code>%s</code>: String. For everything else.</li>
+</ul>
 <h2 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.postgresql.org/docs/current/arrays.html">arrays</a></li>
 <li><a href="https://www.postgresql.org/docs/8.4/functions-array.html">array functions and operators</a></li>
 </ul>
-<p>arrays are declared as <code>&lt;type&gt;[]</code>, e.g., <code>integer[]</code>. The type can be any type, including composite types.</p>
-<p>To compute array <strong>length</strong>, use <code>array_length(contracted_vertices, 1)</code> where <code>1</code> stands for the first dimension.</p>
-<p>To cretea an <strong>array literal</strong>, we use single quatation and curly brackets: <code>'{1, 2, 3}'</code>.</p>
+<p>Arrays are <strong>declared</strong> as <code>&lt;type&gt;[]</code>, e.g., <code>integer[]</code>. The type can be any type, including composite types.</p>
+<p>Array <strong>literals</strong> are declared using we use single quatation and curly brackets, e.g., <code>'{1, 2, 3}'</code>. For the same purpose, we can use the <code>ARRAY</code> constructtor sytax: <code>ARRAY[1, 2, 3]</code>. If we use the <code>ARRAY</code> constructor with an empty array, we have to specify the type of the array, e.g., <code>ARRAY[]::integer[]</code>. </p>
+<p>To compute array <strong>length</strong>, use <code>array_length(&lt;array&gt;, 1)</code> where <code>1</code> stands for the first dimension. Note that <strong>most of the array functions return <code>NULL</code> if the array is empty.</strong></p>
 <p>To check that some value match at least some member of the array, we use <code>ANY</code>:</p>
 <pre><code class="language-SQL">SELECT ...
 FROM tab
@@ -776,6 +845,23 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <h3 id="working-with-the-array-members-individualy">Working with the array members individualy<a class="headerlink" href="#working-with-the-array-members-individualy" title="Permanent link">&para;</a></h3>
 <p>For using the members of an array in the <code>SELECT</code> or <code>JOIN</code>, we have to first split the array using the <code>unnest</code> function. This function transforms the result set to a form where there is a separate row for each member of the array (a kind of inverse operation to group by).</p>
 <p>If we want to also keep the array index, we can use the <code>WITH ORDINALITY</code> expression, as shown in the <a href="https://www.postgresql.org/docs/current/functions-srf.html">manual</a> or on <a href="https://stackoverflow.com/questions/8760419/postgresql-unnest-with-element-number">SO</a>.</p>
+<h3 id="converting-a-result-set-query-result-to-an-array">Converting a result set (query result) to an array<a class="headerlink" href="#converting-a-result-set-query-result-to-an-array" title="Permanent link">&para;</a></h3>
+<p>There are two ways to convert a result set to array in PostgreSQL:</p>
+<ul>
+<li>If we want to convert the whole result set to a single array, we use the <a href="https://www.postgresql.org/docs/current/sql-expressions.html#SQL-SYNTAX-ARRAY-CONSTRUCTORS">array constructor</a>:
+    <code>SQL
+    SELECT array(&lt;query&gt;);</code></li>
+<li>If the query aggregates the rows and we want to create an array for each group, we use the <code>array_agg</code> function (see <a href="https://www.postgresql.org/docs/current/functions-aggregate.html#FUNCTIONS-AGGREGATES">aggregate functions</a>):
+    <code>SQL
+    SELECT array_agg(&lt;column name&gt;) FROM &lt;table name&gt;;</code><ul>
+<li>note that counterintuitively, <strong>the <code>array_agg</code> function returns <code>NULL</code> if the result set is empty, not an empty array.</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="creating-an-array-to-a-result-set">Creating an array to a result set<a class="headerlink" href="#creating-an-array-to-a-result-set" title="Permanent link">&para;</a></h3>
+<p>The opposite operation to the section above is to convert an array to a result set. This can be done using the <code>unnest</code> function:</p>
+<pre><code class="language-SQL">SELECT unnest(&lt;array&gt;) AS &lt;column name&gt;;
+</code></pre>
 <h2 id="hstore">hstore<a class="headerlink" href="#hstore" title="Permanent link">&para;</a></h2>
 <p>A specific feature of PostgreSQL is the <a href="https://www.postgresql.org/docs/current/hstore.html"><code>hstore</code></a> column type. It enables to store structured data in a single column. It can be used to dump variables that we do not plan to utilize in the database (i.e., in the SELECT, JOIN statements) frequently. </p>
 <p>This data type requires the <code>hstore</code> extension to be enabled in the database. To enable it, use the following command:</p>
@@ -797,13 +883,11 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <p>To change the search path, run:</p>
 <pre><code class="language-SQL">SET search_path TO &lt;schema name list&gt;;
 </code></pre>
-<h1 id="editing-the-database">Editing the database<a class="headerlink" href="#editing-the-database" title="Permanent link">&para;</a></h1>
-<p>The commands for editing the database mostly follows the SQL standard. </p>
-<h2 id="creating-objects-tables-indexes-etc">Creating objects (tables, indexes, etc.)<a class="headerlink" href="#creating-objects-tables-indexes-etc" title="Permanent link">&para;</a></h2>
+<h1 id="creating-objects-tables-indexes-etc">Creating objects (tables, indexes, etc.)<a class="headerlink" href="#creating-objects-tables-indexes-etc" title="Permanent link">&para;</a></h1>
 <p>The syntax for creating objects is mostly the same as in the SQL standard: </p>
 <pre><code class="language-SQL">CREATE &lt;object type&gt; &lt;object name&gt; &lt;object parameters&gt;
 </code></pre>
-<h3 id="if-not-exists-modifier"><code>IF NOT EXISTS</code> modifier<a class="headerlink" href="#if-not-exists-modifier" title="Permanent link">&para;</a></h3>
+<h2 id="if-not-exists-modifier"><code>IF NOT EXISTS</code> modifier<a class="headerlink" href="#if-not-exists-modifier" title="Permanent link">&para;</a></h2>
 <p>An important modifier is the <code>IF NOT EXISTS</code> clause that prevents errors when the object already exists. This is very useful if we want to update the database schema that is in the development phase with some automated script without the need to drop the database every time. However, this modifier is not available for all objects. It is available for:</p>
 <ul>
 <li><code>TABLE</code></li>
@@ -828,6 +912,14 @@ WHERE tab.a = ANY(&lt;array&gt;)
 <li>delete the object before creating it</li>
 <li>catch the error and ignore it (<a href="https://stackoverflow.com/a/32526723/1827955">SO example with Constraint</a>)</li>
 </ol>
+<h2 id="create-table-as"><code>CREATE TABLE AS</code><a class="headerlink" href="#create-table-as" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.postgresql.org/docs/current/sql-createtableas.html">documentation</a></p>
+<p>The <code>CREATE TABLE AS</code> syntax is mostly equivalent to the SQL standard. An addition is the <code>WITH NO DATA</code> which we can put after the <code>SELECT</code> statement:</p>
+<pre><code class="language-PostgreSQL">CREATE TABLE &lt;table name&gt; AS
+SELECT &lt;select statement&gt;
+WITH NO DATA
+</code></pre>
+<p>This way, we use the result of the <code>SELECT</code> statement to create the table structure, but the table is empty.</p>
 <h1 id="procedures-and-functions">Procedures and functions<a class="headerlink" href="#procedures-and-functions" title="Permanent link">&para;</a></h1>
 <p>To store a set of SQL commands for later use, PostgreSQL provides two options: procedures and functions. Both are similar and can use SQL, PL/pgSQL, or other languages supported by PostgreSQL. The key differences are:</p>
 <ul>
@@ -868,18 +960,11 @@ END
 <pre><code class="language-SQL">SELECT * FROM &lt;function signature&gt;
 </code></pre>
 <p>To create a function, we use the <a href="https://www.postgresql.org/docs/12/sql-createfunction.html">CREATE FUNCTION statement</a>.</p>
-<p>Unlike for procedures, we need to specify a return type for function, either as an <code>OUT</code>/<code>INOUT</code> parameter, or using the <code>RETURNS</code> clause. To return tabular data, we use <a href="https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE"><code>TABLE</code></a> return type:</p>
+<p>Unlike for procedures, we need to specify a return type for function, either as an <code>OUT</code>/<code>INOUT</code> parameter, or using the <code>RETURNS</code> clause. To return tabular data, we use <a href="https://www.postgresql.org/docs/current/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-TABLE"><code>TABLE</code></a> or <code>SETOF &lt;row type&gt;</code> return type:</p>
 <pre><code class="language-SQL">RETURNS TABLE(&lt;param 1 name&gt; &lt;param 1 type&gt;, ..., &lt;param n name&gt; &lt;param n type&gt;)
+RETURNS SETOF &lt;row type&gt;
 </code></pre>
-<h3 id="return-next-and-return-query"><code>RETURN NEXT</code> and <code>RETURN QUERY</code><a class="headerlink" href="#return-next-and-return-query" title="Permanent link">&para;</a></h3>
-<p>Sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In PG/plSQL, we can also use the <a href="https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING"><code>RETURN NEXT</code> and <code>RETURN QUERY</code></a> constructs.
-These constructs prepare the result, and <strong>does not return from the function</strong>. Instead, use an empty <code>RETURN</code> to return from the function. Example:</p>
-<pre><code class="language-SQL">RETURN QUERY
-SELECT ...;
-DROP TABLE target_ways;
-RETURN;
-</code></pre>
-<p>Note that for these constructs, the return type needs to be a <code>table</code> or <code>setof</code> type. The <code>RETURN QUERY</code> cannot be used for returning  a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.</p>
+<p><strong>Note that <code>TABLE</code> and <code>SETOF</code> types can only be used as a return type of a function.</strong></p>
 <h2 id="procedures">Procedures<a class="headerlink" href="#procedures" title="Permanent link">&para;</a></h2>
 <p>To exectue a stored procedure, use:</p>
 <pre><code class="language-SQL">CALL &lt;procedure name&gt;(&lt;procedure arguments&gt;);
@@ -901,37 +986,6 @@ LANGUAGE &lt;language name&gt;
 ...
 
 CALL compute_speeds_for_segments(1::smallint);
-</code></pre>
-<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
-<p>In PostgreSQL, all variables must be <a href="https://www.postgresql.org/docs/current/plpgsql-declarations.html"><em>declared</em></a> before assignmant in the <code>DECLARE</code> block which is before the sql body of the function/procedure/<code>DO</code>. The syntax is:</p>
-<pre><code class="language-SQL">&lt;variable name&gt; &lt;variable type&gt;[ = &lt;varianle value&gt;];
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-PostgreSQL">CREATE OR REPLACE PROCEDURE compute_speeds_for_segments()
-    LANGUAGE plpgsql
-AS
-$$
-DECLARE
-    dataset_quality smallint = 1;
-BEGIN
-    ...
-</code></pre>
-<p>The, the value of a variable can be change using the classical assignment syntax:</p>
-<pre><code class="language-SQL">&lt;variable name&gt; = &lt;varianle value&gt;;
-</code></pre>
-<p>Be carful to <strong>not use a variable name equal to the name of some of the columns</strong> used in the same context, which results in a name clash.</p>
-<p>Nothe that <strong><code>:=</code> is also a valid assignment operator</strong>. There is no difference between <code>=</code> and <code>:=</code> in plpgsql. The <code>:=</code> operator is sometimes preferred to avoid confusion with the <code>=</code> operator used for comparison. </p>
-<h3 id="assigning-a-value-to-a-variable-using-sql">Assigning a value to a variable using SQL<a class="headerlink" href="#assigning-a-value-to-a-variable-using-sql" title="Permanent link">&para;</a></h3>
-<p>There are two options how to assign a value to a variable using SQL:</p>
-<ul>
-<li>using the <code>INTO</code> clause in the <code>SELECT</code> statement</li>
-<li>using a <code>SELECT</code> statement as rvlaue of the assignment</li>
-</ul>
-<p>Example with <code>INTO</code>:</p>
-<pre><code class="language-PostgreSQL">SELECT name INTO customer_name FROM customers WHERE id = 1
-</code></pre>
-<p>EXAMPLE with <code>SELECT</code> as rvalue:</p>
-<pre><code class="language-PostgreSQL">customer_name = (SELECT name FROM customers WHERE id = 1)
 </code></pre>
 <h2 id="deciding-the-language">Deciding the language<a class="headerlink" href="#deciding-the-language" title="Permanent link">&para;</a></h2>
 <p>For simple statements, we can use the SQL language. We need the PL/pgSQL if:</p>
@@ -1080,22 +1134,6 @@ ORDER BY RANDOM()
 <li><a href="https://postgis.net/docs/ST_MakePoint.html"><code>ST_MakePoint</code></a>: creates a point geometry from the given coordinates.</li>
 <li><a href="https://postgis.net/docs/ST_Area.html"><code>ST_Area</code></a>: computes the area of a geometry. The units of the result are the same as the units of the <code>SRID</code> of the geometry (use UTM coordinate system for getting the area in square meters).</li>
 </ul>
-<h1 id="pgrouting">PgRouting<a class="headerlink" href="#pgrouting" title="Permanent link">&para;</a></h1>
-<p><a href="https://pgrouting.org/">PgRouting</a> is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:</p>
-<ul>
-<li>finding the strongly connected components: <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0">`pgr_strongComponents</a></li>
-<li>graph contraction/simplification</li>
-</ul>
-<h2 id="finding-strongly-connected-components">Finding strongly connected components<a class="headerlink" href="#finding-strongly-connected-components" title="Permanent link">&para;</a></h2>
-<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a> finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:</p>
-<ul>
-<li><code>id</code>, </li>
-<li><code>source</code>,</li>
-<li><code>target</code>, </li>
-<li><code>cost</code>,</li>
-<li><code>reverse_cost</code>.</li>
-</ul>
-<p>The first three parameters are obvious. The cost parameter does not have any effect. <strong>You should provide a negative <code>reverse_cost</code>, othervise, the edge will be considered as bidirectional!</strong></p>
 <h1 id="plpgsql">PL/pgSQL<a class="headerlink" href="#plpgsql" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.postgresql.org/docs/current/plpgsql.html">PL/pgSQL</a> is a procedural language available in PostgreSQL databases. It can be used inside:</p>
 <ul>
@@ -1115,8 +1153,77 @@ END
 <p>Here, the <code>DECLARE</code> part is optional.</p>
 <p>In a block, each statement or declaration ends with a semicolon.</p>
 <p>We can nest the blocks, i.e., we can put a block inside another block, between the <code>BEGIN</code> and <code>END</code> keywords. In this case, we put a semicolon after the inner block. Only the outer block that contains the whole content of the function/procedure/<code>DO</code> command does not require a semicolon.</p>
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<p>In PL/PgSQL, all variables must be <a href="https://www.postgresql.org/docs/current/plpgsql-declarations.html"><em>declared</em></a> before assignmant in the <code>DECLARE</code> block which is before the sql body of the function/procedure/<code>DO</code>. The syntax is:</p>
+<pre><code class="language-SQL">&lt;variable name&gt; &lt;variable type&gt;[ = &lt;varianle value&gt;];
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-PostgreSQL">CREATE OR REPLACE PROCEDURE compute_speeds_for_segments()
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    dataset_quality smallint = 1;
+BEGIN
+    ...
+</code></pre>
+<p>The, the value of a variable can be change using the classical assignment syntax:</p>
+<pre><code class="language-SQL">&lt;variable name&gt; = &lt;varianle value&gt;;
+</code></pre>
+<p>Be carful to <strong>not use a variable name equal to the name of some of the columns</strong> used in the same context, which results in a name clash.</p>
+<p>Nothe that <strong><code>:=</code> is also a valid assignment operator</strong>. There is no difference between <code>=</code> and <code>:=</code> in plpgsql. The <code>:=</code> operator is sometimes preferred to avoid confusion with the <code>=</code> operator used for comparison. </p>
+<h3 id="assigning-a-value-to-a-variable-using-sql">Assigning a value to a variable using SQL<a class="headerlink" href="#assigning-a-value-to-a-variable-using-sql" title="Permanent link">&para;</a></h3>
+<p>There are two options how to assign a value to a variable using SQL:</p>
+<ul>
+<li>using the <code>INTO</code> clause in the <code>SELECT</code> statement</li>
+<li>using a <code>SELECT</code> statement as rvlaue of the assignment</li>
+</ul>
+<p>Example with <code>INTO</code>:</p>
+<pre><code class="language-PostgreSQL">SELECT name INTO customer_name FROM customers WHERE id = 1
+</code></pre>
+<p>EXAMPLE with <code>SELECT</code> as rvalue:</p>
+<pre><code class="language-PostgreSQL">customer_name = (SELECT name FROM customers WHERE id = 1)
+</code></pre>
+<p>Note that the behavior of the assignment may not be intuitive:</p>
+<ul>
+<li><strong>if the <code>SELECT</code> statement returns no rows, the variable is set to <code>NULL</code></strong></li>
+<li>if the <code>SELECT</code> statement returns more than one row, an error is raised</li>
+</ul>
 <h2 id="functions-and-procedures">Functions and procedures<a class="headerlink" href="#functions-and-procedures" title="Permanent link">&para;</a></h2>
-<p>The syntax of a PL/pgSQL function content is a <em>block</em></p>
+<p>The root of a PL/pgSQL function content is a <a href="#blocks"><em>block</em></a>.</p>
+<h3 id="returning-data">Returning data<a class="headerlink" href="#returning-data" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING">Documentation</a></p>
+<p>When using SQL language, we can return the data just by executing a <code>SELECT</code> statement:</p>
+<pre><code class="language-SQL">CREATE OR REPLACE FUNCTION &lt;function name&gt; (&lt;parameters&gt;)
+LANGUAGE SQL
+AS
+$$
+SELECT ...
+$$
+</code></pre>
+<p>When using PL/pgSQL, we have to use the <code>RETURN</code> statement. To make it even more complicated, there are three versions of the <code>RETURN</code> statement:</p>
+<ul>
+<li><code>RETURN &lt;expression&gt;</code>: This one is for:<ul>
+<li>returning a single scalar value</li>
+<li>return from function with return type <code>void</code>. In this case, the <code>&lt;expression&gt;</code> is empty.</li>
+</ul>
+</li>
+<li><code>RETURN NEXT &lt;expression&gt;</code> and <code>RETURN QUERY &lt;query&gt;</code>: These are for returning a set of rows.</li>
+</ul>
+<p>As the <code>RETURN NEXT</code> and <code>RETURN QUERY</code> do not terminate the function, we can mix them with the <code>RETURN</code> statement. Additionally, the <code>RETURN QUERY</code> can be used multiple times in a single function and therefore, it is valid to use all three versions in a single function.</p>
+<h4 id="return-next-and-return-query"><code>RETURN NEXT</code> and <code>RETURN QUERY</code><a class="headerlink" href="#return-next-and-return-query" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING-RETURN-NEXT">Documentation</a></p>
+<p>For returning a set of rows (<code>table</code> or <code>setof</code> type) in <code>PL/PgSQL</code> , we have to use the <code>RETURN NEXT</code> or <code>RETURN QUERY</code> statement. Besides the fact that these statements are used for returning a set of rows, there is another important difference between them and the <code>RETURN</code> statement: <strong>they do not terminate the execution of the function</strong>. This is useful as sometimes, we need to do some cleanup after selecting the rows to be returned from function, or we need to build the result in a loop. In classical programming languages, we use variables for this purpose. In <code>PG/plSQL</code>, we can also use the <a href="https://www.postgresql.org/docs/current/plpgsql-control-structures.html#PLPGSQL-STATEMENTS-RETURNING"><code>RETURN NEXT</code> and <code>RETURN QUERY</code></a> constructs. Example:</p>
+<pre><code class="language-PostgreSQL">RETURN QUERY SELECT ...;
+DROP TABLE target_ways;
+RETURN;
+</code></pre>
+<p>The <code>RETURN QUERY</code> differs from <code>RETURN NEXT</code> in following ways:</p>
+<ul>
+<li>its argument is a query, not an expression. Therefore we can use it directly with the <code>SELECT</code> statement, instead of using a variable.</li>
+<li>it appends the result of the query to the result set. Therefore, it can be used multiple times in a single function.</li>
+<li>it cannot be used for returning a single value even if the query returns a single value. If we have a single value return type and need to do some postprocessing between selecting the value and returning from the function, we have to use a variable instead.</li>
+</ul>
 <h2 id="branching">Branching<a class="headerlink" href="#branching" title="Permanent link">&para;</a></h2>
 <p>PL/pgSQL has the following branching:</p>
 <pre><code class="language-SQL">IF &lt;condition&gt; THEN
@@ -1129,14 +1236,20 @@ END
 ]
 END IF
 </code></pre>
+<p>Note that <code>NULL</code> values are treated the same as in SQL: <strong>if the condition evaluates to <code>NULL</code>, the branch is not executed</strong>. This is different from other programming languages, where <code>NULL</code> is treated as <code>false</code>.</p>
 <h2 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html">documentation</a>.</p>
 <p>Basic logging can be done using the <code>RAISE</code> command:</p>
 <pre><code class="language-SQL">RAISE NOTICE 'Some message';
 </code></pre>
 <p>We can add parameters by using the <code>%</code> placeholder:</p>
-<pre><code class="language-SQL">RAISE NOTICE 'Some message %', &lt;variable or SQL command&gt;;
+<pre><code class="language-SQL">RAISE NOTICE 'Some message %', &lt;expression&gt;;
 </code></pre>
-<p>For more, see the <a href="https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html">documentation</a>.</p>
+<p>Only scalar expressions are allowed as parameters. If we need to log multiple rows, we have to use a loop:</p>
+<pre><code class="language-SQL">FOR row IN SELECT ... LOOP
+    RAISE NOTICE 'Some message %, %', row.column_1, row.column_2;
+END LOOP;
+</code></pre>
 <h2 id="executing-functions">Executing functions<a class="headerlink" href="#executing-functions" title="Permanent link">&para;</a></h2>
 <p>In SQL, any function is executed using the <code>SELECT</code> statement:</p>
 <pre><code class="language-SQL">SELECT * FROM &lt;function name&gt;(&lt;function arguments&gt;); -- for functions with return value
@@ -1158,11 +1271,12 @@ EXCEPTION
         &lt;exception handling&gt;
 END
 </code></pre>
-<p>The list of valid exception names can be found in the <a href="https://www.postgresql.org/docs/current/errcodes-appendix.html">documentation</a>. The most common exceptions are:</p>
+<p>The list of built-in exception codes can be found in the <a href="https://www.postgresql.org/docs/current/errcodes-appendix.html">documentation</a>. The most common exceptions are:</p>
 <ul>
 <li><code>P0001</code>, <code>raise_exception</code>: A user-raised exception that does not specify the SQLSTATE.</li>
 <li><code>00000</code>, <code>successful_completion</code>: The normal completion of a statement. No exception should ever be raised with this SQLSTATE.</li>
 </ul>
+<p>Apart from the built-in codes, we can introduce our own. They have to be five characters long and start with a letter.</p>
 <p>The <code>&lt;exception handling&gt;</code> part can be any valid PL/pgSQL code. It can contain multiple statements and can be nested.</p>
 <p>The <code>&lt;exception condition&gt;</code> can have three forms:</p>
 <ul>
@@ -1191,6 +1305,23 @@ RAISE &lt;another level&gt; 'Some message'; -- just a message
 <p>The result is stored in the variable <code>&lt;variable&gt;</code>.</p>
 <p>Note that this constract is not available in the SQL queries but only in a PL/pgSQL block.</p>
 <p>For other diagnostic fields, see the <a href="https://www.postgresql.org/docs/current/plpgsql-statements.html#PLPGSQL-STATEMENTS-DIAGNOSTICS">documentation</a>.</p>
+<h2 id="transaction-management">Transaction management<a class="headerlink" href="#transaction-management" title="Permanent link">&para;</a></h2>
+<p>By default, PostgreSQL starts a transaction at the beginning of the outermost <em>block</em>, and end it at the end of the block.</p>
+<p>We can manually commit or rollback the transaction, but only inside a procedure that is on a procedure-only call stack:</p>
+<ul>
+<li><code>procedure 1 -&gt; procedure 2 -&gt; procedure 3</code>: all three procedures can commit or rollback the transaction</li>
+<li><code>procedure 1 -&gt; function 2 -&gt; procedure 3</code>: only procedure 1 can commit or rollback the transaction</li>
+<li><code>function 1 -&gt; procedure 2 -&gt; function 3</code>: neither procedure nor function can commit or rollback the transaction.</li>
+</ul>
+<h3 id="subtransactions">Subtransactions<a class="headerlink" href="#subtransactions" title="Permanent link">&para;</a></h3>
+<p>So far, we covered the top-level transactions. However, there are also subtransactions. Subtransactions cannot be handled manually, however, we can manipulate them, if we know the logic of the automatic subtransaction management.</p>
+<p>The subtransactions are started:</p>
+<ul>
+<li>inside each block with the exception management<ul>
+<li>these subtransactions are rolled back if an exception is raised</li>
+</ul>
+</li>
+</ul>
 <h1 id="psql"><code>psql</code><a class="headerlink" href="#psql" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.postgresql.org/docs/current/app-psql.html">Documentation</a></p>
 <p><code>psql</code> is a basic command line utitilty for manipulating postgres database. </p>
@@ -1370,12 +1501,51 @@ RAISE &lt;another level&gt; 'Some message'; -- just a message
 <p>To check if a specific database exists, we can use the following query:</p>
 <pre><code class="language-SQL">SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '&lt;db name&gt;');
 </code></pre>
+<h1 id="pgrouting">PgRouting<a class="headerlink" href="#pgrouting" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.pgrouting.org/latest/en/index.html">documentation</a></p>
+<p><a href="https://pgrouting.org/">PgRouting</a> is a PostgreSQL extension focused on graph/network manpulation. It contains functions for:</p>
+<ul>
+<li>finding the strongly connected components: <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a></li>
+<li><a href="https://docs.pgrouting.org/latest/en/contraction-family.html">graph contraction/simplification</a>: <a href="https://docs.pgrouting.org/latest/en/pgr_contraction.html"><code>pgr_contraction</code></a></li>
+<li>creating vertices from edges: <a href="https://docs.pgrouting.org/latest/en/pgr_createVerticesTable.html"><code>pgr_createVerticesTable</code></a></li>
+</ul>
+<h2 id="finding-strongly-connected-components">Finding strongly connected components<a class="headerlink" href="#finding-strongly-connected-components" title="Permanent link">&para;</a></h2>
+<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_strongComponents.html#index-0"><code>pgr_strongComponents</code></a> finds the strongly connected components of a graph. The only parameter of the script is a query that should return edge data in the folowing format:</p>
+<ul>
+<li><code>id</code>, </li>
+<li><code>source</code>,</li>
+<li><code>target</code>, </li>
+<li><code>cost</code>,</li>
+<li><code>reverse_cost</code>.</li>
+</ul>
+<p>The first three parameters are obvious. The cost parameter does not have any effect. <strong>You should provide a negative <code>reverse_cost</code>, othervise, the edge will be considered as bidirectional!</strong></p>
+<h2 id="creating-vertices-from-edges">Creating vertices from edges<a class="headerlink" href="#creating-vertices-from-edges" title="Permanent link">&para;</a></h2>
+<p>The function <a href="https://docs.pgrouting.org/latest/en/pgr_createVerticesTable.html"><code>pgr_createVerticesTable</code></a> creates a table of vertices from a table of edges. The function has the following parameters:</p>
+<ul>
+<li><code>edges_table</code>: the name of the table with edges. It must be a standard table, temporary tables are not supported.</li>
+<li><code>the_geom</code>: the name of the geometry column in the <code>edges_table</code></li>
+<li><code>source</code>: the name of the source column in the <code>edges_table</code></li>
+<li><code>target</code>: the name of the target column in the <code>edges_table</code></li>
+</ul>
+<p>The return value is <code>OK</code> if the function was successful and <code>FAIL</code> if it was not.</p>
+<p>The created vertices table is named <code>&lt;edges_table&gt;_vertices_pgr</code> and contains the following columns:</p>
+<ul>
+<li><code>id</code>: the id of the vertex</li>
+<li><code>the_geom</code>: the geometry of the vertex</li>
+<li><code>cnt</code>: the number of edges that are connected to the vertex</li>
+<li><code>chk</code>: an integer that indicates if the vertex might have a problem. </li>
+<li><code>ein</code>: the number of incoming edges</li>
+<li><code>eout</code>: the number of outgoing edges</li>
+</ul>
+<p>Note that <strong>only the <code>id</code>, and <code>the_geom</code> columns are filled with data. The other columns are filled with <code>NULL</code>.</strong> </p>
+<p>To fill the <code>cnt</code> and <code>chk</code> columns, we can use the <a href="https://docs.pgrouting.org/latest/en/pgr_analyzeGraph.html"><code>pgr_analyzeGraph</code></a> function. </p>
+<p>To fill all columns, we need to use the <a href="https://docs.pgrouting.org/latest/en/pgr_analyzeOneway.html"><code>pgr_analyzeOneway</code></a> function. However, this function is cumbersome to use, as it requires a lot of parameters.</p>
 <h1 id="testing-with-pgtap">Testing with PgTAP<a class="headerlink" href="#testing-with-pgtap" title="Permanent link">&para;</a></h1>
 <p><a href="https://pgtap.org/documentation.html">Official documentation</a></p>
-<p><a href="https://pgtap.org/">PgTAP</a> is the only testing framework for PostgreSQL.</p>
+<p><a href="https://pgtap.org/">PgTAP</a> is the only testing framework for PostgreSQL. It is a system framwork: it requires administrative privileges to install.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
-<p>If you are using Linux, you may (depending on your distribution) be able to use you distribution’s package management system to install pgTAP. For instance, on Debian, Ubuntu, or Linux Mint pgTAP can be installed with the command: <code>sudo apt-get install pgtap</code></p>
+<p>If you are using Linux, you may (depending on your distribution) be able to use you distribution's package management system to install pgTAP. For instance, on Debian, Ubuntu, or Linux Mint pgTAP can be installed with the command: <code>sudo apt-get install pgtap</code></p>
 <p>On other systems pgTAP has to be downloaded and built. First, download pgTAP from <a href="https://pgxn.org/dist/pgtap/">PGXN</a> (click the green download button in the upper-right). Extract the downloaded zip file, and (at the command line) navigate to the extracted folder.</p>
 <p>To build pgTAP and install it into a PostgreSQL database, run the following commands:</p>
 <pre><code class="language-sh">make
@@ -1428,8 +1598,10 @@ ROLLBACK; -- Rollback the transaction
 <p>Then, we can use it as:</p>
 <pre><code class="language-bash">pg_prove -d &lt;db name&gt; -U &lt;user name&gt; &lt;test file&gt;
 </code></pre>
-<h2 id="test-functions">Test functions<a class="headerlink" href="#test-functions" title="Permanent link">&para;</a></h2>
+<h2 id="test-as-functions">Test as functions<a class="headerlink" href="#test-as-functions" title="Permanent link">&para;</a></h2>
 <p>Instead of writing the tests in a procedural SQL script, we can write them as functions (<strong>but not procedures!</strong>). This can help as organizing tests and also to prepare the data for the tests.</p>
+<p>Test functions must return the <code>SETOF TEXT</code> type. This correspond to the type returned by the provided <a href="#test-assertions">test assertions</a>.</p>
+<h3 id="test-runner">Test runner<a class="headerlink" href="#test-runner" title="Permanent link">&para;</a></h3>
 <p>There is also a runner function <a href="https://pgtap.org/documentation.html#runtests"><code>runtests</code></a> that can be used to run multiple tests at once:</p>
 <pre><code class="language-SQL">SELECT * FROM runtests();
 </code></pre>
@@ -1441,7 +1613,7 @@ ROLLBACK; -- Rollback the transaction
 <li><code>runtests(&lt;schema&gt;, &lt;pattern&gt;)</code>.</li>
 </ul>
 <p>The <code>schema</code> parameter is used to specify the schema where the tests are searched. The <code>pattern</code> parameter is used to specify the pattern that the test names must match. The pattern uses the same syntax as the <code>LIKE</code> operator in SQL.</p>
-<h3 id="fixtues">Fixtues<a class="headerlink" href="#fixtues" title="Permanent link">&para;</a></h3>
+<h3 id="fixtures">Fixtures<a class="headerlink" href="#fixtures" title="Permanent link">&para;</a></h3>
 <p>Sometimes, we need to call some functions before and after the tests. We can indeed call these functions in from the test functions, but in case we need to run the same functions for multiple tests, it is desirable to automate this process using fixtures. The <code>runtests</code> function supports fixtures, it recognize them by the prefix. Again, only functions, not procedures are supported. The following fixtures are supported:</p>
 <ul>
 <li><code>startup</code>: runs before the tests</li>
@@ -1449,7 +1621,112 @@ ROLLBACK; -- Rollback the transaction
 <li><code>teardown</code>: runs after each test</li>
 <li><code>shutdown</code>: runs after the tests</li>
 </ul>
-<p>Unfortunatelly, the <strong>fixture search does not reflect the <code>&lt;pattern&gt;</code></strong>. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.</p>
+<p>Unfortunatelly, the <strong>fixture search does not reflect the filtration <code>&lt;pattern&gt;</code></strong>. Therefore, all fixtures in the schema are always run. To overcome this, we have to supply a custom function for executing the tests.</p>
+<p>Also note that all the fixtures are executed for all the tests, not just the ones with the matching name. Therefore they cannot be used for preparing the data for individual tests.</p>
+<h3 id="rolling-back">Rolling back<a class="headerlink" href="#rolling-back" title="Permanent link">&para;</a></h3>
+<p>All tests are executed in a transaction and each test is then in a subtransaction. All database changes are rolled back except the ones that are in the <code>startup</code> and <code>shutdown</code> fixtures <a href="https://groups.google.com/g/pgtap-users/c/enU925h6cxU/m/fb0-S3kqBwAJ?pli=1">[source]</a>. Additionally, some changes, e.g. the sequence numbers cannot be rolled back.</p>
+<h2 id="test-assertions">Test assertions<a class="headerlink" href="#test-assertions" title="Permanent link">&para;</a></h2>
+<p>PgTAP provides a set of functions that works as test assertions. All functions have an optional <code>&lt;message&gt;</code> parameter. Notable functions are:</p>
+<ul>
+<li><code>ok(&lt;condition&gt;, &lt;message&gt;)</code>: checks if the <code>&lt;condition&gt;</code> is true</li>
+<li><code>is(&lt;computed&gt;, &lt;expected&gt;, &lt;message&gt;)</code> or <code>isnt(&lt;computed&gt;, &lt;not expected&gt;, &lt;message&gt;)</code>: checks if <code>&lt;computed&gt;</code> and <code>&lt;expected&gt;</code> are the same, or not (respectively).</li>
+<li><code>matches(&lt;text&gt;, &lt;pattern&gt;, &lt;message&gt;)</code> or <code>doesnt_match(&lt;text&gt;, &lt;pattern&gt;, &lt;message&gt;)</code>: checks if <code>&lt;text&gt;</code> matches the <code>&lt;pattern&gt;</code> where <code>&lt;pattern&gt;</code> is a regular expression, or not (respectively).</li>
+<li><code>alike(&lt;text&gt;, &lt;pattern&gt;, &lt;message&gt;)</code> or <code>unalike(&lt;text&gt;, &lt;pattern&gt;, &lt;message&gt;)</code>: checks if <code>&lt;text&gt;</code> is similar to <code>&lt;pattern&gt;</code>, or not (respectively). The <code>LIKE</code> operator is used for the comparison.</li>
+<li><code>cmp_ok(&lt;computed&gt;, &lt;operator&gt;, &lt;expected&gt;, &lt;message&gt;)</code>: checks if <code>&lt;computed&gt;</code> is related to <code>&lt;expected&gt;</code> by the <code>&lt;operator&gt;</code>. The <code>&lt;operator&gt;</code> can be one of the following: <code>=</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>.</li>
+<li><code>isa_ok(&lt;value&gt;, &lt;type&gt;, &lt;message&gt;)</code>: checks if <code>&lt;value&gt;</code> is of type <code>&lt;type&gt;</code>.</li>
+<li><code>throws_ok(&lt;sql&gt;, &lt;error_code&gt;, &lt;error_message&gt;, &lt;message&gt;)</code>: checks if the <code>&lt;sql&gt;</code> throws an exception.<ul>
+<li>all parameters except the <code>&lt;sql&gt;</code> are optional</li>
+</ul>
+</li>
+<li><code>lives_ok(&lt;sql&gt;, &lt;message&gt;)</code>: checks if the <code>&lt;sql&gt;</code> does not throw an exception.</li>
+</ul>
+<p>Additionaly, if the test condition is complicated, we can just manually return using the <code>pass(&lt;message&gt;)</code> or <code>fail(&lt;message&gt;)</code> functions.</p>
+<h3 id="result-set-assertions">Result set assertions<a class="headerlink" href="#result-set-assertions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>results_eq(&lt;sql&gt;, &lt;sql&gt;, &lt;description&gt;)</code>: Compares two SQL query results row-by-row for equality, ensuring integrity and order.</li>
+<li><code>results_eq(&lt;sql&gt;, &lt;array&gt;, &lt;description&gt;)</code>: Compares SQL query results to an array.</li>
+<li><code>results_eq(&lt;cursor&gt;, &lt;cursor&gt;, &lt;description&gt;)</code>: Compares results from two cursors.</li>
+<li><code>results_eq(&lt;sql&gt;, &lt;cursor&gt;, &lt;description&gt;)</code>: Compares SQL query results to cursor results.</li>
+<li><code>results_eq(&lt;cursor&gt;, &lt;array&gt;, &lt;description&gt;)</code>: Compares cursor results to an array.</li>
+<li><code>results_ne(&lt;...&gt;, &lt;description&gt;)</code>: The inverse of <code>results_eq()</code>. Checks if result sets are not equal (accepts the same argument variations as <code>results_eq</code>).</li>
+<li><code>set_eq(&lt;...&gt;, &lt;description&gt;)</code>: Compares result sets for equality, ignoring order (accepts the same argument variations as <code>results_eq</code>).</li>
+<li><code>set_ne(&lt;...&gt;, &lt;description&gt;)</code>: The inverse of <code>set_eq()</code>. Checks if result sets are not equal, ignoring order (accepts the same argument variations as <code>results_eq</code>).</li>
+<li><code>set_has(&lt;sql&gt;, &lt;sql&gt;, &lt;description&gt;)</code>: Checks if the first query's results contain all rows returned by the second query, ignoring order.</li>
+<li><code>set_hasnt(&lt;sql&gt;, &lt;sql&gt;, &lt;description&gt;)</code>: The inverse of <code>set_has</code>. Checks if the first query's results do not contain all rows from the second query.</li>
+<li><code>bag_eq(&lt;sql&gt;, &lt;sql&gt;, &lt;description&gt;)</code>: Compares result sets like <code>set_eq</code> but considers duplicate rows. If a row appears N times in the first query, it must appear N times in the second.</li>
+<li><code>bag_ne(&lt;sql&gt;, &lt;sql&gt;, &lt;description&gt;)</code>: The inverse of <code>bag_eq()</code>.</li>
+<li><code>is_empty(&lt;sql&gt;, &lt;description&gt;)</code>: Checks that the SQL query returns no rows.</li>
+<li><code>isnt_empty(&lt;sql&gt;, &lt;description&gt;)</code>: Checks that the SQL query returns at least one row.</li>
+<li><code>row_eq(&lt;sql&gt;, &lt;record&gt;, &lt;description&gt;)</code>: Checks that the SQL query returns a single row identical to the provided <code>&lt;record&gt;</code>.</li>
+</ul>
+<h2 id="additional-functions-diagnostics">Additional functions( Diagnostics )<a class="headerlink" href="#additional-functions-diagnostics" title="Permanent link">&para;</a></h2>
+<p>The function <a href="https://pgtap.org/documentation.html#diag"><code>diag(&lt;string&gt;, &lt;string&gt;, ...)</code></a>, can be used for outputting diagnostic messages. For example:</p>
+<pre><code class="language-sql">-- Output a diagnostic message if the collation is not en_US.UTF-8.
+SELECT diag(
+     E'These tests expect LC_COLLATE to be en_US.UTF-8,\n',
+     'but yours is set to ', setting, E'.\n',
+     'As a result, some tests may fail. YMMV.'
+)
+  FROM pg_settings
+ WHERE name = 'lc_collate'
+   AND setting &lt;&gt; 'en_US.UTF-8';
+</code></pre>
+<p>which outputs</p>
+<pre><code class="language-plaintext"># These tests expect LC_COLLATE to be en_US.UTF-8,
+# but yours is set to en_US.ISO8859-1.
+# As a result, some tests may fail. YMMV.
+</code></pre>
+<p>This function basically concatenates all the arguments and outputs them as a single line of text. All the arguments have to be strings.</p>
+<h1 id="xml">XML<a class="headerlink" href="#xml" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.postgresql.org/docs/current/functions-xml.html">documentation</a></p>
+<p>PostgreSQL has a built-in support for XML. </p>
+<p>Important functions:</p>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/functions-xml.html#FUNCTIONS-XML-PROCESSING-XPATH"><code>xpath(&lt;path&gt;, &lt;text&gt;, &lt;namespace bindings&gt;)</code></a>: returns an array of XML nodes that match the given <code>&lt;path&gt;</code> evaluated on the given <code>&lt;text&gt;</code>. </li>
+</ul>
+<p>Besides functions, there is a powerful <a href="#xmltable"><code>XMLTABLE</code> expression</a> that can be used to extract tabular data from XML documents.</p>
+<h2 id="handling-xml-namespaces">Handling XML namespaces<a class="headerlink" href="#handling-xml-namespaces" title="Permanent link">&para;</a></h2>
+<p>All XML methods in PostgreSQL require the namespace bindings to be specified, as per the XPath standard. The only exception is when work with XML documents that do not use namespaces.</p>
+<p>We specify the namespace bindings as an array of arrays, where each inner array has two elements: the prefix and the namespace URI. Example:</p>
+<pre><code class="language-SQL">SELECT xpath(
+    '/ns:root/ns:child', 
+    '&lt;root xmlns:ns=&quot;http://example.com/ns&quot;&gt;&lt;child&gt;...&lt;/child&gt;&lt;/root&gt;', 
+    ARRAY[ARRAY['ns', 'http://example.com/ns']]);
+</code></pre>
+<p>Note that the namespace prefixes specified in the bindings are completely unrelated to the prefixes used in the XML document. They may be the same, but they do not have to be. </p>
+<p>Also don't forget that XPath requires the namespace prefixes even for the default namespace. </p>
+<h2 id="xmltable"><code>XMLTABLE</code><a class="headerlink" href="#xmltable" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.postgresql.org/docs/current/functions-xml.html#FUNCTIONS-XML-PROCESSING-XMLTABLE">Documentation</a></p>
+<p><code>XMLTABLE</code> expression can extract tabular data from XML documents. The syntax is as follows:</p>
+<pre><code class="language-SQL">XMLTABLE(
+    [XMLNAMESPACES(&lt;namespace bindings&gt;),]
+    &lt;xpath expression&gt;, PASSING &lt;xml document expression&gt; 
+    COLUMNS
+        &lt;column name&gt; &lt;data type&gt; PATH &lt;xpath relative expression&gt;,
+        ...
+        &lt;column name&gt; &lt;data type&gt; PATH &lt;xpath relative expression&gt;
+)
+</code></pre>
+<p>If the XML document contains namespaces, we have to specify the namespace bindings in the <code>XMLNAMESPACES</code> clause. The <code>&lt;namespace bindings&gt;</code> is a comma-separated list of namespace bindings in the format <code>&lt;namespace URI&gt; AS &lt;prefix&gt;</code>. Example:</p>
+<pre><code class="language-SQL"> XMLNAMESPACES(
+    'http://graphml.graphdrawing.org/xmlns' AS dns,
+    'http://www.yworks.com/xml/yfiles-common/3.0' AS y
+)
+</code></pre>
+<p>The <code>&lt;xpath expression&gt;</code> is an XPath expression that specifies the path to the XML nodes from which we want to extract data. The <code>&lt;xpath relative expression&gt;</code> is then another XPath expression that is relative to the <code>&lt;xpath expression&gt;</code> and specifies the path to the XML nodes or attributes used to fill a specific column.</p>
+<p>The <code>&lt;xml document expression&gt;</code> is an expression that evaluates to an XML document. Typically, it is a column in the select statement, or a subquery. Example:</p>
+<pre><code class="language-SQL">SELECT some_element FROM xml_documents, XMLTABLE(
+    XMLNAMESPACES(...),
+    '/dns:graph/dns:node' PASSING xml_document.xml_data
+    COLUMNS some_element TEXT PATH ...
+) FROM xml_documents WHERE id = 1;
+</code></pre>
+<p>Note that the <em><code>XMLTABLE</code></em> expression may only be used in the <code>FROM</code> clause. Therefore, if we, for example, need to join the result of the <code>XMLTABLE</code>, instead of using: </p>
+<pre><code class="language-SQL">JOIN XMLTABLE(...)
+</code></pre>
+<p>we have to use:</p>
+<pre><code class="language-SQL">JOIN (SELECT &lt;columns&gt; FROM XMLTABLE(...))
+</code></pre>
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
 <p>If the db tools are unresponsive on certain tasks/queries, check if the table needed for those queries is not locke by some problematic query.</p>
 <h2 id="select-postgresql-version">Select PostgreSQL version<a class="headerlink" href="#select-postgresql-version" title="Permanent link">&para;</a></h2>
@@ -1467,12 +1744,14 @@ ROLLBACK; -- Rollback the transaction
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

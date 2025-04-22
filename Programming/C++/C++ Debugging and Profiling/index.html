@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="./" class="dropdown-item active">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -348,6 +346,9 @@
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
                             <li class="navitem">
+                                <a href="../../../XML/" class="nav-link">XML</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
                         </ul>
@@ -359,7 +360,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
+                                <a rel="prev" href="../C%20Manual/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -877,13 +878,14 @@ Basic usage:</p>
 </ol>
 <p>Optionally, if we want the tests to be run automatically by the <code>ctest</code>, we add the <code>gtest_discover_tests</code> command to the <code>CMakeLists.txt</code>.</p>
 <h2 id="debugging-tests">Debugging tests<a class="headerlink" href="#debugging-tests" title="Permanent link">&para;</a></h2>
-<p>To debug a test, you need to run it with the flag some flags:</p>
+<p>For test debugging, some google test options may be usefull:</p>
 <ul>
-<li><code>--gtest_break_on_failure</code>. This flag breaks the test on a failed test or failed assertion.</li>
-<li><code>--gtest_catch_exceptions=0</code>. This flag stops google test from catching exceptions, hence the program breaks at the place where the exception occurred, which is what you want</li>
-<li><code>--gtest_filter=Some_test_prefix*</code> for choosing just some tests</li>
+<li><code>--gtest_break_on_failure</code>: breaks the test on a failed test or failed assertion.</li>
+<li><code>--gtest_catch_exceptions=0</code>: stops google test from catching exceptions, hence the program crashes on an unhandled exception.</li>
+<li>Without this, we cannot use breakpoints on unhandled exceptions.</li>
+<li>Note that this way, we will not see the exception message, as C++ default exception handler does not print the message.</li>
+<li><code>--gtest_filter=Some_test_prefix*</code>: filter tests by name. Astrix (<code>*</code>) can be used as a wildcard for both prefix and suffix. The pattern is <code>&lt;test_suite_name&gt;.&lt;test_name&gt;</code>.</li>
 </ul>
-<p>Also, you need to run tests from Visual Studio, otherwise, the program ends when clicking on the retry button.</p>
 <h1 id="visual-studio-errors">Visual Studio Errors<a class="headerlink" href="#visual-studio-errors" title="Permanent link">&para;</a></h1>
 <h2 id="false-errors-appears-in-a-file-in-many-files">False errors appears in a file / in many files<a class="headerlink" href="#false-errors-appears-in-a-file-in-many-files" title="Permanent link">&para;</a></h2>
 <ol>
@@ -948,12 +950,14 @@ Basic usage:</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

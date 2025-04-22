@@ -12,13 +12,10 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -41,6 +38,10 @@
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">C++</a>
     <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../C%2B%2B/C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
             
 <li>
     <a href="../../C%2B%2B/C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
@@ -226,8 +227,14 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../../../Ubuntu" class="nav-link">Ubuntu</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
@@ -314,15 +321,6 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
-</li>
-                                </ul>
-                            </li>
                             <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
@@ -346,6 +344,9 @@
                             </li>
                             <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
                             <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
@@ -396,6 +397,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#null-in-sql" class="nav-link">NULL in SQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#with" class="nav-link">WITH</a>
               <ul class="nav flex-column">
               </ul>
@@ -424,6 +430,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#union" class="nav-link">UNION</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#select-hardcoded-values" class="nav-link">Select hardcoded values</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -659,6 +669,29 @@
 </ul>
 <p>When we need a constant value for other types, we usually use either a constructor function or a specifically formatted string literal.</p>
 <p><strong>String literals can also span multiple lines</strong>, we do not need any operator to split the line (unlike in Python and despite the JetBrains IDEs adds a string concatenation operator automatically on newline).</p>
+<h1 id="null-in-sql">NULL in SQL<a class="headerlink" href="#null-in-sql" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Null_(SQL)">wiki</a></p>
+<p>In SQL <code>NULL</code> is a marker for missing values. </p>
+<p>When using NULL as an operand, it propagates, meaning that the operation returns NULL:</p>
+<pre><code class="language-SQL">SELECT 1 + NULL; -- returns NULL
+SELECT 'The value is ' || NULL; -- returns NULL
+</code></pre>
+<p>This may be counterintuitive, especially in the case of comparison operators:</p>
+<pre><code class="language-SQL">SELECT 1 = NULL; -- returns NULL
+SELECT 1 != NULL; -- returns NULL
+SELECT NULL = NULL; -- returns NULL
+</code></pre>
+<p>The only exception are logical operators:</p>
+<pre><code class="language-SQL">SELECT TRUE OR NULL; -- returns TRUE
+SELECT FALSE AND NULL; -- returns FALSE
+</code></pre>
+<p>To solve the problem with comparison operators, SQL has special operators <code>IS NULL</code> and <code>IS NOT NULL</code>:</p>
+<pre><code class="language-SQL">SELECT 1 IS NULL; -- returns FALSE
+SELECT 1 IS NOT NULL; -- returns TRUE
+SELECT NULL IS NULL; -- returns TRUE
+SELECT NULL IS NOT NULL; -- returns FALSE
+</code></pre>
+<p>Basically, for any <code>a</code> that evaluates to <code>NULL</code>, <code>a IS NULL</code> returns <code>TRUE</code>, while <code>a IS NOT NULL</code> returns <code>FALSE</code>. For any other value of <code>a</code>, the opposite is true.</p>
 <h1 id="with">WITH<a class="headerlink" href="#with" title="Permanent link">&para;</a></h1>
 <p>Statement for defining variables pointing to temporary data, that can be used in the related <code>SELECT</code> statement. Usage:</p>
 <pre><code class="language-sql">WITH &lt;var&gt; 
@@ -705,6 +738,13 @@ AS (&lt;sql that assigns data to var&gt;)
 <p><code>UNION</code> and <code>UNION ALL</code> are important keywords that enables to merge query results verticaly, i.e., appending rows of one query to the results set of another.</p>
 <p>The difference between them is that <code>UNION</code> discards duplicate rows, while <code>UNION ALL</code> keeps them</p>
 <p>The <code>UNUION</code> statement appends one <code>SELECT</code> statement to another, but some statements that appears to be part of the <code>SELECT</code> needs to stay outside (i.e., be specified just once for the whole union), namely <code>ORDER BY</code>, and <code>LIMIT</code>. In contrast, the <code>GROUP BY</code> and <code>HAVING</code> statement stays inside each individual select.</p>
+<h2 id="select-hardcoded-values">Select hardcoded values<a class="headerlink" href="#select-hardcoded-values" title="Permanent link">&para;</a></h2>
+<p>For selecting hardcoded values, we can use the <code>VALUES</code> statement. The syntax is:</p>
+<pre><code class="language-sql">VALUES (&lt;column 1&gt;, &lt;column 2&gt;, ...), (&lt;column 1&gt;, &lt;column 2&gt;, ...), ...
+</code></pre>
+<p>Full example of selecting hardcoded values:</p>
+<pre><code class="language-sql">SELECT * FROM (VALUES (1, 'a'), (2, 'b')) AS t (id, label)
+</code></pre>
 <h1 id="join">JOIN<a class="headerlink" href="#join" title="Permanent link">&para;</a></h1>
 <p>Classical syntax:</p>
 <pre><code class="language-SQL">JOIN &lt;table name&gt; [[AS] &lt;ALIAS&gt;] ON &lt;CONDITION&gt;
@@ -1095,12 +1135,14 @@ GROUP BY people.id
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
