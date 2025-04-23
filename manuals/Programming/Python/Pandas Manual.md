@@ -520,6 +520,28 @@ Important parameters for both the constructor and the factory functions:
 - `names`: the names of the index levels
 
 
+### Shifting a time/date index
+To shift a time or date or datetime index, we can use the [`shift`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) function with the `freq` parameter.
+
+The `freq` use is important, as it change the mode of operation of the `shift` function: 
+
+- if `freq` is not specified, the index stays the same and the data are shifted by the specified number of periods.
+- if `freq` is specified, the index is shifted by the specified number of periods while the data stay in the same position.
+
+Example:
+```python
+df.index = pd.date_range('2021-01-01', periods=10, freq='1h')
+df.shift(1, freq='1h') # shifts the index by 1 hour
+df.shift(1) # shifts the data by 1 hour against the index
+```
+
+**The shift function is not defined for MultiIndex!**. For that, we need to create the index level manually:
+```python
+df.index = pd.MultiIndex.from_product([['one', 'two'], pd.date_range('2021-01-01', periods=10, freq='1h')])
+new_index = df.index.levels[1] + pd.Timedelta(hours=1)
+df.index = df.index.set_levels(new_index, level=1)
+```
+
 
 
 # Aggregation
@@ -608,16 +630,34 @@ In other words, the custom function only sees the dataframe/series representing 
 
 
 ## Time aggregation
-We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the [`resample`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html) function. Example:
-```Python
-df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1D'))
+[documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#resampling)
 
-df.resample('1H').sum()
+We can also aggregate by time. For that, we need an index or column with datetime values. We use the [`resample`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html) function. Example:
+```Python
+df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1h'))
+
+df.resample('1D').sum()
+
+# results in
+#             col1
+# 2021-01-01     55
 ```
+
+The groups are created by the following logic:
+
+- the groups are aligned to the index of the dataframe (not to the records)
+- each group has the duration specified by the `rule` parameter
+- each group is labeled by the start of the group
+    - e.g. for `rule='1D'`, the group is labeled by the start of the day, if `rule='1h'`, then `12:00` means 12:00-13:00
+- records are assigned to the group based on their datetime value
+- the records that exactly match the start/end of the group are assigned depending on the `closed` parameter
+    - `left` (default): the record is assigned to the group with the matching start
+    - `right`: the record is assigned to the group with the matching end
+
 There are two possible results of resampling (both may appear in the same dataframe):
 
-- **Downsampling**: multiple values in the same time slot.
-- **Upsampling**: no values in the time slot. The missing values are filled with `NaN`.
+- **Downsampling**: multiple records in the same time group.
+- **Upsampling**: no values in the group. The missing values are filled with `NaN`.
     - note that the `NaN` automatically changes the data type of the column to `float`, and it is not reverted by filling the missing values later. Therefore, when upsampling, we have to manually change the data type of each column to the original data type after filling the values.
     - We can use the [`ffill`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html) function to fill in the missing values. Example:
         ```Python
