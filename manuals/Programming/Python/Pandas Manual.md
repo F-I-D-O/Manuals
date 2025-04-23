@@ -23,10 +23,27 @@ The solution is usually:
 
 
 ## Categorical data
-Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:
+Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the [`Categorical`](https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html) class.
 
-- `categories`: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the `Categorical` constructor raises an error. If the categories contain values that are not in the data, the values are converted to `NaN`.
+Typically, we:
+
+1. define the categorical type:
+    ```python
+    cat_type = pd.Categorical(categories=['a', 'b', 'c'])
+    ```
+
+2. use the categorical type to, e.g., convert a column to the categorical type:
+    ```python
+    df['col'] = df['col'].astype(cat_type)
+    ```
+
+Important parameters of the `Categorical` constructor:
+
+- `categories`: By default, the categories are inferred from the data. However, we can specify the categories explicitly using the `categories` parameter. When using this parameter, each value is converted to the matching category specified in the list. Note that **the category must to be an exact match, including the data type, case (when using strings), etc**. Unmatched values are converted to `NaN`.
 - `ordered`: if `True`, the categories are ordered in the order of the `categories` parameter.  
+
+### Reading categorical data from a file
+We can read data into categories using the `dtype` parameter. However, this way, we cannot specify the categories explicitly. To do that, we need to read the data into the correct data type, and then convert the column/index to the categorical type after the dataframe is created.
 
 
 ## Datetime
@@ -463,6 +480,9 @@ df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 Important parameters:
 
 - `fill_value`: the value to use for missing values. By default, the missing values are filled with `NaN`.
+- `level`: the level to reindex in case of a multi-index.
+
+Note that the **`reindex` function can only be used for unique values**. If we have a multi-index with duplicate values on the level we want to reindex, we need to create a new index from scratch.
 
 
 ### Creating index from scratch
