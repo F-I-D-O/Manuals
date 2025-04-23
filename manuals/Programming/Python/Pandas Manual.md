@@ -426,8 +426,8 @@ s.name = '<new name>'
 
 
 
-# Working with the index
-Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index. 
+# Index
+Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index.
 
 ## Selecting just a single index level from a multi-index
 If we want to select just a single index level, we can use the [`get_level_values`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.get_level_values.html) function:
@@ -443,14 +443,20 @@ df.index.levels[<level>]
 However, **this way, we can get outdated values**, as the values are not always updated when the index is changed. To get the updated values, we need to call the method [`remove_unused_levels`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.remove_unused_levels.html) after each change of the index.
 
 
-## Changing the index
-
-### Using columns as a new index
-For that, we can use the [`set_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html) function.
+## Renaming the index
+The [`Index.rename`](https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html) function can be used for that.
 
 
-### Using an existing index to create a new index
-For that, we can use the [`reindex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html) function. The first parameter is the new index. Example:
+## Replacing the index
+We have several options how to replace the index with a new index:
+
+- Using columns as a new index: for that, we can use the [`set_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html) function.
+- Using an existing index to create a new index
+For that, we can use the [`reindex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html) function.
+- Creating index from scratch
+
+### `reindex`
+The first parameter is the new index. Example:
 ```python
 df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 ```
@@ -469,24 +475,42 @@ We can also assign a range directly to the index:
 df.index = range(5)
 ```
 
-To create more complicated indices, dedicated functions can be used:
+### Creating multi-index
+[documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#hierarchical-indexing-multiindex)
 
-- [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables
+There is a [`MultiIndex` constructor](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas-multiindex) that can be used to create a multi-index. However, most of the time, it is more convenient to use dedicated factory functions:
+
+- [`MultiIndex.from_arrays`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays): creates a multi-index from an array of arrays (e.g. a list of lists). 
+- [`MultiIndex.from_tuples`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples)
+- [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables. Example:
+    ```python
+    df.index = pd.MultiIndex.from_product([['one', 'two'], ['a', 'b']])
+
+    # results in
+    # MultiIndex([
+    #     ('one', 'a'),
+    #     ('one', 'b'),
+    #     ('two', 'a'),
+    #     ('two', 'b'),
+    # ])
+    ```
+
+Important parameters for both the constructor and the factory functions:
+
+- `names`: the names of the index levels
 
 
-## Renaming the index
-The [`Index.rename`](https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html) function can be used for that.
 
 
 # Aggregation
 Analogously to SQL, pandas has a [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) function for aggreagting rows. The usage is as follows:
 ```Python
 group = df.groupby(<columns>) # returns a groupby object grouped by the columns
-sel = group[<columns>] # we can select only some columns from the groupby object
-agg = sel.<aggregation function> # we apply an aggregation function to the selected columns
+selection = group[<columns>] # we can select only some columns from the groupby object
+aggregation = selection.<aggregation function> # we apply an aggregation function to the selected columns
 ```
 
-We can skip the `sel` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
+We can skip the `selection` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
 
 Example (sum):
 ```Python
@@ -500,8 +524,6 @@ df.groupby('col').size()
 ```
 
 Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the **aggregation does not have to actually aggregate the data, it can also transform it**.
-
-In the groupby object, the columns used for grouping are omitted if each group is aggregated to exactly one row. To keep them, we can use the `group_keys` parameter of the `groupby` function.
 
 
 
@@ -572,10 +594,15 @@ df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range
 
 df.resample('1H').sum()
 ```
-The aggregate function is applied to each group in case of multiple values in the same time slot (*downsampling*). In case of no values in the time slot (*upsampling*), the value is filled with `NaN`. We can use the [`ffill`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html) function to fill in the missing values. Example:
-```Python
-df.resample('1H').sum().ffill()
-```
+There are two possible results of resampling (both may appear in the same dataframe):
+
+- **Downsampling**: multiple values in the same time slot.
+- **Upsampling**: no values in the time slot. The missing values are filled with `NaN`.
+    - note that the `NaN` automatically changes the data type of the column to `float`, and it is not reverted by filling the missing values later. Therefore, when upsampling, we have to manually change the data type of each column to the original data type after filling the values.
+    - We can use the [`ffill`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html) function to fill in the missing values. Example:
+        ```Python
+        df.resample('1H').sum().ffill()
+        ```
 
 
 

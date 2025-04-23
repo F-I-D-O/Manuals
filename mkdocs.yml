@@ -7,15 +7,22 @@ markdown_extensions:
 nav:
 - Programming:
   - C++:
+    - C Manual: Programming/C++/C Manual.md
     - C++ Debugging and Profiling: Programming/C++/C++ Debugging and Profiling.md
     - C++ Manual: Programming/C++/C++ Manual.md
     - C++ Workflow: Programming/C++/C++ Workflow.md
     - CMake Manual: Programming/C++/CMake Manual.md
     - Google Test: Programming/C++/Google Test.md
+  - Database:
+    - Database Workflow: Programming/Database/Database Workflow.md
+    - PostgreSQL Debugging and Profiling: Programming/Database/PostgreSQL Debugging
+        and Profiling.md
+    - PostgreSQL Manual: Programming/Database/PostgreSQL Manual.md
+    - SQL Manual: Programming/Database/SQL Manual.md
   - Java:
     - Debugging Java: Programming/Java/Debugging Java.md
     - Jackson: Programming/Java/Jackson.md
-    - Java Programming Guide: Programming/Java/Java Programming Guide.md
+    - Java Manual: Programming/Java/Java Manual.md
     - Java Workflow: Programming/Java/Java Workflow.md
     - Maven: Programming/Java/Maven.md
   - Python:
@@ -39,15 +46,14 @@ nav:
   - HDF: Programming/HDF.md
   - JSON: Programming/JSON.md
   - Native Libraries: Programming/Native Libraries.md
-  - PostgreSQL Manual: Programming/PostgreSQL Manual.md
+  - Perl: Programming/Perl.md
   - Regex: Programming/Regex.md
   - Ruby Workflow: Programming/Ruby Workflow.md
-  - SQL Manual: Programming/SQL Manual.md
 - LaTeX:
   - Latex manual: LaTeX/Latex manual.md
   - LaTeX workflow: LaTeX/LaTeX workflow.md
-- Ubuntu:
-  - Linux Manual: Ubuntu/Linux Manual.md
+- Linux:
+  - Linux Manual: Linux/Linux Manual.md
 - Windows:
   - Excel Manual: Windows/Excel Manual.md
   - PowerPoint: Windows/PowerPoint.md
@@ -62,18 +68,21 @@ nav:
   - RCI cluster: Cloud computing/RCI cluster.md
   - Slurm: Cloud computing/Slurm.md
 - GIS:
+  - GIS formats: GIS/GIS formats.md
   - Overpass Manual: GIS/Overpass Manual.md
   - QGIS: GIS/QGIS.md
 - Images:
   - Midjourney: Images/Midjourney.md
   - Photopea: Images/Photopea.md
 - Arxiv: Arxiv.md
+- Google office apps: Google office apps.md
 - index: index.md
 - Markdown: Markdown.md
 - Network: Network.md
 - Security: Security.md
 - vscode: vscode.md
 - Web Tricks: Web Tricks.md
+- XML: XML.md
 - YAML: YAML.md
 site_name: Manuals
 theme:

@@ -242,7 +242,7 @@ Finally, create a new Python project (either clean, or from existing code) and c
 
 ## Steps
 
-1. [licensing](common.md#licenses)
+1. [licensing](../Common.md#licenses)
 2. check that setup.py contains all requirements: `pipreqs`
 3. release
 4. update the min version in dependencies

@@ -7,7 +7,7 @@ config = yaml.safe_load(open("mkdocs.yml", "r"))
 order = [
     'Programming',
     'LaTeX',
-    'Ubuntu',
+    'Linux',
     'Windows'
 ]
 
