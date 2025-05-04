@@ -605,8 +605,10 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:
 
 - change the repository to a newer one manually or
-- change the url of all repositories to `http://old-releases.ubuntu.com/ubuntu/` and then upgrade the system to the newer version.
-
+- change the url of all repositories to `http://old-releases.ubuntu.com/ubuntu/` and then upgrade the system to the newer version:
+	```bash
+	sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+	```
 
 # String Processing
 
@@ -904,16 +906,18 @@ ls | xargs rm # remove all files in the current directory
 
 
 # Upgrade
-For a simple system upgrade, we can use the following steps:
+For a system upgrade, follow these steps:
 
-1. First run the **update of the current version**.
+1. run the [update of the current version](#managing-packages).
 2. Then optionaly backup the WSL
-3. run `sudo do-release-upgrade`
+3. perform the upgrade:
+	- If a) you are on a LTS version, and b) there is a new LTS version available, run `sudo do-release-upgrade`.
+	- Otherwise, follow the steps in the next section.
 
-However, this only work if there is a LTS version available. If not, the last step will fail. In this case, we can use the `do-release-upgrade -d` command, which upgrades to the latest version, regardless of the LTS status.
+- [Ubuntu versions](https://en.wikipedia.org/wiki/Ubuntu_version_history)
 
-## Upgrade to other version than the latest
-When upgrading to a version other than the latest, we can try the following steps:
+## Manual upgrade
+For manual upgrade, follow these steps:
 
 1. perform steps 1 and 2 from the normal upgrade
 2. open the `/etc/update-manager/release-upgrades` file and set the `Prompt` parameter to `normal` or `lts` (depending on the desired version)

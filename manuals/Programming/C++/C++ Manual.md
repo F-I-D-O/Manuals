@@ -3338,7 +3338,7 @@ int main() {
 	try {
 		<the code of the whole program here>
 	} catch(...) {
-		const std::exception_ptr& eptr = std::current_exception()
+		const std::exception_ptr& eptr = std::current_exception();
 		if (!eptr) {
         	throw std::bad_exception();
 		}

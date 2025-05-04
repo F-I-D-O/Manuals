@@ -379,10 +379,25 @@ There are multiple [profiler options for C++](https://docs.google.com/spreadshee
 
 ## CPU Profiling
 
+### Visual Studio
+In visual studio:
+
+1. Run the program and either wait for breakpoint hit or manually pause the execution
+2. In `Diagnostic Tools` tab, hit the `Enable CPU Profiling` button
+3. Unpause the execution
+4. Pause the execution again, the profiler results covering the period between resume and pause should be available
+
 ### CLion
 [documentation](https://www.jetbrains.com/help/clion/cpu-profiler.html)
 
-CLion profiler is based on the [`perf`](https://perf.wiki.kernel.org/index.php/Main_Page) tool and therefore it is available only on Linux (and WSL). However, in WSL, [currently the profiler does not work](https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL) (the profiler immediatelly terminates with an unknown error). Fortunatelly, there is a workaround (described in [another issue](https://youtrack.jetbrains.com/issue/CPP-40742/Profiling-doesnt-work-in-WSL)):
+TL;DR: The profiler does not work in WSL.
+
+CLion profiler is based on the [`perf`](https://perf.wiki.kernel.org/index.php/Main_Page) tool and therefore it is available only on Linux (and WSL). 
+
+Currently I have a problem with the profiler: after clicking the buytton to stop profiling and show the results, the profiler window just shows a message `No profiler data`. [Clion issue](https://youtrack.jetbrains.com/issue/CPP-15328/No-profiler-data).
+
+#### Old CLion WSL issue
+However, in WSL, [currently the profiler does not work](https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL) (the profiler immediatelly terminates with an unknown error). Fortunatelly, there is a workaround (described in [another issue](https://youtrack.jetbrains.com/issue/CPP-40742/Profiling-doesnt-work-in-WSL)):
 - open the Clion registry: `Help` -> `Find Action` -> `Registry`
 - disable the `wsl.use.remote.agent.for.launch.processes` option
 
