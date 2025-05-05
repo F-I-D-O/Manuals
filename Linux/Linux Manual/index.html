@@ -12,10 +12,13 @@
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -742,7 +745,7 @@
             
             <li class="nav-item" data-level="1"><a href="#upgrade" class="nav-link">Upgrade</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#upgrade-to-other-version-than-the-latest" class="nav-link">Upgrade to other version than the latest</a>
+            <li class="nav-item" data-level="2"><a href="#manual-upgrade" class="nav-link">Manual upgrade</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1314,7 +1317,9 @@ SQL)
 <p>This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:</p>
 <ul>
 <li>change the repository to a newer one manually or</li>
-<li>change the url of all repositories to <code>http://old-releases.ubuntu.com/ubuntu/</code> and then upgrade the system to the newer version.</li>
+<li>change the url of all repositories to <code>http://old-releases.ubuntu.com/ubuntu/</code> and then upgrade the system to the newer version:
+    <code>bash
+    sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list</code></li>
 </ul>
 <h1 id="string-processing">String Processing<a class="headerlink" href="#string-processing" title="Permanent link">&para;</a></h1>
 <h2 id="string-filtering-with-grep">String filtering with <code>grep</code><a class="headerlink" href="#string-filtering-with-grep" title="Permanent link">&para;</a></h2>
@@ -1527,15 +1532,23 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <pre><code class="language-bash">ls | xargs rm # remove all files in the current directory
 </code></pre>
 <h1 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h1>
-<p>For a simple system upgrade, we can use the following steps:</p>
+<p>For a system upgrade, follow these steps:</p>
 <ol>
-<li>First run the <strong>update of the current version</strong>.</li>
+<li>run the <a href="#managing-packages">update of the current version</a>.</li>
 <li>Then optionaly backup the WSL</li>
-<li>run <code>sudo do-release-upgrade</code></li>
+<li>
+<p>perform the upgrade:</p>
+<ul>
+<li>If a) you are on a LTS version, and b) there is a new LTS version available, run <code>sudo do-release-upgrade</code>.</li>
+<li>Otherwise, follow the steps in the next section.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Ubuntu_version_history">Ubuntu versions</a></p>
+</li>
 </ol>
-<p>However, this only work if there is a LTS version available. If not, the last step will fail. In this case, we can use the <code>do-release-upgrade -d</code> command, which upgrades to the latest version, regardless of the LTS status.</p>
-<h2 id="upgrade-to-other-version-than-the-latest">Upgrade to other version than the latest<a class="headerlink" href="#upgrade-to-other-version-than-the-latest" title="Permanent link">&para;</a></h2>
-<p>When upgrading to a version other than the latest, we can try the following steps:</p>
+<h2 id="manual-upgrade">Manual upgrade<a class="headerlink" href="#manual-upgrade" title="Permanent link">&para;</a></h2>
+<p>For manual upgrade, follow these steps:</p>
 <ol>
 <li>perform steps 1 and 2 from the normal upgrade</li>
 <li>open the <code>/etc/update-manager/release-upgrades</code> file and set the <code>Prompt</code> parameter to <code>normal</code> or <code>lts</code> (depending on the desired version)</li>
@@ -1597,14 +1610,12 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

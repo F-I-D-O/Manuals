@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -400,6 +403,10 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#reading-categorical-data-from-a-file" class="nav-link">Reading categorical data from a file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#datetime" class="nav-link">Datetime</a>
@@ -592,19 +599,19 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#working-with-the-index" class="nav-link">Working with the index</a>
+            <li class="nav-item" data-level="1"><a href="#index" class="nav-link">Index</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#selecting-just-a-single-index-level-from-a-multi-index" class="nav-link">Selecting just a single index level from a multi-index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#changing-the-index" class="nav-link">Changing the index</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#using-columns-as-a-new-index" class="nav-link">Using columns as a new index</a>
+            <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#using-an-existing-index-to-create-a-new-index" class="nav-link">Using an existing index to create a new index</a>
+            <li class="nav-item" data-level="2"><a href="#replacing-the-index" class="nav-link">Replacing the index</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#reindex" class="nav-link">reindex</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -612,9 +619,48 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="3"><a href="#creating-multi-index" class="nav-link">Creating multi-index</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#results-in" class="nav-link">results in</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#multiindex" class="nav-link">MultiIndex([</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#one-a" class="nav-link">('one', 'a'),</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#one-b" class="nav-link">('one', 'b'),</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#two-a" class="nav-link">('two', 'a'),</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#two-b" class="nav-link">('two', 'b'),</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">])</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#shifting-a-timedate-index" class="nav-link">Shifting a time/date index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -804,11 +850,27 @@
 <li>convert the column to the desired type</li>
 </ol>
 <h2 id="categorical-data">Categorical data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
-<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class. The constructor accepts the values of to be converted to categorical variable (list, column,...) and optional parameters. The most important parameters are:</p>
+<p>Sometimes, it can be usefull to treat a column as a categorical variable instead of a string or a number. For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html"><code>Categorical</code></a> class.</p>
+<p>Typically, we:</p>
+<ol>
+<li>
+<p>define the categorical type:
+    <code>python
+    cat_type = pd.Categorical(categories=['a', 'b', 'c'])</code></p>
+</li>
+<li>
+<p>use the categorical type to, e.g., convert a column to the categorical type:
+    <code>python
+    df['col'] = df['col'].astype(cat_type)</code></p>
+</li>
+</ol>
+<p>Important parameters of the <code>Categorical</code> constructor:</p>
 <ul>
-<li><code>categories</code>: the list of categories. If not specified, the categories are inferred from the data. If specified, the categories are used as the categories of the categorical variable. If the data contains values that are not in the categories, the <code>Categorical</code> constructor raises an error. If the categories contain values that are not in the data, the values are converted to <code>NaN</code>.</li>
+<li><code>categories</code>: By default, the categories are inferred from the data. However, we can specify the categories explicitly using the <code>categories</code> parameter. When using this parameter, each value is converted to the matching category specified in the list. Note that <strong>the category must to be an exact match, including the data type, case (when using strings), etc</strong>. Unmatched values are converted to <code>NaN</code>.</li>
 <li><code>ordered</code>: if <code>True</code>, the categories are ordered in the order of the <code>categories</code> parameter.  </li>
 </ul>
+<h3 id="reading-categorical-data-from-a-file">Reading categorical data from a file<a class="headerlink" href="#reading-categorical-data-from-a-file" title="Permanent link">&para;</a></h3>
+<p>We can read data into categories using the <code>dtype</code> parameter. However, this way, we cannot specify the categories explicitly. To do that, we need to read the data into the correct data type, and then convert the column/index to the categorical type after the dataframe is created.</p>
 <h2 id="datetime">Datetime<a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h2>
 <p>Pandas has a special type for datetime values. One of its dangerous properties is that zero parts of the datetime are truncated both when displaying and on export:</p>
 <pre><code class="language-python">df = pd.DataFrame({'date': pd.to_datetime(['2021-01-01 00:00:00', '2021-01-01 00:00:00'])})
@@ -1085,8 +1147,8 @@ df.rename({'&lt;old name 1&gt;': '&lt;new name 1&gt;', '&lt;old name 2&gt;': '&l
 # or equivalently
 s.name = '&lt;new name&gt;'
 </code></pre>
-<h1 id="working-with-the-index">Working with the index<a class="headerlink" href="#working-with-the-index" title="Permanent link">&para;</a></h1>
-<p>Index of a dataframe <code>df</code> can be accessed by <code>df.index</code>. Standard range operation can be applied to index. </p>
+<h1 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h1>
+<p>Index of a dataframe <code>df</code> can be accessed by <code>df.index</code>. Standard range operation can be applied to index.</p>
 <h2 id="selecting-just-a-single-index-level-from-a-multi-index">Selecting just a single index level from a multi-index<a class="headerlink" href="#selecting-just-a-single-index-level-from-a-multi-index" title="Permanent link">&para;</a></h2>
 <p>If we want to select just a single index level, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.get_level_values.html"><code>get_level_values</code></a> function:</p>
 <pre><code class="language-python">df.index.get_level_values(&lt;level&gt;)
@@ -1096,17 +1158,26 @@ s.name = '&lt;new name&gt;'
 <pre><code class="language-python">df.index.levels[&lt;level&gt;]
 </code></pre>
 <p>However, <strong>this way, we can get outdated values</strong>, as the values are not always updated when the index is changed. To get the updated values, we need to call the method <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.remove_unused_levels.html"><code>remove_unused_levels</code></a> after each change of the index.</p>
-<h2 id="changing-the-index">Changing the index<a class="headerlink" href="#changing-the-index" title="Permanent link">&para;</a></h2>
-<h3 id="using-columns-as-a-new-index">Using columns as a new index<a class="headerlink" href="#using-columns-as-a-new-index" title="Permanent link">&para;</a></h3>
-<p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>set_index</code></a> function.</p>
-<h3 id="using-an-existing-index-to-create-a-new-index">Using an existing index to create a new index<a class="headerlink" href="#using-an-existing-index-to-create-a-new-index" title="Permanent link">&para;</a></h3>
-<p>For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html"><code>reindex</code></a> function. The first parameter is the new index. Example:</p>
+<h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html"><code>Index.rename</code></a> function can be used for that.</p>
+<h2 id="replacing-the-index">Replacing the index<a class="headerlink" href="#replacing-the-index" title="Permanent link">&para;</a></h2>
+<p>We have several options how to replace the index with a new index:</p>
+<ul>
+<li>Using columns as a new index: for that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>set_index</code></a> function.</li>
+<li>Using an existing index to create a new index
+For that, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reindex.html"><code>reindex</code></a> function.</li>
+<li>Creating index from scratch</li>
+</ul>
+<h3 id="reindex"><code>reindex</code><a class="headerlink" href="#reindex" title="Permanent link">&para;</a></h3>
+<p>The first parameter is the new index. Example:</p>
 <pre><code class="language-python">df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 </code></pre>
 <p>Important parameters:</p>
 <ul>
 <li><code>fill_value</code>: the value to use for missing values. By default, the missing values are filled with <code>NaN</code>.</li>
+<li><code>level</code>: the level to reindex in case of a multi-index.</li>
 </ul>
+<p>Note that the <strong><code>reindex</code> function can only be used for unique values</strong>. If we have a multi-index with duplicate values on the level we want to reindex, we need to create a new index from scratch.</p>
 <h3 id="creating-index-from-scratch">Creating index from scratch<a class="headerlink" href="#creating-index-from-scratch" title="Permanent link">&para;</a></h3>
 <p>To create an index from scratch, we just assign the index to the dataframe <code>index</code> property:</p>
 <pre><code class="language-python">df.index = pd.Index([1, 2, 3, 4, 5])
@@ -1114,19 +1185,54 @@ s.name = '&lt;new name&gt;'
 <p>We can also assign a range directly to the index:</p>
 <pre><code class="language-python">df.index = range(5)
 </code></pre>
-<p>To create more complicated indices, dedicated functions can be used:</p>
+<h3 id="creating-multi-index">Creating multi-index<a class="headerlink" href="#creating-multi-index" title="Permanent link">&para;</a></h3>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#hierarchical-indexing-multiindex">documentation</a></p>
+<p>There is a <a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas-multiindex"><code>MultiIndex</code> constructor</a> that can be used to create a multi-index. However, most of the time, it is more convenient to use dedicated factory functions:</p>
 <ul>
-<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables</li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays"><code>MultiIndex.from_arrays</code></a>: creates a multi-index from an array of arrays (e.g. a list of lists). </li>
+<li><a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples"><code>MultiIndex.from_tuples</code></a></li>
+<li>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html"><code>MultiIndex.from_product</code></a>: creates a multi-index from the cartesian product of the given iterables. Example:
+    ```python
+    df.index = pd.MultiIndex.from_product([['one', 'two'], ['a', 'b']])</p>
+<h1 id="results-in">results in<a class="headerlink" href="#results-in" title="Permanent link">&para;</a></h1>
+<h1 id="multiindex">MultiIndex([<a class="headerlink" href="#multiindex" title="Permanent link">&para;</a></h1>
+<h1 id="one-a">('one', 'a'),<a class="headerlink" href="#one-a" title="Permanent link">&para;</a></h1>
+<h1 id="one-b">('one', 'b'),<a class="headerlink" href="#one-b" title="Permanent link">&para;</a></h1>
+<h1 id="two-a">('two', 'a'),<a class="headerlink" href="#two-a" title="Permanent link">&para;</a></h1>
+<h1 id="two-b">('two', 'b'),<a class="headerlink" href="#two-b" title="Permanent link">&para;</a></h1>
+<h1 id="_1">])<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>```</p>
+</li>
 </ul>
-<h2 id="renaming-the-index">Renaming the index<a class="headerlink" href="#renaming-the-index" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.rename.html"><code>Index.rename</code></a> function can be used for that.</p>
+<p>Important parameters for both the constructor and the factory functions:</p>
+<ul>
+<li><code>names</code>: the names of the index levels</li>
+</ul>
+<h3 id="shifting-a-timedate-index">Shifting a time/date index<a class="headerlink" href="#shifting-a-timedate-index" title="Permanent link">&para;</a></h3>
+<p>To shift a time or date or datetime index, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html"><code>shift</code></a> function with the <code>freq</code> parameter.</p>
+<p>The <code>freq</code> use is important, as it change the mode of operation of the <code>shift</code> function: </p>
+<ul>
+<li>if <code>freq</code> is not specified, the index stays the same and the data are shifted by the specified number of periods.</li>
+<li>if <code>freq</code> is specified, the index is shifted by the specified number of periods while the data stay in the same position.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">df.index = pd.date_range('2021-01-01', periods=10, freq='1h')
+df.shift(1, freq='1h') # shifts the index by 1 hour
+df.shift(1) # shifts the data by 1 hour against the index
+</code></pre>
+<p><strong>The shift function is not defined for MultiIndex!</strong>. For that, we need to create the index level manually:</p>
+<pre><code class="language-python">df.index = pd.MultiIndex.from_product([['one', 'two'], pd.date_range('2021-01-01', periods=10, freq='1h')])
+new_index = df.index.levels[1] + pd.Timedelta(hours=1)
+df.index = df.index.set_levels(new_index, level=1)
+</code></pre>
 <h1 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h1>
 <p>Analogously to SQL, pandas has a <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html"><code>groupby</code></a> function for aggreagting rows. The usage is as follows:</p>
 <pre><code class="language-Python">group = df.groupby(&lt;columns&gt;) # returns a groupby object grouped by the columns
-sel = group[&lt;columns&gt;] # we can select only some columns from the groupby object
-agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the selected columns
+selection = group[&lt;columns&gt;] # we can select only some columns from the groupby object
+aggregation = selection.&lt;aggregation function&gt; # we apply an aggregation function to the selected columns
 </code></pre>
-<p>We can skip the <code>sel</code> step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.</p>
+<p>We can skip the <code>selection</code> step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.</p>
 <p>Example (sum):</p>
 <pre><code class="language-Python">df.groupby('col').sum()
 </code></pre>
@@ -1135,7 +1241,6 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 <pre><code class="language-Python">df.groupby('col').size()
 </code></pre>
 <p>Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the <strong>aggregation does not have to actually aggregate the data, it can also transform it</strong>.</p>
-<p>In the groupby object, the columns used for grouping are omitted if each group is aggregated to exactly one row. To keep them, we can use the <code>group_keys</code> parameter of the <code>groupby</code> function.</p>
 <h2 id="aggregate-functions">Aggregate functions<a class="headerlink" href="#aggregate-functions" title="Permanent link">&para;</a></h2>
 <p>For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):</p>
 <ul>
@@ -1223,14 +1328,42 @@ agg = sel.&lt;aggregation function&gt; # we apply an aggregation function to the
 </ol>
 <p>In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and combining aggreate results is done by the <code>apply</code> function.</p>
 <h2 id="time-aggregation">Time aggregation<a class="headerlink" href="#time-aggregation" title="Permanent link">&para;</a></h2>
-<p>We can also aggregate by time. For that, we need an index or column with datetime values. Then, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html"><code>resample</code></a> function. Example:</p>
-<pre><code class="language-Python">df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1D'))
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#resampling">documentation</a></p>
+<p>We can also aggregate by time. For that, we need an index or column with datetime values. We use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.resample.html"><code>resample</code></a> function. Example:</p>
+<pre><code class="language-Python">df = pd.DataFrame({'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}, index=pd.date_range('2021-01-01', periods=10, freq='1h'))
 
-df.resample('1H').sum()
+df.resample('1D').sum()
+
+# results in
+#             col1
+# 2021-01-01     55
 </code></pre>
-<p>The aggregate function is applied to each group in case of multiple values in the same time slot (<em>downsampling</em>). In case of no values in the time slot (<em>upsampling</em>), the value is filled with <code>NaN</code>. We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html"><code>ffill</code></a> function to fill in the missing values. Example:</p>
-<pre><code class="language-Python">df.resample('1H').sum().ffill()
-</code></pre>
+<p>The groups are created by the following logic:</p>
+<ul>
+<li>the groups are aligned to the index of the dataframe (not to the records)</li>
+<li>each group has the duration specified by the <code>rule</code> parameter</li>
+<li>each group is labeled by the start of the group<ul>
+<li>e.g. for <code>rule='1D'</code>, the group is labeled by the start of the day, if <code>rule='1h'</code>, then <code>12:00</code> means 12:00-13:00</li>
+</ul>
+</li>
+<li>records are assigned to the group based on their datetime value</li>
+<li>the records that exactly match the start/end of the group are assigned depending on the <code>closed</code> parameter<ul>
+<li><code>left</code> (default): the record is assigned to the group with the matching start</li>
+<li><code>right</code>: the record is assigned to the group with the matching end</li>
+</ul>
+</li>
+</ul>
+<p>There are two possible results of resampling (both may appear in the same dataframe):</p>
+<ul>
+<li><strong>Downsampling</strong>: multiple records in the same time group.</li>
+<li><strong>Upsampling</strong>: no values in the group. The missing values are filled with <code>NaN</code>.<ul>
+<li>note that the <code>NaN</code> automatically changes the data type of the column to <code>float</code>, and it is not reverted by filling the missing values later. Therefore, when upsampling, we have to manually change the data type of each column to the original data type after filling the values.</li>
+<li>We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html"><code>ffill</code></a> function to fill in the missing values. Example:
+    <code>Python
+    df.resample('1H').sum().ffill()</code></li>
+</ul>
+</li>
+</ul>
 <h1 id="joins">Joins<a class="headerlink" href="#joins" title="Permanent link">&para;</a></h1>
 <p>Similarly to SQL, Pandas has a way to join two dataframes. There are two functions for that:</p>
 <ul>
@@ -1504,14 +1637,12 @@ insert_statement
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

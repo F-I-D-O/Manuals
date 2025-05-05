@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -462,12 +465,12 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#line-scatter-and-shape-plots" class="nav-link">Line, Scatter and Shape Plots</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#shapes" class="nav-link">Shapes</a>
+            <li class="nav-item" data-level="2"><a href="#line-and-scatter-plots" class="nav-link">Line and Scatter Plots</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#shapes" class="nav-link">Shapes</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#create-subplots" class="nav-link">Create subplots</a>
@@ -561,7 +564,19 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#figure-annotations" class="nav-link">Figure Annotations</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#annotations-in-facet-plots" class="nav-link">Annotations in facet plots</a>
+            <li class="nav-item" data-level="3"><a href="#setting-the-head-of-the-annotation" class="nav-link">Setting the head of the annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#setting-the-tail-of-the-annotation" class="nav-link">Setting the tail of the annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#positinoing-the-text-relative-to-the-arrow" class="nav-link">Positinoing the text relative to the arrow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#other-important-parameters" class="nav-link">Other important parameters</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -755,10 +770,19 @@ fig.update_yaxes(title_text=&quot;Comp. time relative to IH&quot;, row=1, col=1)
 </code></pre>
 <h1 id="plotly-graph-objects">Plotly Graph Objects<a class="headerlink" href="#plotly-graph-objects" title="Permanent link">&para;</a></h1>
 <p><a href="https://plotly.com/python/graph-objects/">documentation</a></p>
-<p>If the plotly express is not enough, we can use the graph objects. We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier. We need to use the second option only for complex figures, for example:</p>
+<p>If the plotly express is not enough, we can use the graph objects. We need to use the second option only for complex figures, for example:</p>
 <ul>
 <li>facet plots with more than one metric</li>
 <li>plots with custom traces <em>behind</em> the plotly express traces</li>
+</ul>
+<p>We can either add the graph objects to a plotly express figure or create a graph objects figure from scratch. Most of the time, we will use the first option, as using plotly express is easier.</p>
+<p>For <strong>adding traces</strong> to the figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_trace"><code>add_trace</code></a> function. Important parameters:</p>
+<ul>
+<li><code>row</code>, <code>col</code>: the row and column of the subplot where to add the trace. <ul>
+<li>Both parameters have to be set.</li>
+<li>The numbering starts from 1.</li>
+</ul>
+</li>
 </ul>
 <p>To <strong>make the figure from scratch</strong>, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.subplots.make_subplots.html"><code>make_subplots</code></a> function from the <code>plotly.subplots</code> module. Example:</p>
 <pre><code class="language-python">from plotly.subplots import make_subplots
@@ -780,15 +804,8 @@ fig = make_subplots(rows=2, cols=2)
 </li>
 <li><code>subplot_titles</code>: the titles of the subplots.</li>
 </ul>
-<p>For <strong>adding traces</strong> to the figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_trace"><code>add_trace</code></a> function. Important parameters:</p>
-<ul>
-<li><code>row</code>, <code>col</code>: the row and column of the subplot where to add the trace. <ul>
-<li>Both parameters have to be set.</li>
-<li>The numbering starts from 1.</li>
-</ul>
-</li>
-</ul>
 <h2 id="common-parameters-for-all-types-of-plots_1">Common Parameters For All Types of Plots<a class="headerlink" href="#common-parameters-for-all-types-of-plots_1" title="Permanent link">&para;</a></h2>
+<p>The main difference between the plotly express and the graph objects is the data parameters. For plotly express, we pass the dataframe and the column names for the x and y axes. In contrast, <strong>we pass the data to the graph functions as iterables, one for each axis</strong>. Therefore, we have to use a single column from the dataframe, not the whole dataframe, even if it contains just one column.</p>
 <h3 id="legend">Legend<a class="headerlink" href="#legend" title="Permanent link">&para;</a></h3>
 <p>The name in the legend is determined by the <code>name</code> parameter of the trace. To share the legend between multiple traces, the following steps are needed:</p>
 <ol>
@@ -812,7 +829,7 @@ fig = make_subplots(rows=2, cols=2)
 <p>Also, to set the bar mode, we need to use the <code>update_layout</code> as the <code>go.Bar</code> function does not have the <code>barmode</code> parameter. Example:</p>
 <pre><code class="language-python">fig.update_layout(barmode=&quot;stack&quot;)
 </code></pre>
-<h2 id="line-scatter-and-shape-plots">Line, Scatter and Shape Plots<a class="headerlink" href="#line-scatter-and-shape-plots" title="Permanent link">&para;</a></h2>
+<h2 id="line-and-scatter-plots">Line and Scatter Plots<a class="headerlink" href="#line-and-scatter-plots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/line-charts/#line-plot-with-goscatter">line plot documentation</a></p>
 <p>Line plots, scatter plots and shapes, all of that can be created by the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html"><code>go.Scatter</code></a> function. Example:</p>
 <pre><code class="language-python">go.Scatter(x, y, ...)
@@ -839,9 +856,21 @@ fig = make_subplots(rows=2, cols=2)
 </ul>
 </li>
 </ul>
-<h3 id="shapes">Shapes<a class="headerlink" href="#shapes" title="Permanent link">&para;</a></h3>
+<h2 id="shapes">Shapes<a class="headerlink" href="#shapes" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/shapes/">documentation</a></p>
-<p>The shapes can be created by supplying the coordinates of the shape to the <code>go.Scatter</code> function and setting the <code>fill</code> parameter to <code>"toself"</code>. </p>
+<p>There are various ways how to create shapes in plotly:</p>
+<ul>
+<li>for simple higlight of regions on x or y axis, we can use the <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.html#plotly.basedatatypes.BaseFigure.add_vrect"><code>add_vrect</code></a> and <a href="https://plotly.github.io/plotly.py-docs/generated/plotly.html#plotly.basedatatypes.BaseFigure.add_hrect"><code>add_hrect</code></a> functions (<a href="https://plotly.com/python/shapes/#highlighting-time-series-regions-with-rectangle-shapes">introductory example</a>, <a href="https://plotly.com/python/horizontal-vertical-shapes/">documentation</a>).<ul>
+<li>only for recangles spaning the whole height or width of the plot</li>
+</ul>
+</li>
+<li>The shapes can be created by supplying the coordinates of the shape to the <code>go.Scatter</code> function and setting the <code>fill</code> parameter to <code>"toself"</code>. (<a href="https://plotly.com/python/shapes/#shapedrawing-with-scatter-traces">documentation</a>)<ul>
+<li>this method has a serious limitation: <strong>the filled scatter plots are always above the other traces</strong></li>
+</ul>
+</li>
+<li>finally, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_shape"><code>add_shape</code></a> function to add a shape to the figure.</li>
+</ul>
+<p><strong>There is no way how to fill shapes with a patern fill.</strong></p>
 <h2 id="create-subplots">Create subplots<a class="headerlink" href="#create-subplots" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/subplots/">documentation and examples</a></p>
 <p>To create a figure with multiple subplots, we use the <code>make_subplots</code> function. Example:</p>
@@ -924,7 +953,7 @@ fig.add_trace(go.Mesh3d(x=x, y=y, z=z, i=i, j=j, k=k))
 <h2 id="customize-axes">Customize axes<a class="headerlink" href="#customize-axes" title="Permanent link">&para;</a></h2>
 <p>For customizing the axes, we can use the <code>figure.update_xaxes</code> and <code>figure.update_yaxes</code> functions. By default, the functions will update all axes. To update only a specific axis, we can use the <code>row</code> and <code>col</code> parameters. </p>
 <p><a href="https://plotly.com/python/reference/layout/xaxis/">axis reference</a></p>
-<p>The range of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the <code>range</code> parameter, e.g.: <code>range=[0, 1]</code>. Unfortunately, <strong>there is no way how to automatically set the range to match the data range exactly</strong></p>
+<p>The <strong>range</strong> of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the <code>range</code> parameter, e.g.: <code>range=[0, 1]</code>. Unfortunately, <strong>there is no way how to automatically set the range to match the data range exactly</strong></p>
 <p>Another thing we usually want to customize are the ticks. Important tick parameters are:</p>
 <ul>
 <li><code>dtick</code>: the distance between the ticks</li>
@@ -1046,22 +1075,54 @@ If the legend is positioned inside the plot, the plot expands to the whole width
 </code></pre>
 <h2 id="figure-annotations">Figure Annotations<a class="headerlink" href="#figure-annotations" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/text-and-annotations/">documentation</a></p>
-<p>For adding annotations to the whole Figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation"><code>add_annotation</code></a> function. </p>
-<p>Important parameters:</p>
+<p>For adding annotations to the whole Figure, we can use the <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation"><code>add_annotation</code></a> function. The most compliated and also most limited aspect is the positioning of the annotation. There are two things we can position:</p>
 <ul>
-<li><code>x</code>, <code>y</code>: the x and y coordinates of the annotation</li>
+<li>the head of the annotation, which is the position the annotation arrow points to, or the position of the text in case of no arrow</li>
+<li>the tail of the annotation, which is the position of the annotation arrow, if present</li>
+</ul>
+<h3 id="setting-the-head-of-the-annotation">Setting the head of the annotation<a class="headerlink" href="#setting-the-head-of-the-annotation" title="Permanent link">&para;</a></h3>
+<p>There are two settings for head of the annotation for each axis:</p>
+<ul>
+<li><a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.xref"><code>xref</code></a> and <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.yref"><code>yref</code></a>: the mode of the positioning, and</li>
+<li><a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.x"><code>x</code></a> and <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.y"><code>y</code></a>: the coordinates</li>
+</ul>
+<p>The <code>xref</code> and <code>yref</code> parameters can be set to:</p>
+<ul>
+<li><code>"paper"</code>: The whole figure mode, where 0 means the left/bottom and 1 means the right/top of the figure.</li>
+<li><code>&lt;axis reference&gt;</code>: The axis mode, where the axis coordinates are used for positioning.<ul>
+<li>for <code>&lt;axis reference&gt;</code>, we can use <code>"x"</code> or <code>"y"</code> for simple plots and <code>"x1"-"x&lt;n&gt;"</code> or <code>"y1"-"y&lt;n&gt;"</code> for subplots.</li>
+</ul>
+</li>
+</ul>
+<p>By default, the <code>&lt;axis reference&gt;</code> is used for simple plots and <code>"paper"</code> for subplots.</p>
+<h3 id="setting-the-tail-of-the-annotation">Setting the tail of the annotation<a class="headerlink" href="#setting-the-tail-of-the-annotation" title="Permanent link">&para;</a></h3>
+<p>There are two settings for the tail of the annotation for each axis:</p>
+<ul>
+<li><a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.axref"><code>axref</code></a> and <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ayref"><code>ayref</code></a>: the mode of the positioning, and</li>
+<li><a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ax"><code>ax</code></a> and <a href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ay"><code>ay</code></a>: the coordinates</li>
+</ul>
+<p>The <code>axref</code> and <code>ayref</code> parameters can be set to:</p>
+<ul>
+<li><code>"pixel"</code>: The pixel mode, where the coordinates are in pixels relative to the whole figure, where the origin is the bottom left corner of the figure.</li>
+<li><code>&lt;axis reference&gt;</code>: Same as for the head of the annotation, but must be equal to the <code>xref</code>/<code>yref</code>, ottherwise, the arrow will not be visible.<ul>
+<li>e.g., setting <code>xref</code> to <code>"x1"</code> and <code>axref</code> to <code>"x2"</code> is not allowed</li>
+</ul>
+</li>
+</ul>
+<h3 id="positinoing-the-text-relative-to-the-arrow">Positinoing the text relative to the arrow<a class="headerlink" href="#positinoing-the-text-relative-to-the-arrow" title="Permanent link">&para;</a></h3>
+<p><strong>There is no way how to position the text of the annotation with respect to the arrow</strong>. The text position is:</p>
+<ul>
+<li>the head of the annotation, if the arrow is not present, or</li>
+<li>the tail of the annotation, if the arrow is present</li>
+</ul>
+<p>If we want to, for example, need to position the text of the annotation above the arrow, so that the text is parallel to the arrow, we need to use two annotations.</p>
+<h3 id="other-important-parameters">Other important parameters<a class="headerlink" href="#other-important-parameters" title="Permanent link">&para;</a></h3>
+<ul>
 <li><code>text</code>: the text of the annotation</li>
-<li><code>xref</code>, <code>yref</code>: the coordinate system of the x and y coordinates. Can be <code>"paper"</code> or <code>"data"</code>.</li>
-<li><code>showarrow</code>: if <code>True</code>, an arrow will be added to the annotation</li>
+<li><code>showarrow</code>: if <code>True</code>, an arrow will be added to the annotation, if False, only the text will be added. Default is <code>True</code>.</li>
 <li><code>textangle</code>: the angle of the text in degrees,</li>
 <li><code>bgcolor</code>: the background color of the annotation</li>
 </ul>
-<p><strong>By default</strong> the annotation is meant to annotate the data. Therefore, <strong>the <code>x</code> and <code>y</code> coordinates use the coordinate system of the data</strong> (x and y axes). To align the annotation with respect to the whole figure, we need to set the <code>xref</code> and <code>yref</code> parameters to <code>"paper"</code>. In this case, the <code>x</code> and <code>y</code> coordinates are in the range <code>[0, 1]</code> and the origin is the bottom left corner of the figure.</p>
-<h3 id="annotations-in-facet-plots">Annotations in facet plots<a class="headerlink" href="#annotations-in-facet-plots" title="Permanent link">&para;</a></h3>
-<p>When using facet plots, the annotations are added to the whole figure. Therefore, the <code>x</code> and <code>y</code> coordinates are in the range <code>[0, 1]</code> and the origin is the bottom left corner of the figure. To align the annotation with respect to the subplot, we need to set the <code>xref</code> and <code>yref</code> parameters to the x and y axes of the subplot. Example:</p>
-<pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=&quot;Title&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
-</code></pre>
-<p>Unfortunately, <strong>there is no way how to set the <code>xref</code> and <code>yref</code> parameters automatically</strong>. Therefore, we need to compute them manually for each annotation.</p>
 <h2 id="markers">Markers<a class="headerlink" href="#markers" title="Permanent link">&para;</a></h2>
 <p><a href="https://plotly.com/python/marker-style/">documentation</a></p>
 <p>To style the markers, we can use the <code>update_traces</code> function. Example:</p>
@@ -1169,14 +1230,12 @@ If the legend is positioned inside the plot, the plot expands to the whole width
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

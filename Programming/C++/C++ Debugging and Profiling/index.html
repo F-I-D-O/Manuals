@@ -12,10 +12,13 @@
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -586,8 +589,16 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#cpu-profiling" class="nav-link">CPU Profiling</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#visual-studio_1" class="nav-link">Visual Studio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="3"><a href="#clion_1" class="nav-link">CLion</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#old-clion-wsl-issue" class="nav-link">Old CLion WSL issue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#vtune" class="nav-link">VTune</a>
@@ -918,9 +929,21 @@ Basic usage:</p>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
 <p>There are multiple <a href="https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing">profiler options for C++</a>, but not all the tools are easy to use or maintained.</p>
 <h2 id="cpu-profiling">CPU Profiling<a class="headerlink" href="#cpu-profiling" title="Permanent link">&para;</a></h2>
+<h3 id="visual-studio_1">Visual Studio<a class="headerlink" href="#visual-studio_1" title="Permanent link">&para;</a></h3>
+<p>In visual studio:</p>
+<ol>
+<li>Run the program and either wait for breakpoint hit or manually pause the execution</li>
+<li>In <code>Diagnostic Tools</code> tab, hit the <code>Enable CPU Profiling</code> button</li>
+<li>Unpause the execution</li>
+<li>Pause the execution again, the profiler results covering the period between resume and pause should be available</li>
+</ol>
 <h3 id="clion_1">CLion<a class="headerlink" href="#clion_1" title="Permanent link">&para;</a></h3>
 <p><a href="https://www.jetbrains.com/help/clion/cpu-profiler.html">documentation</a></p>
-<p>CLion profiler is based on the <a href="https://perf.wiki.kernel.org/index.php/Main_Page"><code>perf</code></a> tool and therefore it is available only on Linux (and WSL). However, in WSL, <a href="https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL">currently the profiler does not work</a> (the profiler immediatelly terminates with an unknown error). Fortunatelly, there is a workaround (described in <a href="https://youtrack.jetbrains.com/issue/CPP-40742/Profiling-doesnt-work-in-WSL">another issue</a>):
+<p>TL;DR: The profiler does not work in WSL.</p>
+<p>CLion profiler is based on the <a href="https://perf.wiki.kernel.org/index.php/Main_Page"><code>perf</code></a> tool and therefore it is available only on Linux (and WSL). </p>
+<p>Currently I have a problem with the profiler: after clicking the buytton to stop profiling and show the results, the profiler window just shows a message <code>No profiler data</code>. <a href="https://youtrack.jetbrains.com/issue/CPP-15328/No-profiler-data">Clion issue</a>.</p>
+<h4 id="old-clion-wsl-issue">Old CLion WSL issue<a class="headerlink" href="#old-clion-wsl-issue" title="Permanent link">&para;</a></h4>
+<p>However, in WSL, <a href="https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL">currently the profiler does not work</a> (the profiler immediatelly terminates with an unknown error). Fortunatelly, there is a workaround (described in <a href="https://youtrack.jetbrains.com/issue/CPP-40742/Profiling-doesnt-work-in-WSL">another issue</a>):
 - open the Clion registry: <code>Help</code> -&gt; <code>Find Action</code> -&gt; <code>Registry</code>
 - disable the <code>wsl.use.remote.agent.for.launch.processes</code> option</p>
 <h3 id="vtune">VTune<a class="headerlink" href="#vtune" title="Permanent link">&para;</a></h3>
@@ -950,14 +973,12 @@ Basic usage:</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
