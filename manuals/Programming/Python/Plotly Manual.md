@@ -229,7 +229,7 @@ fig.update_layout(barmode="stack")
 ```
 
 
-## Line, Scatter and Shape Plots
+## Line and Scatter Plots
 [line plot documentation](https://plotly.com/python/line-charts/#line-plot-with-goscatter)
 
 Line plots, scatter plots and shapes, all of that can be created by the [`go.Scatter`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Scatter.html) function. Example:
@@ -254,11 +254,18 @@ Important parameters:
     - `width`: the width of the line
 
 
-### Shapes
+## Shapes
 [documentation](https://plotly.com/python/shapes/)
 
-The shapes can be created by supplying the coordinates of the shape to the `go.Scatter` function and setting the `fill` parameter to `"toself"`. 
+There are various ways how to create shapes in plotly:
 
+- for simple higlight of regions on x or y axis, we can use the [`add_vrect`](https://plotly.github.io/plotly.py-docs/generated/plotly.html#plotly.basedatatypes.BaseFigure.add_vrect) and [`add_hrect`](https://plotly.github.io/plotly.py-docs/generated/plotly.html#plotly.basedatatypes.BaseFigure.add_hrect) functions ([introductory example](https://plotly.com/python/shapes/#highlighting-time-series-regions-with-rectangle-shapes), [documentation](https://plotly.com/python/horizontal-vertical-shapes/)).
+    - only for recangles spaning the whole height or width of the plot
+- The shapes can be created by supplying the coordinates of the shape to the `go.Scatter` function and setting the `fill` parameter to `"toself"`. ([documentation](https://plotly.com/python/shapes/#shapedrawing-with-scatter-traces))
+    - this method has a serious limitation: **the filled scatter plots are always above the other traces**
+- finally, we can use the [`add_shape`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_shape) function to add a shape to the figure.
+
+**There is no way how to fill shapes with a patern fill.**
 
 ## Create subplots
 [documentation and examples](https://plotly.com/python/subplots/)
@@ -380,7 +387,7 @@ For customizing the axes, we can use the `figure.update_xaxes` and `figure.updat
 
 [axis reference](https://plotly.com/python/reference/layout/xaxis/)
 
-The range of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the `range` parameter, e.g.: `range=[0, 1]`. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**
+The **range** of the axis is determined automatically as the range of the data plus some margin. If we want any other range, we need to set it manually using the `range` parameter, e.g.: `range=[0, 1]`. Unfortunately, **there is no way how to automatically set the range to match the data range exactly**
 
 Another thing we usually want to customize are the ticks. Important tick parameters are:
 
@@ -531,28 +538,53 @@ for trace in fig.data:
 ## Figure Annotations
 [documentation](https://plotly.com/python/text-and-annotations/)
 
+For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. The most compliated and also most limited aspect is the positioning of the annotation. There are two things we can position:
 
-For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. 
+- the head of the annotation, which is the position the annotation arrow points to, or the position of the text in case of no arrow
+- the tail of the annotation, which is the position of the annotation arrow, if present
 
-Important parameters:
+### Setting the head of the annotation
+There are two settings for head of the annotation for each axis:
 
-- `x`, `y`: the x and y coordinates of the annotation
+- [`xref`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.xref) and [`yref`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.yref): the mode of the positioning, and
+- [`x`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.x) and [`y`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.y): the coordinates
+
+The `xref` and `yref` parameters can be set to:
+
+- `"paper"`: The whole figure mode, where 0 means the left/bottom and 1 means the right/top of the figure.
+- `<axis reference>`: The axis mode, where the axis coordinates are used for positioning.
+    - for `<axis reference>`, we can use `"x"` or `"y"` for simple plots and `"x1"-"x<n>"` or `"y1"-"y<n>"` for subplots.
+
+By default, the `<axis reference>` is used for simple plots and `"paper"` for subplots.
+
+
+### Setting the tail of the annotation
+There are two settings for the tail of the annotation for each axis:
+
+- [`axref`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.axref) and [`ayref`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ayref): the mode of the positioning, and
+- [`ax`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ax) and [`ay`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Layout.html#plotly.graph_objects.layout.Annotation.ay): the coordinates
+
+The `axref` and `ayref` parameters can be set to:
+
+- `"pixel"`: The pixel mode, where the coordinates are in pixels relative to the whole figure, where the origin is the bottom left corner of the figure.
+- `<axis reference>`: Same as for the head of the annotation, but must be equal to the `xref`/`yref`, ottherwise, the arrow will not be visible.
+    - e.g., setting `xref` to `"x1"` and `axref` to `"x2"` is not allowed
+
+
+### Positinoing the text relative to the arrow
+**There is no way how to position the text of the annotation with respect to the arrow**. The text position is:
+
+- the head of the annotation, if the arrow is not present, or
+- the tail of the annotation, if the arrow is present
+
+If we want to, for example, need to position the text of the annotation above the arrow, so that the text is parallel to the arrow, we need to use two annotations.
+
+### Other important parameters
+
 - `text`: the text of the annotation
-- `xref`, `yref`: the coordinate system of the x and y coordinates. Can be `"paper"` or `"data"`.
-- `showarrow`: if `True`, an arrow will be added to the annotation
+- `showarrow`: if `True`, an arrow will be added to the annotation, if False, only the text will be added. Default is `True`.
 - `textangle`: the angle of the text in degrees,
 - `bgcolor`: the background color of the annotation
-
-
-**By default** the annotation is meant to annotate the data. Therefore, **the `x` and `y` coordinates use the coordinate system of the data** (x and y axes). To align the annotation with respect to the whole figure, we need to set the `xref` and `yref` parameters to `"paper"`. In this case, the `x` and `y` coordinates are in the range `[0, 1]` and the origin is the bottom left corner of the figure.
-
-### Annotations in facet plots
-When using facet plots, the annotations are added to the whole figure. Therefore, the `x` and `y` coordinates are in the range `[0, 1]` and the origin is the bottom left corner of the figure. To align the annotation with respect to the subplot, we need to set the `xref` and `yref` parameters to the x and y axes of the subplot. Example:
-```python
-fig.add_annotation(x=0.5, y=0.5, text="Title", xref="x5", yref="y5", showarrow=False)
-```
-
-Unfortunately, **there is no way how to set the `xref` and `yref` parameters automatically**. Therefore, we need to compute them manually for each annotation.
 
 
 
