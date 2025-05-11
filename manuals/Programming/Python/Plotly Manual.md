@@ -420,8 +420,8 @@ fig.update_xaxes(dtick=1000 * 60 * 60 * 24 * 7) # one week interval
 ```
 
 
-### Tick markers and shared axes
-By default, only tick labels are shared between subplots with shared axes. To share the tick markers, we need to hide them manually and add them to the first subplot. Example:
+### Customizing shared axes
+By default, only tick labels are shared between subplots with shared axes. To share other properties (tick markers, axis title) we need to hide them manually and add them to the first subplot. Example:
 ```python
 fig.update_yaxes(showticklabels=False)
 fig.update_yaxes(showticklabels=True, row=1, col=1)
@@ -652,6 +652,12 @@ fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
 To set the title of an individual subplot, we can use the `subplot_titles` parameter of the `make_subplots` function. 
 
 
+To **position the subplot titles**, we have to update all annotations. To prevent the need to filter the titles, it is best to update all annotations right after the `make_subplots` call. Example:
+```python
+fig = make_subplots(...)
+fig.update_annotations(yshift=10) # move the subplot titles 10 pixels up
+```
+
 ## Z-Order of the Traces
 The z-order of the traces cannot be configured. Instead, the traces are drawn in the order they are added to the figure. 
 
@@ -687,9 +693,20 @@ fig.add_annotation(x=0.5, y=0.5, text="Title<b>bold</b><i>italic</i>", xref="x5"
 ```
 
 ## Math symbols
-To add math symbols, we can use the LaTeX syntax. Example:
+To add math symbols, we can use the LaTeX syntax. However, when using it, all text must be wrapped in math mode, not just the symbols. Example:
 ```python
-fig.add_annotation(x=0.5, y=0.5, text=r"Title$ \alpha $ and $ \beta $", xref="x5", yref="y5", showarrow=False)
+fig.add_annotation(x=0.5, y=0.5, text=r"$\\text{{Title: }} \alpha  \\text{{ and }}  \beta $", xref="x5", yref="y5", showarrow=False)
+```
+
+**Note that the LaTeX syntax does not work in vscode out of the box** [[issue]](https://github.com/microsoft/vscode-jupyter/issues/8131). We need to add the following code:
+```python
+import plotly
+from IPython.display import display, HTML
+
+plotly.offline.init_notebook_mode()
+display(HTML(
+    '<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG"></script>'
+))
 ```
 
 
