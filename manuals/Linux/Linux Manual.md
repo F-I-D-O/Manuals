@@ -96,6 +96,21 @@ appendWindowsPath = false
 
 
 # File System
+
+## List files
+To list files, use `ls <path>`. By default, it lists the files in the current directory. The most used options are:
+
+- `-l`: list in long format
+- `-a`: list all files, including hidden ones
+- `-1`: list one file per line (instead of multiple columns)
+- `-d`: list directories themselves, not their contents
+
+### List the full paths
+There is no option of showing the full path. The trick is to use the `-d` option, as directories are listed in the long format by default. So for example, to list full paths of all subdirectories of `<dir>`, you can use:
+```bash
+ls -d <dir>/* 
+```
+
 ## copy file
 The `cp` command is used to copy files: `cp <source> <destination>`. The most used options are:
 
@@ -164,7 +179,18 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 
 # Bash
 [documentation](https://www.gnu.org/software/bash/manual/bash.html)
+
 [wiki](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
+
+Bash can refer to a typical Unix shell, or just the command line interpreter for this shell or to the language used to write shell commands and scripts.
+
+In bash, **commands can be separated** by
+
+- a newline, or
+- a semicolon.
+
+Therefore, we can write even complicated commands to a single line in the terminal.
+
 
 ## General Remarks
 
@@ -213,6 +239,24 @@ To access the value of a variable, we use `$`:
 ```bash
 echo $var
 ```
+
+### Assigning the output of a command to a variable
+The output of a command can be assigned to a variable only with the [command substitution](#command-substitution):
+```bash
+var=<command> # wrong, the first token of the command is assigned to the variable
+
+var=$(<command>) # correct, the output of the command is assigned to the variable
+```
+
+Example:
+```bash
+var=$(echo $var | sed 's/old/new/')
+```
+
+
+
+
+
 
 ### List all variables
 To list all variables, we can use the declare command:
@@ -369,9 +413,9 @@ fi
 
 
 ## Loops
-
+The syntax of the loop is:
 ```bash
-while condition
+while <condition>
 do
    <command1>
    <command2>
@@ -634,24 +678,51 @@ The `wc` command counts words, lines, and characters. What is counted is determi
 
 
 ## String mofification with `sed`
-Sed is a multi purpose command for string modification.
+[Documentation](https://www.gnu.org/software/sed/manual/sed.html)
 
-It can search and replace in string. The syntax is folowing:
+[sed](https://en.wikipedia.org/wiki/Sed) (stream editor) is a command for string modification. It is mostly used for search and replace in string. The syntax is folowing:
+The syntax is:
 ```bash
-sed s/<search>/<replace>/[<occurance>]
+sed <options> <script> <input file> #or
+<input stream> | sed <options> <script>
 ```
+
+here, the parameter characteristic to sed is `<script>`, which a) defines the mode of operation and b) configure the operation.
+
+In the sections below, each mode of operation is described separately.
+
+### Regex support in sed
+Regex can be used in sed, but the support is limited. The following is not supported:
+
+- `\s`
+
+Note that the **`<script>` is processed by bash before it is passed to sed. A proper quoting is required to avoid the shell interpreting or deleting characters.** Example:
+```bash
+echo $line | sed 's/\r//g' # removes carriage returns from the line
+echo $line | sed s/\r//g # wrong, the backslash is interpreted by the shell and removed. As a result, the script is interpreted as `s/r//g` and all "r" characters are removed.
+```
+
+
+### Search and replace
+The `<script>` for *substitution* is:
+```bash
+s/<search>/<replace>/[<occurance>]
+```
+
+
+
 Example:
 ```bash
 s/$/,3/
 ```
 
-Any regex can be used as `<search>`. Some characters (e.g. `|`) must be escaped with backslash and used together with the `-E` parameter.
+This replace the end of the line with string `",3"`. Note that there is a slash at the end, despite we use the default option for occurance.
 
-This replace the nd of the line with string `",3"`. Note that there is a slash at the end, despite we use the default option for occurance.
 
-Also, it can delete lines containing string using:
+
+### Delete lines containing string
 ```bash
-sed /<pattern>/d
+/<pattern>/d
 ```
 
 ## `cut`
