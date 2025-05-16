@@ -197,22 +197,19 @@ Information about users can be obtained with the [`Get-LocalUser`](https://docs.
 
 
 # Installation
-## Windows 11
-Windows 11 can be installed only as an update of Windows 10.
-
-## Windows 10
-Can be installed from bootable USB created by a tool downloaded from the official Miccosoft website. Single image for all Windows versions, a particular version is choosen based on the license key. Steps:
+Can be installed from bootable USB created by a [tool downloaded from the official Miccosoft website](https://www.microsoft.com/cs-cz/software-download/). Single image for all Windows editions, a particular version is choosen based on the license key. Steps:
 
 1. Download the install tool from Microsoft
-2. Create a bootable USB
+2. Run the tool and create a bootable USB
 3. Start the installation
 4. Fill in the licence key
 
-### we couldn’t create a partition or locate an existing one
+## we couldn’t create a partition or locate an existing one
 Ensure that the boot priority of the drive where the Windows should be installed is right behind the installation USB priority.
 
 
 # Configuration
+
 ## Right Click Menu
 Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.
 
