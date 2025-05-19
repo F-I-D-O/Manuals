@@ -197,15 +197,31 @@ Information about users can be obtained with the [`Get-LocalUser`](https://docs.
 
 
 # Installation
-Can be installed from bootable USB created by a [tool downloaded from the official Miccosoft website](https://www.microsoft.com/cs-cz/software-download/). Single image for all Windows editions, a particular version is choosen based on the license key. Steps:
+Windows can be installed from bootable USB created by a [tool downloaded from the official Miccosoft website](https://www.microsoft.com/cs-cz/software-download/). There is a single image for all Windows editions, a particular version is choosen based on the license key.
 
+The license can be purchased online either from [Microsoft](https://www.microsoft.com/cs-cz/d/windows-11-home/dg7gmgf0krt0) (be sure to buy it on CZ website, it cannot be bought on the US website) or from a retailer (e.g., [Alza](https://www.alza.cz/microsoft-windows-11/18891706.htm)). Licenses are transferable, not OEM, unless specified otherwise. The Home version is typically sufficient.
+
+Installation Steps:
+
+1. Get a license key
 1. Download the install tool from Microsoft
-2. Run the tool and create a bootable USB
-3. Start the installation
-4. Fill in the licence key
+1. Run the tool and create a bootable USB
+1. Start the installation
+1. Fill in the licence key
+1. Choose where to install Windows
+1. Complete the installation guide
 
-## we couldn’t create a partition or locate an existing one
+## Installation Problems
+
+### We couldn’t create a partition or locate an existing one
 Ensure that the boot priority of the drive where the Windows should be installed is right behind the installation USB priority.
+
+### windows installation encountered an unexpected error 0x80042444 - 0x4002F
+This error is triggered by SATA drives from a different OS installation. There are two solutions:
+
+- Use the legacy Windows installer that can be started from a small link on one of the initial installation screens.
+- disconnect the SATA drives from previous installations, either physically, or in BIOS/UEFI
+
 
 
 # Configuration
