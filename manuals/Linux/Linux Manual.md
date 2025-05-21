@@ -166,7 +166,19 @@ To find files, use the `find` command: `find <where> <options> <params>`. The mo
 - `-name`: find by name. This option should be followed by a file name pattern.
 - `-path`: find by path. This option should be followed by a path pattern. 
 
+## List disks and partitions
+To list disks and partitions, use the `lsblk` command. If we are not satisfied with the output, we can configure it with the `-o` option:
+```bash
+lsblk -o <list of columns, separated by commas>
+```
 
+Most important columns are:
+
+- `NAME`: name of the disk or partition
+- `SIZE`: size of the disk or partition
+- `TYPE`: type of the disk or partition
+- `FSTYPE`: file system type
+- `FSAVAIL`: available file system space
 
 # Network
 ## [`netstat`](https://en.wikipedia.org/wiki/Netstat)

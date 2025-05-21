@@ -152,7 +152,25 @@ The system wide shortcuts are stored in: `%programdata%\Microsoft\Windows\Start 
 ## Read Only Files and Folders
 An ancient form of file protection on Windows is the read only flag that can be set on files and folders. It is not a real protection, as it can be easily removed by the user, but it can be used to prevent accidental changes.
 
-Most of the programs can ignore this flag and work with the file anyway. However, some programs (e.g. Python) can have problems with it. 
+Most of the programs can ignore this flag and work with the file anyway. However, some programs (e.g. Python) can have problems with it.
+
+
+## Formatting a drive/partition or disk
+When we want to delete all data from a drive/partition or disk and start over, we use the procedure called formatting. There are various tools for that, with different trade-offs between capabilities and complexity.
+
+In all tools, there are two variants of formatting:
+
+- Quick Format: All files are forgotten, but they data is not overwritten. Best choice most of the time but:
+	- other people can still recover the data using special software, and
+	- when bootable disk is formatted this way, the BIOS can still boot from it, confusing the user.
+- Full Format: All files are forgotten and the data is overwritten with zeros. This is the safe option, but it can take a long time.
+
+There are several tools for formatting:
+
+- `properties` window of the drive in File Explorer:
+	- can only format mounted drives
+- `Disk Management` tool in `Computer Management`
+- `diskpart` command line tool
 
 
 
@@ -211,6 +229,19 @@ Installation Steps:
 1. Choose where to install Windows
 1. Complete the installation guide
 
+
+## Post Installation Steps
+
+- Import the disks from previous installations.
+
+### Import disks
+After installation, only the main disk and newly installed disk are initialized. Other disks will be marked as foreign in the disk management tool, and the drives on them will not show up in File Explorer.
+
+To import the disks:
+
+1. Go to `Computer Management` -> `Storage` -> `Disk Management`
+2. Right click on disk marked as foreign and select `Import foreign disks`
+
 ## Installation Problems
 
 ### We couldn’t create a partition or locate an existing one
@@ -227,9 +258,18 @@ This error is triggered by SATA drives from a different OS installation. There a
 # Configuration
 
 ## Right Click Menu
+
+### Bring the old right click menu back to Windows 11
+There is a new right click menu in Windows 11, which is much less practical than the old one. To bring the old one back, we have to edit the registry:
+
+```PowerShell
+reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+```
+
+### Configure the items in the right click menu
 Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.
 
-### Share with Skype
+#### Share with Skype
 
 1. in an elevated PowerShell, run:
 	```PowerShell
@@ -238,13 +278,13 @@ Unfortunatelly, the right click menu is not directly configurable in Windows. Us
 
 2. restart the Explorer
 
-### PowerToys modules
+#### PowerToys modules
 These can be removed by deactivating the specific modules in the PowerToys settings.
 
-### Edit with Notepad
+#### Edit with Notepad
 Just Uninstall the Notepad. Yes, it can be done.
 
-### Scan with Microsoft Defender
+#### Scan with Microsoft Defender
 The following commands removes four entries from the registry that are related to this icon:
 ```PowerShell
 REG DELETE "HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP"
@@ -255,14 +295,33 @@ REG DELETE "HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP"
 
 [Source](https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html)
 
-### Translate with Deepl
+#### Translate with Deepl
 Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.
 
 
 
 
 # Diskpart
-Diskpart is a useful command line tool for work with disks, partitions, etc.
+[documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart)
+
+Diskpart is a useful command line tool for work with disks, partitions, etc. We start it by running `diskpart` command, and then, we use other commands to manage the disks. 
+
+Basic general commands:
+
+- `list disk`: list all disks
+- `exit`: exit diskpart
+- `select disk <disk number>`: select the disk to manage
+
+When a disk is selected, we can use other commands:
+
+- `list partition`: list all partitions on the selected disk
+- `list volume`: list all volumes on the selected disk. A volume is a mount point for a partition.
+- `select partition <partition number>`: select the partition to manage
+
+
+
+
+
 
 ## Find out wheteher a disk is MBR or GPT
 
