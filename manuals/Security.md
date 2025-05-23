@@ -119,7 +119,7 @@ To change the port:
 
 
 ## SSH Agent
-Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the SSH agent programe.
+Normally, the SSH client process runs only while the SSH session is active, then, it is terminated. That means that we have to reenter the passphrase for the private key every time we want to connect to the server. To overcome this limitation, we can use the an SSH agent program.
 
 An SSH agent is a process for storing decrypted SSH keys in memory. This means that we have to enter the passphrase only once per each OS login. The agent can be configured to automatically run on OS startup. The default SSH agent is `ssh-agent`, the rest of the section is dedicated to this agent.
 
@@ -129,11 +129,14 @@ To successfully use the agent, we need to:
 2.  add the keys to the agent (only once)
 
 ### Starting the agent
-The agent can be started manually by running:
-```bash
-eval `ssh-agent`
-```
-We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the `ssh-agent` prints the necessary commands to the console. By using eval, the `ssh-agent` is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.
+The starting of the agent is different for each OS:
+
+- **Linux**: the agent can be started manually by running:
+	```bash
+	eval `ssh-agent`
+	```
+	We need to evaluate this command as it sets some environment variables. As the process cannot set the environment variables of the parent process due to security reasons, the `ssh-agent` prints the necessary commands to the console. By using eval, the `ssh-agent` is executed first, it prints the environment setup commands to stdout, which is captured by the eval command and executed.
+- **Windows**: we need to start the OpenSSH agent service. Consult the [Windows Manual](<Windows/Windows Manual.md#ssh-key-agent>) for more details.
 
 ### Listing keys
 To list the keys stored in the agent, run:
