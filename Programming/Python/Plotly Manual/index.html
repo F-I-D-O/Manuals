@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Plotly Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -129,7 +130,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Plotly Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Plotly Manual</a>
 </li>
             
 <li>
@@ -217,8 +218,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -230,8 +231,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -239,8 +240,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -264,8 +265,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -277,8 +278,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -294,8 +295,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -311,8 +312,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -324,41 +325,44 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
+                                <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -379,275 +383,275 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#plotly-express" class="nav-link">Plotly Express</a>
+            <li class="nav-item" data-bs-level="1"><a href="#plotly-express" class="nav-link">Plotly Express</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#common-parameters-for-all-types-of-plots" class="nav-link">Common Parameters For All Types of Plots</a>
+            <li class="nav-item" data-bs-level="2"><a href="#common-parameters-for-all-types-of-plots" class="nav-link">Common Parameters For All Types of Plots</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#automatic-color-assignment" class="nav-link">Automatic color assignment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#histogram" class="nav-link">Histogram</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#plotly-histogram-limitations" class="nav-link">Plotly Histogram Limitations</a>
+            <li class="nav-item" data-bs-level="3"><a href="#automatic-color-assignment" class="nav-link">Automatic color assignment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#bar-chart" class="nav-link">Bar Chart</a>
+            <li class="nav-item" data-bs-level="2"><a href="#histogram" class="nav-link">Histogram</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#why-bar-charts-with-a-lot-of-records-appear-transparent" class="nav-link">Why bar charts with a lot of records appear transparent?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#numerical-vs-categorical-color" class="nav-link">Numerical vs categorical color</a>
+            <li class="nav-item" data-bs-level="3"><a href="#plotly-histogram-limitations" class="nav-link">Plotly Histogram Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#scatter-plot" class="nav-link">Scatter Plot</a>
+            <li class="nav-item" data-bs-level="2"><a href="#bar-chart" class="nav-link">Bar Chart</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#why-bar-charts-with-a-lot-of-records-appear-transparent" class="nav-link">Why bar charts with a lot of records appear transparent?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#line-chart" class="nav-link">Line Chart</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#automatic-subplots-facet-plots" class="nav-link">Automatic Subplots: Facet plots</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#independent-axes-between-rows-and-columns" class="nav-link">Independent axes between rows and columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#sharing-the-axes-titles-between-rows-and-columns" class="nav-link">Sharing the axes titles between rows and columns</a>
+            <li class="nav-item" data-bs-level="3"><a href="#numerical-vs-categorical-color" class="nav-link">Numerical vs categorical color</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#3d-scatter-plot" class="nav-link">3D Scatter Plot</a>
+            <li class="nav-item" data-bs-level="2"><a href="#scatter-plot" class="nav-link">Scatter Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#line-chart" class="nav-link">Line Chart</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#automatic-subplots-facet-plots" class="nav-link">Automatic Subplots: Facet plots</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#independent-axes-between-rows-and-columns" class="nav-link">Independent axes between rows and columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#sharing-the-axes-titles-between-rows-and-columns" class="nav-link">Sharing the axes titles between rows and columns</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#plotly-graph-objects" class="nav-link">Plotly Graph Objects</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#common-parameters-for-all-types-of-plots_1" class="nav-link">Common Parameters For All Types of Plots</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#legend" class="nav-link">Legend</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#bar-chart_1" class="nav-link">Bar Chart</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#stacked-or-grouped-bars" class="nav-link">Stacked or grouped bars</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#line-and-scatter-plots" class="nav-link">Line and Scatter Plots</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#shapes" class="nav-link">Shapes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#create-subplots" class="nav-link">Create subplots</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#3d-plots" class="nav-link">3D plots</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#common-parameters" class="nav-link">Common Parameters</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#setting-color-of-the-plots-with-continuous-color-scale" class="nav-link">Setting color of the plots with continuous color scale</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#3d-scatter-plot_1" class="nav-link">3D Scatter Plot</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#surface-plots" class="nav-link">Surface Plots</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#3d-surface-plot" class="nav-link">3D Surface Plot</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#3d-mesh-plot" class="nav-link">3D Mesh Plot</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#cone-plots" class="nav-link">Cone Plots</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#customizing-the-figure" class="nav-link">Customizing the Figure</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#size-and-margins" class="nav-link">Size and margins</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#customize-axes" class="nav-link">Customize axes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#drawing-borders-using-axes" class="nav-link">Drawing borders using axes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#customizing-datetime-axes" class="nav-link">Customizing datetime axes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#tick-markers-and-shared-axes" class="nav-link">Tick markers and shared axes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#3d-axes" class="nav-link">3d axes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#change-position-of-the-axis-title" class="nav-link">Change position of the axis title</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#legend_1" class="nav-link">Legend</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#hide-legend" class="nav-link">Hide legend</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#legend-items-order" class="nav-link">Legend items order</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#legend-position" class="nav-link">Legend position</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#legend-items-text" class="nav-link">Legend items text</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#figure-annotations" class="nav-link">Figure Annotations</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#setting-the-head-of-the-annotation" class="nav-link">Setting the head of the annotation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#setting-the-tail-of-the-annotation" class="nav-link">Setting the tail of the annotation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#positinoing-the-text-relative-to-the-arrow" class="nav-link">Positinoing the text relative to the arrow</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#other-important-parameters" class="nav-link">Other important parameters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#markers" class="nav-link">Markers</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#adding-a-marker-to-a-hard-coded-location" class="nav-link">Adding a marker to a hard-coded location</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#lines" class="nav-link">Lines</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#title" class="nav-link">Title</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#subplot-titles" class="nav-link">Subplot titles</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#automatic-subplot-titles-facet-plots" class="nav-link">Automatic subplot titles (facet plots)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#individual-subplot-titles" class="nav-link">Individual subplot titles</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#z-order-of-the-traces" class="nav-link">Z-Order of the Traces</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#other-layout-parameters-background-borders-etc" class="nav-link">Other Layout Parameters (background, borders, etc.)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#3d-scatter-plot" class="nav-link">3D Scatter Plot</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#text" class="nav-link">Text</a>
+            <li class="nav-item" data-bs-level="1"><a href="#plotly-graph-objects" class="nav-link">Plotly Graph Objects</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
+            <li class="nav-item" data-bs-level="2"><a href="#common-parameters-for-all-types-of-plots_1" class="nav-link">Common Parameters For All Types of Plots</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#bold-and-italic" class="nav-link">Bold and italic</a>
+            <li class="nav-item" data-bs-level="3"><a href="#legend" class="nav-link">Legend</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#math-symbols" class="nav-link">Math symbols</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#bar-chart_1" class="nav-link">Bar Chart</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#stacked-or-grouped-bars" class="nav-link">Stacked or grouped bars</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#line-and-scatter-plots" class="nav-link">Line and Scatter Plots</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#shapes" class="nav-link">Shapes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#create-subplots" class="nav-link">Create subplots</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3d-plots" class="nav-link">3D plots</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#common-parameters" class="nav-link">Common Parameters</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#setting-color-of-the-plots-with-continuous-color-scale" class="nav-link">Setting color of the plots with continuous color scale</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#3d-scatter-plot_1" class="nav-link">3D Scatter Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#surface-plots" class="nav-link">Surface Plots</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#3d-surface-plot" class="nav-link">3D Surface Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#3d-mesh-plot" class="nav-link">3D Mesh Plot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#cone-plots" class="nav-link">Cone Plots</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#customizing-the-figure" class="nav-link">Customizing the Figure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#size-and-margins" class="nav-link">Size and margins</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#customize-axes" class="nav-link">Customize axes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#drawing-borders-using-axes" class="nav-link">Drawing borders using axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#customizing-datetime-axes" class="nav-link">Customizing datetime axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#customizing-shared-axes" class="nav-link">Customizing shared axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#3d-axes" class="nav-link">3d axes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#change-position-of-the-axis-title" class="nav-link">Change position of the axis title</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#legend_1" class="nav-link">Legend</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#hide-legend" class="nav-link">Hide legend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#legend-items-order" class="nav-link">Legend items order</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#legend-position" class="nav-link">Legend position</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#legend-items-text" class="nav-link">Legend items text</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#figure-annotations" class="nav-link">Figure Annotations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#setting-the-head-of-the-annotation" class="nav-link">Setting the head of the annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#setting-the-tail-of-the-annotation" class="nav-link">Setting the tail of the annotation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#positinoing-the-text-relative-to-the-arrow" class="nav-link">Positinoing the text relative to the arrow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-important-parameters" class="nav-link">Other important parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#markers" class="nav-link">Markers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#adding-a-marker-to-a-hard-coded-location" class="nav-link">Adding a marker to a hard-coded location</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#lines" class="nav-link">Lines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#title" class="nav-link">Title</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#subplot-titles" class="nav-link">Subplot titles</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#automatic-subplot-titles-facet-plots" class="nav-link">Automatic subplot titles (facet plots)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#individual-subplot-titles" class="nav-link">Individual subplot titles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#z-order-of-the-traces" class="nav-link">Z-Order of the Traces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#other-layout-parameters-background-borders-etc" class="nav-link">Other Layout Parameters (background, borders, etc.)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#exporting-the-figure" class="nav-link">Exporting the Figure</a>
+            <li class="nav-item" data-bs-level="1"><a href="#text" class="nav-link">Text</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#export-hangs-out" class="nav-link">Export hangs out</a>
+            <li class="nav-item" data-bs-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#bold-and-italic" class="nav-link">Bold and italic</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#math-symbols" class="nav-link">Math symbols</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#colors" class="nav-link">Colors</a>
+            <li class="nav-item" data-bs-level="1"><a href="#exporting-the-figure" class="nav-link">Exporting the Figure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#export-hangs-out" class="nav-link">Export hangs out</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#colors" class="nav-link">Colors</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -982,8 +986,8 @@ fig.update_yaxes(linecolor=&quot;black&quot;, mirror=True)
 <p>Unfortunately, we cannot treat the datetime axes as expected, i.e., using the datetime objects. For example, to set the tick interval, we cannot use the <code>datetime.timedelta</code> object. Instead, we need to use the number of milliseconds. Example:</p>
 <pre><code class="language-python">fig.update_xaxes(dtick=1000 * 60 * 60 * 24 * 7) # one week interval
 </code></pre>
-<h3 id="tick-markers-and-shared-axes">Tick markers and shared axes<a class="headerlink" href="#tick-markers-and-shared-axes" title="Permanent link">&para;</a></h3>
-<p>By default, only tick labels are shared between subplots with shared axes. To share the tick markers, we need to hide them manually and add them to the first subplot. Example:</p>
+<h3 id="customizing-shared-axes">Customizing shared axes<a class="headerlink" href="#customizing-shared-axes" title="Permanent link">&para;</a></h3>
+<p>By default, only tick labels are shared between subplots with shared axes. To share other properties (tick markers, axis title) we need to hide them manually and add them to the first subplot. Example:</p>
 <pre><code class="language-python">fig.update_yaxes(showticklabels=False)
 fig.update_yaxes(showticklabels=True, row=1, col=1)
 </code></pre>
@@ -1177,6 +1181,10 @@ If the legend is positioned inside the plot, the plot expands to the whole width
 </code></pre>
 <h4 id="individual-subplot-titles">Individual subplot titles<a class="headerlink" href="#individual-subplot-titles" title="Permanent link">&para;</a></h4>
 <p>To set the title of an individual subplot, we can use the <code>subplot_titles</code> parameter of the <code>make_subplots</code> function. </p>
+<p>To <strong>position the subplot titles</strong>, we have to update all annotations. To prevent the need to filter the titles, it is best to update all annotations right after the <code>make_subplots</code> call. Example:</p>
+<pre><code class="language-python">fig = make_subplots(...)
+fig.update_annotations(yshift=10) # move the subplot titles 10 pixels up
+</code></pre>
 <h2 id="z-order-of-the-traces">Z-Order of the Traces<a class="headerlink" href="#z-order-of-the-traces" title="Permanent link">&para;</a></h2>
 <p>The z-order of the traces cannot be configured. Instead, the traces are drawn in the order they are added to the figure. </p>
 <p>This simple rule has an exception: the webGL traces are always drawn on top of the standard traces. Because all plotly express traces are WebGL traces, they are drawn on top of the graph objects traces added later if those are not WebGL. To overcome this limitation, we have two options:</p>
@@ -1202,8 +1210,17 @@ If the legend is positioned inside the plot, the plot expands to the whole width
 <pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=&quot;Title&lt;b&gt;bold&lt;/b&gt;&lt;i&gt;italic&lt;/i&gt;&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
 </code></pre>
 <h2 id="math-symbols">Math symbols<a class="headerlink" href="#math-symbols" title="Permanent link">&para;</a></h2>
-<p>To add math symbols, we can use the LaTeX syntax. Example:</p>
-<pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=r&quot;Title$ \alpha $ and $ \beta $&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
+<p>To add math symbols, we can use the LaTeX syntax. However, when using it, all text must be wrapped in math mode, not just the symbols. Example:</p>
+<pre><code class="language-python">fig.add_annotation(x=0.5, y=0.5, text=r&quot;$\\text{{Title: }} \alpha  \\text{{ and }}  \beta $&quot;, xref=&quot;x5&quot;, yref=&quot;y5&quot;, showarrow=False)
+</code></pre>
+<p><strong>Note that the LaTeX syntax does not work in vscode out of the box</strong> <a href="https://github.com/microsoft/vscode-jupyter/issues/8131">[issue]</a>. We need to add the following code:</p>
+<pre><code class="language-python">import plotly
+from IPython.display import display, HTML
+
+plotly.offline.init_notebook_mode()
+display(HTML(
+    '&lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_SVG&quot;&gt;&lt;/script&gt;'
+))
 </code></pre>
 <h1 id="exporting-the-figure">Exporting the Figure<a class="headerlink" href="#exporting-the-figure" title="Permanent link">&para;</a></h1>
 <p><a href="https://plotly.com/python/static-image-export/">documentation</a></p>
@@ -1230,19 +1247,20 @@ If the legend is positioned inside the plot, the plot expands to the whole width
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1262,7 +1280,7 @@ If the legend is positioned inside the plot, the plot expands to the whole width
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

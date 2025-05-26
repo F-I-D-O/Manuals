@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Maven - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -111,7 +112,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Maven</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Maven</a>
 </li>
     </ul>
   </li>
@@ -217,8 +218,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -230,8 +231,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -239,8 +240,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -264,8 +265,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -277,8 +278,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -294,8 +295,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -311,8 +312,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -324,41 +325,44 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
+                                <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -379,195 +383,195 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#maven-packages-artifacts" class="nav-link">Maven Packages: Artifacts</a>
+            <li class="nav-item" data-bs-level="1"><a href="#maven-packages-artifacts" class="nav-link">Maven Packages: Artifacts</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#list-locally-installed-artifacts" class="nav-link">List locally installed artifacts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#install-artifacts-from-a-remote-repository-manually" class="nav-link">Install artifacts from a remote repository manually</a>
+            <li class="nav-item" data-bs-level="2"><a href="#list-locally-installed-artifacts" class="nav-link">List locally installed artifacts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#debugging-missing-artifacts" class="nav-link">Debugging missing Artifacts</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install-artifacts-from-a-remote-repository-manually" class="nav-link">Install artifacts from a remote repository manually</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#compilation" class="nav-link">Compilation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#passing-arguments-to-javac" class="nav-link">Passing arguments to javac</a>
+            <li class="nav-item" data-bs-level="2"><a href="#debugging-missing-artifacts" class="nav-link">Debugging missing Artifacts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#using-dependencies-distributed-as-a-jar" class="nav-link">Using dependencies distributed as a jar</a>
+            <li class="nav-item" data-bs-level="1"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-dependencies-distributed-as-a-zip" class="nav-link">Using dependencies distributed as a zip</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compilation" class="nav-link">Compilation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#passing-arguments-to-javac" class="nav-link">Passing arguments to javac</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#tests" class="nav-link">Tests</a>
+            <li class="nav-item" data-bs-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#test-configuration" class="nav-link">Test configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#run-a-single-tests-file" class="nav-link">Run a single tests file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#using-dependencies-distributed-as-a-jar" class="nav-link">Using dependencies distributed as a jar</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#run-tests-using-a-pattern" class="nav-link">Run tests using a pattern</a>
+            <li class="nav-item" data-bs-level="2"><a href="#using-dependencies-distributed-as-a-zip" class="nav-link">Using dependencies distributed as a zip</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#execute-programs-from-maven" class="nav-link">Execute Programs from Maven</a>
+            <li class="nav-item" data-bs-level="1"><a href="#tests" class="nav-link">Tests</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#execjava" class="nav-link">exec:java</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#execexec" class="nav-link">exec:exec</a>
+            <li class="nav-item" data-bs-level="2"><a href="#test-configuration" class="nav-link">Test configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#configure-the-exec-plugin-in-the-pom" class="nav-link">Configure the exec plugin in the pom</a>
+            <li class="nav-item" data-bs-level="2"><a href="#run-a-single-tests-file" class="nav-link">Run a single tests file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#https-certificates" class="nav-link">HTTPS certificates</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#adding-a-new-ssl-certificate-to-your-keystore" class="nav-link">Adding a new SSL certificate to your keystore</a>
+            <li class="nav-item" data-bs-level="2"><a href="#run-tests-using-a-pattern" class="nav-link">Run tests using a pattern</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#debugging-maven" class="nav-link">Debugging maven</a>
+            <li class="nav-item" data-bs-level="1"><a href="#execute-programs-from-maven" class="nav-link">Execute Programs from Maven</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#no-tests-found-using-the-dtest-argument-of-the-test-goal" class="nav-link">No tests found using the Dtest argument of the test goal</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#uncompilable-source-code" class="nav-link">uncompilable  source code</a>
+            <li class="nav-item" data-bs-level="2"><a href="#execjava" class="nav-link">exec:java</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#project-publishing" class="nav-link">Project Publishing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#cleanup" class="nav-link">Cleanup</a>
+            <li class="nav-item" data-bs-level="2"><a href="#execexec" class="nav-link">exec:exec</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#add-license-information" class="nav-link">Add license information:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#updating-poms" class="nav-link">Updating poms</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#deploying-the-project-to-maven-central" class="nav-link">Deploying the project to Maven Central</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#deploying-artifacts-to-ossrh" class="nav-link">Deploying artifacts to OSSRH</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#required-metadata" class="nav-link">Required metadata</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#javadoc-and-sources-setup" class="nav-link">Javadoc and sources setup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#signing-the-artifacts-with-gpg" class="nav-link">Signing the artifacts with GPG</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#storing-the-gpg-passphrase" class="nav-link">Storing the GPG passphrase</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#required-plugins-and-configuration" class="nav-link">Required plugins and configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#setting-up-user-authentication-for-the-ossrh" class="nav-link">Setting up user authentication for the OSSRH</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#profiles" class="nav-link">Profiles</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#displaying-active-profiles" class="nav-link">Displaying active profiles</a>
+            <li class="nav-item" data-bs-level="2"><a href="#configure-the-exec-plugin-in-the-pom" class="nav-link">Configure the exec plugin in the pom</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#creating-maven-plugins" class="nav-link">Creating maven plugins</a>
+            <li class="nav-item" data-bs-level="1"><a href="#https-certificates" class="nav-link">HTTPS certificates</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#testing-a-maven-plugin" class="nav-link">Testing a maven plugin</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#debugging-a-maven-plugin-in-intellij-idea" class="nav-link">Debugging a maven plugin in IntelliJ IDEA</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#make-the-plugin-runnable-from-any-directory" class="nav-link">Make the plugin runnable from any directory</a>
+            <li class="nav-item" data-bs-level="2"><a href="#adding-a-new-ssl-certificate-to-your-keystore" class="nav-link">Adding a new SSL certificate to your keystore</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#various-useful-tasks" class="nav-link">Various useful tasks</a>
+            <li class="nav-item" data-bs-level="1"><a href="#debugging-maven" class="nav-link">Debugging maven</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#displaying-the-classpath" class="nav-link">Displaying the classpath</a>
+            <li class="nav-item" data-bs-level="2"><a href="#no-tests-found-using-the-dtest-argument-of-the-test-goal" class="nav-link">No tests found using the Dtest argument of the test goal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#uncompilable-source-code" class="nav-link">uncompilable source code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#project-publishing" class="nav-link">Project Publishing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#cleanup" class="nav-link">Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#add-license-information" class="nav-link">Add license information:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#updating-poms" class="nav-link">Updating poms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#deploying-the-project-to-maven-central" class="nav-link">Deploying the project to Maven Central</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#deploying-artifacts-to-ossrh" class="nav-link">Deploying artifacts to OSSRH</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#required-metadata" class="nav-link">Required metadata</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#javadoc-and-sources-setup" class="nav-link">Javadoc and sources setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#signing-the-artifacts-with-gpg" class="nav-link">Signing the artifacts with GPG</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#storing-the-gpg-passphrase" class="nav-link">Storing the GPG passphrase</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#required-plugins-and-configuration" class="nav-link">Required plugins and configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#setting-up-user-authentication-for-the-ossrh" class="nav-link">Setting up user authentication for the OSSRH</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#profiles" class="nav-link">Profiles</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#displaying-active-profiles" class="nav-link">Displaying active profiles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#creating-maven-plugins" class="nav-link">Creating maven plugins</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#testing-a-maven-plugin" class="nav-link">Testing a maven plugin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#debugging-a-maven-plugin-in-intellij-idea" class="nav-link">Debugging a maven plugin in IntelliJ IDEA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#make-the-plugin-runnable-from-any-directory" class="nav-link">Make the plugin runnable from any directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#various-useful-tasks" class="nav-link">Various useful tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#displaying-the-classpath" class="nav-link">Displaying the classpath</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1079,19 +1083,20 @@ mvn com.test:example-maven-plugin:example
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1111,7 +1116,7 @@ mvn com.test:example-maven-plugin:example
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

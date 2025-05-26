@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Python Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -137,7 +138,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Python Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Python Manual</a>
 </li>
             
 <li>
@@ -217,8 +218,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -230,8 +231,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -239,8 +240,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -264,8 +265,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -277,8 +278,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cloud computing <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -294,8 +295,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -311,8 +312,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -324,41 +325,44 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
+                                <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -379,338 +383,166 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#basics" class="nav-link">Basics</a>
+            <li class="nav-item" data-bs-level="1"><a href="#basics" class="nav-link">Basics</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#conditions-and-boolean-context" class="nav-link">Conditions and boolean context</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#comparison-operators" class="nav-link">Comparison operators</a>
+            <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#automatic-conversion-to-bool" class="nav-link">Automatic conversion to bool</a>
+            <li class="nav-item" data-bs-level="2"><a href="#conditions-and-boolean-context" class="nav-link">Conditions and boolean context</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#comparison-operators" class="nav-link">Comparison operators</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#checking-the-type" class="nav-link">Checking the type</a>
+            <li class="nav-item" data-bs-level="3"><a href="#automatic-conversion-to-bool" class="nav-link">Automatic conversion to bool</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#built-in-data-types" class="nav-link">Built-in data types</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#numbers" class="nav-link">Numbers</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#check-if-a-float-number-is-integer" class="nav-link">Check if a float number is integer</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#check-if-a-number-is-nan" class="nav-link">Check if a number is NaN</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#rounding" class="nav-link">Rounding</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#string-formatting" class="nav-link">String formatting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#string-methods" class="nav-link">String methods</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#enumerations" class="nav-link">Enumerations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#collections-and-generators" class="nav-link">Collections and generators</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#generator" class="nav-link">Generator</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#tuple" class="nav-link">Tuple</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#dictionary" class="nav-link">Dictionary</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#set" class="nav-link">Set</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#comprehensions" class="nav-link">Comprehensions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#sorting" class="nav-link">Sorting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#complex-sorting-using-tuples" class="nav-link">Complex sorting using tuples</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#slices" class="nav-link">Slices</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#copying-collections" class="nav-link">Copying collections</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#date-and-time" class="nav-link">Date and time</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#datetime-construction" class="nav-link">datetime construction</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#accessing-the-parts-of-datetime" class="nav-link">Accessing the parts of datetime</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#intervals" class="nav-link">Intervals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#named-tuples" class="nav-link">Named tuples</a>
+            <li class="nav-item" data-bs-level="2"><a href="#checking-the-type" class="nav-link">Checking the type</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#functions" class="nav-link">Functions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#built-in-data-types" class="nav-link">Built-in data types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#argument-unpacking" class="nav-link">Argument unpacking</a>
+            <li class="nav-item" data-bs-level="2"><a href="#numbers" class="nav-link">Numbers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#check-if-a-float-number-is-integer" class="nav-link">Check if a float number is integer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#check-if-a-number-is-nan" class="nav-link">Check if a number is NaN</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#rounding" class="nav-link">Rounding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#strings" class="nav-link">Strings</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#string-formatting" class="nav-link">String formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#string-methods" class="nav-link">String methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enumerations" class="nav-link">Enumerations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#collections-and-generators" class="nav-link">Collections and generators</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#generator" class="nav-link">Generator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#tuple" class="nav-link">Tuple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#dictionary" class="nav-link">Dictionary</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#set" class="nav-link">Set</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#comprehensions" class="nav-link">Comprehensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#complex-sorting-using-tuples" class="nav-link">Complex sorting using tuples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#slices" class="nav-link">Slices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#copying-collections" class="nav-link">Copying collections</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#date-and-time" class="nav-link">Date and time</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#datetime-construction" class="nav-link">datetime construction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#accessing-the-parts-of-datetime" class="nav-link">Accessing the parts of datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#intervals" class="nav-link">Intervals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#named-tuples" class="nav-link">Named tuples</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#string-formatting_1" class="nav-link">String formatting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#classes" class="nav-link">Classes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#constructor" class="nav-link">Constructor</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#check-if-an-object-contains-a-member" class="nav-link">Check if an object contains a member</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#constructor-overloading" class="nav-link">Constructor overloading</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#importing" class="nav-link">Importing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#resolving-absolute-module-paths" class="nav-link">Resolving absolute module paths</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#resolving-relative-module-paths" class="nav-link">Resolving relative module paths</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#imports-in-tests" class="nav-link">Imports in tests</a>
+            <li class="nav-item" data-bs-level="2"><a href="#argument-unpacking" class="nav-link">Argument unpacking</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#raising-exceptions" class="nav-link">Raising exceptions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#assertions" class="nav-link">Assertions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#string-formatting_1" class="nav-link">String formatting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#filesystem" class="nav-link">Filesystem</a>
+            <li class="nav-item" data-bs-level="1"><a href="#classes" class="nav-link">Classes</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#path-editing" class="nav-link">Path editing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#computing-relative-path" class="nav-link">Computing relative path</a>
+            <li class="nav-item" data-bs-level="2"><a href="#constructor" class="nav-link">Constructor</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#get-parent-directory" class="nav-link">Get parent directory</a>
+            <li class="nav-item" data-bs-level="2"><a href="#check-if-an-object-contains-a-member" class="nav-link">Check if an object contains a member</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#absolute-and-canonical-path" class="nav-link">Absolute and canonical path</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#splitting-paths-and-working-with-path-parts" class="nav-link">Splitting paths and working with path parts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#changing-path-separators" class="nav-link">Changing path separators</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#using-as-the-home-directory-in-paths" class="nav-link">Using ~ as the home directory in paths</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#working-directory" class="nav-link">Working directory</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#iterating-over-files" class="nav-link">Iterating over files</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#single-directory-iteration" class="nav-link">Single directory iteration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#recursive-iteration" class="nav-link">Recursive iteration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#iterate-only-directoriesfiles" class="nav-link">Iterate only directories/files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#use-more-complex-filters" class="nav-link">Use more complex filters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#get-the-path-to-the-current-script" class="nav-link">Get the path to the current script</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#checking-write-permissions-for-a-directory" class="nav-link">Checking write permissions for a directory</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#creating-directories" class="nav-link">Creating directories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#copying-files-and-directories" class="nav-link">Copying files and directories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#deleting-files-and-directories" class="nav-link">Deleting files and directories</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#deleting-windows-read-only-files-ie-access-denied-error" class="nav-link">Deleting Windows read-only files (i.e. Access Denied error)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#working-with-temporary-files" class="nav-link">Working with temporary files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#csv" class="nav-link">CSV</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#json" class="nav-link">JSON</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#custom-serialization" class="nav-link">Custom serialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#hdf5" class="nav-link">HDF5</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#command-line-arguments" class="nav-link">Command line arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#logging" class="nav-link">Logging</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#type-hints" class="nav-link">Type hints</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#type-hints-in-loops" class="nav-link">Type hints in loops</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#circular-type-hints" class="nav-link">Circular type hints</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#common-type-hints" class="nav-link">Common type hints</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#language-types" class="nav-link">Language types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#pandas-types" class="nav-link">Pandas types</a>
+            <li class="nav-item" data-bs-level="3"><a href="#constructor-overloading" class="nav-link">Constructor overloading</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -719,116 +551,170 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#calling-external-programs" class="nav-link">Calling external programs</a>
+            <li class="nav-item" data-bs-level="1"><a href="#importing" class="nav-link">Importing</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#subprocesspopen" class="nav-link">subprocess.Popen</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#loading-resources" class="nav-link">Loading resources</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resolving-absolute-module-paths" class="nav-link">Resolving absolute module paths</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#numpy" class="nav-link">Numpy</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#data-types" class="nav-link">Data types</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#date-and-time_1" class="nav-link">Date and time</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resolving-relative-module-paths" class="nav-link">Resolving relative module paths</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#initialization" class="nav-link">Initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sorting_1" class="nav-link">Sorting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#export-to-csv" class="nav-link">Export to CSV</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#usefull-array-properties" class="nav-link">Usefull array properties:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#usefull-functions" class="nav-link">Usefull functions</a>
+            <li class="nav-item" data-bs-level="2"><a href="#imports-in-tests" class="nav-link">Imports in tests</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#lambda-functions" class="nav-link">Lambda functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#decorators" class="nav-link">Decorators</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#decorator-with-arguments" class="nav-link">Decorator with arguments</a>
+            <li class="nav-item" data-bs-level="2"><a href="#raising-exceptions" class="nav-link">Raising exceptions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#singletons" class="nav-link">Singletons</a>
+            <li class="nav-item" data-bs-level="1"><a href="#assertions" class="nav-link">Assertions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#module-level-variable" class="nav-link">Module-level variable</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#filesystem" class="nav-link">Filesystem</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#path-editing" class="nav-link">Path editing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#computing-relative-path" class="nav-link">Computing relative path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#get-parent-directory" class="nav-link">Get parent directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#absolute-and-canonical-path" class="nav-link">Absolute and canonical path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#splitting-paths-and-working-with-path-parts" class="nav-link">Splitting paths and working with path parts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#changing-path-separators" class="nav-link">Changing path separators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#using-as-the-home-directory-in-paths" class="nav-link">Using ~ as the home directory in paths</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#working-directory" class="nav-link">Working directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#iterating-over-files" class="nav-link">Iterating over files</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#single-directory-iteration" class="nav-link">Single directory iteration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#recursive-iteration" class="nav-link">Recursive iteration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#iterate-only-directoriesfiles" class="nav-link">Iterate only directories/files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#use-more-complex-filters" class="nav-link">Use more complex filters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#get-the-path-to-the-current-script" class="nav-link">Get the path to the current script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#checking-write-permissions-for-a-directory" class="nav-link">Checking write permissions for a directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#creating-directories" class="nav-link">Creating directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#copying-files-and-directories" class="nav-link">Copying files and directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#deleting-files-and-directories" class="nav-link">Deleting files and directories</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#deleting-windows-read-only-files-ie-access-denied-error" class="nav-link">Deleting Windows read-only files (i.e. Access Denied error)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#working-with-temporary-files" class="nav-link">Working with temporary files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#testing-with-pytest" class="nav-link">Testing with pytest</a>
+            <li class="nav-item" data-bs-level="1"><a href="#io" class="nav-link">I/O</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#fixtures" class="nav-link">Fixtures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#mocking" class="nav-link">Mocking</a>
+            <li class="nav-item" data-bs-level="2"><a href="#csv" class="nav-link">CSV</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#capturing-output" class="nav-link">Capturing output</a>
+            <li class="nav-item" data-bs-level="2"><a href="#json" class="nav-link">JSON</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#custom-serialization" class="nav-link">Custom serialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#jupyter" class="nav-link">Jupyter</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#memory" class="nav-link">Memory</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#reloding-modules-with-autoreload" class="nav-link">Reloding modules with autoreload</a>
+            <li class="nav-item" data-bs-level="2"><a href="#hdf5" class="nav-link">HDF5</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#plotting" class="nav-link">Plotting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#command-line-arguments" class="nav-link">Command line arguments</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#matplotlib" class="nav-link">Matplotlib</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#logging" class="nav-link">Logging</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#saving-figures" class="nav-link">Saving figures</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#type-hints" class="nav-link">Type hints</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#type-hints-in-loops" class="nav-link">Type hints in loops</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#circular-type-hints" class="nav-link">Circular type hints</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#common-type-hints" class="nav-link">Common type hints</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#language-types" class="nav-link">Language types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#pandas-types" class="nav-link">Pandas types</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -837,73 +723,191 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#docstrings" class="nav-link">Docstrings</a>
+            <li class="nav-item" data-bs-level="1"><a href="#calling-external-programs" class="nav-link">Calling external programs</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#progress-bars" class="nav-link">Progress bars</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#tqdm-in-jupyter" class="nav-link">TQDM in Jupyter</a>
+            <li class="nav-item" data-bs-level="2"><a href="#subprocesspopen" class="nav-link">subprocess.Popen</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#postgresql" class="nav-link">PostgreSQL</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#psycopg2" class="nav-link">psycopg2</a>
+            <li class="nav-item" data-bs-level="1"><a href="#loading-resources" class="nav-link">Loading resources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#sqlalchemy" class="nav-link">SQLAlchemy</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#numpy" class="nav-link">Numpy</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#statements-with-parameters" class="nav-link">Statements with parameters</a>
+            <li class="nav-item" data-bs-level="2"><a href="#data-types" class="nav-link">Data types</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#executing-statements-without-transaction" class="nav-link">Executing statements without transaction</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#getting-the-affected-rowcount" class="nav-link">Getting the affected rowcount</a>
+            <li class="nav-item" data-bs-level="3"><a href="#date-and-time_1" class="nav-link">Date and time</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#executing-multiple-statements-at-once" class="nav-link">Executing multiple statements at once</a>
+            <li class="nav-item" data-bs-level="2"><a href="#initialization" class="nav-link">Initialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sorting_1" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#export-to-csv" class="nav-link">Export to CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#usefull-array-properties" class="nav-link">Usefull array properties:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#usefull-functions" class="nav-link">Usefull functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#working-with-gis" class="nav-link">Working with GIS</a>
+            <li class="nav-item" data-bs-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#geocoding" class="nav-link">Geocoding</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#lambda-functions" class="nav-link">Lambda functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#decorators" class="nav-link">Decorators</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#decorator-with-arguments" class="nav-link">Decorator with arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#complex-data-structures" class="nav-link">Complex data structures</a>
+            <li class="nav-item" data-bs-level="1"><a href="#singletons" class="nav-link">Singletons</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#kdtree" class="nav-link">KDTree</a>
+            <li class="nav-item" data-bs-level="2"><a href="#module-level-variable" class="nav-link">Module-level variable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#testing-with-pytest" class="nav-link">Testing with pytest</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#fixtures" class="nav-link">Fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mocking" class="nav-link">Mocking</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#capturing-output" class="nav-link">Capturing output</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#geometry" class="nav-link">Geometry</a>
+            <li class="nav-item" data-bs-level="1"><a href="#jupyter" class="nav-link">Jupyter</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#memory" class="nav-link">Memory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#reloding-modules-with-autoreload" class="nav-link">Reloding modules with autoreload</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#plotting" class="nav-link">Plotting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#matplotlib" class="nav-link">Matplotlib</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#saving-figures" class="nav-link">Saving figures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#docstrings" class="nav-link">Docstrings</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#downloading-files" class="nav-link">Downloading files</a>
+            <li class="nav-item" data-bs-level="1"><a href="#progress-bars" class="nav-link">Progress bars</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#tqdm-in-jupyter" class="nav-link">TQDM in Jupyter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#postgresql" class="nav-link">PostgreSQL</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#psycopg2" class="nav-link">psycopg2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sqlalchemy" class="nav-link">SQLAlchemy</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#statements-with-parameters" class="nav-link">Statements with parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#executing-statements-without-transaction" class="nav-link">Executing statements without transaction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#getting-the-affected-rowcount" class="nav-link">Getting the affected rowcount</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#executing-multiple-statements-at-once" class="nav-link">Executing multiple statements at once</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#working-with-gis" class="nav-link">Working with GIS</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#geocoding" class="nav-link">Geocoding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#complex-data-structures" class="nav-link">Complex data structures</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#kdtree" class="nav-link">KDTree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#geometry" class="nav-link">Geometry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#downloading-files" class="nav-link">Downloading files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -2027,19 +2031,20 @@ with open(&lt;filename&gt;, 'wb') as f:
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -2059,7 +2064,7 @@ with open(&lt;filename&gt;, 'wb') as f:
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
