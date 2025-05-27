@@ -687,14 +687,17 @@ A simple syntax is:
 find_path(
 	<var name>
 	NAMES <file names>
-	PATHS <paths>
 )
 ```
 Here:
 
 - `<var name>` is the name of the resulting variable
 - `<file names>` are **all possible** file names split by space. At least one of the files needs to be present in a path for it to be considered to be the found path.
-- `<paths>` are candidate paths split by space
+
+By default, only some default paths are considered. To consider other paths, we have some options:
+
+- `PATHS <paths>`, where `<paths>` are full candidate paths split by space
+- `PATH_SUFFIXES <relative paths>`, where `<relative paths>` are relative paths that will be appended to all paths considered.
 
 Important parameters:
 
