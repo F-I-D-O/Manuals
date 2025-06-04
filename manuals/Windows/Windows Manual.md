@@ -87,12 +87,7 @@ netsh wlan show profile
 ```
 netsh wlan show wlanreport
 ```
-# Changing the input method
-It is possible to let the system have a different input method for each app. It is not possible however, to remember the input method (after app/OS restart).
 
-## Troubleshooting
-### Nothing happens after clicking on the input method in the taskbar (windows 10)
-restrat the computer :)
 
 
 
@@ -256,6 +251,14 @@ This error is triggered by SATA drives from a different OS installation. There a
 
 
 # Configuration
+
+## Changing the input method
+It is possible to let the system have a different input method for each app. It is not possible however, to remember the input method (after app/OS restart).
+
+### Troubleshooting
+
+#### Nothing happens after clicking on the input method in the taskbar (windows 10)
+restrat the computer :)
 
 ## Right Click Menu
 

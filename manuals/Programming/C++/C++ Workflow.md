@@ -546,10 +546,10 @@ installation
 
 #### Configure Visual Studio to use system CMake:
 
--   Go to `Project` -> `CMake Settings`
--   it should open the `CMakeSettings.json` file
--   Scroll to the bottom and click on `show advanced settings` 
--   Set the CMake executable to point to the `cmake.exe` file of your system CMake 
+- Go to `Project` -> `CMake Settings`
+- it should open the `CMakeSettings.json` file
+- Scroll to the bottom and click on `show advanced settings`
+- Set the CMake executable to point to the `cmake.exe` file of your system CMake
 
 #### Build Setting and Enviromental Variables
 The build configuration is in the file `CMakePresets.json`, located in the root of the project. The  file can be also opened by right clicking on `CMakeLists.txt` ad selecting `Edit CMake presets`.
