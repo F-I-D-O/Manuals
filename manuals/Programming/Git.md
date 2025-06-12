@@ -117,7 +117,7 @@ Dropping the history can be useful in many cases. For example, we may commit som
 
 Note that if the wrong history was already pushed to the remote, we need to fix the history on the remote as well. This is done by force pushing:
 
-```
+```bash
 git push -f
 ```
 

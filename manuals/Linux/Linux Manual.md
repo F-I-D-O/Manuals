@@ -821,15 +821,15 @@ An important aspect of user management in Linux is the user groups. For example,
 <group name>:<password>:<group ID>:<user list>
 ```
 
-To see the groups of a user, we can use the `groups` command (no arguments needed).
+To **see the groups of a user**, we can use the `groups` command (no arguments needed).
 
-To manipulate groups and users, we need a root access. 
+To **manipulate groups and users**, we need a root access. 
 To add a user to a group, we can use the `usermod` command:
 ```bash
 usermod -a -G <group name> <username>
 ```
 
-To remove a user from a group, we can use the same command:
+To **remove a user from a group**, we can use the same command:
 ```bash
 usermod -G <group list> <username>
 ```

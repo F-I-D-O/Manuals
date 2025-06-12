@@ -1,3 +1,17 @@
+# Introduction and basic terms
+Slurm is a job scheduler for HPC clusters. It is used to manage the resources and to run the tasks. Because it uses a different terminology than typical users are used to, we start with a short introduction to the basic terms:
+
+- *Association*: a record of a Slurm user. It consists of four fields:
+    - *User*: the Linux user name
+    - *Cluster*: the name of the HPC cluster
+    - *Partition*: the name of the partition on the cluster
+    - *Account*: the *bank account* of the user used to schedule the jobs.
+- [*TRES (Trackable Resource)*](https://slurm.schedmd.com/tres.html): a resource that can be tracked by Slurm. It is used to limit the resources that a job can use. Most important TRES are:
+    - cpu: number of CPUs
+    - [*GRES (Generic Resource)*](https://slurm.schedmd.com/gres.html): other computing resources, e.g., GPUs.
+
+
+
 
 # Commands
 
@@ -53,10 +67,48 @@ squeue --me | awk '/smod_cha/ {print $1}' | xargs scancel
 
 
 ## [sacctmgr](https://slurm.schedmd.com/sacctmgr.html)
-For viewing and modifying Slurm account information. The most important command for users is `show` (or `list`, which is equivalent). Baset on the parameter, it shows different information:
+The `saccmgr` command is for viewing and modifying Slurm account information. The most important command for users is `show` (or `list`, which is equivalent). 
 
-- `show associations`: associations between users and accounts
-- `show qos`: quality of service: limits and priorities for each group-queue combination
+### `sacctmgr show` (`sacctmgr list`)
+
+The `show <entity>` subcommand is used to display information about Slurm *entities*. Based on the `<entity>` argument, it shows different information.
+
+If we want to **display just some columns**, we can use the `format` argument:
+
+```bash
+sacctmgr show associations format=Cluster,Account,User,QOS
+```
+
+If we want to **filter rows**, we can use the *specifications* arguments that differ for each entity:
+
+```bash
+sacctmgr show associations Users=user1
+```
+
+The most important entities are:
+
+- `associations`: associations between users and accounts, quality of service (QOS), etc. 
+    - The important columns are:
+        - `Cluster`: the name of the cluster
+        - `Account`: the bank account
+        - `User`: the Linux user name
+        - `QOS`: the quality of service that is in effect for the association
+    - The important [specifications](https://slurm.schedmd.com/sacctmgr.html#SECTION_SPECIFICATIONS-FOR-ASSOCIATIONS) are:
+        - `Users`: display associations for a specific user
+- `qos`: quality of service: limits and priorities for each group-queue combination
+    - The important columns are:
+        - `Name`: the name of the QOS
+        - `Priority`: the priority of the QOS
+        - `Preempt`: list of QOS names that can be preempted by this QOS
+        - `MaxTRES`: maximum [TRES](#introduction-and-basic-terms) each job can use
+        - `MaxTRESPerUser`: maximum [TRES](#introduction-and-basic-terms) each user can use, specified for each TRES separately
+            - `cpu`: maximum number of CPUs
+        - `MaxJobsPU`: maximum number of running jobs per user
+        - `MaxSubmitPerUser`: maximum number of jobs that can be submitted by a user
+- `tres`: [Trackable Resources](#introduction-and-basic-terms)
+
+
+
 
 
 

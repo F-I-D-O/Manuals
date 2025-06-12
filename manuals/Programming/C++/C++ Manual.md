@@ -3888,10 +3888,47 @@ Also, preprocessor had some other purposes, now replaced by other tools:
 - metaprogramming: replaced by templates
 
 ## Include
+[cppreference](https://en.cppreference.com/w/cpp/preprocessor/include)
+
 There are two types of include directives. For both types, the behavior is implementation dependent. However, the most common behavior is:
 
 - `#include <file>`: the file is searched in the system directories
 - `#include "file"`: the file is searched relative to the current file
+
+### Conditional include
+Sometimes, we need a conditional include based on what is available in the system. We can use two mechanisms:
+
+- `__has_include(<file>)`: Basically, we test the header availability during compilation:
+	```cpp
+	#if __has_include(<format>)
+		#include <format>
+		using namespace format = std::format;
+	#else
+		#include <fmt/format.h>
+		using namespace format = fmt;
+	#endif
+	```
+	- only available since C++17
+- predefined compiler variable: We define some variable during project configuration and then use it in the preprocessor control structure:
+	```cmake
+	set(USE_FMT ON)
+	```
+	```cpp
+	#if USE_FMT
+		#include <fmt/format.h>
+		using namespace format = fmt;
+	#else
+		#include <format>
+		using namespace format = std::format;
+	#endif
+	```
+	- **never use this for public headers**, it is not portable as each client project now has to set the variable in the cmake configuration
+
+
+
+
+
+
 
 ## Control structures
 ```cpp
