@@ -21,13 +21,13 @@ PowerShell enables copy/pase of commands. The downside is that every time you cl
 - [SS64](https://ss64.com/ps/)
 
 
-## Script Blocks
+# Script Blocks: standalone blocks, functions, and scripts
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks)
 
-A basic unit of execution in PowerShell is a script block. A script block can be:
+A basic unit of execution in PowerShell is a *script block*. A script block can be:
 
-- a piece of code enclosed in curly braces `{}`.
-- a function 
+- a piece of code enclosed in curly braces `{}`,
+- a function,
 - a script
 
 A script block can have parameters. The parameters are defined using the `param` keyword. Example:

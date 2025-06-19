@@ -148,6 +148,15 @@ The resource limits are described in the [RCI cluster documentation](https://log
 Therefore, to know exactly the limits, **it is best to use the [`sacctmgr show`](./Slurm.md#sacctmgr) command**.
 
 
+# Installing Linux packages
+Without root access, we have cannot install packages using the package manager. However, we can manually install them to home. Steps:
+
+1. Locate the repository of the package that contains the packages for Red Hat Linux (rpm)
+2. Download the package
+3. Extract the package using `rpm2cpio pv-*.rpm | cpio -idmv`
+4. Move the extracted files to the desired location in the home folder
+5. Add the `bin` folder of the package to the `PATH` environment variable
+
 
 
 

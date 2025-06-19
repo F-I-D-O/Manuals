@@ -161,10 +161,18 @@ To compute the size of a directory, use the `du` command:`du <path>`. The most u
 
 
 ## Find files
-To find files, use the `find` command: `find <where> <options> <params>`. The most used options are:
+To find files, use the [`find`](https://man7.org/linux/man-pages/man1/find.1.html) command: `find <where> <options>`. If the `<where>` is not specified, the current directory is used. The most used options are:
 
-- `-name`: find by name. This option should be followed by a file name pattern.
-- `-path`: find by path. This option should be followed by a path pattern. 
+- `-name <name pattern>`: find by name.
+- `-path <path pattern>`: find by path.
+- `-regex <regex pattern>`: find by path specified as regex. Note that by default, the regex type is emacs-style. Therefore, we have to set the type to `posix-extended` to work reasonably with regexes. so in the end, we have to use:
+	```bash
+	find -regextype posix-extended -regex '.*<regex pattern>.*'
+	```
+	- note the order of the options. **Specifying the `-regextype` after the `-regex` option does not work.**
+
+
+
 
 ## List disks and partitions
 To list disks and partitions, use the `lsblk` command. If we are not satisfied with the output, we can configure it with the `-o` option:
@@ -963,7 +971,7 @@ tail -n +<from line> | head -n <number of lines>
 ```
 
 ## Progress bar
-the progress bar can be printed using the `pv` command.
+the progress bar can be printed using the [`pv`](https://man7.org/linux/man-pages/man1/pv.1.html) command.
 ```bash
 pv <file> | <other comands>
 # or
