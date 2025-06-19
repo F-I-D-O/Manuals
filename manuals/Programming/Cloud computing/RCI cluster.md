@@ -63,6 +63,8 @@ In general the workflow is the same as on a local machine. The difference is tha
 - GCC: `ml GCC`
 - CMake: `ml CMake`
 
+
+
 # Specific for projects with gurobi
 
 1. Load Gurobi with 
@@ -135,4 +137,28 @@ osed
 
 # Access the RCI cluster using JetBrains Gateway
 When connecting to the RCI cluster, we have to use the `login2` or `login3` nodes. The `login1` node has an outdated version of `glibc` which is not compatible with the JetBrains Gateway.
+
+
+# Resource limits
+The resource limits are described in the [RCI cluster documentation](https://login.rci.cvut.cz/wiki/jobs_changes). However, the limits:
+
+- do not cover the amd partitions, and
+- there is no information how to determine the role for a user.
+
+Therefore, to know exactly the limits, **it is best to use the [`sacctmgr show`](./Slurm.md#sacctmgr) command**.
+
+
+# Installing Linux packages
+Without root access, we have cannot install packages using the package manager. However, we can manually install them to home. Steps:
+
+1. Locate the repository of the package that contains the packages for Red Hat Linux (rpm)
+2. Download the package
+3. Extract the package using `rpm2cpio pv-*.rpm | cpio -idmv`
+4. Move the extracted files to the desired location in the home folder
+5. Add the `bin` folder of the package to the `PATH` environment variable
+
+
+
+
+
 

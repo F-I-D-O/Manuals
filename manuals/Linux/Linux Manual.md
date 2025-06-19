@@ -161,12 +161,32 @@ To compute the size of a directory, use the `du` command:`du <path>`. The most u
 
 
 ## Find files
-To find files, use the `find` command: `find <where> <options> <params>`. The most used options are:
+To find files, use the [`find`](https://man7.org/linux/man-pages/man1/find.1.html) command: `find <where> <options>`. If the `<where>` is not specified, the current directory is used. The most used options are:
 
-- `-name`: find by name. This option should be followed by a file name pattern.
-- `-path`: find by path. This option should be followed by a path pattern. 
+- `-name <name pattern>`: find by name.
+- `-path <path pattern>`: find by path.
+- `-regex <regex pattern>`: find by path specified as regex. Note that by default, the regex type is emacs-style. Therefore, we have to set the type to `posix-extended` to work reasonably with regexes. so in the end, we have to use:
+	```bash
+	find -regextype posix-extended -regex '.*<regex pattern>.*'
+	```
+	- note the order of the options. **Specifying the `-regextype` after the `-regex` option does not work.**
 
 
+
+
+## List disks and partitions
+To list disks and partitions, use the `lsblk` command. If we are not satisfied with the output, we can configure it with the `-o` option:
+```bash
+lsblk -o <list of columns, separated by commas>
+```
+
+Most important columns are:
+
+- `NAME`: name of the disk or partition
+- `SIZE`: size of the disk or partition
+- `TYPE`: type of the disk or partition
+- `FSTYPE`: file system type
+- `FSAVAIL`: available file system space
 
 # Network
 ## [`netstat`](https://en.wikipedia.org/wiki/Netstat)
@@ -809,15 +829,15 @@ An important aspect of user management in Linux is the user groups. For example,
 <group name>:<password>:<group ID>:<user list>
 ```
 
-To see the groups of a user, we can use the `groups` command (no arguments needed).
+To **see the groups of a user**, we can use the `groups` command (no arguments needed).
 
-To manipulate groups and users, we need a root access. 
+To **manipulate groups and users**, we need a root access. 
 To add a user to a group, we can use the `usermod` command:
 ```bash
 usermod -a -G <group name> <username>
 ```
 
-To remove a user from a group, we can use the same command:
+To **remove a user from a group**, we can use the same command:
 ```bash
 usermod -G <group list> <username>
 ```
@@ -951,7 +971,7 @@ tail -n +<from line> | head -n <number of lines>
 ```
 
 ## Progress bar
-the progress bar can be printed using the `pv` command.
+the progress bar can be printed using the [`pv`](https://man7.org/linux/man-pages/man1/pv.1.html) command.
 ```bash
 pv <file> | <other comands>
 # or

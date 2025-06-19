@@ -604,12 +604,19 @@ Although it is possible to hard-code the paths for includes and linking, it is u
 - The resulting `CMakeLists.txt` file is more portable
 - And most importantly, **potential errors concerning missing libraries are reported prior to the compilation/linking**.
 
-Most of the libraries have CMake support, so their CMake variables can be initialized simply by calling the `find_package` command described below. These packages have either:
+Most of the libraries have CMake support, so their CMake variables can be initialized simply by:
+
+- calling the `find_package` command described below, or, if it is a simple header-only library
+- using the `find_path` command
+
+For packages without the CMake support, we have to use lower-level cmake commands like `find_path` or `find_libraries`. For convinience, we can put these command to our own `Find<name>` script that can be used by multiple project or even shared.
+
+
+### How to recognize a CMake package?
+CMake packages have either:
 
 - their own cmake config (cmake-aware libs usually installed through the package manager like `vcpkg`)
-- or they have a `Find<package name>` script created by someone else that heuristically search for the packege (The default location for these scripts is `CMake/share/cmake-<version>/Modules`). 
-
-For packages without the CMake support, we have to use lower-level cmake commands like `find_path` or `find_libraries`. For convinience, we can put these command to our own `Find<name>` script taht can be used by multiple project or even shared. 
+- or they have a `Find<package name>` script created by someone else that heuristically search for the packege (The default location for these scripts is `CMake/share/cmake-<version>/Modules`).
 
 
 ### Standard way: `find_package`
@@ -673,20 +680,28 @@ The find module script is named `Find<package name>.cmake`. The `find_package` c
 
 
 ### Searching for include directories with `find_path`
-The [`find_path`](https://cmake.org/cmake/help/latest/command/find_path.html) command is intended to find the path (e.g., an include directory).
+The [`find_path`](https://cmake.org/cmake/help/latest/command/find_path.html) command is intended to find the path (e.g., an include directory). It is either used for non-CMake packages or for header-only libraries.
+
 A simple syntax is:
 ```cmake
 find_path(
 	<var name>
 	NAMES <file names>
-	PATHS <paths>
 )
 ```
 Here:
 
 - `<var name>` is the name of the resulting variable
 - `<file names>` are **all possible** file names split by space. At least one of the files needs to be present in a path for it to be considered to be the found path.
-- `<paths>` are candidate paths split by space
+
+By default, only some default paths are considered. To consider other paths, we have some options:
+
+- `PATHS <paths>`, where `<paths>` are full candidate paths split by space
+- `PATH_SUFFIXES <relative paths>`, where `<relative paths>` are relative paths that will be appended to all paths considered.
+
+Important parameters:
+
+- `REQUIRED`: if the path is not found, the configuration process is stopped. Similar to the `REQUIRED` parameter of the `find_package` command.
 
 
 

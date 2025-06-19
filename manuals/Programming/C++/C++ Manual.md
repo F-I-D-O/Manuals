@@ -1,3 +1,22 @@
+# Source and Header Files
+In C++, there are:
+
+- header files, that contain declarations of functions, classes, variables, etc. and, for templated code, the code itself.
+	- they have the `.h` or `.hpp` extension
+- source files, that contain the definitions of the functions, classes, variables, etc.
+	- they have the `.cpp` extension
+
+Each source file added to the target (see [CMake Manual](<./CMake Manual.md>) for adding source files to the target in CMake projects) is compiled into an object file - a *translation unit*. The header files are not compiled, but insted, they serve as a promise that there will be some translation unit that will contain the code that will be linked to the final executable. The above mechanism provides a flexible and practical interface, but a special care must be taken to avoid mistakes, that typically result in a liker error.
+
+Most important here is the [*One Definition Rule (ODR)*](https://en.wikipedia.org/wiki/One_Definition_Rule): each entity (e.g., class, function, variable, etc.) must be defined exactly once in the whole program.
+
+- If something is defined in multiple translation units, it will result in a multiple definition error.
+- If we forgot to define some entity, or we do not add the source file with the definition to the target, it will result in an undefined reference error.
+
+Typically, each header has a corresponding source file, that contains the definition of all entities declared in the header. However, there is no requirement to have a single source file for each header, we can separate the code into multiple source files.
+
+Note that **all entities in the translation units added to the target are compiled, even if they are not used**. This is in contrast with the statements inside functions, which are not compiled if they are not used.
+
 
 
 # Type System and basic types
@@ -3869,10 +3888,47 @@ Also, preprocessor had some other purposes, now replaced by other tools:
 - metaprogramming: replaced by templates
 
 ## Include
+[cppreference](https://en.cppreference.com/w/cpp/preprocessor/include)
+
 There are two types of include directives. For both types, the behavior is implementation dependent. However, the most common behavior is:
 
 - `#include <file>`: the file is searched in the system directories
 - `#include "file"`: the file is searched relative to the current file
+
+### Conditional include
+Sometimes, we need a conditional include based on what is available in the system. We can use two mechanisms:
+
+- `__has_include(<file>)`: Basically, we test the header availability during compilation:
+	```cpp
+	#if __has_include(<format>)
+		#include <format>
+		using namespace format = std::format;
+	#else
+		#include <fmt/format.h>
+		using namespace format = fmt;
+	#endif
+	```
+	- only available since C++17
+- predefined compiler variable: We define some variable during project configuration and then use it in the preprocessor control structure:
+	```cmake
+	set(USE_FMT ON)
+	```
+	```cpp
+	#if USE_FMT
+		#include <fmt/format.h>
+		using namespace format = fmt;
+	#else
+		#include <format>
+		using namespace format = std::format;
+	#endif
+	```
+	- **never use this for public headers**, it is not portable as each client project now has to set the variable in the cmake configuration
+
+
+
+
+
+
 
 ## Control structures
 ```cpp

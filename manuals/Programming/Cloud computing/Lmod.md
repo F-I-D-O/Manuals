@@ -3,7 +3,7 @@ Lmod is a module system that simplify the package management on the Linux cloud 
 
 - [home](https://lmod.readthedocs.io/en/latest/)
 - [user guide](https://lmod.readthedocs.io/en/latest/010_user.html)
-- [RCi cluster documentation](https://login.rci.cvut.cz/wiki/modules)
+- [RCI cluster documentation](https://login.rci.cvut.cz/wiki/modules)
 
 # `module` (`ml`) command
 The `module` performs different operations based on its first argument. The default operation (if the first/main argument is omited) is `load`.

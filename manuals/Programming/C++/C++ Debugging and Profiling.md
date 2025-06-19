@@ -158,7 +158,7 @@ Finally, if the cause of the exception is still unclear, look at the exception t
 
 
 ## Error codes
-Error codes are the only thing visible when the exception is not caught and no debugger is attached. Unfortunately, the error codes are platform-specific, and mostly undocumented even for operating system facilities and standard libraries. 
+Error codes are the only thing visible when the exception is not caught and no debugger is attached. Unfortunately, the error codes are platform-specific, and mostly undocumented even for operating system facilities and standard libraries.
 
 
 ### Windows Error Codes
@@ -166,7 +166,12 @@ On windows, many error codes can be emitted by the system or standard libraries:
 
 - `0x0` to `0x3e7f`: [Win32 error codes](https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes): Errors emitted by Windows high-level functionalities
 - `0xC0000000` to `0xCFFFFFFF`: [NT status codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref): Standardized 32-bit error codes used in Windows kernel, drivers, and protocols. Notable examples:
-  - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation
+  - `0x00000003`: STATUS_BREAKPOINT (*{EXCEPTION} Breakpoint A breakpoint
+has been reached.*)
+  - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation (*The instruction at 0x%08lx referenced
+memory at 0x%08lx. The memory could
+not be %s.*)
+  - `0xC0000374`: Heap corruption (*A heap has been corrupted.*)
 
 
 

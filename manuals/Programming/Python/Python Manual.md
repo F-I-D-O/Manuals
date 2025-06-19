@@ -624,7 +624,7 @@ The `pathlib` module provides a convenient way to iterate over files in a direct
 - `glob` - iterate over files in a single directory, using a filter
 - `rglob` - iterate over files in a directory and all its subdirectories, using a filter
 
-In general, the files will be sorted alphabetically. 
+In general, the files will be sorted alphabetically. When we need a different order, we have to store the results in a list and sort it.
 
 ### Single directory iteration
 Using pathlib, we can iterate over files using a filter with the `glob` method:
@@ -879,6 +879,27 @@ HDF5 is a binary file format for storing large amounts of data. The `h5py` modul
 # Command line arguments
 The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
 
+## INI files
+The `configparser` module provides a Python interface for working with [INI files](https://en.wikipedia.org/wiki/INI_file). The basic usage is:
+```Python
+import configparser
+
+config = configparser.ConfigParser()
+config.read('file.ini')
+
+value = config['section']['key']
+```
+
+If we do not have sections in the INI file, we have to:
+
+- use the `allow_unnamed_section` argument of the ConfigParser:
+    ```Python
+    config = configparser.ConfigParser(allow_unnamed_section=True)
+    ```
+- use the `configparser.UNNAMED_SECTION` in place of the section name:
+    ```Python
+    value = config[configparser.UNNAMED_SECTION]['key']
+    ```
 
 
 # Logging
@@ -913,6 +934,11 @@ if logger.isEnabledFor(logging.DEBUG):
     ...
 ```
 This can be useful for avoiding expensive computations needed just for logging if the logging level is set to a higher level.
+
+
+
+
+
 
 # Type hints
 [Official Manual](https://docs.python.org/3/library/typing.html)

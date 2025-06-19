@@ -546,10 +546,10 @@ installation
 
 #### Configure Visual Studio to use system CMake:
 
--   Go to `Project` -> `CMake Settings`
--   it should open the `CMakeSettings.json` file
--   Scroll to the bottom and click on `show advanced settings` 
--   Set the CMake executable to point to the `cmake.exe` file of your system CMake 
+- Go to `Project` -> `CMake Settings`
+- it should open the `CMakeSettings.json` file
+- Scroll to the bottom and click on `show advanced settings`
+- Set the CMake executable to point to the `cmake.exe` file of your system CMake
 
 #### Build Setting and Enviromental Variables
 The build configuration is in the file `CMakePresets.json`, located in the root of the project. The  file can be also opened by right clicking on `CMakeLists.txt` ad selecting `Edit CMake presets`.
@@ -775,7 +775,8 @@ On **Windows** (specificly when using MSVC) the library is called MSVC C Runtime
 On **Linux**, the library is divided between C and C++ standard libraries:
 
 - C++ Standard Library: contains the standard C++ features described in the C++ standard.
-	- GNU: `libstdc++`
+	- GCC: [GNU C++ Library (`libstdc++`)](https://gcc.gnu.org/onlinedocs/libstdc++/)
+		- the backward compatibility is maintained by the exported symbols marked as `GLIBCXX_<version>`. The max GLIBCXX version per GCC version is listed in the [ABI page](https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html)
 	- LLVM: `libc++`
 - [C Standard Library (`glibc`)](https://en.wikipedia.org/wiki/Glibc): contains the standard C features described in the C standard.
 	- To get the version, run `ldd --version`

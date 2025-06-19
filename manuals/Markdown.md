@@ -16,6 +16,12 @@ There are also simple links where the URL is used as the link text, these are ca
 <http://example.com>
 ```
 
+If the link contains spaces, it must be enclosed in angle brackets:
+```markdown
+[Link text](<some link with spaces>)
+```
+
+### Local links
 We can also create local links to headings in the same document:
 ```markdown
 [Link text](#<heading>)
