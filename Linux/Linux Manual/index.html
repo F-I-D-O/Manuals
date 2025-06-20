@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,15 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Linux Manual - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../css/brands.min.css" rel="stylesheet">
-        <link href="../../css/solid.min.css" rel="stylesheet">
-        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -27,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,8 +34,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -65,6 +64,24 @@
             
 <li>
     <a href="../../Programming/C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Programming/Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../../Programming/Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
 </li>
     </ul>
   </li>
@@ -178,6 +195,10 @@
 <li>
     <a href="../../Programming/Web/mkdocs/" class="dropdown-item">mkdocs</a>
 </li>
+            
+<li>
+    <a href="../../Programming/Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
     </ul>
   </li>
                                     
@@ -218,8 +239,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -231,17 +252,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Linux Manual</a>
+    <a href="./" class="dropdown-item active">Linux Manual</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,8 +286,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -278,25 +299,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
-</li>
-                                    
-<li>
-    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
-</li>
-                                    
-<li>
-    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -312,8 +316,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -325,44 +329,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ms-md-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -383,244 +390,219 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#usefull-comands" class="nav-link">Usefull Comands</a>
+            <li class="nav-item" data-level="1"><a href="#usefull-comands" class="nav-link">Usefull Comands</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#versions" class="nav-link">Versions</a>
+            <li class="nav-item" data-level="2"><a href="#versions" class="nav-link">Versions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#check-ubuntu-version" class="nav-link">Check Ubuntu Version</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#check-os-distribution-and-version" class="nav-link">Check OS Distribution and Version</a>
+            <li class="nav-item" data-level="3"><a href="#check-ubuntu-version" class="nav-link">Check Ubuntu Version</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#checking-glibc-version" class="nav-link">Checking glibc version</a>
+            <li class="nav-item" data-level="3"><a href="#check-os-distribution-and-version" class="nav-link">Check OS Distribution and Version</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#printing-used-ports" class="nav-link">Printing used ports</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#exit-codes" class="nav-link">Exit codes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#show-path-to-executable" class="nav-link">Show path to executable</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#unpack-file" class="nav-link">Unpack file</a>
+            <li class="nav-item" data-level="3"><a href="#checking-glibc-version" class="nav-link">Checking glibc version</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#environment-variables" class="nav-link">Environment Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#enable-variable-with-sudo" class="nav-link">Enable Variable with sudo</a>
+            <li class="nav-item" data-level="2"><a href="#printing-used-ports" class="nav-link">Printing used ports</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#enable-the-variable-outside-bash" class="nav-link">Enable the Variable Outside Bash</a>
+            <li class="nav-item" data-level="2"><a href="#exit-codes" class="nav-link">Exit codes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#enable-variable-on-a-device-without-root-access" class="nav-link">Enable Variable on a Device Without Root Access</a>
+            <li class="nav-item" data-level="2"><a href="#show-path-to-executable" class="nav-link">Show path to executable</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#remove-windows-path-from-wsl" class="nav-link">Remove Windows $PATH from WSL</a>
+            <li class="nav-item" data-level="2"><a href="#unpack-file" class="nav-link">Unpack file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#file-system" class="nav-link">File System</a>
+            <li class="nav-item" data-level="1"><a href="#environment-variables" class="nav-link">Environment Variables</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#list-files" class="nav-link">List files</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#list-the-full-paths" class="nav-link">List the full paths</a>
+            <li class="nav-item" data-level="2"><a href="#enable-variable-with-sudo" class="nav-link">Enable Variable with sudo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#copy-file" class="nav-link">copy file</a>
+            <li class="nav-item" data-level="2"><a href="#enable-the-variable-outside-bash" class="nav-link">Enable the Variable Outside Bash</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#remove-file" class="nav-link">Remove file</a>
+            <li class="nav-item" data-level="2"><a href="#enable-variable-on-a-device-without-root-access" class="nav-link">Enable Variable on a Device Without Root Access</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#access-rights" class="nav-link">Access rights</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compute-directory-size" class="nav-link">Compute directory size</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#find-files" class="nav-link">Find files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#list-disks-and-partitions" class="nav-link">List disks and partitions</a>
+            <li class="nav-item" data-level="2"><a href="#remove-windows-path-from-wsl" class="nav-link">Remove Windows $PATH from WSL</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#network" class="nav-link">Network</a>
+            <li class="nav-item" data-level="1"><a href="#file-system" class="nav-link">File System</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#netstat" class="nav-link">netstat</a>
+            <li class="nav-item" data-level="2"><a href="#list-files" class="nav-link">List files</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#list-the-full-paths" class="nav-link">List the full paths</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#copy-file" class="nav-link">copy file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#remove-file" class="nav-link">Remove file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#access-rights" class="nav-link">Access rights</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compute-directory-size" class="nav-link">Compute directory size</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#find-files" class="nav-link">Find files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#list-disks-and-partitions" class="nav-link">List disks and partitions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#bash" class="nav-link">Bash</a>
+            <li class="nav-item" data-level="1"><a href="#network" class="nav-link">Network</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#general-remarks" class="nav-link">General Remarks</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-modes-and-environment-initialization" class="nav-link">Bash modes and environment initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#assigning-the-output-of-a-command-to-a-variable" class="nav-link">Assigning the output of a command to a variable</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#list-all-variables" class="nav-link">List all variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#operations-on-variables" class="nav-link">Operations on variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#working-with-io" class="nav-link">Working with I/O</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#output-forwarding" class="nav-link">Output Forwarding</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#output-redirection" class="nav-link">Output Redirection</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#use-bash-variables-as-input" class="nav-link">Use bash variables as input</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#command-substitution" class="nav-link">Command Substitution</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-script-arguments" class="nav-link">Bash Script Arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conditions" class="nav-link">Conditions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#string-comparison" class="nav-link">String comparison</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#loops" class="nav-link">Loops</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#forward-to-loop" class="nav-link">Forward to loop</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#strings-literals" class="nav-link">Strings literals</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#multiline-string-literals" class="nav-link">Multiline string literals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#functions" class="nav-link">Functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#reading-from-command-line" class="nav-link">Reading from command line</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-script-header-content" class="nav-link">Bash Script Header Content</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#calling-a-script-from-another-script-in-the-same-directory" class="nav-link">Calling a script from another script in the same directory</a>
+            <li class="nav-item" data-level="2"><a href="#netstat" class="nav-link">netstat</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#root-access" class="nav-link">Root Access</a>
+            <li class="nav-item" data-level="1"><a href="#bash" class="nav-link">Bash</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#changing-shell-user" class="nav-link">Changing shell user</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#changing-shell-user-in-a-script" class="nav-link">Changing shell user in a script</a>
+            <li class="nav-item" data-level="2"><a href="#general-remarks" class="nav-link">General Remarks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#bash-modes-and-environment-initialization" class="nav-link">Bash modes and environment initialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#assigning-the-output-of-a-command-to-a-variable" class="nav-link">Assigning the output of a command to a variable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#list-all-variables" class="nav-link">List all variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#operations-on-variables" class="nav-link">Operations on variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#working-with-io" class="nav-link">Working with I/O</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#output-forwarding" class="nav-link">Output Forwarding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#output-redirection" class="nav-link">Output Redirection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#use-bash-variables-as-input" class="nav-link">Use bash variables as input</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#command-substitution" class="nav-link">Command Substitution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bash-script-arguments" class="nav-link">Bash Script Arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#conditions" class="nav-link">Conditions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#string-comparison" class="nav-link">String comparison</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loops" class="nav-link">Loops</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#forward-to-loop" class="nav-link">Forward to loop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#strings-literals" class="nav-link">Strings literals</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#multiline-string-literals" class="nav-link">Multiline string literals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#reading-from-command-line" class="nav-link">Reading from command line</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bash-script-header-content" class="nav-link">Bash Script Header Content</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#calling-a-script-from-another-script-in-the-same-directory" class="nav-link">Calling a script from another script in the same directory</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#managing-packages" class="nav-link">Managing packages</a>
+            <li class="nav-item" data-level="1"><a href="#root-access" class="nav-link">Root Access</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#installing-non-stable-package-versions" class="nav-link">Installing non-stable package versions</a>
+            <li class="nav-item" data-level="2"><a href="#changing-shell-user" class="nav-link">Changing shell user</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#some-useful-repositories" class="nav-link">Some useful repositories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#changing-default-package-repositories" class="nav-link">Changing default package repositories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#possible-issues" class="nav-link">Possible issues</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#the-repository-repo-no-longer-has-a-release-file" class="nav-link">The repository '&lt;repo&gt;' no longer has a Release file</a>
+            <li class="nav-item" data-level="3"><a href="#changing-shell-user-in-a-script" class="nav-link">Changing shell user in a script</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -629,188 +611,213 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#string-processing" class="nav-link">String Processing</a>
+            <li class="nav-item" data-level="1"><a href="#managing-packages" class="nav-link">Managing packages</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#string-filtering-with-grep" class="nav-link">String filtering with grep</a>
+            <li class="nav-item" data-level="2"><a href="#installing-non-stable-package-versions" class="nav-link">Installing non-stable package versions</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#word-count-with-wc" class="nav-link">Word count with wc</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#string-mofification-with-sed" class="nav-link">String mofification with sed</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#regex-support-in-sed" class="nav-link">Regex support in sed</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#search-and-replace" class="nav-link">Search and replace</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#delete-lines-containing-string" class="nav-link">Delete lines containing string</a>
+            <li class="nav-item" data-level="3"><a href="#some-useful-repositories" class="nav-link">Some useful repositories</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#cut" class="nav-link">cut</a>
+            <li class="nav-item" data-level="2"><a href="#changing-default-package-repositories" class="nav-link">Changing default package repositories</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#awk" class="nav-link">AWK</a>
+            <li class="nav-item" data-level="2"><a href="#possible-issues" class="nav-link">Possible issues</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#pattern" class="nav-link">Pattern</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#action" class="nav-link">Action</a>
+            <li class="nav-item" data-level="3"><a href="#the-repository-repo-no-longer-has-a-release-file" class="nav-link">The repository '&lt;repo&gt;' no longer has a Release file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#trim-string" class="nav-link">Trim string</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#string-processing" class="nav-link">String Processing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#string-filtering-with-grep" class="nav-link">String filtering with grep</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#word-count-with-wc" class="nav-link">Word count with wc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#string-mofification-with-sed" class="nav-link">String mofification with sed</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#regex-support-in-sed" class="nav-link">Regex support in sed</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#search-and-replace" class="nav-link">Search and replace</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#delete-lines-containing-string" class="nav-link">Delete lines containing string</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cut" class="nav-link">cut</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#awk" class="nav-link">AWK</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#pattern" class="nav-link">Pattern</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#action" class="nav-link">Action</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#trim-string" class="nav-link">Trim string</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#processes" class="nav-link">Processes</a>
+            <li class="nav-item" data-level="1"><a href="#processes" class="nav-link">Processes</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#pkill" class="nav-link">pkill</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#process-info" class="nav-link">Process Info</a>
+            <li class="nav-item" data-level="2"><a href="#pkill" class="nav-link">pkill</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#users" class="nav-link">Users</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#adding-a-user" class="nav-link">Adding a user</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#user-groups" class="nav-link">User Groups</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#file-ownership" class="nav-link">File ownership</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#disable-access-to-shell-for-a-user" class="nav-link">Disable access to shell for a user</a>
+            <li class="nav-item" data-level="2"><a href="#process-info" class="nav-link">Process Info</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#services-and-systemd" class="nav-link">Services and systemd</a>
+            <li class="nav-item" data-level="1"><a href="#users" class="nav-link">Users</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#get-the-status-of-a-service" class="nav-link">Get the status of a service</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#listing-services" class="nav-link">Listing services</a>
+            <li class="nav-item" data-level="2"><a href="#adding-a-user" class="nav-link">Adding a user</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#frequently-used-software" class="nav-link">Frequently used software</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#installing-java" class="nav-link">Installing Java</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#oracle-jdk" class="nav-link">Oracle JDK</a>
+            <li class="nav-item" data-level="2"><a href="#user-groups" class="nav-link">User Groups</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#python" class="nav-link">Python</a>
+            <li class="nav-item" data-level="2"><a href="#file-ownership" class="nav-link">File ownership</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#gcc" class="nav-link">GCC</a>
+            <li class="nav-item" data-level="2"><a href="#disable-access-to-shell-for-a-user" class="nav-link">Disable access to shell for a user</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#other-usefull-commands" class="nav-link">Other usefull commands</a>
+            <li class="nav-item" data-level="1"><a href="#services-and-systemd" class="nav-link">Services and systemd</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#selecting-lines-from-file" class="nav-link">Selecting lines from file</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#skip-the-header" class="nav-link">Skip the header</a>
+            <li class="nav-item" data-level="2"><a href="#get-the-status-of-a-service" class="nav-link">Get the status of a service</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#print-lines-from-to" class="nav-link">Print lines from to</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#progress-bar" class="nav-link">Progress bar</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#free-disk-space" class="nav-link">Free disk space</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#piping-parameters-using-xargs" class="nav-link">piping parameters using xargs</a>
+            <li class="nav-item" data-level="2"><a href="#listing-services" class="nav-link">Listing services</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#upgrade" class="nav-link">Upgrade</a>
+            <li class="nav-item" data-level="1"><a href="#frequently-used-software" class="nav-link">Frequently used software</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#manual-upgrade" class="nav-link">Manual upgrade</a>
+            <li class="nav-item" data-level="2"><a href="#installing-java" class="nav-link">Installing Java</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#oracle-jdk" class="nav-link">Oracle JDK</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#wsl-backup" class="nav-link">WSL backup</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#python" class="nav-link">Python</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gcc" class="nav-link">GCC</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#vim" class="nav-link">vim</a>
+            <li class="nav-item" data-level="1"><a href="#other-usefull-commands" class="nav-link">Other usefull commands</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#normal-mode" class="nav-link">Normal Mode</a>
+            <li class="nav-item" data-level="2"><a href="#selecting-lines-from-file" class="nav-link">Selecting lines from file</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#global-commands" class="nav-link">Global Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#file-editing-commands" class="nav-link">File Editing Commands</a>
+            <li class="nav-item" data-level="3"><a href="#skip-the-header" class="nav-link">Skip the header</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#insert-mode" class="nav-link">Insert Mode</a>
+            <li class="nav-item" data-level="3"><a href="#print-lines-from-to" class="nav-link">Print lines from to</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#visual-mode" class="nav-link">Visual Mode</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#progress-bar" class="nav-link">Progress bar</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#copy-and-paste" class="nav-link">Copy and paste</a>
+            <li class="nav-item" data-level="2"><a href="#free-disk-space" class="nav-link">Free disk space</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#piping-parameters-using-xargs" class="nav-link">piping parameters using xargs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#upgrade" class="nav-link">Upgrade</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#manual-upgrade" class="nav-link">Manual upgrade</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#wsl-backup" class="nav-link">WSL backup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#vim" class="nav-link">vim</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#normal-mode" class="nav-link">Normal Mode</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#global-commands" class="nav-link">Global Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#file-editing-commands" class="nav-link">File Editing Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#insert-mode" class="nav-link">Insert Mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visual-mode" class="nav-link">Visual Mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#copy-and-paste" class="nav-link">Copy and paste</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -951,10 +958,16 @@ appendWindowsPath = false
 <li><code>-s</code>: summarize</li>
 </ul>
 <h2 id="find-files">Find files<a class="headerlink" href="#find-files" title="Permanent link">&para;</a></h2>
-<p>To find files, use the <code>find</code> command: <code>find &lt;where&gt; &lt;options&gt; &lt;params&gt;</code>. The most used options are:</p>
+<p>To find files, use the <a href="https://man7.org/linux/man-pages/man1/find.1.html"><code>find</code></a> command: <code>find &lt;where&gt; &lt;options&gt;</code>. If the <code>&lt;where&gt;</code> is not specified, the current directory is used. The most used options are:</p>
 <ul>
-<li><code>-name</code>: find by name. This option should be followed by a file name pattern.</li>
-<li><code>-path</code>: find by path. This option should be followed by a path pattern. </li>
+<li><code>-name &lt;name pattern&gt;</code>: find by name.</li>
+<li><code>-path &lt;path pattern&gt;</code>: find by path.</li>
+<li><code>-regex &lt;regex pattern&gt;</code>: find by path specified as regex. Note that by default, the regex type is emacs-style. Therefore, we have to set the type to <code>posix-extended</code> to work reasonably with regexes. so in the end, we have to use:
+    <code>bash
+    find -regextype posix-extended -regex '.*&lt;regex pattern&gt;.*'</code><ul>
+<li>note the order of the options. <strong>Specifying the <code>-regextype</code> after the <code>-regex</code> option does not work.</strong></li>
+</ul>
+</li>
 </ul>
 <h2 id="list-disks-and-partitions">List disks and partitions<a class="headerlink" href="#list-disks-and-partitions" title="Permanent link">&para;</a></h2>
 <p>To list disks and partitions, use the <code>lsblk</code> command. If we are not satisfied with the output, we can configure it with the <code>-o</code> option:</p>
@@ -1501,12 +1514,12 @@ echo $line | sed s/\r//g # wrong, the backslash is interpreted by the shell and 
 <p>An important aspect of user management in Linux is the user groups. For example, by belonging to the <code>sudo</code> group, the user can execute commands with <code>sudo</code>. The groups are listed in <code>/etc/group</code>. The file contains one line per group, each line has the following format:</p>
 <pre><code>&lt;group name&gt;:&lt;password&gt;:&lt;group ID&gt;:&lt;user list&gt;
 </code></pre>
-<p>To see the groups of a user, we can use the <code>groups</code> command (no arguments needed).</p>
-<p>To manipulate groups and users, we need a root access. 
+<p>To <strong>see the groups of a user</strong>, we can use the <code>groups</code> command (no arguments needed).</p>
+<p>To <strong>manipulate groups and users</strong>, we need a root access. 
 To add a user to a group, we can use the <code>usermod</code> command:</p>
 <pre><code class="language-bash">usermod -a -G &lt;group name&gt; &lt;username&gt;
 </code></pre>
-<p>To remove a user from a group, we can use the same command:</p>
+<p>To <strong>remove a user from a group</strong>, we can use the same command:</p>
 <pre><code class="language-bash">usermod -G &lt;group list&gt; &lt;username&gt;
 </code></pre>
 <p>where <code>&lt;group list&gt;</code> is a comma separated list of groups the user should belong to.</p>
@@ -1607,7 +1620,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <pre><code class="language-bash">tail -n +&lt;from line&gt; | head -n &lt;number of lines&gt; 
 </code></pre>
 <h2 id="progress-bar">Progress bar<a class="headerlink" href="#progress-bar" title="Permanent link">&para;</a></h2>
-<p>the progress bar can be printed using the <code>pv</code> command.</p>
+<p>the progress bar can be printed using the <a href="https://man7.org/linux/man-pages/man1/pv.1.html"><code>pv</code></a> command.</p>
 <pre><code class="language-bash">pv &lt;file&gt; | &lt;other comands&gt;
 # or
 &lt;other comands&gt; | pv | &lt;other comands&gt;
@@ -1699,20 +1712,19 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1732,7 +1744,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">

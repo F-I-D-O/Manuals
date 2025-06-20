@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,15 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>PostgreSQL Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../../css/brands.min.css" rel="stylesheet">
-        <link href="../../../css/solid.min.css" rel="stylesheet">
-        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -27,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,8 +34,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -70,6 +69,24 @@
   </li>
                                     
   <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Database</a>
     <ul class="dropdown-menu">
             
@@ -82,7 +99,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">PostgreSQL Manual</a>
+    <a href="./" class="dropdown-item active">PostgreSQL Manual</a>
 </li>
             
 <li>
@@ -178,6 +195,10 @@
 <li>
     <a href="../../Web/mkdocs/" class="dropdown-item">mkdocs</a>
 </li>
+            
+<li>
+    <a href="../../Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
     </ul>
   </li>
                                     
@@ -218,8 +239,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -231,8 +252,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -240,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,8 +286,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -278,25 +299,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
-</li>
-                                    
-<li>
-    <a href="../../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
-</li>
-                                    
-<li>
-    <a href="../../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -312,8 +316,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -325,44 +329,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ms-md-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -383,244 +390,150 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#data-types" class="nav-link">Data types</a>
+            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#date" class="nav-link">Date</a>
+            <li class="nav-item" data-level="2"><a href="#date" class="nav-link">Date</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#select-a-part-of-datetimetimestamp" class="nav-link">Select a part of date/time/timestamp</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#auto-incrementing-columns" class="nav-link">Auto incrementing columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#strings" class="nav-link">Strings</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#formatting-strings" class="nav-link">Formatting strings</a>
+            <li class="nav-item" data-level="3"><a href="#select-a-part-of-datetimetimestamp" class="nav-link">Select a part of date/time/timestamp</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#arrays" class="nav-link">Arrays</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#working-with-the-array-members-individualy" class="nav-link">Working with the array members individualy</a>
+            <li class="nav-item" data-level="2"><a href="#auto-incrementing-columns" class="nav-link">Auto incrementing columns</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#converting-a-result-set-query-result-to-an-array" class="nav-link">Converting a result set (query result) to an array</a>
+            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#creating-an-array-to-a-result-set" class="nav-link">Creating an array to a result set</a>
+            <li class="nav-item" data-level="3"><a href="#formatting-strings" class="nav-link">Formatting strings</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#hstore" class="nav-link">hstore</a>
+            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#working-with-the-array-members-individualy" class="nav-link">Working with the array members individualy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#converting-a-result-set-query-result-to-an-array" class="nav-link">Converting a result set (query result) to an array</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#creating-an-array-to-a-result-set" class="nav-link">Creating an array to a result set</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#schemas" class="nav-link">Schemas</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#search-path" class="nav-link">Search path</a>
+            <li class="nav-item" data-level="2"><a href="#hstore" class="nav-link">hstore</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
+            <li class="nav-item" data-level="1"><a href="#schemas" class="nav-link">Schemas</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#create-table-as" class="nav-link">CREATE TABLE AS</a>
+            <li class="nav-item" data-level="2"><a href="#search-path" class="nav-link">Search path</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#procedures-and-functions" class="nav-link">Procedures and functions</a>
+            <li class="nav-item" data-level="1"><a href="#creating-objects-tables-indexes-etc" class="nav-link">Creating objects (tables, indexes, etc.)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#syntax" class="nav-link">Syntax</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#functions" class="nav-link">Functions</a>
+            <li class="nav-item" data-level="2"><a href="#if-not-exists-modifier" class="nav-link">IF NOT EXISTS modifier</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#procedures" class="nav-link">Procedures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#function-and-procedure-parameters" class="nav-link">Function and procedure parameters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#deciding-the-language" class="nav-link">Deciding the language</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conditional-filters-based-on-the-value-of-a-variable-or-input-parameter" class="nav-link">Conditional filters based on the value of a variable or input parameter</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#organizing-functions-and-procedures" class="nav-link">Organizing functions and procedures</a>
+            <li class="nav-item" data-level="2"><a href="#create-table-as" class="nav-link">CREATE TABLE AS</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#temporary-tables" class="nav-link">Temporary tables</a>
+            <li class="nav-item" data-level="1"><a href="#procedures-and-functions" class="nav-link">Procedures and functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#syntax" class="nav-link">Syntax</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#do-command" class="nav-link">DO command</a>
+            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#window-functions" class="nav-link">Window functions</a>
+            <li class="nav-item" data-level="2"><a href="#procedures" class="nav-link">Procedures</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#return-data-from-insert-update-and-delete-statements" class="nav-link">Return data from INSERT, UPDATE, and DELETE statements</a>
+            <li class="nav-item" data-level="2"><a href="#function-and-procedure-parameters" class="nav-link">Function and procedure parameters</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#various-specific-tasks" class="nav-link">Various specific tasks</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#selecting-rows-for-deletion-based-on-data-from-another-table" class="nav-link">Selecting rows for deletion based on data from another table</a>
+            <li class="nav-item" data-level="2"><a href="#deciding-the-language" class="nav-link">Deciding the language</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#handeling-duplicates-in-the-insert-statement" class="nav-link">Handeling duplicates in the INSERT statement</a>
+            <li class="nav-item" data-level="2"><a href="#conditional-filters-based-on-the-value-of-a-variable-or-input-parameter" class="nav-link">Conditional filters based on the value of a variable or input parameter</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#random-oredering" class="nav-link">Random oredering</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#random-ordering-with-a-seed-pseudo-random-ordering" class="nav-link">Random ordering with a seed (Pseudo-random ordering)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#postgis" class="nav-link">PostGis</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#geometry-columns" class="nav-link">Geometry columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#spatial-indexing" class="nav-link">Spatial Indexing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#converting-between-geometry-types" class="nav-link">Converting between geometry types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compute-area-surrounding-geometries" class="nav-link">Compute area surrounding geometries</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#split-area-to-polygons-based-on-points" class="nav-link">Split area to polygons based on points</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#other-useful-functions" class="nav-link">Other Useful Functions</a>
+            <li class="nav-item" data-level="2"><a href="#organizing-functions-and-procedures" class="nav-link">Organizing functions and procedures</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#plpgsql" class="nav-link">PL/pgSQL</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#blocks" class="nav-link">Blocks</a>
+            <li class="nav-item" data-level="1"><a href="#temporary-tables" class="nav-link">Temporary tables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#assigning-a-value-to-a-variable-using-sql" class="nav-link">Assigning a value to a variable using SQL</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#functions-and-procedures" class="nav-link">Functions and procedures</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#returning-data" class="nav-link">Returning data</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="4"><a href="#return-next-and-return-query" class="nav-link">RETURN NEXT and RETURN QUERY</a>
+            
+            <li class="nav-item" data-level="1"><a href="#do-command" class="nav-link">DO command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#branching" class="nav-link">Branching</a>
+            
+            <li class="nav-item" data-level="1"><a href="#window-functions" class="nav-link">Window functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#logging" class="nav-link">Logging</a>
+            
+            <li class="nav-item" data-level="1"><a href="#return-data-from-insert-update-and-delete-statements" class="nav-link">Return data from INSERT, UPDATE, and DELETE statements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#executing-functions" class="nav-link">Executing functions</a>
+            
+            <li class="nav-item" data-level="1"><a href="#various-specific-tasks" class="nav-link">Various specific tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#selecting-rows-for-deletion-based-on-data-from-another-table" class="nav-link">Selecting rows for deletion based on data from another table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#exceptions" class="nav-link">Exceptions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#handling-exceptions" class="nav-link">Handling exceptions</a>
+            <li class="nav-item" data-level="2"><a href="#handeling-duplicates-in-the-insert-statement" class="nav-link">Handeling duplicates in the INSERT statement</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#raising-exceptions" class="nav-link">Raising exceptions</a>
+            <li class="nav-item" data-level="2"><a href="#random-oredering" class="nav-link">Random oredering</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#query-diagnostics" class="nav-link">Query diagnostics</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#transaction-management" class="nav-link">Transaction management</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#subtransactions" class="nav-link">Subtransactions</a>
+            <li class="nav-item" data-level="3"><a href="#random-ordering-with-a-seed-pseudo-random-ordering" class="nav-link">Random ordering with a seed (Pseudo-random ordering)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -629,156 +542,250 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#psql" class="nav-link">psql</a>
+            <li class="nav-item" data-level="1"><a href="#postgis" class="nav-link">PostGis</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#meta-commands" class="nav-link">meta-commands</a>
+            <li class="nav-item" data-level="2"><a href="#geometry-columns" class="nav-link">Geometry columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spatial-indexing" class="nav-link">Spatial Indexing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#converting-between-geometry-types" class="nav-link">Converting between geometry types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compute-area-surrounding-geometries" class="nav-link">Compute area surrounding geometries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#split-area-to-polygons-based-on-points" class="nav-link">Split area to polygons based on points</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-useful-functions" class="nav-link">Other Useful Functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#importing-data" class="nav-link">Importing data</a>
+            <li class="nav-item" data-level="1"><a href="#plpgsql" class="nav-link">PL/pgSQL</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#importing-compressed-sql-dump" class="nav-link">Importing compressed SQL dump</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#importing-data-from-csv" class="nav-link">Importing data from csv</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#importing-data-from-csv-with-columns-than-are-not-in-the-db-table" class="nav-link">Importing data from csv with columns than are not in the db table</a>
+            <li class="nav-item" data-level="2"><a href="#blocks" class="nav-link">Blocks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#importing-data-from-a-shapefile" class="nav-link">Importing data from a shapefile</a>
+            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#assigning-a-value-to-a-variable-using-sql" class="nav-link">Assigning a value to a variable using SQL</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#importing-data-from-geojson" class="nav-link">Importing data from GeoJSON</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#functions-and-procedures" class="nav-link">Functions and procedures</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#returning-data" class="nav-link">Returning data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#return-next-and-return-query" class="nav-link">RETURN NEXT and RETURN QUERY</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#branching" class="nav-link">Branching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#logging" class="nav-link">Logging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#executing-functions" class="nav-link">Executing functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exceptions" class="nav-link">Exceptions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#handling-exceptions" class="nav-link">Handling exceptions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#raising-exceptions" class="nav-link">Raising exceptions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#query-diagnostics" class="nav-link">Query diagnostics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#transaction-management" class="nav-link">Transaction management</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#subtransactions" class="nav-link">Subtransactions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#psql" class="nav-link">psql</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#meta-commands" class="nav-link">meta-commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#exporting-data" class="nav-link">Exporting data</a>
+            <li class="nav-item" data-level="1"><a href="#importing-data" class="nav-link">Importing data</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#exporting-the-database-server-configuration" class="nav-link">Exporting the database server configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compressing-the-sql-dump" class="nav-link">Compressing the SQL dump</a>
+            <li class="nav-item" data-level="2"><a href="#importing-compressed-sql-dump" class="nav-link">Importing compressed SQL dump</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#exporting-data-to-csv" class="nav-link">Exporting data to csv</a>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-csv" class="nav-link">Importing data from csv</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#information-and-statistics" class="nav-link">Information and statistics</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#databases" class="nav-link">Databases</a>
+            <li class="nav-item" data-level="3"><a href="#importing-data-from-csv-with-columns-than-are-not-in-the-db-table" class="nav-link">Importing data from csv with columns than are not in the db table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#pgrouting" class="nav-link">PgRouting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#finding-strongly-connected-components" class="nav-link">Finding strongly connected components</a>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-a-shapefile" class="nav-link">Importing data from a shapefile</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#creating-vertices-from-edges" class="nav-link">Creating vertices from edges</a>
+            <li class="nav-item" data-level="2"><a href="#importing-data-from-geojson" class="nav-link">Importing data from GeoJSON</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#testing-with-pgtap" class="nav-link">Testing with PgTAP</a>
+            <li class="nav-item" data-level="1"><a href="#exporting-data" class="nav-link">Exporting data</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#installation" class="nav-link">Installation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#linux" class="nav-link">Linux</a>
+            <li class="nav-item" data-level="2"><a href="#exporting-the-database-server-configuration" class="nav-link">Exporting the database server configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#windows" class="nav-link">Windows</a>
+            <li class="nav-item" data-level="2"><a href="#compressing-the-sql-dump" class="nav-link">Compressing the SQL dump</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#basic-usage-test-scripts" class="nav-link">Basic Usage - Test scripts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#pg_prove" class="nav-link">pg_prove</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#test-as-functions" class="nav-link">Test as functions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#test-runner" class="nav-link">Test runner</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#fixtures" class="nav-link">Fixtures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#rolling-back" class="nav-link">Rolling back</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#test-assertions" class="nav-link">Test assertions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#result-set-assertions" class="nav-link">Result set assertions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#additional-functions-diagnostics" class="nav-link">Additional functions( Diagnostics )</a>
+            <li class="nav-item" data-level="2"><a href="#exporting-data-to-csv" class="nav-link">Exporting data to csv</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#xml" class="nav-link">XML</a>
+            <li class="nav-item" data-level="1"><a href="#information-and-statistics" class="nav-link">Information and statistics</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#handling-xml-namespaces" class="nav-link">Handling XML namespaces</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#xmltable" class="nav-link">XMLTABLE</a>
+            <li class="nav-item" data-level="2"><a href="#databases" class="nav-link">Databases</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            <li class="nav-item" data-level="1"><a href="#pgrouting" class="nav-link">PgRouting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#select-postgresql-version" class="nav-link">Select PostgreSQL version</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#select-postgis-version" class="nav-link">Select PostGIS version</a>
+            <li class="nav-item" data-level="2"><a href="#finding-strongly-connected-components" class="nav-link">Finding strongly connected components</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tried-to-send-an-out-of-range-integer-as-a-2-byte-value" class="nav-link">Tried to send an out-of-range integer as a 2-byte value</a>
+            <li class="nav-item" data-level="2"><a href="#creating-vertices-from-edges" class="nav-link">Creating vertices from edges</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#testing-with-pgtap" class="nav-link">Testing with PgTAP</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#linux" class="nav-link">Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#windows" class="nav-link">Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#basic-usage-test-scripts" class="nav-link">Basic Usage - Test scripts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pg_prove" class="nav-link">pg_prove</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#test-as-functions" class="nav-link">Test as functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#test-runner" class="nav-link">Test runner</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#fixtures" class="nav-link">Fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#rolling-back" class="nav-link">Rolling back</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#test-assertions" class="nav-link">Test assertions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#result-set-assertions" class="nav-link">Result set assertions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#additional-functions-diagnostics" class="nav-link">Additional functions( Diagnostics )</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#xml" class="nav-link">XML</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#handling-xml-namespaces" class="nav-link">Handling XML namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#xmltable" class="nav-link">XMLTABLE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#select-postgresql-version" class="nav-link">Select PostgreSQL version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#select-postgis-version" class="nav-link">Select PostGIS version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tried-to-send-an-out-of-range-integer-as-a-2-byte-value" class="nav-link">Tried to send an out-of-range integer as a 2-byte value</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1751,20 +1758,19 @@ SELECT diag(
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1784,7 +1790,7 @@ SELECT diag(
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">

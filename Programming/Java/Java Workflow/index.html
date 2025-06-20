@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,15 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Java Workflow - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../../css/brands.min.css" rel="stylesheet">
-        <link href="../../../css/solid.min.css" rel="stylesheet">
-        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -27,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,8 +34,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -65,6 +64,24 @@
             
 <li>
     <a href="../../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
 </li>
     </ul>
   </li>
@@ -108,7 +125,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Java Workflow</a>
+    <a href="./" class="dropdown-item active">Java Workflow</a>
 </li>
             
 <li>
@@ -178,6 +195,10 @@
 <li>
     <a href="../../Web/mkdocs/" class="dropdown-item">mkdocs</a>
 </li>
+            
+<li>
+    <a href="../../Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
     </ul>
   </li>
                                     
@@ -218,8 +239,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -231,8 +252,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -240,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,8 +286,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -278,25 +299,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
-</li>
-                                    
-<li>
-    <a href="../../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
-</li>
-                                    
-<li>
-    <a href="../../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -312,8 +316,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -325,44 +329,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ms-md-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -383,144 +390,107 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#java-developement-stack" class="nav-link">Java developement stack</a>
+            <li class="nav-item" data-level="1"><a href="#java-developement-stack" class="nav-link">Java developement stack</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#jdk" class="nav-link">JDK</a>
+            <li class="nav-item" data-level="1"><a href="#jdk" class="nav-link">JDK</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#javac" class="nav-link">javac</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#warning-control" class="nav-link">Warning control</a>
+            <li class="nav-item" data-level="2"><a href="#javac" class="nav-link">javac</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#maven" class="nav-link">Maven</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#netbeans" class="nav-link">Netbeans</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#project-configuration" class="nav-link">Project configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#configure-maven-goals" class="nav-link">Configure Maven Goals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            <li class="nav-item" data-level="2"><a href="#warning-control" class="nav-link">Warning control</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#idea" class="nav-link">Idea</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#settings-synchronization" class="nav-link">Settings synchronization</a>
+            <li class="nav-item" data-level="1"><a href="#maven" class="nav-link">Maven</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#maven-configuration" class="nav-link">Maven configuration</a>
+            
+            <li class="nav-item" data-level="1"><a href="#netbeans" class="nav-link">Netbeans</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#jdk-configuration" class="nav-link">JDK configuration</a>
+            <li class="nav-item" data-level="2"><a href="#project-configuration" class="nav-link">Project configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#configure-maven-goals" class="nav-link">Configure Maven Goals</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compilation" class="nav-link">Compilation</a>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#running-projects" class="nav-link">Running Projects</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#developing-the-whole-project-stack-at-once" class="nav-link">Developing the whole project stack at once</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#running-maven-goals" class="nav-link">Running Maven Goals</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#maven-goal-configuration" class="nav-link">Maven goal configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting_1" class="nav-link">Troubleshooting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#idea-does-not-detect-manually-installed-maven-artifact" class="nav-link">Idea does not detect manually installed Maven artifact</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#idea-does-not-see-environment-variables" class="nav-link">Idea does not see environment variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#idea-does-not-set-the-correct-classpath" class="nav-link">Idea does not set the correct classpath</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#java-version" class="nav-link">Java version</a>
+            <li class="nav-item" data-level="1"><a href="#idea" class="nav-link">Idea</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#setting-java-version-in-maven" class="nav-link">Setting Java version in Maven</a>
+            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#setting-java-version-in-netbeans" class="nav-link">Setting Java version in Netbeans</a>
+            <li class="nav-item" data-level="3"><a href="#settings-synchronization" class="nav-link">Settings synchronization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#setting-java-version-in-idea" class="nav-link">Setting Java version in IDEA</a>
+            <li class="nav-item" data-level="3"><a href="#maven-configuration" class="nav-link">Maven configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#setting-java-version-used-for-executing-maven" class="nav-link">Setting Java version used for executing Maven</a>
+            <li class="nav-item" data-level="3"><a href="#jdk-configuration" class="nav-link">JDK configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#enabling-preview-features" class="nav-link">Enabling preview features</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compilation" class="nav-link">Compilation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#problems" class="nav-link">Problems</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#runtime-version-error" class="nav-link">Runtime version error</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="4"><a href="#check-the-version-of-java-required-at-runtime" class="nav-link">Check the version of java required at runtime</a>
+            <li class="nav-item" data-level="2"><a href="#running-projects" class="nav-link">Running Projects</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#developing-the-whole-project-stack-at-once" class="nav-link">Developing the whole project stack at once</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#running-maven-goals" class="nav-link">Running Maven Goals</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#maven-goal-configuration" class="nav-link">Maven goal configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting_1" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-detect-manually-installed-maven-artifact" class="nav-link">Idea does not detect manually installed Maven artifact</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-see-environment-variables" class="nav-link">Idea does not see environment variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#idea-does-not-set-the-correct-classpath" class="nav-link">Idea does not set the correct classpath</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -528,40 +498,77 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#gurobi" class="nav-link">Gurobi</a>
+            <li class="nav-item" data-level="1"><a href="#java-version" class="nav-link">Java version</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#potential-problems" class="nav-link">Potential problems</a>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-maven" class="nav-link">Setting Java version in Maven</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-netbeans" class="nav-link">Setting Java version in Netbeans</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-in-idea" class="nav-link">Setting Java version in IDEA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-java-version-used-for-executing-maven" class="nav-link">Setting Java version used for executing Maven</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#enabling-preview-features" class="nav-link">Enabling preview features</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#problems" class="nav-link">Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#runtime-version-error" class="nav-link">Runtime version error</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#check-the-version-of-java-required-at-runtime" class="nav-link">Check the version of java required at runtime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#gurobi" class="nav-link">Gurobi</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#potential-problems" class="nav-link">Potential problems</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#testing-with-junit" class="nav-link">Testing with JUnit</a>
+            <li class="nav-item" data-level="1"><a href="#testing-with-junit" class="nav-link">Testing with JUnit</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#make-part-of-the-project-optional" class="nav-link">Make part of the project optional</a>
+            <li class="nav-item" data-level="1"><a href="#make-part-of-the-project-optional" class="nav-link">Make part of the project optional</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#maven-profiles-and-optional-dependencies" class="nav-link">Maven profiles and optional dependencies</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#moving-optional-source-files-outside-the-srcmainjava-directory" class="nav-link">Moving optional source files outside the src/main/java directory</a>
+            <li class="nav-item" data-level="2"><a href="#maven-profiles-and-optional-dependencies" class="nav-link">Maven profiles and optional dependencies</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#loading-the-optional-part-of-the-project-at-runtime" class="nav-link">Loading the optional part of the project at runtime</a>
+            <li class="nav-item" data-level="2"><a href="#moving-optional-source-files-outside-the-srcmainjava-directory" class="nav-link">Moving optional source files outside the src/main/java directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#loading-the-optional-part-of-the-project-at-runtime" class="nav-link">Loading the optional part of the project at runtime</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#archive" class="nav-link">Archive</a>
+            <li class="nav-item" data-level="1"><a href="#archive" class="nav-link">Archive</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#aic-maven-repo-access" class="nav-link">AIC maven repo access</a>
+            <li class="nav-item" data-level="2"><a href="#aic-maven-repo-access" class="nav-link">AIC maven repo access</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -883,20 +890,19 @@ else{
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -916,7 +922,7 @@ else{
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,15 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Common - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../css/brands.min.css" rel="stylesheet">
-        <link href="../../css/solid.min.css" rel="stylesheet">
-        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
         <link href="../../extra.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
@@ -27,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -35,8 +34,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -65,6 +64,24 @@
             
 <li>
     <a href="../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
 </li>
     </ul>
   </li>
@@ -178,11 +195,15 @@
 <li>
     <a href="../Web/mkdocs/" class="dropdown-item">mkdocs</a>
 </li>
+            
+<li>
+    <a href="../Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
     </ul>
   </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Common</a>
+    <a href="./" class="dropdown-item active">Common</a>
 </li>
                                     
 <li>
@@ -218,8 +239,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -231,8 +252,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -240,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,8 +286,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -278,25 +299,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Cloud computing</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
-</li>
-                                    
-<li>
-    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
-</li>
-                                    
-<li>
-    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -312,8 +316,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -325,49 +329,52 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ms-md-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Web/mkdocs/" class="nav-link">
+                                <a rel="prev" href="../Web/Selenium/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -383,90 +390,107 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#keymap" class="nav-link">Keymap</a>
+            <li class="nav-item" data-level="1"><a href="#keymap" class="nav-link">Keymap</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#options" class="nav-link">Options</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#multiple-values-in-one-option-or-operand" class="nav-link">Multiple values in one option or operand</a>
+            <li class="nav-item" data-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
+            <li class="nav-item" data-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#options" class="nav-link">Options</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#tests" class="nav-link">Tests</a>
+            <li class="nav-item" data-level="2"><a href="#multiple-values-in-one-option-or-operand" class="nav-link">Multiple values in one option or operand</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#jetbrains-products" class="nav-link">JetBrains Products</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#compact-tabs" class="nav-link">Compact tabs</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#advanced-configuration-registry" class="nav-link">Advanced Configuration - Registry</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#update-is-paused-and-does-not-resume-even-after-closing-the-ide" class="nav-link">Update is paused and does not resume even after closing the IDE</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#output-console-inserts-new-line-when-r-is-used" class="nav-link">Output console inserts new line when \r is used</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+            <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#licenses" class="nav-link">Licenses</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#tests" class="nav-link">Tests</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#jetbrains-products" class="nav-link">JetBrains Products</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#compact-tabs" class="nav-link">Compact tabs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#advanced-configuration-registry" class="nav-link">Advanced Configuration - Registry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#update-is-paused-and-does-not-resume-even-after-closing-the-ide" class="nav-link">Update is paused and does not resume even after closing the IDE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#output-console-inserts-new-line-when-r-is-used" class="nav-link">Output console inserts new line when \r is used</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#visual-studio-code" class="nav-link">Visual Studio Code</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#set-a-visual-guidline-at-120-characters" class="nav-link">Set a visual guidline at 120 characters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formatting" class="nav-link">Formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#forward-and-backward-navigation" class="nav-link">Forward and backward navigation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#licenses" class="nav-link">Licenses</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -603,6 +627,26 @@
 <p>Probably, the IDE installation directory is blocked by some other process. Try to close the WSL. If it does not help, find out which process is blocking the directory (On Windows: <code>C:\Users\&lt;User&gt;\AppData\Local\Programs\&lt;IDE name&gt;</code>)</p>
 <h3 id="output-console-inserts-new-line-when-r-is-used">Output console inserts new line when \r is used<a class="headerlink" href="#output-console-inserts-new-line-when-r-is-used" title="Permanent link">&para;</a></h3>
 <p>This is unfortunately a default behavior of the IDE output console. To mitigate this, we have to emulate the console. To do this, open the run configuration and check the <code>Emulate terminal in output console</code> option.</p>
+<h1 id="visual-studio-code">Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permanent link">&para;</a></h1>
+<h2 id="set-a-visual-guidline-at-120-characters">Set a visual guidline at 120 characters<a class="headerlink" href="#set-a-visual-guidline-at-120-characters" title="Permanent link">&para;</a></h2>
+<p>To set a visual guidline at 120 characters, we can use the <code>editor.rulers</code> setting:</p>
+<ol>
+<li>open the settings and search for <code>rulers</code>. </li>
+<li>click on <code>Edit in settings.json</code></li>
+<li>add the following:
+    <code>json
+    "editor.rulers": [
+        120
+    ]</code></li>
+</ol>
+<h2 id="formatting">Formatting<a class="headerlink" href="#formatting" title="Permanent link">&para;</a></h2>
+<p>Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that <strong>if the formatting is not defined for a language, selection formatting do nothing</strong>. To check the availability, try to format the whole document, then, an error box should appear.</p>
+<h2 id="forward-and-backward-navigation">Forward and backward navigation<a class="headerlink" href="#forward-and-backward-navigation" title="Permanent link">&para;</a></h2>
+<p>To display forward and backward navigation:</p>
+<ol>
+<li>Right click on the top toolbar</li>
+<li>Select <code>Command Center</code></li>
+</ol>
 <h1 id="releasing-the-software">Releasing the software<a class="headerlink" href="#releasing-the-software" title="Permanent link">&para;</a></h1>
 <p>When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:</p>
 <ul>
@@ -636,20 +680,19 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -669,7 +712,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">
