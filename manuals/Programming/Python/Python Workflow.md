@@ -69,45 +69,42 @@ Note that the package needs to be properly initialized first, i.e.:
 - a `setup.py` file in the parent directory of the package root
 
 
+# IDE
 
-# Pycharm
+## Pycharm
 
-## Configuration
+### Configuration
 
-### Settings synchronization
+#### Settings synchronization
 Same as in IDEA:
 
 1. Log in into JetBrains Toolbox or to the App
 1. Click on the gear icon on the top-right and choose Sync
 1. Check all categories and click on pull settings from the cloud
 
-### Do Not Run scripts in Python Console by Default
+#### Do Not Run scripts in Python Console by Default
 `Run configuration select box` -> `Edit Configurations...` -> `Edit configuration templates` -> `Python` -> uncheck the `Run with Python Console`
 
-### Enable Progress Bars in output console
+#### Enable Progress Bars in output console
 `Run configuration select box` -> `Edit Configurations...` -> Select the configuration -> check the `Emulate terminal in output console`
 
 
-### Setup the Docstring format
+#### Setup the Docstring format
 In `Tools` -> `Python Integrated Tools` -> `Docstring format`.
 
 
-
-
-
-
-## Project Configuration
+### Project Configuration
 
 - configure the correct test suite in `File` -> `Settings` -> `Tools` -> `Python Integrated Tools` -> `testing`
 
-## Known problems & solutions
+### Known problems & solutions
 
-### Non deterministic output in the run window
+#### Non deterministic output in the run window
 Problem: It can happen that the output printing/logging can be reordered randomly (not matching the order of calls in the source, neither the system console output).
 Solution: `Edit Configurations...` -> select configuration for the script -> check `Emulate terminal in output console`.
 
 
-### Pycharm does not recognize a locally installed package
+#### Pycharm does not recognize a locally installed package
 It can happen that a locally installed package (`-e`) is not recognized by Pycharm. If that happens, first try to incalidate the cache by
 
 1. `File` -> `Invalidate Caches...` 
@@ -122,12 +119,21 @@ If this does not work, it can be solved by adding the path to the package to the
 1. Add the path to the package to the list of paths
 
 
-### No problems found in the code of a single project
+#### No problems found in the code of a single project
 This can be due to a broken Idea settings. To fix:
 
 1. Close Pycharm
 1. Move the `.idea` folder from the project directory to a backup location
 1. Start Pycharm and open the project again
+
+
+## VS Code
+
+### Formatting
+For formatting, we can use the [`black`](https://github.com/psf/black) formatter. To install it:
+
+1. `pip install black`
+1. install the `black` extension in VS Code
 
 
 

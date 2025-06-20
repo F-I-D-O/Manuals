@@ -625,4 +625,7 @@ Important parameters:
 - `-Algorithm`: the algorithm used for hashing. The default is `SHA256`. Other options are `SHA1`, `SHA256`, `SHA384`, `SHA512`, `MD5`
 
 
+## Get path of the executable/command
+If we need to know the installed path of an executable or command, similar to the `which` command in Linux, we can use the `Get-Command` command. 
+
 

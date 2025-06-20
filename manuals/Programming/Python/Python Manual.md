@@ -1302,6 +1302,9 @@ Then, we configure the autoreload with `%autoreload <mode>`. The most common mod
 - `2`, `all`: reload all modules (except those excluded by `%aimport`) every time before executing the Python code
 - `3`, `complete`: same as `2`, but also add any new objects in the module
 
+
+
+
 # Plotting
 There are several libraries for plotting in Python. The most common are:
 

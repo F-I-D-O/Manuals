@@ -199,21 +199,18 @@ Sometimes, the server does not detect the connection failure and do not allow yo
 7. read the ID from the output and exec `screen -rd <ID>`
 
 
-## Copying files over SSH using `scp`
+## SCP: Copying files over SSH using 
 The `scp` command is used to copy files over SSH. The syntax is:
 ```bash
 scp <source> <destination>
 ```
-The `<source>` and `<destination>` can be either local or remote. The remote files are specified using the `<username>@<address>:<path>` syntax. 
+The `<source>` and `<destination>` can be either local or remote. The remote files are specified using the `<username>@<address>:<path>` syntax.
 
-Note that **if the remote path contains spaces, double quoting is necessary**, one for local and one for remote:
-```bash
-scp <source> "<username>@<address>:'<path with spaces>'"
-```
 
 ### Problems
 
 - `protocol error: filename does not match request`: This error is triggered if the path contains unexpected characters. Sometimes, it can be triggered even for correct path, if the local console does not match the remote console. In that case, the solution is to use the `-T` parameter to disable the security check.
+- `file does not exists`: This can happen if the path is incorrect, but also if we use some bad quotting. If the solution is not obvious, try the most simple path possible in command line.
 
 
 ## List all active connections on a server

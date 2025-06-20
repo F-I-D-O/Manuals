@@ -986,3 +986,18 @@ sqlalchemy_connection.execute(insert_statement, list_to_insert)
 
 ## Exporting geodataframe to a file
 The geodataframe can be exported to a file using the [`to_file`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_file.html#geopandas.GeoDataFrame.to_file) method. The format is determined by the file extension. 
+
+
+# Pandas in Jupyter
+
+## Displaying more rows or columns
+To display more rows or columns in Jupyter than the default, we have to set the pandas `option_context` to the desired values:
+
+```python
+# instead of
+df
+
+# write
+with pd.option_context('display.max_rows', 100, 'display.max_columns', 10):
+    display(df)
+```

@@ -140,6 +140,31 @@ Probably, the IDE installation directory is blocked by some other process. Try t
 This is unfortunately a default behavior of the IDE output console. To mitigate this, we have to emulate the console. To do this, open the run configuration and check the `Emulate terminal in output console` option.
 
 
+# Visual Studio Code
+
+## Set a visual guidline at 120 characters
+To set a visual guidline at 120 characters, we can use the `editor.rulers` setting:
+
+1. open the settings and search for `rulers`. 
+1. click on `Edit in settings.json`
+1. add the following:
+	```json
+	"editor.rulers": [
+        120
+    ]
+	```
+
+## Formatting
+Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
+
+
+## Forward and backward navigation
+To display forward and backward navigation:
+
+1. Right click on the top toolbar
+1. Select `Command Center`
+
+
 # Releasing the software
 When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:
 
