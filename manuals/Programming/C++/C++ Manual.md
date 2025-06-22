@@ -292,7 +292,6 @@ To simulate multi-dimensional dynamic arrays, we have two options:
 - use aray of pointers to arrays 
 
 Method | Pros | Cons
-
 --|--|--
 Flat Syntax | Fast: single continuous allocations | different access syntax than static 2D arrays
 Array of pointers | Slow: one allocation per row, unrelated memory addresses between rows | same access syntax as static 2D arrays
@@ -1116,8 +1115,8 @@ Basically, you should decide as follows:
 1. Otherwise -> **free function**
 
 ## Argument-parameter Conversions
-Arg/param | value | reference | rvalue
 
+Arg/param | value | reference | rvalue
 -- |--|--|--
 value | - | - | `std::move` 
 reference | implicit copy | - | copy constructor
