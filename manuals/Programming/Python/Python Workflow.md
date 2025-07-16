@@ -189,6 +189,14 @@ Text mode shortcuts:
 ### Install Extension Manager with basic extensions
 Best use the [official installation guide](https://github.com/ipython-contrib/jupyter_contrib_nbextensions). The extensions then can be toggled on in the Nbextensions tab in the jupyter homepage. Be sure to unselect the *disable configuration for nbextensions without explicit compatibility (they may break your notebook environment, but can be useful to show for nbextension development)* checkbox, otherwise, all extensions will be disabled.
 
+
+## Jupyter in VS Code
+[Documentation](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+
+To **move a cell** just use drag and drop, on the left side of the cell.
+
+
+
 # Debugging
 Pycharm contains a good debuger for python code. However, it cannot step into most standard library functions, as those are native, implemented in C/C++. For that, we need mixed python/native debugging.
 
