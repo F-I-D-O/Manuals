@@ -1250,6 +1250,7 @@ Executables are installed just like libraries. There are two differences:
 ### Specific configuration for frequentlly used libraries
 
 - for google test, we want to prevent the installation of the `gtest` targets. To do that, turn it off before the gtets config in the `CMakeLists.txt` file:
+
     ```cmake
     # GOOGLE TEST
     # do not install gtest
