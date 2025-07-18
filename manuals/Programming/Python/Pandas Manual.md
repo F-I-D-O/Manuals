@@ -766,11 +766,11 @@ with tqdm(total=len(data)) as pbar:
 
 
 # Latex export
-Currently, the [`to_latex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html) function is deprecated. The `Styler` class should be used for latex exports instead. You can get the `Styler` from the DataFrame using the `style` property. The usual workfolow is:
+Currently, the [`DataFrame.to_latex`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html) function is deprecated. The `Styler` class should be used for latex exports instead. You can get the `Styler` from the DataFrame using the `style` property. The usual workfolow is:
 
-1. Create a `Styler` object from the dataframe using the `style` property.
-1. Apply the desired formatting to the styler object.
-1. Export DataFrame to latex using the `to_latex` method.
+1. Create a `Styler` object from the dataframe using the `style` property,
+1. Apply the desired formatting to the styler object,
+1. Export DataFrame to latex using the [`Styler.to_latex`](https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html) method.
 
 Keep in mind that **the `Styler` object is immutable, so you need to assign the result of each formatting operation to a new variable or chain the calls**. Example:
 ```Python
@@ -784,6 +784,11 @@ s.to_latex(...)
 
 # correct: chain calls
 df.style.format(...).to_latex(...)
+```
+
+Finally, to produce a nice output, tou should use `print` to display the latext string:
+```Python
+print(styler.to_latex())
 ```
 
 ## Formatting the index: columns and row labels

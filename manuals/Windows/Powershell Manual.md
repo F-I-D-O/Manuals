@@ -387,6 +387,36 @@ In new PowerShell, we have even more options:
 
 
 
+# Data Types
+Powershell uses .NET types for data types. We can encounter nubers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.
+
+## Dates
+The date is represented by the `System.DateTime` type. To create a date, we can use the [`Get-Date`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date) command. Example:
+```PowerShell
+$date = Get-Date # current date
+$date = Get-Date -Date "2025-01-01" # date from a string
+```
+
+Dates can be compared using the standard comparison operators. Example:
+```PowerShell
+if ($date1 -lt $date2) {
+    ...
+}
+```
+
+
+## Arrays
+To **create** an array, use the `@()` operator: `a = @()`.
+
+To **add an element** to an array, use the `+=` operator: `a += 1`. The same operator can be used to **append** one array to another: `a += @("1", "bar")`.
+
+The arrays can be **iterated** over using the `foreach` loop.
+
+To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:
+```PowerShell
+$a = @("foo", "bar")
+"$a" # prints "foo bar"
+```
 
 
 
@@ -438,18 +468,7 @@ Get-Process | Select-Object -Property Name, Id
 ```
 
 
-# Arrays
-To **create** an array, use the `@()` operator: `a = @()`.
 
-To **add an element** to an array, use the `+=` operator: `a += 1`. The same operator can be used to **append** one array to another: `a += @("1", "bar")`.
-
-The arrays can be **iterated** over using the `foreach` loop.
-
-To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:
-```PowerShell
-$a = @("foo", "bar")
-"$a" # prints "foo bar"
-```
 
 # Network
 
@@ -560,6 +579,24 @@ To **clear** the history, use the [`Clear-History`](https://learn.microsoft.com/
 - `Clear-History -Count <count>`: clear the last `count` commands
 - `Clear-History -CommandLine <pattern>`: clear the commands that match the pattern. The pattern use the simple matching (e.g. `*` is the wildcard), and have to be wrapped in quotes if it contains spaces.
 
+
+
+# Including scripts
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.5&viewFallbackFrom=powershell-7.1#script-scope-and-dot-sourcing)
+
+Script including in PowerShell is called *dot sourcing*. To include a script, use the `.` operator. Example:
+```PowerShell
+. "C:\Users\user\script.ps1"
+```
+
+- To include a script from the **current directory**, use the `.` operator:
+    ```PowerShell
+    . .\script.ps1
+    ```
+- To include a **relative to the script directory**, use the `$PSScriptRoot` variable. Example:
+    ```PowerShell
+    . "$PSScriptRoot\script.ps1"
+    ```
 
 
 

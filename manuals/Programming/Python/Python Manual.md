@@ -1312,6 +1312,7 @@ There are several libraries for plotting in Python. The most common are:
 - `plotly`
 
 In the table below, we can see a comparison of the most common plotting libraries:
+
 | Functionality | Matplotlib | Plotly |
 | --- | --- | --- |
 | real 3D plots | no | yes |
