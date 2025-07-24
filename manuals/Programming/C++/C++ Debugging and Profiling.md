@@ -171,6 +171,8 @@ has been reached.*)
   - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation (*The instruction at 0x%08lx referenced
 memory at 0x%08lx. The memory could
 not be %s.*)
+  - `0xC0000142`: STATUS_DLL_INIT_FAILED: Initialization of a dynamic link library failed. The
+process is terminating abnormally. This means that all linked libraries are available at runtime, but some of them failed to initialize, which may be due to a missing dependency (between the linked library and another library not linked to the executable)
   - `0xC0000374`: Heap corruption (*A heap has been corrupted.*)
 
 
