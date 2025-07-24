@@ -170,6 +170,18 @@ To find files, use the [`find`](https://man7.org/linux/man-pages/man1/find.1.htm
 	find -regextype posix-extended -regex '.*<regex pattern>.*'
 	```
 	- note the order of the options. **Specifying the `-regextype` after the `-regex` option does not work.**
+- `-printf <format>`: set the output format. 
+	- The most important format specifiers are:
+		- `%f`: file name
+		- `%p`: file path
+		- `%TY`: year
+		- `%Tm`: month
+		- `%Td`: day
+		- `%TH`: hour
+		- `%TM`: minute
+		- `%TS`: second
+	- modifiers can be used to format the output:
+		- `%.2<format specifier>`: format the output to 2 digits
 
 
 

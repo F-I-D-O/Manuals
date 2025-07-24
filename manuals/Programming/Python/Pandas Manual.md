@@ -873,7 +873,7 @@ Important parameters:
 
 
 ## `pivot_table`
-The pivot table (mega)function do a lot of things at once:
+The [`pivot_table`](https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html) function do a lot of things at once:
 
 - it aggregates the data
 - it transforms the data
