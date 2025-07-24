@@ -227,6 +227,10 @@
 </li>
                                     
 <li>
+    <a href="../../Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
     <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
@@ -1477,11 +1481,11 @@ with tqdm(total=len(data)) as pbar:
 </code></pre>
 <p><strong>If the speed is slow, it can be caused by a low upload speed of your internet connection.</strong> Note that due to the SQL syntax, the size of the SQL strings may be much larger than the size of the dataframe.</p>
 <h1 id="latex-export">Latex export<a class="headerlink" href="#latex-export" title="Permanent link">&para;</a></h1>
-<p>Currently, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html"><code>to_latex</code></a> function is deprecated. The <code>Styler</code> class should be used for latex exports instead. You can get the <code>Styler</code> from the DataFrame using the <code>style</code> property. The usual workfolow is:</p>
+<p>Currently, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_latex.html"><code>DataFrame.to_latex</code></a> function is deprecated. The <code>Styler</code> class should be used for latex exports instead. You can get the <code>Styler</code> from the DataFrame using the <code>style</code> property. The usual workfolow is:</p>
 <ol>
-<li>Create a <code>Styler</code> object from the dataframe using the <code>style</code> property.</li>
-<li>Apply the desired formatting to the styler object.</li>
-<li>Export DataFrame to latex using the <code>to_latex</code> method.</li>
+<li>Create a <code>Styler</code> object from the dataframe using the <code>style</code> property,</li>
+<li>Apply the desired formatting to the styler object,</li>
+<li>Export DataFrame to latex using the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.to_latex.html"><code>Styler.to_latex</code></a> method.</li>
 </ol>
 <p>Keep in mind that <strong>the <code>Styler</code> object is immutable, so you need to assign the result of each formatting operation to a new variable or chain the calls</strong>. Example:</p>
 <pre><code class="language-Python"># wrong, the format is not apllied
@@ -1494,6 +1498,9 @@ s.to_latex(...)
 
 # correct: chain calls
 df.style.format(...).to_latex(...)
+</code></pre>
+<p>Finally, to produce a nice output, tou should use <code>print</code> to display the latext string:</p>
+<pre><code class="language-Python">print(styler.to_latex())
 </code></pre>
 <h2 id="formatting-the-index-columns-and-row-labels">Formatting the index: columns and row labels<a class="headerlink" href="#formatting-the-index-columns-and-row-labels" title="Permanent link">&para;</a></h2>
 <p>The columns' and row labels' format is configures by the <a href="https://pandas.pydata.org/docs/dev/reference/api/pandas.io.formats.style.Styler.format_index.html"><code>format_index</code></a> function.
@@ -1562,7 +1569,7 @@ Important parameters:</p>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html"><code>cut</code></a>: function that can be used to discretize a continuous variable into bins.</li>
 </ul>
 <h2 id="pivot_table"><code>pivot_table</code><a class="headerlink" href="#pivot_table" title="Permanent link">&para;</a></h2>
-<p>The pivot table (mega)function do a lot of things at once:</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.pivot_table.html"><code>pivot_table</code></a> function do a lot of things at once:</p>
 <ul>
 <li>it aggregates the data</li>
 <li>it transforms the data</li>

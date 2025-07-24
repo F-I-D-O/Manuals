@@ -227,6 +227,10 @@
 </li>
                                     
 <li>
+    <a href="../../Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
     <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
@@ -739,6 +743,16 @@
             </li>
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#google-test" class="nav-link">GOOGLE TEST</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#do-not-install-gtest" class="nav-link">do not install gtest</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -1925,11 +1939,11 @@ endif()
 <h3 id="specific-configuration-for-frequentlly-used-libraries">Specific configuration for frequentlly used libraries<a class="headerlink" href="#specific-configuration-for-frequentlly-used-libraries" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
-<p>for google test, we want to prevent the installation of the <code>gtest</code> targets. To do that, turn it off before the gtets config in the <code>CMakeLists.txt</code> file:
-    ```cmake
-    # GOOGLE TEST
-    # do not install gtest
-    set(INSTALL_GTEST OFF)</p>
+<p>for google test, we want to prevent the installation of the <code>gtest</code> targets. To do that, turn it off before the gtets config in the <code>CMakeLists.txt</code> file:</p>
+<p>```cmake</p>
+<h1 id="google-test">GOOGLE TEST<a class="headerlink" href="#google-test" title="Permanent link">&para;</a></h1>
+<h1 id="do-not-install-gtest">do not install gtest<a class="headerlink" href="#do-not-install-gtest" title="Permanent link">&para;</a></h1>
+<p>set(INSTALL_GTEST OFF)</p>
 <p>include(FetchContent)
 FetchContent_Declare(
     googletest

@@ -227,6 +227,10 @@
 </li>
                                     
 <li>
+    <a href="../../Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
     <a href="../../Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
@@ -1843,10 +1847,27 @@ int* ptr = a; // ptr points to the first element of a
 <li>use the flat syntax, as demonstrated on static arrays</li>
 <li>use aray of pointers to arrays </li>
 </ul>
-<p>Method | Pros | Cons</p>
-<p>--|--|--
-Flat Syntax | Fast: single continuous allocations | different access syntax than static 2D arrays
-Array of pointers | Slow: one allocation per row, unrelated memory addresses between rows | same access syntax as static 2D arrays</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat Syntax</td>
+<td>Fast: single continuous allocations</td>
+<td>different access syntax than static 2D arrays</td>
+</tr>
+<tr>
+<td>Array of pointers</td>
+<td>Slow: one allocation per row, unrelated memory addresses between rows</td>
+<td>same access syntax as static 2D arrays</td>
+</tr>
+</tbody>
+</table>
 <h4 id="flat-array">Flat array<a class="headerlink" href="#flat-array" title="Permanent link">&para;</a></h4>
 <pre><code class="language-cpp">int* a = new int[rows * cols]
 </code></pre>
@@ -2561,11 +2582,36 @@ In many contexts, the value category of an expression is important in deciding w
 <li>Otherwise -&gt; <strong>free function</strong></li>
 </ol>
 <h2 id="argument-parameter-conversions">Argument-parameter Conversions<a class="headerlink" href="#argument-parameter-conversions" title="Permanent link">&para;</a></h2>
-<p>Arg/param | value | reference | rvalue</p>
-<p>-- |--|--|--
-value | - | - | <code>std::move</code> 
-reference | implicit copy | - | copy constructor
-rvalue | - | not possible | -</p>
+<table>
+<thead>
+<tr>
+<th>Arg/param</th>
+<th>value</th>
+<th>reference</th>
+<th>rvalue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>-</td>
+<td>-</td>
+<td><code>std::move</code></td>
+</tr>
+<tr>
+<td>reference</td>
+<td>implicit copy</td>
+<td>-</td>
+<td>copy constructor</td>
+</tr>
+<tr>
+<td>rvalue</td>
+<td>-</td>
+<td>not possible</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 <h2 id="default-parameters">Default Parameters<a class="headerlink" href="#default-parameters" title="Permanent link">&para;</a></h2>
 <p>Default function parameters  in C++ works similarly to other languages:</p>
 <pre><code class="language-c++">int add(int a, int b = 10);

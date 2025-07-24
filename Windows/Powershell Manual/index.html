@@ -227,6 +227,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Perl/" class="dropdown-item">Perl</a>
 </li>
                                     
@@ -530,6 +534,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data Types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#dates" class="nav-link">Dates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#string-manipulation" class="nav-link">String Manipulation</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#replace" class="nav-link">Replace</a>
@@ -553,11 +570,6 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#select-object" class="nav-link">Select-Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#arrays" class="nav-link">Arrays</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -603,6 +615,11 @@
             </li>
             
             <li class="nav-item" data-level="1"><a href="#powershell-history" class="nav-link">PowerShell History</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#including-scripts" class="nav-link">Including scripts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -957,6 +974,26 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 <li><code>6&gt;</code>: redirect Information stream</li>
 <li><code>*&gt;</code>: redirect all streams</li>
 </ul>
+<h1 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h1>
+<p>Powershell uses .NET types for data types. We can encounter nubers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.</p>
+<h2 id="dates">Dates<a class="headerlink" href="#dates" title="Permanent link">&para;</a></h2>
+<p>The date is represented by the <code>System.DateTime</code> type. To create a date, we can use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date"><code>Get-Date</code></a> command. Example:</p>
+<pre><code class="language-PowerShell">$date = Get-Date # current date
+$date = Get-Date -Date &quot;2025-01-01&quot; # date from a string
+</code></pre>
+<p>Dates can be compared using the standard comparison operators. Example:</p>
+<pre><code class="language-PowerShell">if ($date1 -lt $date2) {
+    ...
+}
+</code></pre>
+<h2 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h2>
+<p>To <strong>create</strong> an array, use the <code>@()</code> operator: <code>a = @()</code>.</p>
+<p>To <strong>add an element</strong> to an array, use the <code>+=</code> operator: <code>a += 1</code>. The same operator can be used to <strong>append</strong> one array to another: <code>a += @("1", "bar")</code>.</p>
+<p>The arrays can be <strong>iterated</strong> over using the <code>foreach</code> loop.</p>
+<p>To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:</p>
+<pre><code class="language-PowerShell">$a = @(&quot;foo&quot;, &quot;bar&quot;)
+&quot;$a&quot; # prints &quot;foo bar&quot;
+</code></pre>
 <h1 id="string-manipulation">String Manipulation<a class="headerlink" href="#string-manipulation" title="Permanent link">&para;</a></h1>
 <h2 id="replace">Replace<a class="headerlink" href="#replace" title="Permanent link">&para;</a></h2>
 <p>For replacing a substring in a string, we have two options:</p>
@@ -990,14 +1027,6 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 <h1 id="select-object"><code>Select-Object</code><a class="headerlink" href="#select-object" title="Permanent link">&para;</a></h1>
 <p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object"><code>Select-Object</code></a> selects the specified properties of an object. Example:</p>
 <pre><code class="language-PowerShell">Get-Process | Select-Object -Property Name, Id
-</code></pre>
-<h1 id="arrays">Arrays<a class="headerlink" href="#arrays" title="Permanent link">&para;</a></h1>
-<p>To <strong>create</strong> an array, use the <code>@()</code> operator: <code>a = @()</code>.</p>
-<p>To <strong>add an element</strong> to an array, use the <code>+=</code> operator: <code>a += 1</code>. The same operator can be used to <strong>append</strong> one array to another: <code>a += @("1", "bar")</code>.</p>
-<p>The arrays can be <strong>iterated</strong> over using the <code>foreach</code> loop.</p>
-<p>To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:</p>
-<pre><code class="language-PowerShell">$a = @(&quot;foo&quot;, &quot;bar&quot;)
-&quot;$a&quot; # prints &quot;foo bar&quot;
 </code></pre>
 <h1 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h1>
 <h2 id="netstat"><a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a><a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h2>
@@ -1085,6 +1114,19 @@ exit
 <li><code>Clear-History -Id &lt;id&gt;</code>: clear the command with the specified id (use <code>Get-History</code> to get the id)</li>
 <li><code>Clear-History -Count &lt;count&gt;</code>: clear the last <code>count</code> commands</li>
 <li><code>Clear-History -CommandLine &lt;pattern&gt;</code>: clear the commands that match the pattern. The pattern use the simple matching (e.g. <code>*</code> is the wildcard), and have to be wrapped in quotes if it contains spaces.</li>
+</ul>
+<h1 id="including-scripts">Including scripts<a class="headerlink" href="#including-scripts" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.5&amp;viewFallbackFrom=powershell-7.1#script-scope-and-dot-sourcing">documentation</a></p>
+<p>Script including in PowerShell is called <em>dot sourcing</em>. To include a script, use the <code>.</code> operator. Example:</p>
+<pre><code class="language-PowerShell">. &quot;C:\Users\user\script.ps1&quot;
+</code></pre>
+<ul>
+<li>To include a script from the <strong>current directory</strong>, use the <code>.</code> operator:
+    <code>PowerShell
+    . .\script.ps1</code></li>
+<li>To include a <strong>relative to the script directory</strong>, use the <code>$PSScriptRoot</code> variable. Example:
+    <code>PowerShell
+    . "$PSScriptRoot\script.ps1"</code></li>
 </ul>
 <h1 id="usefull-commands">Usefull Commands<a class="headerlink" href="#usefull-commands" title="Permanent link">&para;</a></h1>
 <h2 id="file-encoding-conversion">File Encoding Conversion<a class="headerlink" href="#file-encoding-conversion" title="Permanent link">&para;</a></h2>
