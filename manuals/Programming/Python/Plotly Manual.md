@@ -358,6 +358,11 @@ Note that here, the `i`, `j` and `k` parameters are redundant, as there is only 
 
 [reference](https://plotly.com/python/reference/cone/)
 
+The main parameters of the cone plot are:
+
+- `x`, `y`, `z`: the coordinates of the cone base
+- `u`, `v`, `w`: the vector defining the direction and length of the cone
+
 
 
 

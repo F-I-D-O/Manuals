@@ -13,6 +13,10 @@ nav:
     - C++ Workflow: Programming/C++/C++ Workflow.md
     - CMake Manual: Programming/C++/CMake Manual.md
     - Google Test: Programming/C++/Google Test.md
+  - Cloud computing:
+    - Lmod: Programming/Cloud computing/Lmod.md
+    - RCI cluster: Programming/Cloud computing/RCI cluster.md
+    - Slurm: Programming/Cloud computing/Slurm.md
   - Database:
     - Database Workflow: Programming/Database/Database Workflow.md
     - PostgreSQL Debugging and Profiling: Programming/Database/PostgreSQL Debugging
@@ -40,12 +44,14 @@ nav:
     - JavaScript: Programming/Web/JavaScript.md
     - Jekyll: Programming/Web/Jekyll.md
     - mkdocs: Programming/Web/mkdocs.md
+    - Selenium: Programming/Web/Selenium.md
   - Common: Programming/Common.md
   - Git: Programming/Git.md
   - Gurobi: Programming/Gurobi.md
   - HDF: Programming/HDF.md
   - JSON: Programming/JSON.md
   - Native Libraries: Programming/Native Libraries.md
+  - Neural Networks: Programming/Neural Networks.md
   - Perl: Programming/Perl.md
   - Regex: Programming/Regex.md
   - Ruby Workflow: Programming/Ruby Workflow.md
@@ -63,10 +69,6 @@ nav:
 - Audio & Video:
   - FFMpeg: Audio & Video/FFMpeg.md
   - VLC: Audio & Video/VLC.md
-- Cloud computing:
-  - Lmod: Cloud computing/Lmod.md
-  - RCI cluster: Cloud computing/RCI cluster.md
-  - Slurm: Cloud computing/Slurm.md
 - GIS:
   - GIS formats: GIS/GIS formats.md
   - Overpass Manual: GIS/Overpass Manual.md
@@ -85,6 +87,7 @@ nav:
 - Web Tricks: Web Tricks.md
 - XML: XML.md
 - YAML: YAML.md
+- Zotero: Zotero.md
 site_name: Manuals
 theme:
   name: mkdocs
