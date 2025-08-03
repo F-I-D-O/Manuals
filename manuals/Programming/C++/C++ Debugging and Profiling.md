@@ -428,4 +428,9 @@ To profile memory in Visul Studio
 6. Add a breakpoint to the end of the region of interest
 7. Wait for the hit, take snapshot and check both snapshots
 
-### Memory
+# Showing size, alignment, and memory layout of structures
+In both CLion and Visual Studio, the size and alignment of the structure is displayed in the tooltip when hovering over the structure name, or member name.
+
+Additionally, Visual Studio shows the memory layout if we click the appropriate button in the tooltip.
+
+[Visual Studio tutorial](https://devblogs.microsoft.com/visualstudio/size-alignment-and-memory-layout-insights-for-c-classes-structs-and-unions/)

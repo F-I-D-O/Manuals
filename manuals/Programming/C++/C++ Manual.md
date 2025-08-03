@@ -19,7 +19,7 @@ Note that **all entities in the translation units added to the target are compil
 
 
 
-# Type System and basic types
+# Type System
 [cppreference](https://en.cppreference.com/w/cpp/language/type)
 
 *Type* is a property of each:
@@ -28,6 +28,160 @@ Note that **all entities in the translation units added to the target are compil
 - reference
 - function
 - expression
+
+
+
+
+## Complete and Incomplete Types
+In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?
+
+- The `void` type is always incomplete
+- Any structure without definition (e.g. using `struct structure *ps;`, without defining `structure`.)
+- An array without dimensions is an incomplete type: `int a[];` is incomplete, while `int a[5];` is complete.
+- An array of incomplete elements is incomplete.
+
+ A type trait that can be used to determine whether a type is complete is described [here](https://devblogs.microsoft.com/oldnewthing/20190710-00/?p=102678).
+
+## Aggregate types
+Aggregate types are:
+
+- array types
+- class types that fullfill the following conditions
+	- no private or protected members
+	- no constructores declared (including inherited constructors)
+	- no private or protected base classes
+	- no virtual member functions
+
+The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).
+
+## Type Conversion
+[cppreference: implicit conversion](https://en.cppreference.com/w/cpp/language/implicit_conversion)
+
+In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the `static_cast` operator. In some cases where the conversion is potentially dangerous, the `static_cast` is the only way to prevent compiler warnings.
+
+
+
+### Numeric Conversion
+There are two basic types of numeric conversion:
+
+- standard *implicit conversion* that can be of many types: this conversion is applied if we use an expression of type `T` in a context that expects a type `U`. Example:
+	```cpp
+	void print_int(int a){
+		std::cout << a << std::endl;
+	}
+
+	int main(){
+		short a = 5;
+		print_int(a); // a is implicitly converted to int
+	}
+	```
+
+- *usual arithmetic conversion* which is applied when we use two different types in an arithmetic binary operation. Example:
+	```cpp
+	int main(){
+		short a = 5;
+		int b = 2;
+		int c = a + b; // a is converted to int
+	}
+	```
+
+#### Implicit Numeric Conversion
+
+##### Integral Promotion
+Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:
+
+- `bool` is promoted to `int`: `false` -> `0`, `true` -> `1`
+
+
+##### Integral Conversion
+Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:
+ 
+
+#### Usual Arithmetic Conversion
+[cppreference](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
+
+This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. 
+
+The conversion has the following steps steps:
+
+1. lvalue to rvalue conversion of both operands
+1. special step for enum types
+1. special step for floating point types
+1. conversion of both operands to the common type
+
+The last step: the conversion of both operands to the common type is performed using the following rules:
+
+1. If both operands have the same type, no conversion is performed.
+1. If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser [integer conversion rank](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank) (size) is converted to the type of the operand with greater rank.
+1. otherwise, we have a mix of signed and unsigned types. The following rules are applied:
+	1. If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.
+	1. Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.
+	1. Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).
+
+Here **especially the rule 3.1 leads to many unexpected results** and hard to find bugs. Example:
+```cpp
+int main(){
+	unsigned int a = 10;
+	int b = -1;
+	auto c = b - a; // c is unsigned and the value is 4294967285
+}
+```
+To avoid this problem, **always use the `static_cast` operator if dealing with mixed signed/unsigned types**.
+
+
+## Show the Type at Runtime
+It may be useful to show the type of a variable at runtime:
+
+- for debugging purposes
+- for logging
+- to compare the types of two variables
+
+Note however, that in C++, there is no reflection support. Therefore, **we cannot retrieve the name of the type at runtime in a reliable way**. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.
+
+
+### Resolved complicated types
+Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:
+
+```cpp
+#include <string_view>
+
+template <typename T>
+constexpr auto type_name() {
+  std::string_view name, prefix, suffix;
+#ifdef __clang__
+  name = __PRETTY_FUNCTION__;
+  prefix = "auto type_name() [T = ";
+  suffix = "]";
+#elif defined(__GNUC__)
+  name = __PRETTY_FUNCTION__;
+  prefix = "constexpr auto type_name() [with T = ";
+  suffix = "]";
+#elif defined(_MSC_VER)
+  name = __FUNCSIG__;
+  prefix = "auto __cdecl type_name<";
+  suffix = ">(void)";
+#endif
+  name.remove_prefix(prefix.size());
+  name.remove_suffix(suffix.size());
+  return name;
+}
+```
+Usage:
+
+```cpp
+std::cout << type_name<std::remove_pointer_t<typename std::vector<std::string>::iterator::value_type>>() << std::endl;
+
+// Prints: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >
+```
+
+[Source on SO](https://stackoverflow.com/a/56766138/1827955)
+
+
+### Show the user-provided types (std::type_info)
+If we want to show the type of a variable provided by the user (e.g., by a function accepting `std::any`), we can use the [`typeid`](https://en.cppreference.com/w/cpp/language/typeid) operator which returns a [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) object.  
+
+
+# Built-in and STL Types
 
 ## Arithmetic Types
 [cppreference](https://en.cppreference.com/w/cpp/language/types)
@@ -420,158 +574,6 @@ For more complex code requireing automatic conversion to string and more, we can
 - string to enum conversion
 - enum iteration
 - sequence of possible values
-
-
-## Complete and Incomplete Types
-In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?
-
-- The `void` type is always incomplete
-- Any structure without definition (e.g. using `struct structure *ps;`, without defining `structure`.)
-- An array without dimensions is an incomplete type: `int a[];` is incomplete, while `int a[5];` is complete.
-- An array of incomplete elements is incomplete.
-
- A type trait that can be used to determine whether a type is complete is described [here](https://devblogs.microsoft.com/oldnewthing/20190710-00/?p=102678).
-
-## Aggregate types
-Aggregate types are:
-
-- array types
-- class types that fullfill the following conditions
-	- no private or protected members
-	- no constructores declared (including inherited constructors)
-	- no private or protected base classes
-	- no virtual member functions
-
-The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).
-
-## Type Conversion
-[cppreference: implicit conversion](https://en.cppreference.com/w/cpp/language/implicit_conversion)
-
-In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the `static_cast` operator. In some cases where the conversion is potentially dangerous, the `static_cast` is the only way to prevent compiler warnings.
-
-
-
-### Numeric Conversion
-There are two basic types of numeric conversion:
-
-- standard *implicit conversion* that can be of many types: this conversion is applied if we use an expression of type `T` in a context that expects a type `U`. Example:
-	```cpp
-	void print_int(int a){
-		std::cout << a << std::endl;
-	}
-
-	int main(){
-		short a = 5;
-		print_int(a); // a is implicitly converted to int
-	}
-	```
-
-- *usual arithmetic conversion* which is applied when we use two different types in an arithmetic binary operation. Example:
-	```cpp
-	int main(){
-		short a = 5;
-		int b = 2;
-		int c = a + b; // a is converted to int
-	}
-	```
-
-#### Implicit Numeric Conversion
-
-##### Integral Promotion
-Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:
-
-- `bool` is promoted to `int`: `false` -> `0`, `true` -> `1`
-
-
-##### Integral Conversion
-Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:
- 
-
-#### Usual Arithmetic Conversion
-[cppreference](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions)
-
-This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. 
-
-The conversion has the following steps steps:
-
-1. lvalue to rvalue conversion of both operands
-1. special step for enum types
-1. special step for floating point types
-1. conversion of both operands to the common type
-
-The last step: the conversion of both operands to the common type is performed using the following rules:
-
-1. If both operands have the same type, no conversion is performed.
-1. If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser [integer conversion rank](https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank) (size) is converted to the type of the operand with greater rank.
-1. otherwise, we have a mix of signed and unsigned types. The following rules are applied:
-	1. If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.
-	1. Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.
-	1. Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).
-
-Here **especially the rule 3.1 leads to many unexpected results** and hard to find bugs. Example:
-```cpp
-int main(){
-	unsigned int a = 10;
-	int b = -1;
-	auto c = b - a; // c is unsigned and the value is 4294967285
-}
-```
-To avoid this problem, **always use the `static_cast` operator if dealing with mixed signed/unsigned types**.
-
-
-## Show the Type at Runtime
-It may be useful to show the type of a variable at runtime:
-
-- for debugging purposes
-- for logging
-- to compare the types of two variables
-
-Note however, that in C++, there is no reflection support. Therefore, **we cannot retrieve the name of the type at runtime in a reliable way**. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.
-
-
-### Resolved complicated types
-Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:
-
-```cpp
-#include <string_view>
-
-template <typename T>
-constexpr auto type_name() {
-  std::string_view name, prefix, suffix;
-#ifdef __clang__
-  name = __PRETTY_FUNCTION__;
-  prefix = "auto type_name() [T = ";
-  suffix = "]";
-#elif defined(__GNUC__)
-  name = __PRETTY_FUNCTION__;
-  prefix = "constexpr auto type_name() [with T = ";
-  suffix = "]";
-#elif defined(_MSC_VER)
-  name = __FUNCSIG__;
-  prefix = "auto __cdecl type_name<";
-  suffix = ">(void)";
-#endif
-  name.remove_prefix(prefix.size());
-  name.remove_suffix(suffix.size());
-  return name;
-}
-```
-Usage:
-
-```cpp
-std::cout << type_name<std::remove_pointer_t<typename std::vector<std::string>::iterator::value_type>>() << std::endl;
-
-// Prints: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >
-```
-
-[Source on SO](https://stackoverflow.com/a/56766138/1827955)
-
-
-### Show the user-provided types (std::type_info)
-If we want to show the type of a variable provided by the user (e.g., by a function accepting `std::any`), we can use the [`typeid`](https://en.cppreference.com/w/cpp/language/typeid) operator which returns a [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) object.  
-
-
-# Standard Library Types
 
 ## Smart Pointers
 For managing resources in dynamic memory, *smart pointers* (sometimes called *handles*) should be used. They manage the memory (alocation, dealocation) automatically, but their usage requires some practice.
@@ -986,6 +988,62 @@ More on variants:
 - [cppstories](https://www.cppstories.com/2018/06/variant/)
 
 
+## Storing individual bits in a sequence
+Storing individual bits is a strategy for saving memory in high-performance applications, where each saved bit can have a dramatical impact on the performance. When working with small amounts of objects (less than millions), these strategies are not worth the effort, as we can store information in built-in types like `int`, `char`, or `bool`.
+
+There are multiple strategies for storing individual bits where each bit has its own meaning:
+
+- using built-in arithmetic types and accessing individual bits using bit masks
+- [`std::bitset`](https://en.cppreference.com/w/cpp/utility/bitset)
+- using [bitfields](https://en.cppreference.com/w/cpp/language/bit_field)
+- using `std::vector<bool>`
+
+The best strategy depends on the use case. The following table summarizes the pros and cons of the different strategies:
+
+Feature | built-in arithmetic types | `std::bitset` | bitfields | `std::vector<bool>`
+--- | --- | --- | --- | ---
+Maximum size per variable | 64 bits | unlimited | 64 bits | unlimited
+Dynamic size | no | no | no | yes
+
+
+### Reading a subsequnece of bits
+For reading individual bits or the whole sequence of bits, each strategy has its own way of doing it. However, for reading a subsequence of bits, there is no machinery, so we have to resort to bit operations no matter of the strategy.
+
+For skipping first `n` bits, we use the right shift (`>>`) or the left shift operator, depending on endians. For skipping last `n` bits, we use a bitmask and the and (`&`) operator.
+
+Example:
+```cpp
+std::bitset<8> b = 0b10101010;
+std::cout << b.to_ulong() << std::endl; // prints 170
+
+
+```
+
+
+
+
+
+### `std::bitset`
+[cppreference](https://en.cppreference.com/w/cpp/utility/bitset)
+
+`std::bitset<N>` is a class template that can store up to `N` bits.
+
+#### Reading
+To **read a single bit**, we can use:
+
+- the [`test`](https://en.cppreference.com/w/cpp/utility/bitset/test) member function that returns a boolean value
+- the [`operator[]`](https://en.cppreference.com/w/cpp/utility/bitset/operator_at) operator that returns a boolean value
+
+To **read more bits at once**, we can use:
+
+- the [`to_ulong`](https://en.cppreference.com/w/cpp/utility/bitset/to_ulong) member function that returns an `unsigned long` value
+- the [`to_ullong`](https://en.cppreference.com/w/cpp/utility/bitset/to_ullong) member function that returns an `unsigned long long` value
+
+Both methods convert the whole bitset to an integer value of the corresponding type. If the bitset is larger than the integer type, an exception is thrown.
+
+**There is no function for reading a specified sequence of bits**. One way to overcome this is to read the whole bitset and apply a series of bit operations to get the desired bits (same as we would do with built-in arithmetic types). Another, slower option is to read the bits one by one using for loop.
+
+
 
 # Value Categories
 [cppreferencepreerecege/value_category).
@@ -1019,9 +1077,16 @@ expression value types:
 
 
 # Operators
-[cppreferencen](https://en.cppreferencempp.com/w/cpp/language/operators)
+[cppreferencen](https://en.cppreference.com/w/cpp/language/operators)
 
-C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded. 
+C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded.
+
+There are several categories of operators:
+
+- [arithmetic operators](https://en.cppreference.com/w/cpp/language/operator_arithmetic), including bitwise operators
+- [comparison operators](https://en.cppreference.com/w/cpp/language/operator_comparison)
+- [logical operators](https://en.cppreference.com/w/cpp/language/operator_logical)
+- assignment operators
 
 Note that the standard also supports [**alternative tokens**](https://en.cppreference.com/w/cpp/language/operator_alternative) for some operators (e.g., `&&` -> `and`, `||` -> `or`, `!` -> `not`). However, these are not supported by all compilers. In MSVC, the [`/permissive-`](https://docs.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=vs-2019) flag needs to be used to enable these tokens.
 
@@ -4018,6 +4083,64 @@ class MyClass{
 public:
 	void _private_function();
 ```
+
+
+# Memory Alignment
+[Allignment FAQ](https://c-faq.com/struct/align.esr.html)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Data_structure_alignment)
+
+[SO question](https://stackoverflow.com/questions/119123/why-isnt-sizeof-for-a-struct-equal-to-the-sum-of-sizeof-of-each-member)
+
+In most cases, a sane programmer does not have to worry about memory optimization beyond choosing the right data types. However, in high-performance applications, where millions of objects are processed, even some details regarding the memory layout can have a significant impact on the performance. Therefore, we introduce some terminology and tools for memory optimization.
+
+To make the memory access faster, the compiler aligns the data in the memory so that the memory can be read by the chunks natural for the architecture which are typically multiple of bytes. This affects both how the data structure members are stored (*padding*) and how the data structure itself is stored (*alignment*).
+
+First, let's look at how much a data structure takes in memory. The data structure memory usage consists of:
+
+- the size of its members, including base classes
+- the size of the *padding* between the members
+- if the strucrure use virtual methods, the size of the vtable
+
+Apart of the above, a structure itself may take even more memory due to the *alignment*.
+
+Finally, there are strategies how to optimize the structure size called *packing*. See the [packing section](http://www.catb.org/esr/structure-packing/) on the Eric S. Raymond's website for more details.
+
+## Padding
+The padding is added by the compiler so that the members are aligned. Typically, the members are aligned to their natural size. This means that a boolean variable, which is 1 byte, is aligned to 1 byte, while a 4-byte integer is aligned to 4 bytes.
+
+Note that the compiler is not allowed to change the order of the members, and therefore, **the order of the members affects the size of the structure in memory!** Example:
+
+```cpp
+struct A{ // 4 bytes
+	bool b; // 1 byte
+	bool b2; // 1 byte
+	short a; // 2 bytes
+};
+
+struct B{ // 4 bytes
+	short a; // 2 bytes
+	bool b; // 1 byte
+	bool b2; // 1 byte
+};
+
+struct C{ // 5 bytes
+	bool b; // 1 byte + 1 byte padding so that the short is aligned 
+	short a; // 2 bytes
+	bool b2; // 1 byte
+```
+
+The natural alignment apply to the basic types. The composed types (e.g., structs, classes, unions) are typically aligned to the largest member.
+
+
+
+## Structure Alignment (or final padding)
+Appart from padding, each data structure is alligned to its largest member. If the data structure size (including padding) is not a multiple of its alignment, it effectively takes more memory so that it is aligned.
+
+
+
+
+
 
 
 # specific tasks
