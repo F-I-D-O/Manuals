@@ -410,7 +410,56 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#type-system-and-basic-types" class="nav-link">Type System and basic types</a>
+            <li class="nav-item" data-level="1"><a href="#type-system" class="nav-link">Type System</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#complete-and-incomplete-types" class="nav-link">Complete and Incomplete Types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#aggregate-types" class="nav-link">Aggregate types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#type-conversion" class="nav-link">Type Conversion</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#numeric-conversion" class="nav-link">Numeric Conversion</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#implicit-numeric-conversion" class="nav-link">Implicit Numeric Conversion</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="5"><a href="#integral-promotion" class="nav-link">Integral Promotion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="5"><a href="#integral-conversion" class="nav-link">Integral Conversion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="4"><a href="#usual-arithmetic-conversion" class="nav-link">Usual Arithmetic Conversion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#show-the-type-at-runtime" class="nav-link">Show the Type at Runtime</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#resolved-complicated-types" class="nav-link">Resolved complicated types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#show-the-user-provided-types-stdtype_info" class="nav-link">Show the user-provided types (std::type_info)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#built-in-and-stl-types" class="nav-link">Built-in and STL Types</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#arithmetic-types" class="nav-link">Arithmetic Types</a>
               <ul class="nav flex-column">
@@ -520,55 +569,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#complete-and-incomplete-types" class="nav-link">Complete and Incomplete Types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#aggregate-types" class="nav-link">Aggregate types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#type-conversion" class="nav-link">Type Conversion</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#numeric-conversion" class="nav-link">Numeric Conversion</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#implicit-numeric-conversion" class="nav-link">Implicit Numeric Conversion</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#integral-promotion" class="nav-link">Integral Promotion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="5"><a href="#integral-conversion" class="nav-link">Integral Conversion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#usual-arithmetic-conversion" class="nav-link">Usual Arithmetic Conversion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#show-the-type-at-runtime" class="nav-link">Show the Type at Runtime</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#resolved-complicated-types" class="nav-link">Resolved complicated types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#show-the-user-provided-types-stdtype_info" class="nav-link">Show the user-provided types (std::type_info)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#standard-library-types" class="nav-link">Standard Library Types</a>
-              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#smart-pointers" class="nav-link">Smart Pointers</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#creation" class="nav-link">Creation</a>
@@ -693,6 +693,22 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-level="3"><a href="#stdvariant" class="nav-link">std::variant</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#storing-individual-bits-in-a-sequence" class="nav-link">Storing individual bits in a sequence</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#reading-a-subsequnece-of-bits" class="nav-link">Reading a subsequnece of bits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#stdbitset" class="nav-link">std::bitset</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#reading" class="nav-link">Reading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1548,6 +1564,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#memory-alignment" class="nav-link">Memory Alignment</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#padding" class="nav-link">Padding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#structure-alignment-or-final-padding" class="nav-link">Structure Alignment (or final padding)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#specific-tasks" class="nav-link">specific tasks</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#conditional-function-execution" class="nav-link">Conditional Function Execution</a>
@@ -1633,7 +1662,7 @@
 </ul>
 <p>Typically, each header has a corresponding source file, that contains the definition of all entities declared in the header. However, there is no requirement to have a single source file for each header, we can separate the code into multiple source files.</p>
 <p>Note that <strong>all entities in the translation units added to the target are compiled, even if they are not used</strong>. This is in contrast with the statements inside functions, which are not compiled if they are not used.</p>
-<h1 id="type-system-and-basic-types">Type System and basic types<a class="headerlink" href="#type-system-and-basic-types" title="Permanent link">&para;</a></h1>
+<h1 id="type-system">Type System<a class="headerlink" href="#type-system" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/type">cppreference</a></p>
 <p><em>Type</em> is a property of each:</p>
 <ul>
@@ -1642,6 +1671,135 @@
 <li>function</li>
 <li>expression</li>
 </ul>
+<h2 id="complete-and-incomplete-types">Complete and Incomplete Types<a class="headerlink" href="#complete-and-incomplete-types" title="Permanent link">&para;</a></h2>
+<p>In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?</p>
+<ul>
+<li>The <code>void</code> type is always incomplete</li>
+<li>Any structure without definition (e.g. using <code>struct structure *ps;</code>, without defining <code>structure</code>.)</li>
+<li>An array without dimensions is an incomplete type: <code>int a[];</code> is incomplete, while <code>int a[5];</code> is complete.</li>
+<li>An array of incomplete elements is incomplete.</li>
+</ul>
+<p>A type trait that can be used to determine whether a type is complete is described <a href="https://devblogs.microsoft.com/oldnewthing/20190710-00/?p=102678">here</a>.</p>
+<h2 id="aggregate-types">Aggregate types<a class="headerlink" href="#aggregate-types" title="Permanent link">&para;</a></h2>
+<p>Aggregate types are:</p>
+<ul>
+<li>array types</li>
+<li>class types that fullfill the following conditions<ul>
+<li>no private or protected members</li>
+<li>no constructores declared (including inherited constructors)</li>
+<li>no private or protected base classes</li>
+<li>no virtual member functions</li>
+</ul>
+</li>
+</ul>
+<p>The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).</p>
+<h2 id="type-conversion">Type Conversion<a class="headerlink" href="#type-conversion" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/implicit_conversion">cppreference: implicit conversion</a></p>
+<p>In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the <code>static_cast</code> operator. In some cases where the conversion is potentially dangerous, the <code>static_cast</code> is the only way to prevent compiler warnings.</p>
+<h3 id="numeric-conversion">Numeric Conversion<a class="headerlink" href="#numeric-conversion" title="Permanent link">&para;</a></h3>
+<p>There are two basic types of numeric conversion:</p>
+<ul>
+<li>
+<p>standard <em>implicit conversion</em> that can be of many types: this conversion is applied if we use an expression of type <code>T</code> in a context that expects a type <code>U</code>. Example:
+    ```cpp
+    void print_int(int a){
+        std::cout &lt;&lt; a &lt;&lt; std::endl;
+    }</p>
+<p>int main(){
+    short a = 5;
+    print_int(a); // a is implicitly converted to int
+}
+```</p>
+</li>
+<li>
+<p><em>usual arithmetic conversion</em> which is applied when we use two different types in an arithmetic binary operation. Example:
+    <code>cpp
+    int main(){
+        short a = 5;
+        int b = 2;
+        int c = a + b; // a is converted to int
+    }</code></p>
+</li>
+</ul>
+<h4 id="implicit-numeric-conversion">Implicit Numeric Conversion<a class="headerlink" href="#implicit-numeric-conversion" title="Permanent link">&para;</a></h4>
+<h5 id="integral-promotion">Integral Promotion<a class="headerlink" href="#integral-promotion" title="Permanent link">&para;</a></h5>
+<p>Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:</p>
+<ul>
+<li><code>bool</code> is promoted to <code>int</code>: <code>false</code> -&gt; <code>0</code>, <code>true</code> -&gt; <code>1</code></li>
+</ul>
+<h5 id="integral-conversion">Integral Conversion<a class="headerlink" href="#integral-conversion" title="Permanent link">&para;</a></h5>
+<p>Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:</p>
+<h4 id="usual-arithmetic-conversion">Usual Arithmetic Conversion<a class="headerlink" href="#usual-arithmetic-conversion" title="Permanent link">&para;</a></h4>
+<p><a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions">cppreference</a></p>
+<p>This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. </p>
+<p>The conversion has the following steps steps:</p>
+<ol>
+<li>lvalue to rvalue conversion of both operands</li>
+<li>special step for enum types</li>
+<li>special step for floating point types</li>
+<li>conversion of both operands to the common type</li>
+</ol>
+<p>The last step: the conversion of both operands to the common type is performed using the following rules:</p>
+<ol>
+<li>If both operands have the same type, no conversion is performed.</li>
+<li>If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser <a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank">integer conversion rank</a> (size) is converted to the type of the operand with greater rank.</li>
+<li>otherwise, we have a mix of signed and unsigned types. The following rules are applied:<ol>
+<li>If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.</li>
+<li>Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.</li>
+<li>Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).</li>
+</ol>
+</li>
+</ol>
+<p>Here <strong>especially the rule 3.1 leads to many unexpected results</strong> and hard to find bugs. Example:</p>
+<pre><code class="language-cpp">int main(){
+    unsigned int a = 10;
+    int b = -1;
+    auto c = b - a; // c is unsigned and the value is 4294967285
+}
+</code></pre>
+<p>To avoid this problem, <strong>always use the <code>static_cast</code> operator if dealing with mixed signed/unsigned types</strong>.</p>
+<h2 id="show-the-type-at-runtime">Show the Type at Runtime<a class="headerlink" href="#show-the-type-at-runtime" title="Permanent link">&para;</a></h2>
+<p>It may be useful to show the type of a variable at runtime:</p>
+<ul>
+<li>for debugging purposes</li>
+<li>for logging</li>
+<li>to compare the types of two variables</li>
+</ul>
+<p>Note however, that in C++, there is no reflection support. Therefore, <strong>we cannot retrieve the name of the type at runtime in a reliable way</strong>. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.</p>
+<h3 id="resolved-complicated-types">Resolved complicated types<a class="headerlink" href="#resolved-complicated-types" title="Permanent link">&para;</a></h3>
+<p>Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:</p>
+<pre><code class="language-cpp">#include &lt;string_view&gt;
+
+template &lt;typename T&gt;
+constexpr auto type_name() {
+  std::string_view name, prefix, suffix;
+#ifdef __clang__
+  name = __PRETTY_FUNCTION__;
+  prefix = &quot;auto type_name() [T = &quot;;
+  suffix = &quot;]&quot;;
+#elif defined(__GNUC__)
+  name = __PRETTY_FUNCTION__;
+  prefix = &quot;constexpr auto type_name() [with T = &quot;;
+  suffix = &quot;]&quot;;
+#elif defined(_MSC_VER)
+  name = __FUNCSIG__;
+  prefix = &quot;auto __cdecl type_name&lt;&quot;;
+  suffix = &quot;&gt;(void)&quot;;
+#endif
+  name.remove_prefix(prefix.size());
+  name.remove_suffix(suffix.size());
+  return name;
+}
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-cpp">std::cout &lt;&lt; type_name&lt;std::remove_pointer_t&lt;typename std::vector&lt;std::string&gt;::iterator::value_type&gt;&gt;() &lt;&lt; std::endl;
+
+// Prints: class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt;
+</code></pre>
+<p><a href="https://stackoverflow.com/a/56766138/1827955">Source on SO</a></p>
+<h3 id="show-the-user-provided-types-stdtype_info">Show the user-provided types (std::type_info)<a class="headerlink" href="#show-the-user-provided-types-stdtype_info" title="Permanent link">&para;</a></h3>
+<p>If we want to show the type of a variable provided by the user (e.g., by a function accepting <code>std::any</code>), we can use the <a href="https://en.cppreference.com/w/cpp/language/typeid"><code>typeid</code></a> operator which returns a <a href="https://en.cppreference.com/w/cpp/types/type_info"><code>std::type_info</code></a> object.  </p>
+<h1 id="built-in-and-stl-types">Built-in and STL Types<a class="headerlink" href="#built-in-and-stl-types" title="Permanent link">&para;</a></h1>
 <h2 id="arithmetic-types">Arithmetic Types<a class="headerlink" href="#arithmetic-types" title="Permanent link">&para;</a></h2>
 <p><a href="https://en.cppreference.com/w/cpp/language/types">cppreference</a></p>
 <h3 id="integers">Integers<a class="headerlink" href="#integers" title="Permanent link">&para;</a></h3>
@@ -1964,135 +2122,6 @@ int main(){
 <li>enum iteration</li>
 <li>sequence of possible values</li>
 </ul>
-<h2 id="complete-and-incomplete-types">Complete and Incomplete Types<a class="headerlink" href="#complete-and-incomplete-types" title="Permanent link">&para;</a></h2>
-<p>In many context, we have to supply a type with a requirement of being a complete type. So what types are incomplete?</p>
-<ul>
-<li>The <code>void</code> type is always incomplete</li>
-<li>Any structure without definition (e.g. using <code>struct structure *ps;</code>, without defining <code>structure</code>.)</li>
-<li>An array without dimensions is an incomplete type: <code>int a[];</code> is incomplete, while <code>int a[5];</code> is complete.</li>
-<li>An array of incomplete elements is incomplete.</li>
-</ul>
-<p>A type trait that can be used to determine whether a type is complete is described <a href="https://devblogs.microsoft.com/oldnewthing/20190710-00/?p=102678">here</a>.</p>
-<h2 id="aggregate-types">Aggregate types<a class="headerlink" href="#aggregate-types" title="Permanent link">&para;</a></h2>
-<p>Aggregate types are:</p>
-<ul>
-<li>array types</li>
-<li>class types that fullfill the following conditions<ul>
-<li>no private or protected members</li>
-<li>no constructores declared (including inherited constructors)</li>
-<li>no private or protected base classes</li>
-<li>no virtual member functions</li>
-</ul>
-</li>
-</ul>
-<p>The elements of the aggregate types can and are ment to be constructed using the aggregate initialization (see the local variable initialization section).</p>
-<h2 id="type-conversion">Type Conversion<a class="headerlink" href="#type-conversion" title="Permanent link">&para;</a></h2>
-<p><a href="https://en.cppreference.com/w/cpp/language/implicit_conversion">cppreference: implicit conversion</a></p>
-<p>In some context, an implicit type conversion is aplied. This happens if we use a value of one type in a context that expects a different type. The conversion is applied automatically by the compiler, but it can be also applied explicitly using the <code>static_cast</code> operator. In some cases where the conversion is potentially dangerous, the <code>static_cast</code> is the only way to prevent compiler warnings.</p>
-<h3 id="numeric-conversion">Numeric Conversion<a class="headerlink" href="#numeric-conversion" title="Permanent link">&para;</a></h3>
-<p>There are two basic types of numeric conversion:</p>
-<ul>
-<li>
-<p>standard <em>implicit conversion</em> that can be of many types: this conversion is applied if we use an expression of type <code>T</code> in a context that expects a type <code>U</code>. Example:
-    ```cpp
-    void print_int(int a){
-        std::cout &lt;&lt; a &lt;&lt; std::endl;
-    }</p>
-<p>int main(){
-    short a = 5;
-    print_int(a); // a is implicitly converted to int
-}
-```</p>
-</li>
-<li>
-<p><em>usual arithmetic conversion</em> which is applied when we use two different types in an arithmetic binary operation. Example:
-    <code>cpp
-    int main(){
-        short a = 5;
-        int b = 2;
-        int c = a + b; // a is converted to int
-    }</code></p>
-</li>
-</ul>
-<h4 id="implicit-numeric-conversion">Implicit Numeric Conversion<a class="headerlink" href="#implicit-numeric-conversion" title="Permanent link">&para;</a></h4>
-<h5 id="integral-promotion">Integral Promotion<a class="headerlink" href="#integral-promotion" title="Permanent link">&para;</a></h5>
-<p>Integral promotion is a coversion of an integer type to a larger integer type. The promotion should be safe in a sense that it never changes the value. Important promotions are:</p>
-<ul>
-<li><code>bool</code> is promoted to <code>int</code>: <code>false</code> -&gt; <code>0</code>, <code>true</code> -&gt; <code>1</code></li>
-</ul>
-<h5 id="integral-conversion">Integral Conversion<a class="headerlink" href="#integral-conversion" title="Permanent link">&para;</a></h5>
-<p>Unlike integral promotion, integral conversion coverts to a smaller type, so the value can be changed. The conversion is safe only if the value is in the range of the target type. Important conversions are:</p>
-<h4 id="usual-arithmetic-conversion">Usual Arithmetic Conversion<a class="headerlink" href="#usual-arithmetic-conversion" title="Permanent link">&para;</a></h4>
-<p><a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions">cppreference</a></p>
-<p>This conversion is applied when we use two different types in an arithmetic binary operation. The purpose of this conversion is convert both operands to the same type before the operation is applied. The result of the conversion is then the type of the operands. </p>
-<p>The conversion has the following steps steps:</p>
-<ol>
-<li>lvalue to rvalue conversion of both operands</li>
-<li>special step for enum types</li>
-<li>special step for floating point types</li>
-<li>conversion of both operands to the common type</li>
-</ol>
-<p>The last step: the conversion of both operands to the common type is performed using the following rules:</p>
-<ol>
-<li>If both operands have the same type, no conversion is performed.</li>
-<li>If both operands have signed integer types or both have unsigned integer types, the operand with the type of lesser <a href="https://en.cppreference.com/w/cpp/language/usual_arithmetic_conversions#Integer_conversion_rank">integer conversion rank</a> (size) is converted to the type of the operand with greater rank.</li>
-<li>otherwise, we have a mix of signed and unsigned types. The following rules are applied:<ol>
-<li>If the unsigned type has conversion rank greater or equal to the rank of the signed type, then the unsigned type is used.</li>
-<li>Otherwise, if the signed type can represent all values of the unsigned type, then the signed type is used.</li>
-<li>Otherwise, both operands are converted to the unsigned type corresponding to the signed type (same rank).</li>
-</ol>
-</li>
-</ol>
-<p>Here <strong>especially the rule 3.1 leads to many unexpected results</strong> and hard to find bugs. Example:</p>
-<pre><code class="language-cpp">int main(){
-    unsigned int a = 10;
-    int b = -1;
-    auto c = b - a; // c is unsigned and the value is 4294967285
-}
-</code></pre>
-<p>To avoid this problem, <strong>always use the <code>static_cast</code> operator if dealing with mixed signed/unsigned types</strong>.</p>
-<h2 id="show-the-type-at-runtime">Show the Type at Runtime<a class="headerlink" href="#show-the-type-at-runtime" title="Permanent link">&para;</a></h2>
-<p>It may be useful to show the type of a variable at runtime:</p>
-<ul>
-<li>for debugging purposes</li>
-<li>for logging</li>
-<li>to compare the types of two variables</li>
-</ul>
-<p>Note however, that in C++, there is no reflection support. Therefore, <strong>we cannot retrieve the name of the type at runtime in a reliable way</strong>. Instead, the name retrieved by the methods described below can depend on the compiler and the compiler settings.</p>
-<h3 id="resolved-complicated-types">Resolved complicated types<a class="headerlink" href="#resolved-complicated-types" title="Permanent link">&para;</a></h3>
-<p>Sometimes, it is useful to print the type, so that we can see the real type of some complicated template code. For that, the following template can be used:</p>
-<pre><code class="language-cpp">#include &lt;string_view&gt;
-
-template &lt;typename T&gt;
-constexpr auto type_name() {
-  std::string_view name, prefix, suffix;
-#ifdef __clang__
-  name = __PRETTY_FUNCTION__;
-  prefix = &quot;auto type_name() [T = &quot;;
-  suffix = &quot;]&quot;;
-#elif defined(__GNUC__)
-  name = __PRETTY_FUNCTION__;
-  prefix = &quot;constexpr auto type_name() [with T = &quot;;
-  suffix = &quot;]&quot;;
-#elif defined(_MSC_VER)
-  name = __FUNCSIG__;
-  prefix = &quot;auto __cdecl type_name&lt;&quot;;
-  suffix = &quot;&gt;(void)&quot;;
-#endif
-  name.remove_prefix(prefix.size());
-  name.remove_suffix(suffix.size());
-  return name;
-}
-</code></pre>
-<p>Usage:</p>
-<pre><code class="language-cpp">std::cout &lt;&lt; type_name&lt;std::remove_pointer_t&lt;typename std::vector&lt;std::string&gt;::iterator::value_type&gt;&gt;() &lt;&lt; std::endl;
-
-// Prints: class std::basic_string&lt;char,struct std::char_traits&lt;char&gt;,class std::allocator&lt;char&gt; &gt;
-</code></pre>
-<p><a href="https://stackoverflow.com/a/56766138/1827955">Source on SO</a></p>
-<h3 id="show-the-user-provided-types-stdtype_info">Show the user-provided types (std::type_info)<a class="headerlink" href="#show-the-user-provided-types-stdtype_info" title="Permanent link">&para;</a></h3>
-<p>If we want to show the type of a variable provided by the user (e.g., by a function accepting <code>std::any</code>), we can use the <a href="https://en.cppreference.com/w/cpp/language/typeid"><code>typeid</code></a> operator which returns a <a href="https://en.cppreference.com/w/cpp/types/type_info"><code>std::type_info</code></a> object.  </p>
-<h1 id="standard-library-types">Standard Library Types<a class="headerlink" href="#standard-library-types" title="Permanent link">&para;</a></h1>
 <h2 id="smart-pointers">Smart Pointers<a class="headerlink" href="#smart-pointers" title="Permanent link">&para;</a></h2>
 <p>For managing resources in dynamic memory, <em>smart pointers</em> (sometimes called <em>handles</em>) should be used. They manage the memory (alocation, dealocation) automatically, but their usage requires some practice.</p>
 <p>There are two types of smart pointers:</p>
@@ -2478,6 +2507,68 @@ std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }
 <li><a href="https://en.cppreference.com/w/cpp/utility/variant">cppreference</a></li>
 <li><a href="https://www.cppstories.com/2018/06/variant/">cppstories</a></li>
 </ul>
+<h2 id="storing-individual-bits-in-a-sequence">Storing individual bits in a sequence<a class="headerlink" href="#storing-individual-bits-in-a-sequence" title="Permanent link">&para;</a></h2>
+<p>Storing individual bits is a strategy for saving memory in high-performance applications, where each saved bit can have a dramatical impact on the performance. When working with small amounts of objects (less than millions), these strategies are not worth the effort, as we can store information in built-in types like <code>int</code>, <code>char</code>, or <code>bool</code>.</p>
+<p>There are multiple strategies for storing individual bits where each bit has its own meaning:</p>
+<ul>
+<li>using built-in arithmetic types and accessing individual bits using bit masks</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/bitset"><code>std::bitset</code></a></li>
+<li>using <a href="https://en.cppreference.com/w/cpp/language/bit_field">bitfields</a></li>
+<li>using <code>std::vector&lt;bool&gt;</code></li>
+</ul>
+<p>The best strategy depends on the use case. The following table summarizes the pros and cons of the different strategies:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>built-in arithmetic types</th>
+<th><code>std::bitset</code></th>
+<th>bitfields</th>
+<th><code>std::vector&lt;bool&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum size per variable</td>
+<td>64 bits</td>
+<td>unlimited</td>
+<td>64 bits</td>
+<td>unlimited</td>
+</tr>
+<tr>
+<td>Dynamic size</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reading-a-subsequnece-of-bits">Reading a subsequnece of bits<a class="headerlink" href="#reading-a-subsequnece-of-bits" title="Permanent link">&para;</a></h3>
+<p>For reading individual bits or the whole sequence of bits, each strategy has its own way of doing it. However, for reading a subsequence of bits, there is no machinery, so we have to resort to bit operations no matter of the strategy.</p>
+<p>For skipping first <code>n</code> bits, we use the right shift (<code>&gt;&gt;</code>) or the left shift operator, depending on endians. For skipping last <code>n</code> bits, we use a bitmask and the and (<code>&amp;</code>) operator.</p>
+<p>Example:</p>
+<pre><code class="language-cpp">std::bitset&lt;8&gt; b = 0b10101010;
+std::cout &lt;&lt; b.to_ulong() &lt;&lt; std::endl; // prints 170
+
+
+</code></pre>
+<h3 id="stdbitset"><code>std::bitset</code><a class="headerlink" href="#stdbitset" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.cppreference.com/w/cpp/utility/bitset">cppreference</a></p>
+<p><code>std::bitset&lt;N&gt;</code> is a class template that can store up to <code>N</code> bits.</p>
+<h4 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">&para;</a></h4>
+<p>To <strong>read a single bit</strong>, we can use:</p>
+<ul>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/bitset/test"><code>test</code></a> member function that returns a boolean value</li>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/bitset/operator_at"><code>operator[]</code></a> operator that returns a boolean value</li>
+</ul>
+<p>To <strong>read more bits at once</strong>, we can use:</p>
+<ul>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/bitset/to_ulong"><code>to_ulong</code></a> member function that returns an <code>unsigned long</code> value</li>
+<li>the <a href="https://en.cppreference.com/w/cpp/utility/bitset/to_ullong"><code>to_ullong</code></a> member function that returns an <code>unsigned long long</code> value</li>
+</ul>
+<p>Both methods convert the whole bitset to an integer value of the corresponding type. If the bitset is larger than the integer type, an exception is thrown.</p>
+<p><strong>There is no function for reading a specified sequence of bits</strong>. One way to overcome this is to read the whole bitset and apply a series of bit operations to get the desired bits (same as we would do with built-in arithmetic types). Another, slower option is to read the bits one by one using for loop.</p>
 <h1 id="value-categories">Value Categories<a class="headerlink" href="#value-categories" title="Permanent link">&para;</a></h1>
 <p>[cppreferencepreerecege/value_category).
 In many contexts, the value category of an expression is important in deciding whether the code compiles or not, or which function or template overload is chosen. Therefore, it is usefull to be able to read value categories.</p>
@@ -2513,8 +2604,15 @@ In many contexts, the value category of an expression is important in deciding w
 <li><em>rvalue</em> = <em>prvlaue</em> <code>||</code> <em>xvalue</em>. </li>
 </ul>
 <h1 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h1>
-<p><a href="https://en.cppreferencempp.com/w/cpp/language/operators">cppreferencen</a></p>
-<p>C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded. </p>
+<p><a href="https://en.cppreference.com/w/cpp/language/operators">cppreferencen</a></p>
+<p>C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded.</p>
+<p>There are several categories of operators:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/language/operator_arithmetic">arithmetic operators</a>, including bitwise operators</li>
+<li><a href="https://en.cppreference.com/w/cpp/language/operator_comparison">comparison operators</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/operator_logical">logical operators</a></li>
+<li>assignment operators</li>
+</ul>
 <p>Note that the standard also supports <a href="https://en.cppreference.com/w/cpp/language/operator_alternative"><strong>alternative tokens</strong></a> for some operators (e.g., <code>&amp;&amp;</code> -&gt; <code>and</code>, <code>||</code> -&gt; <code>or</code>, <code>!</code> -&gt; <code>not</code>). However, these are not supported by all compilers. In MSVC, the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=vs-2019"><code>/permissive-</code></a> flag needs to be used to enable these tokens.</p>
 <h2 id="user-defined-operators">User-defined Operators<a class="headerlink" href="#user-defined-operators" title="Permanent link">&para;</a></h2>
 <p>In C++ there are more operators than in other popular es like Python or Java. Additionally, these operators can be overloaded. See <a href="https://en.cppreferencempp.com/w/cpp/language/operators">cppreferencen</a> page for detailed description.</p>
@@ -4956,6 +5054,43 @@ std::string get_executable_path() {
 public:
     void _private_function();
 </code></pre>
+<h1 id="memory-alignment">Memory Alignment<a class="headerlink" href="#memory-alignment" title="Permanent link">&para;</a></h1>
+<p><a href="https://c-faq.com/struct/align.esr.html">Allignment FAQ</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Data_structure_alignment">Wikipedia</a></p>
+<p><a href="https://stackoverflow.com/questions/119123/why-isnt-sizeof-for-a-struct-equal-to-the-sum-of-sizeof-of-each-member">SO question</a></p>
+<p>In most cases, a sane programmer does not have to worry about memory optimization beyond choosing the right data types. However, in high-performance applications, where millions of objects are processed, even some details regarding the memory layout can have a significant impact on the performance. Therefore, we introduce some terminology and tools for memory optimization.</p>
+<p>To make the memory access faster, the compiler aligns the data in the memory so that the memory can be read by the chunks natural for the architecture which are typically multiple of bytes. This affects both how the data structure members are stored (<em>padding</em>) and how the data structure itself is stored (<em>alignment</em>).</p>
+<p>First, let's look at how much a data structure takes in memory. The data structure memory usage consists of:</p>
+<ul>
+<li>the size of its members, including base classes</li>
+<li>the size of the <em>padding</em> between the members</li>
+<li>if the strucrure use virtual methods, the size of the vtable</li>
+</ul>
+<p>Apart of the above, a structure itself may take even more memory due to the <em>alignment</em>.</p>
+<p>Finally, there are strategies how to optimize the structure size called <em>packing</em>. See the <a href="http://www.catb.org/esr/structure-packing/">packing section</a> on the Eric S. Raymond's website for more details.</p>
+<h2 id="padding">Padding<a class="headerlink" href="#padding" title="Permanent link">&para;</a></h2>
+<p>The padding is added by the compiler so that the members are aligned. Typically, the members are aligned to their natural size. This means that a boolean variable, which is 1 byte, is aligned to 1 byte, while a 4-byte integer is aligned to 4 bytes.</p>
+<p>Note that the compiler is not allowed to change the order of the members, and therefore, <strong>the order of the members affects the size of the structure in memory!</strong> Example:</p>
+<pre><code class="language-cpp">struct A{ // 4 bytes
+    bool b; // 1 byte
+    bool b2; // 1 byte
+    short a; // 2 bytes
+};
+
+struct B{ // 4 bytes
+    short a; // 2 bytes
+    bool b; // 1 byte
+    bool b2; // 1 byte
+};
+
+struct C{ // 5 bytes
+    bool b; // 1 byte + 1 byte padding so that the short is aligned 
+    short a; // 2 bytes
+    bool b2; // 1 byte
+</code></pre>
+<p>The natural alignment apply to the basic types. The composed types (e.g., structs, classes, unions) are typically aligned to the largest member.</p>
+<h2 id="structure-alignment-or-final-padding">Structure Alignment (or final padding)<a class="headerlink" href="#structure-alignment-or-final-padding" title="Permanent link">&para;</a></h2>
+<p>Appart from padding, each data structure is alligned to its largest member. If the data structure size (including padding) is not a multiple of its alignment, it effectively takes more memory so that it is aligned.</p>
 <h1 id="specific-tasks">specific tasks<a class="headerlink" href="#specific-tasks" title="Permanent link">&para;</a></h1>
 <h2 id="conditional-function-execution">Conditional Function Execution<a class="headerlink" href="#conditional-function-execution" title="Permanent link">&para;</a></h2>
 <p>W know it from other languages: if the function can be run in two (or more) modes, there is a function parameter that controls the execution. Usually, most of the function is the same (otherwise, we eould create multiple fuctions), and the switch controls just a small part.</p>
