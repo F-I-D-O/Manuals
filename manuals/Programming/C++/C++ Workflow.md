@@ -636,6 +636,53 @@ we can find it be examining the compiler executable stored in `C:\Program Files\
 go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz contains a line with `disable = true`. Just delete the file, or the specific line.
 
 
+## Visual Studio Code
+In VS Code, the C++ support is provided by multiple extensions.
+
+### CMake support extension
+The CMake support extension is provided by the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension.
+
+To set the vcpkg toolchain file, it is best to edit the extension settings, so that the toolchain file is set for all projects:
+
+1. In the extension settings, go to `CMake: Configure Args`
+1. Add argument `--toolchain`
+1. Add argument with the path to the vcpkg toolchain file
+
+To run the configuration or other CMake tasks, open the newly installed CMake view.
+
+By default, the CMake extension uses CMake presets to configure the project. To use CMake  withou presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
+
+## Cursor
+For Cursor, the situation is almost the same as for VS Code. The main, but important difference is that **Cursor does not support the Visual Studio Debugger** (cppvsdbg) [[source]](https://forum.cursor.com/t/new-in-house-extensions-c-c-ssh-devcontainers-wsl-python/94531?utm_source=chatgpt.com), [[source 2]](https://forum.cursor.com/t/are-there-any-plans-to-support-the-cppvsdbg-type-in-the-future/7304). Therefore, Cursor is hardly usable as the all-in-one IDE for C++, it has to be used in combination with another IDE.
+
+To partially overcome this limitation, we can at least run the program without debugger as a task:
+
+```json
+"tasks": [
+	{
+		"label": "Run DC 3-minute instance",
+		"type": "process",
+		"command": "${command:cmake.launchTargetFilename}",
+		"options": {
+			"cwd": "${command:cmake.launchTargetDirectory}"
+		},
+		"args": [
+			"--instance", 
+			"C:/Google Drive AIC/My Drive/AIC Experiment Data/DARP/Instances/DC/instances/start_18-00/duration_01_min/max_delay_03_min"
+		],
+		"problemMatcher": []
+	}
+]
+```
+
+Here the executable is defined by:
+
+- `${command:cmake.launchTargetFilename}`: the executable
+- `${command:cmake.launchTargetDirectory}`: the path to the build bin directory
+
+Both these variables are defined by the CMake Tools extension.
+
+
 # Typical directory structure
 The typical directory structure for a C++ project is as follows:
 
