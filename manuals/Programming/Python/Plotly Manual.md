@@ -623,7 +623,7 @@ Lines can be styled using the line parameter of the plotting functions or using 
     - `"dot"`: dense dashed line
     - `"dash"`: sparse dashed line
     - ... 
-    
+    - Be aware that the **dash pattern is proportional to the axis range**. In result, it is practicaly impossible to use dash patterns on graphs with different axes ranges.
 
 
 ## Title

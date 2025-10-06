@@ -142,7 +142,28 @@ This is unfortunately a default behavior of the IDE output console. To mitigate 
 
 # Visual Studio Code
 
-## Set a visual guidline at 120 characters
+## Configuration
+In VS Code, the configuration is stored in the `settings.json`. 
+
+There is a system file, and also a workspace file, with a higher priority.
+
+Typically, the settings are configured using UI, which can be accessed by clicking on the gear icon in the bottom left corner of the window and selecting `Settings`. 
+
+Some settings can only be configured by editing the `settings.json` file. If it is the case, there is typically a button in the UI that opens the file in the editor.
+
+There is a lot of options, and the UI is very basic. Therefore, it is usually best to use the search box to find the setting you are looking for.
+
+### Basic Configuration
+
+- Enable Multi-row tabs: `workbench.editor.wrapTabs`
+
+#### Forward and backward navigation
+To display forward and backward navigation:
+
+1. Right click on the top toolbar
+1. Select `Command Center`
+
+#### Set a visual guidline at 120 characters
 To set a visual guidline at 120 characters, we can use the `editor.rulers` setting:
 
 1. open the settings and search for `rulers`.
@@ -154,15 +175,27 @@ To set a visual guidline at 120 characters, we can use the `editor.rulers` setti
     ]
     ```
 
+### Language specific settings
+Language specific settings can be configured in the `settings.json` file, there is no GUI for it. A lot of general parameters can be set specifically to some language by adding them to the language section (object) of the `settings.json` file. Example:
+```json
+"editor.formatOnSave": false,
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"[python]": {
+    "editor.formatOnSave": true
+}
+```
+Here we configure the editor to format the code on save only for Python.
+
+
+### Code Style
+Code stylke can be only configured in the `settings.json` file, there is no GUI for it. Typically, we apply the settings to only one language by adding them to the language section of the `settings.json` file. The typical settings are:
+
+- `editor.insertSpaces`: if true, the editor will insert spaces instead of tabs
+
+
+
 ## Code Formatting
 Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
-
-
-## Forward and backward navigation
-To display forward and backward navigation:
-
-1. Right click on the top toolbar
-1. Select `Command Center`
 
 
 ## Tasks

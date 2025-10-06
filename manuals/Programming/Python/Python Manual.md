@@ -1317,6 +1317,7 @@ In the table below, we can see a comparison of the most common plotting librarie
 | --- | --- | --- |
 | real 3D plots | no | yes |
 | detail legend styling (padding, round corners...) | yes | no |
+| dash patterns for lines with different axes ranges | yes | no |
 
 ## Matplotlib
 [Official Manual](https://matplotlib.org/stable/contents.html)

@@ -5,6 +5,7 @@ So far we have three LaTeX toolchains that has proven to work well:
 - **VSCode + Latex Workshop + MikTeX/Tinytex**: Modern desktop setup. The main advantage is that VSCode has the best Copilot support from all the editors, which is a huge time saver.
 
 # VSCode + Latex Workshop + MikTeX/Tinytex
+
 ## Installation
 The installation of VSCode and [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) (VSCode extension) is straightforward, so we cover only the installation of MikTeX/[Tinytex](https://github.com/rstudio/tinytex) here.
 
