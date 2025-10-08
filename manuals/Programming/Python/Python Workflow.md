@@ -135,6 +135,16 @@ For formatting, we can use the [`black`](https://github.com/psf/black) formatter
 1. `pip install black`
 1. install the `black` extension in VS Code
 
+### Code Analysis
+The code analysis in VS Code is provided by the language server. The language server can be configured the settings is `python.languageServer`.
+
+By default, the language server is set to [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance).
+
+## Cursor
+In this section we provide the differences between Cursor and VS Code workflow, and also the limitations of Cursor for Python development.
+
+### Limitations
+The main limitation is the static analysis tool. The cursor uses a built-in static analysis tool that is a fork of the [basedpyright](https://docs.basedpyright.com/latest/) [[source]](https://forum.cursor.com/t/cursor-pyright-python-extension-information/92522/9?u=david_fiedler). This tool have some limitations compared to Pylance or the code analysis available in Pycharm, and cannot be replaced (the classical VS Code setting `python.languageServer` is reverted to None on restart). A typical example is an object returned from a function. In Cursor, this object, when type hints are missing, is declared as `Any`, and its members cannot be accessed, searched or renamed.
 
 
 # Project Structure
