@@ -111,7 +111,7 @@ There is no option of showing the full path. The trick is to use the `-d` option
 ls -d <dir>/* 
 ```
 
-## copy file
+## Copy files
 The `cp` command is used to copy files: `cp <source> <destination>`. The most used options are:
 
 - `-r`, `-R`: copy recursively
@@ -120,9 +120,20 @@ The `cp` command is used to copy files: `cp <source> <destination>`. The most us
 - `-p`: preserve permissions and timestamps
 - `-a`: same as `-p -R` plus some other options
 
-For more sophisticated copying, use `rsync`: `rsync <source> <destination>`. The most used options are:
+For more sophisticated copying, use [`rsync`](https://rsync.samba.org/): `rsync <source> <destination>`. The most used options are:
 
+- `-r`, `--recursive`: recurse into directories. Only files are copied without this option.
 - `-h`: human readable
+- `-l`, `--links`: preserve links
+- `-p`, `--perms`: preserve permissions
+- `-t`, `--times`: preserve modification times
+- `-U`, `--atimes`: preserve access times
+- `-N`, `--crtimes`: preserve creation times
+- `-g`, `--group`: preserve group
+- `-o`, `--owner`: preserve owner
+- `--specials`: preserve special files
+- `--devices`: preserve device files
+- `-D`: equivalent to `--devices --specials`
 - `-a`: archive mode, equivalent to `-rlptgoD`
 - `--progress`: show progress
 
