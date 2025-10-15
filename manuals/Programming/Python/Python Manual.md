@@ -330,6 +330,12 @@ print(p.x) # 1
 
 # Functions
 
+## Variable length arguments
+There are two types of variable length arguments in Python:
+
+- `*args` - variable length positional arguments.
+- `**kwargs` - variable length keyword arguments
+
 ## Argument unpacking
 if we need to conditionaly execute function with a different set of parameters (supposed the function has optional/default parameters), we can avoid multiple function calls inside the branching tree by using argument unpacking.
 
@@ -1317,6 +1323,7 @@ In the table below, we can see a comparison of the most common plotting librarie
 | --- | --- | --- |
 | real 3D plots | no | yes |
 | detail legend styling (padding, round corners...) | yes | no |
+| dash patterns for lines with different axes ranges | yes | no |
 
 ## Matplotlib
 [Official Manual](https://matplotlib.org/stable/contents.html)

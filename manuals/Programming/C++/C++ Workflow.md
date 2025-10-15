@@ -1,5 +1,5 @@
 # Introduction
-In C++, the workflow and especially the build pipeline is much more complicated than in other languages. Therefore, we start with brief overview of the C++ build pipelines. The following scheme shows the possible build pipelines for C++, starting from Integrated developemnt tools (IDE) and ending with the linker.
+In C++, the workflow and especially the build pipeline is much more complicated than in other languages. Therefore, we start with brief overview of the C++ build pipelines. The following scheme (see the [source](https://drive.google.com/file/d/1maXBLUjcr2lR-Vys7XvGo8-B2p4JmeJN/view?usp=sharing) for links) shows the possible build pipelines for C++, starting from Integrated developemnt tools (IDE) and ending with the linker.
 
 ![C++ Workflow](Build%20tools%20and%20toolsets.png)
 
@@ -23,8 +23,29 @@ There are various toolchains available on Windows and Linux, but we limit this g
 
 
 ## MSVC (Windows)
+[Visual Studio Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
 
--   install [Visual Studio 2019 Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
+### Setting up the compiler environment
+Most of the time, the compiler environment is set up automatically. However, beware that **failing to setup the MSVC compiler environment can lead to hard to debug errors or silent selection of another compiler!**.
+
+MSVC compiler is automatically set up:
+
+- by Visual Studio and CLion IDEs
+- by developer command prompt and developer PowerShell
+- anytime when MSBuild is used as build sequencing tool
+
+On the other hand, a typical example of a situation where the compiler environment is not set up is when using a non-developer shell (e.g., PowerShell) and using a non-default build sequencing tool (e.g., Ninja).
+
+To **test if the compiler environment is set up correctly**, we can use call the `cl` command. If the compiler environment is not set up correctly, the command will not be found.
+
+To set up the compiler environment manually, you can use the following commands:
+```powershell
+$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+$vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+Import-Module "$vs\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
+```
+
 
 ### Common Compiler Flags
 
@@ -634,6 +655,70 @@ we can find it be examining the compiler executable stored in `C:\Program Files\
 
 #### Cannot regenerate Cmake cache
 go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz contains a line with `disable = true`. Just delete the file, or the specific line.
+
+
+## Visual Studio Code
+In VS Code, the C++ support is provided by multiple extensions.
+
+### CMake support extension
+The CMake support extension is provided by the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension.
+
+To set the vcpkg toolchain file, it is best to edit the extension settings, so that the toolchain file is set for all projects:
+
+1. In the extension settings, go to `CMake: Configure Args`
+1. Add argument `--toolchain`
+1. Add argument with the path to the vcpkg toolchain file
+
+To run the configuration or other CMake tasks, open the newly installed CMake view.
+
+By default, the CMake extension uses CMake presets to configure the project. To use CMake  withou presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
+
+## Cursor
+For Cursor, the situation is almost the same as for VS Code. Important differences:
+
+- The main, but important difference is that **Cursor does not support the Visual Studio Debugger** (cppvsdbg) [[source]](https://forum.cursor.com/t/new-in-house-extensions-c-c-ssh-devcontainers-wsl-python/94531?utm_source=chatgpt.com), [[source 2]](https://forum.cursor.com/t/are-there-any-plans-to-support-the-cppvsdbg-type-in-the-future/7304). Therefore, Cursor is hardly usable as the all-in-one IDE for C++, it has to be used in combination with another IDE.
+- Cursor does not have a built-in IntelliSense. Instead, it relies on [clangd](https://clangd.llvm.org/) to provide the functionality.
+- Cursor does not have the Microsoft C++ Extension enabled. Instead, it has another C++ extension from Anysphere. This is the only C++ extension that needs to be installed manually, as it installs automatically:
+    - the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension
+	- the [clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension
+	- the [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb) extension
+
+
+### Call the MSVC compiler from Cursor
+To partially overcome this limitation, we can at least run the program without debugger as a task:
+
+```json
+"tasks": [
+	{
+		"label": "Run DC 3-minute instance",
+		"type": "process",
+		"command": "${command:cmake.launchTargetFilename}",
+		"options": {
+			"cwd": "${command:cmake.launchTargetDirectory}"
+		},
+		"args": [
+			"--instance", 
+			"C:/Google Drive AIC/My Drive/AIC Experiment Data/DARP/Instances/DC/instances/start_18-00/duration_01_min/max_delay_03_min"
+		],
+		"problemMatcher": []
+	}
+]
+```
+
+Here the executable is defined by:
+
+- `${command:cmake.launchTargetFilename}`: the executable
+- `${command:cmake.launchTargetDirectory}`: the path to the build bin directory
+
+Both these variables are defined by the CMake Tools extension.
+
+### Troubleshooting
+
+#### The `Ctrl + click` on a function call does not open the definition
+Unlike in VS Code, Cursor does not have a built-in IntelliSense. Instead, it relies on [clangd](https://clangd.llvm.org/) to provide the functionality. To conclude what is wrong, first try to reset the clangd server:
+
+1. `View` -> `Command Palette`
+1. type `clangd: Restart language server`
 
 
 # Typical directory structure

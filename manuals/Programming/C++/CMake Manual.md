@@ -200,22 +200,7 @@ CMake has two types of variables:
     set(dirs "C:/Program Files" "C:/Program Files (x86)")
     ```
 
-## The `option` command
-The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a **boolean** variable that can:
 
-- be set by the user using the `-D` argument when running the `cmake` command,
-- have a default value,
-- have a description that will be printed when the variable is set, and
-- set a cache variable (see [CMake cache](#cmake-cache)).
-
-The syntax is:
-```cmake
-option(<option name> <option description> <default value>)
-```
-The behavior of the `option` command is as follows:
-
-- If variable is already set (either a cache variable or a normal variable), the `option` command is ignored.
-- Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.
 
 ### Enviromental variables
 We can use environmental variables using the `ENV` variable:
@@ -302,6 +287,22 @@ endfunction()
 
 To print all variables related to HDF5 lib, call `dump_cmake_variables(HDF)` after the `find_package` call.
 
+### The `option` command
+The [`option`](https://cmake.org/cmake/help/latest/command/option.html) command is used to define a **boolean** variable that can:
+
+- be set by the user using the `-D` argument when running the `cmake` command,
+- have a default value,
+- have a description that will be printed when the variable is set, and
+- set a cache variable (see [CMake cache](#cmake-cache)).
+
+The syntax is:
+```cmake
+option(<option name> <option description> <default value>)
+```
+The behavior of the `option` command is as follows:
+
+- If variable is already set (either a cache variable or a normal variable), the `option` command is ignored.
+- Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.
 
 ## Control structures
 

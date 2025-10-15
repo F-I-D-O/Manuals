@@ -1,3 +1,19 @@
+# Installation
+## Windows
+Git can be bundeled within other software, but it is best to install it separately ([Git for Windows](https://gitforwindows.org/)), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.
+
+Important options, that defaults to inpractical values:
+- **default text editor**: defaults to vim
+- **default ssh client**: defaults to bundled openssh (part of git bash)
+- **context menu integration**: defaults to "Open in Git GUI" and "Open in Git Bash"
+
+## GitExtensions
+GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.
+
+The tool is intuitive it is only important to **install git first**.
+
+
+
 # Basics
 The structure of a single git repository is displayed in the following picture:
 ![Git Repository Structure](Git%20Scheme.png)
@@ -362,3 +378,14 @@ To fix the issue, we can copy the refs from the `.git/logs/refs/`:
 1. find the broken file in `.git/refs/`
 2. find the corresponding file in `.git/logs/refs/`
 3. copy the hash from the last line, second column and write it to the broken file
+
+
+## ssh key passphrase is required, despite the ssh key agent is running
+This can have multiple reasons. To narrow down the issue, firtst check the ssh command separately.
+
+If the ssh does not require a passphrase, but the git does, check whether git uses the same ssh:
+
+1. open git bash
+2. run `where ssh`
+
+The first (and only) path should be the same as the one that you are using with the agent, most likely the OpenSSH from Windows. If the git bash bundeled OpenSSH command is first, it means an incorrect git installation.

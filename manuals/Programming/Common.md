@@ -142,27 +142,86 @@ This is unfortunately a default behavior of the IDE output console. To mitigate 
 
 # Visual Studio Code
 
-## Set a visual guidline at 120 characters
-To set a visual guidline at 120 characters, we can use the `editor.rulers` setting:
+## Configuration
+In VS Code, the configuration is stored in the `settings.json`. 
 
-1. open the settings and search for `rulers`. 
-1. click on `Edit in settings.json`
-1. add the following:
-	```json
-	"editor.rulers": [
-        120
-    ]
-	```
+There is a system file, and also a workspace file, with a higher priority.
 
-## Formatting
-Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
+Typically, the settings are configured using UI, which can be accessed by clicking on the gear icon in the bottom left corner of the window and selecting `Settings`. 
 
+Some settings can only be configured by editing the `settings.json` file. If it is the case, there is typically a button in the UI that opens the file in the editor.
 
-## Forward and backward navigation
+There is a lot of options, and the UI is very basic. Therefore, it is usually best to use the search box to find the setting you are looking for.
+
+### Basic Configuration
+
+- Enable Multi-row tabs: `workbench.editor.wrapTabs`
+
+#### Forward and backward navigation
 To display forward and backward navigation:
 
 1. Right click on the top toolbar
 1. Select `Command Center`
+
+#### Set a visual guidline at 120 characters
+To set a visual guidline at 120 characters, we can use the `editor.rulers` setting:
+
+1. open the settings and search for `rulers`.
+1. click on `Edit in settings.json`
+1. add the following:
+    ```json
+    "editor.rulers": [
+        120
+    ]
+    ```
+
+### Language specific settings
+Language specific settings can be configured in the `settings.json` file, there is no GUI for it. A lot of general parameters can be set specifically to some language by adding them to the language section (object) of the `settings.json` file. Example:
+```json
+"editor.formatOnSave": false,
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"[python]": {
+    "editor.formatOnSave": true
+}
+```
+Here we configure the editor to format the code on save only for Python.
+
+
+### Code Style
+Code stylke can be only configured in the `settings.json` file, there is no GUI for it. Typically, we apply the settings to only one language by adding them to the language section of the `settings.json` file. The typical settings are:
+
+- `editor.insertSpaces`: if true, the editor will insert spaces instead of tabs
+
+
+
+## Code Formatting
+Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
+
+
+## Tasks
+[Documentation](https://code.visualstudio.com/docs/debugtest/tasks)
+
+When coding, running various command line tools (e.g., `pytest`, `npm`, `cargo`, etc.) is often required. To avoid repeating typing the same commands over and over again in console, we can store them as tasks.
+
+Tasks for a project are stored in the `.vscode/tasks.json` file. 
+
+For some languages, tasks are automatically suggested by the IDE. If the suggestions are accepted, the corresponding tasks are automatically added to the `.vscode/tasks.json` file.
+
+We can also [create tasks manually](https://code.visualstudio.com/docs/debugtest/tasks#_custom-tasks) by adding task objects to the tasks array in the `.vscode/tasks.json` file.
+
+The important properties are:
+
+- `label`: the name of the task displayed in the IDE
+- `type`: the type of the task, it can be:
+    - `shell`: run a shell command
+    - `process`: run a process
+- `options`: three properties can be set here:
+    - `cwd`: the working directory for the task
+    - `env`: the environment variables for the task
+    - `shell`: the shell to use for the task
+- `command`: the command or process to run
+- `args`: the arguments of the command or process (array of strings). Extra quoting is not needed (unlike in Visual Studio).
+- `problemMatcher`: the [problem matcher](https://code.visualstudio.com/docs/debugtest/tasks#_defining-a-problem-matcher) to use for the task (array of strings). If not set, the IDE may ask the user to set it when the task is run.
 
 
 # Releasing the software
@@ -180,7 +239,7 @@ Licensing has two parts:
 
 The first part is easy, just copy the license text to an empty file named `LICENSE` at the root of the project. To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.
 
-The second part can be automated using the [licenseheaders fork]() of the original [licenseheaders](https://github.com/johann-petrak/licenseheaders) project. A typical usage is:
+The second part can be automated using the [licenseheaders fork](https://github.com/F-I-D-O/licenseheaders) of the original [licenseheaders](https://github.com/johann-petrak/licenseheaders) project. A typical usage is:
 ```bash
 licenseheaders -t mit -o "Czech Technical University in Prague" -cy -n ShoDi -u "https://github.com/aicenter/ShoDi" -d C:\Workspaces\AIC\shortest-distances\
 ```
