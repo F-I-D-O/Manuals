@@ -712,7 +712,9 @@ The math commands only works in math mode which can be entered in one of the man
 The following table lists the most common math constructs:
 
 - **fractions**: `\frac{<numerator>}{<denominator>}`
+- **sum**: `\sum_{<lower>}^{<upper>}`
 - **binomial coefficients**: `\binom{n}{k}`
+
 
 
 ## Subscript and superscript

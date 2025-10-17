@@ -1,8 +1,8 @@
 # General
-To get access to the RCI cluster: https://docs.google.com/forms/d/e/1FAIpQLSewws_V6-D567fkp6QZmr0GQlkzQrEoB6QquAgQkZu8so818Q/viewform
 
-Official instructions: 
-https://login.rci.cvut.cz/wiki/how_to_start
+- [Form to get access to the RCI cluster](https://docs.google.com/forms/d/e/1FAIpQLSewws_V6-D567fkp6QZmr0GQlkzQrEoB6QquAgQkZu8so818Q/viewform)
+- [Official instructions](https://login.rci.cvut.cz/wiki/how_to_start)
+- [Storage manual and description of the partitions](https://login.rci.cvut.cz/wiki/storage)
 
 ## Usual command Usage
 
