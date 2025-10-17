@@ -125,6 +125,15 @@ Comparison:
 
 - **Settings** -> **Appearance & Behavior** -> **New UI** and select `Compact mode`
 
+
+### Layouts
+Layout is not synced between products and computers by default. To store and sync the layout:
+
+1. Arrange the IDE as you want
+1. `Window` -> `Layouts` -> `Save current layout as new...` 
+1. On other computers, `Window` -> `Layouts` -> `<Layout Name>` -> `Restore`
+
+
 ### Advanced Configuration - Registry
 Sometimes, we need to edit advenced settings like with id `cidr.debugger.gdb.usePythonToLoadData`. This registry can be accessed by `Help` -> `Find Action...` -> type `Registry` -> find the desired setting.
 
