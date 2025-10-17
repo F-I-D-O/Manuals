@@ -22,7 +22,24 @@ The performance could be most likely improved when running the problems in paral
 
 
 # Gurobi in Python
-[Official Tutorial](https://support.gurobi.com/hc/en-us/articles/17278438215313-Tutorial-Getting-Started-with-the-Gurobi-Python-API)
+
+- [Official Tutorial](https://support.gurobi.com/hc/en-us/articles/17278438215313-Tutorial-Getting-Started-with-the-Gurobi-Python-API)
+- [Advanced Tutorial with dictionaries](https://support.gurobi.com/hc/en-us/articles/17307437899025-Tutorial-Getting-Started-with-the-Gurobi-Python-API-using-dictionaries)
+
+
+## Tupledict
+[Official Documentation](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/tupledict.html#tupledict)
+
+Tupledict is a dictionary that maps tuples to values, typically variables or constraints.
+
+Typically, when we add multiple variables or constraints at once to the model, the returned object is a tupledict with indices matching the first arguments of the `addVars` or `addConstrs` methods.
+
+To further modify the tupledict, we can use the array operators:
+
+```Python
+vdict = model.addVars(3, 2, name='v')
+vdict[3, 0] = 1 # new variable outside of the index range above
+```
 
 
 ## Variables
@@ -93,6 +110,20 @@ The linear constraint is in the form of `<Expression A> <Operator> <Expression B
 - `<Expression A>` and `<Expression B>` can be both constants or *linear expressions* and ,
 - `<Operator>` is one of the following: `==`, `<=`, `>=`
 
+
+### Add multiple constraints at once
+We can add multiple constraints at once using the [`addConstrs`](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addConstrs) method. It has two arguments:
+
+- The *generator*, and
+- The name of the constraint
+
+The name of the constraint is automatically generated similarly to the `addVars` method.
+
+The generator is a Python generator function that produces a Gurobi constraint expression.
+
+
+
+## Linear Expressions
 The linear expression is represented by the [LinExpr](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/linexpr.html#LinExpr) class. There are several ways how to build a linear expression, here **sorted from slowest to fastest**:
 
 - Using natural syntax:
@@ -120,6 +151,18 @@ The linear expression is represented by the [LinExpr](https://docs.gurobi.com/pr
     ```Python
     expr = LinExpr([1, 2, 3], [x, y, z])
     ```
+
+### Creating a linear expression from a tupledict
+Instead of creating linear expression from a list of variables and coefficients, we can use dedicated methods of the [`tupledict`](#tupledict) class that can be used to build a linear expression from a single variable type:
+
+- [`sum()`](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/tupledict.html#tupledict.sum) for the sum of the variables.
+- [`prod(coeffs)`](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/tupledict.html#tupledict.prod) for the product of the variables and coefficients, stored in a dictionary with the same indices as the tupledict.
+
+For all these methods, we can use a pattern arguments. This argument limits the indices of the variables that are used in the expression. For example, in the expression bellow, we sum only the first row
+```Python
+var_dict = model.addVars(3, 2, name='v')
+expr = var_dict.sum(0, '*') # sum of the first row: v[0, 0] + v[0, 1]
+```
 
 
 

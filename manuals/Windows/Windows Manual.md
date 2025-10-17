@@ -428,6 +428,22 @@ Important arguments:
 
 
 
+# Shims
+[Shims](https://en.wikipedia.org/wiki/Shim_(computing)) are small programs that are used to replace the original program, typically to run it with some additional parameters. On Windows, the shims can be easilly integrated into the system by adding the folder with the shims to the beginning of the `PATH` environment variable.
+
+As a shim, we can use:
+
+- any executable file (`*.exe`)
+- a [batch file](https://en.wikipedia.org/wiki/Batch_file) (`*.bat`, `*.cmd`)
+- a PowerShell script (`*.ps1`)
+    - note that the PowerShell script shims works only for PowerShell. To make it work outside PowerShell, we need to accommpany it with a batch file that runs the PowerShell script:
+    ```batch
+    @echo off
+    powershell -ExecutionPolicy Bypass -File "%~dp0\script.ps1" %*
+    ```
+
+
+
 # Problems
 
 ## Folder Sharing Problems

@@ -663,6 +663,20 @@ Important parameters:
 
 
 ## Get path of the executable/command
-If we need to know the installed path of an executable or command, similar to the `which` command in Linux, we can use the `Get-Command` command. 
+If we need to know the installed path of an executable or command, similar to the `which` command in Linux, we can use the [`Get-Command`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command) command, used as a `Get-Command <command>`. Important parameters:
+
+- [`-CommandType`, `-Type`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5#-commandtype): the type of the command we are looking for (e. g. `Application`, `Cmdlet`, ...). 
+    - Note that **this argument works differently than how it is described in the documentation**!
+        - **without this argument**: just first command is returned (best match, e.g., first executable in the path)
+        - **with this argument**: all commands that matches the command name, type and other criteria are returned
+    - Possible values:
+        - `Alias`: aliases
+        - `All`: all types
+        - `Application`: executable files
+        - `Cmdlet`: PowerShell commands
+        - `ExternalScript`: All `.ps1` files listed in the `$env:Path` 
+        - `Function`: PowerShell functions
+        - `Filter`: PowerShell filters
+        - `Script`: PowerShell scripts blocks
 
 

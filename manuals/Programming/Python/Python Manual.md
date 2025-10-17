@@ -155,7 +155,28 @@ The **tuple literal** is a comma-separated list of values in round braces:
 t = (1, 2, 3)
 ```
 
+#### Named tuples
+[Official Manual](https://docs.python.org/3/library/collections.html#collections.namedtuple)
 
+Named tuples are tuples with named members. Example:
+```Python
+from collections import namedtuple
+
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+print(p.x) # 1
+```
+
+If we want to use type hints, we can use the [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple) class:
+```Python
+from typing import NamedTuple
+class Point(NamedTuple):
+    x: int
+    y: int
+
+p = Point(1, 2)
+print(p.x) # 1
+```
 
 
 ### Dictionary
