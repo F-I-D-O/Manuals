@@ -1,12 +1,30 @@
-# Terminals and Shells
-There are two main [terminal applications](https://en.wikipedia.org/wiki/Terminal_emulator) in Windows: 
+# Shells and Terminals
+[Official Shell Overview](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
-- [*Windows Console Host*](https://en.wikipedia.org/wiki/Windows_Console): an old terminal application present in Windows for years, and
-- [*Windows Terminal*](https://en.wikipedia.org/wiki/Windows_Terminal): a new terminal application that is still in development.
+Using shell to manage the operating system is an essential task and therefore, we start with the [terminals](https://en.wikipedia.org/wiki/Terminal_emulator) and [shells](https://en.wikipedia.org/wiki/Shell_(computing)). In the history of Windows and DOS, there were many shell or built-in script interpreters, and also numerous terminal applications. Here, we only cover the shells and terminals relevant to the most recent versions of Windows.
 
-To get the best experience similar to Linux, it is recommended to use the Windows Terminal. It is available in the [Microsoft Store](https://aka.ms/terminal).
+There are two **shells** in Windows:
 
-The simplest [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is the [command prompt](https://en.wikipedia.org/wiki/Cmd.exe) (`cmd.exe`). However, due to its limited functionality, it is better to use [PowerShell](https://en.wikipedia.org/wiki/PowerShell). For PowerShell solutions/guides, check the [PoweShell manual](./Powershell%20Manual.md).
+- [command prompt (Command shell)](https://en.wikipedia.org/wiki/Cmd.exe) (`cmd.exe`)
+    - very simple and limited functionality
+    - successor of [`COMMAND.COM`](https://en.wikipedia.org/wiki/COMMAND.COM)
+    - For Command shell solutions/guides, check the [Command shell manual](./Comand%20shell.md).
+- [PowerShell](https://en.wikipedia.org/wiki/PowerShell)
+    - Modern shell with many features
+    - Supports all the Windows commands (commands from the Command shell)
+    - For PowerShell solutions/guides, check the [PoweShell manual](./Powershell%20Manual.md).
+
+
+There are two **terminal applications** in Windows: 
+
+- [Windows Console Host (`conhost.exe`)](https://en.wikipedia.org/wiki/Windows_Console): an old terminal application present in Windows for years
+    - startup program is the command prompt
+    - default terminal application in Windows 10 and older
+    - no longer relevant in Windows 11
+- [Windows Terminal (`wt.exe`)](https://en.wikipedia.org/wiki/Windows_Terminal): a new terminal application that is still in development.
+    - startup program can be configured (PowerShell by default)
+    - default terminal application in Windows 11, available in the [Microsoft Store](https://aka.ms/terminal) in older versions of Windows
+    - modern terminal, almost Linux-like experience
 
 
 ## Run a non-default terminal application
@@ -47,6 +65,58 @@ By default, Windows use the local ANSI code page for the character encoding, bot
 2. Go to `Time & language` -> `Language & region` -> `Administrative language settings`
 3. Click on the `Change system locale...` button
 4. Check the `Beta: Use Unicode UTF-8 for worldwide language support` checkbox
+
+
+# Execution of Programs, Scripts, Commands and similar
+The execution of programs, scripts, commands and other [executable files](https://en.wikipedia.org/wiki/Executable) is a common, yet mysterious task in almost every operating system. To prevent confusion, it is absolutely essential to know what, and under what conditions is executed. The most important lesson is that the two Windows shells, Command Prompt and PowerShell, has a different approach to execution, and also, the executables can be run outside a shell with, yet different, mechanisms.
+
+The table below ([source](https://docs.google.com/spreadsheets/d/1VFe5h2yHPPUxluh3l-Vm2sCkEIDKXt-RJ3YuprnJgNM/edit?usp=sharing)) presents the basics of the Windows **execution logic when we execute the program by its name**:
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link type="text/css" rel="stylesheet" href="resources/sheet.css" >
+<style type="text/css">.ritz .waffle a { color: inherit; }.ritz .waffle .s0{background-color:#d9d9d9;text-align:left;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s4{background-color:#f4cccc;text-align:left;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s1{background-color:#d9d9d9;text-align:center;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s2{background-color:#ffffff;text-align:left;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s3{background-color:#b7e1cd;text-align:left;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}</style><div class="ritz grid-container" dir="ltr"><table class="waffle" cellspacing="0" cellpadding="0"><tbody><tr><td class="s0" dir="ltr" rowspan="3">Executable type</td><td class="s1" dir="ltr" colspan="6">Local Directory</td><td class="s1" dir="ltr" colspan="6">on PATH</td></tr><tr><td class="s1" dir="ltr" colspan="3">with extension</td><td class="s1" dir="ltr" colspan="3">without extension</td><td class="s1" dir="ltr" colspan="3">with extension</td><td class="s1" dir="ltr" colspan="3">without extension</td></tr><tr><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh²</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh²</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh</td></tr><tr><td class="s2" dir="ltr">application (*.exe)</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td></tr><tr><td class="s2" dir="ltr">batch file (*.bat, *.cmd)</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td></tr><tr><td class="s2" dir="ltr">PowerShell script (*.ps1)³</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td></tr></tbody></table></div>
+
+Notes:
+
+1. The system (`CreateProcessW` function) only considers native executables (`.exe` files).
+1. PowerShell never search local directory when executing program by name, due to security reasons.
+    - This can be changed by adding `.` (current directory) to the `PATH` environment variable (not recommended).
+1. PowerShell scripts are not considered as executables by Command Shell, again, due to security reasons.
+    - This can be changed by modifying the `PATHEXT` environment variable that lists the executable file extensions considered by `cmd.exe` and system (not recommended).
+
+The table above cover only what can and what cannot be executed by the name. However, when duplicate names are present, the **resolution order** becomes important. Also, there may be various ways how to execute the same executable in the same shell. For details, check the respective sections of the manual for each execution environment:
+
+- [System (Out of the shell) execution](./Windows%20Manual.md#system-out-of-the-shell-execution)
+- [Command shell execution](./Comand%20shell.md#executable-execution)
+- [PowerShell shell execution](./Powershell%20Manual.md#executable-execution)
+
+If we **execute using the path**, the execution is consistent among all three execution environments (cmd, pwsh and system).
+
+After the executable is found by the name or path, it is executed in an environment determinded by its file type association, which is by default:
+
+- program: execute the program itself (there is some bootstrapping logic, but it is not important for us)
+- batch script: `cmd.exe`
+- PowerShell script: `notepad.exe`. It is very useful to reconfiure this association to PowerShell.
+
+
+## System (Out of the shell) execution
+The system execution is realized by calling the [`CreateProcessW`](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw) function.
+
+The executable path resolution is as follows:
+
+If the executable is a path, the path is evaluated. Otherwise, the name is searched in the locations below (in order):
+
+1. The directory of the calling process
+1. Current working directory of the calling process
+1. System directories 
+    1. 32-bit system directory
+    1. 16-bit system directory
+    1. Windows directory
+1. Directories listed in the `PATH` environment variable, in the order they are listed
+
+Unlike Command Shell and PowerShell, the system execution does not consider script files, only native executables. Only the `.exe` extension is considered if the file name is specified without the extension.
+
+
+
 
 
 # Keyboard Shortcuts

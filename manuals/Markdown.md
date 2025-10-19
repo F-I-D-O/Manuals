@@ -73,3 +73,6 @@ To use backticks (`` ` ``) in code, use double backticks:
 ```markdown
 ``code with `backticks` inside``
 ```
+
+# HTML Content
+If we want some object that cannot be created by markdown syntax (e.g., a table with merged cells), we can use HTML content. HTML content can be directly inserted into the markdown file, without being wrapped in special tags [[source](https://daringfireball.net/projects/markdown/syntax#html)].

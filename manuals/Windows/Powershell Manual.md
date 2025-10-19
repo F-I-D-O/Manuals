@@ -148,8 +148,8 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 
 
 
-# Command execution
-There are several ways how to execute a command in PowerShell:
+# Executable Execution
+There are several ways how to run an executable in PowerShell:
 
 - The standard way is to just type the command.
 - Another option is the `&` operator: `& <command> <arguments>`. This way, we can
@@ -262,9 +262,21 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 ```
 
 # Operators
+[documentation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07)
 
-## Comparison and String Operators
-[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators)
+
+## The additive operator
+The additive operator (`+`) is overloaded for different types:
+
+- for numeric types, it performs the [arithmetic addition](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#771-addition)
+- for string types, it performs the [string concatenation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#772-string-concatenation)
+- for arrays and hashtables, it performs the array/hashtable concatenation
+
+## Comparison and Matching Operators
+
+- [help page](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators)
+- [documentation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#78-comparison-operators)
+
 
 Equality operators:
 
@@ -278,6 +290,7 @@ Equality operators:
 Matching operators:
 
 - `-match`: match
+
 
 ## Logical Operators
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators)
@@ -421,6 +434,9 @@ $a = @("foo", "bar")
 
 
 # String Manipulation
+
+## Concatenation
+The concatenation operator is the `+` operator, see [The additive (`+`) operator section](#the-additive-operator).
 
 ## Replace
 For replacing a substring in a string, we have two options:
