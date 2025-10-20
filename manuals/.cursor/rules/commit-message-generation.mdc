@@ -1,0 +1,5 @@
+---
+alwaysApply: false
+---
+Please generate a commit message for me from the changed files not on the .gitignore list.
+The format of a commit message should be: <manual 1 name>: <change a>, <change b>, ...; <manual 2 name>: <change a>, <change b>, ...; ...

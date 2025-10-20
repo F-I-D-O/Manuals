@@ -1,6 +1,6 @@
 # Introduction
 
-- [wiki](https://en.wikipedia.org/wiki/Cmd.exe)
+- [wiki cmd.exe](https://en.wikipedia.org/wiki/Cmd.exe)
 - [Windows Commands Overview and Reference](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 - [Wikibook](https://en.wikibooks.org/wiki/Windows_Batch_Scripting)
 
@@ -15,6 +15,22 @@ As the PowerShell was designed as an extension of the Command shell, **the Windo
 Script files for the Command shell are often called [batch files](https://en.wikipedia.org/wiki/Batch_file), and have the `.bat` or `.cmd` extension.
 
 
+# `echo`: Displaying text and automatic command printing
+The [`echo`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/echo) command serve two important purposes:
+
+- displaying text, like in PowerShell and
+- switching on/off the automatic command printing feature of the Command shell.
+
+The automatic command printing basically prints every command that is executed. We can skip the printing by prefixing the command with `@`. Example:
+```batch
+echo Hello, World! # prints echo Hello, World!\nHello, World!
+@echo Hello, World! # prints Hello, World!
+```
+However, typically, we want to disable the automatic command printing for the whole script, this can be done by adding call `echo` with parameter `off`. To turn it back on, we can call `echo` with parameter `on`. So the typical first command in a batch file is:
+```batch
+@echo off 
+```
+Which disables the automatic command printing and also skips it for the disabeling command itself.
 
 # Executable Execution
 
@@ -62,3 +78,38 @@ set myVar=Hello,
 set myVar=%myVar% World!
 echo %myVar% # prints "Hello, World!"
 ```
+
+# Comments
+Instead of some conventional comment syntax, the Command shell uses the [`rem`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/rem) command. Example:
+
+```batch
+rem This is a comment. We print Hello, World! below it.
+echo Hello, World!
+```
+
+# Batch Script Arguments
+
+- [wikibook](https://en.wikibooks.org/wiki/Windows_Batch_Scripting#Command-line_arguments)
+- [ss64 documentation](https://ss64.com/nt/syntax-args.html)
+
+When we call commands from a batch script, we can refer to the called arguments called *replacement parameters*. These are `%0` (the name of the script), `%1`--`%9` (the arguments of the script). To refer all script arguments, we can use `%*`.
+
+## Parameter extension for files
+If the argument is a file name, we can get several additional information about the file by applying parameters extensions. These extensions are in format `~<extension>` where `<extension>` is a single letter long and are placed between the `%` and the parameter number. Example:
+```batch
+echo %~f1
+```
+The above command prints the full path of the file passed as the first argument.
+
+Most commonly used extensions are:
+
+- `~f`: full path
+- `~d`: drive letter
+- `~p`: path, without the drive letter and the file name
+
+We can also combine some extensions:
+
+```batch
+echo %~dp1
+```
+The above command prints the directory of the file passed as the first argument.

@@ -105,10 +105,10 @@ Solution: `Edit Configurations...` -> select configuration for the script -> che
 
 
 #### Pycharm does not recognize a locally installed package
-It can happen that a locally installed package (`-e`) is not recognized by Pycharm. If that happens, first try to incalidate the cache by
+It can happen that a locally installed package (`-e`) is not recognized by Pycharm. If that happens, first try to invalidate the cache by
 
-1. `File` -> `Invalidate Caches...` 
-1. check `Clear file system cache and Local History` 
+1. `File` -> `Invalidate Caches...`
+1. check `Clear file system cache and Local History`
 1. click `Invalidate and Restart`
 
 If this does not work, it can be solved by adding the path to the package to the interpreter paths:

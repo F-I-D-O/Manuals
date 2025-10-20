@@ -254,12 +254,13 @@ Quick orientation in the desktop app:
 
 
 
-
 # Useful Commands
+
 ## Get Motherboard Info
-```
+```PowerShell
 wmic baseboard get product,Manufacturer,version,serialnumber
 ```
+
 ## Copy multiple files/dirs
 [`robocopy`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) is the best command for that. Usefull params:
 
@@ -270,6 +271,14 @@ wmic baseboard get product,Manufacturer,version,serialnumber
 - `/xo`: Excludes older files.
 - `/r:<n>`: Specifies the number of retries on failed copies. The default value of _n_ is 1,000,000 (one million retries).
 - `/w:<n>`: Specifies the wait time between retries, in seconds. The default value of _n_ is 30 (wait time 30 seconds).
+
+
+## `echoargs`: Print arguments as passed to the script
+Sometimes, it is hard to see what are the exact arguments passed to an executable. To debug it quickly, we can use the `echoargs.exe` tool present in Portable Programs or at [ss64]( https://ss64.com/ps/EchoArgs.exe). Usage:
+
+```PowerShell
+echoargs <command> <arguments>
+```
 
 
 ## User info

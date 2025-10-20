@@ -335,6 +335,29 @@ d2 = d + interval # '2022-05-20 19:00'
 ### Converting to Unix timestamp
 To convert a `datetime` object to unix timestamp, we can use the `timestamp` method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that **the timestamp is computed based on the `datetime` object's timezone, or your local timezone if the `datetime` object has no timezone information.**
 
+### Time and date objects
+Instead of using the `datetime` object, we can use the [`time`](https://docs.python.org/3/library/datetime.html#time-objects) and [`date`](https://docs.python.org/3/library/datetime.html#date-objects) objects if we need to work with time or date only. 
+
+Analogously to the `datetime` object, these objects can be **constructed from the parts**:
+
+```python
+t = time(hour=12, minute=30, second=0)
+d = date(year=2022, month=12, day=20)
+```
+
+To **convert datetime to time or date**, we can use the `time` and `date` methods.
+```python
+d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
+t = d.time() # '18:00:00'
+d = d.date() # '2022-05-20'
+```
+
+Similarly, we use the date and time objects to construct a datetime object using the [`combine`](https://docs.python.org/3/library/datetime.html#datetime.datetime.combine) method:
+```python
+d = date(year=2022, month=12, day=20)
+t = time(hour=12, minute=30, second=0)
+dt = datetime.combine(d, t) # '2022-12-20 12:30:00'
+```
 
 
 ## Named tuples

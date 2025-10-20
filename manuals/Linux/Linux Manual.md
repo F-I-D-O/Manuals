@@ -135,7 +135,28 @@ For more sophisticated copying, use [`rsync`](https://rsync.samba.org/): `rsync 
 - `--devices`: preserve device files
 - `-D`: equivalent to `--devices --specials`
 - `-a`: archive mode, equivalent to `-rlptgoD`
-- `--progress`: show progress
+- `--progress`: show progress bar for each file transfer
+- [`--info=<FLAG>[<FLAG_VALUE>]`](https://download.samba.org/pub/rsync/rsync.1#opt--info): detailed configuration of the rsync output. Here, 
+    - `<FLAG>` is the specific output parameter we want to set:
+        BACKUP     Mention files backed up
+        - `COPY`: Mention files copied locally on the receiving side
+        - `DEL`: Mention deletions on the receiving side
+        - `FLIST`: Mention file-list receiving/sending (levels 1-2)
+        - `MISC`: Mention miscellaneous information (levels 1-2)
+        - `MOUNT`: Mention mounts that were found or skipped
+        - `NAME`: Mention 1) updated file/dir names, 2) unchanged names
+        - `PROGRESS`: Mention 1) per-file progress or 2) total transfer progress
+        - `REMOVE`: Mention files removed on the sending side
+        - `SKIP`: Mention files that are skipped due to options used
+        - `STATS`: Mention statistics at end of run (levels 1-3)
+        - `SYMSAFE`: Mention symlinks that are unsafe
+        - `ALL`: Set all --info options (e.g. all4)
+    - `<FLAG_VALUE>` is the value of the parameter.
+        - `0`: disable the output
+        - `1`: default value
+        - `< Number > 1 >`: more detailed output. The maximum level depends on the output parameter we want to set.
+
+    - Example: `--info=progress2` will show the progress total progress, instead of the progress bar for each file transfer.
 
 
 ## Remove file

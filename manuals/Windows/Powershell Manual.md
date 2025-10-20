@@ -595,9 +595,23 @@ To **clear** the history, use the [`Clear-History`](https://learn.microsoft.com/
 - `Clear-History -Count <count>`: clear the last `count` commands
 - `Clear-History -CommandLine <pattern>`: clear the commands that match the pattern. The pattern use the simple matching (e.g. `*` is the wildcard), and have to be wrapped in quotes if it contains spaces.
 
+# PowerShell Scripts
+
+## Script parameters
+We have to ways how to read the arguments passed to the script:
+
+- using the `$args` variable: simple
+- using the `param()` block: complex, but more powerful
+    - uses the same syntax as the function parameters
+
+Here, we describe the first option. For the second option, check the [Parameter blocks section](#parameter-blocks). To read the arguments, we just access the [`$args` variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables#args). The following example prints the second and third argument:
+```PowerShell
+echo $args[1]
+echo $args[2]
+```
 
 
-# Including scripts
+## Including other scripts
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.5&viewFallbackFrom=powershell-7.1#script-scope-and-dot-sourcing)
 
 Script including in PowerShell is called *dot sourcing*. To include a script, use the `.` operator. Example:

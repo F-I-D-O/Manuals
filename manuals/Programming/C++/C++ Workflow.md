@@ -192,10 +192,15 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
 1. uncheck the `Enable profile` checkbox located at the top of the profile settings
 
 
-### Problems
+### Troubleshooting
 
 #### Editor reports errors despite the code compiles in all compilers
 This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.
+
+#### Editor actions are not available, `Ctrl + click` does nothing
+
+1. check whether the "Go to Reference" action is triggered. If there is a tooltip claiming no references, go to next step. Otherwise, the problem is in the keymap
+1. check the right side of the status bar (bottom right corner of the editor). There should be an indicator in the format of `C++ | <target name> | <debugging configuration>`. If there is another indicator, CLion does not know the context of the project. Probably, the project configuration needs to be fixed
 
 
 

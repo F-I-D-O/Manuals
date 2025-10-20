@@ -268,10 +268,10 @@ Sometimes, we need to store passwords for the command line tools on the local ma
 - Use a Credential Manager, or
 - Encrypt the file where the passwords are stored.
 
-### Credential Managers
+## Credential Managers
 There are plenty of credential managers available for each OS. If we want to avoid the differences between the OS, we can use the python [keyring](https://pypi.org/project/keyring/) package.
 
-### Python keyring
+## Python keyring
 [homepage](https://pypi.org/project/keyring/)
 
 The keyring package is a Python library that provides a way to store passwords in a secure way. It uses a system-specific backend to store the passwords. 
@@ -288,3 +288,19 @@ import keyring
 
 password = keyring.get_password("service", "username")
 ```
+
+
+# WebAuthn (passkeys)
+[WebAuthn](https://en.wikipedia.org/wiki/WebAuthn) is a standard for passwordless authentication using a hardware key. It is a successor of the multifactor authentication. 
+
+The multifactor authentication typically consists of:
+
+- a password, supplied by the user
+- authentication by an external device, typically a smartphone
+
+Contrary to that, WebAuthn does not require a password, but only a hardware key. Typically, the key is a smart phone, tablet or a laptop. The hardware key validates the user's identity either by a PIN code or by a biometric factor.
+
+Web auth has two modes:
+
+- **Multi-factor mode**: works like the traditional multifactor authentication: a password is supplied first and then only a confirmation (e.g., hitting enter) is required on the hardware key.
+- **Single-factor mode**: only the hardware key is required, but user verification is required with the hardware key (e.g., a PIN code or a biometric).
