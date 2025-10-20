@@ -290,7 +290,7 @@ password = keyring.get_password("service", "username")
 ```
 
 
-# WebAuthn (passkeys)
+# WebAuth (passkeys)
 [WebAuthn](https://en.wikipedia.org/wiki/WebAuthn) is a standard for passwordless authentication using a hardware key. It is a successor of the multifactor authentication. 
 
 The multifactor authentication typically consists of:

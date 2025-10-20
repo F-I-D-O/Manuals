@@ -3,3 +3,5 @@ alwaysApply: false
 ---
 Please generate a commit message for me from the changed files not on the .gitignore list.
 The format of a commit message should be: <manual 1 name>: <change a>, <change b>, ...; <manual 2 name>: <change a>, <change b>, ...; ...
+The commit message has to be hard-wrapped to 72 characters.
+Each change should be described only briefly, but not vaguely. It must be clear which section of the manual is affected by the change. If the change affects only some software or tool, mention it. If it affects only specific set of functions, commands, data types, etc, list them. No changes should be left out, and nothing should be added that was not changed since the last commit.
