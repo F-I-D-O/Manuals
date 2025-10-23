@@ -611,6 +611,8 @@ parent = p.parent # 'C:\\workspace\\project'
 ### Absolute and canonical path
 We can use the `absolute` method of the `Path` object to get the *absolute* path. To get the *canonical* path, we can use the `resolve` method.
 
+Always prefer the canonical path, because it can prevent many possible errors (with cloud folders, etc.).
+
 
 
 ### Splitting paths and working with path parts
@@ -838,6 +840,10 @@ with open('file.txt', 'rw') as f:
 ```
 
 
+## Troubleshooting Missing Files
+If Python cannot locate a file that we can locate in the file explorer, the problem can be cause by the cloud syncronization. Sometimes, relative paths are not resolved correctly when a part of the path is on the cloud folder. We can solve this by  resolving the path: `safe_path = safePath(<relative path>).resolve()`.
+
+
 # I/O
 For simple file operations, we can use the `open` function. A simple file read is done as follows:
 ```Python
@@ -925,10 +931,6 @@ HDF5 is a binary file format for storing large amounts of data. The `h5py` modul
 [An example of reading a dataset from an HDF5 file on SO](https://stackoverflow.com/questions/28170623/how-to-read-hdf5-files-in-python)
 
 
-
-# Command line arguments
-The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
-
 ## INI files
 The `configparser` module provides a Python interface for working with [INI files](https://en.wikipedia.org/wiki/INI_file). The basic usage is:
 ```Python
@@ -950,6 +952,36 @@ If we do not have sections in the INI file, we have to:
     ```Python
     value = config[configparser.UNNAMED_SECTION]['key']
     ```
+
+
+# Command line arguments
+The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
+
+However,  mostly, we use the [argparse](https://docs.python.org/3/library/argparse.html) module to parse the command line arguments. Example:
+
+```Python
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('input', type=str, help='input file')
+parser.add_argument('output', type=str, help='output file')
+
+args = parser.parse_args()
+
+print(args.input)
+```
+
+The [`add_argument`](https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_argument) method has the following parameters:
+
+- `name`: the name of the argument
+- `type`: the type of the argument
+- `help`: the help message for the argument
+- `required`: if set to `True`, the argument is required
+- `default`: the default value for the argument
+- `action`: the action to be performed on the argument. Examples:
+    - `store_true`: store `True` if the argument is present, `False` otherwise
+
 
 
 # Logging

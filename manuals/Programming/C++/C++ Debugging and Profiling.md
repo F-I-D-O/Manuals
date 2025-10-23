@@ -114,6 +114,7 @@ For symbols that should come from a library:
 
 1. check that all necessary libraries are linked in `CMakeLists.txt`
 1. check that all libraries configured for linking in `CMakeLists.txt` are available on the system
+1. if the compiler environment may have changed since the last build (e.g., system update, compiler update, or when running the build on remote server), try to erase the build directory and configure the project again
 
 If none of the above works, check this list: [https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?](https://stackoverflow.com/questions/12573816/what-is-an-undefined-reference-unresolved-external-symbol-error-and-how-do-i-fix?)
 

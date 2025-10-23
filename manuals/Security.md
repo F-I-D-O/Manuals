@@ -13,6 +13,8 @@ If we do not want to establish a connection, but just run a single command, we c
 ssh <username>@<address> <command>
 ```
 
+By default, ssh use the key authentication if configuared, and resort to password authentication if not. If we want to force password authentication, we can use the `-o PreferredAuthentications=password` parameter.
+
 
 ## Authentication
 There are two ways to authenticate to the server:
@@ -93,6 +95,11 @@ This guide suppose that the tunnel creation comman run without any error message
 The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the `~/.ssh/authorized_keys` file.
 
 Note that **the `authorized_keys` file has to have the right permissions**, which is read/write only for the owner, and read only for the group and others (`644`).
+
+With the `authorized_keys` file, we can also restrict the user by wrapping the commands he can execute with our own script. This restriction applies to a specific key. We configure the wrapping command by adding the following to the beginning of the key line:
+```
+command="<path to the command>" ssh-rsa AAAA...
+```
 
 
 ### WSL configuration

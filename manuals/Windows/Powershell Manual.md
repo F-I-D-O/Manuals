@@ -15,13 +15,7 @@ Therefore, it is best to install the [new PowerShell](https://github.com/PowerSh
 ## Quick Edit / Insert Mode
 PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit `enter`.
 
-## Resources
-
-- [Microsoft documentation](https://learn.microsoft.com/en-us/powershell/scripting/overview)
-- [SS64](https://ss64.com/ps/)
-
-
-# Script Blocks: standalone blocks, functions, and scripts
+## Script Blocks: scripts, functions, and standalone blocks
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks)
 
 A basic unit of execution in PowerShell is a *script block*. A script block can be:
@@ -30,7 +24,45 @@ A basic unit of execution in PowerShell is a *script block*. A script block can 
 - a function,
 - a script
 
-A script block can have parameters. The parameters are defined using the `param` keyword. Example:
+
+## Resources
+
+- [Microsoft documentation](https://learn.microsoft.com/en-us/powershell/scripting/overview)
+- [SS64](https://ss64.com/ps/)
+- [pwsh documentation (arguments of `pwsh.exe`, etc)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh)
+
+
+
+# Reading script block arguments
+Each script block can be called with parameters. The arguments are first parsed by PowerShell and then passed to the script block. See [Parameter parsing](#parameter-parsing) for details. Note that this parsing happens even if the script was invoked from outside PowerShell.
+
+We have two ways how to read the arguments passed to the script:
+
+- using the `$args` variable: simple old syntax, deprecated
+- using the *parameter block* (`param()`): complex, but more powerful
+
+Here, we describe the first option. For the second option, check the [Parameter blocks section](#parameter-blocks).
+
+To read the arguments, we just access the [`$args` variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables#args). The following example prints the second and third argument:
+```PowerShell
+echo $args[1]
+echo $args[2]
+```
+
+## Parametr parsing
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters)
+
+In PowerShell, all arguments are named. However, the name may be set as non-required, in which case we can omit it. The syntax is:
+```PowerShell
+-<name> <value> # or
+-<name>:<value>
+```
+
+Thic creates an inherent incompatibility with most command line tools, as `:` is a valid argument separator in PowerShell. Therefore, **any argument passed to a PowerShell script block that contains `:` has to be quoted**. This is a known limitation of PowerShell [[source](https://github.com/PowerShell/PowerShell/issues/23819)].
+
+
+## Parameter blocks
+defined using the `param` keyword. Example:
 ```PowerShell
 $myFunction = {
     param($param1, $param2)
@@ -101,8 +133,10 @@ $myFunction = {
 The advanced usage of parameters is described in the [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters).
 
 
+# Command parsing
+[documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing)
 
-# Quoting
+## Quoting
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules)
 
 In PowerShell, there are two types of quoting:
@@ -113,10 +147,22 @@ In PowerShell, there are two types of quoting:
     - to escape (not evaluate) the `$` sign, use the backtick: `` echo "`$myVar" `` prints `$myVar`
 - `'` (single quotes): for literal strings. These strings are not evaluated.
 
+Note that PowerShell consumes the first level of quoting, so that `"a b"` is passed as `a b` and the same goes for `'a b'`. If we need to preserve the quoting, we need to use a second level of quoting:
 
-## Arguments starting with `-` and containing `.`
-If a program argument starts with `-`, **and** contains `.` it needs to be wrapped by `'`. Otherwise, the argument will be split on the dot. Example:
+```PowerShell
+echo "a b" # prints a b
+echo 'a b' # prints a b
+echo "a 'b'" # prints a 'b'
+echo 'a "b"' # prints a "b"
 ```
+In case we need the same quoting for both levels, we can escape the first level of quoting with the backtick: `\"`. Example:
+```PowerShell
+echo "a \"b\"" # prints a "b"
+```
+
+### Arguments starting with `-` and containing `.`
+If a program argument starts with `-`, **and** contains `.` it needs to be wrapped by `'`. Otherwise, the argument will be split on the dot. Example:
+```PowerShell
 mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
 ```
 
@@ -129,20 +175,21 @@ The problem may arise if the argument or its part needs to be quotted as well. T
 
 - for first level of quoting, use `"` (double quotes)
 - for second level of quoting, use `''` (two single quotes)
+
 Example:
 ```PowerShell
 mvn exec:exec '-Dexec.executable="java"' '-Dexec.args="-Xmx30g -Djava.library.path=''C:\Program Files\HDF_Group\HDF5\1.14.3\bin'' -classpath %classpath cz.cvut.fel.aic.simod.OnDemandVehiclesSimulation"'
 ```
 
-## Escaping `"` and `'` in Arguments
+### Escaping `"` and `'` in Arguments
 Double quotes `"` contained in arguments can be preserved by escaping with backslash: `\"`. Example for that can be passing an argument list to some executable:
-```
+```PowerShell
 'args=\"arg1 arg2\"'
 ```
 
 Single quotes `'` are esceped by duble single quote: `''`. Example can be passing a list of args, where some of them contains space:
 
-```
+```PowerShell
 'args=\"''arg1 with space'' arg2\"'
 ```
 
@@ -484,7 +531,15 @@ Get-Process | Select-Object -Property Name, Id
 ```
 
 
+# File System
 
+## Create a symlink
+To create a symlink, use the `New-Item` command with the `-ItemType` parameter set to `SymbolicLink`. Example:
+```PowerShell
+New-Item -ItemType SymbolicLink -Path <source> -Target <target>
+```
+
+Note that **administrator privileges are required to create a symlink**.
 
 # Network
 
@@ -596,19 +651,6 @@ To **clear** the history, use the [`Clear-History`](https://learn.microsoft.com/
 - `Clear-History -CommandLine <pattern>`: clear the commands that match the pattern. The pattern use the simple matching (e.g. `*` is the wildcard), and have to be wrapped in quotes if it contains spaces.
 
 # PowerShell Scripts
-
-## Script parameters
-We have to ways how to read the arguments passed to the script:
-
-- using the `$args` variable: simple
-- using the `param()` block: complex, but more powerful
-    - uses the same syntax as the function parameters
-
-Here, we describe the first option. For the second option, check the [Parameter blocks section](#parameter-blocks). To read the arguments, we just access the [`$args` variable](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables#args). The following example prints the second and third argument:
-```PowerShell
-echo $args[1]
-echo $args[2]
-```
 
 
 ## Including other scripts
