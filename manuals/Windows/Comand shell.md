@@ -125,6 +125,64 @@ echo %myVar% # prints "Hello, World!"
 ```
 
 
+# Control Statements
+
+## `if`
+[documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/if)
+
+The `if` statement has the following syntax:
+```batch
+if <condition> <then command> [else <command>]
+```
+
+There are three types of conditions:
+
+- `<string 1>==<string 2>`: most useful,
+- `ERRORLEVEL <number>`: test the return value of the last command, and
+- `exists <file>`: test if the file exists
+
+Any of the conditions can be negated by using `if not` instead of `if`.
+
+
+## `goto`
+[documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/goto)
+
+The `goto` statement has the following syntax:
+```batch
+goto <label>
+```
+
+The `<label>` is then prese in the script as `:<label>`. Example:
+```batch
+goto label
+
+...
+
+:label
+echo Hello, World!
+```
+
+# Output redirection
+[unofficial documentation](https://www.robvanderwoude.com/redirection.php)
+
+The `|` operator is used to redirect the standard output of a command to the input of another command as usual.
+
+The `>` is used to redirect the standard output of a command to a file. By prependind `2`  (`2>`), we redirect the standard error output instead. When changing `>` to `>>`, we write to the file in the append mode.
+
+Using `<` we can redirect a file to the standard input of a command.
+
+Finally, `2>&1` redirects the standard error output to the standard output. This can be combined with the output to file: `<command> > <file> 2>&1` writes both the standard output and the standard error output to the file.
+
+As any `<file>` we can use `NUL` which basically discards the output.
+
+
+# Command Separation
+We can execute multiple commands in the same line. We can use
+
+- `<command 1> & <command 2>`: commands are executed independently, or
+- `<command 1> && <command 2>`: `<command 2>` is executed only if `<command 1>` exits with code 0.
+
+
 # Batch Script Arguments
 
 - [wikibook](https://en.wikibooks.org/wiki/Windows_Batch_Scripting#Command-line_arguments)
