@@ -221,6 +221,11 @@ The query function can be used for more complicated filters. It is more flexible
 filtered = df.query('max_delay == x and exp_length == y']
 ```
 
+Special filter functions can be used in the query function as well:
+```python
+filtered = df.query('max_delay == x and exp_length.isnull()')
+```
+
 
 ## Filtering Series
 A seris can be filtered even simpler then the dataframe:

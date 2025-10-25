@@ -299,6 +299,16 @@ The `git log` shows the history of the repository. It is the analogue of the mai
 - `--decorate`: shows the names of the branches and tags, not only the commit hashes
 
 
+# Renaming a branch
+When renaming a branch we need to:
+
+1. rename the branch locally: `git branch -m <old name> <new name>`
+2. delete the old branch on the remote and push the new branch: `git push origin :<old name> <new name>`
+1. on all machines, change the remote branch to the new one
+1. on any other machine, rename the branch locally
+
+Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.
+
 # GitHub
 
 ## Creating a GitHub Release

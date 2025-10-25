@@ -188,7 +188,7 @@ We can execute multiple commands in the same line. We can use
 - [wikibook](https://en.wikibooks.org/wiki/Windows_Batch_Scripting#Command-line_arguments)
 - [ss64 documentation](https://ss64.com/nt/syntax-args.html)
 
-When we call commands from a batch script, we can refer to the called arguments called *replacement parameters*. These are `%0` (the name of the script), `%1`--`%9` (the arguments of the script). To refer all script arguments, we can use `%*`.
+When we call commands from a batch script, we can refer to the called arguments called *replacement parameters*. These are `%0` (the name of the script), `%1`--`%9` (the arguments of the script). To refer all script arguments (`%1`--`%9`), we can use `%*`.
 
 Contrary to a typical programming language behavior, the **arguments are not split just by spaces** but also commas (`,`), semi-colons (`;`), equal signs (`=`), and by a horizontal tab. Therefore, one has to be careful if some of these characters are used in the arguments.
 
