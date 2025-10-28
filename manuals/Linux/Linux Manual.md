@@ -120,10 +120,32 @@ The `cp` command is used to copy files: `cp <source> <destination>`. The most us
 - `-p`: preserve permissions and timestamps
 - `-a`: same as `-p -R` plus some other options
 
-For more sophisticated copying, use [`rsync`](https://rsync.samba.org/): `rsync <source> <destination>`. The most used options are:
+
+### rsync
+For more sophisticated copying, use [`rsync`](https://rsync.samba.org/) ([documentation](https://download.samba.org/pub/rsync/rsync.1)): `rsync <source> <destination>`. 
+
+Unlike the `cp` command, the `<source>` have a different meaning depending on the trailing slash:
+
+- if the `<source>` ends with a slash, it behaves like `cp`:
+    ```bash
+    rsync -r /path/to/source/ /path/to/destination
+    # the content of the source directory is copied to the /path/to/destination directory
+    ```
+- if the `<source>` does not end with a slash, it behaves differently:
+    ```bash
+    rsync -r /path/to/source /path/to/destination
+    # the content of the source directory is copied to the /path/to/destination/source directory
+    ```
+
+
+
+The most used options are:
 
 - `-r`, `--recursive`: recurse into directories. Only files are copied without this option.
 - `-h`: human readable
+
+#### Preserving metadata
+
 - `-l`, `--links`: preserve links
 - `-p`, `--perms`: preserve permissions
 - `-t`, `--times`: preserve modification times
@@ -135,6 +157,9 @@ For more sophisticated copying, use [`rsync`](https://rsync.samba.org/): `rsync 
 - `--devices`: preserve device files
 - `-D`: equivalent to `--devices --specials`
 - `-a`: archive mode, equivalent to `-rlptgoD`
+
+#### Formatting the output
+
 - `--progress`: show progress bar for each file transfer
 - [`--info=<FLAG>[<FLAG_VALUE>]`](https://download.samba.org/pub/rsync/rsync.1#opt--info): detailed configuration of the rsync output. Here, 
     - `<FLAG>` is the specific output parameter we want to set:
@@ -157,6 +182,12 @@ For more sophisticated copying, use [`rsync`](https://rsync.samba.org/): `rsync 
         - `< Number > 1 >`: more detailed output. The maximum level depends on the output parameter we want to set.
 
     - Example: `--info=progress2` will show the progress total progress, instead of the progress bar for each file transfer.
+
+#### Overwriting files
+
+- `--ignore-existing`: ignore files that already exist on the destination.
+- `--update`: ignore newer files on the destination.
+- `--checksum`: use checksum to compare files, not the file size and modification time.
 
 
 ## Remove file
@@ -193,7 +224,9 @@ To compute the size of a directory, use the `du` command:`du <path>`. The most u
 
 
 ## Find files
-To find files, use the [`find`](https://man7.org/linux/man-pages/man1/find.1.html) command: `find <where> <options>`. If the `<where>` is not specified, the current directory is used. The most used options are:
+To find files, use the [`find`](https://man7.org/linux/man-pages/man1/find.1.html) command: `find <where> <options>`. If the `<where>` is not specified, the current directory is used. If the `<options>` are not specified, all files matching the `<where>` are listed.
+
+The most used options are:
 
 - `-name <name pattern>`: find by name.
 - `-path <path pattern>`: find by path.
@@ -956,6 +989,41 @@ To list all services, we can use one of the following commands:
 - `list-units` to list all units ever run on the server or
 - `list-units-files` to list all units, including the ones that have never been run
 
+
+# SSH
+
+## Inspecting commands executed over SSH
+There are various possible ways to inspect the commands executed over SSH. Commands from interactive console should appear in history and we should see them when running `history` command, just like in local console. 
+
+Much more complicated is to see the commands executed over SSH in a non-interactive way, e.g., when running a command over ssh (`ssh user@host <command>`). One way to do this is to use a command wrapper script for a specific ssh key:
+
+1. create the wrapper script:
+    ```bash
+    #!/usr/bin/env bash
+    log="$HOME/ssh_commands.log"
+
+    # Log who/when/where and the command (or "<interactive>" if none)
+    printf '%s user=%s from=%s cmd=%q\n' \
+        "$(date '+%F %T')" "$USER" "${SSH_CONNECTION%% *}" \
+        "${SSH_ORIGINAL_COMMAND:-<interactive>}" >> "$log"
+
+    # Run the original command or a login shell
+    if [ -n "$SSH_ORIGINAL_COMMAND" ]; then
+        exec bash -lc "$SSH_ORIGINAL_COMMAND"
+    else
+        exec bash -l
+    fi
+    ```
+1. make the script executable: `chmod +x <path to the script>`
+1. create the log file: 
+    ```bash
+    touch <path to the log file>
+    chmod 600 <path to the log file>
+    ```
+1. add the script to the `authorized_keys` file:
+    ```bash
+    echo "command=<path to the script> ssh-rsa AAAA..." >> ~/.ssh/authorized_keys
+    ```
 
 # Frequently used software
 

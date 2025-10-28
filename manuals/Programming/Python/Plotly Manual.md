@@ -728,10 +728,19 @@ The output format is determined by the extension.
 
 The margins of the figure should be set for the figure itself, not for the export.
 
-## Export hangs out 
+## Troubleshooting
+
+### Export hangs out 
 It can be cause by kaleido. The solution si to install an older version, specifically `0.1.0.post1`.
 
 https://community.plotly.com/t/static-image-export-hangs-using-kaleido/61519/4
+
+
+### Exported size does not match the figure size
+Sometimes, the Kaleido engine resizes the figure before exporting. To overcome this, we can set the `width` and `height` parameters of the `write_image` function. Example:
+```python
+fig.write_image("figure.png", width=1000, height=1000)
+```
 
 
 # Colors

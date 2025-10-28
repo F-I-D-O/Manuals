@@ -167,6 +167,10 @@ The copy tool has two signatures:
 Here, `<source>` can be a directory, a file, or a list of files. The `<destination>` can be a directory or a file. 
 
 
+## Execute a CMake script
+To execute a CMake script, use the `cmake -P <script>` command. 
+
+
 # Syntax
 
 

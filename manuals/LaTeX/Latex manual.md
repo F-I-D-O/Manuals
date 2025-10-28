@@ -92,7 +92,7 @@ When we need to print \LaTeX commands, it is better to escape the whole command,
 - `\nobreakdash-`: non-breaking dash
 
 
-# Text and paragramph formatting
+# Text and paragraph formatting
 [wiki](https://en.wikibooks.org/wiki/LaTeX/Fonts)
 
 ## Fonts
@@ -177,6 +177,16 @@ Note that the `vfill` works only if there is something before it, it does not wo
 Some text at the bottom
 ```
 
+
+## Line breaking
+Latex handle the line breaking automatically. Typically, it breaks the line at the end of the word. Sometimes, it can break long words. 
+
+To **prevent breaking long words**, we can use the `\mbox` command. Example:
+```latex
+\mbox{long word}
+```
+
+To **prevent breaking on spaces**, we can use the non-breaking space character: `~`.
 
 
 ## Subscript and superscript
