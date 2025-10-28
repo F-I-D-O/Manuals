@@ -29,7 +29,18 @@ The following scheme shows the operations that can be performed between the work
 
 
 # Configuration
-The git configuration is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command.
+For configuration, we can use the `git config` command. There are three levels of configuration:
+
+- *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
+- *global*: the configuration is applied to all repositories of the current user. This configuration is set by the `--global` parameter.
+- *local*: the configuration is applied only to the current repository. This configuration is set by the `--local` parameter.
+
+To list the configuration, use the `-l`/`--list` parameter of the `git config` command. To list the configuration for a specific level, use the `--system`, `--global`, `--local` parameters.
+
+
+To see the default value of a configuration, search in the [git config documentation](https://git-scm.com/docs/git-config#_variables).
+
+The git **local configuration** is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command.
 
 To display the active configuration in the command line, call:
 ```bash

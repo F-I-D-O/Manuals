@@ -522,6 +522,11 @@ As a shim, we can use:
     ```
 
 
+# Notepad++
+
+## Configuration
+Usually, it is a good idea to configure autosave. This functionality is available in a plugin called Autosave.
+
 
 # Problems
 

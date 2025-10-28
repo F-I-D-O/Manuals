@@ -154,18 +154,6 @@ ssh-add <path to key>
 If the agent is running and the key is listed, the first thing to try is to connect via ssh to see whether it is an agent/ssh issue or an issue of the program using the SSH (like git, IDE, file manager...)
 
 
-## Configuration
-For configuration, we can use the `git config` command. There are three levels of configuration:
-
-- *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
-- *global*: the configuration is applied to all repositories of the current user. This configuration is set by the `--global` parameter.
-- *local*: the configuration is applied only to the current repository. This configuration is set by the `--local` parameter.
-
-To list the configuration, use the `-l`/`--list` parameter of the `git config` command. To list the configuration for a specific level, use the `--system`, `--global`, `--local` parameters.
-
-
-To see the default value of a configuration, search in the [git config documentation](https://git-scm.com/docs/git-config#_variables).
-
 
 ## `known_hosts` file
 To know that a connection leads to the desired server and not to some impersonator, the server sends its public key to the client. The client then checks the public key against the list of keys previously set as valid. This list is stored in the `.ssh/known_hosts` file. The format of the file is:

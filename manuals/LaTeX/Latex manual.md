@@ -862,12 +862,14 @@ When choosing what package to use in latex, we have to take care that we:
 - have the bibliography file in the right format (`.bib` for all pipelines, but the content differs)
 - have the style in the right format (`.bst` for default or natbib, `.bbx` for biblatex)
 
-By default, we should use the biblatex - Biber pipeline. Howevver, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as [there is no conversion tool](https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex)). The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
+By default, we should use the Biblatex - Biber pipeline. However, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as [there is no conversion tool](https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex)). The styles available for biblatex are listed [on CTAN](https://ctan.org/topic/biblatex).
 
 
 ## Latex document configuration
 
 ### Biblatex styling
+[official biblatex documentation](https://linorg.usp.br/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf)
+
 Basic setup:
 ```latex
 \usepackage[style=numeric]{biblatex}
@@ -1028,6 +1030,8 @@ The command is then used as follows:
 ```latex
 \<command name>{<argument 1>}{<argument 2>}...{<argument n>}
 ```
+
+The `\newcommand` command has also its star variant `\newcommand*`. The difference is that when using just `\newcommand`, the command arguments can contain line breaks (`\par` commands), while when using `\newcommand*`, the command arguments cannot contain line breaks. This extra restriction is useful to avoid accidental line breaks in the command arguments. As it is a common concept in LaTeX, it is called a *short-form command*, in contrast to the *long-form command* without the star.
 
 
 ## Providing default values for arguments
