@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Windows Manual - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../../Programming/C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../../Programming/C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -286,12 +295,21 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Windows Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Windows Manual</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,169 +412,73 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#terminals-and-shells" class="nav-link">Terminals and Shells</a>
+            <li class="nav-item" data-bs-level="1"><a href="#shells-and-terminals" class="nav-link">Shells and Terminals</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#run-a-non-default-terminal-application" class="nav-link">Run a non-default terminal application</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#windows-terminal" class="nav-link">Windows Terminal</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#windows-terminal-pass-stdout-to-text-editor-instead-displaying-it" class="nav-link">Windows terminal pass stdout to text editor instead displaying it</a>
+            <li class="nav-item" data-bs-level="2"><a href="#run-a-non-default-terminal-application" class="nav-link">Run a non-default terminal application</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#command-prompt" class="nav-link">Command Prompt</a>
+            <li class="nav-item" data-bs-level="2"><a href="#windows-terminal" class="nav-link">Windows Terminal</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#character-encoding" class="nav-link">Character Encoding</a>
+            <li class="nav-item" data-bs-level="3"><a href="#windows-terminal-pass-stdout-to-text-editor-instead-displaying-it" class="nav-link">Windows terminal pass stdout to text editor instead displaying it</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#keyboard-shortcuts" class="nav-link">Keyboard Shortcuts</a>
+            <li class="nav-item" data-bs-level="2"><a href="#command-prompt" class="nav-link">Command Prompt</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#wireless-network" class="nav-link">Wireless Network</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#problem-cant-connect-to-this-network" class="nav-link">Problem: Can't connect to this network</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#connect-to-a-network-manually" class="nav-link">Connect to a Network Manually</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#various-commands-related-to-the-wifi" class="nav-link">Various Commands Related to the Wifi</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#show-all-network-profiles" class="nav-link">Show All Network Profiles</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#various-wifi-reports-in-html" class="nav-link">Various Wifi Reports in HTML</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#bluetooth" class="nav-link">Bluetooth</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#troiubleshooting" class="nav-link">Troiubleshooting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#cannot-connect-to-the-device" class="nav-link">Cannot connect to the device</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#cannot-pair-with-the-device" class="nav-link">Cannot pair with the device</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#bluetooth-command-line-tools" class="nav-link">Bluetooth Command Line Tools</a>
+            <li class="nav-item" data-bs-level="2"><a href="#character-encoding" class="nav-link">Character Encoding</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#filesytem" class="nav-link">Filesytem</a>
+            <li class="nav-item" data-bs-level="1"><a href="#execution-of-programs-scripts-commands-and-similar" class="nav-link">Execution of Programs, Scripts, Commands and similar</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#standard-folder-structure" class="nav-link">Standard folder structure</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#user-home-folder" class="nav-link">User home folder</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#system-instalation-folders" class="nav-link">System instalation folders</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#user-instalation-folders" class="nav-link">User instalation folders</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#start-menu-folder" class="nav-link">Start Menu folder</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#read-only-files-and-folders" class="nav-link">Read Only Files and Folders</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#formatting-a-drivepartition-or-disk" class="nav-link">Formatting a drive/partition or disk</a>
+            <li class="nav-item" data-bs-level="2"><a href="#system-out-of-the-shell-execution" class="nav-link">System (Out of the shell) execution</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#sugarsync" class="nav-link">Sugarsync</a>
+            <li class="nav-item" data-bs-level="1"><a href="#keyboard-shortcuts" class="nav-link">Keyboard Shortcuts</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#solving-sync-problems" class="nav-link">Solving sync problems</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#useful-commands" class="nav-link">Useful Commands</a>
+            <li class="nav-item" data-bs-level="1"><a href="#wireless-network" class="nav-link">Wireless Network</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#get-motherboard-info" class="nav-link">Get Motherboard Info</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#copy-multiple-filesdirs" class="nav-link">Copy multiple files/dirs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#problem-cant-connect-to-this-network" class="nav-link">Problem: Can't connect to this network</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#user-info" class="nav-link">User info</a>
+            <li class="nav-item" data-bs-level="2"><a href="#connect-to-a-network-manually" class="nav-link">Connect to a Network Manually</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#installation" class="nav-link">Installation</a>
+            <li class="nav-item" data-bs-level="2"><a href="#various-commands-related-to-the-wifi" class="nav-link">Various Commands Related to the Wifi</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#post-installation-steps" class="nav-link">Post Installation Steps</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#import-disks" class="nav-link">Import disks</a>
+            <li class="nav-item" data-bs-level="3"><a href="#show-all-network-profiles" class="nav-link">Show All Network Profiles</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#installation-problems" class="nav-link">Installation Problems</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#we-couldnt-create-a-partition-or-locate-an-existing-one" class="nav-link">We couldn’t create a partition or locate an existing one</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#windows-installation-encountered-an-unexpected-error-0x80042444-0x4002f" class="nav-link">windows installation encountered an unexpected error 0x80042444 - 0x4002F</a>
+            <li class="nav-item" data-bs-level="3"><a href="#various-wifi-reports-in-html" class="nav-link">Various Wifi Reports in HTML</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -565,13 +487,107 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#configuration" class="nav-link">Configuration</a>
+            <li class="nav-item" data-bs-level="1"><a href="#bluetooth" class="nav-link">Bluetooth</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#changing-the-input-method" class="nav-link">Changing the input method</a>
+            <li class="nav-item" data-bs-level="2"><a href="#troiubleshooting" class="nav-link">Troiubleshooting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            <li class="nav-item" data-bs-level="3"><a href="#cannot-connect-to-the-device" class="nav-link">Cannot connect to the device</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#nothing-happens-after-clicking-on-the-input-method-in-the-taskbar-windows-10" class="nav-link">Nothing happens after clicking on the input method in the taskbar (windows 10)</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#cannot-pair-with-the-device" class="nav-link">Cannot pair with the device</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#bluetooth-command-line-tools" class="nav-link">Bluetooth Command Line Tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#filesytem" class="nav-link">Filesytem</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#standard-folder-structure" class="nav-link">Standard folder structure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#user-home-folder" class="nav-link">User home folder</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#system-instalation-folders" class="nav-link">System instalation folders</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#user-instalation-folders" class="nav-link">User instalation folders</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#start-menu-folder" class="nav-link">Start Menu folder</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#read-only-files-and-folders" class="nav-link">Read Only Files and Folders</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formatting-a-drivepartition-or-disk" class="nav-link">Formatting a drive/partition or disk</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sugarsync" class="nav-link">Sugarsync</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#solving-sync-problems" class="nav-link">Solving sync problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#useful-commands" class="nav-link">Useful Commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#get-motherboard-info" class="nav-link">Get Motherboard Info</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#copy-multiple-filesdirs" class="nav-link">Copy multiple files/dirs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#echoargs-print-arguments-as-passed-to-the-script" class="nav-link">echoargs: Print arguments as passed to the script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#user-info" class="nav-link">User info</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#post-installation-steps" class="nav-link">Post Installation Steps</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#import-disks" class="nav-link">Import disks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation-problems" class="nav-link">Installation Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#we-couldnt-create-a-partition-or-locate-an-existing-one" class="nav-link">We couldn’t create a partition or locate an existing one</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#windows-installation-encountered-an-unexpected-error-0x80042444-0x4002f" class="nav-link">windows installation encountered an unexpected error 0x80042444 - 0x4002F</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -579,31 +595,46 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#right-click-menu" class="nav-link">Right Click Menu</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#configuration" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#bring-the-old-right-click-menu-back-to-windows-11" class="nav-link">Bring the old right click menu back to Windows 11</a>
+            <li class="nav-item" data-bs-level="2"><a href="#changing-the-input-method" class="nav-link">Changing the input method</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#configure-the-items-in-the-right-click-menu" class="nav-link">Configure the items in the right click menu</a>
+            <li class="nav-item" data-bs-level="3"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#share-with-skype" class="nav-link">Share with Skype</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#powertoys-modules" class="nav-link">PowerToys modules</a>
+            <li class="nav-item" data-bs-level="4"><a href="#nothing-happens-after-clicking-on-the-input-method-in-the-taskbar-windows-10" class="nav-link">Nothing happens after clicking on the input method in the taskbar (windows 10)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#edit-with-notepad" class="nav-link">Edit with Notepad</a>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#right-click-menu" class="nav-link">Right Click Menu</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#bring-the-old-right-click-menu-back-to-windows-11" class="nav-link">Bring the old right click menu back to Windows 11</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#scan-with-microsoft-defender" class="nav-link">Scan with Microsoft Defender</a>
+            <li class="nav-item" data-bs-level="3"><a href="#configure-the-items-in-the-right-click-menu" class="nav-link">Configure the items in the right click menu</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#share-with-skype" class="nav-link">Share with Skype</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#translate-with-deepl" class="nav-link">Translate with Deepl</a>
+            <li class="nav-item" data-bs-level="4"><a href="#powertoys-modules" class="nav-link">PowerToys modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#edit-with-notepad" class="nav-link">Edit with Notepad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#scan-with-microsoft-defender" class="nav-link">Scan with Microsoft Defender</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#translate-with-deepl" class="nav-link">Translate with Deepl</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -614,137 +645,151 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#diskpart" class="nav-link">Diskpart</a>
+            <li class="nav-item" data-bs-level="1"><a href="#diskpart" class="nav-link">Diskpart</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#find-out-wheteher-a-disk-is-mbr-or-gpt" class="nav-link">Find out wheteher a disk is MBR or GPT</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#open-command-promp-from-the-windows-10-usb" class="nav-link">Open Command Promp from the Windows 10 USB</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#firewall" class="nav-link">Firewall</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#generate-firewall-logs" class="nav-link">Generate firewall logs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#find-out-wheteher-a-disk-is-mbr-or-gpt" class="nav-link">Find out wheteher a disk is MBR or GPT</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ssh" class="nav-link">SSH</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#kitty" class="nav-link">KiTTY</a>
+            <li class="nav-item" data-bs-level="1"><a href="#open-command-promp-from-the-windows-10-usb" class="nav-link">Open Command Promp from the Windows 10 USB</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#winscp" class="nav-link">WinSCP</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#firewall" class="nav-link">Firewall</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#adding-a-new-connection" class="nav-link">Adding a new connection</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#bookmarks" class="nav-link">Bookmarks</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#ssh-key-agent" class="nav-link">SSH key agent</a>
+            <li class="nav-item" data-bs-level="2"><a href="#generate-firewall-logs" class="nav-link">Generate firewall logs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#git" class="nav-link">Git</a>
+            <li class="nav-item" data-bs-level="1"><a href="#ssh" class="nav-link">SSH</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#git-on-windows-and-ssh" class="nav-link">Git on Windows and SSH</a>
+            <li class="nav-item" data-bs-level="2"><a href="#kitty" class="nav-link">KiTTY</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#winscp" class="nav-link">WinSCP</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#adding-a-new-connection" class="nav-link">Adding a new connection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#bookmarks" class="nav-link">Bookmarks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ssh-key-agent" class="nav-link">SSH key agent</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#vpn" class="nav-link">VPN</a>
+            <li class="nav-item" data-bs-level="1"><a href="#git" class="nav-link">Git</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#wsl" class="nav-link">WSL</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#translate-windows-path-to-linux-path" class="nav-link">Translate Windows Path to Linux Path</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#execute-commands-from-the-windows" class="nav-link">Execute commands from the Windows</a>
+            <li class="nav-item" data-bs-level="2"><a href="#git-on-windows-and-ssh" class="nav-link">Git on Windows and SSH</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#dual-boot" class="nav-link">Dual Boot</a>
+            <li class="nav-item" data-bs-level="1"><a href="#vpn" class="nav-link">VPN</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" class="nav-link">Make Windows Work after Linux Uninstall if the Bootloader is Grub</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#wsl" class="nav-link">WSL</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#translate-windows-path-to-linux-path" class="nav-link">Translate Windows Path to Linux Path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#execute-commands-from-the-windows" class="nav-link">Execute commands from the Windows</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#problems" class="nav-link">Problems</a>
+            <li class="nav-item" data-bs-level="1"><a href="#dual-boot" class="nav-link">Dual Boot</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#folder-sharing-problems" class="nav-link">Folder Sharing Problems</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#the-user-name-or-password-is-incorrect" class="nav-link">The user name or password is incorrect</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#folder-right-and-ownership-cannot-be-read" class="nav-link">Folder right and ownership cannot be read</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#computer-does-not-see-itself-in-network-section-in-file-explorer" class="nav-link">Computer does not see itself in Network section in File Explorer</a>
+            <li class="nav-item" data-bs-level="2"><a href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" class="nav-link">Make Windows Work after Linux Uninstall if the Bootloader is Grub</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#pc-wakes-up-or-cannot-enter-sleep" class="nav-link">PC wakes up or cannot enter sleep</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#1-find-the-source" class="nav-link">1 Find the source</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#2-solve-the-problem" class="nav-link">2 Solve the problem</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#device-waken-up-by-network-adapter" class="nav-link">Device waken up by network adapter</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#shims" class="nav-link">Shims</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#the-real-sleep-mode-is-not-available-on-the-system" class="nav-link">The real sleep mode is not available on the system</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#notepad" class="nav-link">Notepad++</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#configuration_1" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#camera-problem" class="nav-link">Camera problem</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#problems" class="nav-link">Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#folder-sharing-problems" class="nav-link">Folder Sharing Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#the-user-name-or-password-is-incorrect" class="nav-link">The user name or password is incorrect</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#phone-app-cannot-see-the-connected-cell-phone" class="nav-link">Phone app cannot see the connected cell phone</a>
+            <li class="nav-item" data-bs-level="3"><a href="#folder-right-and-ownership-cannot-be-read" class="nav-link">Folder right and ownership cannot be read</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#vmmem-process-uses-a-lot-of-cpu" class="nav-link">vmmem process uses a lot of CPU</a>
+            <li class="nav-item" data-bs-level="3"><a href="#computer-does-not-see-itself-in-network-section-in-file-explorer" class="nav-link">Computer does not see itself in Network section in File Explorer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pc-wakes-up-or-cannot-enter-sleep" class="nav-link">PC wakes up or cannot enter sleep</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#1-find-the-source" class="nav-link">1 Find the source</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#2-solve-the-problem" class="nav-link">2 Solve the problem</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#device-waken-up-by-network-adapter" class="nav-link">Device waken up by network adapter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#the-real-sleep-mode-is-not-available-on-the-system" class="nav-link">The real sleep mode is not available on the system</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#camera-problem" class="nav-link">Camera problem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#phone-app-cannot-see-the-connected-cell-phone" class="nav-link">Phone app cannot see the connected cell phone</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#vmmem-process-uses-a-lot-of-cpu" class="nav-link">vmmem process uses a lot of CPU</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -755,14 +800,39 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="terminals-and-shells">Terminals and Shells<a class="headerlink" href="#terminals-and-shells" title="Permanent link">&para;</a></h1>
-<p>There are two main <a href="https://en.wikipedia.org/wiki/Terminal_emulator">terminal applications</a> in Windows: </p>
+<h1 id="shells-and-terminals">Shells and Terminals<a class="headerlink" href="#shells-and-terminals" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands">Official Shell Overview</a></p>
+<p>Using shell to manage the operating system is an essential task and therefore, we start with the <a href="https://en.wikipedia.org/wiki/Terminal_emulator">terminals</a> and <a href="https://en.wikipedia.org/wiki/Shell_(computing)">shells</a>. In the history of Windows and DOS, there were many shell or built-in script interpreters, and also numerous terminal applications. Here, we only cover the shells and terminals relevant to the most recent versions of Windows.</p>
+<p>There are two <strong>shells</strong> in Windows:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Windows_Console"><em>Windows Console Host</em></a>: an old terminal application present in Windows for years, and</li>
-<li><a href="https://en.wikipedia.org/wiki/Windows_Terminal"><em>Windows Terminal</em></a>: a new terminal application that is still in development.</li>
+<li><a href="https://en.wikipedia.org/wiki/Cmd.exe">command prompt (Command shell)</a> (<code>cmd.exe</code>)<ul>
+<li>very simple and limited functionality</li>
+<li>successor of <a href="https://en.wikipedia.org/wiki/COMMAND.COM"><code>COMMAND.COM</code></a></li>
+<li>For Command shell solutions/guides, check the <a href="../Comand%20shell/">Command shell manual</a>.</li>
 </ul>
-<p>To get the best experience similar to Linux, it is recommended to use the Windows Terminal. It is available in the <a href="https://aka.ms/terminal">Microsoft Store</a>.</p>
-<p>The simplest <a href="https://en.wikipedia.org/wiki/Shell_(computing)">shell</a> is the <a href="https://en.wikipedia.org/wiki/Cmd.exe">command prompt</a> (<code>cmd.exe</code>). However, due to its limited functionality, it is better to use <a href="https://en.wikipedia.org/wiki/PowerShell">PowerShell</a>. For PowerShell solutions/guides, check the <a href="../Powershell%20Manual/">PoweShell manual</a>.</p>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/PowerShell">PowerShell</a><ul>
+<li>Modern shell with many features</li>
+<li>Supports all the Windows commands (commands from the Command shell)</li>
+<li>For PowerShell solutions/guides, check the <a href="../Powershell%20Manual/">PoweShell manual</a>.</li>
+</ul>
+</li>
+</ul>
+<p>There are two <strong>terminal applications</strong> in Windows: </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Windows_Console">Windows Console Host (<code>conhost.exe</code>)</a>: an old terminal application present in Windows for years<ul>
+<li>startup program is the command prompt</li>
+<li>default terminal application in Windows 10 and older</li>
+<li>no longer relevant in Windows 11</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Windows_Terminal">Windows Terminal (<code>wt.exe</code>)</a>: a new terminal application that is still in development.<ul>
+<li>startup program can be configured (PowerShell by default)</li>
+<li>default terminal application in Windows 11, available in the <a href="https://aka.ms/terminal">Microsoft Store</a> in older versions of Windows</li>
+<li>modern terminal, almost Linux-like experience</li>
+</ul>
+</li>
+</ul>
 <h2 id="run-a-non-default-terminal-application">Run a non-default terminal application<a class="headerlink" href="#run-a-non-default-terminal-application" title="Permanent link">&para;</a></h2>
 <p>It is not an easy task to manually run a shell in a non-default terminal application. To do it, we need to execute the terminal application executable:</p>
 <ul>
@@ -794,6 +864,54 @@
 <li>Click on the <code>Change system locale...</code> button</li>
 <li>Check the <code>Beta: Use Unicode UTF-8 for worldwide language support</code> checkbox</li>
 </ol>
+<h1 id="execution-of-programs-scripts-commands-and-similar">Execution of Programs, Scripts, Commands and similar<a class="headerlink" href="#execution-of-programs-scripts-commands-and-similar" title="Permanent link">&para;</a></h1>
+<p>The execution of programs, scripts, commands and other <a href="https://en.wikipedia.org/wiki/Executable">executable files</a> is a common, yet mysterious task in almost every operating system. To prevent confusion, it is absolutely essential to know what, and under what conditions is executed. The most important lesson is that the two Windows shells, Command Prompt and PowerShell, has a different approach to execution, and also, the executables can be run outside a shell with, yet different, mechanisms.</p>
+<p>The table below (<a href="https://docs.google.com/spreadsheets/d/1VFe5h2yHPPUxluh3l-Vm2sCkEIDKXt-RJ3YuprnJgNM/edit?usp=sharing">source</a>) presents the basics of the Windows <strong>execution logic when we execute the program by its name</strong>:</p>
+<p><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link type="text/css" rel="stylesheet" href="resources/sheet.css" ></p>
+<style type="text/css">.ritz .waffle a { color: inherit; }.ritz .waffle .s0{background-color:#d9d9d9;text-align:left;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s4{background-color:#f4cccc;text-align:left;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s1{background-color:#d9d9d9;text-align:center;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s2{background-color:#ffffff;text-align:left;font-weight:bold;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}.ritz .waffle .s3{background-color:#b7e1cd;text-align:left;color:#000000;font-family:Arial;font-size:10pt;vertical-align:bottom;white-space:nowrap;direction:ltr;padding:2px 3px 2px 3px;}</style>
+<div class="ritz grid-container" dir="ltr"><table class="waffle" cellspacing="0" cellpadding="0"><tbody><tr><td class="s0" dir="ltr" rowspan="3">Executable type</td><td class="s1" dir="ltr" colspan="6">Local Directory</td><td class="s1" dir="ltr" colspan="6">on PATH</td></tr><tr><td class="s1" dir="ltr" colspan="3">with extension</td><td class="s1" dir="ltr" colspan="3">without extension</td><td class="s1" dir="ltr" colspan="3">with extension</td><td class="s1" dir="ltr" colspan="3">without extension</td></tr><tr><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh²</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh²</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh</td><td class="s0" dir="ltr">sys¹</td><td class="s0" dir="ltr">cmd</td><td class="s0" dir="ltr">pwsh</td></tr><tr><td class="s2" dir="ltr">application (*.exe)</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td></tr><tr><td class="s2" dir="ltr">batch file (*.bat, *.cmd)</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s3" dir="ltr">yes</td></tr><tr><td class="s2" dir="ltr">PowerShell script (*.ps1)³</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td><td class="s4" dir="ltr">no</td><td class="s4" dir="ltr">no</td><td class="s3" dir="ltr">yes</td></tr></tbody></table></div>
+
+<p>Notes:</p>
+<ol>
+<li>The system (<code>CreateProcessW</code> function) only considers native executables (<code>.exe</code> files).</li>
+<li>PowerShell never search local directory when executing program by name, due to security reasons.<ul>
+<li>This can be changed by adding <code>.</code> (current directory) to the <code>PATH</code> environment variable (not recommended).</li>
+</ul>
+</li>
+<li>PowerShell scripts are not considered as executables by Command Shell, again, due to security reasons.<ul>
+<li>This can be changed by modifying the <code>PATHEXT</code> environment variable that lists the executable file extensions considered by <code>cmd.exe</code> and system (not recommended).</li>
+</ul>
+</li>
+</ol>
+<p>The table above cover only what can and what cannot be executed by the name. However, when duplicate names are present, the <strong>resolution order</strong> becomes important. Also, there may be various ways how to execute the same executable in the same shell. For details, check the respective sections of the manual for each execution environment:</p>
+<ul>
+<li><a href="./#system-out-of-the-shell-execution">System (Out of the shell) execution</a></li>
+<li><a href="../Comand%20shell/#executable-execution">Command shell execution</a></li>
+<li><a href="../Powershell%20Manual/#executable-execution">PowerShell shell execution</a></li>
+</ul>
+<p>If we <strong>execute using the path</strong>, the execution is consistent among all three execution environments (cmd, pwsh and system).</p>
+<p>After the executable is found by the name or path, it is executed in an environment determinded by its file type association, which is by default:</p>
+<ul>
+<li>program: execute the program itself (there is some bootstrapping logic, but it is not important for us)</li>
+<li>batch script: <code>cmd.exe</code></li>
+<li>PowerShell script: <code>notepad.exe</code>. It is very useful to reconfiure this association to PowerShell.</li>
+</ul>
+<h2 id="system-out-of-the-shell-execution">System (Out of the shell) execution<a class="headerlink" href="#system-out-of-the-shell-execution" title="Permanent link">&para;</a></h2>
+<p>The system execution is realized by calling the <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw"><code>CreateProcessW</code></a> function.</p>
+<p>The executable path resolution is as follows:</p>
+<p>If the executable is a path, the path is evaluated. Otherwise, the name is searched in the locations below (in order):</p>
+<ol>
+<li>The directory of the calling process</li>
+<li>Current working directory of the calling process</li>
+<li>System directories <ol>
+<li>32-bit system directory</li>
+<li>16-bit system directory</li>
+<li>Windows directory</li>
+</ol>
+</li>
+<li>Directories listed in the <code>PATH</code> environment variable, in the order they are listed</li>
+</ol>
+<p>Unlike Command Shell and PowerShell, the system execution does not consider script files, only native executables. Only the <code>.exe</code> extension is considered if the file name is specified without the extension.</p>
 <h1 id="keyboard-shortcuts">Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h1>
 <ul>
 <li><code>Alt</code> + <code>Shift</code>: change input language</li>
@@ -902,7 +1020,7 @@
 </ol>
 <h1 id="useful-commands">Useful Commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h1>
 <h2 id="get-motherboard-info">Get Motherboard Info<a class="headerlink" href="#get-motherboard-info" title="Permanent link">&para;</a></h2>
-<pre><code>wmic baseboard get product,Manufacturer,version,serialnumber
+<pre><code class="language-PowerShell">wmic baseboard get product,Manufacturer,version,serialnumber
 </code></pre>
 <h2 id="copy-multiple-filesdirs">Copy multiple files/dirs<a class="headerlink" href="#copy-multiple-filesdirs" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy"><code>robocopy</code></a> is the best command for that. Usefull params:</p>
@@ -915,6 +1033,10 @@
 <li><code>/r:&lt;n&gt;</code>: Specifies the number of retries on failed copies. The default value of <em>n</em> is 1,000,000 (one million retries).</li>
 <li><code>/w:&lt;n&gt;</code>: Specifies the wait time between retries, in seconds. The default value of <em>n</em> is 30 (wait time 30 seconds).</li>
 </ul>
+<h2 id="echoargs-print-arguments-as-passed-to-the-script"><code>echoargs</code>: Print arguments as passed to the script<a class="headerlink" href="#echoargs-print-arguments-as-passed-to-the-script" title="Permanent link">&para;</a></h2>
+<p>Sometimes, it is hard to see what are the exact arguments passed to an executable. To debug it quickly, we can use the <code>echoargs.exe</code> tool present in Portable Programs or at <a href="https://ss64.com/ps/EchoArgs.exe">ss64</a>. Usage:</p>
+<pre><code class="language-PowerShell">echoargs &lt;command&gt; &lt;arguments&gt;
+</code></pre>
 <h2 id="user-info">User info<a class="headerlink" href="#user-info" title="Permanent link">&para;</a></h2>
 <p>Information about users can be obtained with the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1"><code>Get-LocalUser</code></a> command. By default, the command lists all users. Some useful params:</p>
 <ul>
@@ -1079,6 +1201,23 @@ REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
 </ul>
 </li>
 </ol>
+<h1 id="shims">Shims<a class="headerlink" href="#shims" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Shim_(computing)">Shims</a> are small programs that are used to replace the original program, typically to run it with some additional parameters. On Windows, the shims can be easilly integrated into the system by adding the folder with the shims to the beginning of the <code>PATH</code> environment variable.</p>
+<p>As a shim, we can use:</p>
+<ul>
+<li>any executable file (<code>*.exe</code>)</li>
+<li>a <a href="https://en.wikipedia.org/wiki/Batch_file">batch file</a> (<code>*.bat</code>, <code>*.cmd</code>)</li>
+<li>a PowerShell script (<code>*.ps1</code>)<ul>
+<li>note that the PowerShell script shims works only for PowerShell. To make it work outside PowerShell, we need to accommpany it with a batch file that runs the PowerShell script:
+<code>batch
+@echo off
+powershell -ExecutionPolicy Bypass -File "%~dp0\script.ps1" %*</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="notepad">Notepad++<a class="headerlink" href="#notepad" title="Permanent link">&para;</a></h1>
+<h2 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h2>
+<p>Usually, it is a good idea to configure autosave. This functionality is available in a plugin called Autosave.</p>
 <h1 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h1>
 <h2 id="folder-sharing-problems">Folder Sharing Problems<a class="headerlink" href="#folder-sharing-problems" title="Permanent link">&para;</a></h2>
 <p>Note that updated <strong>Windows 10 disabled anonymous sharing</strong>, so password protected sharing has to be turned on. </p>
@@ -1159,19 +1298,20 @@ Solution: Go to the app setting and select the correct camera</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1191,7 +1331,7 @@ Solution: Go to the app setting and select the correct camera</p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Common - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -203,7 +208,7 @@
   </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Common</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Common</a>
 </li>
                                     
 <li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,107 +412,131 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#keymap" class="nav-link">Keymap</a>
+            <li class="nav-item" data-bs-level="1"><a href="#keymap" class="nav-link">Keymap</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#options" class="nav-link">Options</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#multiple-values-in-one-option-or-operand" class="nav-link">Multiple values in one option or operand</a>
+            <li class="nav-item" data-bs-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#options" class="nav-link">Options</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#tests" class="nav-link">Tests</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#jetbrains-products" class="nav-link">JetBrains Products</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#compact-tabs" class="nav-link">Compact tabs</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#advanced-configuration-registry" class="nav-link">Advanced Configuration - Registry</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#update-is-paused-and-does-not-resume-even-after-closing-the-ide" class="nav-link">Update is paused and does not resume even after closing the IDE</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#output-console-inserts-new-line-when-r-is-used" class="nav-link">Output console inserts new line when \r is used</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#visual-studio-code" class="nav-link">Visual Studio Code</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#set-a-visual-guidline-at-120-characters" class="nav-link">Set a visual guidline at 120 characters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#formatting" class="nav-link">Formatting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#forward-and-backward-navigation" class="nav-link">Forward and backward navigation</a>
+            <li class="nav-item" data-bs-level="2"><a href="#multiple-values-in-one-option-or-operand" class="nav-link">Multiple values in one option or operand</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+            <li class="nav-item" data-bs-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#licenses" class="nav-link">Licenses</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tests" class="nav-link">Tests</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#testing-private-methods" class="nav-link">Testing private methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#jetbrains-products" class="nav-link">JetBrains Products</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#compact-tabs" class="nav-link">Compact tabs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#layouts" class="nav-link">Layouts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#advanced-configuration-registry" class="nav-link">Advanced Configuration - Registry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#update-is-paused-and-does-not-resume-even-after-closing-the-ide" class="nav-link">Update is paused and does not resume even after closing the IDE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#output-console-inserts-new-line-when-r-is-used" class="nav-link">Output console inserts new line when \r is used</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#visual-studio-code" class="nav-link">Visual Studio Code</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#configuration_1" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#basic-configuration" class="nav-link">Basic Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#forward-and-backward-navigation" class="nav-link">Forward and backward navigation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#set-a-visual-guidline-at-120-characters" class="nav-link">Set a visual guidline at 120 characters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#language-specific-settings" class="nav-link">Language specific settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#code-style" class="nav-link">Code Style</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#code-formatting" class="nav-link">Code Formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tasks" class="nav-link">Tasks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#licenses" class="nav-link">Licenses</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -624,6 +666,13 @@
 <ul>
 <li><strong>Settings</strong> -&gt; <strong>Appearance &amp; Behavior</strong> -&gt; <strong>New UI</strong> and select <code>Compact mode</code></li>
 </ul>
+<h3 id="layouts">Layouts<a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h3>
+<p>Layout is not synced between products and computers by default. To store and sync the layout:</p>
+<ol>
+<li>Arrange the IDE as you want</li>
+<li><code>Window</code> -&gt; <code>Layouts</code> -&gt; <code>Save current layout as new...</code> </li>
+<li>On other computers, <code>Window</code> -&gt; <code>Layouts</code> -&gt; <code>&lt;Layout Name&gt;</code> -&gt; <code>Restore</code></li>
+</ol>
 <h3 id="advanced-configuration-registry">Advanced Configuration - Registry<a class="headerlink" href="#advanced-configuration-registry" title="Permanent link">&para;</a></h3>
 <p>Sometimes, we need to edit advenced settings like with id <code>cidr.debugger.gdb.usePythonToLoadData</code>. This registry can be accessed by <code>Help</code> -&gt; <code>Find Action...</code> -&gt; type <code>Registry</code> -&gt; find the desired setting.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
@@ -632,10 +681,26 @@
 <h3 id="output-console-inserts-new-line-when-r-is-used">Output console inserts new line when \r is used<a class="headerlink" href="#output-console-inserts-new-line-when-r-is-used" title="Permanent link">&para;</a></h3>
 <p>This is unfortunately a default behavior of the IDE output console. To mitigate this, we have to emulate the console. To do this, open the run configuration and check the <code>Emulate terminal in output console</code> option.</p>
 <h1 id="visual-studio-code">Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permanent link">&para;</a></h1>
-<h2 id="set-a-visual-guidline-at-120-characters">Set a visual guidline at 120 characters<a class="headerlink" href="#set-a-visual-guidline-at-120-characters" title="Permanent link">&para;</a></h2>
+<h2 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h2>
+<p>In VS Code, the configuration is stored in the <code>settings.json</code>. </p>
+<p>There is a system file, and also a workspace file, with a higher priority.</p>
+<p>Typically, the settings are configured using UI, which can be accessed by clicking on the gear icon in the bottom left corner of the window and selecting <code>Settings</code>. </p>
+<p>Some settings can only be configured by editing the <code>settings.json</code> file. If it is the case, there is typically a button in the UI that opens the file in the editor.</p>
+<p>There is a lot of options, and the UI is very basic. Therefore, it is usually best to use the search box to find the setting you are looking for.</p>
+<h3 id="basic-configuration">Basic Configuration<a class="headerlink" href="#basic-configuration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enable Multi-row tabs: <code>workbench.editor.wrapTabs</code></li>
+</ul>
+<h4 id="forward-and-backward-navigation">Forward and backward navigation<a class="headerlink" href="#forward-and-backward-navigation" title="Permanent link">&para;</a></h4>
+<p>To display forward and backward navigation:</p>
+<ol>
+<li>Right click on the top toolbar</li>
+<li>Select <code>Command Center</code></li>
+</ol>
+<h4 id="set-a-visual-guidline-at-120-characters">Set a visual guidline at 120 characters<a class="headerlink" href="#set-a-visual-guidline-at-120-characters" title="Permanent link">&para;</a></h4>
 <p>To set a visual guidline at 120 characters, we can use the <code>editor.rulers</code> setting:</p>
 <ol>
-<li>open the settings and search for <code>rulers</code>. </li>
+<li>open the settings and search for <code>rulers</code>.</li>
 <li>click on <code>Edit in settings.json</code></li>
 <li>add the following:
     <code>json
@@ -643,14 +708,46 @@
         120
     ]</code></li>
 </ol>
-<h2 id="formatting">Formatting<a class="headerlink" href="#formatting" title="Permanent link">&para;</a></h2>
+<h3 id="language-specific-settings">Language specific settings<a class="headerlink" href="#language-specific-settings" title="Permanent link">&para;</a></h3>
+<p>Language specific settings can be configured in the <code>settings.json</code> file, there is no GUI for it. A lot of general parameters can be set specifically to some language by adding them to the language section (object) of the <code>settings.json</code> file. Example:</p>
+<pre><code class="language-json">&quot;editor.formatOnSave&quot;: false,
+&quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot;,
+&quot;[python]&quot;: {
+    &quot;editor.formatOnSave&quot;: true
+}
+</code></pre>
+<p>Here we configure the editor to format the code on save only for Python.</p>
+<h3 id="code-style">Code Style<a class="headerlink" href="#code-style" title="Permanent link">&para;</a></h3>
+<p>Code stylke can be only configured in the <code>settings.json</code> file, there is no GUI for it. Typically, we apply the settings to only one language by adding them to the language section of the <code>settings.json</code> file. The typical settings are:</p>
+<ul>
+<li><code>editor.insertSpaces</code>: if true, the editor will insert spaces instead of tabs</li>
+</ul>
+<h2 id="code-formatting">Code Formatting<a class="headerlink" href="#code-formatting" title="Permanent link">&para;</a></h2>
 <p>Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that <strong>if the formatting is not defined for a language, selection formatting do nothing</strong>. To check the availability, try to format the whole document, then, an error box should appear.</p>
-<h2 id="forward-and-backward-navigation">Forward and backward navigation<a class="headerlink" href="#forward-and-backward-navigation" title="Permanent link">&para;</a></h2>
-<p>To display forward and backward navigation:</p>
-<ol>
-<li>Right click on the top toolbar</li>
-<li>Select <code>Command Center</code></li>
-</ol>
+<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
+<p><a href="https://code.visualstudio.com/docs/debugtest/tasks">Documentation</a></p>
+<p>When coding, running various command line tools (e.g., <code>pytest</code>, <code>npm</code>, <code>cargo</code>, etc.) is often required. To avoid repeating typing the same commands over and over again in console, we can store them as tasks.</p>
+<p>Tasks for a project are stored in the <code>.vscode/tasks.json</code> file. </p>
+<p>For some languages, tasks are automatically suggested by the IDE. If the suggestions are accepted, the corresponding tasks are automatically added to the <code>.vscode/tasks.json</code> file.</p>
+<p>We can also <a href="https://code.visualstudio.com/docs/debugtest/tasks#_custom-tasks">create tasks manually</a> by adding task objects to the tasks array in the <code>.vscode/tasks.json</code> file.</p>
+<p>The important properties are:</p>
+<ul>
+<li><code>label</code>: the name of the task displayed in the IDE</li>
+<li><code>type</code>: the type of the task, it can be:<ul>
+<li><code>shell</code>: run a shell command</li>
+<li><code>process</code>: run a process</li>
+</ul>
+</li>
+<li><code>options</code>: three properties can be set here:<ul>
+<li><code>cwd</code>: the working directory for the task</li>
+<li><code>env</code>: the environment variables for the task</li>
+<li><code>shell</code>: the shell to use for the task</li>
+</ul>
+</li>
+<li><code>command</code>: the command or process to run</li>
+<li><code>args</code>: the arguments of the command or process (array of strings). Extra quoting is not needed (unlike in Visual Studio).</li>
+<li><code>problemMatcher</code>: the <a href="https://code.visualstudio.com/docs/debugtest/tasks#_defining-a-problem-matcher">problem matcher</a> to use for the task (array of strings). If not set, the IDE may ask the user to set it when the task is run.</li>
+</ul>
 <h1 id="releasing-the-software">Releasing the software<a class="headerlink" href="#releasing-the-software" title="Permanent link">&para;</a></h1>
 <p>When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:</p>
 <ul>
@@ -665,7 +762,7 @@
 <li>add the license to the top of each source file.</li>
 </ul>
 <p>The first part is easy, just copy the license text to an empty file named <code>LICENSE</code> at the root of the project. To choose a license for your project, you can use the <a href="https://choosealicense.com/">Choose a License</a> website.</p>
-<p>The second part can be automated using the <a href="">licenseheaders fork</a> of the original <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> project. A typical usage is:</p>
+<p>The second part can be automated using the <a href="https://github.com/F-I-D-O/licenseheaders">licenseheaders fork</a> of the original <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> project. A typical usage is:</p>
 <pre><code class="language-bash">licenseheaders -t mit -o &quot;Czech Technical University in Prague&quot; -cy -n ShoDi -u &quot;https://github.com/aicenter/ShoDi&quot; -d C:\Workspaces\AIC\shortest-distances\
 </code></pre>
 <p>where:</p>
@@ -684,19 +781,20 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -716,7 +814,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>vcpkg Manual - Manuals</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../../extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B%20Manual/" class="dropdown-item">C++ Manual</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+            
+<li>
+    <a href="../Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">vcpkg Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Java/Debugging%20Java/" class="dropdown-item">Debugging Java</a>
+</li>
+            
+<li>
+    <a href="../../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
+</li>
+            
+<li>
+    <a href="../../Java/Java%20Workflow/" class="dropdown-item">Java Workflow</a>
+</li>
+            
+<li>
+    <a href="../../Java/Maven/" class="dropdown-item">Maven</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
+</li>
+            
+<li>
+    <a href="../../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../../Web/css/" class="dropdown-item">css</a>
+</li>
+            
+<li>
+    <a href="../../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
+    <a href="../../Web/htaccess/" class="dropdown-item">htaccess</a>
+</li>
+            
+<li>
+    <a href="../../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../../Web/Jekyll/" class="dropdown-item">Jekyll</a>
+</li>
+            
+<li>
+    <a href="../../Web/mkdocs/" class="dropdown-item">mkdocs</a>
+</li>
+            
+<li>
+    <a href="../../Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
+    </ul>
+  </li>
+                                    
+<li>
+    <a href="../../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="../../Git/" class="dropdown-item">Git</a>
+</li>
+                                    
+<li>
+    <a href="../../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
+    <a href="../../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
+    <a href="../../Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
+    <a href="../../Perl/" class="dropdown-item">Perl</a>
+</li>
+                                    
+<li>
+    <a href="../../Regex/" class="dropdown-item">Regex</a>
+</li>
+                                    
+<li>
+    <a href="../../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../LaTeX/LaTeX%20workflow/" class="dropdown-item">LaTeX workflow</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
+</li>
+                                    
+<li>
+    <a href="../../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">index</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Markdown/" class="nav-link">Markdown</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Network/" class="nav-link">Network</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../XML/" class="nav-link">XML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Zotero/" class="nav-link">Zotero</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Google%20Test/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../Cloud%20computing/Lmod/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#basic-commands" class="nav-link">Basic commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#install-a-package" class="nav-link">Install a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#remove-a-package" class="nav-link">Remove a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#search-for-a-package" class="nav-link">Search for a package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#list-installed-packages" class="nav-link">List installed packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#directory-structure" class="nav-link">Directory Structure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#modules" class="nav-link">Modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#triplets" class="nav-link">Triplets</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#changing-the-default-triplet" class="nav-link">Changing the default triplet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-a-custom-triplet" class="nav-link">Using a custom triplet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#update" class="nav-link">Update</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#update-package" class="nav-link">Update package</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#upgrade-packages-matching-a-pattern" class="nav-link">Upgrade packages matching a pattern</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#package-features" class="nav-link">Package Features</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#package-versions" class="nav-link">Package Versions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#making-vcpkg-available-for-all-cmake-projects" class="nav-link">Making vcpkg available for all CMake projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#integrate-your-library-to-vcpkg" class="nav-link">Integrate your library to vcpkg</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#create-the-port" class="nav-link">Create the Port</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#variables-and-functions-available-in-the-portfilecmake" class="nav-link">Variables and Functions available in the portfile.cmake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#reinistallation-after-changes" class="nav-link">Reinistallation after changes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#executable-installation" class="nav-link">Executable installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#executing-installed-tools-from-cmake" class="nav-link">Executing installed tools from cmake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#publishing" class="nav-link">Publishing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager.</p>
+<p>Vcpkg can work in two modes:</p>
+<ul>
+<li><strong>Classic mode</strong>: vcpkg is installed centrally. This mode is useful for development and testing.</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode"><strong>Manifest mode</strong></a>: vcpkg is installed in the project directory. This mode is useful for deployment. </li>
+</ul>
+<p>To install vcpkg:</p>
+<ol>
+<li>clone the repo to the desired location (project directory for manifest mode, any directory for classic mode)</li>
+<li>run the bootstrap script (<code>bootstrap-vcpkg.bat</code> on Windows, <code>bootstrap-vcpkg.sh</code> on Linux)</li>
+<li>for classic mode, add the vcpkg directory to <code>PATH</code>, so the program can be run from anywhere<ul>
+<li>Beware that to run it with sudo on linux, <a href="https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing">it is not that easy</a>.</li>
+</ul>
+</li>
+</ol>
+<h1 id="basic-commands">Basic commands<a class="headerlink" href="#basic-commands" title="Permanent link">&para;</a></h1>
+<h2 id="install-a-package">Install a package<a class="headerlink" href="#install-a-package" title="Permanent link">&para;</a></h2>
+<p>To install a package, use the <code>install &lt;package name&gt;</code> command. Important options are:</p>
+<ul>
+<li><code>--triplet &lt;triplet&gt;</code>: the target triplet. </li>
+</ul>
+<h2 id="remove-a-package">Remove a package<a class="headerlink" href="#remove-a-package" title="Permanent link">&para;</a></h2>
+<p>To remove a package, use the <code>remove &lt;package name&gt;</code> command. Important options are:</p>
+<ul>
+<li><code>--triplet &lt;triplet&gt;</code>: the target triplet.</li>
+</ul>
+<h2 id="search-for-a-package">Search for a package<a class="headerlink" href="#search-for-a-package" title="Permanent link">&para;</a></h2>
+<p>To search for a package, use the <code>search &lt;package name&gt;</code> command. </p>
+<h2 id="list-installed-packages">List installed packages<a class="headerlink" href="#list-installed-packages" title="Permanent link">&para;</a></h2>
+<p>To list the installed packages, use the <code>list</code> command. The first positional argument is the triplet filter, e.g., <code>list x64-windows</code> lists only the packages for the <code>x64-windows</code> triplet.</p>
+<h1 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">documentation</a></p>
+<p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
+<p>The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.</p>
+<h1 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h1>
+<p>vcpkg has the following directory structure:</p>
+<ul>
+<li><code>buildtrees</code>: contains the build directories for each installed package. Each build directory contains the build logs.</li>
+<li><code>installed</code>: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:<ul>
+<li><code>bin</code>: contains the shared libraries</li>
+<li><code>debug</code>: contains the debug version of everything in a similar structure as the triplet directory</li>
+<li><code>examples</code>: contains example binaries</li>
+<li><code>include</code>: contains the header files</li>
+<li><code>lib</code>: contains the static libraries</li>
+<li><code>share</code>: contains the cmake scripts and other files needed for the integration of the package into a cmake project</li>
+<li><code>tools</code>: contains the executables installed with vcpkg packages</li>
+</ul>
+</li>
+<li><code>ports</code>: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</li>
+<li><code>scripts</code>: various scripts<ul>
+<li><code>toolchains</code>: cmake files that configure the toolchains. There is a special file for each platform (windows, linux, etc.)</li>
+</ul>
+</li>
+<li><code>triplets</code>: contains the triplet files.</li>
+</ul>
+<h2 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h2>
+<p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
+<h1 id="triplets">Triplets<a class="headerlink" href="#triplets" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/triplets">documentation</a></p>
+<p>Vcpkg supports installing packages built for multiple platforms and compilers in the same vcpkg installation. To do this, vcpkg uses the concept of <em>triplets</em>. A triplet is definition of target environment. Usually, the triplet defines three things:</p>
+<ul>
+<li>the target platform (e.g., x64, arm)</li>
+<li>the target operating system (e.g., windows, linux)</li>
+<li>the target compiler (e.g., msvc, gcc)</li>
+</ul>
+<p>The triplet definition is stored in the triplet file in the <code>&lt;vcpkg root&gt;/triplets</code> directory.</p>
+<h2 id="changing-the-default-triplet">Changing the default triplet<a class="headerlink" href="#changing-the-default-triplet" title="Permanent link">&para;</a></h2>
+<p>To change the default triplet, add a new system variable <code>VCPKG_DEFAULT_TRIPLET</code>, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:</p>
+<ul>
+<li><code>x64-linux</code> for Linux Compilers</li>
+<li><code>x64-windows</code> for MSVC</li>
+<li><code>x64-MinGW</code> for MinGW</li>
+</ul>
+<h2 id="using-a-custom-triplet">Using a custom triplet<a class="headerlink" href="#using-a-custom-triplet" title="Permanent link">&para;</a></h2>
+<p>If you need to test a specific system environment with vcpkg, you can use a custom triplet.</p>
+<p>Typically, you can <strong>create</strong> such a triplet by copying an existing one and modifying it. Typically, you just modify the <a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets">triplet variables</a> in the file.</p>
+<p>To <strong>use</strong> the custom triplet add two arguments to the vcpkg command:</p>
+<ul>
+<li><code>--triplet &lt;triplet name&gt;</code>: the name of the custom triplet</li>
+<li><code>--overlay-triplets=&lt;path to the directory containing the custom triplet&gt;</code>: the path to the directory containing the custom triplet file</li>
+</ul>
+<p>To <strong>change the compiler</strong>, it is a little bit more complicated, as there is no triplet variable for the compiler. Instead, we need to provide a custom toolchain:</p>
+<ol>
+<li>copy an existing toolchain file from the <code>&lt;vcpkg root&gt;/scripts/toolchains</code>.</li>
+<li>modify the toolchain file to use the desired compiler, e.g., by setting the <code>CMAKE_CXX_COMPILER</code> variable.</li>
+<li>in the custom triplet file, set the <code>VCPKG_CHAINLOAD_TOOLCHAIN_FILE</code> variable to point to the custom toolchain file.</li>
+</ol>
+<h1 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h1>
+<ol>
+<li><code>git pull</code></li>
+<li>bootstrap vcpkg again<ol>
+<li>Windows: <code>bootstrap-vcpkg.bat</code>   </li>
+<li>Linux: <code>bootstrap-vcpkg.sh</code></li>
+</ol>
+</li>
+</ol>
+<h1 id="update-package">Update package<a class="headerlink" href="#update-package" title="Permanent link">&para;</a></h1>
+<ol>
+<li><a href="#update">Update vcpkg</a></li>
+<li><code>vcpkg update</code> to get a list of available updates</li>
+<li><code>vcpkg upgrade --no-dry-run</code> to actually perform the upgrade</li>
+</ol>
+<p>All packages are upgraded by default. To upgrade just one package, supply the name of the package (e.g., zlib:x64-windows) as an argument to <code>upgrade</code> command.</p>
+<h2 id="upgrade-packages-matching-a-pattern">Upgrade packages matching a pattern<a class="headerlink" href="#upgrade-packages-matching-a-pattern" title="Permanent link">&para;</a></h2>
+<p>For libraries that are divided into many interdependent packages (like boost), it is useful to upgrade all packages that match a pattern at once. Unfortunately, the <code>upgrade</code> command does not support the pattern matching. The following command can be used to upgrade all packages that match a pattern in PowerShell:</p>
+<pre><code class="language-PowerShell">vcpkg update | sls -pattern &quot;boost-\w+&quot; | foreach-object { vcpkg upgrade $_.Matches.Value --no-dry-run }
+</code></pre>
+<h1 id="package-features">Package Features<a class="headerlink" href="#package-features" title="Permanent link">&para;</a></h1>
+<p>Some libraries have optional features, which are not installed by default, but we can install them explicitely. For example <code>llvm</code>. After <code>vcpkg install llvm</code> and typing <code>vcpkg search llvm</code>:</p>
+<pre><code>llvm                 10.0.0#6         The LLVM Compiler Infrastructure
+llvm[clang]                           Build C Language Family Front-end.
+llvm[clang-tools-extra]               Build Clang tools.
+...
+llvm[target-all]                      Build with all backends.
+llvm[target-amdgpu]                   Build with AMDGPU backend.
+llvm[target-arm]                      Build with ARM backend.
+</code></pre>
+<p>Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use <code>vcpkg install llvm[target-arm]</code>. Sometimes, a new build of the main package is required, in that case, we need to type <code>vcpkg install llvm[target-arm] --recurse</code>.</p>
+<h1 id="package-versions">Package Versions<a class="headerlink" href="#package-versions" title="Permanent link">&para;</a></h1>
+<p>In classic mode, there is no way how to control the version of a package. For that, we have to use the manifest mode</p>
+<h1 id="making-vcpkg-available-for-all-cmake-projects">Making vcpkg available for all CMake projects<a class="headerlink" href="#making-vcpkg-available-for-all-cmake-projects" title="Permanent link">&para;</a></h1>
+<p>The cmake has no mechanism to set a default toolchain, so we cannot configure it to use vcpkg by default. The only way is to use a Shim for cmake, that calls cmake with the toolchain argument set to the vcpkg toolchain file. Such schim can be found in the <a href="https://github.com/F-I-D-O/cpp-dev-support">cpp dev support repository</a>.</p>
+<p>The shim will work in most contexts, but it is still ignored in CLion, as it has its own mechanism for finding the cmake executable.
+In Clion, we need to set up the path to shim as a cmake executable in the toolchain settings.</p>
+<h1 id="integrate-your-library-to-vcpkg">Integrate your library to vcpkg<a class="headerlink" href="#integrate-your-library-to-vcpkg" title="Permanent link">&para;</a></h1>
+<p>For complete integration of your library to vcpkg, the following steps are needed:</p>
+<ol>
+<li>Configure and test the <a href="../CMake%20Manual/#install"><em>CMake installation</em></a></li>
+<li>Crate the port and test it locally (<em>vcpkg installation</em>)</li>
+<li>Submit the port to the vcpkg repository (<em>publishing</em>) </li>
+</ol>
+<p>Resources:</p>
+<ul>
+<li><a href="https://decovar.dev/blog/2022/10/30/cpp-dependencies-with-vcpkg/">decovar tutorial</a></li>
+</ul>
+<h2 id="create-the-port">Create the Port<a class="headerlink" href="#create-the-port" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging">The official guide for packageing</a></li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide">Maintainer guide</a><ul>
+<li>missing details from other guides</li>
+<li>contains the list of deprecated functions</li>
+</ul>
+</li>
+</ul>
+<p>Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
+The usual port contain these files:</p>
+<ul>
+<li><code>portfile.cmake</code>: the main file containing the calls to cmake functions that install the package</li>
+<li><code>vcpkg.json</code>: metadata file containing the package name, version, dependencies, etc.</li>
+<li><code>usage</code>: a file containing the usage instructions for the package. These instructions are displayed at the end of the installation process.<ul>
+<li><a href="https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/examples/adding-usage.md">example</a></li>
+</ul>
+</li>
+</ul>
+<p>A simple <code>portfile.cmake</code> can look like this:</p>
+<pre><code class="language-cmake">
+# download the source code
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO &lt;reo owner&gt;/&lt;repo name&gt;
+    REF &lt;tag name&gt;
+    SHA512 &lt;hash of the files&gt;
+    HEAD_REF &lt;branch name&gt;
+)
+
+# configure the source code
+vcpkg_cmake_configure(
+    SOURCE_PATH &lt;path to source dir&gt;
+)
+
+# build the source code and install it
+vcpkg_cmake_install()
+
+# fix the cmake generaed files for vcpkg
+vcpkg_cmake_config_fixup(PACKAGE_NAME &lt;package name&gt;)
+
+# install the license
+vcpkg_install_copyright(FILE_LIST &quot;${SOURCE_PATH}/LICENSE.txt&quot;)
+
+# install the usage file
+file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CURRENT_PACKAGES_DIR}/share/${PORT}&quot;)
+</code></pre>
+<p>Explanation:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github"><code>vcpkg_from_github</code></a>: downloads the source code from the github repository<ul>
+<li>the <code>&lt;path to source dir&gt;</code> is the directory where the <code>CMakeLists.txt</code> file is located. It is usually the directory where the source code is downloaded, so we can set it to <code>${SOURCE_PATH}</code></li>
+<li>the <code>&lt;hash of the files&gt;</code> can be easily obtained by:<ol>
+<li>setting the `<hash of files> to 0</li>
+<li>running the <code>vcpkg install &lt;port name&gt;</code></li>
+<li>copying the hash from the error message</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure"><code>vcpkg_cmake_configure</code></a>: configures the source code using cmake (wraps the <code>cmake</code> command)</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install"><code>vcpkg_cmake_install</code></a>: builds and installs the source code (wraps the <code>cmake --build . --target install</code> command)<ul>
+<li>the majority of code is in the subroutine <a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build"><code>vcpkg_cmake_build</code></a></li>
+<li><strong>if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the <code>ADD_BIN_TO_PATH</code> option in the <code>vcpkg_cmake_install</code> function</strong>. This is needed as the automatic dll copy to the output dir (<code>VCPKG_APPLOCAL_DEPS</code>) is disabelled by the <code>vcpkg_cmake_build</code> function. This option solve the problem by prepending the <code>PATH</code> environment variable with the path to the vcpkg installed libraries (<code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/bin</code> for release and <code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/debug/bin</code> for debug).</li>
+</ul>
+</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup"><code>vcpkg_cmake_config_fixup</code></a>: fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the <code>CMakeConfig.cmake</code> and <code>CMakeConfigVersion.cmake</code> files.<ul>
+<li>the <code>&lt;package name&gt;</code> is the name of the package, usually the same as the port name</li>
+</ul>
+</li>
+<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_install_copyright"><code>vcpkg_install_copyright</code></a> installs the license files listed in the <code>FILE_LIST</code> argument to <code>share/&lt;port name&gt;/copyright</code> file. The <code>copyright</code> file is obligatory for the package to be accepted to the vcpkg repository.</li>
+</ul>
+<p>The <code>vcpkg.json</code> file can look like this:</p>
+<pre><code class="language-json">{
+    {
+    &quot;name&quot;: &quot;fconfig&quot;,
+    &quot;version-string&quot;: &quot;0.1.0&quot;,
+    &quot;description&quot;: &quot;C++ implementation of the fconfig configuration system&quot;,
+    &quot;homepage&quot;: &quot;https://github.com/F-I-D-O/Future-Config&quot;,
+    &quot;license&quot;: &quot;MIT&quot;,
+    &quot;dependencies&quot;: [
+        {
+            &quot;name&quot; : &quot;vcpkg-cmake&quot;,
+            &quot;host&quot; : true
+        },
+        &quot;yaml-cpp&quot;,
+        &quot;spdlog&quot;,
+        &quot;inja&quot;
+    ]
+}
+}
+</code></pre>
+<p>Here:</p>
+<ul>
+<li>the <code>license</code> key is obligatory and has to match the license file of the package</li>
+<li>The dependencies with the <code>host</code> key set to <code>true</code> are the dependencies that are required for the build, but not for the runtime. </li>
+</ul>
+<h3 id="variables-and-functions-available-in-the-portfilecmake">Variables and Functions available in the portfile.cmake<a class="headerlink" href="#variables-and-functions-available-in-the-portfilecmake" title="Permanent link">&para;</a></h3>
+<p>The variables and functions available in the <code>portfile.cmake</code> are described in the <a href="https://learn.microsoft.com/en-us/vcpkg/commands/create">create command documentation</a>. The most important variables are:</p>
+<ul>
+<li><code>CURRENT_PACKAGES_DIR</code>: the directory where the package is installed: <code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/&lt;port name&gt;</code></li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>To install the port locally, run:</p>
+<pre><code class="language-bash">vcpkg install &lt;port name&gt;
+</code></pre>
+<p>For this command to work, the port has to be located in <code>&lt;vcpkg root&gt;/ports/&lt;port name&gt;</code>. If we want to install the port from an alternative location, we can use the <code>--overlay-ports</code> option.  For example, if we have the port stored in the <code>C:/custom_ports/our_new_port</code> directory, we can install it by:</p>
+<pre><code class="language-bash">vcpkg install our_new_port --overlay-ports=C:/custom_ports
+</code></pre>
+<p>If the port installation is failing and the reason is not clear from stdout, check the logs located in <code>&lt;vcpkg root&gt;/buildtrees/&lt;port name&gt;/</code></p>
+<h3 id="reinistallation-after-changes">Reinistallation after changes<a class="headerlink" href="#reinistallation-after-changes" title="Permanent link">&para;</a></h3>
+<p>During testing, we can reach a scenario where a) we successfully installed the port, b) we need to make some changes. In this case, we need to reinstall the port. However, it is not completely straightforward due to <a href="https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default">binary caching</a>. The following steps are needed to reinstall the port:</p>
+<ol>
+<li>uninstall the port: <code>vcpkg remove &lt;port name&gt;</code></li>
+<li>disable the binary cache by setting the <a href="https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching"><code>VCPKG_BINARY_SOURCES</code></a> environment variable to <code>clear</code><ul>
+<li>in PowerShell: <code>$env:VCPKG_BINARY_SOURCES = "clear"</code></li>
+<li>in bash: <code>export VCPKG_BINARY_SOURCES=clear</code></li>
+<li>if setting the environment variable does not work (WSL), we can specify the <code>--binarysource=clear</code> option in the next step</li>
+</ul>
+</li>
+<li>install the port again: <code>vcpkg install &lt;port name&gt;</code></li>
+</ol>
+<h3 id="executable-installation">Executable installation<a class="headerlink" href="#executable-installation" title="Permanent link">&para;</a></h3>
+<p>In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools (to the <code>installed/&lt;triplet&gt;/tools</code> directory) used in the build process. To do so, you have to add the <a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_copy_tools"><code>vcpgk_copy_tools</code></a> call to the <code>portfile.cmake</code> file:</p>
+<pre><code class="language-cmake">vcpkg_copy_tools(
+    TOOL_NAMES &lt;tool target name&gt;
+    AUTO_CLEAN
+)
+</code></pre>
+<p>The <code>AUTO_CLEAN</code> option ensures that the tools are deleted from the <code>bin</code> directory. Without it the tools will be kept in the <code>bin</code> directory, resulting in warnings and non-complicance with the vcpkg rules.</p>
+<p>The <code>vcpgk_copy_tools</code> function also automatically copies the runtime dependencies of the tools to the <code>tools</code> directory. </p>
+<h3 id="executing-installed-tools-from-cmake">Executing installed tools from cmake<a class="headerlink" href="#executing-installed-tools-from-cmake" title="Permanent link">&para;</a></h3>
+<p>The installed tools can be executed from cmake using cmake comands specified in the <a href="../CMake%20Manual/#executing-external-commands">CMake manual</a>. </p>
+<p>To specify the path to the tools directory, use the <a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_installed_dir"><code>VCPKG_INSTALLED_DIR</code></a> and <a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_target_triplet"><code>VCPKG_TARGET_TRIPLET</code></a> variables:</p>
+<pre><code class="language-cmake">execute_process(
+    COMMAND ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/tools/${PROJECT_NAME}/&lt;tool name&gt;
+)
+</code></pre>
+<h2 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry">official guide</a></p>
+<p>Before publishing the port, we should check for the following:</p>
+<ul>
+<li>all dependencies in <code>CMakelists.txt</code> are required (<code>find_package(&lt;package name&gt; REQUIRED)</code>) <strong>and</strong> listed in the <code>vcpkg.json</code> file in the <code>dependencies</code> array</li>
+<li>the port follows the <a href="https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md">maintainer guide</a>, especially:<ul>
+<li>the port name does not clash with existing packages (check at <a href="https://repology.org/">repology</a>)</li>
+<li>the port should work for both Windows and Linux and on both platforms, the port should support both static and dynamic linking.</li>
+</ul>
+</li>
+<li>the <a href="https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist">PR checklist</a> is followed</li>
+</ul>
+<p>Then, the submission process is as follows (The <em>emphezised</em> steps are not needed in case of fixing a failed release, i.e., when the release was rejected by vcpkg):</p>
+<ol>
+<li><em>create a fork of the vcpkg repository</em></li>
+<li>commit and push the changes to the project repository if not done yet</li>
+<li>create or replace a release in the projects GitHub repository</li>
+<li>update the verison in the <code>vcpkg_from_github</code> call in <code>portfile.cmake</code></li>
+<li>update the version in the <code>vcpkg.json</code> file</li>
+<li>pull from the vcpgk fork repository</li>
+<li>copy the port (<code>portfile.cmake</code>, <code>vcpkg.json</code> and <code>usage</code>) to the vcpkg repository</li>
+<li>remove the local <code>SOURCE_PATH</code> overrides and uncomment the <code>vcpkg_from_github</code> call</li>
+<li>in portfile, assign the correct hash to the <code>vcpkg_from_github</code> call</li>
+<li>test the port installation locally without the <code>--overlay-ports</code> option</li>
+<li>format the <code>vcpkg.json</code> file using the <code>vcpkg format-manifest &lt;path to the vcpkg.json file&gt;</code> command</li>
+<li><em>create a new branch for the package</em></li>
+<li>commit the changes to the package branch in the vcpkg repository</li>
+<li>update the port version using the <code>vcpkg x-add-version &lt;port name&gt;</code> command</li>
+<li>commit again to the package branch in the vcpkg repository</li>
+<li>push the branch to the forked vcpkg repository</li>
+<li><em>open the forked repository in the browser and create a new pull request to the main vcpkg repository</em></li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

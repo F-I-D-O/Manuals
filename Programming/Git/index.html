@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Git - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -207,7 +212,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Git</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Git</a>
 </li>
                                     
 <li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,160 +412,182 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#basics" class="nav-link">Basics</a>
+            <li class="nav-item" data-bs-level="1"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#windows" class="nav-link">Windows</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#basic-tasks" class="nav-link">Basic Tasks</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#rewrite-remote-with-local-changes-without-merging" class="nav-link">Rewrite remote with local changes without merging</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#go-back-to-branch" class="nav-link">Go back to branch</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#untrack-files-but-not-delete-them-locally" class="nav-link">Untrack files, but not delete them locally:</a>
+            <li class="nav-item" data-bs-level="2"><a href="#gitextensions" class="nav-link">GitExtensions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#remote-repositories" class="nav-link">Remote Repositories</a>
+            <li class="nav-item" data-bs-level="1"><a href="#basics" class="nav-link">Basics</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#reverting" class="nav-link">Reverting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#keep-the-history" class="nav-link">Keep the history</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#using-git-checkout" class="nav-link">Using git checkout</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#drop-the-history" class="nav-link">Drop the history</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#wildcards" class="nav-link">Wildcards</a>
+            <li class="nav-item" data-bs-level="1"><a href="#configuration" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#removing-files-from-all-branches-local-and-remote" class="nav-link">Removing files from all branches, local and remote</a>
+            <li class="nav-item" data-bs-level="1"><a href="#basic-tasks" class="nav-link">Basic Tasks</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#bfg" class="nav-link">BFG</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#git-filter-repo" class="nav-link">Git filter-repo</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rewrite-remote-with-local-changes-without-merging" class="nav-link">Rewrite remote with local changes without merging</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#filter-branch" class="nav-link">filter-branch</a>
+            <li class="nav-item" data-bs-level="2"><a href="#go-back-to-branch" class="nav-link">Go back to branch</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#untrack-files-but-not-delete-them-locally" class="nav-link">Untrack files, but not delete them locally:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#merging" class="nav-link">Merging</a>
+            <li class="nav-item" data-bs-level="1"><a href="#remote-repositories" class="nav-link">Remote Repositories</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#resolving-conflicts" class="nav-link">Resolving Conflicts</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#reverting" class="nav-link">Reverting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#debugging-mergetool" class="nav-link">Debugging mergetool</a>
+            <li class="nav-item" data-bs-level="2"><a href="#keep-the-history" class="nav-link">Keep the history</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#using-git-checkout" class="nav-link">Using git checkout</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#merging-moved-files" class="nav-link">Merging Moved Files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#revert-merge" class="nav-link">Revert merge</a>
+            <li class="nav-item" data-bs-level="2"><a href="#drop-the-history" class="nav-link">Drop the history</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#update" class="nav-link">Update</a>
+            <li class="nav-item" data-bs-level="1"><a href="#wildcards" class="nav-link">Wildcards</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pull-requests" class="nav-link">Pull Requests</a>
+            <li class="nav-item" data-bs-level="1"><a href="#removing-files-from-all-branches-local-and-remote" class="nav-link">Removing files from all branches, local and remote</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#update-pull-request" class="nav-link">Update pull request</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#showing-the-state-in-the-command-line" class="nav-link">Showing the state in the command line</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#git-log" class="nav-link">git log</a>
+            <li class="nav-item" data-bs-level="2"><a href="#bfg" class="nav-link">BFG</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#github" class="nav-link">GitHub</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
+            <li class="nav-item" data-bs-level="2"><a href="#git-filter-repo" class="nav-link">Git filter-repo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#github-cli" class="nav-link">GitHub CLI</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#token-authentication" class="nav-link">Token Authentication</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#managing-realeases" class="nav-link">Managing realeases</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#filter-branch" class="nav-link">filter-branch</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#merging" class="nav-link">Merging</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#gui-tools-show-no-history-git-log-results-in-errors" class="nav-link">GUI tools show no history, git log results in errors</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resolving-conflicts" class="nav-link">Resolving Conflicts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#debugging-mergetool" class="nav-link">Debugging mergetool</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#merging-moved-files" class="nav-link">Merging Moved Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#revert-merge" class="nav-link">Revert merge</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#update" class="nav-link">Update</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#pull-requests" class="nav-link">Pull Requests</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#update-pull-request" class="nav-link">Update pull request</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#showing-the-state-in-the-command-line" class="nav-link">Showing the state in the command line</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#git-log" class="nav-link">git log</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#renaming-a-branch" class="nav-link">Renaming a branch</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#github" class="nav-link">GitHub</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#github-cli" class="nav-link">GitHub CLI</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#token-authentication" class="nav-link">Token Authentication</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#managing-realeases" class="nav-link">Managing realeases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#gui-tools-show-no-history-git-log-results-in-errors" class="nav-link">GUI tools show no history, git log results in errors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ssh-key-passphrase-is-required-despite-the-ssh-key-agent-is-running" class="nav-link">ssh key passphrase is required, despite the ssh key agent is running</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -558,6 +598,16 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<h2 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
+<p>Git can be bundeled within other software, but it is best to install it separately (<a href="https://gitforwindows.org/">Git for Windows</a>), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.</p>
+<p>Important options, that defaults to inpractical values:
+- <strong>default text editor</strong>: defaults to vim
+- <strong>default ssh client</strong>: defaults to bundled openssh (part of git bash)
+- <strong>context menu integration</strong>: defaults to "Open in Git GUI" and "Open in Git Bash"</p>
+<h2 id="gitextensions">GitExtensions<a class="headerlink" href="#gitextensions" title="Permanent link">&para;</a></h2>
+<p>GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.</p>
+<p>The tool is intuitive it is only important to <strong>install git first</strong>.</p>
 <h1 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h1>
 <p>The structure of a single git repository is displayed in the following picture:
 <img alt="Git Repository Structure" src="../Git%20Scheme.png" /></p>
@@ -570,7 +620,15 @@
 <p>The following scheme shows the operations that can be performed between the working tree, index, HEAD and the remote repository (blue arrows represent the typical workflow):
 <img alt="Git Operations" src="../Git%20Operations.png" /></p>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
-<p>The git configuration is stored in the <code>.gitconfig</code> file in the user's home directory. It can be edited by editing the file directly, or by calling <code>git config</code> command.</p>
+<p>For configuration, we can use the <code>git config</code> command. There are three levels of configuration:</p>
+<ul>
+<li><em>system</em>: the configuration is applied to all users on the system. This configuration is set during the installation of git.</li>
+<li><em>global</em>: the configuration is applied to all repositories of the current user. This configuration is set by the <code>--global</code> parameter.</li>
+<li><em>local</em>: the configuration is applied only to the current repository. This configuration is set by the <code>--local</code> parameter.</li>
+</ul>
+<p>To list the configuration, use the <code>-l</code>/<code>--list</code> parameter of the <code>git config</code> command. To list the configuration for a specific level, use the <code>--system</code>, <code>--global</code>, <code>--local</code> parameters.</p>
+<p>To see the default value of a configuration, search in the <a href="https://git-scm.com/docs/git-config#_variables">git config documentation</a>.</p>
+<p>The git <strong>local configuration</strong> is stored in the <code>.gitconfig</code> file in the user's home directory. It can be edited by editing the file directly, or by calling <code>git config</code> command.</p>
 <p>To display the active configuration in the command line, call:</p>
 <pre><code class="language-bash">git config --list
 </code></pre>
@@ -804,6 +862,15 @@ This is the content of the file in the branch we are merging
 <li><code>--all</code>: shows the history of all branches, not only the current one</li>
 <li><code>--decorate</code>: shows the names of the branches and tags, not only the commit hashes</li>
 </ul>
+<h1 id="renaming-a-branch">Renaming a branch<a class="headerlink" href="#renaming-a-branch" title="Permanent link">&para;</a></h1>
+<p>When renaming a branch we need to:</p>
+<ol>
+<li>rename the branch locally: <code>git branch -m &lt;old name&gt; &lt;new name&gt;</code></li>
+<li>delete the old branch on the remote and push the new branch: <code>git push origin :&lt;old name&gt; &lt;new name&gt;</code></li>
+<li>on all machines, change the remote branch to the new one</li>
+<li>on any other machine, rename the branch locally</li>
+</ol>
+<p>Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.</p>
 <h1 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h1>
 <h2 id="creating-a-github-release">Creating a GitHub Release<a class="headerlink" href="#creating-a-github-release" title="Permanent link">&para;</a></h2>
 <p>To create a release:</p>
@@ -867,7 +934,15 @@ This is the content of the file in the branch we are merging
 <li>find the broken file in <code>.git/refs/</code></li>
 <li>find the corresponding file in <code>.git/logs/refs/</code></li>
 <li>copy the hash from the last line, second column and write it to the broken file</li>
-</ol></div>
+</ol>
+<h2 id="ssh-key-passphrase-is-required-despite-the-ssh-key-agent-is-running">ssh key passphrase is required, despite the ssh key agent is running<a class="headerlink" href="#ssh-key-passphrase-is-required-despite-the-ssh-key-agent-is-running" title="Permanent link">&para;</a></h2>
+<p>This can have multiple reasons. To narrow down the issue, firtst check the ssh command separately.</p>
+<p>If the ssh does not require a passphrase, but the git does, check whether git uses the same ssh:</p>
+<ol>
+<li>open git bash</li>
+<li>run <code>where ssh</code></li>
+</ol>
+<p>The first (and only) path should be the same as the one that you are using with the agent, most likely the OpenSSH from Windows. If the git bash bundeled OpenSSH command is first, it means an incorrect git installation.</p></div>
             </div>
         </div>
 
@@ -875,19 +950,20 @@ This is the content of the file in the branch we are merging
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -907,7 +983,7 @@ This is the content of the file in the branch we are merging
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Powershell Manual - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../../Programming/C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../../Programming/C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -278,7 +287,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Powershell Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Powershell Manual</a>
 </li>
                                     
 <li>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,86 +412,64 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+            <li class="nav-item" data-bs-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#new-powershell" class="nav-link">New PowerShell</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#quick-edit-insert-mode" class="nav-link">Quick Edit / Insert Mode</a>
+            <li class="nav-item" data-bs-level="2"><a href="#new-powershell" class="nav-link">New PowerShell</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#resources" class="nav-link">Resources</a>
+            <li class="nav-item" data-bs-level="2"><a href="#quick-edit-insert-mode" class="nav-link">Quick Edit / Insert Mode</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#script-blocks-scripts-functions-and-standalone-blocks" class="nav-link">Script Blocks: scripts, functions, and standalone blocks</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#script-blocks-standalone-blocks-functions-and-scripts" class="nav-link">Script Blocks: standalone blocks, functions, and scripts</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#parameter-blocks" class="nav-link">Parameter blocks</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resources" class="nav-link">Resources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#quoting" class="nav-link">Quoting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#reading-script-block-arguments" class="nav-link">Reading script block arguments</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#arguments-starting-with-and-containing" class="nav-link">Arguments starting with - and containing .</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#escaping-and-in-arguments" class="nav-link">Escaping " and ' in Arguments</a>
+            <li class="nav-item" data-bs-level="2"><a href="#parametr-parsing" class="nav-link">Parametr parsing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#command-execution" class="nav-link">Command execution</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#using-the-call-operator" class="nav-link">Using the call (&amp;) operator</a>
+            <li class="nav-item" data-bs-level="2"><a href="#parameter-blocks" class="nav-link">Parameter blocks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-the-invoke-expression-command" class="nav-link">Using the Invoke-Expression command</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#print-the-exit-code" class="nav-link">Print the exit code</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#no-output-for-exe-file" class="nav-link">No Output for EXE file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#parameter-blocks_1" class="nav-link">Parameter blocks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#variables" class="nav-link">Variables</a>
+            <li class="nav-item" data-bs-level="1"><a href="#command-parsing" class="nav-link">Command parsing</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#environment-variables" class="nav-link">Environment variables</a>
+            <li class="nav-item" data-bs-level="2"><a href="#quoting" class="nav-link">Quoting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#arguments-starting-with-and-containing" class="nav-link">Arguments starting with - and containing .</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#operations-on-variables" class="nav-link">Operations on Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#string-operations" class="nav-link">String Operations</a>
+            <li class="nav-item" data-bs-level="3"><a href="#escaping-and-in-arguments" class="nav-link">Escaping " and ' in Arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -482,107 +478,36 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#operators" class="nav-link">Operators</a>
+            <li class="nav-item" data-bs-level="1"><a href="#executable-execution" class="nav-link">Executable Execution</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#comparison-and-string-operators" class="nav-link">Comparison and String Operators</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#logical-operators" class="nav-link">Logical Operators</a>
+            <li class="nav-item" data-bs-level="2"><a href="#using-the-call-operator" class="nav-link">Using the call (&amp;) operator</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#control-structures" class="nav-link">Control Structures</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#conditions" class="nav-link">Conditions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#if" class="nav-link">if</a>
+            <li class="nav-item" data-bs-level="2"><a href="#using-the-invoke-expression-command" class="nav-link">Using the Invoke-Expression command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#loops" class="nav-link">Loops</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#foreach" class="nav-link">foreach</a>
+            <li class="nav-item" data-bs-level="2"><a href="#print-the-exit-code" class="nav-link">Print the exit code</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#inputs-and-outputs" class="nav-link">Inputs and Outputs</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#inputs" class="nav-link">Inputs</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#outputs" class="nav-link">Outputs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#no-output-for-exe-file" class="nav-link">No Output for EXE file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pipes-and-redirection" class="nav-link">Pipes and Redirection</a>
+            <li class="nav-item" data-bs-level="1"><a href="#variables" class="nav-link">Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#environment-variables" class="nav-link">Environment variables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#data-types" class="nav-link">Data Types</a>
+            <li class="nav-item" data-bs-level="2"><a href="#operations-on-variables" class="nav-link">Operations on Variables</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#dates" class="nav-link">Dates</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#string-manipulation" class="nav-link">String Manipulation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#replace" class="nav-link">Replace</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#match" class="nav-link">Match</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#select-string" class="nav-link">Select-String</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#selecting-the-matched-string" class="nav-link">Selecting the matched string</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#select-object" class="nav-link">Select-Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#network" class="nav-link">Network</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#netstat" class="nav-link">netstat</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#lot-of-kubernetes-entries-in-the-log" class="nav-link">Lot of kubernetes entries in the log</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#display-executable-for-connection" class="nav-link">Display executable for connection</a>
+            <li class="nav-item" data-bs-level="3"><a href="#string-operations" class="nav-link">String Operations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -591,74 +516,204 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#system-information" class="nav-link">System Information</a>
+            <li class="nav-item" data-bs-level="1"><a href="#operators" class="nav-link">Operators</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#cim-and-wmi" class="nav-link">CIM and WMI</a>
+            <li class="nav-item" data-bs-level="2"><a href="#the-additive-operator" class="nav-link">The additive operator</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#windows-registry" class="nav-link">Windows Registry</a>
+            <li class="nav-item" data-bs-level="2"><a href="#comparison-and-matching-operators" class="nav-link">Comparison and Matching Operators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#logical-operators" class="nav-link">Logical Operators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#control-structures" class="nav-link">Control Structures</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#conditions" class="nav-link">Conditions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#if" class="nav-link">if</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loops" class="nav-link">Loops</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#foreach" class="nav-link">foreach</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#inputs-and-outputs" class="nav-link">Inputs and Outputs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#inputs" class="nav-link">Inputs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#outputs" class="nav-link">Outputs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#advanced-script-blocks" class="nav-link">Advanced Script blocks</a>
+            <li class="nav-item" data-bs-level="1"><a href="#pipes-and-redirection" class="nav-link">Pipes and Redirection</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#elevation" class="nav-link">Elevation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#data-types" class="nav-link">Data Types</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#dates" class="nav-link">Dates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#string-manipulation" class="nav-link">String Manipulation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#concatenation" class="nav-link">Concatenation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#replace" class="nav-link">Replace</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#match" class="nav-link">Match</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#select-string" class="nav-link">Select-String</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#selecting-the-matched-string" class="nav-link">Selecting the matched string</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#select-object" class="nav-link">Select-Object</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#powershell-history" class="nav-link">PowerShell History</a>
+            <li class="nav-item" data-bs-level="1"><a href="#file-system" class="nav-link">File System</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#create-a-symlink" class="nav-link">Create a symlink</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#network" class="nav-link">Network</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#netstat" class="nav-link">netstat</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#lot-of-kubernetes-entries-in-the-log" class="nav-link">Lot of kubernetes entries in the log</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#display-executable-for-connection" class="nav-link">Display executable for connection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#system-information" class="nav-link">System Information</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#cim-and-wmi" class="nav-link">CIM and WMI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#windows-registry" class="nav-link">Windows Registry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#advanced-script-blocks" class="nav-link">Advanced Script blocks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#including-scripts" class="nav-link">Including scripts</a>
+            <li class="nav-item" data-bs-level="1"><a href="#elevation" class="nav-link">Elevation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#usefull-commands" class="nav-link">Usefull Commands</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#file-encoding-conversion" class="nav-link">File Encoding Conversion</a>
+            <li class="nav-item" data-bs-level="1"><a href="#powershell-history" class="nav-link">PowerShell History</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#delete-all-files-with-a-certain-extension" class="nav-link">Delete all files with a certain extension</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#powershell-scripts" class="nav-link">PowerShell Scripts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#including-other-scripts" class="nav-link">Including other scripts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#batch-rename" class="nav-link">Batch rename</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#usefull-commands" class="nav-link">Usefull Commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#file-encoding-conversion" class="nav-link">File Encoding Conversion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#count-lines-in-large-file" class="nav-link">Count Lines in large file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#delete-all-files-with-a-certain-extension" class="nav-link">Delete all files with a certain extension</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#get-help" class="nav-link">Get Help</a>
+            <li class="nav-item" data-bs-level="2"><a href="#batch-rename" class="nav-link">Batch rename</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#translate-alias-to-command" class="nav-link">Translate alias to command</a>
+            <li class="nav-item" data-bs-level="2"><a href="#count-lines-in-large-file" class="nav-link">Count Lines in large file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#get-the-path-of-the-current-script" class="nav-link">Get the path of the current script</a>
+            <li class="nav-item" data-bs-level="2"><a href="#get-help" class="nav-link">Get Help</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#compute-the-hash-of-a-file" class="nav-link">Compute the hash of a file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#translate-alias-to-command" class="nav-link">Translate alias to command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#get-path-of-the-executablecommand" class="nav-link">Get path of the executable/command</a>
+            <li class="nav-item" data-bs-level="2"><a href="#get-the-path-of-the-current-script" class="nav-link">Get the path of the current script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#compute-the-hash-of-a-file" class="nav-link">Compute the hash of a file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#get-path-of-the-executablecommand" class="nav-link">Get path of the executable/command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -678,12 +733,7 @@
 <p>Therefore, it is best to install the <a href="https://github.com/PowerShell/PowerShell">new PowerShell</a> first.</p>
 <h2 id="quick-edit-insert-mode">Quick Edit / Insert Mode<a class="headerlink" href="#quick-edit-insert-mode" title="Permanent link">&para;</a></h2>
 <p>PowerShell enables copy/pase of commands. The downside is that every time you click inside PowerShell, the execution (if PowerShell is currently executing somethig) stops. To resume the execution, hit <code>enter</code>.</p>
-<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/powershell/scripting/overview">Microsoft documentation</a></li>
-<li><a href="https://ss64.com/ps/">SS64</a></li>
-</ul>
-<h1 id="script-blocks-standalone-blocks-functions-and-scripts">Script Blocks: standalone blocks, functions, and scripts<a class="headerlink" href="#script-blocks-standalone-blocks-functions-and-scripts" title="Permanent link">&para;</a></h1>
+<h2 id="script-blocks-scripts-functions-and-standalone-blocks">Script Blocks: scripts, functions, and standalone blocks<a class="headerlink" href="#script-blocks-scripts-functions-and-standalone-blocks" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks">documentation</a></p>
 <p>A basic unit of execution in PowerShell is a <em>script block</em>. A script block can be:</p>
 <ul>
@@ -691,7 +741,33 @@
 <li>a function,</li>
 <li>a script</li>
 </ul>
-<p>A script block can have parameters. The parameters are defined using the <code>param</code> keyword. Example:</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/powershell/scripting/overview">Microsoft documentation</a></li>
+<li><a href="https://ss64.com/ps/">SS64</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh">pwsh documentation (arguments of <code>pwsh.exe</code>, etc)</a></li>
+</ul>
+<h1 id="reading-script-block-arguments">Reading script block arguments<a class="headerlink" href="#reading-script-block-arguments" title="Permanent link">&para;</a></h1>
+<p>Each script block can be called with parameters. The arguments are first parsed by PowerShell and then passed to the script block. See <a href="#parameter-parsing">Parameter parsing</a> for details. Note that this parsing happens even if the script was invoked from outside PowerShell.</p>
+<p>We have two ways how to read the arguments passed to the script:</p>
+<ul>
+<li>using the <code>$args</code> variable: simple old syntax, deprecated</li>
+<li>using the <em>parameter block</em> (<code>param()</code>): complex, but more powerful</li>
+</ul>
+<p>Here, we describe the first option. For the second option, check the <a href="#parameter-blocks">Parameter blocks section</a>.</p>
+<p>To read the arguments, we just access the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables#args"><code>$args</code> variable</a>. The following example prints the second and third argument:</p>
+<pre><code class="language-PowerShell">echo $args[1]
+echo $args[2]
+</code></pre>
+<h2 id="parametr-parsing">Parametr parsing<a class="headerlink" href="#parametr-parsing" title="Permanent link">&para;</a></h2>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters">documentation</a></p>
+<p>In PowerShell, all arguments are named. However, the name may be set as non-required, in which case we can omit it. The syntax is:</p>
+<pre><code class="language-PowerShell">-&lt;name&gt; &lt;value&gt; # or
+-&lt;name&gt;:&lt;value&gt;
+</code></pre>
+<p>Thic creates an inherent incompatibility with most command line tools, as <code>:</code> is a valid argument separator in PowerShell. Therefore, <strong>any argument passed to a PowerShell script block that contains <code>:</code> has to be quoted</strong>. This is a known limitation of PowerShell [<a href="https://github.com/PowerShell/PowerShell/issues/23819">source</a>].</p>
+<h2 id="parameter-blocks">Parameter blocks<a class="headerlink" href="#parameter-blocks" title="Permanent link">&para;</a></h2>
+<p>defined using the <code>param</code> keyword. Example:</p>
 <pre><code class="language-PowerShell">$myFunction = {
     param($param1, $param2)
     # do something
@@ -706,7 +782,7 @@ function MyFunction {
 # or in a script
 param($param1, $param2)
 </code></pre>
-<h2 id="parameter-blocks">Parameter blocks<a class="headerlink" href="#parameter-blocks" title="Permanent link">&para;</a></h2>
+<h2 id="parameter-blocks_1">Parameter blocks<a class="headerlink" href="#parameter-blocks_1" title="Permanent link">&para;</a></h2>
 <p>The parameter block defines the parameters of the script block. By default (<code>param()</code>), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:</p>
 <pre><code class="language-PowerShell">$myFunction = {
     param($param1, $param2)
@@ -749,7 +825,9 @@ param($param1, $param2)
 }
 </code></pre>
 <p>The advanced usage of parameters is described in the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters">documentation</a>.</p>
-<h1 id="quoting">Quoting<a class="headerlink" href="#quoting" title="Permanent link">&para;</a></h1>
+<h1 id="command-parsing">Command parsing<a class="headerlink" href="#command-parsing" title="Permanent link">&para;</a></h1>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing">documentation</a></p>
+<h2 id="quoting">Quoting<a class="headerlink" href="#quoting" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules">documentation</a></p>
 <p>In PowerShell, there are two types of quoting:</p>
 <ul>
@@ -761,9 +839,18 @@ param($param1, $param2)
 </li>
 <li><code>'</code> (single quotes): for literal strings. These strings are not evaluated.</li>
 </ul>
-<h2 id="arguments-starting-with-and-containing">Arguments starting with <code>-</code> and containing <code>.</code><a class="headerlink" href="#arguments-starting-with-and-containing" title="Permanent link">&para;</a></h2>
+<p>Note that PowerShell consumes the first level of quoting, so that <code>"a b"</code> is passed as <code>a b</code> and the same goes for <code>'a b'</code>. If we need to preserve the quoting, we need to use a second level of quoting:</p>
+<pre><code class="language-PowerShell">echo &quot;a b&quot; # prints a b
+echo 'a b' # prints a b
+echo &quot;a 'b'&quot; # prints a 'b'
+echo 'a &quot;b&quot;' # prints a &quot;b&quot;
+</code></pre>
+<p>In case we need the same quoting for both levels, we can escape the first level of quoting with the backtick: <code>\"</code>. Example:</p>
+<pre><code class="language-PowerShell">echo &quot;a \&quot;b\&quot;&quot; # prints a &quot;b&quot;
+</code></pre>
+<h3 id="arguments-starting-with-and-containing">Arguments starting with <code>-</code> and containing <code>.</code><a class="headerlink" href="#arguments-starting-with-and-containing" title="Permanent link">&para;</a></h3>
 <p>If a program argument starts with <code>-</code>, <strong>and</strong> contains <code>.</code> it needs to be wrapped by <code>'</code>. Otherwise, the argument will be split on the dot. Example:</p>
-<pre><code>mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
+<pre><code class="language-PowerShell">mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
 </code></pre>
 <p>In Powershell, this needs to be converted to:</p>
 <pre><code class="language-PowerShell">mvn exec:java '-Dexec.mainClass=com.example.MyExample' '-Dfile.encoding=UTF-8'
@@ -771,20 +858,20 @@ param($param1, $param2)
 <p>The problem may arise if the argument or its part needs to be quotted as well. Then:</p>
 <ul>
 <li>for first level of quoting, use <code>"</code> (double quotes)</li>
-<li>for second level of quoting, use <code>''</code> (two single quotes)
-Example:</li>
+<li>for second level of quoting, use <code>''</code> (two single quotes)</li>
 </ul>
+<p>Example:</p>
 <pre><code class="language-PowerShell">mvn exec:exec '-Dexec.executable=&quot;java&quot;' '-Dexec.args=&quot;-Xmx30g -Djava.library.path=''C:\Program Files\HDF_Group\HDF5\1.14.3\bin'' -classpath %classpath cz.cvut.fel.aic.simod.OnDemandVehiclesSimulation&quot;'
 </code></pre>
-<h2 id="escaping-and-in-arguments">Escaping <code>"</code> and <code>'</code> in Arguments<a class="headerlink" href="#escaping-and-in-arguments" title="Permanent link">&para;</a></h2>
+<h3 id="escaping-and-in-arguments">Escaping <code>"</code> and <code>'</code> in Arguments<a class="headerlink" href="#escaping-and-in-arguments" title="Permanent link">&para;</a></h3>
 <p>Double quotes <code>"</code> contained in arguments can be preserved by escaping with backslash: <code>\"</code>. Example for that can be passing an argument list to some executable:</p>
-<pre><code>'args=\&quot;arg1 arg2\&quot;'
+<pre><code class="language-PowerShell">'args=\&quot;arg1 arg2\&quot;'
 </code></pre>
 <p>Single quotes <code>'</code> are esceped by duble single quote: <code>''</code>. Example can be passing a list of args, where some of them contains space:</p>
-<pre><code>'args=\&quot;''arg1 with space'' arg2\&quot;'
+<pre><code class="language-PowerShell">'args=\&quot;''arg1 with space'' arg2\&quot;'
 </code></pre>
-<h1 id="command-execution">Command execution<a class="headerlink" href="#command-execution" title="Permanent link">&para;</a></h1>
-<p>There are several ways how to execute a command in PowerShell:</p>
+<h1 id="executable-execution">Executable Execution<a class="headerlink" href="#executable-execution" title="Permanent link">&para;</a></h1>
+<p>There are several ways how to run an executable in PowerShell:</p>
 <ul>
 <li>The standard way is to just type the command.</li>
 <li>Another option is the <code>&amp;</code> operator: <code>&amp; &lt;command&gt; &lt;arguments&gt;</code>. This way, we can<ul>
@@ -879,8 +966,19 @@ $env:PATH += &quot;;C:\Program Files\Java\jdk1.8.0_181\bin&quot;
 $env:PATH = &quot;C:\Program Files\Java\jdk1.8.0_181\bin;&quot; + $env:PATH
 </code></pre>
 <h1 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h1>
-<h2 id="comparison-and-string-operators">Comparison and String Operators<a class="headerlink" href="#comparison-and-string-operators" title="Permanent link">&para;</a></h2>
-<p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators">documentation</a></p>
+<p><a href="https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07">documentation</a></p>
+<h2 id="the-additive-operator">The additive operator<a class="headerlink" href="#the-additive-operator" title="Permanent link">&para;</a></h2>
+<p>The additive operator (<code>+</code>) is overloaded for different types:</p>
+<ul>
+<li>for numeric types, it performs the <a href="https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#771-addition">arithmetic addition</a></li>
+<li>for string types, it performs the <a href="https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#772-string-concatenation">string concatenation</a></li>
+<li>for arrays and hashtables, it performs the array/hashtable concatenation</li>
+</ul>
+<h2 id="comparison-and-matching-operators">Comparison and Matching Operators<a class="headerlink" href="#comparison-and-matching-operators" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators">help page</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#78-comparison-operators">documentation</a></li>
+</ul>
 <p>Equality operators:</p>
 <ul>
 <li><code>-eq</code>: equal</li>
@@ -995,6 +1093,8 @@ $date = Get-Date -Date &quot;2025-01-01&quot; # date from a string
 &quot;$a&quot; # prints &quot;foo bar&quot;
 </code></pre>
 <h1 id="string-manipulation">String Manipulation<a class="headerlink" href="#string-manipulation" title="Permanent link">&para;</a></h1>
+<h2 id="concatenation">Concatenation<a class="headerlink" href="#concatenation" title="Permanent link">&para;</a></h2>
+<p>The concatenation operator is the <code>+</code> operator, see <a href="#the-additive-operator">The additive (<code>+</code>) operator section</a>.</p>
 <h2 id="replace">Replace<a class="headerlink" href="#replace" title="Permanent link">&para;</a></h2>
 <p>For replacing a substring in a string, we have two options:</p>
 <ul>
@@ -1028,6 +1128,12 @@ $date = Get-Date -Date &quot;2025-01-01&quot; # date from a string
 <p>The <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object"><code>Select-Object</code></a> selects the specified properties of an object. Example:</p>
 <pre><code class="language-PowerShell">Get-Process | Select-Object -Property Name, Id
 </code></pre>
+<h1 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h1>
+<h2 id="create-a-symlink">Create a symlink<a class="headerlink" href="#create-a-symlink" title="Permanent link">&para;</a></h2>
+<p>To create a symlink, use the <code>New-Item</code> command with the <code>-ItemType</code> parameter set to <code>SymbolicLink</code>. Example:</p>
+<pre><code class="language-PowerShell">New-Item -ItemType SymbolicLink -Path &lt;source&gt; -Target &lt;target&gt;
+</code></pre>
+<p>Note that <strong>administrator privileges are required to create a symlink</strong>.</p>
 <h1 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h1>
 <h2 id="netstat"><a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a><a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Netstat"><code>netstat</code></a> is the basic network monitoring program. It displays TCP connections. It originated on Linux, so the usage and parameters are described in the Linux manual. Below, we discuss the differencies in the command interface and behavior of the Windows version of the command.</p>
@@ -1115,7 +1221,8 @@ exit
 <li><code>Clear-History -Count &lt;count&gt;</code>: clear the last <code>count</code> commands</li>
 <li><code>Clear-History -CommandLine &lt;pattern&gt;</code>: clear the commands that match the pattern. The pattern use the simple matching (e.g. <code>*</code> is the wildcard), and have to be wrapped in quotes if it contains spaces.</li>
 </ul>
-<h1 id="including-scripts">Including scripts<a class="headerlink" href="#including-scripts" title="Permanent link">&para;</a></h1>
+<h1 id="powershell-scripts">PowerShell Scripts<a class="headerlink" href="#powershell-scripts" title="Permanent link">&para;</a></h1>
+<h2 id="including-other-scripts">Including other scripts<a class="headerlink" href="#including-other-scripts" title="Permanent link">&para;</a></h2>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.5&amp;viewFallbackFrom=powershell-7.1#script-scope-and-dot-sourcing">documentation</a></p>
 <p>Script including in PowerShell is called <em>dot sourcing</em>. To include a script, use the <code>.</code> operator. Example:</p>
 <pre><code class="language-PowerShell">. &quot;C:\Users\user\script.ps1&quot;
@@ -1166,7 +1273,28 @@ exit
 <li><code>-Algorithm</code>: the algorithm used for hashing. The default is <code>SHA256</code>. Other options are <code>SHA1</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>MD5</code></li>
 </ul>
 <h2 id="get-path-of-the-executablecommand">Get path of the executable/command<a class="headerlink" href="#get-path-of-the-executablecommand" title="Permanent link">&para;</a></h2>
-<p>If we need to know the installed path of an executable or command, similar to the <code>which</code> command in Linux, we can use the <code>Get-Command</code> command. </p></div>
+<p>If we need to know the installed path of an executable or command, similar to the <code>which</code> command in Linux, we can use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command"><code>Get-Command</code></a> command, used as a <code>Get-Command &lt;command&gt;</code>. Important parameters:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.5#-commandtype"><code>-CommandType</code>, <code>-Type</code></a>: the type of the command we are looking for (e. g. <code>Application</code>, <code>Cmdlet</code>, ...). <ul>
+<li>Note that <strong>this argument works differently than how it is described in the documentation</strong>!<ul>
+<li><strong>without this argument</strong>: just first command is returned (best match, e.g., first executable in the path)</li>
+<li><strong>with this argument</strong>: all commands that matches the command name, type and other criteria are returned</li>
+</ul>
+</li>
+<li>Possible values:<ul>
+<li><code>Alias</code>: aliases</li>
+<li><code>All</code>: all types</li>
+<li><code>Application</code>: executable files</li>
+<li><code>Cmdlet</code>: PowerShell commands</li>
+<li><code>ExternalScript</code>: All <code>.ps1</code> files listed in the <code>$env:Path</code> </li>
+<li><code>Function</code>: PowerShell functions</li>
+<li><code>Filter</code>: PowerShell filters</li>
+<li><code>Script</code>: PowerShell scripts blocks</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div>
             </div>
         </div>
 
@@ -1174,19 +1302,20 @@ exit
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1206,7 +1335,7 @@ exit
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

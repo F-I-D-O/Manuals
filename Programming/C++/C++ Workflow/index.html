@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>C++ Workflow - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -55,7 +56,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">C++ Workflow</a>
+    <a href="./" class="dropdown-item active" aria-current="page">C++ Workflow</a>
 </li>
             
 <li>
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,162 +412,47 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+            <li class="nav-item" data-bs-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#compiler-toolchains" class="nav-link">Compiler Toolchains</a>
+            <li class="nav-item" data-bs-level="1"><a href="#compiler-toolchains" class="nav-link">Compiler Toolchains</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#msys2-windows" class="nav-link">MSYS2 (Windows)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#msvc-windows" class="nav-link">MSVC (Windows)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#common-compiler-flags" class="nav-link">Common Compiler Flags</a>
+            <li class="nav-item" data-bs-level="2"><a href="#msys2-windows" class="nav-link">MSYS2 (Windows)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#gcc-linuxwsl" class="nav-link">GCC (Linux/WSL)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#msvc-windows" class="nav-link">MSVC (Windows)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#installation" class="nav-link">Installation</a>
+            <li class="nav-item" data-bs-level="3"><a href="#setting-up-the-compiler-environment" class="nav-link">Setting up the compiler environment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#g" class="nav-link">g++</a>
+            <li class="nav-item" data-bs-level="3"><a href="#common-compiler-flags" class="nav-link">Common Compiler Flags</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#build-sequencing-tools" class="nav-link">Build Sequencing Tools</a>
+            <li class="nav-item" data-bs-level="2"><a href="#gcc-linuxwsl" class="nav-link">GCC (Linux/WSL)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#make" class="nav-link">Make</a>
+            <li class="nav-item" data-bs-level="3"><a href="#installation" class="nav-link">Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#msbuild" class="nav-link">MSBuild</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#cmake" class="nav-link">Cmake</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#vcpkg" class="nav-link">vcpkg</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#basic-coomands" class="nav-link">Basic coomands</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#install-a-package" class="nav-link">Install a package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#remove-a-package" class="nav-link">Remove a package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#search-for-a-package" class="nav-link">Search for a package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#list-installed-packages" class="nav-link">List installed packages</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#cmake-integration" class="nav-link">CMake Integration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#modules" class="nav-link">Modules</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#triplets" class="nav-link">Triplets</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#changing-the-default-triplet" class="nav-link">Changing the default triplet</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#using-a-custom-triplet" class="nav-link">Using a custom triplet</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#update" class="nav-link">Update</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#update-package" class="nav-link">Update package</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#upgrade-packages-matching-a-pattern" class="nav-link">Upgrade packages matching a pattern</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#package-features" class="nav-link">Package Features</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#package-versions" class="nav-link">Package Versions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#integrate-your-library-to-vcpkg" class="nav-link">Integrate your library to vcpkg</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#create-the-port" class="nav-link">Create the Port</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#variables-and-functions-available-in-the-portfilecmake" class="nav-link">Variables and Functions available in the portfile.cmake</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#installation_1" class="nav-link">Installation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#reinistallation-after-changes" class="nav-link">Reinistallation after changes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#executable-installation" class="nav-link">Executable installation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#executing-installed-tools-from-cmake" class="nav-link">Executing installed tools from cmake</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#publishing" class="nav-link">Publishing</a>
+            <li class="nav-item" data-bs-level="3"><a href="#g" class="nav-link">g++</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -558,103 +461,76 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ide" class="nav-link">IDE</a>
+            <li class="nav-item" data-bs-level="1"><a href="#build-sequencing-tools" class="nav-link">Build Sequencing Tools</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#clion" class="nav-link">Clion</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#set-default-layout" class="nav-link">Set default layout</a>
+            <li class="nav-item" data-bs-level="2"><a href="#make" class="nav-link">Make</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#set-up-the-new-nova-engine" class="nav-link">Set up the new Nova engine</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#set-up-new-surround-with-template" class="nav-link">Set up new surround with template</a>
+            <li class="nav-item" data-bs-level="2"><a href="#msbuild" class="nav-link">MSBuild</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#toolchain-configuration" class="nav-link">Toolchain configuration</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cmake" class="nav-link">Cmake</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#multiple-wsl-toolchains" class="nav-link">Multiple WSL toolchains</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#vcpkg" class="nav-link">vcpkg</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ide" class="nav-link">IDE</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#clion" class="nav-link">Clion</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#set-default-layout" class="nav-link">Set default layout</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#set-up-the-new-nova-engine" class="nav-link">Set up the new Nova engine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#set-up-new-surround-with-template" class="nav-link">Set up new surround with template</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#project-configuration" class="nav-link">Project configuration</a>
+            <li class="nav-item" data-bs-level="3"><a href="#toolchain-configuration" class="nav-link">Toolchain configuration</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#wsl-extra-configuration" class="nav-link">WSL extra configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#configuring-only-some-cmake-profiles" class="nav-link">Configuring only some CMake profiles</a>
+            <li class="nav-item" data-bs-level="4"><a href="#multiple-wsl-toolchains" class="nav-link">Multiple WSL toolchains</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#problems" class="nav-link">Problems</a>
+            <li class="nav-item" data-bs-level="3"><a href="#project-configuration" class="nav-link">Project configuration</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" class="nav-link">Editor reports errors despite the code compiles in all compilers</a>
+            <li class="nav-item" data-bs-level="4"><a href="#wsl-extra-configuration" class="nav-link">WSL extra configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#configuring-only-some-cmake-profiles" class="nav-link">Configuring only some CMake profiles</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#visual-studio" class="nav-link">Visual Studio</a>
+            <li class="nav-item" data-bs-level="3"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#installation_2" class="nav-link">Installation</a>
+            <li class="nav-item" data-bs-level="4"><a href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" class="nav-link">Editor reports errors despite the code compiles in all compilers</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#setting-synchronization" class="nav-link">Setting Synchronization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#basic-configuration" class="nav-link">Basic Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#enable-template-implementation-files-tpp-syntax-highlighting" class="nav-link">Enable template implementation files (.*tpp) syntax highlighting:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#to-change-the-build-verbosity" class="nav-link">To Change the Build Verbosity</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#project-setting" class="nav-link">Project Setting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#configure-visual-studio-to-use-system-cmake" class="nav-link">Configure Visual Studio to use system CMake:</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#build-setting-and-enviromental-variables" class="nav-link">Build Setting and Enviromental Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#set-the-cmake-toolchain-file" class="nav-link">Set the CMake Toolchain File</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="5"><a href="#set-the-compiler" class="nav-link">Set the Compiler</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="5"><a href="#old-method-using-cmakesettingsjson" class="nav-link">Old Method Using CMakeSettings.json</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#launch-setting" class="nav-link">Launch Setting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#other-launchvsjson-options" class="nav-link">Other launch.vs.json options</a>
+            <li class="nav-item" data-bs-level="4"><a href="#editor-actions-are-not-available-ctrl-click-does-nothing" class="nav-link">Editor actions are not available, Ctrl + click does nothing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -662,21 +538,99 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#wsl-configuration" class="nav-link">WSL Configuration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#visual-studio" class="nav-link">Visual Studio</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#installation_1" class="nav-link">Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#other-configuration" class="nav-link">Other Configuration</a>
+            <li class="nav-item" data-bs-level="3"><a href="#setting-synchronization" class="nav-link">Setting Synchronization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#determine-visual-studio-version" class="nav-link">Determine Visual Studio version</a>
+            <li class="nav-item" data-bs-level="3"><a href="#basic-configuration" class="nav-link">Basic Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#enable-template-implementation-files-tpp-syntax-highlighting" class="nav-link">Enable template implementation files (.*tpp) syntax highlighting:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#problems-solutions" class="nav-link">Problems &amp; solutions</a>
+            <li class="nav-item" data-bs-level="4"><a href="#to-change-the-build-verbosity" class="nav-link">To Change the Build Verbosity</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#cannot-regenerate-cmake-cache" class="nav-link">Cannot regenerate Cmake cache</a>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#project-setting" class="nav-link">Project Setting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#configure-visual-studio-to-use-system-cmake" class="nav-link">Configure Visual Studio to use system CMake:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#build-setting-and-enviromental-variables" class="nav-link">Build Setting and Enviromental Variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#set-the-cmake-toolchain-file" class="nav-link">Set the CMake Toolchain File</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="5"><a href="#set-the-compiler" class="nav-link">Set the Compiler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="5"><a href="#old-method-using-cmakesettingsjson" class="nav-link">Old Method Using CMakeSettings.json</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#launch-setting" class="nav-link">Launch Setting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#other-launchvsjson-options" class="nav-link">Other launch.vs.json options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#wsl-configuration" class="nav-link">WSL Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-configuration" class="nav-link">Other Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#determine-visual-studio-version" class="nav-link">Determine Visual Studio version</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#problems-solutions" class="nav-link">Problems &amp; solutions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#cannot-regenerate-cmake-cache" class="nav-link">Cannot regenerate Cmake cache</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visual-studio-code" class="nav-link">Visual Studio Code</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#cmake-support-extension" class="nav-link">CMake support extension</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cursor" class="nav-link">Cursor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#call-the-msvc-compiler-from-cursor" class="nav-link">Call the MSVC compiler from Cursor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#troubleshooting_1" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#the-ctrl-click-on-a-function-call-does-not-open-the-definition" class="nav-link">The Ctrl + click on a function call does not open the definition</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -687,129 +641,129 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#typical-directory-structure" class="nav-link">Typical directory structure</a>
+            <li class="nav-item" data-bs-level="1"><a href="#typical-directory-structure" class="nav-link">Typical directory structure</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
+            <li class="nav-item" data-bs-level="1"><a href="#dependencies" class="nav-link">Dependencies</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#vcpkg-libraries" class="nav-link">Vcpkg Libraries</a>
+            <li class="nav-item" data-bs-level="2"><a href="#vcpkg-libraries" class="nav-link">Vcpkg Libraries</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#boost" class="nav-link">Boost</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#jni" class="nav-link">JNI</a>
+            <li class="nav-item" data-bs-level="3"><a href="#boost" class="nav-link">Boost</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#gurobi" class="nav-link">Gurobi</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#update-gurobi" class="nav-link">Update Gurobi</a>
+            <li class="nav-item" data-bs-level="3"><a href="#jni" class="nav-link">JNI</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#other-libraries-not-available-in-vcpkg" class="nav-link">Other Libraries Not Available in vcpkg</a>
+            <li class="nav-item" data-bs-level="2"><a href="#gurobi" class="nav-link">Gurobi</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#test-library-linkinginclusion" class="nav-link">Test Library linking/inclusion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#dependencies-with-wsl-and-clion" class="nav-link">Dependencies with WSL and CLion</a>
+            <li class="nav-item" data-bs-level="3"><a href="#update-gurobi" class="nav-link">Update Gurobi</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#refactoring" class="nav-link">Refactoring</a>
+            <li class="nav-item" data-bs-level="2"><a href="#other-libraries-not-available-in-vcpkg" class="nav-link">Other Libraries Not Available in vcpkg</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#changing-method-signature" class="nav-link">Changing Method Signature</a>
+            <li class="nav-item" data-bs-level="3"><a href="#test-library-linkinginclusion" class="nav-link">Test Library linking/inclusion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#dependencies-with-wsl-and-clion" class="nav-link">Dependencies with WSL and CLion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#standard-library" class="nav-link">Standard Library</a>
+            <li class="nav-item" data-bs-level="1"><a href="#refactoring" class="nav-link">Refactoring</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#linking-to-the-standard-library" class="nav-link">Linking to the Standard Library</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#setting-up-the-correct-crt-with-msvc" class="nav-link">Setting up the correct CRT with MSVC</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#resouces" class="nav-link">Resouces</a>
+            <li class="nav-item" data-bs-level="2"><a href="#changing-method-signature" class="nav-link">Changing Method Signature</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#exporting-symbols-for-shared-libraries" class="nav-link">Exporting symbols for shared libraries</a>
+            <li class="nav-item" data-bs-level="1"><a href="#standard-library" class="nav-link">Standard Library</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#creating-the-export-header" class="nav-link">Creating the Export Header</a>
+            <li class="nav-item" data-bs-level="2"><a href="#linking-to-the-standard-library" class="nav-link">Linking to the Standard Library</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#marking-the-symbols" class="nav-link">Marking the Symbols</a>
+            <li class="nav-item" data-bs-level="3"><a href="#setting-up-the-correct-crt-with-msvc" class="nav-link">Setting up the correct CRT with MSVC</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#cmake-configuration" class="nav-link">CMake Configuration</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#resouces_1" class="nav-link">Resouces</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resouces" class="nav-link">Resouces</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#compilation-for-a-specific-cpu" class="nav-link">Compilation for a specific CPU</a>
+            <li class="nav-item" data-bs-level="1"><a href="#exporting-symbols-for-shared-libraries" class="nav-link">Exporting symbols for shared libraries</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#msvc" class="nav-link">MSVC</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#building" class="nav-link">Building</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#single-configuration-systems" class="nav-link">Single-configuration systems</a>
+            <li class="nav-item" data-bs-level="2"><a href="#creating-the-export-header" class="nav-link">Creating the Export Header</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#multi-configuration-systems" class="nav-link">Multi-configuration systems</a>
+            <li class="nav-item" data-bs-level="2"><a href="#marking-the-symbols" class="nav-link">Marking the Symbols</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#specify-the-target" class="nav-link">Specify the target</a>
+            <li class="nav-item" data-bs-level="2"><a href="#cmake-configuration" class="nav-link">CMake Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
+            <li class="nav-item" data-bs-level="2"><a href="#resouces_1" class="nav-link">Resouces</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#handling-case-insensitivity" class="nav-link">Handling Case Insensitivity</a>
+            <li class="nav-item" data-bs-level="1"><a href="#compilation-for-a-specific-cpu" class="nav-link">Compilation for a specific CPU</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#msvc" class="nav-link">MSVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#building" class="nav-link">Building</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#single-configuration-systems" class="nav-link">Single-configuration systems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#multi-configuration-systems" class="nav-link">Multi-configuration systems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#specify-the-target" class="nav-link">Specify the target</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#handling-case-insensitivity" class="nav-link">Handling Case Insensitivity</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -819,7 +773,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
-<p>In C++, the workflow and especially the build pipeline is much more complicated than in other languages. Therefore, we start with brief overview of the C++ build pipelines. The following scheme shows the possible build pipelines for C++, starting from Integrated developemnt tools (IDE) and ending with the linker.</p>
+<p>In C++, the workflow and especially the build pipeline is much more complicated than in other languages. Therefore, we start with brief overview of the C++ build pipelines. The following scheme (see the <a href="https://drive.google.com/file/d/1maXBLUjcr2lR-Vys7XvGo8-B2p4JmeJN/view?usp=sharing">source</a> for links) shows the possible build pipelines for C++, starting from Integrated developemnt tools (IDE) and ending with the linker.</p>
 <p><img alt="C++ Workflow" src="../Build%20tools%20and%20toolsets.png" /></p>
 <p>This guide presents mostly the following workflows:</p>
 <ul>
@@ -838,9 +792,23 @@
 <li>install MinGW64 using: <code>pacman -S mingw-w64-x86_64-gcc</code></li>
 </ul>
 <h2 id="msvc-windows">MSVC (Windows)<a class="headerlink" href="#msvc-windows" title="Permanent link">&para;</a></h2>
+<p><a href="https://visualstudio.microsoft.com/cs/vs/">Visual Studio Comunity Edition</a></p>
+<h3 id="setting-up-the-compiler-environment">Setting up the compiler environment<a class="headerlink" href="#setting-up-the-compiler-environment" title="Permanent link">&para;</a></h3>
+<p>Most of the time, the compiler environment is set up automatically. However, beware that <strong>failing to setup the MSVC compiler environment can lead to hard to debug errors or silent selection of another compiler!</strong>.</p>
+<p>MSVC compiler is automatically set up:</p>
 <ul>
-<li>install <a href="https://visualstudio.microsoft.com/cs/vs/">Visual Studio 2019 Comunity Edition</a></li>
+<li>by Visual Studio and CLion IDEs</li>
+<li>by developer command prompt and developer PowerShell</li>
+<li>anytime when MSBuild is used as build sequencing tool</li>
 </ul>
+<p>On the other hand, a typical example of a situation where the compiler environment is not set up is when using a non-developer shell (e.g., PowerShell) and using a non-default build sequencing tool (e.g., Ninja).</p>
+<p>To <strong>test if the compiler environment is set up correctly</strong>, we can use call the <code>cl</code> command. If the compiler environment is not set up correctly, the command will not be found.</p>
+<p>To set up the compiler environment manually, you can use the following commands:</p>
+<pre><code class="language-powershell">$vswhere = &quot;${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe&quot;
+$vs = &amp; $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+Import-Module &quot;$vs\Common7\Tools\Microsoft.VisualStudio.DevShell.dll&quot;
+Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
+</code></pre>
 <h3 id="common-compiler-flags">Common Compiler Flags<a class="headerlink" href="#common-compiler-flags" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp"><code>/nologo</code></a>: do not print the copyright banner and information messages</li>
@@ -923,306 +891,7 @@ The structure inside the project element is as follows (only the most important 
 </ul>
 <p>Other details about CMake can be found in the <a href="../CMake%20Manual/">CMake Manual</a>.</p>
 <h1 id="vcpkg">vcpkg<a class="headerlink" href="#vcpkg" title="Permanent link">&para;</a></h1>
-<p>Vcpkg is a package manager for C++ libraries it serves as a developement package manager rather than a system package manager.</p>
-<p>Vcpkg can work in two modes:</p>
-<ul>
-<li><strong>Classic mode</strong>: vcpkg is installed centrally. This mode is useful for development and testing.</li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode"><strong>Manifest mode</strong></a>: vcpkg is installed in the project directory. This mode is useful for deployment. </li>
-</ul>
-<p>To install vcpkg:</p>
-<ol>
-<li>clone the repo to the desired location (project directory for manifest mode, any directory for classic mode)</li>
-<li>run the bootstrap script (<code>bootstrap-vcpkg.bat</code> on Windows, <code>bootstrap-vcpkg.sh</code> on Linux)</li>
-<li>for classic mode, add the vcpkg directory to <code>PATH</code>, so the program can be run from anywhere<ul>
-<li>Beware that to run it with sudo on linux, <a href="https://docs.google.com/document/d/19CBUHtO0aUpg-kipnTrbQ3ozn_M1PiM0rH4IHoYrXS0/edit?usp=sharing">it is not that easy</a>.</li>
-</ul>
-</li>
-</ol>
-<h2 id="basic-coomands">Basic coomands<a class="headerlink" href="#basic-coomands" title="Permanent link">&para;</a></h2>
-<h3 id="install-a-package">Install a package<a class="headerlink" href="#install-a-package" title="Permanent link">&para;</a></h3>
-<p>To install a package, use the <code>install &lt;package name&gt;</code> command. Important options are:</p>
-<ul>
-<li><code>--triplet &lt;triplet&gt;</code>: the target triplet. </li>
-</ul>
-<h3 id="remove-a-package">Remove a package<a class="headerlink" href="#remove-a-package" title="Permanent link">&para;</a></h3>
-<p>To remove a package, use the <code>remove &lt;package name&gt;</code> command. Important options are:</p>
-<ul>
-<li><code>--triplet &lt;triplet&gt;</code>: the target triplet.</li>
-</ul>
-<h3 id="search-for-a-package">Search for a package<a class="headerlink" href="#search-for-a-package" title="Permanent link">&para;</a></h3>
-<p>To search for a package, use the <code>search &lt;package name&gt;</code> command. </p>
-<h3 id="list-installed-packages">List installed packages<a class="headerlink" href="#list-installed-packages" title="Permanent link">&para;</a></h3>
-<p>To list the installed packages, use the <code>list</code> command. The first positional argument is the triplet filter, e.g., <code>list x64-windows</code> lists only the packages for the <code>x64-windows</code> triplet.</p>
-<h2 id="cmake-integration">CMake Integration<a class="headerlink" href="#cmake-integration" title="Permanent link">&para;</a></h2>
-<p><a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">documentation</a></p>
-<p>By default, CMake does not see the vcpkg. To set up the appropriate enviroment variables, paths, etc., we need to run cmake commands with path to cmake toolchain file: <code>vcpkg/scripts/buildsystems/vcpkg.cmake</code>. See the IDE and command line section for the detailed instructions how to execute cmake with the path to the vcpkg toolchain file. </p>
-<p>The toolchain file is executed early on, so it is safe to assume that the environment will be correctly set up before the commands in yor cmake script.</p>
-<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
-<p>vcpkg has the following directory structure:</p>
-<ul>
-<li><code>buildtrees</code>: contains the build directories for each installed package. Each build directory contains the build logs.</li>
-<li><code>installed</code>: contains the installed packages. It has subdirectories for each triplet. Each triplet directory is than divided into folloeing subdirectories:<ul>
-<li><code>bin</code>: contains the shared libraries</li>
-<li><code>debug</code>: contains the debug version of everything in a similar structure as the triplet directory</li>
-<li><code>examples</code>: contains example binaries</li>
-<li><code>include</code>: contains the header files</li>
-<li><code>lib</code>: contains the static libraries</li>
-<li><code>share</code>: contains the cmake scripts and other files needed for the integration of the package into a cmake project</li>
-<li><code>tools</code>: contains the executables installed with vcpkg packages</li>
-</ul>
-</li>
-<li><code>ports</code>: Contains the package information for each package from the official vcpkg list. There is no special way how to update just the port dir, so update the whole vcpkg by <code>git pull</code> in case you need to update the list of available packages.</li>
-<li><code>scripts</code>: various scripts<ul>
-<li><code>toolchains</code>: cmake files that configure the toolchains. There is a special file for each platform (windows, linux, etc.)</li>
-</ul>
-</li>
-<li><code>triplets</code>: contains the triplet files.</li>
-</ul>
-<h3 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h3>
-<p>Vcpkg has it s own <code>find_package</code> macro in the toolchain file. It executes the script: <code>vcpkg/installed/&lt;tripplet&gt;/share/&lt;package name&gt;/vcpkg-cmake-wrapper.cmake</code>, if exists. Then, it executes the cmake scripts in that directory using the standard <code>find_package</code>, like a cmake config package.</p>
-<h2 id="triplets">Triplets<a class="headerlink" href="#triplets" title="Permanent link">&para;</a></h2>
-<p><a href="https://learn.microsoft.com/en-us/vcpkg/concepts/triplets">documentation</a></p>
-<p>Vcpkg supports installing packages built for multiple platforms and compilers in the same vcpkg installation. To do this, vcpkg uses the concept of <em>triplets</em>. A triplet is definition of target environment. Usually, the triplet defines three things:</p>
-<ul>
-<li>the target platform (e.g., x64, arm)</li>
-<li>the target operating system (e.g., windows, linux)</li>
-<li>the target compiler (e.g., msvc, gcc)</li>
-</ul>
-<p>The triplet definition is stored in the triplet file in the <code>&lt;vcpkg root&gt;/triplets</code> directory.</p>
-<h3 id="changing-the-default-triplet">Changing the default triplet<a class="headerlink" href="#changing-the-default-triplet" title="Permanent link">&para;</a></h3>
-<p>To change the default triplet, add a new system variable <code>VCPKG_DEFAULT_TRIPLET</code>, so your default library version installed with vcpkg will be x64 (like our builds),  set it to:</p>
-<ul>
-<li><code>x64-linux</code> for Linux Compilers</li>
-<li><code>x64-windows</code> for MSVC</li>
-<li><code>x64-MinGW</code> for MinGW</li>
-</ul>
-<h3 id="using-a-custom-triplet">Using a custom triplet<a class="headerlink" href="#using-a-custom-triplet" title="Permanent link">&para;</a></h3>
-<p>If you need to test a specific system environment with vcpkg, you can use a custom triplet.</p>
-<p>Typically, you can <strong>create</strong> such a triplet by copying an existing one and modifying it. Typically, you just modify the <a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets">triplet variables</a> in the file.</p>
-<p>To <strong>use</strong> the custom triplet add two arguments to the vcpkg command:</p>
-<ul>
-<li><code>--triplet &lt;triplet name&gt;</code>: the name of the custom triplet</li>
-<li><code>--overlay-triplets=&lt;path to the directory containing the custom triplet&gt;</code>: the path to the directory containing the custom triplet file</li>
-</ul>
-<p>To <strong>change the compiler</strong>, it is a little bit more complicated, as there is no triplet variable for the compiler. Instead, we need to provide a custom toolchain:</p>
-<ol>
-<li>copy an existing toolchain file from the <code>&lt;vcpkg root&gt;/scripts/toolchains</code>.</li>
-<li>modify the toolchain file to use the desired compiler, e.g., by setting the <code>CMAKE_CXX_COMPILER</code> variable.</li>
-<li>in the custom triplet file, set the <code>VCPKG_CHAINLOAD_TOOLCHAIN_FILE</code> variable to point to the custom toolchain file.</li>
-</ol>
-<h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
-<ol>
-<li><code>git pull</code></li>
-<li>bootstrap vcpkg again<ol>
-<li>Windows: <code>bootstrap-vcpkg.bat</code>   </li>
-<li>Linux: <code>bootstrap-vcpkg.sh</code></li>
-</ol>
-</li>
-</ol>
-<h2 id="update-package">Update package<a class="headerlink" href="#update-package" title="Permanent link">&para;</a></h2>
-<ol>
-<li><a href="#update">Update vcpkg</a></li>
-<li><code>vcpkg update</code> to get a list of available updates</li>
-<li><code>vcpkg upgrade --no-dry-run</code> to actually perform the upgrade</li>
-</ol>
-<p>All packages are upgraded by default. To upgrade just one package, supply the name of the package (e.g., zlib:x64-windows) as an argument to <code>upgrade</code> command.</p>
-<h3 id="upgrade-packages-matching-a-pattern">Upgrade packages matching a pattern<a class="headerlink" href="#upgrade-packages-matching-a-pattern" title="Permanent link">&para;</a></h3>
-<p>For libraries that are divided into many interdependent packages (like boost), it is useful to upgrade all packages that match a pattern at once. Unfortunately, the <code>upgrade</code> command does not support the pattern matching. The following command can be used to upgrade all packages that match a pattern in PowerShell:</p>
-<pre><code class="language-PowerShell">vcpkg update | sls -pattern &quot;boost-\w+&quot; | foreach-object { vcpkg upgrade $_.Matches.Value --no-dry-run }
-</code></pre>
-<h2 id="package-features">Package Features<a class="headerlink" href="#package-features" title="Permanent link">&para;</a></h2>
-<p>Some libraries have optional features, which are not installed by default, but we can install them explicitely. For example <code>llvm</code>. After <code>vcpkg install llvm</code> and typing <code>vcpkg search llvm</code>:</p>
-<pre><code>llvm                 10.0.0#6         The LLVM Compiler Infrastructure
-llvm[clang]                           Build C Language Family Front-end.
-llvm[clang-tools-extra]               Build Clang tools.
-...
-llvm[target-all]                      Build with all backends.
-llvm[target-amdgpu]                   Build with AMDGPU backend.
-llvm[target-arm]                      Build with ARM backend.
-</code></pre>
-<p>Above, we can see that there are a lot of optional targets. To install the the arm target, for example, we can use <code>vcpkg install llvm[target-arm]</code>. Sometimes, a new build of the main package is required, in that case, we need to type <code>vcpkg install llvm[target-arm] --recurse</code>.</p>
-<h2 id="package-versions">Package Versions<a class="headerlink" href="#package-versions" title="Permanent link">&para;</a></h2>
-<p>In classic mode, there is no way how to control the version of a package. For that, we have to use the manifest mode</p>
-<h2 id="integrate-your-library-to-vcpkg">Integrate your library to vcpkg<a class="headerlink" href="#integrate-your-library-to-vcpkg" title="Permanent link">&para;</a></h2>
-<p>For complete integration of your library to vcpkg, the following steps are needed:</p>
-<ol>
-<li>Configure and test the <a href="../CMake%20Manual/#install"><em>CMake installation</em></a></li>
-<li>Crate the port and test it locally (<em>vcpkg installation</em>)</li>
-<li>Submit the port to the vcpkg repository (<em>publishing</em>) </li>
-</ol>
-<p>Resources:</p>
-<ul>
-<li><a href="https://decovar.dev/blog/2022/10/30/cpp-dependencies-with-vcpkg/">decovar tutorial</a></li>
-</ul>
-<h3 id="create-the-port">Create the Port<a class="headerlink" href="#create-the-port" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging">The official guide for packageing</a></li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide">Maintainer guide</a><ul>
-<li>missing details from other guides</li>
-<li>contains the list of deprecated functions</li>
-</ul>
-</li>
-</ul>
-<p>Vcpkg works with ports which are special directories containing all files describing a C++ package. The usuall process is:
-The usual port contain these files:</p>
-<ul>
-<li><code>portfile.cmake</code>: the main file containing the calls to cmake functions that install the package</li>
-<li><code>vcpkg.json</code>: metadata file containing the package name, version, dependencies, etc.</li>
-<li><code>usage</code>: a file containing the usage instructions for the package. These instructions are displayed at the end of the installation process.<ul>
-<li><a href="https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/examples/adding-usage.md">example</a></li>
-</ul>
-</li>
-</ul>
-<p>A simple <code>portfile.cmake</code> can look like this:</p>
-<pre><code class="language-cmake">
-# download the source code
-vcpkg_from_github(
-    OUT_SOURCE_PATH SOURCE_PATH
-    REPO &lt;reo owner&gt;/&lt;repo name&gt;
-    REF &lt;tag name&gt;
-    SHA512 &lt;hash of the files&gt;
-    HEAD_REF &lt;branch name&gt;
-)
-
-# configure the source code
-vcpkg_cmake_configure(
-    SOURCE_PATH &lt;path to source dir&gt;
-)
-
-# build the source code and install it
-vcpkg_cmake_install()
-
-# fix the cmake generaed files for vcpkg
-vcpkg_cmake_config_fixup(PACKAGE_NAME &lt;package name&gt;)
-
-# install the license
-vcpkg_install_copyright(FILE_LIST &quot;${SOURCE_PATH}/LICENSE.txt&quot;)
-
-# install the usage file
-file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CURRENT_PACKAGES_DIR}/share/${PORT}&quot;)
-</code></pre>
-<p>Explanation:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_from_github"><code>vcpkg_from_github</code></a>: downloads the source code from the github repository<ul>
-<li>the <code>&lt;path to source dir&gt;</code> is the directory where the <code>CMakeLists.txt</code> file is located. It is usually the directory where the source code is downloaded, so we can set it to <code>${SOURCE_PATH}</code></li>
-<li>the <code>&lt;hash of the files&gt;</code> can be easily obtained by:<ol>
-<li>setting the `<hash of files> to 0</li>
-<li>running the <code>vcpkg install &lt;port name&gt;</code></li>
-<li>copying the hash from the error message</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_configure"><code>vcpkg_cmake_configure</code></a>: configures the source code using cmake (wraps the <code>cmake</code> command)</li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_install"><code>vcpkg_cmake_install</code></a>: builds and installs the source code (wraps the <code>cmake --build . --target install</code> command)<ul>
-<li>the majority of code is in the subroutine <a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_build"><code>vcpkg_cmake_build</code></a></li>
-<li><strong>if we need some libraries installed with vcpkg at runtime during the build of the package, we need to use the <code>ADD_BIN_TO_PATH</code> option in the <code>vcpkg_cmake_install</code> function</strong>. This is needed as the automatic dll copy to the output dir (<code>VCPKG_APPLOCAL_DEPS</code>) is disabelled by the <code>vcpkg_cmake_build</code> function. This option solve the problem by prepending the <code>PATH</code> environment variable with the path to the vcpkg installed libraries (<code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/bin</code> for release and <code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/debug/bin</code> for debug).</li>
-</ul>
-</li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_cmake_config_fixup"><code>vcpkg_cmake_config_fixup</code></a>: fixes the cmake generated files for vcpkg. This is needed because the cmake generated files are not compatible with vcpkg. The function fixes the <code>CMakeConfig.cmake</code> and <code>CMakeConfigVersion.cmake</code> files.<ul>
-<li>the <code>&lt;package name&gt;</code> is the name of the package, usually the same as the port name</li>
-</ul>
-</li>
-<li><a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_install_copyright"><code>vcpkg_install_copyright</code></a> installs the license files listed in the <code>FILE_LIST</code> argument to <code>share/&lt;port name&gt;/copyright</code> file. The <code>copyright</code> file is obligatory for the package to be accepted to the vcpkg repository.</li>
-</ul>
-<p>The <code>vcpkg.json</code> file can look like this:</p>
-<pre><code class="language-json">{
-    {
-    &quot;name&quot;: &quot;fconfig&quot;,
-    &quot;version-string&quot;: &quot;0.1.0&quot;,
-    &quot;description&quot;: &quot;C++ implementation of the fconfig configuration system&quot;,
-    &quot;homepage&quot;: &quot;https://github.com/F-I-D-O/Future-Config&quot;,
-    &quot;license&quot;: &quot;MIT&quot;,
-    &quot;dependencies&quot;: [
-        {
-            &quot;name&quot; : &quot;vcpkg-cmake&quot;,
-            &quot;host&quot; : true
-        },
-        &quot;yaml-cpp&quot;,
-        &quot;spdlog&quot;,
-        &quot;inja&quot;
-    ]
-}
-}
-</code></pre>
-<p>Here:</p>
-<ul>
-<li>the <code>license</code> key is obligatory and has to match the license file of the package</li>
-<li>The dependencies with the <code>host</code> key set to <code>true</code> are the dependencies that are required for the build, but not for the runtime. </li>
-</ul>
-<h4 id="variables-and-functions-available-in-the-portfilecmake">Variables and Functions available in the portfile.cmake<a class="headerlink" href="#variables-and-functions-available-in-the-portfilecmake" title="Permanent link">&para;</a></h4>
-<p>The variables and functions available in the <code>portfile.cmake</code> are described in the <a href="https://learn.microsoft.com/en-us/vcpkg/commands/create">create command documentation</a>. The most important variables are:</p>
-<ul>
-<li><code>CURRENT_PACKAGES_DIR</code>: the directory where the package is installed: <code>&lt;vcpkg root&gt;/installed/&lt;triplet&gt;/&lt;port name&gt;</code></li>
-</ul>
-<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
-<p>To install the port locally, run:</p>
-<pre><code class="language-bash">vcpkg install &lt;port name&gt;
-</code></pre>
-<p>For this command to work, the port has to be located in <code>&lt;vcpkg root&gt;/ports/&lt;port name&gt;</code>. If we want to install the port from an alternative location, we can use the <code>--overlay-ports</code> option.  For example, if we have the port stored in the <code>C:/custom_ports/our_new_port</code> directory, we can install it by:</p>
-<pre><code class="language-bash">vcpkg install our_new_port --overlay-ports=C:/custom_ports
-</code></pre>
-<p>If the port installation is failing and the reason is not clear from stdout, check the logs located in <code>&lt;vcpkg root&gt;/buildtrees/&lt;port name&gt;/</code></p>
-<h4 id="reinistallation-after-changes">Reinistallation after changes<a class="headerlink" href="#reinistallation-after-changes" title="Permanent link">&para;</a></h4>
-<p>During testing, we can reach a scenario where a) we successfully installed the port, b) we need to make some changes. In this case, we need to reinstall the port. However, it is not completely straightforward due to <a href="https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default">binary caching</a>. The following steps are needed to reinstall the port:</p>
-<ol>
-<li>uninstall the port: <code>vcpkg remove &lt;port name&gt;</code></li>
-<li>disable the binary cache by setting the <a href="https://learn.microsoft.com/en-us/vcpkg/reference/binarycaching"><code>VCPKG_BINARY_SOURCES</code></a> environment variable to <code>clear</code><ul>
-<li>in PowerShell: <code>$env:VCPKG_BINARY_SOURCES = "clear"</code></li>
-<li>in bash: <code>export VCPKG_BINARY_SOURCES=clear</code></li>
-<li>if setting the environment variable does not work (WSL), we can specify the <code>--binarysource=clear</code> option in the next step</li>
-</ul>
-</li>
-<li>install the port again: <code>vcpkg install &lt;port name&gt;</code></li>
-</ol>
-<h4 id="executable-installation">Executable installation<a class="headerlink" href="#executable-installation" title="Permanent link">&para;</a></h4>
-<p>In general vcpgk does not allow to install executables, as it is a dependency manager rather than a package manager for OS. However, it is possible to install executables that are intedned to be used as tools (to the <code>installed/&lt;triplet&gt;/tools</code> directory) used in the build process. To do so, you have to add the <a href="https://learn.microsoft.com/en-us/vcpkg/maintainers/functions/vcpkg_copy_tools"><code>vcpgk_copy_tools</code></a> call to the <code>portfile.cmake</code> file:</p>
-<pre><code class="language-cmake">vcpkg_copy_tools(
-    TOOL_NAMES &lt;tool target name&gt;
-    AUTO_CLEAN
-)
-</code></pre>
-<p>The <code>AUTO_CLEAN</code> option ensures that the tools are deleted from the <code>bin</code> directory. Without it the tools will be kept in the <code>bin</code> directory, resulting in warnings and non-complicance with the vcpkg rules.</p>
-<p>The <code>vcpgk_copy_tools</code> function also automatically copies the runtime dependencies of the tools to the <code>tools</code> directory. </p>
-<h4 id="executing-installed-tools-from-cmake">Executing installed tools from cmake<a class="headerlink" href="#executing-installed-tools-from-cmake" title="Permanent link">&para;</a></h4>
-<p>The installed tools can be executed from cmake using cmake comands specified in the <a href="../CMake%20Manual/#executing-external-commands">CMake manual</a>. </p>
-<p>To specify the path to the tools directory, use the <a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_installed_dir"><code>VCPKG_INSTALLED_DIR</code></a> and <a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#vcpkg_target_triplet"><code>VCPKG_TARGET_TRIPLET</code></a> variables:</p>
-<pre><code class="language-cmake">execute_process(
-    COMMAND ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/tools/${PROJECT_NAME}/&lt;tool name&gt;
-)
-</code></pre>
-<h3 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">&para;</a></h3>
-<p><a href="https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-adding-to-registry">official guide</a></p>
-<p>Before publishing the port, we should check for the following:</p>
-<ul>
-<li>all dependencies in <code>CMakelists.txt</code> are required (<code>find_package(&lt;package name&gt; REQUIRED)</code>) <strong>and</strong> listed in the <code>vcpkg.json</code> file in the <code>dependencies</code> array</li>
-<li>the port follows the <a href="https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/contributing/maintainer-guide.md">maintainer guide</a>, especially:<ul>
-<li>the port name does not clash with existing packages (check at <a href="https://repology.org/">repology</a>)</li>
-<li>the port should work for both Windows and Linux and on both platforms, the port should support both static and dynamic linking.</li>
-</ul>
-</li>
-<li>the <a href="https://learn.microsoft.com/en-us/vcpkg/contributing/pr-review-checklist">PR checklist</a> is followed</li>
-</ul>
-<p>Then, the submission process is as follows (The <em>emphezised</em> steps are not needed in case of fixing a failed release, i.e., when the release was rejected by vcpkg):</p>
-<ol>
-<li><em>create a fork of the vcpkg repository</em></li>
-<li>commit and push the changes to the project repository if not done yet</li>
-<li>create or replace a release in the projects GitHub repository</li>
-<li>update the verison in the <code>vcpkg_from_github</code> call in <code>portfile.cmake</code></li>
-<li>update the version in the <code>vcpkg.json</code> file</li>
-<li>pull from the vcpgk fork repository</li>
-<li>copy the port (<code>portfile.cmake</code>, <code>vcpkg.json</code> and <code>usage</code>) to the vcpkg repository</li>
-<li>remove the local <code>SOURCE_PATH</code> overrides and uncomment the <code>vcpkg_from_github</code> call</li>
-<li>in portfile, assign the correct hash to the <code>vcpkg_from_github</code> call</li>
-<li>test the port installation locally without the <code>--overlay-ports</code> option</li>
-<li>format the <code>vcpkg.json</code> file using the <code>vcpkg format-manifest &lt;path to the vcpkg.json file&gt;</code> command</li>
-<li><em>create a new branch for the package</em></li>
-<li>commit the changes to the package branch in the vcpkg repository</li>
-<li>update the port version using the <code>vcpkg x-add-version &lt;port name&gt;</code> command</li>
-<li>commit again to the package branch in the vcpkg repository</li>
-<li>push the branch to the forked vcpkg repository</li>
-<li><em>open the forked repository in the browser and create a new pull request to the main vcpkg repository</em></li>
-</ol>
+<p>For detailed information about vcpkg, see the <a href="../vcpkg%20Manual/">vcpkg Manual</a>.</p>
 <h1 id="ide">IDE<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h1>
 <h2 id="clion">Clion<a class="headerlink" href="#clion" title="Permanent link">&para;</a></h2>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
@@ -1284,11 +953,16 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <li>select the profile you want to deactivate</li>
 <li>uncheck the <code>Enable profile</code> checkbox located at the top of the profile settings</li>
 </ol>
-<h3 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
 <h4 id="editor-reports-errors-despite-the-code-compiles-in-all-compilers">Editor reports errors despite the code compiles in all compilers<a class="headerlink" href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" title="Permanent link">&para;</a></h4>
 <p>This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.</p>
+<h4 id="editor-actions-are-not-available-ctrl-click-does-nothing">Editor actions are not available, <code>Ctrl + click</code> does nothing<a class="headerlink" href="#editor-actions-are-not-available-ctrl-click-does-nothing" title="Permanent link">&para;</a></h4>
+<ol>
+<li>check whether the "Go to Reference" action is triggered. If there is a tooltip claiming no references, go to next step. Otherwise, the problem is in the keymap</li>
+<li>check the right side of the status bar (bottom right corner of the editor). There should be an indicator in the format of <code>C++ | &lt;target name&gt; | &lt;debugging configuration&gt;</code>. If there is another indicator, CLion does not know the context of the project. Probably, the project configuration needs to be fixed</li>
+</ol>
 <h2 id="visual-studio">Visual Studio<a class="headerlink" href="#visual-studio" title="Permanent link">&para;</a></h2>
-<h3 id="installation_2">Installation<a class="headerlink" href="#installation_2" title="Permanent link">&para;</a></h3>
+<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Install Visual Studio</li>
 <li>Open/Create a CMake project</li>
@@ -1409,6 +1083,61 @@ we can find it be examining the compiler executable stored in <code>C:\Program F
 <h3 id="problems-solutions">Problems &amp; solutions<a class="headerlink" href="#problems-solutions" title="Permanent link">&para;</a></h3>
 <h4 id="cannot-regenerate-cmake-cache">Cannot regenerate Cmake cache<a class="headerlink" href="#cannot-regenerate-cmake-cache" title="Permanent link">&para;</a></h4>
 <p>go to <code>./vs</code> and look for file named <code>CmakeWorkspaceSettings</code>. It most likelz contains a line with <code>disable = true</code>. Just delete the file, or the specific line.</p>
+<h2 id="visual-studio-code">Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permanent link">&para;</a></h2>
+<p>In VS Code, the C++ support is provided by multiple extensions.</p>
+<h3 id="cmake-support-extension">CMake support extension<a class="headerlink" href="#cmake-support-extension" title="Permanent link">&para;</a></h3>
+<p>The CMake support extension is provided by the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools">CMake Tools</a> extension.</p>
+<p>To set the vcpkg toolchain file, it is best to edit the extension settings, so that the toolchain file is set for all projects:</p>
+<ol>
+<li>In the extension settings, go to <code>CMake: Configure Args</code></li>
+<li>Add argument <code>--toolchain</code></li>
+<li>Add argument with the path to the vcpkg toolchain file</li>
+</ol>
+<p>To run the configuration or other CMake tasks, open the newly installed CMake view.</p>
+<p>By default, the CMake extension uses CMake presets to configure the project. To use CMake  withou presets, go to the extension settings and set <code>CMake: Use CMake Presets</code> to <code>never</code>.</p>
+<h2 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h2>
+<p>For Cursor, the situation is almost the same as for VS Code. Important differences:</p>
+<ul>
+<li>The main, but important difference is that <strong>Cursor does not support the Visual Studio Debugger</strong> (cppvsdbg) <a href="https://forum.cursor.com/t/new-in-house-extensions-c-c-ssh-devcontainers-wsl-python/94531?utm_source=chatgpt.com">[source]</a>, <a href="https://forum.cursor.com/t/are-there-any-plans-to-support-the-cppvsdbg-type-in-the-future/7304">[source 2]</a>. Therefore, Cursor is hardly usable as the all-in-one IDE for C++, it has to be used in combination with another IDE.</li>
+<li>Cursor does not have a built-in IntelliSense. Instead, it relies on <a href="https://clangd.llvm.org/">clangd</a> to provide the functionality.</li>
+<li>Cursor does not have the Microsoft C++ Extension enabled. Instead, it has another C++ extension from Anysphere. This is the only C++ extension that needs to be installed manually, as it installs automatically:<ul>
+<li>the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools">CMake Tools</a> extension</li>
+<li>the <a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd">clangd</a> extension</li>
+<li>the <a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">CodeLLDB</a> extension</li>
+</ul>
+</li>
+</ul>
+<h3 id="call-the-msvc-compiler-from-cursor">Call the MSVC compiler from Cursor<a class="headerlink" href="#call-the-msvc-compiler-from-cursor" title="Permanent link">&para;</a></h3>
+<p>To partially overcome this limitation, we can at least run the program without debugger as a task:</p>
+<pre><code class="language-json">&quot;tasks&quot;: [
+    {
+        &quot;label&quot;: &quot;Run DC 3-minute instance&quot;,
+        &quot;type&quot;: &quot;process&quot;,
+        &quot;command&quot;: &quot;${command:cmake.launchTargetFilename}&quot;,
+        &quot;options&quot;: {
+            &quot;cwd&quot;: &quot;${command:cmake.launchTargetDirectory}&quot;
+        },
+        &quot;args&quot;: [
+            &quot;--instance&quot;, 
+            &quot;C:/Google Drive AIC/My Drive/AIC Experiment Data/DARP/Instances/DC/instances/start_18-00/duration_01_min/max_delay_03_min&quot;
+        ],
+        &quot;problemMatcher&quot;: []
+    }
+]
+</code></pre>
+<p>Here the executable is defined by:</p>
+<ul>
+<li><code>${command:cmake.launchTargetFilename}</code>: the executable</li>
+<li><code>${command:cmake.launchTargetDirectory}</code>: the path to the build bin directory</li>
+</ul>
+<p>Both these variables are defined by the CMake Tools extension.</p>
+<h3 id="troubleshooting_1">Troubleshooting<a class="headerlink" href="#troubleshooting_1" title="Permanent link">&para;</a></h3>
+<h4 id="the-ctrl-click-on-a-function-call-does-not-open-the-definition">The <code>Ctrl + click</code> on a function call does not open the definition<a class="headerlink" href="#the-ctrl-click-on-a-function-call-does-not-open-the-definition" title="Permanent link">&para;</a></h4>
+<p>Unlike in VS Code, Cursor does not have a built-in IntelliSense. Instead, it relies on <a href="https://clangd.llvm.org/">clangd</a> to provide the functionality. To conclude what is wrong, first try to reset the clangd server:</p>
+<ol>
+<li><code>View</code> -&gt; <code>Command Palette</code></li>
+<li>type <code>clangd: Restart language server</code></li>
+</ol>
 <h1 id="typical-directory-structure">Typical directory structure<a class="headerlink" href="#typical-directory-structure" title="Permanent link">&para;</a></h1>
 <p>The typical directory structure for a C++ project is as follows:</p>
 <ul>
@@ -1794,19 +1523,20 @@ ml) option enables compilation for a specific hardware.</p>
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1826,7 +1556,7 @@ ml) option enables compilation for a specific hardware.</p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

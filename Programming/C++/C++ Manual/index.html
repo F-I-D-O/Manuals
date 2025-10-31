@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>C++ Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -51,7 +52,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">C++ Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">C++ Manual</a>
 </li>
             
 <li>
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,49 +412,49 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#source-and-header-files" class="nav-link">Source and Header Files</a>
+            <li class="nav-item" data-bs-level="1"><a href="#source-and-header-files" class="nav-link">Source and Header Files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#type-system" class="nav-link">Type System</a>
+            <li class="nav-item" data-bs-level="1"><a href="#type-system" class="nav-link">Type System</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#complete-and-incomplete-types" class="nav-link">Complete and Incomplete Types</a>
+            <li class="nav-item" data-bs-level="2"><a href="#complete-and-incomplete-types" class="nav-link">Complete and Incomplete Types</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#aggregate-types" class="nav-link">Aggregate types</a>
+            <li class="nav-item" data-bs-level="2"><a href="#aggregate-types" class="nav-link">Aggregate types</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#type-conversion" class="nav-link">Type Conversion</a>
+            <li class="nav-item" data-bs-level="2"><a href="#type-conversion" class="nav-link">Type Conversion</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#numeric-conversion" class="nav-link">Numeric Conversion</a>
+            <li class="nav-item" data-bs-level="3"><a href="#numeric-conversion" class="nav-link">Numeric Conversion</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#implicit-numeric-conversion" class="nav-link">Implicit Numeric Conversion</a>
+            <li class="nav-item" data-bs-level="4"><a href="#implicit-numeric-conversion" class="nav-link">Implicit Numeric Conversion</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#integral-promotion" class="nav-link">Integral Promotion</a>
+            <li class="nav-item" data-bs-level="5"><a href="#integral-promotion" class="nav-link">Integral Promotion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="5"><a href="#integral-conversion" class="nav-link">Integral Conversion</a>
+            <li class="nav-item" data-bs-level="5"><a href="#integral-conversion" class="nav-link">Integral Conversion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#usual-arithmetic-conversion" class="nav-link">Usual Arithmetic Conversion</a>
+            <li class="nav-item" data-bs-level="4"><a href="#usual-arithmetic-conversion" class="nav-link">Usual Arithmetic Conversion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -444,292 +462,13 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#show-the-type-at-runtime" class="nav-link">Show the Type at Runtime</a>
+            <li class="nav-item" data-bs-level="2"><a href="#show-the-type-at-runtime" class="nav-link">Show the Type at Runtime</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#resolved-complicated-types" class="nav-link">Resolved complicated types</a>
+            <li class="nav-item" data-bs-level="3"><a href="#resolved-complicated-types" class="nav-link">Resolved complicated types</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#show-the-user-provided-types-stdtype_info" class="nav-link">Show the user-provided types (std::type_info)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#built-in-and-stl-types" class="nav-link">Built-in and STL Types</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#arithmetic-types" class="nav-link">Arithmetic Types</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#integers" class="nav-link">Integers</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#overflow-and-underflow" class="nav-link">Overflow and Underflow</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#dangerous-situations" class="nav-link">Dangerous situations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#detecting-overflows" class="nav-link">Detecting overflows</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#characters" class="nav-link">Characters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#pointers" class="nav-link">Pointers</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#pointers-to-functions" class="nav-link">Pointers to Functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#pointers-to-member-objects" class="nav-link">Pointers to Member Objects</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#pointers-to-member-functions" class="nav-link">Pointers to Member Functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#references" class="nav-link">References</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#rvalue-references" class="nav-link">Rvalue references</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#forwarding-references" class="nav-link">Forwarding references</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#function-parameter-forwarding-references" class="nav-link">Function parameter forwarding references</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#auto-forwarding-reference" class="nav-link">auto forwarding reference</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#arrays" class="nav-link">Arrays</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#static-arrays" class="nav-link">Static arrays</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#dynamic-arrays" class="nav-link">Dynamic arrays</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#array-to-pointer-implicit-conversion" class="nav-link">Array to pointer implicit conversion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#mutli-dimensional-dynamic-arrays" class="nav-link">Mutli-dimensional dynamic arrays</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#flat-array" class="nav-link">Flat array</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#array-of-pointers-to-array" class="nav-link">Array of pointers to array</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#auto-dealocation-of-dynamic-arrays" class="nav-link">Auto dealocation of dynamic arrays</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#references-and-pointers-to-arrays" class="nav-link">References and Pointers to arrays</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#function-type" class="nav-link">Function Type</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#reference-to-function-and-pointer-to-function-types" class="nav-link">Reference to Function and Pointer to Function Types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#enumerations" class="nav-link">Enumerations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#smart-pointers" class="nav-link">Smart Pointers</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#creation" class="nav-link">Creation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#shared-pointer" class="nav-link">Shared Pointer</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stdreference_wrapper" class="nav-link">std::reference_wrapper</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#strings" class="nav-link">Strings</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#string-literals" class="nav-link">String Literals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#formatting-strings" class="nav-link">Formatting strings</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#spliting-the-string-into-tokens" class="nav-link">Spliting the string into tokens</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#converting-string-to-int" class="nav-link">Converting string to int</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#substring" class="nav-link">Substring</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#change-the-case" class="nav-link">change the case</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#building-strings" class="nav-link">Building strings</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#testting-for-whitespace" class="nav-link">Testting for whitespace</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#date-and-time" class="nav-link">Date and time</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#collections" class="nav-link">Collections</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#sets" class="nav-link">Sets</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#providing-custom-hash-function" class="nav-link">Providing custom hash function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#implementing-custom-hash-function" class="nav-link">Implementing custom hash function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#maps" class="nav-link">Maps</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#geeting-value-by-key" class="nav-link">Geeting value by key</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#inserting-into-map" class="nav-link">Inserting into map</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#tuples" class="nav-link">Tuples</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#creating-tuples" class="nav-link">Creating tuples</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#creating-tuples-with-stdmake_pair-or-stdmake_tuple" class="nav-link">Creating tuples with std::make_pair or std::make_tuple</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#accessing-tuple-members" class="nav-link">Accessing tuple members</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#unpacking-tuples-into-variables" class="nav-link">Unpacking tuples into variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#structured-binding" class="nav-link">Structured binding</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="5"><a href="#stdtie" class="nav-link">std::tie</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#unpacking-tuples-to-constructor-params-with-stdmake_from_tuple" class="nav-link">Unpacking tuples to constructor params with std::make_from_tuple</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stdoptional" class="nav-link">std::optional</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#unions-and-variants" class="nav-link">Unions and Variants</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#stdvariant" class="nav-link">std::variant</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#storing-individual-bits-in-a-sequence" class="nav-link">Storing individual bits in a sequence</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#reading-a-subsequnece-of-bits" class="nav-link">Reading a subsequnece of bits</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#stdbitset" class="nav-link">std::bitset</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#reading" class="nav-link">Reading</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#value-categories" class="nav-link">Value Categories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#operators" class="nav-link">Operators</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#user-defined-operators" class="nav-link">User-defined Operators</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#comparison-operators" class="nav-link">Comparison Operators</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#default-comparison-operators" class="nav-link">Default Comparison Operators</a>
+            <li class="nav-item" data-bs-level="3"><a href="#show-the-user-provided-types-stdtype_info" class="nav-link">Show the user-provided types (std::type_info)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -738,350 +477,277 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#control-structures" class="nav-link">Control Structures</a>
+            <li class="nav-item" data-bs-level="1"><a href="#built-in-and-stl-types" class="nav-link">Built-in and STL Types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#switch-statement" class="nav-link">Switch Statement</a>
+            <li class="nav-item" data-bs-level="2"><a href="#arithmetic-types" class="nav-link">Arithmetic Types</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#integers" class="nav-link">Integers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#overflow-and-underflow" class="nav-link">Overflow and Underflow</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#dangerous-situations" class="nav-link">Dangerous situations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#detecting-overflows" class="nav-link">Detecting overflows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#characters" class="nav-link">Characters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pointers" class="nav-link">Pointers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#pointers-to-functions" class="nav-link">Pointers to Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#pointers-to-member-objects" class="nav-link">Pointers to Member Objects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#pointers-to-member-functions" class="nav-link">Pointers to Member Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#references" class="nav-link">References</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#rvalue-references" class="nav-link">Rvalue references</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#forwarding-references" class="nav-link">Forwarding references</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#function-parameter-forwarding-references" class="nav-link">Function parameter forwarding references</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#auto-forwarding-reference" class="nav-link">auto forwarding reference</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arrays" class="nav-link">Arrays</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#static-arrays" class="nav-link">Static arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#dynamic-arrays" class="nav-link">Dynamic arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#array-to-pointer-implicit-conversion" class="nav-link">Array to pointer implicit conversion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#mutli-dimensional-dynamic-arrays" class="nav-link">Mutli-dimensional dynamic arrays</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#flat-array" class="nav-link">Flat array</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#array-of-pointers-to-array" class="nav-link">Array of pointers to array</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#auto-dealocation-of-dynamic-arrays" class="nav-link">Auto dealocation of dynamic arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#references-and-pointers-to-arrays" class="nav-link">References and Pointers to arrays</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#function-type" class="nav-link">Function Type</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#reference-to-function-and-pointer-to-function-types" class="nav-link">Reference to Function and Pointer to Function Types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enumerations" class="nav-link">Enumerations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#smart-pointers" class="nav-link">Smart Pointers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#creation" class="nav-link">Creation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#shared-pointer" class="nav-link">Shared Pointer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stdreference_wrapper" class="nav-link">std::reference_wrapper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#strings" class="nav-link">Strings</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#string-literals" class="nav-link">String Literals</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#formatting-strings" class="nav-link">Formatting strings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#spliting-the-string-into-tokens" class="nav-link">Spliting the string into tokens</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#converting-string-to-int" class="nav-link">Converting string to int</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#substring" class="nav-link">Substring</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#change-the-case" class="nav-link">change the case</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#building-strings" class="nav-link">Building strings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#testting-for-whitespace" class="nav-link">Testting for whitespace</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#date-and-time" class="nav-link">Date and time</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#collections" class="nav-link">Collections</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#sets" class="nav-link">Sets</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#providing-custom-hash-function" class="nav-link">Providing custom hash function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#implementing-custom-hash-function" class="nav-link">Implementing custom hash function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#maps" class="nav-link">Maps</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#geeting-value-by-key" class="nav-link">Geeting value by key</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#inserting-into-map" class="nav-link">Inserting into map</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#tuples" class="nav-link">Tuples</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#creating-tuples" class="nav-link">Creating tuples</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#creating-tuples-with-stdmake_pair-or-stdmake_tuple" class="nav-link">Creating tuples with std::make_pair or std::make_tuple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#accessing-tuple-members" class="nav-link">Accessing tuple members</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#unpacking-tuples-into-variables" class="nav-link">Unpacking tuples into variables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#structured-binding" class="nav-link">Structured binding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="5"><a href="#stdtie" class="nav-link">std::tie</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#unpacking-tuples-to-constructor-params-with-stdmake_from_tuple" class="nav-link">Unpacking tuples to constructor params with std::make_from_tuple</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stdoptional" class="nav-link">std::optional</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#unions-and-variants" class="nav-link">Unions and Variants</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#stdvariant" class="nav-link">std::variant</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#storing-individual-bits-in-a-sequence" class="nav-link">Storing individual bits in a sequence</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#reading-a-subsequnece-of-bits" class="nav-link">Reading a subsequnece of bits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#stdbitset" class="nav-link">std::bitset</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#reading" class="nav-link">Reading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#functions" class="nav-link">Functions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#value-categories" class="nav-link">Value Categories</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#function-declaration-and-definition" class="nav-link">Function Declaration and Definition</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#merged-declaration-and-definition" class="nav-link">Merged Declaration and Definition</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#deciding-between-free-function-member-function-and-static-member-function" class="nav-link">Deciding between free function, member function and static member function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#argument-parameter-conversions" class="nav-link">Argument-parameter Conversions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#default-parameters" class="nav-link">Default Parameters</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#default-parameters-and-inheritance" class="nav-link">Default Parameters and Inheritance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#return-values-and-nrvo" class="nav-link">Return values and NRVO</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#function-overlaoding" class="nav-link">Function Overlaoding</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#conversion-prioritiy-and-ranking" class="nav-link">Conversion prioritiy and ranking</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#conversion-sequence-ranks" class="nav-link">Conversion sequence ranks</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#constructor-argument-type-resolution-in-list-initialization" class="nav-link">Constructor argument type resolution in list initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#auto-return-type" class="nav-link">auto return type</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#function-visibility" class="nav-link">Function visibility</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#deleting-functions" class="nav-link">Deleting functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#classes-and-structs" class="nav-link">Classes and structs</a>
+            <li class="nav-item" data-bs-level="1"><a href="#operators" class="nav-link">Operators</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#class-constants" class="nav-link">Class Constants</a>
+            <li class="nav-item" data-bs-level="2"><a href="#user-defined-operators" class="nav-link">User-defined Operators</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#friend-declaration" class="nav-link">Friend declaration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#comparison-operators" class="nav-link">Comparison Operators</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#template-friends" class="nav-link">Template friends</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#initialization-and-assignment" class="nav-link">Initialization and Assignment</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#loacal-variables-initializationassignment" class="nav-link">Loacal variables initialization/assignment</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#list-initialization" class="nav-link">List initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#value-initialization" class="nav-link">Value initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#aggregate-initialization" class="nav-link">Aggregate initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#nested-initialization" class="nav-link">Nested initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#member-initializationassignment" class="nav-link">Member Initialization/Assignment</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#default-member-initialization" class="nav-link">Default Member Initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#member-initializer-list" class="nav-link">Member Initializer List</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#constructor-body" class="nav-link">Constructor Body</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#comparison-table" class="nav-link">Comparison Table</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#constructors-and-special-member-functions" class="nav-link">Constructors and Special Member Functions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#constructor" class="nav-link">Constructor</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#defualt-variant" class="nav-link">Defualt Variant</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#explicit-constructor" class="nav-link">Explicit constructor</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#call-one-constructor-from-another" class="nav-link">Call one constructor from another</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#copy-constructor" class="nav-link">Copy Constructor</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#implicit-declaration-and-implicit-deletion" class="nav-link">Implicit declaration and implicit deletion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#checking-if-a-class-is-copy-constructible" class="nav-link">Checking if a class is copy constructible</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#copy-assignment" class="nav-link">Copy Assignment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#move-constructor" class="nav-link">Move Constructor</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#implicit-declaration-and-implicit-deletion_1" class="nav-link">Implicit declaration and implicit deletion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#checking-if-a-class-is-move-constructible" class="nav-link">Checking if a class is move constructible</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#move-assignment" class="nav-link">Move Assignment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#trivial-special-member-functions" class="nav-link">Trivial special member functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#destructor" class="nav-link">Destructor</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#typical-usage" class="nav-link">Typical usage</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#simple-temporary-object" class="nav-link">Simple Temporary Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#unique-object" class="nav-link">Unique Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#default-object" class="nav-link">Default Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#const-vs-non-const" class="nav-link">Const vs non-const</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function" class="nav-link">Avoiding duplication between const and non-const version of the same function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#constnon-const-overloads-and-inheritance" class="nav-link">Const/non const overloads and inheritance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#io-and-filesystem" class="nav-link">IO and Filesystem</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#file-path-manipulation" class="nav-link">File path manipulation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#filesystem-manipulation" class="nav-link">Filesystem manipulation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#copying" class="nav-link">Copying</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#creating-directories" class="nav-link">Creating directories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#removing-files-and-directories" class="nav-link">Removing files and directories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#other-useful-functions" class="nav-link">Other useful functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#manual-text-io" class="nav-link">Manual text IO</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#input" class="nav-link">Input</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#output" class="nav-link">Output</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#load-whole-file-into-string" class="nav-link">Load whole file into string</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#csv" class="nav-link">csv</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#input_1" class="nav-link">Input</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#output_1" class="nav-link">Output</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#yaml" class="nav-link">YAML</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#hdf" class="nav-link">HDF</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#inheritance" class="nav-link">Inheritance</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#polymorphism" class="nav-link">Polymorphism</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#shadowinghiding-why-is-a-function-from-parent-not-available-in-child" class="nav-link">Shadowing/Hiding: why is a function from parent not available in child?</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#how-to-call-a-hidden-function" class="nav-link">How to call a hidden function?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#constructors" class="nav-link">Constructors</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#enablinging-parent-constructors-in-child" class="nav-link">Enablinging Parent Constructors in Child</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#inheritance-and-constructorsdestructors" class="nav-link">Inheritance and Constructors/Destructors</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#initializing-base-class-members" class="nav-link">Initializing base class members</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#slicing" class="nav-link">Slicing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#checking-the-type" class="nav-link">Checking the Type</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#covariant-return-type" class="nav-link">Covariant Return Type</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#use-method-from-parent-to-override-a-method-from-other-parent" class="nav-link">Use Method from Parent to Override a Method from Other Parent</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#multiple-inheritance-and-virtual-base-classes" class="nav-link">Multiple inheritance and virtual base classes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#virtual-inheritance" class="nav-link">Virtual Inheritance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#multiple-copymove-calls-with-virtual-inheritance" class="nav-link">Multiple copy/move calls with virtual inheritance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#other-sources" class="nav-link">Other sources</a>
+            <li class="nav-item" data-bs-level="3"><a href="#default-comparison-operators" class="nav-link">Default Comparison Operators</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1090,375 +756,85 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#templates" class="nav-link">Templates</a>
+            <li class="nav-item" data-bs-level="1"><a href="#control-structures" class="nav-link">Control Structures</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#syntax" class="nav-link">Syntax</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#template-declaration" class="nav-link">Template Declaration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#template-definition" class="nav-link">Template definition</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#organization-rules" class="nav-link">Organization rules</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#providing-template-arguments" class="nav-link">Providing Template Arguments</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#rules-for-omitting-the" class="nav-link">Rules for omitting the &lt;&gt;</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#default-template-arguments" class="nav-link">Default Template Arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#template-argument-deduction" class="nav-link">Template Argument Deduction</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#class-template-argument-deduction-ctad" class="nav-link">Class Template Argument Deduction (CTAD)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#deduction-guides" class="nav-link">Deduction Guides</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#user-defined-deduction-guides" class="nav-link">User defined deduction guides</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#implicit-deduction-guides" class="nav-link">Implicit deduction guides</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#deduction-guides-resolution" class="nav-link">Deduction guides resolution</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#template-specialization" class="nav-link">Template Specialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#templates-and-namespaces" class="nav-link">Templates and Namespaces</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#using-complicated-types-as-template-arguments" class="nav-link">Using Complicated Types as Template Arguments</a>
+            <li class="nav-item" data-bs-level="2"><a href="#switch-statement" class="nav-link">Switch Statement</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#type-traits" class="nav-link">Type Traits</a>
+            <li class="nav-item" data-bs-level="1"><a href="#functions" class="nav-link">Functions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#usefull-type-traits" class="nav-link">Usefull Type Traits</a>
+            <li class="nav-item" data-bs-level="2"><a href="#function-declaration-and-definition" class="nav-link">Function Declaration and Definition</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#replacement-for-old-type-traits" class="nav-link">Replacement for old type traits</a>
+            <li class="nav-item" data-bs-level="3"><a href="#merged-declaration-and-definition" class="nav-link">Merged Declaration and Definition</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#concepts" class="nav-link">Concepts</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#constraints" class="nav-link">Constraints</a>
+            <li class="nav-item" data-bs-level="2"><a href="#deciding-between-free-function-member-function-and-static-member-function" class="nav-link">Deciding between free function, member function and static member function</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#requires-expression" class="nav-link">Requires Expression</a>
+            <li class="nav-item" data-bs-level="2"><a href="#argument-parameter-conversions" class="nav-link">Argument-parameter Conversions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#auto-filling-the-first-template-argument" class="nav-link">Auto filling the first template argument</a>
+            <li class="nav-item" data-bs-level="2"><a href="#default-parameters" class="nav-link">Default Parameters</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stl-concepts" class="nav-link">STL Concepts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#usefull-patterns" class="nav-link">Usefull Patterns</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#constrain-a-template-argument" class="nav-link">Constrain a Template Argument</a>
+            <li class="nav-item" data-bs-level="3"><a href="#default-parameters-and-inheritance" class="nav-link">Default Parameters and Inheritance</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#constraint-a-concept-argument" class="nav-link">Constraint a Concept Argument</a>
+            <li class="nav-item" data-bs-level="2"><a href="#return-values-and-nrvo" class="nav-link">Return values and NRVO</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#sources" class="nav-link">Sources</a>
+            <li class="nav-item" data-bs-level="2"><a href="#function-overlaoding" class="nav-link">Function Overlaoding</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#interfaces" class="nav-link">Interfaces</a>
+            <li class="nav-item" data-bs-level="3"><a href="#conversion-prioritiy-and-ranking" class="nav-link">Conversion prioritiy and ranking</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#interface-using-polymorfism" class="nav-link">Interface using polymorfism</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#using-template-argument-restriction-as-an-interface" class="nav-link">Using template argument restriction as an interface</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#restricting-the-member-function-to-be-const" class="nav-link">Restricting the member function to be const</a>
+            <li class="nav-item" data-bs-level="4"><a href="#conversion-sequence-ranks" class="nav-link">Conversion sequence ranks</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-concepts-and-polymorphism-together-to-restrict-template-parameters-with-abstract-class" class="nav-link">Using concepts and polymorphism together to restrict template parameters with abstract class</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#the-conflict-between-templates-and-polymorphism" class="nav-link">The Conflict Between Templates and Polymorphism</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#no-virtual-member-function-with-template-parameters" class="nav-link">No Virtual Member Function with Template Parameters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#polymorphism-cannot-be-used-inside-template-params" class="nav-link">Polymorphism cannot be used inside template params</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#possible-solutions-for-conflicts" class="nav-link">Possible solutions for conflicts</a>
+            <li class="nav-item" data-bs-level="3"><a href="#constructor-argument-type-resolution-in-list-initialization" class="nav-link">Constructor argument type resolution in list initialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#polymorphic-members-and-containers" class="nav-link">Polymorphic members and containers</a>
+            <li class="nav-item" data-bs-level="2"><a href="#auto-return-type" class="nav-link">auto return type</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#deciding-between-template-and-polymorphism" class="nav-link">Deciding between template and polymorphism</a>
+            <li class="nav-item" data-bs-level="2"><a href="#function-visibility" class="nav-link">Function visibility</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#deleting-functions" class="nav-link">Deleting functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#iterators-stl-algorithms-and-ranges" class="nav-link">Iterators, STL algorithms, and ranges</a>
+            <li class="nav-item" data-bs-level="1"><a href="#classes-and-structs" class="nav-link">Classes and structs</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#terminology" class="nav-link">Terminology</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#how-to-choose-the-correct-interface" class="nav-link">How to choose the correct interface?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#class-constants" class="nav-link">Class Constants</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#stl-ranges-and-views" class="nav-link">STL ranges and views</a>
+            <li class="nav-item" data-bs-level="2"><a href="#friend-declaration" class="nav-link">Friend declaration</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#stl-range-views" class="nav-link">STL range views</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#usefull-views" class="nav-link">Usefull views</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#projections" class="nav-link">Projections</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#useful-range-algorithms" class="nav-link">Useful range algorithms</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#other-resources" class="nav-link">Other Resources</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#boost-ranges" class="nav-link">Boost ranges</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#boost-range-requirements" class="nav-link">Boost range requirements</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sequences" class="nav-link">Sequences</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#zip" class="nav-link">Zip</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#boostcombine" class="nav-link">boost::combine</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#enumerating" class="nav-link">Enumerating</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#sorting" class="nav-link">Sorting</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#sorting-using-projection" class="nav-link">Sorting using projection</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#transformation" class="nav-link">Transformation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#aggregating-sum-product-etc" class="nav-link">Aggregating (sum, product, etc.)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#implementing-a-custom-range" class="nav-link">Implementing a custom range</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#implementing-an-input-range" class="nav-link">Implementing an input range</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#boost-iterator-templates" class="nav-link">Boost Iterator Templates</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#resources" class="nav-link">Resources</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#lambda-functions" class="nav-link">Lambda Functions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#captures" class="nav-link">Captures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#return-type" class="nav-link">Return type</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#specifiers" class="nav-link">Specifiers</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#rethrowing-exceptions" class="nav-link">Rethrowing Exceptions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#how-to-catch-any-exception" class="nav-link">How to Catch Any Exception</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#noexcept-specification" class="nav-link">noexcept specification</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stack-traces" class="nav-link">Stack traces</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#logging" class="nav-link">Logging</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#levels" class="nav-link">Levels</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#colors" class="nav-link">Colors</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#type-aliases" class="nav-link">Type Aliases</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#template-aliasis" class="nav-link">Template Aliasis</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#aliases-inside-classes" class="nav-link">Aliases inside classes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#constant-expressions" class="nav-link">Constant Expressions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#compile-time-branching" class="nav-link">Compile Time Branching</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#matching-the-result" class="nav-link">Matching the result</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#namespaces" class="nav-link">Namespaces</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#anonymous-namespaces" class="nav-link">Anonymous namespaces</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#namespace-aliases" class="nav-link">Namespace aliases</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#decltype-determining-type-from-expressions" class="nav-link">decltype: Determining Type from Expressions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#the-value-category-of-decltype" class="nav-link">The Value Category of decltype</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#determining-the-return-value-type-of-a-function" class="nav-link">Determining the Return Value Type of a Function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#-we-cannot-use-abstract-classes-as-arguments-of-stdinvoke_result_t-while-we-can-use-them-inside-decltype-using-stddeclval-see-below" class="nav-link">- we cannot use abstract classes as arguments of std::invoke_result_t, while we can use them inside decltype (using std::declval, see below).</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#construct-object-inside-decltype-with-stddeclval" class="nav-link">Construct object inside decltype with std::declval</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#decltype-and-overloading" class="nav-link">decltype and Overloading</a>
+            <li class="nav-item" data-bs-level="3"><a href="#template-friends" class="nav-link">Template friends</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1467,56 +843,43 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#parallelization" class="nav-link">Parallelization</a>
+            <li class="nav-item" data-bs-level="1"><a href="#initialization-and-assignment" class="nav-link">Initialization and Assignment</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#standard-threads" class="nav-link">Standard Threads</a>
+            <li class="nav-item" data-bs-level="2"><a href="#loacal-variables-initializationassignment" class="nav-link">Loacal variables initialization/assignment</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#for-each-with-parallel-execution-policy" class="nav-link">For-each with Parallel Execution Policy</a>
+            <li class="nav-item" data-bs-level="3"><a href="#list-initialization" class="nav-link">List initialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#async-tasks" class="nav-link">Async tasks</a>
+            <li class="nav-item" data-bs-level="3"><a href="#value-initialization" class="nav-link">Value initialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#open-mp" class="nav-link">Open-MP</a>
+            <li class="nav-item" data-bs-level="3"><a href="#aggregate-initialization" class="nav-link">Aggregate initialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#nested-initialization" class="nav-link">Nested initialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#standard-templates-for-callables" class="nav-link">Standard Templates for Callables</a>
+            <li class="nav-item" data-bs-level="2"><a href="#member-initializationassignment" class="nav-link">Member Initialization/Assignment</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#using-stdinvoke-to-call-the-member-function" class="nav-link">Using std::invoke to call the member function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#using-stdmem_fn-to-store-a-pointer-to-member-function-in-a-callable" class="nav-link">Using std::mem_fn to Store a Pointer to Member Function in a Callable</a>
+            <li class="nav-item" data-bs-level="3"><a href="#default-member-initialization" class="nav-link">Default Member Initialization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-a-pointer-to-member-function-as-a-functor" class="nav-link">Using a Pointer to Member Function as a Functor</a>
+            <li class="nav-item" data-bs-level="3"><a href="#member-initializer-list" class="nav-link">Member Initializer List</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#using-lambdas-instead-of-stdbind" class="nav-link">Using Lambdas Instead of std::bind</a>
+            <li class="nav-item" data-bs-level="3"><a href="#constructor-body" class="nav-link">Constructor Body</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#store-the-result-of-stdbind" class="nav-link">Store the Result of std::bind</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stdmem_fn-and-data-members" class="nav-link">std::mem_fn and Data Members</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#stdfunction" class="nav-link">std::function</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#stdfunction-and-overloading" class="nav-link">std::function and overloading</a>
+            <li class="nav-item" data-bs-level="3"><a href="#comparison-table" class="nav-link">Comparison Table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1525,85 +888,740 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#preprocessor-directives" class="nav-link">Preprocessor Directives</a>
+            <li class="nav-item" data-bs-level="1"><a href="#constructors-and-special-member-functions" class="nav-link">Constructors and Special Member Functions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#include" class="nav-link">Include</a>
+            <li class="nav-item" data-bs-level="2"><a href="#constructor" class="nav-link">Constructor</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#conditional-include" class="nav-link">Conditional include</a>
+            <li class="nav-item" data-bs-level="3"><a href="#defualt-variant" class="nav-link">Defualt Variant</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#explicit-constructor" class="nav-link">Explicit constructor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#call-one-constructor-from-another" class="nav-link">Call one constructor from another</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#control-structures_1" class="nav-link">Control structures</a>
+            <li class="nav-item" data-bs-level="2"><a href="#copy-constructor" class="nav-link">Copy Constructor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#implicit-declaration-and-implicit-deletion" class="nav-link">Implicit declaration and implicit deletion</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#predefined-macros-for-detecting-compiler-os-etc" class="nav-link">Predefined macros for detecting compiler, OS, etc.</a>
+            <li class="nav-item" data-bs-level="3"><a href="#checking-if-a-class-is-copy-constructible" class="nav-link">Checking if a class is copy constructible</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#debugging-preprocessor-directives" class="nav-link">Debugging preprocessor directives</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#copy-assignment" class="nav-link">Copy Assignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#move-constructor" class="nav-link">Move Constructor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#implicit-declaration-and-implicit-deletion_1" class="nav-link">Implicit declaration and implicit deletion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#checking-if-a-class-is-move-constructible" class="nav-link">Checking if a class is move constructible</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#move-assignment" class="nav-link">Move Assignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#trivial-special-member-functions" class="nav-link">Trivial special member functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#destructor" class="nav-link">Destructor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#typical-usage" class="nav-link">Typical usage</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#simple-temporary-object" class="nav-link">Simple Temporary Object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#unique-object" class="nav-link">Unique Object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#default-object" class="nav-link">Default Object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#const-vs-non-const" class="nav-link">Const vs non-const</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function" class="nav-link">Avoiding duplication between const and non-const version of the same function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#constnon-const-overloads-and-inheritance" class="nav-link">Const/non const overloads and inheritance</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#resources_1" class="nav-link">Resources</a>
+            <li class="nav-item" data-bs-level="1"><a href="#io-and-filesystem" class="nav-link">IO and Filesystem</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#file-path-manipulation" class="nav-link">File path manipulation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#filesystem-manipulation" class="nav-link">Filesystem manipulation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#copying" class="nav-link">Copying</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#creating-directories" class="nav-link">Creating directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#removing-files-and-directories" class="nav-link">Removing files and directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-useful-functions" class="nav-link">Other useful functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#manual-text-io" class="nav-link">Manual text IO</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#input" class="nav-link">Input</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#output" class="nav-link">Output</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#load-whole-file-into-string" class="nav-link">Load whole file into string</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#csv" class="nav-link">csv</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#input_1" class="nav-link">Input</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#output_1" class="nav-link">Output</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#yaml" class="nav-link">YAML</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hdf" class="nav-link">HDF</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#inheritance" class="nav-link">Inheritance</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#polymorphism" class="nav-link">Polymorphism</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#shadowinghiding-why-is-a-function-from-parent-not-available-in-child" class="nav-link">Shadowing/Hiding: why is a function from parent not available in child?</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#how-to-call-a-hidden-function" class="nav-link">How to call a hidden function?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#constructors" class="nav-link">Constructors</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#enablinging-parent-constructors-in-child" class="nav-link">Enablinging Parent Constructors in Child</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#inheritance-and-constructorsdestructors" class="nav-link">Inheritance and Constructors/Destructors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#initializing-base-class-members" class="nav-link">Initializing base class members</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#slicing" class="nav-link">Slicing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#checking-the-type" class="nav-link">Checking the Type</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#covariant-return-type" class="nav-link">Covariant Return Type</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#use-method-from-parent-to-override-a-method-from-other-parent" class="nav-link">Use Method from Parent to Override a Method from Other Parent</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#multiple-inheritance-and-virtual-base-classes" class="nav-link">Multiple inheritance and virtual base classes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#virtual-inheritance" class="nav-link">Virtual Inheritance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#multiple-copymove-calls-with-virtual-inheritance" class="nav-link">Multiple copy/move calls with virtual inheritance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-sources" class="nav-link">Other sources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#templates" class="nav-link">Templates</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#syntax" class="nav-link">Syntax</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#template-declaration" class="nav-link">Template Declaration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#template-definition" class="nav-link">Template definition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#organization-rules" class="nav-link">Organization rules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#providing-template-arguments" class="nav-link">Providing Template Arguments</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#rules-for-omitting-the" class="nav-link">Rules for omitting the &lt;&gt;</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#default-template-arguments" class="nav-link">Default Template Arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#template-argument-deduction" class="nav-link">Template Argument Deduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#class-template-argument-deduction-ctad" class="nav-link">Class Template Argument Deduction (CTAD)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#deduction-guides" class="nav-link">Deduction Guides</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#user-defined-deduction-guides" class="nav-link">User defined deduction guides</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#implicit-deduction-guides" class="nav-link">Implicit deduction guides</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#deduction-guides-resolution" class="nav-link">Deduction guides resolution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#template-specialization" class="nav-link">Template Specialization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#templates-and-namespaces" class="nav-link">Templates and Namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-complicated-types-as-template-arguments" class="nav-link">Using Complicated Types as Template Arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#type-traits" class="nav-link">Type Traits</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#usefull-type-traits" class="nav-link">Usefull Type Traits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#replacement-for-old-type-traits" class="nav-link">Replacement for old type traits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#concepts" class="nav-link">Concepts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#constraints" class="nav-link">Constraints</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#requires-expression" class="nav-link">Requires Expression</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#auto-filling-the-first-template-argument" class="nav-link">Auto filling the first template argument</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stl-concepts" class="nav-link">STL Concepts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#usefull-patterns" class="nav-link">Usefull Patterns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#constrain-a-template-argument" class="nav-link">Constrain a Template Argument</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#constraint-a-concept-argument" class="nav-link">Constraint a Concept Argument</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sources" class="nav-link">Sources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#interfaces" class="nav-link">Interfaces</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#interface-using-polymorfism" class="nav-link">Interface using polymorfism</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-template-argument-restriction-as-an-interface" class="nav-link">Using template argument restriction as an interface</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#restricting-the-member-function-to-be-const" class="nav-link">Restricting the member function to be const</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-concepts-and-polymorphism-together-to-restrict-template-parameters-with-abstract-class" class="nav-link">Using concepts and polymorphism together to restrict template parameters with abstract class</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-conflict-between-templates-and-polymorphism" class="nav-link">The Conflict Between Templates and Polymorphism</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#no-virtual-member-function-with-template-parameters" class="nav-link">No Virtual Member Function with Template Parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#polymorphism-cannot-be-used-inside-template-params" class="nav-link">Polymorphism cannot be used inside template params</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#possible-solutions-for-conflicts" class="nav-link">Possible solutions for conflicts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#polymorphic-members-and-containers" class="nav-link">Polymorphic members and containers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#deciding-between-template-and-polymorphism" class="nav-link">Deciding between template and polymorphism</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#iterators-stl-algorithms-and-ranges" class="nav-link">Iterators, STL algorithms, and ranges</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#terminology" class="nav-link">Terminology</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#how-to-choose-the-correct-interface" class="nav-link">How to choose the correct interface?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stl-ranges-and-views" class="nav-link">STL ranges and views</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#stl-range-views" class="nav-link">STL range views</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#usefull-views" class="nav-link">Usefull views</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#projections" class="nav-link">Projections</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#useful-range-algorithms" class="nav-link">Useful range algorithms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-resources" class="nav-link">Other Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#boost-ranges" class="nav-link">Boost ranges</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#boost-range-requirements" class="nav-link">Boost range requirements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sequences" class="nav-link">Sequences</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#zip" class="nav-link">Zip</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#boostcombine" class="nav-link">boost::combine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enumerating" class="nav-link">Enumerating</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sorting" class="nav-link">Sorting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#sorting-using-projection" class="nav-link">Sorting using projection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#transformation" class="nav-link">Transformation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#aggregating-sum-product-etc" class="nav-link">Aggregating (sum, product, etc.)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implementing-a-custom-range" class="nav-link">Implementing a custom range</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#implementing-an-input-range" class="nav-link">Implementing an input range</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#boost-iterator-templates" class="nav-link">Boost Iterator Templates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resources" class="nav-link">Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#lambda-functions" class="nav-link">Lambda Functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#captures" class="nav-link">Captures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#return-type" class="nav-link">Return type</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#specifiers" class="nav-link">Specifiers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#exceptions" class="nav-link">Exceptions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#rethrowing-exceptions" class="nav-link">Rethrowing Exceptions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#how-to-catch-any-exception" class="nav-link">How to Catch Any Exception</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#noexcept-specification" class="nav-link">noexcept specification</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stack-traces" class="nav-link">Stack traces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#logging" class="nav-link">Logging</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#levels" class="nav-link">Levels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#colors" class="nav-link">Colors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#type-aliases" class="nav-link">Type Aliases</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#template-aliasis" class="nav-link">Template Aliasis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#aliases-inside-classes" class="nav-link">Aliases inside classes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#constant-expressions" class="nav-link">Constant Expressions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#compile-time-branching" class="nav-link">Compile Time Branching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#matching-the-result" class="nav-link">Matching the result</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#namespaces" class="nav-link">Namespaces</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#anonymous-namespaces" class="nav-link">Anonymous namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#namespace-aliases" class="nav-link">Namespace aliases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#decltype-determining-type-from-expressions" class="nav-link">decltype: Determining Type from Expressions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#the-value-category-of-decltype" class="nav-link">The Value Category of decltype</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#determining-the-return-value-type-of-a-function" class="nav-link">Determining the Return Value Type of a Function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#-we-cannot-use-abstract-classes-as-arguments-of-stdinvoke_result_t-while-we-can-use-them-inside-decltype-using-stddeclval-see-below" class="nav-link">- we cannot use abstract classes as arguments of std::invoke_result_t, while we can use them inside decltype (using std::declval, see below).</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#construct-object-inside-decltype-with-stddeclval" class="nav-link">Construct object inside decltype with std::declval</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#decltype-and-overloading" class="nav-link">decltype and Overloading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#parallelization" class="nav-link">Parallelization</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#standard-threads" class="nav-link">Standard Threads</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#for-each-with-parallel-execution-policy" class="nav-link">For-each with Parallel Execution Policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#async-tasks" class="nav-link">Async tasks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#open-mp" class="nav-link">Open-MP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#standard-templates-for-callables" class="nav-link">Standard Templates for Callables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#using-stdinvoke-to-call-the-member-function" class="nav-link">Using std::invoke to call the member function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-stdmem_fn-to-store-a-pointer-to-member-function-in-a-callable" class="nav-link">Using std::mem_fn to Store a Pointer to Member Function in a Callable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-a-pointer-to-member-function-as-a-functor" class="nav-link">Using a Pointer to Member Function as a Functor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-lambdas-instead-of-stdbind" class="nav-link">Using Lambdas Instead of std::bind</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#store-the-result-of-stdbind" class="nav-link">Store the Result of std::bind</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stdmem_fn-and-data-members" class="nav-link">std::mem_fn and Data Members</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stdfunction" class="nav-link">std::function</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#stdfunction-and-overloading" class="nav-link">std::function and overloading</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#preprocessor-directives" class="nav-link">Preprocessor Directives</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#include" class="nav-link">Include</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#conditional-include" class="nav-link">Conditional include</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#control-structures_1" class="nav-link">Control structures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#predefined-macros-for-detecting-compiler-os-etc" class="nav-link">Predefined macros for detecting compiler, OS, etc.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#debugging-preprocessor-directives" class="nav-link">Debugging preprocessor directives</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#resources_1" class="nav-link">Resources</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#testing-with-google-test" class="nav-link">Testing with Google Test</a>
+            <li class="nav-item" data-bs-level="1"><a href="#testing-with-google-test" class="nav-link">Testing with Google Test</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#private-method-testing" class="nav-link">Private method testing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#memory-alignment" class="nav-link">Memory Alignment</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#padding" class="nav-link">Padding</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#structure-alignment-or-final-padding" class="nav-link">Structure Alignment (or final padding)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#private-method-testing" class="nav-link">Private method testing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#specific-tasks" class="nav-link">specific tasks</a>
+            <li class="nav-item" data-bs-level="1"><a href="#memory-alignment" class="nav-link">Memory Alignment</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#conditional-function-execution" class="nav-link">Conditional Function Execution</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#function-parameter" class="nav-link">Function Parameter</a>
+            <li class="nav-item" data-bs-level="2"><a href="#padding" class="nav-link">Padding</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#template-parameter" class="nav-link">Template Parameter</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#compiler-directive" class="nav-link">Compiler Directive</a>
+            <li class="nav-item" data-bs-level="2"><a href="#structure-alignment-or-final-padding" class="nav-link">Structure Alignment (or final padding)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#ignoring-warnings-for-specific-line-of-code" class="nav-link">Ignoring warnings for specific line of code</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#specific-tasks" class="nav-link">specific tasks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#conditional-function-execution" class="nav-link">Conditional Function Execution</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#function-parameter" class="nav-link">Function Parameter</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#measuring-used-resource" class="nav-link">Measuring used resource</a>
+            <li class="nav-item" data-bs-level="3"><a href="#template-parameter" class="nav-link">Template Parameter</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#memory" class="nav-link">Memory</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#compiler-directive" class="nav-link">Compiler Directive</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#msvc" class="nav-link">MSVC</a>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ignoring-warnings-for-specific-line-of-code" class="nav-link">Ignoring warnings for specific line of code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#measuring-used-resource" class="nav-link">Measuring used resource</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#memory" class="nav-link">Memory</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#msvc" class="nav-link">MSVC</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1611,23 +1629,23 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#working-with-tabular-data" class="nav-link">Working with tabular data</a>
+            <li class="nav-item" data-bs-level="2"><a href="#working-with-tabular-data" class="nav-link">Working with tabular data</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#executing-external-commands" class="nav-link">Executing external commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#executing-external-commands" class="nav-link">Executing external commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#command-line-interface" class="nav-link">Command Line Interface</a>
+            <li class="nav-item" data-bs-level="2"><a href="#command-line-interface" class="nav-link">Command Line Interface</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#jinja-like-templating" class="nav-link">Jinja-like Templating</a>
+            <li class="nav-item" data-bs-level="2"><a href="#jinja-like-templating" class="nav-link">Jinja-like Templating</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#exceptions_1" class="nav-link">Exceptions</a>
+            <li class="nav-item" data-bs-level="3"><a href="#exceptions_1" class="nav-link">Exceptions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#render-errors" class="nav-link">Render Errors</a>
+            <li class="nav-item" data-bs-level="4"><a href="#render-errors" class="nav-link">Render Errors</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -5224,19 +5242,20 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -5256,7 +5275,7 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

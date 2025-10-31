@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Pandas Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../../C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -143,7 +148,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Pandas Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Pandas Manual</a>
 </li>
             
 <li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,247 +412,218 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#main-principles" class="nav-link">Main principles</a>
+            <li class="nav-item" data-bs-level="1"><a href="#main-principles" class="nav-link">Main principles</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
+            <li class="nav-item" data-bs-level="1"><a href="#pandas-data-types" class="nav-link">Pandas Data Types</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#object" class="nav-link">Object</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#reading-categorical-data-from-a-file" class="nav-link">Reading categorical data from a file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#object" class="nav-link">Object</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#datetime" class="nav-link">Datetime</a>
+            <li class="nav-item" data-bs-level="2"><a href="#categorical-data" class="nav-link">Categorical data</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#reading-categorical-data-from-a-file" class="nav-link">Reading categorical data from a file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#creating-a-dataframe" class="nav-link">Creating a DataFrame</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#from-a-dictionary" class="nav-link">From a dictionary</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#keys-are-column-names-values-are-list-of-column-values" class="nav-link">Keys are column names, values are list of column values</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#keys-are-indices-values-are-values-of-a-single-column" class="nav-link">Keys are indices, values are values of a single column</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#keys-are-indices-values-are-values-of-single-row" class="nav-link">Keys are indices, values are values of single row</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#keys-are-one-column-values-are-another-column" class="nav-link">Keys are one column, values are another column</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#from-a-list-of-dictionaries" class="nav-link">From a list of dictionaries</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#from-a-list-of-lists" class="nav-link">From a list of lists</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#creating-a-zero-or-constant-filled-dataframe" class="nav-link">Creating a zero or constant-filled dataframe</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#generating-the-index" class="nav-link">Generating the index</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#determining-the-data-type" class="nav-link">Determining the data type</a>
+            <li class="nav-item" data-bs-level="2"><a href="#datetime" class="nav-link">Datetime</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#obtaining-info-about-dataset" class="nav-link">Obtaining info about dataset</a>
+            <li class="nav-item" data-bs-level="1"><a href="#creating-a-dataframe" class="nav-link">Creating a DataFrame</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#from-a-dictionary" class="nav-link">From a dictionary</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#keys-are-column-names-values-are-list-of-column-values" class="nav-link">Keys are column names, values are list of column values</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#iteration" class="nav-link">Iteration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#standard-iteration" class="nav-link">Standard Iteration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#vector-operations" class="nav-link">Vector operations</a>
+            <li class="nav-item" data-bs-level="3"><a href="#keys-are-indices-values-are-values-of-a-single-column" class="nav-link">Keys are indices, values are values of a single column</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#list-comprehensions" class="nav-link">List Comprehensions</a>
+            <li class="nav-item" data-bs-level="3"><a href="#keys-are-indices-values-are-values-of-single-row" class="nav-link">Keys are indices, values are values of single row</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#apply" class="nav-link">Apply</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#itertuples" class="nav-link">itertuples()</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#iterrows" class="nav-link">iterrows()</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#items" class="nav-link">items()</a>
+            <li class="nav-item" data-bs-level="3"><a href="#keys-are-one-column-values-are-another-column" class="nav-link">Keys are one column, values are another column</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#iteration-with-modification" class="nav-link">Iteration with modification</a>
+            <li class="nav-item" data-bs-level="2"><a href="#from-a-list-of-dictionaries" class="nav-link">From a list of dictionaries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#from-a-list-of-lists" class="nav-link">From a list of lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#creating-a-zero-or-constant-filled-dataframe" class="nav-link">Creating a zero or constant-filled dataframe</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#generating-the-index" class="nav-link">Generating the index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#filtration" class="nav-link">Filtration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#filtration-by-multiple-columns" class="nav-link">Filtration by Multiple Columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#accept-multiple-values" class="nav-link">Accept multiple values</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#using-the-query-function" class="nav-link">Using the query function</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#filtering-series" class="nav-link">Filtering Series</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#useful-filter-functions" class="nav-link">Useful filter functions</a>
+            <li class="nav-item" data-bs-level="2"><a href="#determining-the-data-type" class="nav-link">Determining the data type</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#selection" class="nav-link">Selection</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#loc" class="nav-link">loc</a>
+            <li class="nav-item" data-bs-level="1"><a href="#obtaining-info-about-dataset" class="nav-link">Obtaining info about dataset</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#difference-between-array-operator-on-dataframe-and-on-loc" class="nav-link">Difference between array operator on dataframe and on loc</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#iteration" class="nav-link">Iteration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#standard-iteration" class="nav-link">Standard Iteration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#vector-operations" class="nav-link">Vector operations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#iloc" class="nav-link">iloc</a>
+            <li class="nav-item" data-bs-level="3"><a href="#list-comprehensions" class="nav-link">List Comprehensions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#selecting-all-columns-but-one" class="nav-link">Selecting all columns but one</a>
+            <li class="nav-item" data-bs-level="3"><a href="#apply" class="nav-link">Apply</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#multi-index-selection" class="nav-link">Multi-index selection</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#using-loc" class="nav-link">Using loc</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#using-indexslice-for-more-readable-syntax" class="nav-link">Using IndexSlice for more readable syntax</a>
+            <li class="nav-item" data-bs-level="3"><a href="#itertuples" class="nav-link">itertuples()</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#handeling-the-too-many-indexers-error" class="nav-link">Handeling the too many indexers error</a>
+            <li class="nav-item" data-bs-level="3"><a href="#iterrows" class="nav-link">iterrows()</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#using-xs" class="nav-link">Using xs</a>
+            <li class="nav-item" data-bs-level="3"><a href="#items" class="nav-link">items()</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#select-row-with-a-maximum-value-in-a-column" class="nav-link">Select row with a maximum value in a column</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#selecting-a-single-value-cell-scalar" class="nav-link">Selecting a single value (cell, scalar)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#iteration-with-modification" class="nav-link">Iteration with modification</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#sorting" class="nav-link">Sorting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#filtration" class="nav-link">Filtration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#filtration-by-multiple-columns" class="nav-link">Filtration by Multiple Columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#accept-multiple-values" class="nav-link">Accept multiple values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-the-query-function" class="nav-link">Using the query function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#filtering-series" class="nav-link">Filtering Series</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#useful-filter-functions" class="nav-link">Useful filter functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#selection" class="nav-link">Selection</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#loc" class="nav-link">loc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#difference-between-array-operator-on-dataframe-and-on-loc" class="nav-link">Difference between array operator on dataframe and on loc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#iloc" class="nav-link">iloc</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#selecting-all-columns-but-one" class="nav-link">Selecting all columns but one</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#multi-index-selection" class="nav-link">Multi-index selection</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#using-loc" class="nav-link">Using loc</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#using-indexslice-for-more-readable-syntax" class="nav-link">Using IndexSlice for more readable syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#handeling-the-too-many-indexers-error" class="nav-link">Handeling the too many indexers error</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#using-xs" class="nav-link">Using xs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#select-row-with-a-maximum-value-in-a-column" class="nav-link">Select row with a maximum value in a column</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#selecting-a-single-value-cell-scalar" class="nav-link">Selecting a single value (cell, scalar)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sorting" class="nav-link">Sorting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#working-with-columns" class="nav-link">Working with columns</a>
+            <li class="nav-item" data-bs-level="1"><a href="#working-with-columns" class="nav-link">Working with columns</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#adding-a-column" class="nav-link">Adding a column</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#rename-a-column" class="nav-link">Rename a column</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#rename-a-series-column" class="nav-link">Rename a Series (column)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#adding-a-column" class="nav-link">Adding a column</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#index" class="nav-link">Index</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rename-a-column" class="nav-link">Rename a column</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#selecting-just-a-single-index-level-from-a-multi-index" class="nav-link">Selecting just a single index level from a multi-index</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#replacing-the-index" class="nav-link">Replacing the index</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#reindex" class="nav-link">reindex</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#creating-index-from-scratch" class="nav-link">Creating index from scratch</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#creating-multi-index" class="nav-link">Creating multi-index</a>
+            <li class="nav-item" data-bs-level="3"><a href="#rename-a-series-column" class="nav-link">Rename a Series (column)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -643,208 +632,237 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#results-in" class="nav-link">results in</a>
+            <li class="nav-item" data-bs-level="1"><a href="#index" class="nav-link">Index</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#selecting-just-a-single-index-level-from-a-multi-index" class="nav-link">Selecting just a single index level from a multi-index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#multiindex" class="nav-link">MultiIndex([</a>
+            <li class="nav-item" data-bs-level="2"><a href="#renaming-the-index" class="nav-link">Renaming the index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#one-a" class="nav-link">('one', 'a'),</a>
+            <li class="nav-item" data-bs-level="2"><a href="#replacing-the-index" class="nav-link">Replacing the index</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#reindex" class="nav-link">reindex</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#one-b" class="nav-link">('one', 'b'),</a>
+            <li class="nav-item" data-bs-level="3"><a href="#creating-index-from-scratch" class="nav-link">Creating index from scratch</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#two-a" class="nav-link">('two', 'a'),</a>
+            <li class="nav-item" data-bs-level="3"><a href="#creating-multi-index" class="nav-link">Creating multi-index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#two-b" class="nav-link">('two', 'b'),</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">])</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#shifting-a-timedate-index" class="nav-link">Shifting a time/date index</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#aggregation" class="nav-link">Aggregation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#aggregate-functions" class="nav-link">Aggregate functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#custom-aggegate-function" class="nav-link">Custom aggegate function</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#agg" class="nav-link">agg</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#apply_1" class="nav-link">apply</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#time-aggregation" class="nav-link">Time aggregation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#joins" class="nav-link">Joins</a>
+            <li class="nav-item" data-bs-level="1"><a href="#results-in" class="nav-link">results in</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#appending-and-concatenating-data" class="nav-link">Appending and Concatenating data</a>
+            <li class="nav-item" data-bs-level="1"><a href="#multiindex" class="nav-link">MultiIndex([</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#io" class="nav-link">I/O</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#csv" class="nav-link">csv</a>
+            <li class="nav-item" data-bs-level="1"><a href="#one-a" class="nav-link">('one', 'a'),</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#json" class="nav-link">Json</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#one-b" class="nav-link">('one', 'b'),</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#excel" class="nav-link">Excel</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#two-a" class="nav-link">('two', 'a'),</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#insert-dataframe-into-db" class="nav-link">Insert dataframe into db</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#two-b" class="nav-link">('two', 'b'),</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">])</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#shifting-a-timedate-index" class="nav-link">Shifting a time/date index</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#latex-export" class="nav-link">Latex export</a>
+            <li class="nav-item" data-bs-level="1"><a href="#aggregation" class="nav-link">Aggregation</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#formatting-the-index-columns-and-row-labels" class="nav-link">Formatting the index: columns and row labels</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#formatting-or-changing-the-values" class="nav-link">Formatting or changing the values</a>
+            <li class="nav-item" data-bs-level="2"><a href="#aggregate-functions" class="nav-link">Aggregate functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#replacing-values" class="nav-link">Replacing values</a>
+            <li class="nav-item" data-bs-level="2"><a href="#custom-aggegate-function" class="nav-link">Custom aggegate function</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#agg" class="nav-link">agg</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#hihglighting-minmax-values" class="nav-link">Hihglighting min/max values</a>
+            <li class="nav-item" data-bs-level="3"><a href="#apply_1" class="nav-link">apply</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#hiding-some-columns-rows-or-indices" class="nav-link">Hiding some columns, rows, or indices</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#changing-the-header-column-labels" class="nav-link">Changing the header (column labels)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#exporting-to-latex" class="nav-link">Exporting to latex</a>
+            <li class="nav-item" data-bs-level="2"><a href="#time-aggregation" class="nav-link">Time aggregation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#displaying-the-dataframe-in-console" class="nav-link">Displaying the dataframe in console</a>
+            <li class="nav-item" data-bs-level="1"><a href="#joins" class="nav-link">Joins</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#other-useful-functions" class="nav-link">Other useful functions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#appending-and-concatenating-data" class="nav-link">Appending and Concatenating data</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#pivot_table" class="nav-link">pivot_table</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#column-data-type-change-for-columns-with-missing-values" class="nav-link">Column data type change for columns with missing values</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#to_datetime" class="nav-link">to_datetime</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#squeeze" class="nav-link">squeeze</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#geopandas" class="nav-link">Geopandas</a>
+            <li class="nav-item" data-bs-level="1"><a href="#io" class="nav-link">I/O</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#create-a-geodataframe-from-csv" class="nav-link">Create a geodataframe from CSV</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#converting-pandas-dataframe-to-geopandas-dataframe" class="nav-link">Converting pandas Dataframe to geopandas Dataframe</a>
+            <li class="nav-item" data-bs-level="2"><a href="#csv" class="nav-link">csv</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#create-geodataframe-from-shapely" class="nav-link">Create geodataframe from shapely</a>
+            <li class="nav-item" data-bs-level="2"><a href="#json" class="nav-link">Json</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#working-with-the-geometry" class="nav-link">Working with the geometry</a>
+            <li class="nav-item" data-bs-level="2"><a href="#excel" class="nav-link">Excel</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#spliting-multi-geometry-columns" class="nav-link">Spliting multi-geometry columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#insert-geodataframe-into-db" class="nav-link">Insert geodataframe into db</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#preprocesssing" class="nav-link">preprocesssing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#simple-insertion" class="nav-link">Simple insertion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#customized-insertion-geoalchemy" class="nav-link">Customized Insertion: geoalchemy</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#exporting-geodataframe-to-a-file" class="nav-link">Exporting geodataframe to a file</a>
+            <li class="nav-item" data-bs-level="2"><a href="#insert-dataframe-into-db" class="nav-link">Insert dataframe into db</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#pandas-in-jupyter" class="nav-link">Pandas in Jupyter</a>
+            <li class="nav-item" data-bs-level="1"><a href="#latex-export" class="nav-link">Latex export</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#displaying-more-rows-or-columns" class="nav-link">Displaying more rows or columns</a>
+            <li class="nav-item" data-bs-level="2"><a href="#formatting-the-index-columns-and-row-labels" class="nav-link">Formatting the index: columns and row labels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formatting-or-changing-the-values" class="nav-link">Formatting or changing the values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#replacing-values" class="nav-link">Replacing values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hihglighting-minmax-values" class="nav-link">Hihglighting min/max values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hiding-some-columns-rows-or-indices" class="nav-link">Hiding some columns, rows, or indices</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#changing-the-header-column-labels" class="nav-link">Changing the header (column labels)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#exporting-to-latex" class="nav-link">Exporting to latex</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#displaying-the-dataframe-in-console" class="nav-link">Displaying the dataframe in console</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#other-useful-functions" class="nav-link">Other useful functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#pivot_table" class="nav-link">pivot_table</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#column-data-type-change-for-columns-with-missing-values" class="nav-link">Column data type change for columns with missing values</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#to_datetime" class="nav-link">to_datetime</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#squeeze" class="nav-link">squeeze</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#geopandas" class="nav-link">Geopandas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#create-a-geodataframe-from-csv" class="nav-link">Create a geodataframe from CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#converting-pandas-dataframe-to-geopandas-dataframe" class="nav-link">Converting pandas Dataframe to geopandas Dataframe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#create-geodataframe-from-shapely" class="nav-link">Create geodataframe from shapely</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#working-with-the-geometry" class="nav-link">Working with the geometry</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#spliting-multi-geometry-columns" class="nav-link">Spliting multi-geometry columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#insert-geodataframe-into-db" class="nav-link">Insert geodataframe into db</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#preprocesssing" class="nav-link">preprocesssing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#simple-insertion" class="nav-link">Simple insertion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#customized-insertion-geoalchemy" class="nav-link">Customized Insertion: geoalchemy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#exporting-geodataframe-to-a-file" class="nav-link">Exporting geodataframe to a file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#pandas-in-jupyter" class="nav-link">Pandas in Jupyter</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#displaying-more-rows-or-columns" class="nav-link">Displaying more rows or columns</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1015,6 +1033,9 @@ Iterates over columns</p>
 <h2 id="using-the-query-function">Using the query function<a class="headerlink" href="#using-the-query-function" title="Permanent link">&para;</a></h2>
 <p>The query function can be used for more complicated filters. It is more flexible and the syntax is less verbose. The above filter can be rewriten as:</p>
 <pre><code class="language-python">filtered = df.query('max_delay == x and exp_length == y']
+</code></pre>
+<p>Special filter functions can be used in the query function as well:</p>
+<pre><code class="language-python">filtered = df.query('max_delay == x and exp_length.isnull()')
 </code></pre>
 <h2 id="filtering-series">Filtering Series<a class="headerlink" href="#filtering-series" title="Permanent link">&para;</a></h2>
 <p>A seris can be filtered even simpler then the dataframe:</p>
@@ -1674,19 +1695,20 @@ with pd.option_context('display.max_rows', 100, 'display.max_columns', 10):
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1706,7 +1728,7 @@ with pd.option_context('display.max_rows', 100, 'display.max_columns', 10):
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

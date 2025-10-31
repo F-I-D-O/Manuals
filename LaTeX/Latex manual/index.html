@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Latex manual - Manuals</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../extra.css" rel="stylesheet">
-
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../../Programming/C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../../Programming/C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,12 +248,12 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">Latex manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Latex manual</a>
 </li>
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,308 +412,117 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#document-structure" class="nav-link">Document structure</a>
+            <li class="nav-item" data-bs-level="1"><a href="#document-structure" class="nav-link">Document structure</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#title-page" class="nav-link">Title page</a>
+            <li class="nav-item" data-bs-level="2"><a href="#title-page" class="nav-link">Title page</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#authors-specification" class="nav-link">Authors specification</a>
+            <li class="nav-item" data-bs-level="3"><a href="#authors-specification" class="nav-link">Authors specification</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#keywords" class="nav-link">Keywords</a>
+            <li class="nav-item" data-bs-level="4"><a href="#ieee-author-list" class="nav-link">IEEE author list</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#appendices" class="nav-link">Appendices</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#book-class-structuring" class="nav-link">Book class structuring</a>
+            <li class="nav-item" data-bs-level="3"><a href="#keywords" class="nav-link">Keywords</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#escape-characters-and-commands" class="nav-link">Escape characters and commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#appendices" class="nav-link">Appendices</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#special-characters" class="nav-link">Special characters</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#non-breaking-characters" class="nav-link">Non-breaking characters</a>
+            <li class="nav-item" data-bs-level="2"><a href="#book-class-structuring" class="nav-link">Book class structuring</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#text-and-paragramph-formatting" class="nav-link">Text and paragramph formatting</a>
+            <li class="nav-item" data-bs-level="1"><a href="#escape-characters-and-commands" class="nav-link">Escape characters and commands</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#fonts" class="nav-link">Fonts</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#determining-used-font" class="nav-link">Determining used font</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#changing-font-size" class="nav-link">Changing font size</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#font-color" class="nav-link">Font color</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#horizontal-and-vertical-spacing" class="nav-link">Horizontal and vertical spacing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#horizontal-and-vertical-alignment" class="nav-link">Horizontal and vertical alignment</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#horizontal-alignment" class="nav-link">Horizontal alignment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#vertical-alignment" class="nav-link">Vertical alignment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#lists" class="nav-link">Lists</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#units-numbers-and-currency-with-siunitx" class="nav-link">Units, numbers, and currency with siunitx</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#siunitx-per-problems" class="nav-link">siunitx \per problems</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#quotes" class="nav-link">Quotes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#supported-units" class="nav-link">Supported units</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#floats" class="nav-link">Floats</a>
+            <li class="nav-item" data-bs-level="1"><a href="#special-characters" class="nav-link">Special characters</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#placement" class="nav-link">Placement</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#default-placement" class="nav-link">Default placement</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#figures" class="nav-link">Figures</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#subfigures" class="nav-link">Subfigures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#tables" class="nav-link">Tables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#column-types" class="nav-link">Column types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#simple-tables-with-tabular-environment" class="nav-link">Simple tables with tabular environment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#columns-with-automatic-width-tabulary" class="nav-link">Columns with automatic width: tabulary</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#complex-tables-with-tabulararray-package" class="nav-link">Complex tables with tabulararray package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#styling" class="nav-link">Styling</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#table-grid-visual-lines" class="nav-link">Table grid (visual lines)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="5"><a href="#horizontal-lines" class="nav-link">Horizontal lines</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="5"><a href="#specify-the-lines-outside-the-data-with-the-tabularray-package" class="nav-link">Specify the lines outside the data with the tabularray package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#styling-the-specific-rows-or-columns" class="nav-link">Styling the specific rows or columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#configure-the-space-between-columns" class="nav-link">Configure the space between columns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#define-table-styles-with-tabularray-package" class="nav-link">Define table styles with tabularray package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#rotated-text" class="nav-link">Rotated text</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#multirows-and-multicolumns" class="nav-link">Multirows and multicolumns</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#tabular-environment" class="nav-link">tabular environment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#tabulararray-environment" class="nav-link">tabulararray environment</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#export-google-sheets-to-latex-tables" class="nav-link">Export google sheets to latex tables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#footnotes-in-tables" class="nav-link">Footnotes in tables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#using-the-threeparttable" class="nav-link">Using the threeparttable</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#using-the-talltblr" class="nav-link">Using the talltblr</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#rotated-text_1" class="nav-link">Rotated text</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#algorithms" class="nav-link">Algorithms</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#pseudocode" class="nav-link">Pseudocode</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#algoritmicx-and-algpseudocodex" class="nav-link">Algoritmicx and Algpseudocodex</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#conditions" class="nav-link">Conditions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#loops" class="nav-link">Loops</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#boolean-operators" class="nav-link">Boolean operators</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#additional-keywords" class="nav-link">Additional keywords</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#empty-lines" class="nav-link">Empty lines</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#functions-and-procedures" class="nav-link">Functions and procedures</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#line-numbering" class="nav-link">Line numbering</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#centering-of-floats-wider-than-text-width" class="nav-link">Centering of floats wider than text width</a>
+            <li class="nav-item" data-bs-level="2"><a href="#non-breaking-characters" class="nav-link">Non-breaking characters</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#boxes" class="nav-link">Boxes</a>
+            <li class="nav-item" data-bs-level="1"><a href="#text-and-paragraph-formatting" class="nav-link">Text and paragraph formatting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#make-a-box-wider-than-the-text-width" class="nav-link">Make a box wider than the text width</a>
+            <li class="nav-item" data-bs-level="2"><a href="#fonts" class="nav-link">Fonts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#determining-used-font" class="nav-link">Determining used font</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#changing-font-size" class="nav-link">Changing font size</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#font-color" class="nav-link">Font color</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#math" class="nav-link">Math</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#common-math-constructs" class="nav-link">Common math constructs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#horizontal-and-vertical-spacing" class="nav-link">Horizontal and vertical spacing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#subscript-and-superscript_1" class="nav-link">Subscript and superscript</a>
+            <li class="nav-item" data-bs-level="2"><a href="#horizontal-and-vertical-alignment" class="nav-link">Horizontal and vertical alignment</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#horizontal-alignment" class="nav-link">Horizontal alignment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#ifelse-variants" class="nav-link">If/else variants</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#equations-and-similar-environments" class="nav-link">Equations and similar environments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#problem-and-similar-environments" class="nav-link">Problem and similar environments</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#common-environments-names-and-their-meaning" class="nav-link">Common environments names and their meaning</a>
+            <li class="nav-item" data-bs-level="3"><a href="#vertical-alignment" class="nav-link">Vertical alignment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#math-fonts" class="nav-link">Math fonts</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#bold-math-font" class="nav-link">Bold math font</a>
+            <li class="nav-item" data-bs-level="2"><a href="#line-breaking" class="nav-link">Line breaking</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#correct-size-of-braces" class="nav-link">Correct size of braces</a>
+            <li class="nav-item" data-bs-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#lists" class="nav-link">Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#units-numbers-and-currency-with-siunitx" class="nav-link">Units, numbers, and currency with siunitx</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#siunitx-per-problems" class="nav-link">siunitx \per problems</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#quotes" class="nav-link">Quotes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#supported-units" class="nav-link">Supported units</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -704,108 +531,307 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#links" class="nav-link">Links</a>
+            <li class="nav-item" data-bs-level="1"><a href="#floats" class="nav-link">Floats</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#placement" class="nav-link">Placement</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#default-placement" class="nav-link">Default placement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#figures" class="nav-link">Figures</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#subfigures" class="nav-link">Subfigures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tables" class="nav-link">Tables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#column-types" class="nav-link">Column types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#simple-tables-with-tabular-environment" class="nav-link">Simple tables with tabular environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#columns-with-automatic-width-tabulary" class="nav-link">Columns with automatic width: tabulary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#complex-tables-with-tabulararray-package" class="nav-link">Complex tables with tabulararray package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#styling" class="nav-link">Styling</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#table-grid-visual-lines" class="nav-link">Table grid (visual lines)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#horizontal-lines" class="nav-link">Horizontal lines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="5"><a href="#specify-the-lines-outside-the-data-with-the-tabularray-package" class="nav-link">Specify the lines outside the data with the tabularray package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#styling-the-specific-rows-or-columns" class="nav-link">Styling the specific rows or columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#configure-the-space-between-columns" class="nav-link">Configure the space between columns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#define-table-styles-with-tabularray-package" class="nav-link">Define table styles with tabularray package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#rotated-text" class="nav-link">Rotated text</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#multirows-and-multicolumns" class="nav-link">Multirows and multicolumns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#tabular-environment" class="nav-link">tabular environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#tabulararray-environment" class="nav-link">tabulararray environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#export-google-sheets-to-latex-tables" class="nav-link">Export google sheets to latex tables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#footnotes-in-tables" class="nav-link">Footnotes in tables</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#using-the-threeparttable" class="nav-link">Using the threeparttable</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#using-the-talltblr" class="nav-link">Using the talltblr</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#rotated-text_1" class="nav-link">Rotated text</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#algorithms" class="nav-link">Algorithms</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#pseudocode" class="nav-link">Pseudocode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#algoritmicx-and-algpseudocodex" class="nav-link">Algoritmicx and Algpseudocodex</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#conditions" class="nav-link">Conditions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#loops" class="nav-link">Loops</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#boolean-operators" class="nav-link">Boolean operators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#additional-keywords" class="nav-link">Additional keywords</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#empty-lines" class="nav-link">Empty lines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#functions-and-procedures" class="nav-link">Functions and procedures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#line-numbering" class="nav-link">Line numbering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#centering-of-floats-wider-than-text-width" class="nav-link">Centering of floats wider than text width</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#boxes" class="nav-link">Boxes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#make-a-box-wider-than-the-text-width" class="nav-link">Make a box wider than the text width</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#math" class="nav-link">Math</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#common-math-constructs" class="nav-link">Common math constructs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#subscript-and-superscript_1" class="nav-link">Subscript and superscript</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ifelse-variants" class="nav-link">If/else variants</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#equations-and-similar-environments" class="nav-link">Equations and similar environments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#problem-and-similar-environments" class="nav-link">Problem and similar environments</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#common-environments-names-and-their-meaning" class="nav-link">Common environments names and their meaning</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#math-fonts" class="nav-link">Math fonts</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#bold-math-font" class="nav-link">Bold math font</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#correct-size-of-braces" class="nav-link">Correct size of braces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#links" class="nav-link">Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#footnotes" class="nav-link">Footnotes</a>
+            <li class="nav-item" data-bs-level="1"><a href="#footnotes" class="nav-link">Footnotes</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#override-footnote-numbering" class="nav-link">Override footnote numbering</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#disallow-footnote-splitting" class="nav-link">Disallow footnote splitting</a>
+            <li class="nav-item" data-bs-level="2"><a href="#override-footnote-numbering" class="nav-link">Override footnote numbering</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#bibliography" class="nav-link">Bibliography</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#latex-document-configuration" class="nav-link">Latex document configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#biblatex-styling" class="nav-link">Biblatex styling</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#customizing-the-bibliography-printing" class="nav-link">Customizing the bibliography printing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#customizing-the-bibliography-data" class="nav-link">Customizing the bibliography data</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#handle-overflowing-urls-in-bibliography" class="nav-link">Handle overflowing URLs in bibliography</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#default-and-natbib-styling" class="nav-link">Default and natbib styling</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#natbib" class="nav-link">Natbib</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#commands-for-citing" class="nav-link">Commands for citing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#adittional-details-for-citation-page-number-chapter" class="nav-link">Adittional details for citation (page number, chapter, ... )</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#adding-a-reference-to-the-bibliography-without-citing-it" class="nav-link">Adding a reference to the bibliography without citing it</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#bibliography-entries" class="nav-link">Bibliography entries</a>
+            <li class="nav-item" data-bs-level="2"><a href="#disallow-footnote-splitting" class="nav-link">Disallow footnote splitting</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#custom-commands-and-variables" class="nav-link">Custom commands and variables</a>
+            <li class="nav-item" data-bs-level="1"><a href="#bibliography" class="nav-link">Bibliography</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#providing-default-values-for-arguments" class="nav-link">Providing default values for arguments</a>
+            <li class="nav-item" data-bs-level="2"><a href="#latex-document-configuration" class="nav-link">Latex document configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#biblatex-styling" class="nav-link">Biblatex styling</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#customizing-the-bibliography-printing" class="nav-link">Customizing the bibliography printing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#customizing-the-bibliography-data" class="nav-link">Customizing the bibliography data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#handle-overflowing-urls-in-bibliography" class="nav-link">Handle overflowing URLs in bibliography</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#default-and-natbib-styling" class="nav-link">Default and natbib styling</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#natbib" class="nav-link">Natbib</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#commands-for-citing" class="nav-link">Commands for citing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#adittional-details-for-citation-page-number-chapter" class="nav-link">Adittional details for citation (page number, chapter, ... )</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#adding-a-reference-to-the-bibliography-without-citing-it" class="nav-link">Adding a reference to the bibliography without citing it</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#bibliography-entries" class="nav-link">Bibliography entries</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#splitting-the-document-into-multiple-files" class="nav-link">Splitting the document into multiple files</a>
+            <li class="nav-item" data-bs-level="1"><a href="#custom-commands-and-variables" class="nav-link">Custom commands and variables</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#speedup-techniques" class="nav-link">Speedup Techniques</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#precompiling-the-preamble" class="nav-link">Precompiling the preamble</a>
+            <li class="nav-item" data-bs-level="2"><a href="#providing-default-values-for-arguments" class="nav-link">Providing default values for arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#miscelaneous-tasks" class="nav-link">Miscelaneous tasks</a>
+            <li class="nav-item" data-bs-level="1"><a href="#splitting-the-document-into-multiple-files" class="nav-link">Splitting the document into multiple files</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#balancing-columns-in-two-column-documents" class="nav-link">Balancing columns in two-column documents</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#speedup-techniques" class="nav-link">Speedup Techniques</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#precompiling-the-preamble" class="nav-link">Precompiling the preamble</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#common-problems" class="nav-link">Common problems</a>
+            <li class="nav-item" data-bs-level="1"><a href="#miscelaneous-tasks" class="nav-link">Miscelaneous tasks</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#ugly-font-in-pdf" class="nav-link">Ugly font in pdf</a>
+            <li class="nav-item" data-bs-level="2"><a href="#balancing-columns-in-two-column-documents" class="nav-link">Balancing columns in two-column documents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#common-problems" class="nav-link">Common problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#ugly-font-in-pdf" class="nav-link">Ugly font in pdf</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -852,6 +878,13 @@
 
 \affil[1]{Affiliation 1}
 \affil[2]{Affiliation 2}
+</code></pre>
+<h4 id="ieee-author-list">IEEE author list<a class="headerlink" href="#ieee-author-list" title="Permanent link">&para;</a></h4>
+<p>In IEEE publications, all authors are usually listed in the same <code>\author</code> command. Also, the affiliations are inside this command, typically created using the <code>\thanks</code> command. Example:</p>
+<pre><code class="language-latex">\author{David Fiedler, Jan Mrkos, Dominika Šídlová, and Fabio V. Difonzo
+\thanks{This work was supported by the Technology Agency of the Czech Republic within the DOPRAVA 2020+ program, project no. \texttt{CK04000150}. Fabio V.~Difonzo gratefully thanks the INdAM-GNCS group for partial support. The access to the computational infrastructure of the OP VVV funded project \texttt{CZ.02.1.01/0.0/0.0/16\_019/0000765} &quot;Research Center for Informatics&quot; is also gratefully acknowledged. \emph{(Corresponding author: David Fiedler.)}}
+\thanks{D. Fiedler, J. Mrkos, and D. Šídlová are with Faculty of Electrical Engineering, CTU in Prague, Prague 121 35, Czech Republic (e-mail: david.fiedler@agents.fel.cvut.cz).}
+\thanks{F. V. Difonzo is with Istituto per le Applicazioni del Calcolo &quot;Mauro Picone&quot;, Consiglio Nazionale delle Ricerche, Bari 70126, Italy.}}
 </code></pre>
 <h3 id="keywords">Keywords<a class="headerlink" href="#keywords" title="Permanent link">&para;</a></h3>
 <p>Keywords are not part of the standard article class. If we need to include them when using the standard article class, we can provide the command ourselves. Example:</p>
@@ -929,7 +962,7 @@
 <li><code>~</code>: non-breaking space</li>
 <li><code>\nobreakdash-</code>: non-breaking dash</li>
 </ul>
-<h1 id="text-and-paragramph-formatting">Text and paragramph formatting<a class="headerlink" href="#text-and-paragramph-formatting" title="Permanent link">&para;</a></h1>
+<h1 id="text-and-paragraph-formatting">Text and paragraph formatting<a class="headerlink" href="#text-and-paragraph-formatting" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.wikibooks.org/wiki/LaTeX/Fonts">wiki</a></p>
 <h2 id="fonts">Fonts<a class="headerlink" href="#fonts" title="Permanent link">&para;</a></h2>
 <h3 id="determining-used-font">Determining used font<a class="headerlink" href="#determining-used-font" title="Permanent link">&para;</a></h3>
@@ -986,6 +1019,12 @@ Some text at the bottom
 \vfill
 Some text at the bottom
 </code></pre>
+<h2 id="line-breaking">Line breaking<a class="headerlink" href="#line-breaking" title="Permanent link">&para;</a></h2>
+<p>Latex handle the line breaking automatically. Typically, it breaks the line at the end of the word. Sometimes, it can break long words. </p>
+<p>To <strong>prevent breaking long words</strong>, we can use the <code>\mbox</code> command. Example:</p>
+<pre><code class="language-latex">\mbox{long word}
+</code></pre>
+<p>To <strong>prevent breaking on spaces</strong>, we can use the non-breaking space character: <code>~</code>.</p>
 <h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
 <p>In math mode, the subscript and superscript are created using the <code>_</code> and <code>^</code> characters. In text mode, we need to use a special commands: <code>\textsubscript</code> and <code>\textsuperscript</code>. Example:</p>
 <pre><code class="language-latex">H\textsubscript{2}O
@@ -1422,6 +1461,7 @@ There are two types of enviroments for, depending on the purpose:</p>
 <p>The following table lists the most common math constructs:</p>
 <ul>
 <li><strong>fractions</strong>: <code>\frac{&lt;numerator&gt;}{&lt;denominator&gt;}</code></li>
+<li><strong>sum</strong>: <code>\sum_{&lt;lower&gt;}^{&lt;upper&gt;}</code></li>
 <li><strong>binomial coefficients</strong>: <code>\binom{n}{k}</code></li>
 </ul>
 <h2 id="subscript-and-superscript_1">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript_1" title="Permanent link">&para;</a></h2>
@@ -1532,9 +1572,10 @@ a_{x^*} % correct print
 <li>have the bibliography file in the right format (<code>.bib</code> for all pipelines, but the content differs)</li>
 <li>have the style in the right format (<code>.bst</code> for default or natbib, <code>.bbx</code> for biblatex)</li>
 </ul>
-<p>By default, we should use the biblatex - Biber pipeline. Howevver, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as <a href="https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex">there is no conversion tool</a>). The styles available for biblatex are listed <a href="https://ctan.org/topic/biblatex">on CTAN</a>.</p>
+<p>By default, we should use the Biblatex - Biber pipeline. However, there are some circumstances where we need to use bibtex, for example, if we need to use a style that is not available for biblatex (as <a href="https://tex.stackexchange.com/questions/174676/how-to-use-custom-bibstyle-with-biblatex">there is no conversion tool</a>). The styles available for biblatex are listed <a href="https://ctan.org/topic/biblatex">on CTAN</a>.</p>
 <h2 id="latex-document-configuration">Latex document configuration<a class="headerlink" href="#latex-document-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="biblatex-styling">Biblatex styling<a class="headerlink" href="#biblatex-styling" title="Permanent link">&para;</a></h3>
+<p><a href="https://linorg.usp.br/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf">official biblatex documentation</a></p>
 <p>Basic setup:</p>
 <pre><code class="language-latex">\usepackage[style=numeric]{biblatex}
 ...
@@ -1702,6 +1743,7 @@ a_{x^*} % correct print
 <p>The command is then used as follows:</p>
 <pre><code class="language-latex">\&lt;command name&gt;{&lt;argument 1&gt;}{&lt;argument 2&gt;}...{&lt;argument n&gt;}
 </code></pre>
+<p>The <code>\newcommand</code> command has also its star variant <code>\newcommand*</code>. The difference is that when using just <code>\newcommand</code>, the command arguments can contain line breaks (<code>\par</code> commands), while when using <code>\newcommand*</code>, the command arguments cannot contain line breaks. This extra restriction is useful to avoid accidental line breaks in the command arguments. As it is a common concept in LaTeX, it is called a <em>short-form command</em>, in contrast to the <em>long-form command</em> without the star.</p>
 <h2 id="providing-default-values-for-arguments">Providing default values for arguments<a class="headerlink" href="#providing-default-values-for-arguments" title="Permanent link">&para;</a></h2>
 <p>Latex support default values for the first argument. The syntax is:</p>
 <pre><code class="language-latex">\newcommand{\&lt;command name&gt;}[&lt;number of arguments&gt;][&lt;default value&gt;]{&lt;command definition&gt;}
@@ -1769,19 +1811,20 @@ a_{x^*} % correct print
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1801,7 +1844,7 @@ a_{x^*} % correct print
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

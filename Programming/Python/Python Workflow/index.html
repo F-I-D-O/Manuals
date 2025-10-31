@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Python Workflow - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -64,6 +65,10 @@
             
 <li>
     <a href="../../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../../C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -159,7 +164,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">Python Workflow</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Python Workflow</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,170 +412,117 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#dev-stack" class="nav-link">Dev Stack</a>
+            <li class="nav-item" data-bs-level="1"><a href="#dev-stack" class="nav-link">Dev Stack</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#python" class="nav-link">Python</a>
+            <li class="nav-item" data-bs-level="1"><a href="#python" class="nav-link">Python</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#command-line" class="nav-link">Command line</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#pip" class="nav-link">Pip</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#installing-packages" class="nav-link">Installing Packages</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#uninstalling-packages" class="nav-link">Uninstalling packages</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#troubleshooting-package-installation" class="nav-link">Troubleshooting package installation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#upgrading-pip" class="nav-link">Upgrading pip</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#local-packages" class="nav-link">Local packages</a>
+            <li class="nav-item" data-bs-level="2"><a href="#command-line" class="nav-link">Command line</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#ide" class="nav-link">IDE</a>
+            <li class="nav-item" data-bs-level="1"><a href="#pip" class="nav-link">Pip</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#pycharm" class="nav-link">Pycharm</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#configuration" class="nav-link">Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#settings-synchronization" class="nav-link">Settings synchronization</a>
+            <li class="nav-item" data-bs-level="2"><a href="#installing-packages" class="nav-link">Installing Packages</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#do-not-run-scripts-in-python-console-by-default" class="nav-link">Do Not Run scripts in Python Console by Default</a>
+            <li class="nav-item" data-bs-level="2"><a href="#uninstalling-packages" class="nav-link">Uninstalling packages</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#enable-progress-bars-in-output-console" class="nav-link">Enable Progress Bars in output console</a>
+            <li class="nav-item" data-bs-level="2"><a href="#troubleshooting-package-installation" class="nav-link">Troubleshooting package installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#setup-the-docstring-format" class="nav-link">Setup the Docstring format</a>
+            <li class="nav-item" data-bs-level="2"><a href="#upgrading-pip" class="nav-link">Upgrading pip</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#project-configuration" class="nav-link">Project Configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#known-problems-solutions" class="nav-link">Known problems &amp; solutions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#non-deterministic-output-in-the-run-window" class="nav-link">Non deterministic output in the run window</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#pycharm-does-not-recognize-a-locally-installed-package" class="nav-link">Pycharm does not recognize a locally installed package</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#no-problems-found-in-the-code-of-a-single-project" class="nav-link">No problems found in the code of a single project</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#vs-code" class="nav-link">VS Code</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#formatting" class="nav-link">Formatting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#project-structure" class="nav-link">Project Structure</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#jupyter" class="nav-link">Jupyter</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#jupyter-in-pycharm" class="nav-link">Jupyter in Pycharm</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#command-mode-shortcuts" class="nav-link">Command mode shortcuts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#web-browser-configuration" class="nav-link">Web Browser Configuration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#install-extension-manager-with-basic-extensions" class="nav-link">Install Extension Manager with basic extensions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#jupyter-in-vs-code" class="nav-link">Jupyter in VS Code</a>
+            <li class="nav-item" data-bs-level="2"><a href="#local-packages" class="nav-link">Local packages</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#debugging" class="nav-link">Debugging</a>
+            <li class="nav-item" data-bs-level="1"><a href="#ide" class="nav-link">IDE</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#pycharm" class="nav-link">Pycharm</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#settings-synchronization" class="nav-link">Settings synchronization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#testing" class="nav-link">Testing</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#pycharm-configuration" class="nav-link">Pycharm Configuration</a>
+            <li class="nav-item" data-bs-level="4"><a href="#do-not-run-scripts-in-python-console-by-default" class="nav-link">Do Not Run scripts in Python Console by Default</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#pytest" class="nav-link">Pytest</a>
+            <li class="nav-item" data-bs-level="4"><a href="#enable-progress-bars-in-output-console" class="nav-link">Enable Progress Bars in output console</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#setup-the-docstring-format" class="nav-link">Setup the Docstring format</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#mixed-python-native-debugging" class="nav-link">Mixed Python-native debugging</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#python-native-debugger-in-visual-studio" class="nav-link">Python-native debugger in Visual Studio</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#known-issues" class="nav-link">Known issues</a>
+            <li class="nav-item" data-bs-level="3"><a href="#project-configuration" class="nav-link">Project Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#other-sources" class="nav-link">Other Sources</a>
+            <li class="nav-item" data-bs-level="3"><a href="#known-problems-solutions" class="nav-link">Known problems &amp; solutions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#non-deterministic-output-in-the-run-window" class="nav-link">Non deterministic output in the run window</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#pycharm-does-not-recognize-a-locally-installed-package" class="nav-link">Pycharm does not recognize a locally installed package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#no-problems-found-in-the-code-of-a-single-project" class="nav-link">No problems found in the code of a single project</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#vs-code" class="nav-link">VS Code</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#formatting" class="nav-link">Formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#code-analysis" class="nav-link">Code Analysis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cursor" class="nav-link">Cursor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#limitations" class="nav-link">Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -566,13 +531,78 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#releasing-libraries-to-pypi" class="nav-link">Releasing libraries to PyPi</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#steps" class="nav-link">Steps</a>
+            <li class="nav-item" data-bs-level="1"><a href="#project-structure" class="nav-link">Project Structure</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#release" class="nav-link">Release</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#jupyter" class="nav-link">Jupyter</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#jupyter-in-pycharm" class="nav-link">Jupyter in Pycharm</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#command-mode-shortcuts" class="nav-link">Command mode shortcuts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#web-browser-configuration" class="nav-link">Web Browser Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#install-extension-manager-with-basic-extensions" class="nav-link">Install Extension Manager with basic extensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#jupyter-in-vs-code" class="nav-link">Jupyter in VS Code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#debugging" class="nav-link">Debugging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#testing" class="nav-link">Testing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#pycharm-configuration" class="nav-link">Pycharm Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pytest" class="nav-link">Pytest</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#mixed-python-native-debugging" class="nav-link">Mixed Python-native debugging</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#python-native-debugger-in-visual-studio" class="nav-link">Python-native debugger in Visual Studio</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#known-issues" class="nav-link">Known issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#other-sources" class="nav-link">Other Sources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#releasing-libraries-to-pypi" class="nav-link">Releasing libraries to PyPi</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#steps" class="nav-link">Steps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#release" class="nav-link">Release</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -668,10 +698,10 @@
 <p>Problem: It can happen that the output printing/logging can be reordered randomly (not matching the order of calls in the source, neither the system console output).
 Solution: <code>Edit Configurations...</code> -&gt; select configuration for the script -&gt; check <code>Emulate terminal in output console</code>.</p>
 <h4 id="pycharm-does-not-recognize-a-locally-installed-package">Pycharm does not recognize a locally installed package<a class="headerlink" href="#pycharm-does-not-recognize-a-locally-installed-package" title="Permanent link">&para;</a></h4>
-<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. If that happens, first try to incalidate the cache by</p>
+<p>It can happen that a locally installed package (<code>-e</code>) is not recognized by Pycharm. If that happens, first try to invalidate the cache by</p>
 <ol>
-<li><code>File</code> -&gt; <code>Invalidate Caches...</code> </li>
-<li>check <code>Clear file system cache and Local History</code> </li>
+<li><code>File</code> -&gt; <code>Invalidate Caches...</code></li>
+<li>check <code>Clear file system cache and Local History</code></li>
 <li>click <code>Invalidate and Restart</code></li>
 </ol>
 <p>If this does not work, it can be solved by adding the path to the package to the interpreter paths:</p>
@@ -695,6 +725,13 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
 <li><code>pip install black</code></li>
 <li>install the <code>black</code> extension in VS Code</li>
 </ol>
+<h3 id="code-analysis">Code Analysis<a class="headerlink" href="#code-analysis" title="Permanent link">&para;</a></h3>
+<p>The code analysis in VS Code is provided by the language server. The language server can be configured the settings is <code>python.languageServer</code>.</p>
+<p>By default, the language server is set to <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance</a>.</p>
+<h2 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h2>
+<p>In this section we provide the differences between Cursor and VS Code workflow, and also the limitations of Cursor for Python development.</p>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<p>The main limitation is the static analysis tool. The cursor uses a built-in static analysis tool that is a fork of the <a href="https://docs.basedpyright.com/latest/">basedpyright</a> <a href="https://forum.cursor.com/t/cursor-pyright-python-extension-information/92522/9?u=david_fiedler">[source]</a>. This tool have some limitations compared to Pylance or the code analysis available in Pycharm, and cannot be replaced (the classical VS Code setting <code>python.languageServer</code> is reverted to None on restart). A typical example is an object returned from a function. In Cursor, this object, when type hints are missing, is declared as <code>Any</code>, and its members cannot be accessed, searched or renamed.</p>
 <h1 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h1>
 <p>A typical project structure is:</p>
 <pre><code class="language-plaintext">&lt;project root&gt;/
@@ -818,19 +855,20 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -850,7 +888,7 @@ Solution: <code>Edit Configurations...</code> -&gt; select configuration for the
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

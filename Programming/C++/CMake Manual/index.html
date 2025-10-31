@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>CMake Manual - Manuals</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../../../extra.css" rel="stylesheet">
-
-        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -26,7 +27,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Manuals</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,8 +35,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Programming <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
                                 <ul class="dropdown-menu">
                                     
   <li class="dropdown-submenu">
@@ -59,11 +60,15 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">CMake Manual</a>
+    <a href="./" class="dropdown-item active" aria-current="page">CMake Manual</a>
 </li>
             
 <li>
     <a href="../Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
 </li>
     </ul>
   </li>
@@ -243,8 +248,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">LaTeX <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -256,8 +261,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -265,9 +270,13 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Windows <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
                                 <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
                                     
 <li>
     <a href="../../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
@@ -290,8 +299,17 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Audio & Video <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -303,8 +321,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GIS <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -320,8 +338,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Images <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -333,47 +351,47 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../.." class="nav-link">index</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Markdown/" class="nav-link">Markdown</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Network/" class="nav-link">Network</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../XML/" class="nav-link">XML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../YAML/" class="nav-link">YAML</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../../../Zotero/" class="nav-link">Zotero</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -394,350 +412,164 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+            <li class="nav-item" data-bs-level="1"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#generators" class="nav-link">Generators</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#the-cmake-command" class="nav-link">The cmake command</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#configuration-generating-build-scripts" class="nav-link">Configuration: Generating Build scripts</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#toolchain-file" class="nav-link">Toolchain file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#other-usefull-arguments" class="nav-link">Other Usefull arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#legacy-arguments" class="nav-link">Legacy arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#building" class="nav-link">Building</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#specify-the-target" class="nav-link">Specify the target</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#single-configuration-systems" class="nav-link">Single-configuration systems</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#multi-configuration-systems" class="nav-link">Multi-configuration systems</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#install" class="nav-link">Install</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#cmake-command-line-tools" class="nav-link">CMake command-line tools</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#copy-tool" class="nav-link">Copy tool</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#syntax" class="nav-link">Syntax</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#variable-types" class="nav-link">Variable types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#the-option-command" class="nav-link">The option command</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#enviromental-variables" class="nav-link">Enviromental variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#built-in-variables" class="nav-link">Built-in variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#list-variables" class="nav-link">List variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#print-all-variables" class="nav-link">Print all variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#control-structures" class="nav-link">Control structures</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#if" class="nav-link">if</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#foreach" class="nav-link">foreach</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#generator-expressions" class="nav-link">Generator expressions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#evaluating-generator-expressions-during-configuration" class="nav-link">Evaluating generator expressions during configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#file-operations" class="nav-link">File operations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#path-operations" class="nav-link">Path operations</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#path-decomposition" class="nav-link">Path decomposition</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#list-operations" class="nav-link">List operations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#functions" class="nav-link">Functions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#named-arguments" class="nav-link">Named arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#default-values-for-arguments" class="nav-link">Default values for arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#return-values" class="nav-link">Return values</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#useful-functions" class="nav-link">Useful functions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#message" class="nav-link">message</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#find_program" class="nav-link">find_program</a>
+            <li class="nav-item" data-bs-level="2"><a href="#generators" class="nav-link">Generators</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#cmakeliststxt" class="nav-link">CMakeLists.txt</a>
+            <li class="nav-item" data-bs-level="1"><a href="#the-cmake-command" class="nav-link">The cmake command</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#typical-top-section-content" class="nav-link">Typical Top section content</a>
+            <li class="nav-item" data-bs-level="2"><a href="#configuration-generating-build-scripts" class="nav-link">Configuration: Generating Build scripts</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#language-standards" class="nav-link">Language standards</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#set-the-runtime-library-type-for-msvc" class="nav-link">Set the runtime library type for MSVC</a>
+            <li class="nav-item" data-bs-level="3"><a href="#toolchain-file" class="nav-link">Toolchain file</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#compile-options" class="nav-link">Compile options</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#msvc" class="nav-link">MSVC</a>
+            <li class="nav-item" data-bs-level="3"><a href="#other-usefull-arguments" class="nav-link">Other Usefull arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#gcc" class="nav-link">GCC</a>
+            <li class="nav-item" data-bs-level="3"><a href="#legacy-arguments" class="nav-link">Legacy arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#linker-options" class="nav-link">Linker Options</a>
+            <li class="nav-item" data-bs-level="2"><a href="#building" class="nav-link">Building</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#specify-the-target" class="nav-link">Specify the target</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#dependency-management" class="nav-link">Dependency management</a>
+            <li class="nav-item" data-bs-level="2"><a href="#specify-the-build-type-debug-release" class="nav-link">Specify the build type (Debug, Release)</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#how-to-recognize-a-cmake-package" class="nav-link">How to recognize a CMake package?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#standard-way-find_package" class="nav-link">Standard way: find_package</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#config-mode" class="nav-link">Config mode</a>
+            <li class="nav-item" data-bs-level="3"><a href="#single-configuration-systems" class="nav-link">Single-configuration systems</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#module-mode" class="nav-link">Module mode</a>
+            <li class="nav-item" data-bs-level="3"><a href="#multi-configuration-systems" class="nav-link">Multi-configuration systems</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#searching-for-include-directories-with-find_path" class="nav-link">Searching for include directories with find_path</a>
+            <li class="nav-item" data-bs-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#low-level-command-find_library" class="nav-link">Low level command: find_library</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#searching-for-libraries-in-the-project-dir" class="nav-link">Searching for libraries in the project dir</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#creating-a-custom-find-script" class="nav-link">Creating a custom find script</a>
+            <li class="nav-item" data-bs-level="2"><a href="#cmake-command-line-tools" class="nav-link">CMake command-line tools</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#downolad-dependencies-during-configuration-and-build-them-from-source" class="nav-link">Downolad dependencies during configuration and build them from source</a>
+            <li class="nav-item" data-bs-level="3"><a href="#copy-tool" class="nav-link">Copy tool</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#cmake-targets" class="nav-link">CMake Targets</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#executable-targets" class="nav-link">Executable targets</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#library-targets" class="nav-link">Library targets</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#targets-automatically-generated-by-cmake" class="nav-link">Targets automatically generated by CMake</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#set-properties-for-a-target" class="nav-link">Set properties for a target</a>
+            <li class="nav-item" data-bs-level="2"><a href="#execute-a-cmake-script" class="nav-link">Execute a CMake script</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#include-directories" class="nav-link">Include directories</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#syntax" class="nav-link">Syntax</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#debugging-the-include-directories" class="nav-link">Debugging the include directories</a>
+            <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#inspect-the-global-include-directories" class="nav-link">Inspect the global include directories</a>
+            <li class="nav-item" data-bs-level="3"><a href="#variable-types" class="nav-link">Variable types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#enviromental-variables" class="nav-link">Enviromental variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#built-in-variables" class="nav-link">Built-in variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#list-variables" class="nav-link">List variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#print-all-variables" class="nav-link">Print all variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#the-option-command" class="nav-link">The option command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#linking-configuration" class="nav-link">Linking configuration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#control-structures" class="nav-link">Control structures</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#checking-the-full-path-to-a-linked-library" class="nav-link">Checking the full path to a linked library</a>
+            <li class="nav-item" data-bs-level="3"><a href="#if" class="nav-link">if</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#handling-runtime-dependencies-in-the-output-directory" class="nav-link">Handling runtime dependencies in the output directory</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#copying-runtime-dependencies-using-add_custom_command" class="nav-link">Copying runtime dependencies using add_custom_command</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#runtime-dependencies-and-subdirectories" class="nav-link">Runtime dependencies and subdirectories</a>
+            <li class="nav-item" data-bs-level="3"><a href="#foreach" class="nav-link">foreach</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#installation-configuration" class="nav-link">Installation Configuration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#generator-expressions" class="nav-link">Generator expressions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#install-cmake-files" class="nav-link">Install CMake files</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#installing-the-targets-file" class="nav-link">Installing the Targets file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#installing-the-package-configuration-file-and-the-version-file" class="nav-link">Installing the package configuration file and the version file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#sanitation-of-the-public-include-directories" class="nav-link">Sanitation of the public include directories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#handling-dependencies" class="nav-link">Handling dependencies</a>
+            <li class="nav-item" data-bs-level="3"><a href="#evaluating-generator-expressions-during-configuration" class="nav-link">Evaluating generator expressions during configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#specify-the-targets-to-install" class="nav-link">Specify the targets to install</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#selecting-the-targets-to-build-using-the-exclude_from_all-property" class="nav-link">Selecting the targets to build using the EXCLUDE_FROM_ALL property</a>
+            <li class="nav-item" data-bs-level="2"><a href="#file-operations" class="nav-link">File operations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#disabling-the-building-of-the-install-target-and-using-a-custom-wrapper-target" class="nav-link">Disabling the building of the install target and using a custom wrapper target</a>
+            <li class="nav-item" data-bs-level="2"><a href="#path-operations" class="nav-link">Path operations</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#path-decomposition" class="nav-link">Path decomposition</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#support-both-shared-and-static-libraries" class="nav-link">Support both shared and static libraries</a>
+            <li class="nav-item" data-bs-level="2"><a href="#list-operations" class="nav-link">List operations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#support-both-debug-and-release-builds" class="nav-link">Support both Debug and Release builds</a>
+            <li class="nav-item" data-bs-level="2"><a href="#functions" class="nav-link">Functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#named-arguments" class="nav-link">Named arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#installation-of-executables" class="nav-link">Installation of executables</a>
+            <li class="nav-item" data-bs-level="3"><a href="#default-values-for-arguments" class="nav-link">Default values for arguments</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#specific-configuration-for-frequentlly-used-libraries" class="nav-link">Specific configuration for frequentlly used libraries</a>
+            <li class="nav-item" data-bs-level="3"><a href="#return-values" class="nav-link">Return values</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -746,124 +578,314 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#google-test" class="nav-link">GOOGLE TEST</a>
+            <li class="nav-item" data-bs-level="1"><a href="#useful-functions" class="nav-link">Useful functions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#message" class="nav-link">message</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="1"><a href="#do-not-install-gtest" class="nav-link">do not install gtest</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#for-windows-prevent-overriding-the-parent-projects-compilerlinker-settings" class="nav-link">For Windows: Prevent overriding the parent project's compiler/linker settings</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#multiple-cmakeliststxt-files-in-subdirectories" class="nav-link">Multiple CMakeLists.txt files in subdirectories</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#variables-scope" class="nav-link">Variables scope</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#decide-based-on-the-build-configuration" class="nav-link">Decide based on the build configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#executing-external-commands" class="nav-link">Executing external commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#find_program" class="nav-link">find_program</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#cmake-cache" class="nav-link">CMake Cache</a>
+            <li class="nav-item" data-bs-level="1"><a href="#cmakeliststxt" class="nav-link">CMakeLists.txt</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#typical-top-section-content" class="nav-link">Typical Top section content</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#language-standards" class="nav-link">Language standards</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#set-the-runtime-library-type-for-msvc" class="nav-link">Set the runtime library type for MSVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#compile-options" class="nav-link">Compile options</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#msvc" class="nav-link">MSVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#gcc" class="nav-link">GCC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#linker-options" class="nav-link">Linker Options</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#dependency-management" class="nav-link">Dependency management</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#how-to-recognize-a-cmake-package" class="nav-link">How to recognize a CMake package?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#standard-way-find_package" class="nav-link">Standard way: find_package</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#config-mode" class="nav-link">Config mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#module-mode" class="nav-link">Module mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#searching-for-include-directories-with-find_path" class="nav-link">Searching for include directories with find_path</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#low-level-command-find_library" class="nav-link">Low level command: find_library</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#searching-for-libraries-in-the-project-dir" class="nav-link">Searching for libraries in the project dir</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#creating-a-custom-find-script" class="nav-link">Creating a custom find script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#downolad-dependencies-during-configuration-and-build-them-from-source" class="nav-link">Downolad dependencies during configuration and build them from source</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cmake-targets" class="nav-link">CMake Targets</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#executable-targets" class="nav-link">Executable targets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#library-targets" class="nav-link">Library targets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#targets-automatically-generated-by-cmake" class="nav-link">Targets automatically generated by CMake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#set-properties-for-a-target" class="nav-link">Set properties for a target</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#include-directories" class="nav-link">Include directories</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#debugging-the-include-directories" class="nav-link">Debugging the include directories</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#inspect-the-global-include-directories" class="nav-link">Inspect the global include directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#linking-configuration" class="nav-link">Linking configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#checking-the-full-path-to-a-linked-library" class="nav-link">Checking the full path to a linked library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#handling-runtime-dependencies-in-the-output-directory" class="nav-link">Handling runtime dependencies in the output directory</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#copying-runtime-dependencies-using-add_custom_command" class="nav-link">Copying runtime dependencies using add_custom_command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#runtime-dependencies-and-subdirectories" class="nav-link">Runtime dependencies and subdirectories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation-configuration" class="nav-link">Installation Configuration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#install-cmake-files" class="nav-link">Install CMake files</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#installing-the-targets-file" class="nav-link">Installing the Targets file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#installing-the-package-configuration-file-and-the-version-file" class="nav-link">Installing the package configuration file and the version file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#sanitation-of-the-public-include-directories" class="nav-link">Sanitation of the public include directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#handling-dependencies" class="nav-link">Handling dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#specify-the-targets-to-install" class="nav-link">Specify the targets to install</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#selecting-the-targets-to-build-using-the-exclude_from_all-property" class="nav-link">Selecting the targets to build using the EXCLUDE_FROM_ALL property</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#disabling-the-building-of-the-install-target-and-using-a-custom-wrapper-target" class="nav-link">Disabling the building of the install target and using a custom wrapper target</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#support-both-shared-and-static-libraries" class="nav-link">Support both shared and static libraries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#support-both-debug-and-release-builds" class="nav-link">Support both Debug and Release builds</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#installation-of-executables" class="nav-link">Installation of executables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#specific-configuration-for-frequentlly-used-libraries" class="nav-link">Specific configuration for frequentlly used libraries</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#google-test" class="nav-link">GOOGLE TEST</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
+            <li class="nav-item" data-bs-level="1"><a href="#do-not-install-gtest" class="nav-link">do not install gtest</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#for-windows-prevent-overriding-the-parent-projects-compilerlinker-settings" class="nav-link">For Windows: Prevent overriding the parent project's compiler/linker settings</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#multiple-cmakeliststxt-files-in-subdirectories" class="nav-link">Multiple CMakeLists.txt files in subdirectories</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#variables-scope" class="nav-link">Variables scope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#decide-based-on-the-build-configuration" class="nav-link">Decide based on the build configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#executing-external-commands" class="nav-link">Executing external commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#various-tasks" class="nav-link">Various Tasks</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#showing-the-generator-for-a-configured-directory" class="nav-link">Showing the generator for a configured directory</a>
+            <li class="nav-item" data-bs-level="1"><a href="#cmake-cache" class="nav-link">CMake Cache</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#display-available-generators" class="nav-link">Display available generators</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#determine-the-binary-output-directory" class="nav-link">Determine the binary output directory</a>
+            <li class="nav-item" data-bs-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#debugging-cmake" class="nav-link">Debugging CMake</a>
+            <li class="nav-item" data-bs-level="1"><a href="#various-tasks" class="nav-link">Various Tasks</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#debugging-cmake-using-clion-cmake-debugger" class="nav-link">Debugging CMake using CLion CMake debugger</a>
+            <li class="nav-item" data-bs-level="2"><a href="#showing-the-generator-for-a-configured-directory" class="nav-link">Showing the generator for a configured directory</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#getting-a-a-complete-output-of-the-cmake-configuration" class="nav-link">Getting a a complete output of the CMake configuration</a>
+            <li class="nav-item" data-bs-level="2"><a href="#display-available-generators" class="nav-link">Display available generators</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#determine-the-binary-output-directory" class="nav-link">Determine the binary output directory</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#testing-with-cmake" class="nav-link">Testing with CMake</a>
+            <li class="nav-item" data-bs-level="1"><a href="#debugging-cmake" class="nav-link">Debugging CMake</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#adding-tests" class="nav-link">Adding tests</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#ctest-execution" class="nav-link">CTest execution</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="3"><a href="#run-tests-mode-default" class="nav-link">Run Tests mode (default)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#debugging-cmake-using-clion-cmake-debugger" class="nav-link">Debugging CMake using CLion CMake debugger</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="3"><a href="#build-and-test-mode" class="nav-link">Build and Test mode</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="3"><a href="#dashboard-mode" class="nav-link">Dashboard mode</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#using-the-dashboard-mode-configured-by-the-script" class="nav-link">Using the Dashboard mode configured by the script</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="4"><a href="#configuring-the-dashboard" class="nav-link">Configuring the Dashboard</a>
+            <li class="nav-item" data-bs-level="2"><a href="#getting-a-a-complete-output-of-the-cmake-configuration" class="nav-link">Getting a a complete output of the CMake configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#problems" class="nav-link">Problems</a>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#testing-with-cmake" class="nav-link">Testing with CMake</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="4"><a href="#warning-name-library-version-mismatched-error" class="nav-link">Warning! &lt;name&gt; library version mismatched error</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#test-fixtures" class="nav-link">Test fixtures</a>
+            <li class="nav-item" data-bs-level="2"><a href="#adding-tests" class="nav-link">Adding tests</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#running-tests-not-related-to-any-cmake-project" class="nav-link">Running tests not related to any CMake project</a>
+            <li class="nav-item" data-bs-level="2"><a href="#ctest-execution" class="nav-link">CTest execution</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#run-tests-mode-default" class="nav-link">Run Tests mode (default)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#build-and-test-mode" class="nav-link">Build and Test mode</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#dashboard-mode" class="nav-link">Dashboard mode</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#using-the-dashboard-mode-configured-by-the-script" class="nav-link">Using the Dashboard mode configured by the script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#configuring-the-dashboard" class="nav-link">Configuring the Dashboard</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#problems" class="nav-link">Problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#warning-name-library-version-mismatched-error" class="nav-link">Warning! &lt;name&gt; library version mismatched error</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#test-fixtures" class="nav-link">Test fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#running-tests-not-related-to-any-cmake-project" class="nav-link">Running tests not related to any CMake project</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -996,6 +1018,8 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <li><code>copy -t &lt;destination&gt; &lt;source&gt;</code> (<strong>only available in CMake 3.26 and later</strong>)</li>
 </ul>
 <p>Here, <code>&lt;source&gt;</code> can be a directory, a file, or a list of files. The <code>&lt;destination&gt;</code> can be a directory or a file. </p>
+<h2 id="execute-a-cmake-script">Execute a CMake script<a class="headerlink" href="#execute-a-cmake-script" title="Permanent link">&para;</a></h2>
+<p>To execute a CMake script, use the <code>cmake -P &lt;script&gt;</code> command. </p>
 <h1 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h1>
 <h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
 <p>In order to use a variable in the <code>CMakeLists.txt</code> file, we have to use the <code>${}</code> syntax:</p>
@@ -1017,22 +1041,6 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <li><strong>list variables</strong>: a list variable is created if the <code>&lt;variable value&gt;</code> is a list of words. Example:
     <code>cmake
     set(dirs "C:/Program Files" "C:/Program Files (x86)")</code></li>
-</ul>
-<h2 id="the-option-command">The <code>option</code> command<a class="headerlink" href="#the-option-command" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://cmake.org/cmake/help/latest/command/option.html"><code>option</code></a> command is used to define a <strong>boolean</strong> variable that can:</p>
-<ul>
-<li>be set by the user using the <code>-D</code> argument when running the <code>cmake</code> command,</li>
-<li>have a default value,</li>
-<li>have a description that will be printed when the variable is set, and</li>
-<li>set a cache variable (see <a href="#cmake-cache">CMake cache</a>).</li>
-</ul>
-<p>The syntax is:</p>
-<pre><code class="language-cmake">option(&lt;option name&gt; &lt;option description&gt; &lt;default value&gt;)
-</code></pre>
-<p>The behavior of the <code>option</code> command is as follows:</p>
-<ul>
-<li>If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.</li>
-<li>Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</li>
 </ul>
 <h3 id="enviromental-variables">Enviromental variables<a class="headerlink" href="#enviromental-variables" title="Permanent link">&para;</a></h3>
 <p>We can use environmental variables using the <code>ENV</code> variable:</p>
@@ -1108,6 +1116,22 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 endfunction()
 </code></pre>
 <p>To print all variables related to HDF5 lib, call <code>dump_cmake_variables(HDF)</code> after the <code>find_package</code> call.</p>
+<h3 id="the-option-command">The <code>option</code> command<a class="headerlink" href="#the-option-command" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://cmake.org/cmake/help/latest/command/option.html"><code>option</code></a> command is used to define a <strong>boolean</strong> variable that can:</p>
+<ul>
+<li>be set by the user using the <code>-D</code> argument when running the <code>cmake</code> command,</li>
+<li>have a default value,</li>
+<li>have a description that will be printed when the variable is set, and</li>
+<li>set a cache variable (see <a href="#cmake-cache">CMake cache</a>).</li>
+</ul>
+<p>The syntax is:</p>
+<pre><code class="language-cmake">option(&lt;option name&gt; &lt;option description&gt; &lt;default value&gt;)
+</code></pre>
+<p>The behavior of the <code>option</code> command is as follows:</p>
+<ul>
+<li>If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.</li>
+<li>Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</li>
+</ul>
 <h2 id="control-structures">Control structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h2>
 <h3 id="if"><code>if</code><a class="headerlink" href="#if" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/if.html"><code>if</code></a> command has the following syntax:</p>
@@ -2225,19 +2249,20 @@ set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../js/base.js" defer></script>
-        <script src="../../../search/main.js" defer></script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -2257,7 +2282,7 @@ set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
