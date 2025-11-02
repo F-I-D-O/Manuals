@@ -43,6 +43,15 @@ However, if there are many authors with shared affiliations, this approach is un
 \affil[2]{Affiliation 2}
 ```
 
+#### IEEE author list
+In IEEE publications, all authors are usually listed in the same `\author` command. Also, the affiliations are inside this command, typically created using the `\thanks` command. Example:
+```latex
+\author{David Fiedler, Jan Mrkos, Dominika Šídlová, and Fabio V. Difonzo
+\thanks{This work was supported by the Technology Agency of the Czech Republic within the DOPRAVA 2020+ program, project no. \texttt{CK04000150}. Fabio V.~Difonzo gratefully thanks the INdAM-GNCS group for partial support. The access to the computational infrastructure of the OP VVV funded project \texttt{CZ.02.1.01/0.0/0.0/16\_019/0000765} "Research Center for Informatics" is also gratefully acknowledged. \emph{(Corresponding author: David Fiedler.)}}
+\thanks{D. Fiedler, J. Mrkos, and D. Šídlová are with Faculty of Electrical Engineering, CTU in Prague, Prague 121 35, Czech Republic (e-mail: david.fiedler@agents.fel.cvut.cz).}
+\thanks{F. V. Difonzo is with Istituto per le Applicazioni del Calcolo "Mauro Picone", Consiglio Nazionale delle Ricerche, Bari 70126, Italy.}}
+```
+
 
 ### Keywords
 Keywords are not part of the standard article class. If we need to include them when using the standard article class, we can provide the command ourselves. Example:
