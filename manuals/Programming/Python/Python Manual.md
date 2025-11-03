@@ -120,6 +120,37 @@ class MyEnum(Enum):
 ```
 
 
+## Ranges
+[Documentation](https://docs.python.org/3.14/library/stdtypes.html#typesseq-range)
+
+Python has a special concept of ranges, that are objects representing immutable sequences of numbers. We can use ranges for iteration instead of initializing local variables like in other computer languages. In typical programming languages, a loop with known number of iterations is written as:
+```Java
+for(int i = 0; i < 10; i++) {
+    System.out.println(i);
+}
+```
+However, in Python, there is no such a thing, and instead we use ranges:
+```Python
+for i in range(10):
+    print(i)
+```
+
+The range() construct has the syntax of `range([<start>], <stop>, [<step>])`.
+
+- all parameters are integers
+- the default `<start>` is 0
+- the default `<step>` is 1
+- we need to specify `<start>` to be able to set `<step>`.
+
+### Floating point ranges
+For floating point ranges, we can use NumPy's `arange` function:
+```Python
+import numpy as np
+for i in np.arange(0, 10, 0.1):
+    print(i)
+```
+
+
 ## Collections and generators
 Python has several built-in data structures, most notably `list`, `tuple`, `dict`, and `set`. These are less efficient then comparable structures in other languages, but they are very convenient to use.
 

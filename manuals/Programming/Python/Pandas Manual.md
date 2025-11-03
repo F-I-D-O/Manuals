@@ -173,7 +173,7 @@ Returns dataframe rows as pandas named tuples with index as the first member of 
 
 
 ### iterrows()
-https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html
+[Documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iterrows.html)
 
 returns a tuple (index, data)
 
@@ -181,7 +181,8 @@ returns a tuple (index, data)
 
 
 ### items()
-https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html
+[Documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.items.html)
+
 Iterates over columns
 
 ## Iteration with modification
@@ -191,6 +192,13 @@ For modification, the best strategy is to:
 1. modify the selection with the assignment operator. The right side of the assignment operator can be the result of an iteration.
 
 
+## Iteration pairs of consecutive rows
+We can use the `zip` function to iterate over pairs of consecutive rows. For example, if we want to access each row as a `Series`, we can use the `iterrows` function with `zip`:
+
+```Python
+for row1, row2 in zip(df[:-1].iterrows(), df[1:].iterrows()):
+    print(row1[1], row2[1]) # row1[0] and row2[0] are the indices of the rows...
+```
 
 # Filtration
 ```python

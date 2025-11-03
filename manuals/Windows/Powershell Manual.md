@@ -533,13 +533,32 @@ Get-Process | Select-Object -Property Name, Id
 
 # File System
 
-## Create a symlink
-To create a symlink, use the `New-Item` command with the `-ItemType` parameter set to `SymbolicLink`. Example:
+## Listing files
+[Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem)
+
+For listing files, we can use the `Get-ChildItem` command, which has an alias `ls`. 
+
+The result will print the files with various properties out of which the **Mode** needs to be explained:
+
+- `a`: archive
+- `d`: directory
+- `h`: hidden
+- `l`: symbolic link
+- `r`: read-only
+- `s`: system
+
+
+## Symlinks
+To **create a symlink**, use the `New-Item` command with the `-ItemType` parameter set to `SymbolicLink`. Example:
 ```PowerShell
 New-Item -ItemType SymbolicLink -Path <source> -Target <target>
 ```
 
-Note that **administrator privileges are required to create a symlink**.
+To **modify a symlink**, we use the same command, we just need to add the `-Force` parameter.
+
+Note that **administrator privileges are required to create or modify symlinks**.
+
+
 
 # Network
 
@@ -673,7 +692,6 @@ Script including in PowerShell is called *dot sourcing*. To include a script, us
 
 
 # Usefull Commands
-
 
 
 ## File Encoding Conversion
