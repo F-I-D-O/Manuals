@@ -7,10 +7,13 @@ Important options, that defaults to inpractical values:
 - **default ssh client**: defaults to bundled openssh (part of git bash)
 - **context menu integration**: defaults to "Open in Git GUI" and "Open in Git Bash"
 
-## GitExtensions
+# GitExtensions
 GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.
 
 The tool is intuitive it is only important to **install git first**.
+
+## Limitations
+Unfortunatelly, GitExtensions does not support wordwrap in the diff view. There is an [issue](https://github.com/gitextensions/gitextensions/issues/448#event-16669247488) for that (closed, but never resolved).
 
 
 
