@@ -539,14 +539,19 @@ for trace in fig.data:
 
 
 
-
 ## Figure Annotations
 [documentation](https://plotly.com/python/text-and-annotations/)
 
-For adding annotations to the whole Figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. The most compliated and also most limited aspect is the positioning of the annotation. There are two things we can position:
+For adding annotations to to a figure, we can use the [`add_annotation`](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Figure.html#plotly.graph_objects.Figure.add_annotation) function. The most compliated and also most limited aspect is the positioning of the annotation. There are two things we can position:
 
-- the head of the annotation, which is the position the annotation arrow points to, or the position of the text in case of no arrow
-- the tail of the annotation, which is the position of the annotation arrow, if present
+- the head of the annotation arrow, or the position of the text in case of no arrow
+- the tail of position of the annotation arrow, if present
+
+Note that there are some important **limitations of annotations**:
+
+- There is no way how to position the text of the annotation. If we need a specific position of the text, we need to add it as a separate annotation. This brings a huge burden, as we need to calculate the right offset from the arrow, which depends on the angle, but also the dimensions of the plot
+- The `textangle` parameter of the text is in the coordinate system of the plot, not the coordinate system of the data. A recalculation is needed if we want to align a data based arrow annotation with a text annotation.
+- These annotations only work for 2D plots. For 3D plots, custom solution with 3D line and cone plots is needed.
 
 ### Setting the head of the annotation
 There are two settings for head of the annotation for each axis:
@@ -556,11 +561,11 @@ There are two settings for head of the annotation for each axis:
 
 The `xref` and `yref` parameters can be set to:
 
-- `"paper"`: The whole figure mode, where 0 means the left/bottom and 1 means the right/top of the figure.
-- `<axis reference>`: The axis mode, where the axis coordinates are used for positioning.
-    - for `<axis reference>`, we can use `"x"` or `"y"` for simple plots and `"x1"-"x<n>"` or `"y1"-"y<n>"` for subplots.
-
-By default, the `<axis reference>` is used for simple plots and `"paper"` for subplots.
+- `<axis name>`: The axis mode, where the axis coordinates are used for positioning.
+    - default for simple plots: `xref="x"` and `yref="y"`
+    - for subplots, we use `"x1"-"x<n>"` or `"y1"-"y<n>"` as `<axis name>`
+- `paper`: The whole figure mode, where 0 means the left/bottom and 1 means the right/top of the figure.
+    - default for subplots
 
 
 ### Setting the tail of the annotation
@@ -572,8 +577,40 @@ There are two settings for the tail of the annotation for each axis:
 The `axref` and `ayref` parameters can be set to:
 
 - `"pixel"`: The pixel mode, where the coordinates are in pixels relative to the whole figure, where the origin is the bottom left corner of the figure.
+    - default
 - `<axis reference>`: Same as for the head of the annotation, but must be equal to the `xref`/`yref`, ottherwise, the arrow will not be visible.
     - e.g., setting `xref` to `"x1"` and `axref` to `"x2"` is not allowed
+
+### Configuring the arrow
+There are many parameters for configuring the arrow. Morover, **without configuring some of the parameters, the arrow head will not be visible at all**. The most important parameters are:
+
+- `showarrow`: toggl the whole arrow (head and tail). Default is `True`.
+- `arrowcolor`: the color of the arrow line. 
+- `arrowwidth`: the width of the arrow line in pixels. Default is `1`.
+- `arrowhead`: the number indicating the style of the arrow head. Possible values are:
+    - `0`: no arrow head (default)
+    - `1`: wide triangle arrow head
+    - `2`: narrow triangle arrow head
+    - `3`: open triangle arrow head (dart)
+    - `4`: open triangle arrow head (B2 spirit shape)
+    - `5`: open triangle arrow head (V shape)
+    - `6`: circle arrow head
+    - `7`: square arrow head
+- `arrowsize`: the relative size of the arrow head to the `arrowwidth`. Default is `1`.
+
+
+### Configuring the text
+By default, the annotation does not have any text, unless `showarrow` is set to `False`, in which case a default text is added to prevent the annotation from being completely empty. To add text, we use the `text` parameter. To style the text, we can use the following parameters:
+
+- `textangle`: the angle of the text in degrees,
+- `font`: dictionary containing font parameters
+    - `size`: the size of the font in pixels
+    - `color`: the color of the font
+    - `weight`: the weight of the font
+    - `xanchor`, `yanchor`: the position of the text relative to the text box. 
+        - `xanchor` can be `left`, `center` or `right`
+        - `yanchor` can be `top`, `middle` or `bottom`
+
 
 
 ### Positinoing the text relative to the arrow
@@ -586,9 +623,7 @@ If we want to, for example, need to position the text of the annotation above th
 
 ### Other important parameters
 
-- `text`: the text of the annotation
-- `showarrow`: if `True`, an arrow will be added to the annotation, if False, only the text will be added. Default is `True`.
-- `textangle`: the angle of the text in degrees,
+
 - `bgcolor`: the background color of the annotation
 
 

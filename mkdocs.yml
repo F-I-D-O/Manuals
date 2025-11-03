@@ -13,6 +13,7 @@ nav:
     - C++ Workflow: Programming/C++/C++ Workflow.md
     - CMake Manual: Programming/C++/CMake Manual.md
     - Google Test: Programming/C++/Google Test.md
+    - vcpkg Manual: Programming/C++/vcpkg Manual.md
   - Cloud computing:
     - Lmod: Programming/Cloud computing/Lmod.md
     - RCI cluster: Programming/Cloud computing/RCI cluster.md
@@ -61,11 +62,14 @@ nav:
 - Linux:
   - Linux Manual: Linux/Linux Manual.md
 - Windows:
+  - Comand shell: Windows/Comand shell.md
   - Excel Manual: Windows/Excel Manual.md
   - PowerPoint: Windows/PowerPoint.md
   - Powershell Manual: Windows/Powershell Manual.md
   - VSCode: Windows/VSCode.md
   - Windows Manual: Windows/Windows Manual.md
+- .cursor:
+  - rules: []
 - Audio & Video:
   - FFMpeg: Audio & Video/FFMpeg.md
   - VLC: Audio & Video/VLC.md

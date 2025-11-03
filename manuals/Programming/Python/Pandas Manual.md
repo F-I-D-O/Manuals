@@ -326,48 +326,22 @@ df.loc[:, df.columns != '<column to skip>']
 
 When selecting from a dataframe with a multi-index, things get a bit more complicated. There are three ways how to select from a multi-index dataframe:
 
-- using `loc` with slices: simple, but verbose
-- using `loc` with `IndexSlice` object: more readable, but requires the `IndexSlice` object to be created first
-- using `xs` function, neat, but does not support all the features, e.g., it does not support ranges
-
-### Using `loc` 
-The general `loc` usage is the same as for a single index dataframe:
-```Python
-df.loc[<row selection>, <column selection>]
-```
-However, each selection is now a tuple, where each element of the tuple corresponds to one level of the multi-index:
-```Python
-df.loc[(<row selection level 1>, <row selection level 2>, ...), (<column selection level 1>, <column selection level 2>, ...)]
-```
-The `<row selection>` can be a specifica value, a list of values, or a slice. Note that we have to use the `slice` function, as pandas uses the standard slice syntax for something else. 
-
-We can skip lower levels to select all values from those levels. However, we cannot skip upper levels. If we want to select all values from the upper level, we need to use the `slice(None)` for that level:
-```python
-df.loc[(slice(None), slice(15, 30)), ...]
-```
-
-Note that for multi-index slicing, the index needs to be sorted. If it is not, we can use the [`sort_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html) function.
-
-[`pandas slicing documentation`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers) 
-
-
-#### Using `IndexSlice` for more readable syntax 
-We can obtain the same result with a more readable syntax using the [`IndexSlice`](https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html) object:
-```python
-idx = pd.IndexSlice
-dft.loc[idx[:, 15:30], ...]
-```
-
-
-#### Handeling the `too many indexers` error
-Sometimes, when using the `loc` method, the selection can fail with the `too many indexers` error, because it is ambiguous whether we select by rows or by columns. In that case, we can either  
-
-- use the `axis` parameter to specify the axis to select from:
+- if we need to **match a single value on one level**, there is a neet [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html) function
+    - does not support ranges, only specific values
     ```python
-    df.loc(axis=0)[<row selection>]
+    df.xs(<value>, level=<level name or number>)
     ```
-
-- or use the IndexSlice instead.
+- for **range selection**, we can use [`loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) with slices:
+    - simple, but it can be verbose for complex selections
+    ```python
+    df.loc[(slice(15, 30), slice(None)), ...]
+    ```
+- for **complex selections**, we can use `loc` with `IndexSlice` object.
+    - more readable, but requires the `IndexSlice` object to be created first.
+    ```python
+    idx = pd.IndexSlice
+    df.loc[idx[:, 15:30], ...]
+    ```
 
 
 ### Using `xs`
@@ -376,6 +350,48 @@ The [`xs`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.xs.html
 df.xs(15, level=1) # selects all rows with level 1 equal to 15
 ```
 
+
+### Using `loc`
+The general `loc` usage is the same as for a single index dataframe:
+```Python
+df.loc[<row selection>, <column selection>]
+```
+However, each selection is now a tuple, where each element of the tuple corresponds to one level of the multi-index:
+```Python
+df.loc[(<row selection level 1>, <row selection level 2>, ...), (<column selection level 1>, <column selection level 2>, ...)]
+```
+Because each selection is a tuple, **it is crucial to always specify both dimensions (rows and columns), even if we want to select all columns**. Otherwise, part of the row selection may be interpreted as a column selection, leading to a missing key error (as described in the [documentation](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers)).
+
+
+Each `<selection>` can be:
+
+- a specific value, 
+- a list of values, or
+- a slice. Note that we have to use the `slice` function, as pandas uses the standard slice syntax for something else.
+
+We can skip lower levels to select all values from those levels. However, we cannot skip upper levels. If we want to select all values from the upper level, we need to use the `slice(None)` for that level:
+```python
+df.loc[(slice(None), slice(15, 30)), ...]
+```
+
+Note that **for multi-index slicing, the index needs to be sorted**. If it is not, we can use the [`sort_index`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html) function.
+
+[`pandas slicing documentation`](https://pandas.pydata.org/docs/user_guide/advanced.html#using-slicers). 
+
+
+#### Using `loc` with `IndexSlice` for more readable syntax 
+We can obtain the same result with a more readable syntax using the [`IndexSlice`](https://pandas.pydata.org/docs/reference/api/pandas.IndexSlice.html) object:
+```python
+idx = pd.IndexSlice
+dft.loc[idx[:, 15:30], ...]
+```
+
+Again, **it is crucial to always specify both dimensions even if we want to select all columns**:
+```python
+df.loc[idx[:, 15:30],:] # select all columns for rows with index[1] between 15 and 30
+
+df.loc[idx[:, 15:30]] # try to select all rows and columns between 15 and 30 (produces key error most likely)
+```
 
 ## Select row with a maximum value in a column
 To get the index of the row with the maximum value in a column, we can use the `idxmax` function:
@@ -449,7 +465,23 @@ s.name = '<new name>'
 
 
 # Index
+In pandas, the index of a dataframe is a specialized structure that is used to select rows and columns fast.
+
+Compared to databases where, for the user, the index is boud to a column or a set of columns, **in pandas, the index contains the data itself**. Instead of `<column A>` and `<index for column A>`, we have just `<index A>`. containing both values and data structures for fast selection.
+
+Another difference compared to databases is that **pandas also has a column index**, with the same properties as the row index.
+
 Index of a dataframe `df` can be accessed by `df.index`. Standard range operation can be applied to index.
+
+Any data type can be used as an index. However, with certain data types, we have to be careful with the index:
+
+- **float**: Float index can cause problems with precision, that can change with data transformation operations like grouping:
+    ```python
+    df.index = Index([0.7, 0.8, 0.9])
+    new_df = df.groupby('col')
+    new_df.index # can be Index([0.6999999999999999....
+    ```
+    Therefore, it is best to avoid float index, in favor of more stable data types (strings, Categorical)
 
 ## Selecting just a single index level from a multi-index
 If we want to select just a single index level, we can use the [`get_level_values`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.get_level_values.html) function:
@@ -478,7 +510,11 @@ For that, we can use the [`reindex`](https://pandas.pydata.org/docs/reference/ap
 - Creating index from scratch
 
 ### `reindex`
-The first parameter is the new index. Example:
+This function can be used to replace the index, or a single index level in case of a multi-index.
+
+Note that the **`reindex` function can only be used for unique values**. If we have a multi-index with duplicate values on the level we want to reindex, we need to create a new index from scratch (see the [Creating multi-index](#creating-multi-index) section).
+
+The first parameter is the new index:
 ```python
 df.reindex(df.index + 1) # creates a new index by adding 1 to the old index
 ```
@@ -486,8 +522,6 @@ Important parameters:
 
 - `fill_value`: the value to use for missing values. By default, the missing values are filled with `NaN`.
 - `level`: the level to reindex in case of a multi-index.
-
-Note that the **`reindex` function can only be used for unique values**. If we have a multi-index with duplicate values on the level we want to reindex, we need to create a new index from scratch.
 
 
 ### Creating index from scratch
@@ -500,13 +534,21 @@ We can also assign a range directly to the index:
 df.index = range(5)
 ```
 
+
 ### Creating multi-index
 [documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#hierarchical-indexing-multiindex)
 
-There is a [`MultiIndex` constructor](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas-multiindex) that can be used to create a multi-index. However, most of the time, it is more convenient to use dedicated factory functions:
+There is a [`MultiIndex` constructor](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.html#pandas-multiindex) that can be used to create a multi-index. However, most of the time, we use dedicated factory functions:
 
-- [`MultiIndex.from_arrays`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays): creates a multi-index from an array of arrays (e.g. a list of lists). 
-- [`MultiIndex.from_tuples`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples)
+- [`MultiIndex.from_arrays`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays): creates a multi-index from an array of arrays (e.g. a list of lists). Each array is a level of the multi-index.
+    - array here is basically anything iterable. We can use even the old index object:
+        ```python
+        df.index = pd.MultiIndex.from_arrays([
+            df.index.get_level_values(0), 
+            df.index.get_level_values(1)
+        ])
+        ```
+- [`MultiIndex.from_tuples`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples): creates a multi-index from a list of tuples. Each tuple is a full index for a single row.
 - [`MultiIndex.from_product`](https://pandas.pydata.org/docs/reference/api/pandas.MultiIndex.from_product.html): creates a multi-index from the cartesian product of the given iterables. Example:
     ```python
     df.index = pd.MultiIndex.from_product([['one', 'two'], ['a', 'b']])
