@@ -599,46 +599,45 @@ df.index = df.index.set_levels(new_index, level=1)
 
 
 
-# Aggregation
-Analogously to SQL, pandas has a [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) function for aggreagting rows. The usage is as follows:
+# Aggregation and Transformation
+Analogously to SQL, pandas has a [`groupby`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) function. However, unlike in SQL, which use this concept only for aggregation, in pandas, we can also use it for transformation.
+
+The usage is as follows:
 ```Python
 group = df.groupby(<columns>) # returns a groupby object grouped by the columns
 selection = group[<columns>] # we can select only some columns from the groupby object
-aggregation = selection.<aggregation function> # we apply an aggregation function to the selected columns
+result = selection.<aggregation or transformation function> # we apply an aggregation or transformation function to the selected columns
 ```
 
 We can skip the `selection` step and apply the aggregation function directly to the groupby object. This way, the aggregation function is applied to all columns.
 
-Example (sum):
+Example (Sums the results for each group, column by column):
 ```Python
 df.groupby('col').sum()
 ```
-Sums the results for each group (column by column)
 
-To get a count, we can call the `size` function:
-```Python
-df.groupby('col').size()
-```
 
 Note that unlike in SQL, the aggregation function does not have to return a single value. It can return a series or a dataframe. In that case, the result is a dataframe with the columns corresponding to the returned series/dataframe. In other words, the **aggregation does not have to actually aggregate the data, it can also transform it**.
 
+Selected **`groupby` parameters**:
+
+- `group_keys`: By default, the group keys are added to the index of the result. For transformation functions, that do not perform any real grouping, we can turn off this behavior by setting this parameter to `False` 
+    - default is `True`
+    - This parameter only affects transformation functions. 
 
 
-## Aggregate functions
+
+## Built-in Aggregate functions
 For the aggregate function, we can use one of the prepared aggregation functions. Classical functions(single value per group):
 
 - `sum`
+- [`size`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.size.html): count the number of rows in each group
 - `mean`
 - `median`
 - `min`
 - `max`
 - `count`
 
-Transformation functions (value for each row):
-
-- [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.cumsum.html): cumulative sum
-- [`diff`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html): difference between the current and the previous row.
-    - the `periods` parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the `abs` function to get the absolute value.
 
 
 ## Custom aggegate function
@@ -668,7 +667,7 @@ df.groupby('col').agg({'col1': 'sum', 'col2': 'mean'})
 The [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html) function takes a custom function as an argument. That custom aggregation function:
 
 - takes a DataFrame/Series (depending on the source object) as the first argument
-    - this dataframe/series contains the data for the group (all columns)
+    - this dataframe/series contains the data for the group (all columns*)
     - the **key** of each particular group can be accessed using the `name` attribute of the dataframe/series
 - returns a Series, DataFrame, or a scalar
     - when a scalar is returned, the result is a series with the scalar value for each group
@@ -682,7 +681,12 @@ The process works as follows:
 
 In other words, the custom function only sees the dataframe/series representing the group, not the whole dataframe/series. The grouping and combining aggreate results is done by the `apply` function.
 
+*There is a change in behavior of the `apply` function and the grouping columns between pandas 2 and 3. A new parameter `include_groups` was introduced for a smooth transition. The grouping columns are included in the result only if this parameter is set to `True`.
 
+- in pandas 2, the default value of `include_groups` is `True`, but a warning is raised. To silence the warning, we can
+    - set the parameter to `False` (if we do not need the grouping columns), or 
+    - select the aggregation columns explicitly in the selection step.
+- in pandas 3, the default value of `include_groups` is `False`.
 
 ## Time aggregation
 [documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#resampling)
@@ -719,6 +723,16 @@ There are two possible results of resampling (both may appear in the same datafr
         df.resample('1H').sum().ffill()
         ```
 
+## Transformation functions
+The most common transformation functions are:
+- [`cumsum`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.cumsum.html): cumulative sum, i.e., the sum of the current and all previous values.
+- [`diff`](https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html): difference between the current and the previous row.
+    - the `periods` parameter specifies which row to use for the difference. By default, it is the previous row (periods=1). For next row, use periods=-1, but note that the result is then negative. We can use the `abs` function to get the absolute value.
+- [`ffill`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.ffill.html): Forward fill, i.e., fill the missing values with the next available value.
+
+
+## Custom transformation function
+For custom transformation functions, we use the [`transform`](https://pandas.pydata.org/docs/user_guide/groupby.html#groupby-transform) function.
 
 
 # Joins

@@ -482,6 +482,17 @@ If the system dialog does not work, try the PowerShell method.
 
 
 # WSL
+Windows Subsystem for Linux (WSL) is basically a virtual machine running Linux. 
+
+To **install WSL**, run `wsl --install` command.
+
+To **list installed WSL distributions**, run `wsl --list`
+
+To **list available WSL distributions**, run `wsl --list --online`
+
+To **install a WSL distribution**, run `wsl --install -d <distribution name>`
+
+Finally, to **remove a WSL distribution**, run `wsl --unregister <distribution name>`
 
 ## Translate Windows Path to Linux Path
 To translate a Windows path to a Linux path, we can use the `wslpath` command, which is available in Ubuntu WSL distributions.
