@@ -223,11 +223,19 @@ d = {
 ```
 
 Two dictionaries can be merged using the `|` operator:
-```Python   
+```Python
 d3 = d1 | d2 
 ```
 
-#### Set
+#### Get a default value if a key is not present
+To get a default value if a key is not present, we can use the [`get`](https://docs.python.org/3/library/stdtypes.html#dict.get) method:
+```Python
+d = {'a': 1}
+d.get('b', 0) # 0
+```
+
+
+### Set
 [Documentation](https://docs.python.org/3/library/stdtypes.html#set)
 
 Sets are initialized using curly braces (`{}`) or the `set` function:
@@ -1223,7 +1231,9 @@ a = np.array([1, 2, 3, 4, 5])
 a[::-1].sort() # sort in reverse order
 ```
 
-## Export to CSV
+## I/O
+
+### Export to CSV
 To export the numpy array to CSV, we can use the [`savetxt`](https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html) function:
 ```Python
 np.savetxt('file.csv', a, delimiter=',')
@@ -1231,6 +1241,23 @@ np.savetxt('file.csv', a, delimiter=',')
 By default, the function saves values in the mathematical float format, even if the values are integers. To save the values as integers, we can use the `fmt` parameter:
 ```Python
 np.savetxt('file.csv', a, delimiter=',', fmt='%i')
+```
+
+### HDF5
+To work with HDF5 files in Python, we use the [`h5py`](https://docs.h5py.org/en/stable/) library. 
+
+To **import** a dataset from an HDF5 file to a numpy array:
+```Python
+import h5py
+
+with h5py.File('file.h5', 'r') as f:
+    a = np.array(f['dataset'])
+```
+
+To **export** a numpy array to an HDF5 file:
+```Python
+with h5py.File('file.h5', 'w') as f:
+    f.create_dataset('dataset', data=<numpy array>)
 ```
 
 
@@ -1242,8 +1269,45 @@ np.savetxt('file.csv', a, delimiter=',', fmt='%i')
 - `nbytes`: array size in bytes. Should be equal to `size * itemsize` .
 
 
-## Usefull functions
+## Masking
+A usefull technique in Numpy is masking: getting an array of boolean that indicate satisfaction of a condition. This array can be used to filter the elements of the original array (or any other array of the same shape).
 
+Example:
+```Python
+a = np.array([1, 2, 3, 4, 5])
+mask = a > 3 # mask is [False, False, False, True, True]
+b = a[mask] # b is [4, 5]
+```
+
+For more complex masking, we can use the logical operators:
+
+- `&`: logical and
+- `|`: logical or
+- `^`: logical xor
+- `~`: logical not
+
+### Aggregate masks
+Even more powerful technique is to use aggregate masks that are computed for a whole array or a single dimension. We create such a mask simply by applying an aggregation function to the mask. Example:
+```Python
+a = np.array([[2, 3, 4], [5, 6, 7]])
+mask = a < 3 # mask is [[True, True, False], [False, False, False]]
+column_mask = mask.any(axis=0) # column_mask is [True, True, False]
+row_mask = mask.any(axis=1) # row_mask is [True, False]
+```
+
+Of course, we can use other aggregation functions than `any`, such as `all`, `sum`, `mean`, etc.
+
+
+### Dedicated mask functions
+Apart from logical operations, we can use dedicated mask functions:
+
+- [`nonzero`](https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html): returns the indices of the non-zero elements
+
+
+## Useful functions
+
+- [`unique`](https://numpy.org/doc/stable/reference/generated/numpy.unique.html): returns the unique elements of the array. Important parameters:
+    - `return_counts`: if set to `True`, the function returns the counts of the unique elements (same as `value_counts` in pandas)
 
 
 

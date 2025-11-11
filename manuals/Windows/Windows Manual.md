@@ -620,3 +620,18 @@ This process represents all virtual systems. One cultprit is therefore WSL. Try 
 ```
 wsl --shutdown
 ```
+
+## Computer Restarts without User Intervention
+The first thing is to go to the event viewer and check the error eventlogs. 
+
+If the Dump file generation event is in the log, we can further explore the Dump file using the [WinDbg](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools) tool. To analyze the dump:
+
+1. run WinDbg as administrator
+1. `File` -> `Open Dump File` and select the dump file (stored in the `C:\Windows\Minidump` folder)
+1. After opening the dump file, run `!analyze -v` to analyze the dump (or click to the link in the main window)
+
+The most Important information in the log is the `BUGCHECK_CODE`. The meaning of each code is documented in the [Microsoft Learn](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-code-reference2). Encountered codes:
+
+- [`0x00000050`: `PAGE_FAULT_IN_NONPAGED_AREA`](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x50--page-fault-in-nonpaged-area): invalid memory pointer (nonexisting or freed memory access)
+- [`0x0000003B`: `SYSTEM_SERVICE_EXCEPTION`](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x3b--system-service-exception): Exeption during a routine for transitioning between user and kernel mode. This is a very nonspecific error, to see what is really going on, we have to inspect the firts parameter of the exception (`BUGCHECK_P1` in the log). The description of this error code can be found in the [Microsoft Learn](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55). Encountered code:
+    - `c0000005`: `STATUS_ACCESS_VIOLATION`: This means invalid memory access.

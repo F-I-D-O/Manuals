@@ -1,8 +1,10 @@
 # Installation
+
 ## Windows
 Git can be bundeled within other software, but it is best to install it separately ([Git for Windows](https://gitforwindows.org/)), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.
 
 Important options, that defaults to inpractical values:
+
 - **default text editor**: defaults to vim
 - **default ssh client**: defaults to bundled openssh (part of git bash)
 - **context menu integration**: defaults to "Open in Git GUI" and "Open in Git Bash"
@@ -387,6 +389,26 @@ gh release delete <TAG> --repo <REPO> --cleanup-tag -y
 https://github.com/piceaTech/node-gitlab-2-github
 
 
+
+# Git Large File Storage
+[Homepage](https://git-lfs.github.com/)
+
+Git Large File Storage is a system for storing and versioning large files in git repositories. One of the main use cases is to store experiment code and data in one place.
+
+Git LFS needs to be first installed in the system:
+
+1. Run the installer download from the homepage
+1. run `git lfs install` to initialize Git LFS
+
+Then to use it in the repository:
+
+1. define for which files Git LFS should be used. For example, by extension: `git lfs track "*.png"`
+1. commit all work, including the changed `.gitattributes` file where the LFS filters are defined
+1. Now all newly added files will follow the LFS rules. To affect already committed files, run:
+    ```bash
+    git lfs migrate import --fixup
+    ```
+1. And that's it, now it should work. The only problematic part may be a slower  push/pull performance. 
 
 # Troubleshooting
 

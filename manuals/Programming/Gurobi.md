@@ -11,6 +11,7 @@ There are two gurobi command line tools:
 - `gurobi`: for running the interactive shell (ipython-like)
 
 
+
 # Parallel Execution
 The gurobi solver solves a problem in parallel by default, trying multiple solution methods at the same time (see the [official description](https://www.gurobi.com/documentation/9.5/refman/concurrent_optimizer.html)).
 
@@ -19,6 +20,107 @@ It is also possible to run multiple problems in parallel ([source](https://suppo
 The problem with this approach is that the CPU is usually not the bottleneck of the computation, the bottleneck is the memory ([source](https://groups.google.com/g/gurobi/c/JcUxe0YibZQ)). Therefore, solving multiple problems in parallel does not guarantee any speed up, it could be actually slower.
 
 The performance could be most likely improved when running the problems in parallel on multiple machines (not multiple cores of the same machine). [Some advised to use MPI](https://support.gurobi.com/hc/en-us/community/posts/360077591892-Solving-thousands-of-QP-parallelly-on-a-machine-) for that.
+
+
+
+# Model Parameters
+[Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html)
+
+In some (but not many) cases, we can improve the solution time by tuning the model parameters. The most important parameters are discussed here, for others, see the reference.
+
+
+## Cuts
+- [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#cuts)
+
+Cuts parameter affects the cutting plane generation.
+
+Possible values:
+
+- `-1`: automatic cuts (default)
+- `0`: no cuts are generated
+- `1`: moderate cut generation
+- `2`: aggressive cut generation
+- `3`: very aggressive cut generation
+
+Thgis parameter can be overridden for a specific cut type through other parameters (e.g., `CliqueCuts` parameter).
+
+
+## PreCrush
+
+- [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#precrush)
+
+PreCrush parameter affects the presolve behavior (see [Presolve](#presolve)).
+
+- `0`: presolve creates models as reduced as possible (default)
+- `1`: presolve preserve mapping between original and reduced model constraints. This setting is only useful if we want to add user-defined cuts.
+
+
+## Presolve
+
+- [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#presolve)
+- [Explanation](https://support.gurobi.com/hc/en-us/articles/360024738352-How-does-presolve-work)
+
+The presolve heuristic works the following way:
+
+1. A smaller model is created from the original model together with a mapping of the original variables to the smaller model variables.
+    - this model is infeasible if and only if the original model is infeasible
+    - if it has an optimal solution, it is the same as the optimal solution of the original model if the mapping is followed, and the solution values are the same
+1. The smaller model is solved.
+1. The solution of the smaller model is mapped back to the original model.
+
+Possible parameters values:
+
+- `-1`: automatic presolve (default)
+- `0`: presolve is disabled
+- `1`: conservative presolve
+- `2`: aggressive presolve
+
+
+# Undersanding Gurobi Logs
+Typically, the Gurobi Solver logs in the following order:
+
+1. Header message
+    1. logging start message
+    2. Output log path, if configured
+    3. Gurobi version
+    4. CPU info
+2. Model info
+3. Solution process info (depends on the model type, and configuration)
+4. Solution info
+
+## Solution Process Info
+The solution process info depends on the model type, and configuration. For a typical MIP model, the process is:
+
+1. Heuristic solution
+1. Presolve
+1. LP relaxation log
+1. Integer solution log
+
+### LP Log
+Gurobi uses the [Barrier method](https://en.wikipedia.org/wiki/Interior-point_method) for solving LPs. The log in order contains (in order):
+
+1. `Root barrier log...`
+1. Ordering
+1. Barrier statistics
+1. Barrier iteration log
+
+
+The barrier iteration log has the following columns:
+
+- `Iter`: iteration number
+- `Objective`: 
+    - `Primal`: Objective value of the primal
+    - `Dual`: Objective value of the dual
+- `Residual`: 
+    - `Primal`: Scaled measure of the primal feasibility error
+    - `Dual`: Scaled measure of the dual feasibility error
+- `Compl`: Scaled complementarity measure
+- `Time`: Cumulative time
+
+Under default setup, Gurobi typically stops iterating when values are as follows:
+
+- both residuals are less than `1e-8`
+- the `Compl` value is less than `1e-10`
 
 
 # Gurobi in Python
