@@ -110,6 +110,15 @@ git push <remote name> <branch name>
 ```
 
 
+
+# Wildcards
+Can be used in gitignore and also in some git commands. All described in the [Manual](https://git-scm.com/docs/gitignore#_pattern_format). Usefull wildcards:
+
+- `**/` in any directory
+- `/**` everything in a directory
+
+
+
 # Reverting
 When we want to revert  something using git there are multiple options depending on the situation. The commands are:
 
@@ -155,16 +164,7 @@ git push -f
 
 
 
-
-# Wildcards
-Can be used in gitignore and also in some git commands. All described in the [Manual](https://git-scm.com/docs/gitignore#_pattern_format). Usefull wildcards:
-
-- `**/` in any directory
-- `/**` everything in a directory
-
-
-# Removing files from all branches, local and remote 
-
+# Removing specific files from history
 Removing files from history can be done using multiple tools:
 
 1. [bfg repo cleaner](https://rtyley.github.io/bfg-repo-cleaner/) is the simplest tool. It can only select files by filename or size, but that is sufficient in most cases. 
@@ -386,29 +386,80 @@ gh release delete <TAG> --repo <REPO> --cleanup-tag -y
 
 ## Repository Migration
 
-https://github.com/piceaTech/node-gitlab-2-github
+- [Gitlab to GitHub migration tool](https://github.com/piceaTech/node-gitlab-2-github)
 
 
 
 # Git Large File Storage
-[Homepage](https://git-lfs.github.com/)
+
+- [Homepage](https://git-lfs.github.com/)
+- [GitHub documentation](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage)
 
 Git Large File Storage is a system for storing and versioning large files in git repositories. One of the main use cases is to store experiment code and data in one place.
 
-Git LFS needs to be first installed in the system:
+First, **install Git LFS** in the system:
 
-1. Run the installer download from the homepage
+1. Run the installer downloaded from the [homepage](https://git-lfs.github.com/)
 1. run `git lfs install` to initialize Git LFS
 
-Then to use it in the repository:
+Then to **use it in the repository**:
 
-1. define for which files Git LFS should be used. For example, by extension: `git lfs track "*.png"`
-1. commit all work, including the changed `.gitattributes` file where the LFS filters are defined
-1. Now all newly added files will follow the LFS rules. To affect already committed files, run:
+1. define for which files Git LFS should be used. For example, by extension:
+    - by running `git lfs track "*.png"`
+    - directly in the `.gitattributes` file: add the following line: 
+        ```
+        *.png filter=lfs diff=lfs merge=lfs -text
+        ```
+1. commit all work except the large files, including the changed `.gitattributes` file where the LFS filters are defined
+1. check that the LFS status of the files is correct by running `git lfs ls-files` (optional)
+1. And that's it, now it should work. The only problematic part may be a slower  push/pull performance.
+
+
+Note that **this simple procedure only affects new files**. To affect existing files, we have to distinguish two cases:
+
+- files added in the incorrect (text) mode that are not in the history yet (added, but not commited). These can be fixed by running `add` with the [`--renormalize`](https://git-scm.com/docs/git-add#Documentation/git-add.txt---renormalize) parameter:
+    ```bash
+    git add . --renormalize
+    ```
+- files added before the LFS initialization (already in the history). These can be fixed by running with the `migrate` subcommand.
+
+## The `migrate` subcommand
+[documentation](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc)
+
+The `migrate` subcommand of the `git lfs` command was introduced to modify history. It has three subcommands:
+
+- `import`: converts files in history to the large file mode
+- `export`: converts files in history to the text mode
+- `info`: shows the information about the files tracked by LFS
     ```bash
     git lfs migrate import --fixup
     ```
-1. And that's it, now it should work. The only problematic part may be a slower  push/pull performance. 
+
+### `migrate import`
+This subcommand is used to convert files in history to the large file mode. There are two possible cases:
+
+- we need to convert files that were committed before we start working with the LFS. We need to select such files manually, for example by specifying extensions:
+    ```bash
+    git lfs migrate import --include "*.png,*.jpg,*.jpeg,*.gif,*.bmp,*.tiff,*.ico,*.webp"
+    ```
+- we need to convert files that were committed after we start working with the LFS and the correct `.gitattributes` file was already in the history. This is much less likely, but it can happen. In this case, we can run the command with the `--fixup` parameter:
+    ```bash
+    git lfs migrate import --fixup
+    ```
+
+
+
+## Limitations
+When working with git LFS, we need to consider some limitations:
+
+- it slows down the push/pull operations
+    - we need to push early, not right before leaving the office
+    - the speed can be affected even without any new large files added
+- There are further limitations depending on the remote repository hosting service:
+    - GitHub:
+        - maximum file size of 2GB
+        - forks cannot introduce any new large files
+
 
 # Troubleshooting
 
