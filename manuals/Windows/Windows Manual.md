@@ -349,22 +349,47 @@ reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 ```
 
 ### Configure the items in the right click menu
-Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.
+Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation and sometimes, this can be disabled in the installation process
 
-#### Share with Skype
+To disable context menu entries after installation, we usually need to do one of the three things:
 
-1. in an elevated PowerShell, run:
-	```PowerShell
-	REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype
-	```
+- configure the context menu in the application settings
+- edit the registry
+- uninstall the application
 
-2. restart the Explorer
+To configure the context menu in the registry, we need to add a new key to the registry under the following path: `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked`. Under this path, we need to add a new string value matching the context menu entry we want to disable. For example, in PowerShell, we can run:
 
-#### PowerToys modules
-These can be removed by deactivating the specific modules in the PowerToys settings.
+```PowerShell
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "<context meny entry name>" /d <any value, can be empty>
+```
 
-#### Edit with Notepad
-Just Uninstall the Notepad. Yes, it can be done.
+Example for Skype:
+```PowerShell
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype
+```
+
+**After editing the registry, restart the Explorer.**
+
+
+#### Context menu that can be disabled by configuring the application settings
+
+- PowerToys modules: These can be removed by deactivating the specific modules in the PowerToys settings.
+
+
+#### Context menu items to be disabled by editing the registry
+
+| Context menu item | Registry key |
+|---|---|
+| Ask Copilot | `{CB3B0003-8088-4EDE-8769-8B354AB2FF8C}` |
+| Move to OneDrive | `{1FA0E654-C9F2-4A1F-9800-B9A75D744B00}` |
+| Share with Skype | `{776DBC8D-7347-478C-8D71-791E12EF49D8}` |
+
+
+
+#### Context menu items to be disabled by uninstalling the application
+
+- Edit with Notepad
+
 
 #### Scan with Microsoft Defender
 The following commands removes four entries from the registry that are related to this icon:
