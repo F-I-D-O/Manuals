@@ -351,11 +351,12 @@ reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 ### Configure the items in the right click menu
 Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation and sometimes, this can be disabled in the installation process
 
-To disable context menu entries after installation, we usually need to do one of the three things:
+To disable context menu entries after installation, we usually need to do one of the four things:
 
-- configure the context menu in the application settings
-- edit the registry
-- uninstall the application
+- **configure the context menu in the application settings**: if possible, easiest way
+- **add the item to blocked list in the registry**: for applications that cannot configured the context menu in the settings
+- **uninstall the application**: for applications that we do not need at all
+- **delete the item from the registry**: for certain built-in Windows items
 
 To configure the context menu in the registry, we need to add a new key to the registry under the following path: `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked`. Under this path, we need to add a new string value matching the context menu entry we want to disable. For example, in PowerShell, we can run:
 
@@ -370,6 +371,8 @@ REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked
 
 **After editing the registry, restart the Explorer.**
 
+For deleting the item from the registry, just run `REG DELETE <path>`
+
 
 #### Context menu that can be disabled by configuring the application settings
 
@@ -382,8 +385,8 @@ REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked
 |---|---|
 | Ask Copilot | `{CB3B0003-8088-4EDE-8769-8B354AB2FF8C}` |
 | Move to OneDrive | `{1FA0E654-C9F2-4A1F-9800-B9A75D744B00}` |
+| Restore previous version | `{596AB062-B4D2-4215-9F74-E9109B0A8153}` |
 | Share with Skype | `{776DBC8D-7347-478C-8D71-791E12EF49D8}` |
-
 
 
 #### Context menu items to be disabled by uninstalling the application
@@ -391,16 +394,21 @@ REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked
 - Edit with Notepad
 
 
-#### Scan with Microsoft Defender
-The following commands removes four entries from the registry that are related to this icon:
-```PowerShell
-REG DELETE "HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP"
-REG DELETE "HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}"
-REG DELETE "HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP"
-REG DELETE "HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP"
-```
+#### Context menu items to be disabled by deleting the registry item
 
-[Source](https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html)
+- `Open with Visual Studio`: `HKEY_CLASSES_ROOT\Directory\shell\AnyCode`
+- `Scan with Microsoft Defender` ([Source](https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html)):
+    - `"HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP"`
+    - `"HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}"`
+    - `"HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP"`
+    - `"HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP"`
+- `Send to`: 
+    - `"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo"`
+    - `"HKEY_CLASSES_ROOT\UserLibraryFolder\shellex\ContextMenuHandlers\SendTo"`
+- VLC entries:
+    - `"HKEY_CLASSES_ROOT\Directory\shell\AddtoPlaylistVLC"`
+    - `"HKEY_CLASSES_ROOT\Directory\shell\PlayWithVLC"`
+
 
 #### Translate with Deepl
 Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.
