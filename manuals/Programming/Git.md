@@ -83,6 +83,28 @@ usefull params:
 - `-n` dry run
 
 
+# Branches
+Branches are a way to manage parallel development. Each branch has a name and its own history. Typically (but not necessarily) a local branch tracks a remote branch with the same name.
+
+To **list the branches**, we call `git branch`.
+
+To **switch to a branch**, we call `git checkout <branch name>`. For that, the branch must exist locally. If it does not, we need to **create** it first:
+
+- new branch from scratch: `git branch <branch name>`
+- new branch from a remote branch: `git checkout --track origin/<REMOTE_BRANCH_NAME>`
+    - for this, the local repository needs to know about the remote branch. We may need to first `git fetch` to update the remote branches.
+
+## Renaming a branch
+When renaming a branch we need to:
+
+1. rename the branch locally: `git branch -m <old name> <new name>`
+1. delete the old branch on the remote and push the new branch: `git push origin :<old name> <new name>`
+1. on all machines, change the remote branch to the new one
+1. on any other machine, rename the branch locally
+
+Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.
+
+
 # Remote Repositories
 [Git Basics manual](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
 
@@ -315,15 +337,6 @@ The `git log` shows the history of the repository. It is the analogue of the mai
 - `--decorate`: shows the names of the branches and tags, not only the commit hashes
 
 
-# Renaming a branch
-When renaming a branch we need to:
-
-1. rename the branch locally: `git branch -m <old name> <new name>`
-2. delete the old branch on the remote and push the new branch: `git push origin :<old name> <new name>`
-1. on all machines, change the remote branch to the new one
-1. on any other machine, rename the branch locally
-
-Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.
 
 # GitHub
 
@@ -348,28 +361,37 @@ Typically, we need to authenticate the tool first by calling [`gh auth login`](h
 
 
 ### Token Authentication
-To authenticate using a token, we first need to create a token:
+To authenticate using a token, we first need to **create a token**. The token settings are in `Profile Settings` -> `Developer settings` -> `Personal access tokens`.
 
-1. Go to `Settings` -> `Developer settings` -> `Personal access tokens`
-1. Click `Tokens (classic)`
-1. Click `Generate new token` -> `Generate new token (classic)`
-1. Fill the token description and select the scopes
-1. Click `Generate token`
+Thereare two types of tokens:
 
-Then we can authenticate using the token. We can either
+- classic tokens: legacy access tokens
+- fine-grained tokens: new access tokens with more granular permissions
+
+Unless we need some specific permissions available only in the classic tokens, we should use the fine-grained tokens. This is the only option if we want to limit the scope of the token only to certain repositories.
+
+To know what specific permissions are needed for a particular command, we can
+
+- call the command with the `--help` parameter
+- read the documentation of the command
+- run the command and read the error message
+- ask
+
+Then we can **authenticate using the token**. We can either:
 
 - suply the token to the `gh auth login` command:
-	```PowerShell
+    ```PowerShell
 	gh auth login -h github.com -p ssh --skip-ssh-key --with-token <TOKEN>
-	```
+    ```
 - or set the environment variable `GH_TOKEN` to the token value and call commands without authentication.
 
 
 ### Managing realeases
 Required permissions:
 
-- `public_repo` if the repository is public
-- `repo` if the repository is private
+- `Read and Write access to code`
+
+To **list** releases, we can call the [`gh release view`](https://cli.github.com/manual/gh_release_view) command.
 
 To **create** a release, we can the [`gh release create`](https://cli.github.com/manual/gh_release_create) command:
 ```PowerShell
@@ -382,7 +404,19 @@ To **delete** a release, we can call the [`gh release delete`](https://cli.githu
 gh release delete <TAG> --repo <REPO> --cleanup-tag -y
 ```
 
+### Synchronizing a fork with the original repository
+Required permissions:
 
+- `Read and Write access to code`
+- `Read and Write access to workflows`
+
+To synchronize a fork with the original repository, we call:
+
+```PowerShell
+gh repo sync <repo path> -b <branch name>
+```
+
+Here, the `<repo path>` is the path on the `github.com` domain, e.g. `F-I-D-O/Future-Config`. We can skip the `-b <branch name>` parameter if we want to synchronize the default branch.
 
 ## Repository Migration
 
