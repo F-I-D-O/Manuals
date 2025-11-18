@@ -167,54 +167,47 @@ On windows, many error codes can be emitted by the system or standard libraries:
 
 - `0x0` to `0x3e7f`: [Win32 error codes](https://docs.microsoft.com/en-us/windows/win32/debug/system-error-codes): Errors emitted by Windows high-level functionalities
 - `0xC0000000` to `0xCFFFFFFF`: [NT status codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref): Standardized 32-bit error codes used in Windows kernel, drivers, and protocols. Notable examples:
-  - `0x00000003`: STATUS_BREAKPOINT (*{EXCEPTION} Breakpoint A breakpoint
+- `0x00000003`: STATUS_BREAKPOINT (*{EXCEPTION} Breakpoint A breakpoint
 has been reached.*)
-  - [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation (*The instruction at 0x%08lx referenced
+- [`0xC0000005`](https://learn.microsoft.com/en-us/shows/inside/c0000005): Access violation (*The instruction at 0x%08lx referenced
 memory at 0x%08lx. The memory could
 not be %s.*)
-  - `0xC0000142`: STATUS_DLL_INIT_FAILED: Initialization of a dynamic link library failed. The
+- `0xC0000142`: STATUS_DLL_INIT_FAILED: Initialization of a dynamic link library failed. The
 process is terminating abnormally. This means that all linked libraries are available at runtime, but some of them failed to initialize, which may be due to a missing dependency (between the linked library and another library not linked to the executable)
-  - `0xC0000374`: Heap corruption (*A heap has been corrupted.*)
+- `0xC0000374`: Heap corruption (*A heap has been corrupted.*)
 
 
+## Missing dll
+When a dll file is missing, we can temprorarily fix the problem by copying the dll file to the same directory as the executable. However, it is best to investigate the cause, which we discuss in this section.
 
-## Improve debugger experience with natvis
-[Natvis](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022) is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:
-```XML
-  <Type Name="My_class">
-    ... visualization rules
-  </Type>
+
+The most common cause is that we do not set the target to copy the required runtime dependencies to the output directory. This is necessary even when building with CMake: **CMake does not copy the runtime dependencies automatically!** To configure CMake to copy the runtime dependencies, see the [CMake Manual](CMake%20Manual.md#handling-runtime-dependencies-in-the-output-directory).
+
+If this command is present and copies some runtime dependencies to the output directory, but not all of them, we need to investigate further:
+
+1. determine why the missing library is required (if we do not know immediately...)
+1. fix the dependency so it is recognized by CMake
+    - if the library is required by our targets, we have some linking misconfiguration -> we have to fix it
+    - if the library is required by another library (transitive dependency), the bug is probably there. We cannot fix it, but we can report it and manually link the missing library to the library that requires it  in our project (see the [CMake Manual](CMake%20Manual.md#fixing-incorrect-linking-configuration-in-upstream-projects) for details).
+
+
+### Showing the runtime dependency tree
+First, we should check the CMake dependencies. We can see them using the `--graphviz` argument of the `cmake` command:
+
+```bash
+cmake --graphviz=dependencies.dot
 ```
-The name must be fully qualified, i.e., **we have to include namespaces.**
 
-The big advantage is that **natvis files can be changed while the debugger is running** and the presentation of the type in locals/watch window is changed immediatly after saving the natvis file.
+In the `dependencies.dot` file, we can see the dependency tree of visible cmake dependencies, i.e., the libraries that:
 
-### Natvis expressions
-The expression in natvis are sorounded by `{}`. If we want curly braces in the text, we can double them `{{...}}`.
-**Unfortunatelly, function calles cannot be used in natvis expressions**.
+- are linked in cmake using the `target_link_libraries` command (in contrast to command line linking, etc), **and**
+- are linked *publicly* (i.e., with the `PUBLIC` or `INTERFACE` keyword, not `PRIVATE`)
 
-### Natvis Errors
-Natvis errors can be displayed in the output window if turned on in settins: `Debug` -> `Options` -> `Debugging` -> `Output Window`.
+If the missing library is not in this dependency tree, we should inspect the executable for the dependencies. We can do that using the [Dependencies tool](https://github.com/lucasg/Dependencies).
 
-### Existing visualisations
-Existing natvis files are stored in `<VS Installation Folder>\Common7\Packages\Debugger\Visualizers` folder. The STL visualizations are in `stl.natvis`
-
-
-## Debugger manual
-Be aware that in **CLion debugger, the program does not terminate on unhandled exceptions by default.** 
-
-### Address breakpoints
-Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.
-
-To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:
-
-- use the `&` operator on the variable in the watch window
-- use the `&` operator on the variable in the immediate window
-
-The address should have a format `0x0000000000000000`.
-
-
-
+1. Download and extract the tool
+1. Run the `DependenciesGui.exe`
+1. Drag and drop the executable to the tool
 
 ## Memory Errors
 These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:
@@ -372,6 +365,27 @@ To debug multiple targets at once:
 
 ## Visual Studio
 
+### Improve debugger experience with natvis
+[Natvis](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022) is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:
+```XML
+  <Type Name="My_class">
+    ... visualization rules
+  </Type>
+```
+The name must be fully qualified, i.e., **we have to include namespaces.**
+
+The big advantage is that **natvis files can be changed while the debugger is running** and the presentation of the type in locals/watch window is changed immediatly after saving the natvis file.
+
+#### Natvis expressions
+The expression in natvis are sorounded by `{}`. If we want curly braces in the text, we can double them `{{...}}`.
+**Unfortunatelly, function calles cannot be used in natvis expressions**.
+
+#### Natvis Errors
+Natvis errors can be displayed in the output window if turned on in settins: `Debug` -> `Options` -> `Debugging` -> `Output Window`.
+
+#### Existing visualisations
+Existing natvis files are stored in `<VS Installation Folder>\Common7\Packages\Debugger\Visualizers` folder. The STL visualizations are in `stl.natvis`
+
 ### Debugging polymorphic classes
 Unfortunately, the debugger does not show the actual type of the object when the object is cast to a base class.
 
@@ -379,6 +393,18 @@ To see the object content including the members of the derived class, we have to
 
 - `((Derived_class*) object)` for pointers
 - `((Derived_class&) object)` for references
+
+
+### Address breakpoints
+Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.
+
+To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:
+
+- use the `&` operator on the variable in the watch window
+- use the `&` operator on the variable in the immediate window
+
+The address should have a format `0x0000000000000000`.
+
 
 
 
