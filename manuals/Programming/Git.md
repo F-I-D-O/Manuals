@@ -213,21 +213,28 @@ With BFG, **only a file with specific filename can be deleted**. It is not possi
 4. run the git commands that appears at the end of the bfg output
 5. run git push
 
+
 ## Git filter-repo
 The git filter-repo can be installed using pip: `pip install git-filter-repo`.
 
 To remove file by its path:
 
-1. run the command: `git filter-repo --invert-paths --force --dry-run --path <PATH TO THE FILE TO BE REMOVED>`
+1. run the command with the `--dry-run` parameter: `git filter-repo --invert-paths --force --dry-run --path <PATH TO THE FILE TO BE REMOVED>`
 2. inspect the changes in `.git/filter-repo` directory:
-	- Compare the files in KDiff3
-	- To skip the lines  starting with `original-oid`, 
-		1. go to the file selection dialog
-		2. click Configure
-		3. to the line-matching preprocessor command, add: `sed 's/original-oid .*//'`
-3. add remote again: `git remote add origin <REPO SSH ADDRESS>`
+    - Compare the files in KDiff3
+    - To skip the lines starting with `original-oid`:
+        1. go to the file selection dialog
+        2. click Configure
+        3. to the line-matching preprocessor command, add: `sed 's/original-oid .*//'`
+        4. click OK
+3. run the command without the `--dry-run` parameter
 4. force push the comman to the remote `git push origin --force --all`
-	- If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config. 
+    - If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config.
+
+Appart from exact file path, we can also use:
+
+- glob patterns: `--path-glob <GLOB PATTERN>`
+- regex patterns: `--path-regex <REGEX PATTERN>`
 
 [git filter-repo manual](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html)
 
@@ -431,6 +438,8 @@ Here, the `<repo path>` is the path on the `github.com` domain, e.g. `F-I-D-O/Fu
 
 Git Large File Storage is a system for storing and versioning large files in git repositories. One of the main use cases is to store experiment code and data in one place.
 
+Note that **with publicaly available repository hosting services like GitHub, the git LFS has severe limitations preventing almost any practical use.** (see [limitations](#git-lfs-limitations))
+
 First, **install Git LFS** in the system:
 
 1. Run the installer downloaded from the [homepage](https://git-lfs.github.com/)
@@ -483,7 +492,7 @@ This subcommand is used to convert files in history to the large file mode. Ther
 
 
 
-## Limitations
+## Git LFS Limitations
 When working with git LFS, we need to consider some limitations:
 
 - it slows down the push/pull operations
@@ -493,6 +502,7 @@ When working with git LFS, we need to consider some limitations:
     - GitHub:
         - maximum file size of 2GB
         - forks cannot introduce any new large files
+        - **Maximum bandwidth per month**: 10GB
 
 
 # Troubleshooting
