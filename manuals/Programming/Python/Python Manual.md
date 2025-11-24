@@ -1558,6 +1558,17 @@ Important parameters:
 
 - `desc`: description of the progress bar
 
+
+## Custom progress updates
+When the progress is more complex (conditional updates, etc.), we can use the progress bar object to update the progress manually:
+```Python
+with tqdm(total=<total number of steps>) as progress_bar:
+    if(<condition>):
+        progress_bar.update(<number of steps>)
+```
+
+
+
 ## TQDM in Jupyter
 When using `tqdm` in Jupyter, the basic progress bar may not work (it may print other logs repeatedly). In such cases, we can change the import to:
 ```Python
