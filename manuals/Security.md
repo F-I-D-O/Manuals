@@ -299,3 +299,10 @@ Web auth has two modes:
 
 - **Multi-factor mode**: works like the traditional multifactor authentication: a password is supplied first and then only a confirmation (e.g., hitting enter) is required on the hardware key.
 - **Single-factor mode**: only the hardware key is required, but user verification is required with the hardware key (e.g., a PIN code or a biometric).
+
+
+
+# Microsoft Login
+Together with its products, Microsoft pushes a centralized login system. As the system is far from intuitive, we will cover it here.
+
+The main login page is https://login.microsoftonline.com. At this page all logged accounts can be seen. Also, we can log in here to a new account. This is very important as Microsoft login system has a design flaw that sometimes cause a redirection to an incorrect login page, if the user uses multiple accounts on the same device. When we use the login.microsoftonline.com page, we bypass this malfunctioning login system and we can choose the correct account manually.

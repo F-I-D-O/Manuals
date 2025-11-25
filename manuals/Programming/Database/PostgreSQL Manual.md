@@ -749,15 +749,14 @@ The subtransactions are started:
 
 `psql` is a basic command line utitilty for manipulating postgres database. 
 
-To connect, type:
-```bash
-psql -d <db name> 
-```
-Then the SQL commands can be executed. 
+To connect, just type `psql`. By default, it will connect as a user corresponding to the OS user name to the default database for that user. To change it:
 
-Note that no matter what SQL commands you plan to execute, **you have to connect to a specific database**. Ommitting the `-d` parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.
+- `-U <user name>`: connect as a different user,
+- `-d <db name>`: connect to the specified database.
 
-To execute command immediatelly without starting interactive session, use the `-c ` parameter:
+This way, we connect to the database in **interactive mode**. In this mode, we can write multiple SQL commands using one connection. The commands are only executed when correct ending punctuation (usually a semicolon) is encountered. Otherwise, enter just adds a new line and the command is not executed.
+
+To **execute command immediatelly** without starting interactive session, use the `-c ` parameter:
 ```bash 
 psql -d <db name> -c "<command>"
 ```
@@ -769,8 +768,11 @@ psql -d <db name> -c "CREATE DATABASE <db name>" -c "<other command>"
 Other useful parameters:
 
 - `-X`: do not read the `~/.psqlrc` file. This is useful when debuging the `psql` commands or running scripts, as it disables any customizations.
-- `-U <user name>`: connect as a different user. If not specified, the current user is used.
 - `-p`<port number>: specify the port number.  (default is 5432)
+- `-l`: list all databases
+
+## Default database
+Note that no matter what SQL commands you plan to execute, **you have to connect to a specific database**. Ommitting the `-d` parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.
 
 
 ## meta-commands
