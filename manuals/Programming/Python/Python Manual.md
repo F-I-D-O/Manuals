@@ -1730,3 +1730,46 @@ with open(<filename>, 'wb') as f:
     f.write(response.content)
 ```
 
+# Graphs with NetworkX and OSMnx
+[NetworkX documentation](https://networkx.org/documentation/stable/index.html)
+[OSMnx documentation](https://osmnx.readthedocs.io/en/stable/)
+
+NetworkX is a library for working with graphs. OSMnx is a library that creates networkx graphs from OpenStreetMap data.
+
+## Creating a graph from OpenStreetMap
+To create a graph from OpenStreetMap, we can use the `ox.graph_from_place` function:
+```Python
+import osmnx as ox
+
+graph = ox.graph_from_place(<place name>, network_type=<network type>)
+```
+
+The `network_type` parameter can be one of the following:
+
+- `'drive'`: driving network
+- `'walk'`: walking network
+- `'bike'`: cycling network
+
+And some more.
+
+To add speed information to the graph, we can use the `OSMnx.add_edge_speeds` function:
+```Python
+graph = ox.add_edge_speeds(graph)
+```
+
+Similarily, we can add travel times:
+```Python
+graph = ox.add_edge_travel_times(graph)
+```
+
+## Creating a graph from pandas dataframe
+To create a graph from a pandas dataframe, we can use the `NetworkX.from_pandas_edgelist` function:
+```Python
+graph = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr=['weight', 'speed', 'travel_time'], create_using=nx.DiGraph())
+```
+
+## Reindexing the nodes
+Sometimes, we want to discard the node indices created from the input data and use a new index that has a range of (0, n-1). We can do this by using the `NetworkX.convert_node_labels_to_integers` function:
+```Python
+graph = nx.convert_node_labels_to_integers(graph)
+```

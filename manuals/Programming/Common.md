@@ -185,7 +185,16 @@ To set a visual guidline at 120 characters, we can use the `editor.rulers` setti
     ```
 
 ### Language specific settings
-Language specific settings can be configured in the `settings.json` file, there is no GUI for it. A lot of general parameters can be set specifically to some language by adding them to the language section (object) of the `settings.json` file. Example:
+Almost all settings can be set specifically to some language.  To do that:
+
+1. in settings, next to the filter box, click on the filter icon and select language
+2. select the language
+3. find the setting either manually or by adding more filters
+4. change the setting
+
+To be sure that the setting is applied only to the selected language, look at the panel under the search box. Instead of `User`, `Workspace`, there should be `User[<language>]`, `Workspace[<language>]`.
+
+Language specific settings can be also configured in the `settings.json` file. Just modify the language section (object) of the `settings.json` file. Example:
 ```json
 "editor.formatOnSave": false,
 "editor.defaultFormatter": "esbenp.prettier-vscode",

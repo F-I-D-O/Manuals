@@ -113,7 +113,7 @@ It can happen that a locally installed package (`-e`) is not recognized by Pycha
 
 If this does not work, it can be solved by adding the path to the package to the interpreter paths:
 
-1. `File` -> `Settings` -> `Project: <project name>` -> `Python Interpreter`
+1. `File` -> `Settings` -> `Python` -> `Interpreter`
 1. Click on the arrow next to the interpreter name and choose `Show All...`
 1. Click on the desired interpreter and click on the filetree icon on the top of the window
 1. Add the path to the package to the list of paths
