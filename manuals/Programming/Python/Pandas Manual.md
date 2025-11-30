@@ -973,9 +973,44 @@ The [`squeeze`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sq
 
 
 # Geopandas
-Geopandas is a GIS addon to pandas, an equivalent to PostGIS. Unfortunately, **it currently supports only one geometry column per table.**
+[homepage](https://geopandas.org/en/stable/)
 
-**Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!** Use the `to_wkt` function instead.
+Geopandas is a GIS addon to pandas. Geometric operations are implemented in Shapely. 
+
+## Basics
+Geopandas works with [`GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html), a subclass of pandas `DataFrame`. The `GeoDataFrame` can contain normal columns (i.e., Pandas, non-geometric columns) and a geometry column implemented by [`GeoSeries`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.html) (instead of the usual Pandas `Series`).
+
+Every geodataframe can have multiple geometry columns. Each column can be of a different geometry type and it can have a different coordinate system (projection). However, **a geodataframe can have only active geometry column at a time.**
+
+### Active geometry column
+All geometric operations performed on a geodataframe are performed using the active geometry column. 
+
+By default, if we create a geodataframe with a single geometry column, it becomes the active geometry column. However, sometimes we need to set it, for example:
+
+- when we have multiple geometry columns, or
+- when we rename the active geometry column.
+
+To set the active geometry column, we can use the [`set_geometry`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.set_geometry.html) method.
+
+To check if the geodataframe has an active geometry column, we can check the `active_geometry_name` property:
+
+```Python
+if gdf.active_geometry_name is None:
+    print("No active geometry column")
+else:
+    print(f"Active geometry column: {gdf.active_geometry_name}")
+```
+
+### Setting the active geometry column
+To set the active geometry column, we can use the [`set_geometry`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.set_geometry.html) method.
+```Python
+gdf.set_geometry(<GEOMETRY COLUMN>, inplace=True)
+```
+
+
+
+## Limitations
+- **Do not ever copy paste the geometries from jupyter notebook as the coordinates are rounded!** Use the `to_wkt` function instead.
 
 ## Create a geodataframe from CSV
 Geopandas has it's own `read_csv` function, however, it requires a very specific csv format, so it is usually easier to first import csv to pandas and then create geopandas dataframe from pandas dataframe.
@@ -1013,12 +1048,13 @@ gdf = gdf.explode()
 ### preprocesssing
 Before inserting a geodataframe into the database, we need to process it a little bit:
 
-1. set the SRID: `gdf.set_crs(epsg=<SRID>, allow_override=True, inplace=True)`
-2. set the geometry: `gdf.set_geometry('geom', inplace=True)`
+1. set the SRID: `gdf.set_crs(epsg=<SRID>, inplace=True)`
 3. select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with `pandas`
 
 ### Simple insertion
-When the data are in the correct format and we don|t need any customization for the db query, we can use the `to_postgis` method:
+When the data are in the correct format and we don't need any customization for the db query, we can use the [`to_postgis`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_postgis.html) method. For this to work, the geodataframe must have an active geometry column.
+
+Example:
 ```Python
 gdf.to_postgis(<TABLE NAME>, <SQL ALCHEMY CONNECTION>, if_exists='append')
 ```

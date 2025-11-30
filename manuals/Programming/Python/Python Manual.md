@@ -1750,7 +1750,10 @@ The `network_type` parameter can be one of the following:
 - `'walk'`: walking network
 - `'bike'`: cycling network
 
-And some more.
+And some more. Other important parameters are:
+
+- `simplify`: whether to contract the graph. Default is `True`.
+- `retain_all`: whether to retain all nodes, or just the largest strongly connected component. Default is `False`.
 
 To add speed information to the graph, we can use the `OSMnx.add_edge_speeds` function:
 ```Python
