@@ -1034,8 +1034,20 @@ gdf = gpd.read_file(<PATH TO FOLDER WITH SHAPEFILES>)
 ## Working with the geometry
 The geometry can be accessed using the `geometry` property of the geodataframe.
 
+### GeoSeries operations
+There are many useful functions for working with the geometry columns or GeoSeries in general:
 
-## Spliting multi-geometry columns
+- [`line_merge`](https://geopandas.org/en/v1.1.0/docs/reference/api/geopandas.GeoSeries.line_merge.html): for each member of the series, this function merge MultiLineStrings into a single LineString if possible.
+- [`union_all`](https://geopandas.org/en/v1.1.0/docs/reference/api/geopandas.GeoSeries.union_all.html): compute the union of all geometries in the series. 
+    - for linestring geometries, this typically creates a MultiLineString (i.e., it does no merge the lines into a single one)
+
+#### Merging linestrings in the whole series
+There is no dedicated function for merging linestrings in the whole series. We have to:
+
+1. create a multi-linestring geometry from the series using the `union_all` function
+1. merge the multi-linestring geometry into a single linestring with Shapely's [`line_merge`](https://shapely.readthedocs.io/en/stable/reference/shapely.line_merge.html#shapely.line_merge) function (see the [Python manual](Python%20Manual.md#shapely) for more details)
+
+### Spliting multi-geometry columns
 If the geometry column contains multi-geometries, we can split them into separate rows using the [`explode`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explode.html) function:
 ```Python
 gdf = gdf.explode()
@@ -1043,16 +1055,16 @@ gdf = gdf.explode()
 
 
 
+
 ## Insert geodataframe into db
 
-### preprocesssing
-Before inserting a geodataframe into the database, we need to process it a little bit:
 
-1. set the SRID: `gdf.set_crs(epsg=<SRID>, inplace=True)`
-3. select, rename, or add columns so that the resulting geodataframe match the corresponding database table. This process is same as when working with `pandas`
 
 ### Simple insertion
-When the data are in the correct format and we don't need any customization for the db query, we can use the [`to_postgis`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_postgis.html) method. For this to work, the geodataframe must have an active geometry column.
+When the data are in the correct format and we don't need any customization for the db query, we can use the [`to_postgis`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_postgis.html) method. For this to work:
+
+- the geodataframe must have an active geometry column,
+- the columns of the geodataframe have to match the corresponding database table. This process is same as when working with `pandas`
 
 Example:
 ```Python

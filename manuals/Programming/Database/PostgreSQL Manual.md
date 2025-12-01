@@ -476,6 +476,7 @@ SELECT st_intersection(
 
 ## Other Useful Functions
 
+- [`ST_GeometryType`](https://postgis.net/docs/ST_GeometryType.html): returns the type of the geometry as a string.
 - [`ST_Within`] `ST_Within`(A, B) if A is completly inside B
 - [`ST_Intersects`](https://postgis.net/docs/ST_Intersects.html) `ST_Intersects(g1, g2)` if `g1` and `g2` have at least one point in common.
 - [`ST_Transform`](https://postgis.net/docs/ST_Transform.html): `ST_Transform(g, srid)` transforms geometry `g` to a projection defined by the `srid` and returns the result as a geometry.
@@ -756,6 +757,8 @@ To connect, just type `psql`. By default, it will connect as a user correspondin
 
 This way, we connect to the database in **interactive mode**. In this mode, we can write multiple SQL commands using one connection. The commands are only executed when correct ending punctuation (usually a semicolon) is encountered. Otherwise, enter just adds a new line and the command is not executed.
 
+To quit the interactive mode, use the `\q` meta-command.
+
 To **execute command immediatelly** without starting interactive session, use the `-c ` parameter:
 ```bash 
 psql -d <db name> -c "<command>"
@@ -797,6 +800,16 @@ When we want to combine a meta-command with an SQL query, we need to use some of
 	```bash
 	echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata
 	```
+
+Useful meta-commands:
+
+- `\d`: list all tables and views in the current schema. We can pass a name as an argument to list only the table or view with the given name.
+- `\d+`: same as `\d`, but with additional information.
+- `\q`: quit the interactive mode.
+
+
+
+
 
 # Importing data
 A simple SQL data (database dump) can be imported using the `psql` command:

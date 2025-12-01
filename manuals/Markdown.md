@@ -42,6 +42,21 @@ Images can be added to a markdown file by using the following syntax:
 ```
 
 
+# Text formatting
+
+Only simple text formatting is supported:
+
+- italic: `*text*`
+- bold: `**text**`
+- code: `` `code` ``
+- strikethrough: `~~text~~`
+- underline: `__text__`
+- superscript: `^text^`
+- subscript: `~text~`
+
+
+
+
 # Standardization
 The only standard for markdown is the [CommonMark specification](https://commonmark.org). However, this specification was created ten years after the original markdown was introduced and therefore there are many implementations of markdown does not follow the CommonMark specification. The following implementations follow the CommonMark specification:
 

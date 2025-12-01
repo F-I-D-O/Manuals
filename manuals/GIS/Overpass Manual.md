@@ -124,3 +124,14 @@ area[name="City of New York"];
 node(pivot);
 out geom;
 ```
+
+# Overpass in Python
+In Python, we can use the [`overpy`](https://github.com/dellsystem/overpy) to access the Overpass API. The basic usage is:
+```Python
+import overpy
+
+api = overpy.Overpass()
+
+query = "node(50.0878, 14.4207, 50.0888, 14.4217); out;"
+result = api.query(query)
+```

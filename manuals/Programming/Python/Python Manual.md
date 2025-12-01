@@ -1717,7 +1717,13 @@ There are various libraries for working with geometry in Python:
 
 - [`scipy.spatial`](https://scikit-spatial.readthedocs.io/en/stable/index.html): for basic geometry operations
 - [`shapely`](https://pypi.org/project/shapely/)
-- `geopandas`: for gis data
+- [`geopandas`](https://geopandas.org/en/stable/): for gis data. See the [pandas manual](Pandas%20Manual.md#geopandas) for more details.
+
+## Shapely
+[homepage](https://shapely.readthedocs.io/en/stable/)
+
+To merge a multi-linestring into a single linestring, we can use the [`line_merge`](https://shapely.readthedocs.io/en/stable/reference/shapely.line_merge.html#shapely.line_merge) function.
+
 
 # Downloading files
 To download files from the internet, we can use the `requests` library. The basic usage is:
@@ -1736,8 +1742,17 @@ with open(<filename>, 'wb') as f:
 
 NetworkX is a library for working with graphs. OSMnx is a library that creates networkx graphs from OpenStreetMap data.
 
+
 ## Creating a graph from OpenStreetMap
-To create a graph from OpenStreetMap, we can use the `ox.graph_from_place` function:
+To create a graph from OpenStreetMap, we can use the `ox.graph_from_place` function. 
+
+Limitations
+
+- The are we  want to must be some official name, and we have to know the name
+- The elements are selected either by nodes inside the area, or edges, but not ways. If we need keeping the ways intact (if they cross the area boundary), we need to use a different approach.
+
+Example:
+
 ```Python
 import osmnx as ox
 
@@ -1754,6 +1769,7 @@ And some more. Other important parameters are:
 
 - `simplify`: whether to contract the graph. Default is `True`.
 - `retain_all`: whether to retain all nodes, or just the largest strongly connected component. Default is `False`.
+- `truncate_by_edge`: If True, retain nodes outside the area if they have at least one neighbor inside the area. Default is `False`.
 
 To add speed information to the graph, we can use the `OSMnx.add_edge_speeds` function:
 ```Python
@@ -1765,11 +1781,37 @@ Similarily, we can add travel times:
 graph = ox.add_edge_travel_times(graph)
 ```
 
+
+## Importing OSM elements
+We can also import individual OSM elements (nodes, ways, relations) from OpenStreetMap using the [`ox.features_from_place`](https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_place) function. This function returns a geodataframe with the features.
+
+Limitations:
+
+- there is no way how to download related features. Ways, for example, are downloaded with full geometry, but the associated nodes are not downloaded.
+
+
 ## Creating a graph from pandas dataframe
 To create a graph from a pandas dataframe, we can use the `NetworkX.from_pandas_edgelist` function:
 ```Python
 graph = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr=['weight', 'speed', 'travel_time'], create_using=nx.DiGraph())
 ```
+
+
+## Exporting graph to pandas dataframe
+To export a graph to a pandas dataframe, we have multiple options:
+
+- [`osmnx.graph_to_gdfs`](https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.convert.graph_to_gdfs): exports the graph to a pandas dataframe. Important parameters:
+    - `edges`: if `True`, the edges are exported. Default is `True`.
+    - `nodes`: if `True`, the nodes are exported. Default is `True`.
+    - `node_geometry`: if `True`, the node geometries are exported. Default is `True`.
+    - `fill_edge_geometry`: if `True`, the edge geometries are exported. Default is `True`.
+- [`NetworkX.to_pandas_edgelist`](https://networkx.org/documentation/stable/reference/generated/networkx.convert_matrix.to_pandas_edgelist.html): exports the graph to a pandas dataframe.
+    - note that htis method does not preserve the edge order (unlike the `osmnx.graph_to_gdfs` function)
+- another option is to use the `nodes()` and `edges()` methods of the graph object and manually create the dataframe.
+
+    
+
+
 
 ## Reindexing the nodes
 Sometimes, we want to discard the node indices created from the input data and use a new index that has a range of (0, n-1). We can do this by using the `NetworkX.convert_node_labels_to_integers` function:
