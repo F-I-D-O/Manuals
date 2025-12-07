@@ -253,5 +253,19 @@ By default, only errors are logged. To logg statements, we need to change the `l
 - `all`: all statements are logged
 
 
+### Language settings
+By default, language is set during installation according to the system locale (not to be confused with the system language). To change the language, run:
+```PostgreSQL
+ALTER SYSTEM SET lc_messages = 'en_US.UTF-8';
+```
+
+After that, we need to:
+
+1. reload the configuration: `SELECT pg_reload_conf();`
+1. if we are connected to the database, we need to reconnect to get the new language
+
+
 ## Garbage collection and optimization
-There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.  
+There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the [vacuumdb`](https://www.postgresql.org/docs/current/app-vacuumdb.html) command.
+
+

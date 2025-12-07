@@ -1781,6 +1781,9 @@ Similarily, we can add travel times:
 graph = ox.add_edge_travel_times(graph)
 ```
 
+### Caching
+OSMnx automatically caches the overpass API responses to the `cache` directory, each response as a separate `json` file. 
+
 
 ## Importing OSM elements
 We can also import individual OSM elements (nodes, ways, relations) from OpenStreetMap using the [`ox.features_from_place`](https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_place) function. This function returns a geodataframe with the features.
