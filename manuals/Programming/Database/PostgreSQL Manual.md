@@ -806,8 +806,17 @@ Useful meta-commands:
 - `\d`: list all tables and views in the current schema. We can pass a name as an argument to list only the table or view with the given name.
 - `\d+`: same as `\d`, but with additional information.
 - `\q`: quit the interactive mode.
+- `\i`: execute a script from a file.
+- `\sf <function name>`: show the source code of a function.
 
+## Executing SQL files 
+In normal mode, we can execute SQL files using the `-f` parameter:
 
+```bash
+psql -d <db name> -f <file name>
+```
+
+In interactive mode, we can execute SQL files using the `\i` meta-command:
 
 
 
