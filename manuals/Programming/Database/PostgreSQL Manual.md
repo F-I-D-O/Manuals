@@ -816,9 +816,7 @@ In normal mode, we can execute SQL files using the `-f` parameter:
 psql -d <db name> -f <file name>
 ```
 
-In interactive mode, we can execute SQL files using the `\i` meta-command:
-
-
+In interactive mode, we can execute SQL files using the `\i` meta-command. Note that **backslash (`\`) in the file path needs to be escaped or replaced with a forward slash (`/`)**.
 
 # Importing data
 A simple SQL data (database dump) can be imported using the `psql` command:

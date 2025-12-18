@@ -86,6 +86,16 @@ Always check which one is needed in each case. For both commands, the path to th
 - setting the `PGDATA` environment variable
 
 
+## Installing extensions to the cluster
+Appart from installing extensions to the database using the `CREATE EXTENSION` command, we need to install them to the cluster first (if not installed already/by default).
+
+The installation process differs between different extensions:
+
+- **PostGIS** and **PgRouting**: Install it using the stack builder application included in the PostgreSQL installation.
+- **PgTAP**: Installation is described in the [PostgreSQL Manual](./PostgreSQL%20Manual.md#testing-with-pgtap).
+
+
+
 ## Monitoring activity
 To monitor the activity on Linux, we can use the [`pg_activity`](https://github.com/dalibo/pg_activity):
 ```bash

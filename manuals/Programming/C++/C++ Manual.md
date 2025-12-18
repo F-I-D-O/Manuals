@@ -1111,6 +1111,16 @@ The comparability can be checked with a `std::equality_comparable<T>` concept:
 staic_assert(std::equality_comparable<My_class>);
 ``` 
 
+## Ternary Operator
+[cppreference](https://en.cppreference.com/w/cpp/language/operator_other#Ternary_operator)
+
+Ternary operator in C++ has the classical syntax of 
+```
+<condition> ? <true_expression> : <false_expression>;
+```
+
+Note that **both the true and false expressions must evaluate to the same type**. Therefore, if we use polymorphism, we need to use manual type casting to the base type for at least one of the expressions (instead of relying on the implicit conversion when assigning to the result variable).
+
 
 # Control Structures
 C++ supports the control structures known from other languages like Java, Python, or C#. Here, we focus on the specifics of C++.
@@ -1918,6 +1928,10 @@ To remove a content of a directory we can use `std::filesystem::remove_all(<path
 - [`std::filesystem::is_directory(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_directory)
 - [`std::filesystem::is_regular_file(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_regular_file)
 - [`std::filesystem::is_empty(<path>)`](https://en.cppreference.com/w/cpp/filesystem/is_empty)
+
+
+### Getting a temporary folder
+To get a temporary folder, we can use the [`std::filesystem::temp_directory_path`](https://en.cppreference.com/w/cpp/filesystem/temp_directory_path) function.
 
 
 ## Manual text IO
