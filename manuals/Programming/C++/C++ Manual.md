@@ -1015,12 +1015,7 @@ Example:
 ```cpp
 std::bitset<8> b = 0b10101010;
 std::cout << b.to_ulong() << std::endl; // prints 170
-
-
 ```
-
-
-
 
 
 ### `std::bitset`
@@ -1043,6 +1038,11 @@ Both methods convert the whole bitset to an integer value of the corresponding t
 
 **There is no function for reading a specified sequence of bits**. One way to overcome this is to read the whole bitset and apply a series of bit operations to get the desired bits (same as we would do with built-in arithmetic types). Another, slower option is to read the bits one by one using for loop.
 
+
+## `std::any`: storing any type of value
+[cppreference](https://en.cppreference.com/w/cpp/utility/any)
+
+`std::any` is a class template that can store any type of value. It is a better alternative to traditional usage of void pointers. If the possible types are known at compile time, we should use `std::variant` instead.
 
 
 # Value Categories
@@ -1122,6 +1122,11 @@ Ternary operator in C++ has the classical syntax of
 Note that **both the true and false expressions must evaluate to the same type**. Therefore, if we use polymorphism, we need to use manual type casting to the base type for at least one of the expressions (instead of relying on the implicit conversion when assigning to the result variable).
 
 
+## `typeid`
+The [`typeid`](https://en.cppreference.com/w/cpp/language/typeid) operator returns a [`std::type_info`](https://en.cppreference.com/w/cpp/types/type_info) object that contains information about the type of the expression.
+Typically, we store the `type_info` in a [`std::type_index`](https://en.cppreference.com/w/cpp/types/type_index) wrapper.
+
+
 # Control Structures
 C++ supports the control structures known from other languages like Java, Python, or C#. Here, we focus on the specifics of C++.
 
@@ -1161,6 +1166,80 @@ switch(expression){
 }
 ```
 
+
+
+# Classes and structs
+The only difference between a `class` and a `struct` is that in class, all 
+members are private by default.
+
+
+## Static Members
+[cppreference](https://en.cppreference.com/w/cpp/language/static.html)
+
+Inside a class, the keyword `static` marks members that are not bound to any specific instance of the class, but to the class itself.
+
+They are declared as with the keyword `static`, but defined without it. 
+
+To use a static member, we use the syntax `<class_name>::<member_name>`.
+
+### Class Constants
+Class constants are static members that are defined as constants. They can be defined in two ways:
+
+- `static constexpr` member variable if the constant type supports `constexpr` specifier, or
+- `static const` member variable 
+
+In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:
+```cpp
+// in the header file
+class My_class{
+	static const int a;
+}
+
+// in the cpp file
+const int My_class::a = 5;
+```
+
+## Friend declaration
+[cppreference](https://en.cppreferececom/friend)
+
+Sometimes, we need to provide an access to private members of a class to some other classes. In java, for example, we can put both classes to the same package and set the members as package private (no specifier). In C++, there is an even stronger concept of friend classes.
+
+We put a `friend` declaration to the body of a class whose *private* members should be accessible from some other class. The declaratiton can look as follows:
+```cpp
+Class To_be_accesssed {
+	friend Has_access;
+}
+```
+Now the `Has_access` class has access to the `To_be_accesssed`'s private members.
+
+Note that the **friend relation is not transitive, nor symetric, and it is not inherited.**
+
+
+### Template friends
+If we want a template to be a friend, we can modify the code above:
+```cpp
+class To_be_accesssed {
+	template<class T>
+	friend class Has_access;
+}
+```
+Now every `Has_access<T>` is a friend of `To_be_accesssed`. Note thet we need to use keyword `class` next to `friend`.
+
+We can also use only a template spetialization: 
+
+```cpp
+class To_be_accesssed {
+	friend class Has_access<int>;
+}
+```
+
+or we can bound the allowed types of two templates togehter if both `Has_access` and of `To_be_accesssed` are templates:
+```cpp
+template<class T>
+class To_be_accesssed {
+	friend class Has_access<T>;
+}
+```
 
 
 
@@ -1343,70 +1422,6 @@ class My_class{
 	}
 	// we do not want to print doubles even they can be implicitly converted to int
 	print_integer(double a) = delete; 
-}
-```
-
-
-# Classes and structs
-The only difference between a `class` and a `struct` is that in class, all 
-members are private by default.
-
-## Class Constants
-Class constants can be defined in two ways:
-
-- `static constexpr` member variable if the constant type supports `constexpr` specifier, or
-- `static const` member variable 
-
-In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:
-```cpp
-// in the header file
-class My_class{
-	static const int a;
-}
-
-// in the cpp file
-const int My_class::a = 5;
-```
-
-## Friend declaration
-[cppreference](https://en.cppreferececom/friend)
-
-Sometimes, we need to provide an access to privat e members of a class to some other classes. In java, for example, we can put both classes to the same package and set the members as package private (no specifier). In C++, there is an even stronger concept of friend classes.
-
-We put a `friend` declaration to the body of a class whose *private* members should be accessible from some other class. The declaratiton can look as follows:
-```cpp
-Class To_be_accesssed {
-	friend Has_access;
-}
-```
-Now the `Has_access` class has access to the `To_be_accesssed`'s private members.
-
-Note that the **friend relation is not transitive, nor symetric, and it is not inherited.**
-
-
-### Template friends
-If we want a template to be a friend, we can modify the code above:
-```cpp
-class To_be_accesssed {
-	template<class T>
-	friend class Has_access;
-}
-```
-Now every `Has_access<T>` is a friend of `To_be_accesssed`. Note thet we need to use keyword `class` next to `friend`.
-
-We can also use only a template spetialization: 
-
-```cpp
-class To_be_accesssed {
-	friend class Has_access<int>;
-}
-```
-
-or we can bound the allowed types of two templates togehter if both `Has_access` and of `To_be_accesssed` are templates:
-```cpp
-template<class T>
-class To_be_accesssed {
-	friend class Has_access<T>;
 }
 ```
 
@@ -2356,17 +2371,14 @@ There are two types of templates:
 - function templates
 - class templates
 
+
 ## Syntax
 ### Template Declaration
 Both for classes and functions, the template declaration has the following form:
 ```cpp
 template<<template parameters>>
 ```
-The template parameters can be:
 
-- type parameters: `class T`
-- value parameters: `int N`
-- concept parameters: `std::integral T`
 
 
 ### Template definition
@@ -2387,6 +2399,23 @@ template<<function template parameters>>
 Note that the **template definition has to be in the header file**, either directly or included from another header file. This includes the member function definitions of a template class, even if they are not templated themselves and does not use the template parameters of the class.
 
 
+## Template Parameters
+[cppreference](https://en.cppreference.com/w/cpp/language/template_parameters)
+
+The template parameters can be:
+
+- type parameters: `class T`
+- value parameters: `int T`
+- template parameters: `template<class T> class TT`
+
+Template parameters can be restricted by in several ways: 
+
+- `typename T`: any complete type
+- `class T`: a class type
+- `<Concept> T`: a type constrained by a concept
+- by a `requires` expression, e.g.: `template<typename T> requires std::is_integral_v<T>`
+
+
 ## Organization rules
 
  - `*.h`: declarations
@@ -2396,6 +2425,38 @@ Note that the **template definition has to be in the header file**, either direc
 For simplicity, we include the `tpp` files at the end of corresponding header files. If we need to speed up the compilation, we can include the `tpp` files only in the source files that needs the implementations , as described on [SE](https://softwareengineering.stackexchange.com/questions/373916/c-preferred-method-of-dealing-with-implementation-for-large-templates)
 
 To speed up the build it **is also desireble to move any non-template code to source files**, even through inheritance, if needed.
+
+
+### Templates and Namespaces
+If the templated code resides in a namespace, it can be tempting to save few lines of code by sorrounding both `.h` and `.tpp` files using one namespace expression:
+```cpp
+// structs.h hile
+namespace my_namespace {
+	// declarations...
+
+	#include 'structs.tpp'
+}
+
+// structs.tpp
+	// definitions
+
+```
+However, this can confuse some IDEs (e.g., false positive errors in IntelliSense), so it is better to introduce the namespace in both files:
+```cpp
+// structs.h hile
+namespace my_namespace {
+	// declarations...
+}
+
+#include 'structs.tpp'
+
+// structs.tpp
+namespace my_namespace {
+	// definitions
+}
+```
+
+Don't forget to close the file and reopen it after the change to clear the errors.
 
 
 ## Providing Template Arguments
@@ -2659,36 +2720,139 @@ While behaving similarly, there are some important **differences between the ful
 	- For free functions, we have to use other techniques like [compile-time branching](#compile-time-branching).
 
 
-## Templates and Namespaces
-If the templated code resides in a namespace, it can be tempting to save few lines of code by sorrounding both `.h` and `.tpp` files using one namespace expression:
+## Type Erasure
+[cppreference](https://en.cppreference.com/w/cpp/language/type_erasure)
+
+When working with templates, one soon realizes that they are contiguous. Once we use a template with a parameter `T`, we have to use `T` in the calling code if we do not know the exact type, and that is also true for the calling code of the calling code, etc, all the way to the point where we know the exact type.
+
+Often times, this is principially unavoidable, because we need to use the template parameter to keep the contract on the template parameter type.
+However, there are situation where this is absolutely useless. Imagine this scenario:
+
 ```cpp
-// structs.h hile
-namespace my_namespace {
-	// declarations...
-
-	#include 'structs.tpp'
-}
-
-// structs.tpp
-	// definitions
-
+template<class T>
+class Vector_statistic{
+	void print_vector_size(const std::vector<T>& vector){
+		return vector.size();
+	}
+};
 ```
-However, this can confuse some IDEs (e.g., false positive errors in IntelliSense), so it is better to introduce the namespace in both files:
+Here, there is no type contract on the template parameter `T` needed. Yet, we have to implement `Vector_statistic` as a template class, otherwise it won't compile. To avoid this, we can use the technic called *type erasure*.
+
+The principle of type erasure is to create a parent class without the template parameter `T` that contain the necessary methods that does not depend on the type `T`. Then, we use this polymorphic interface to avoid the need for the template parameter `T`. For the above example, we also need a wrapper class as we cannot change the `std::vector` class template to inherit from our parent class.
+
 ```cpp
-// structs.h hile
-namespace my_namespace {
-	// declarations...
-}
+class Vector_statistic_wrapper{
+public:
+	virtual void print_vector_size() = 0;
+};
 
-#include 'structs.tpp'
+template<class T>
+class Vector_statistic_wrapper_impl: public Vector_statistic_wrapper{
+public:
+	Vector_statistic_wrapper_impl(const std::vector<T>& vector): vector(vector){}
+	void print_vector_size() override{
+		return vector.size();
+	}
+private:
+	std::vector<T>& vector;
+};
 
-// structs.tpp
-namespace my_namespace {
-	// definitions
+class Vector_statistic{
+public:
+	Vector_statistic(){}
+
+	void print_vector_size(const Vector_statistic_wrapper& wrapper){
+		return wrapper.print_vector_size();
+	}
+};
+```
+
+Note that for this example, it is probably simpler to use the class template even though we do not need the template parameter `T`. However, if the call chain independent of the type `T` is complex, the type erasure solution can become much simpler and more readable. 
+
+Also note that the type erasure solution can never be more efficient. We can save a little bit on the compile time and code size, but the runtime performance will be strictly lower (due to the virtual function calls)
+
+Sources
+- https://davekilian.com/cpp-type-erasure.html
+
+
+## Template parameter packs
+[cppreference on all parameter packs, but mostly template parameter packs](https://en.cppreference.com/w/cpp/language/parameter_pack)
+
+From many programming languages, ve know the concept of function parameter packs (Java), or variable length argument lists (Python). These are available in C++ as well. However, in C++, we also have a much more complex and powerful concept of template parameter packs.
+
+The differnece from function parameter packs is that template parameter packs are resolved at compile time, efectively creating function or class types with a variable number of arguments.
+
+A practical example can be a template function that measures the time of the execution of a function:
+```cpp
+template<typename F, typename... A>
+auto measure_time(F func, A... args){
+	auto start = std::chrono::high_resolution_clock::now();
+	func(args...);
+	auto end = std::chrono::high_resolution_clock::now();
+	return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 }
 ```
 
-Don't forget to close the file and reopen it after the change to clear the errors.
+### Syntax
+Be aware that the dots (`...`) placement is different for:
+
+- declaration of the template parameter pack: dots after the parameter restriction
+- use of the template parameter pack as a type specifier: dots after the type name
+- using the parameter pack in an expression: dots after the parameter pack name
+
+Example:
+```cpp
+template<typename... T> // dots after the parameter restriction
+void func(T... args) { // dots after the parameter type
+	auto result = other_func(args...); // dots after the parameter pack name
+} 
+```
+
+### Parameter Pack Expansion
+When using the dots (`...`), the parameter pack is expanded. There are many allowed contexts for the expansion, with different rules for the expansion.
+
+When having a parameter pack `A...`, available as `A... args`, it can be used:
+
+- in a function call: `func(args...)` expands to `func(arg1, arg2, ..., argN)`
+- class initialization: `My_class(args...)` expands to `My_class(arg1, arg2, ..., argN)`
+- brace initialization: `{args...}` expands to `{arg1, arg2, ..., argN}`
+- template argument list: `std::tuple<args...>` expands to `std::tuple<arg1, arg2, ..., argN>`
+- function parameter list: `template<typename... A> void func(A... args)` expands to `void func(A1 arg1, A2 arg2, ..., AN argN)`
+- class template parameter list: `template<typename... A> class My_class<A...>` expands to `My_class<A1, A2, ..., AN>`
+- base class specifier: `class My_class: public Args...` expands to `class My_class: public A1, public A2, ..., public AN`
+- lambda capture: `[args...]` expands to `[arg1, arg2, ..., argN]`
+
+### Fold Expressions
+[cppreference](https://en.cppreference.com/w/cpp/language/fold)
+
+Fold expressions is a powerful feature that allows to cleanly implement operations on the whole parameter pack at once, which would otherwise be very difficult to implement.
+
+There are four possible patterns for fold expressions:
+
+- `(<pack> <operator> ...)`
+- `(... <operator> <pack>)`
+- `(<pack> <operator> ... <operator> <initial value>)`	
+- `(<initial value> <operator> ... <operator> <pack>)`
+
+Here, 
+
+- the `<operator>` is any binary operator (arithmetic, logical, bitwise, assignment, `,`,...).
+- the `<initial value>` is an expression without any operator with higher precedence than the `<operator>`.
+
+The fold expression is evaluated as follows:
+
+- `(T... <operator> ...)` evaluates to `(<T1> <operator> (<T2> <operator> ... <operator> <TN>))`
+- `(... <operator> T...)` evaluates to `((<T1> <operator> <T2>) <operator> ... <operator> <TN>)`
+- `(T... <operator> ... <operator> <initial value>)` evaluates to `(<T1> <operator> (<T2> <operator> ... <operator> (<TN> <operator> <initial value>)))`
+- `(<initial value> <operator> ... <operator> <T...>)` evaluates to `((((<initial value> <operator> <T1>) <operator> <T2>) <operator> ... <operator> <TN>)`
+
+An example of a fold expression used for a sum function template:
+```cpp
+template<typename... Args>
+auto sum(Args... args){
+	return (... + args);
+}
+```
 
 
 
@@ -2696,7 +2860,6 @@ Don't forget to close the file and reopen it after the change to clear the error
 Sometimes, it can be very tricky to determine the template argument we need in order to use the template. The correct argument can be for example a return value of some function,  templete function, or even member function of a template instanciation which has other templates as argument...
 
 To make it easier, we can, istead of suplying the correct arguments, evaluate an expression that returns the correct type and then use the [`decltype`](https://en.cppreference.com/w/cpp/language/decltype) specifier.  For more info, see the *Determining Type from Expressions* section.
-
 
 
 
@@ -4287,3 +4450,13 @@ There are the following exceptions types:
 
 
 
+# Design Patterns
+This section describe how to implement various design patterns in C++.
+
+## Visitor Pattern
+C++ has a much more clear and efficient way how to implement the visitor pattern than other languages like Java. Instead of classical polymorphism, we use:
+
+- [std::variant](#unions-and-variants) to list all possible types
+- [std::visit](https://en.cppreference.com/w/cpp/utility/variant/visit2.html) to implement a visitor
+
+The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.
