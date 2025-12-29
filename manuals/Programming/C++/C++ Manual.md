@@ -4209,6 +4209,24 @@ Sometimes, it may be usefull to print the value of a macro, or show which branch
 ```
 
 
+# Attributes
+[cppreference](https://en.cppreference.com/w/cpp/language/attributes)
+
+Atrributes mechanism provides compilers with a standard way to extend the language with new features (as opose to preprocessor macros). Additionally, some standard attributes are listed in the C++ standard.
+
+The syntax is:
+```cpp
+[[ <attribute> ]]
+```
+
+where `<attribute>` is the attribute name (potentially prefixed with the namespace of the attribute) optionally followed by arguments.
+
+Attributes may appear almost anywhere in the code, however, the usage of each attribute is typically restricted to a specific context.
+
+Standard attributes are:
+
+- [`[[nodiscard]]`](https://en.cppreference.com/w/cpp/language/attributes/nodiscard): marks a function that the return value should not be ignored. If the return value is ignored, a warning is issued.
+
 # Resources
 In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. 
 
