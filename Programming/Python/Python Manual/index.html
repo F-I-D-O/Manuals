@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -396,7 +423,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Python%20Debugging/" class="nav-link">
+                                <a rel="prev" href="../Python%20Debugging%20and%20Profiling/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -482,6 +509,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ranges" class="nav-link">Ranges</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#floating-point-ranges" class="nav-link">Floating point ranges</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#collections-and-generators" class="nav-link">Collections and generators</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="3"><a href="#generator" class="nav-link">Generator</a>
@@ -498,10 +533,14 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#dictionary" class="nav-link">Dictionary</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="4"><a href="#set" class="nav-link">Set</a>
+            <li class="nav-item" data-bs-level="4"><a href="#get-a-default-value-if-a-key-is-not-present" class="nav-link">Get a default value if a key is not present</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#set" class="nav-link">Set</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#comprehensions" class="nav-link">Comprehensions</a>
@@ -804,15 +843,35 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#export-to-csv" class="nav-link">Export to CSV</a>
+            <li class="nav-item" data-bs-level="2"><a href="#io_1" class="nav-link">I/O</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#export-to-csv" class="nav-link">Export to CSV</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#hdf5_1" class="nav-link">HDF5</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#usefull-array-properties" class="nav-link">Usefull array properties:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#usefull-functions" class="nav-link">Usefull functions</a>
+            <li class="nav-item" data-bs-level="2"><a href="#masking" class="nav-link">Masking</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#aggregate-masks" class="nav-link">Aggregate masks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#dedicated-mask-functions" class="nav-link">Dedicated mask functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#useful-functions" class="nav-link">Useful functions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -897,6 +956,10 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#progress-bars" class="nav-link">Progress bars</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#custom-progress-updates" class="nav-link">Custom progress updates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#tqdm-in-jupyter" class="nav-link">TQDM in Jupyter</a>
               <ul class="nav flex-column">
               </ul>
@@ -953,11 +1016,44 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#geometry" class="nav-link">Geometry</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#shapely" class="nav-link">Shapely</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
             <li class="nav-item" data-bs-level="1"><a href="#downloading-files" class="nav-link">Downloading files</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#graphs-with-networkx-and-osmnx" class="nav-link">Graphs with NetworkX and OSMnx</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#creating-a-graph-from-openstreetmap" class="nav-link">Creating a graph from OpenStreetMap</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#caching" class="nav-link">Caching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#importing-osm-elements" class="nav-link">Importing OSM elements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#creating-a-graph-from-pandas-dataframe" class="nav-link">Creating a graph from pandas dataframe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#exporting-graph-to-pandas-dataframe" class="nav-link">Exporting graph to pandas dataframe</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#reindexing-the-nodes" class="nav-link">Reindexing the nodes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -1052,6 +1148,30 @@ class MyEnum(Enum):
     VALUE1 = 1
     VALUE2 = 2
 </code></pre>
+<h2 id="ranges">Ranges<a class="headerlink" href="#ranges" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.python.org/3.14/library/stdtypes.html#typesseq-range">Documentation</a></p>
+<p>Python has a special concept of ranges, that are objects representing immutable sequences of numbers. We can use ranges for iteration instead of initializing local variables like in other computer languages. In typical programming languages, a loop with known number of iterations is written as:</p>
+<pre><code class="language-Java">for(int i = 0; i &lt; 10; i++) {
+    System.out.println(i);
+}
+</code></pre>
+<p>However, in Python, there is no such a thing, and instead we use ranges:</p>
+<pre><code class="language-Python">for i in range(10):
+    print(i)
+</code></pre>
+<p>The range() construct has the syntax of <code>range([&lt;start&gt;], &lt;stop&gt;, [&lt;step&gt;])</code>.</p>
+<ul>
+<li>all parameters are integers</li>
+<li>the default <code>&lt;start&gt;</code> is 0</li>
+<li>the default <code>&lt;step&gt;</code> is 1</li>
+<li>we need to specify <code>&lt;start&gt;</code> to be able to set <code>&lt;step&gt;</code>.</li>
+</ul>
+<h3 id="floating-point-ranges">Floating point ranges<a class="headerlink" href="#floating-point-ranges" title="Permanent link">&para;</a></h3>
+<p>For floating point ranges, we can use NumPy's <code>arange</code> function:</p>
+<pre><code class="language-Python">import numpy as np
+for i in np.arange(0, 10, 0.1):
+    print(i)
+</code></pre>
 <h2 id="collections-and-generators">Collections and generators<a class="headerlink" href="#collections-and-generators" title="Permanent link">&para;</a></h2>
 <p>Python has several built-in data structures, most notably <code>list</code>, <code>tuple</code>, <code>dict</code>, and <code>set</code>. These are less efficient then comparable structures in other languages, but they are very convenient to use.</p>
 <p>Also, there is a special generator type. It does not store the data it is only a convinient way how to access data generated by some function.</p>
@@ -1104,7 +1224,12 @@ print(p.x) # 1
 <p>Two dictionaries can be merged using the <code>|</code> operator:</p>
 <pre><code class="language-Python">d3 = d1 | d2 
 </code></pre>
-<h4 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h4>
+<h4 id="get-a-default-value-if-a-key-is-not-present">Get a default value if a key is not present<a class="headerlink" href="#get-a-default-value-if-a-key-is-not-present" title="Permanent link">&para;</a></h4>
+<p>To get a default value if a key is not present, we can use the <a href="https://docs.python.org/3/library/stdtypes.html#dict.get"><code>get</code></a> method:</p>
+<pre><code class="language-Python">d = {'a': 1}
+d.get('b', 0) # 0
+</code></pre>
+<h3 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
 <p><a href="https://docs.python.org/3/library/stdtypes.html#set">Documentation</a></p>
 <p>Sets are initialized using curly braces (<code>{}</code>) or the <code>set</code> function:</p>
 <pre><code class="language-Python">s = {1, 2, 3}
@@ -1827,12 +1952,25 @@ my_function(importlib.resources.as_file(file))
 <pre><code class="language-Python">a = np.array([1, 2, 3, 4, 5])
 a[::-1].sort() # sort in reverse order
 </code></pre>
-<h2 id="export-to-csv">Export to CSV<a class="headerlink" href="#export-to-csv" title="Permanent link">&para;</a></h2>
+<h2 id="io_1">I/O<a class="headerlink" href="#io_1" title="Permanent link">&para;</a></h2>
+<h3 id="export-to-csv">Export to CSV<a class="headerlink" href="#export-to-csv" title="Permanent link">&para;</a></h3>
 <p>To export the numpy array to CSV, we can use the <a href="https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html"><code>savetxt</code></a> function:</p>
 <pre><code class="language-Python">np.savetxt('file.csv', a, delimiter=',')
 </code></pre>
 <p>By default, the function saves values in the mathematical float format, even if the values are integers. To save the values as integers, we can use the <code>fmt</code> parameter:</p>
 <pre><code class="language-Python">np.savetxt('file.csv', a, delimiter=',', fmt='%i')
+</code></pre>
+<h3 id="hdf5_1">HDF5<a class="headerlink" href="#hdf5_1" title="Permanent link">&para;</a></h3>
+<p>To work with HDF5 files in Python, we use the <a href="https://docs.h5py.org/en/stable/"><code>h5py</code></a> library. </p>
+<p>To <strong>import</strong> a dataset from an HDF5 file to a numpy array:</p>
+<pre><code class="language-Python">import h5py
+
+with h5py.File('file.h5', 'r') as f:
+    a = np.array(f['dataset'])
+</code></pre>
+<p>To <strong>export</strong> a numpy array to an HDF5 file:</p>
+<pre><code class="language-Python">with h5py.File('file.h5', 'w') as f:
+    f.create_dataset('dataset', data=&lt;numpy array&gt;)
 </code></pre>
 <h2 id="usefull-array-properties">Usefull array properties:<a class="headerlink" href="#usefull-array-properties" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1843,7 +1981,40 @@ a[::-1].sort() # sort in reverse order
 <li><code>itemsize</code>: memory (bytes) needed to store one item in the array</li>
 <li><code>nbytes</code>: array size in bytes. Should be equal to <code>size * itemsize</code> .</li>
 </ul>
-<h2 id="usefull-functions">Usefull functions<a class="headerlink" href="#usefull-functions" title="Permanent link">&para;</a></h2>
+<h2 id="masking">Masking<a class="headerlink" href="#masking" title="Permanent link">&para;</a></h2>
+<p>A usefull technique in Numpy is masking: getting an array of boolean that indicate satisfaction of a condition. This array can be used to filter the elements of the original array (or any other array of the same shape).</p>
+<p>Example:</p>
+<pre><code class="language-Python">a = np.array([1, 2, 3, 4, 5])
+mask = a &gt; 3 # mask is [False, False, False, True, True]
+b = a[mask] # b is [4, 5]
+</code></pre>
+<p>For more complex masking, we can use the logical operators:</p>
+<ul>
+<li><code>&amp;</code>: logical and</li>
+<li><code>|</code>: logical or</li>
+<li><code>^</code>: logical xor</li>
+<li><code>~</code>: logical not</li>
+</ul>
+<h3 id="aggregate-masks">Aggregate masks<a class="headerlink" href="#aggregate-masks" title="Permanent link">&para;</a></h3>
+<p>Even more powerful technique is to use aggregate masks that are computed for a whole array or a single dimension. We create such a mask simply by applying an aggregation function to the mask. Example:</p>
+<pre><code class="language-Python">a = np.array([[2, 3, 4], [5, 6, 7]])
+mask = a &lt; 3 # mask is [[True, True, False], [False, False, False]]
+column_mask = mask.any(axis=0) # column_mask is [True, True, False]
+row_mask = mask.any(axis=1) # row_mask is [True, False]
+</code></pre>
+<p>Of course, we can use other aggregation functions than <code>any</code>, such as <code>all</code>, <code>sum</code>, <code>mean</code>, etc.</p>
+<h3 id="dedicated-mask-functions">Dedicated mask functions<a class="headerlink" href="#dedicated-mask-functions" title="Permanent link">&para;</a></h3>
+<p>Apart from logical operations, we can use dedicated mask functions:</p>
+<ul>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.nonzero.html"><code>nonzero</code></a>: returns the indices of the non-zero elements</li>
+</ul>
+<h2 id="useful-functions">Useful functions<a class="headerlink" href="#useful-functions" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.unique.html"><code>unique</code></a>: returns the unique elements of the array. Important parameters:<ul>
+<li><code>return_counts</code>: if set to <code>True</code>, the function returns the counts of the unique elements (same as <code>value_counts</code> in pandas)</li>
+</ul>
+</li>
+</ul>
 <h1 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h1>
 <p>In Python,  the regex patterns are not compiled by default. Therefore we can use strings to store them.</p>
 <p>The basic syntax for regex search is:</p>
@@ -2054,6 +2225,12 @@ for i in tqdm(range(100)):
 <ul>
 <li><code>desc</code>: description of the progress bar</li>
 </ul>
+<h2 id="custom-progress-updates">Custom progress updates<a class="headerlink" href="#custom-progress-updates" title="Permanent link">&para;</a></h2>
+<p>When the progress is more complex (conditional updates, etc.), we can use the progress bar object to update the progress manually:</p>
+<pre><code class="language-Python">with tqdm(total=&lt;total number of steps&gt;) as progress_bar:
+    if(&lt;condition&gt;):
+        progress_bar.update(&lt;number of steps&gt;)
+</code></pre>
 <h2 id="tqdm-in-jupyter">TQDM in Jupyter<a class="headerlink" href="#tqdm-in-jupyter" title="Permanent link">&para;</a></h2>
 <p>When using <code>tqdm</code> in Jupyter, the basic progress bar may not work (it may print other logs repeatedly). In such cases, we can change the import to:</p>
 <pre><code class="language-Python">from tqdm.notebook import tqdm
@@ -2169,8 +2346,11 @@ finally:
 <ul>
 <li><a href="https://scikit-spatial.readthedocs.io/en/stable/index.html"><code>scipy.spatial</code></a>: for basic geometry operations</li>
 <li><a href="https://pypi.org/project/shapely/"><code>shapely</code></a></li>
-<li><code>geopandas</code>: for gis data</li>
+<li><a href="https://geopandas.org/en/stable/"><code>geopandas</code></a>: for gis data. See the <a href="../Pandas%20Manual/#geopandas">pandas manual</a> for more details.</li>
 </ul>
+<h2 id="shapely">Shapely<a class="headerlink" href="#shapely" title="Permanent link">&para;</a></h2>
+<p><a href="https://shapely.readthedocs.io/en/stable/">homepage</a></p>
+<p>To merge a multi-linestring into a single linestring, we can use the <a href="https://shapely.readthedocs.io/en/stable/reference/shapely.line_merge.html#shapely.line_merge"><code>line_merge</code></a> function.</p>
 <h1 id="downloading-files">Downloading files<a class="headerlink" href="#downloading-files" title="Permanent link">&para;</a></h1>
 <p>To download files from the internet, we can use the <code>requests</code> library. The basic usage is:</p>
 <pre><code class="language-Python">import requests
@@ -2179,6 +2359,72 @@ response = requests.get(&lt;url&gt;)
 
 with open(&lt;filename&gt;, 'wb') as f:
     f.write(response.content)
+</code></pre>
+<h1 id="graphs-with-networkx-and-osmnx">Graphs with NetworkX and OSMnx<a class="headerlink" href="#graphs-with-networkx-and-osmnx" title="Permanent link">&para;</a></h1>
+<p><a href="https://networkx.org/documentation/stable/index.html">NetworkX documentation</a>
+<a href="https://osmnx.readthedocs.io/en/stable/">OSMnx documentation</a></p>
+<p>NetworkX is a library for working with graphs. OSMnx is a library that creates networkx graphs from OpenStreetMap data.</p>
+<h2 id="creating-a-graph-from-openstreetmap">Creating a graph from OpenStreetMap<a class="headerlink" href="#creating-a-graph-from-openstreetmap" title="Permanent link">&para;</a></h2>
+<p>To create a graph from OpenStreetMap, we can use the <code>ox.graph_from_place</code> function. </p>
+<p>Limitations</p>
+<ul>
+<li>The are we  want to must be some official name, and we have to know the name</li>
+<li>The elements are selected either by nodes inside the area, or edges, but not ways. If we need keeping the ways intact (if they cross the area boundary), we need to use a different approach.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-Python">import osmnx as ox
+
+graph = ox.graph_from_place(&lt;place name&gt;, network_type=&lt;network type&gt;)
+</code></pre>
+<p>The <code>network_type</code> parameter can be one of the following:</p>
+<ul>
+<li><code>'drive'</code>: driving network</li>
+<li><code>'walk'</code>: walking network</li>
+<li><code>'bike'</code>: cycling network</li>
+</ul>
+<p>And some more. Other important parameters are:</p>
+<ul>
+<li><code>simplify</code>: whether to contract the graph. Default is <code>True</code>.</li>
+<li><code>retain_all</code>: whether to retain all nodes, or just the largest strongly connected component. Default is <code>False</code>.</li>
+<li><code>truncate_by_edge</code>: If True, retain nodes outside the area if they have at least one neighbor inside the area. Default is <code>False</code>.</li>
+</ul>
+<p>To add speed information to the graph, we can use the <code>OSMnx.add_edge_speeds</code> function:</p>
+<pre><code class="language-Python">graph = ox.add_edge_speeds(graph)
+</code></pre>
+<p>Similarily, we can add travel times:</p>
+<pre><code class="language-Python">graph = ox.add_edge_travel_times(graph)
+</code></pre>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<p>OSMnx automatically caches the overpass API responses to the <code>cache</code> directory, each response as a separate <code>json</code> file. </p>
+<h2 id="importing-osm-elements">Importing OSM elements<a class="headerlink" href="#importing-osm-elements" title="Permanent link">&para;</a></h2>
+<p>We can also import individual OSM elements (nodes, ways, relations) from OpenStreetMap using the <a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.features.features_from_place"><code>ox.features_from_place</code></a> function. This function returns a geodataframe with the features.</p>
+<p>Limitations:</p>
+<ul>
+<li>there is no way how to download related features. Ways, for example, are downloaded with full geometry, but the associated nodes are not downloaded.</li>
+</ul>
+<h2 id="creating-a-graph-from-pandas-dataframe">Creating a graph from pandas dataframe<a class="headerlink" href="#creating-a-graph-from-pandas-dataframe" title="Permanent link">&para;</a></h2>
+<p>To create a graph from a pandas dataframe, we can use the <code>NetworkX.from_pandas_edgelist</code> function:</p>
+<pre><code class="language-Python">graph = nx.from_pandas_edgelist(df, source='source', target='target', edge_attr=['weight', 'speed', 'travel_time'], create_using=nx.DiGraph())
+</code></pre>
+<h2 id="exporting-graph-to-pandas-dataframe">Exporting graph to pandas dataframe<a class="headerlink" href="#exporting-graph-to-pandas-dataframe" title="Permanent link">&para;</a></h2>
+<p>To export a graph to a pandas dataframe, we have multiple options:</p>
+<ul>
+<li><a href="https://osmnx.readthedocs.io/en/stable/user-reference.html#osmnx.convert.graph_to_gdfs"><code>osmnx.graph_to_gdfs</code></a>: exports the graph to a pandas dataframe. Important parameters:<ul>
+<li><code>edges</code>: if <code>True</code>, the edges are exported. Default is <code>True</code>.</li>
+<li><code>nodes</code>: if <code>True</code>, the nodes are exported. Default is <code>True</code>.</li>
+<li><code>node_geometry</code>: if <code>True</code>, the node geometries are exported. Default is <code>True</code>.</li>
+<li><code>fill_edge_geometry</code>: if <code>True</code>, the edge geometries are exported. Default is <code>True</code>.</li>
+</ul>
+</li>
+<li><a href="https://networkx.org/documentation/stable/reference/generated/networkx.convert_matrix.to_pandas_edgelist.html"><code>NetworkX.to_pandas_edgelist</code></a>: exports the graph to a pandas dataframe.<ul>
+<li>note that htis method does not preserve the edge order (unlike the <code>osmnx.graph_to_gdfs</code> function)</li>
+</ul>
+</li>
+<li>another option is to use the <code>nodes()</code> and <code>edges()</code> methods of the graph object and manually create the dataframe.</li>
+</ul>
+<h2 id="reindexing-the-nodes">Reindexing the nodes<a class="headerlink" href="#reindexing-the-nodes" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we want to discard the node indices created from the input data and use a new index that has a range of (0, n-1). We can do this by using the <code>NetworkX.convert_node_labels_to_integers</code> function:</p>
+<pre><code class="language-Python">graph = nx.convert_node_labels_to_integers(graph)
 </code></pre></div>
             </div>
         </div>

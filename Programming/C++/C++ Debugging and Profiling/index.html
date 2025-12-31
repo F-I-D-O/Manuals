@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -507,25 +534,9 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#improve-debugger-experience-with-natvis" class="nav-link">Improve debugger experience with natvis</a>
+            <li class="nav-item" data-bs-level="2"><a href="#missing-dll" class="nav-link">Missing dll</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#natvis-expressions" class="nav-link">Natvis expressions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#natvis-errors" class="nav-link">Natvis Errors</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#existing-visualisations" class="nav-link">Existing visualisations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#debugger-manual" class="nav-link">Debugger manual</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#address-breakpoints" class="nav-link">Address breakpoints</a>
+            <li class="nav-item" data-bs-level="3"><a href="#showing-the-runtime-dependency-tree" class="nav-link">Showing the runtime dependency tree</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -609,7 +620,27 @@
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#visual-studio" class="nav-link">Visual Studio</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#improve-debugger-experience-with-natvis" class="nav-link">Improve debugger experience with natvis</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#natvis-expressions" class="nav-link">Natvis expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#natvis-errors" class="nav-link">Natvis Errors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#existing-visualisations" class="nav-link">Existing visualisations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="3"><a href="#debugging-polymorphic-classes" class="nav-link">Debugging polymorphic classes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#address-breakpoints" class="nav-link">Address breakpoints</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -815,31 +846,33 @@ not be %s.</em>)</li>
 process is terminating abnormally. This means that all linked libraries are available at runtime, but some of them failed to initialize, which may be due to a missing dependency (between the linked library and another library not linked to the executable)</li>
 <li><code>0xC0000374</code>: Heap corruption (<em>A heap has been corrupted.</em>)</li>
 </ul>
-<h2 id="improve-debugger-experience-with-natvis">Improve debugger experience with natvis<a class="headerlink" href="#improve-debugger-experience-with-natvis" title="Permanent link">&para;</a></h2>
-<p><a href="https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022">Natvis</a> is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:</p>
-<pre><code class="language-XML">  &lt;Type Name=&quot;My_class&quot;&gt;
-    ... visualization rules
-  &lt;/Type&gt;
-</code></pre>
-<p>The name must be fully qualified, i.e., <strong>we have to include namespaces.</strong></p>
-<p>The big advantage is that <strong>natvis files can be changed while the debugger is running</strong> and the presentation of the type in locals/watch window is changed immediatly after saving the natvis file.</p>
-<h3 id="natvis-expressions">Natvis expressions<a class="headerlink" href="#natvis-expressions" title="Permanent link">&para;</a></h3>
-<p>The expression in natvis are sorounded by <code>{}</code>. If we want curly braces in the text, we can double them <code>{{...}}</code>.
-<strong>Unfortunatelly, function calles cannot be used in natvis expressions</strong>.</p>
-<h3 id="natvis-errors">Natvis Errors<a class="headerlink" href="#natvis-errors" title="Permanent link">&para;</a></h3>
-<p>Natvis errors can be displayed in the output window if turned on in settins: <code>Debug</code> -&gt; <code>Options</code> -&gt; <code>Debugging</code> -&gt; <code>Output Window</code>.</p>
-<h3 id="existing-visualisations">Existing visualisations<a class="headerlink" href="#existing-visualisations" title="Permanent link">&para;</a></h3>
-<p>Existing natvis files are stored in <code>&lt;VS Installation Folder&gt;\Common7\Packages\Debugger\Visualizers</code> folder. The STL visualizations are in <code>stl.natvis</code></p>
-<h2 id="debugger-manual">Debugger manual<a class="headerlink" href="#debugger-manual" title="Permanent link">&para;</a></h2>
-<p>Be aware that in <strong>CLion debugger, the program does not terminate on unhandled exceptions by default.</strong> </p>
-<h3 id="address-breakpoints">Address breakpoints<a class="headerlink" href="#address-breakpoints" title="Permanent link">&para;</a></h3>
-<p>Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.</p>
-<p>To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:</p>
-<ul>
-<li>use the <code>&amp;</code> operator on the variable in the watch window</li>
-<li>use the <code>&amp;</code> operator on the variable in the immediate window</li>
+<h2 id="missing-dll">Missing dll<a class="headerlink" href="#missing-dll" title="Permanent link">&para;</a></h2>
+<p>When a dll file is missing, we can temprorarily fix the problem by copying the dll file to the same directory as the executable. However, it is best to investigate the cause, which we discuss in this section.</p>
+<p>The most common cause is that we do not set the target to copy the required runtime dependencies to the output directory. This is necessary even when building with CMake: <strong>CMake does not copy the runtime dependencies automatically!</strong> To configure CMake to copy the runtime dependencies, see the <a href="../CMake%20Manual/#handling-runtime-dependencies-in-the-output-directory">CMake Manual</a>.</p>
+<p>If this command is present and copies some runtime dependencies to the output directory, but not all of them, we need to investigate further:</p>
+<ol>
+<li>determine why the missing library is required (if we do not know immediately...)</li>
+<li>fix the dependency so it is recognized by CMake<ul>
+<li>if the library is required by our targets, we have some linking misconfiguration -&gt; we have to fix it</li>
+<li>if the library is required by another library (transitive dependency), the bug is probably there. We cannot fix it, but we can report it and manually link the missing library to the library that requires it  in our project (see the <a href="../CMake%20Manual/#fixing-incorrect-linking-configuration-in-upstream-projects">CMake Manual</a> for details).</li>
 </ul>
-<p>The address should have a format <code>0x0000000000000000</code>.</p>
+</li>
+</ol>
+<h3 id="showing-the-runtime-dependency-tree">Showing the runtime dependency tree<a class="headerlink" href="#showing-the-runtime-dependency-tree" title="Permanent link">&para;</a></h3>
+<p>First, we should check the CMake dependencies. We can see them using the <code>--graphviz</code> argument of the <code>cmake</code> command:</p>
+<pre><code class="language-bash">cmake --graphviz=dependencies.dot
+</code></pre>
+<p>In the <code>dependencies.dot</code> file, we can see the dependency tree of visible cmake dependencies, i.e., the libraries that:</p>
+<ul>
+<li>are linked in cmake using the <code>target_link_libraries</code> command (in contrast to command line linking, etc), <strong>and</strong></li>
+<li>are linked <em>publicly</em> (i.e., with the <code>PUBLIC</code> or <code>INTERFACE</code> keyword, not <code>PRIVATE</code>)</li>
+</ul>
+<p>If the missing library is not in this dependency tree, we should inspect the executable for the dependencies. We can do that using the <a href="https://github.com/lucasg/Dependencies">Dependencies tool</a>.</p>
+<ol>
+<li>Download and extract the tool</li>
+<li>Run the <code>DependenciesGui.exe</code></li>
+<li>Drag and drop the executable to the tool</li>
+</ol>
 <h2 id="memory-errors">Memory Errors<a class="headerlink" href="#memory-errors" title="Permanent link">&para;</a></h2>
 <p>These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:</p>
 <ul>
@@ -961,6 +994,21 @@ Basic usage:</p>
 <li>Debug the compound configuration</li>
 </ol>
 <h2 id="visual-studio">Visual Studio<a class="headerlink" href="#visual-studio" title="Permanent link">&para;</a></h2>
+<h3 id="improve-debugger-experience-with-natvis">Improve debugger experience with natvis<a class="headerlink" href="#improve-debugger-experience-with-natvis" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022">Natvis</a> is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:</p>
+<pre><code class="language-XML">  &lt;Type Name=&quot;My_class&quot;&gt;
+    ... visualization rules
+  &lt;/Type&gt;
+</code></pre>
+<p>The name must be fully qualified, i.e., <strong>we have to include namespaces.</strong></p>
+<p>The big advantage is that <strong>natvis files can be changed while the debugger is running</strong> and the presentation of the type in locals/watch window is changed immediatly after saving the natvis file.</p>
+<h4 id="natvis-expressions">Natvis expressions<a class="headerlink" href="#natvis-expressions" title="Permanent link">&para;</a></h4>
+<p>The expression in natvis are sorounded by <code>{}</code>. If we want curly braces in the text, we can double them <code>{{...}}</code>.
+<strong>Unfortunatelly, function calles cannot be used in natvis expressions</strong>.</p>
+<h4 id="natvis-errors">Natvis Errors<a class="headerlink" href="#natvis-errors" title="Permanent link">&para;</a></h4>
+<p>Natvis errors can be displayed in the output window if turned on in settins: <code>Debug</code> -&gt; <code>Options</code> -&gt; <code>Debugging</code> -&gt; <code>Output Window</code>.</p>
+<h4 id="existing-visualisations">Existing visualisations<a class="headerlink" href="#existing-visualisations" title="Permanent link">&para;</a></h4>
+<p>Existing natvis files are stored in <code>&lt;VS Installation Folder&gt;\Common7\Packages\Debugger\Visualizers</code> folder. The STL visualizations are in <code>stl.natvis</code></p>
 <h3 id="debugging-polymorphic-classes">Debugging polymorphic classes<a class="headerlink" href="#debugging-polymorphic-classes" title="Permanent link">&para;</a></h3>
 <p>Unfortunately, the debugger does not show the actual type of the object when the object is cast to a base class.</p>
 <p>To see the object content including the members of the derived class, we have to cast the object to the derived class in the watch window:</p>
@@ -968,6 +1016,14 @@ Basic usage:</p>
 <li><code>((Derived_class*) object)</code> for pointers</li>
 <li><code>((Derived_class&amp;) object)</code> for references</li>
 </ul>
+<h3 id="address-breakpoints">Address breakpoints<a class="headerlink" href="#address-breakpoints" title="Permanent link">&para;</a></h3>
+<p>Address breakpoints can be used to watch a change of a variable or in general, a change of any memory location.</p>
+<p>To set an address breakpoint, we nned to first find the address of the variable. To do that, we can:</p>
+<ul>
+<li>use the <code>&amp;</code> operator on the variable in the watch window</li>
+<li>use the <code>&amp;</code> operator on the variable in the immediate window</li>
+</ul>
+<p>The address should have a format <code>0x0000000000000000</code>.</p>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
 <p>There are multiple <a href="https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing">profiler options for C++</a>, but not all the tools are easy to use or maintained.</p>
 <h2 id="cpu-profiling">CPU Profiling<a class="headerlink" href="#cpu-profiling" title="Permanent link">&para;</a></h2>

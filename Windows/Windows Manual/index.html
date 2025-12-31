@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Programming/Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
@@ -396,7 +423,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../VSCode/" class="nav-link">
+                                <a rel="prev" href="../Powershell%20Manual/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -618,19 +645,19 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#configure-the-items-in-the-right-click-menu" class="nav-link">Configure the items in the right click menu</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="4"><a href="#share-with-skype" class="nav-link">Share with Skype</a>
+            <li class="nav-item" data-bs-level="4"><a href="#context-menu-that-can-be-disabled-by-configuring-the-application-settings" class="nav-link">Context menu that can be disabled by configuring the application settings</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#powertoys-modules" class="nav-link">PowerToys modules</a>
+            <li class="nav-item" data-bs-level="4"><a href="#context-menu-items-to-be-disabled-by-editing-the-registry" class="nav-link">Context menu items to be disabled by editing the registry</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#edit-with-notepad" class="nav-link">Edit with Notepad</a>
+            <li class="nav-item" data-bs-level="4"><a href="#context-menu-items-to-be-disabled-by-uninstalling-the-application" class="nav-link">Context menu items to be disabled by uninstalling the application</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#scan-with-microsoft-defender" class="nav-link">Scan with Microsoft Defender</a>
+            <li class="nav-item" data-bs-level="4"><a href="#context-menu-items-to-be-disabled-by-deleting-the-registry-item" class="nav-link">Context menu items to be disabled by deleting the registry item</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -790,6 +817,10 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#vmmem-process-uses-a-lot-of-cpu" class="nav-link">vmmem process uses a lot of CPU</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#computer-restarts-without-user-intervention" class="nav-link">Computer Restarts without User Intervention</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1088,30 +1119,78 @@
 <pre><code class="language-PowerShell">reg.exe add &quot;HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&quot; /f /ve
 </code></pre>
 <h3 id="configure-the-items-in-the-right-click-menu">Configure the items in the right click menu<a class="headerlink" href="#configure-the-items-in-the-right-click-menu" title="Permanent link">&para;</a></h3>
-<p>Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation (sometimes, this can be disabled in the installation process), and can only be removed by editing the registry or uninstalling the application. Below, we list instructions for each specific action.</p>
-<h4 id="share-with-skype">Share with Skype<a class="headerlink" href="#share-with-skype" title="Permanent link">&para;</a></h4>
-<ol>
-<li>
-<p>in an elevated PowerShell, run:
-    <code>PowerShell
-    REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{776DBC8D-7347-478C-8D71-791E12EF49D8}" /d Skype</code></p>
-</li>
-<li>
-<p>restart the Explorer</p>
-</li>
-</ol>
-<h4 id="powertoys-modules">PowerToys modules<a class="headerlink" href="#powertoys-modules" title="Permanent link">&para;</a></h4>
-<p>These can be removed by deactivating the specific modules in the PowerToys settings.</p>
-<h4 id="edit-with-notepad">Edit with Notepad<a class="headerlink" href="#edit-with-notepad" title="Permanent link">&para;</a></h4>
-<p>Just Uninstall the Notepad. Yes, it can be done.</p>
-<h4 id="scan-with-microsoft-defender">Scan with Microsoft Defender<a class="headerlink" href="#scan-with-microsoft-defender" title="Permanent link">&para;</a></h4>
-<p>The following commands removes four entries from the registry that are related to this icon:</p>
-<pre><code class="language-PowerShell">REG DELETE &quot;HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP&quot;
-REG DELETE &quot;HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}&quot;
-REG DELETE &quot;HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP&quot;
-REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
+<p>Unfortunatelly, the right click menu is not directly configurable in Windows. Usually, the actions are enabled by the application installation and sometimes, this can be disabled in the installation process</p>
+<p>To disable context menu entries after installation, we usually need to do one of the four things:</p>
+<ul>
+<li><strong>configure the context menu in the application settings</strong>: if possible, easiest way</li>
+<li><strong>add the item to blocked list in the registry</strong>: for applications that cannot configured the context menu in the settings</li>
+<li><strong>uninstall the application</strong>: for applications that we do not need at all</li>
+<li><strong>delete the item from the registry</strong>: for certain built-in Windows items</li>
+</ul>
+<p>To configure the context menu in the registry, we need to add a new key to the registry under the following path: <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked</code>. Under this path, we need to add a new string value matching the context menu entry we want to disable. For example, in PowerShell, we can run:</p>
+<pre><code class="language-PowerShell">REG ADD &quot;HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked&quot; /v &quot;&lt;context meny entry name&gt;&quot; /d &lt;any value, can be empty&gt;
 </code></pre>
-<p><a href="https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html">Source</a></p>
+<p>Example for Skype:</p>
+<pre><code class="language-PowerShell">REG ADD &quot;HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked&quot; /v &quot;{776DBC8D-7347-478C-8D71-791E12EF49D8}&quot; /d Skype
+</code></pre>
+<p><strong>After editing the registry, restart the Explorer.</strong></p>
+<p>For deleting the item from the registry, just run <code>REG DELETE &lt;path&gt;</code></p>
+<h4 id="context-menu-that-can-be-disabled-by-configuring-the-application-settings">Context menu that can be disabled by configuring the application settings<a class="headerlink" href="#context-menu-that-can-be-disabled-by-configuring-the-application-settings" title="Permanent link">&para;</a></h4>
+<ul>
+<li>PowerToys modules: These can be removed by deactivating the specific modules in the PowerToys settings.</li>
+</ul>
+<h4 id="context-menu-items-to-be-disabled-by-editing-the-registry">Context menu items to be disabled by editing the registry<a class="headerlink" href="#context-menu-items-to-be-disabled-by-editing-the-registry" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Context menu item</th>
+<th>Registry key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ask Copilot</td>
+<td><code>{CB3B0003-8088-4EDE-8769-8B354AB2FF8C}</code></td>
+</tr>
+<tr>
+<td>Move to OneDrive</td>
+<td><code>{1FA0E654-C9F2-4A1F-9800-B9A75D744B00}</code></td>
+</tr>
+<tr>
+<td>Restore previous version</td>
+<td><code>{596AB062-B4D2-4215-9F74-E9109B0A8153}</code></td>
+</tr>
+<tr>
+<td>Share with Skype</td>
+<td><code>{776DBC8D-7347-478C-8D71-791E12EF49D8}</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="context-menu-items-to-be-disabled-by-uninstalling-the-application">Context menu items to be disabled by uninstalling the application<a class="headerlink" href="#context-menu-items-to-be-disabled-by-uninstalling-the-application" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Edit with Notepad</li>
+</ul>
+<h4 id="context-menu-items-to-be-disabled-by-deleting-the-registry-item">Context menu items to be disabled by deleting the registry item<a class="headerlink" href="#context-menu-items-to-be-disabled-by-deleting-the-registry-item" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>Open with Visual Studio</code>: <code>HKEY_CLASSES_ROOT\Directory\shell\AnyCode</code></li>
+<li><code>Scan with Microsoft Defender</code> (<a href="https://www.tenforums.com/tutorials/101364-remove-scan-microsoft-defender-context-menu-windows-10-a.html">Source</a>):<ul>
+<li><code>"HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\EPP"</code></li>
+<li><code>"HKEY_CLASSES_ROOT\CLSID\{09A47860-11B0-4DA5-AFA5-26D86198A780}"</code></li>
+<li><code>"HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\EPP"</code></li>
+<li><code>"HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP"</code></li>
+</ul>
+</li>
+<li><code>Send to</code>: <ul>
+<li><code>"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo"</code></li>
+<li><code>"HKEY_CLASSES_ROOT\UserLibraryFolder\shellex\ContextMenuHandlers\SendTo"</code></li>
+</ul>
+</li>
+<li>VLC entries:<ul>
+<li><code>"HKEY_CLASSES_ROOT\Directory\shell\AddtoPlaylistVLC"</code></li>
+<li><code>"HKEY_CLASSES_ROOT\Directory\shell\PlayWithVLC"</code></li>
+</ul>
+</li>
+</ul>
 <h4 id="translate-with-deepl">Translate with Deepl<a class="headerlink" href="#translate-with-deepl" title="Permanent link">&para;</a></h4>
 <p>Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.</p>
 <h1 id="diskpart">Diskpart<a class="headerlink" href="#diskpart" title="Permanent link">&para;</a></h1>
@@ -1182,6 +1261,12 @@ REG DELETE &quot;HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\EPP&quot;
 </ul>
 <p>If the system dialog does not work, try the PowerShell method.</p>
 <h1 id="wsl">WSL<a class="headerlink" href="#wsl" title="Permanent link">&para;</a></h1>
+<p>Windows Subsystem for Linux (WSL) is basically a virtual machine running Linux. </p>
+<p>To <strong>install WSL</strong>, run <code>wsl --install</code> command.</p>
+<p>To <strong>list installed WSL distributions</strong>, run <code>wsl --list</code></p>
+<p>To <strong>list available WSL distributions</strong>, run <code>wsl --list --online</code></p>
+<p>To <strong>install a WSL distribution</strong>, run <code>wsl --install -d &lt;distribution name&gt;</code></p>
+<p>Finally, to <strong>remove a WSL distribution</strong>, run <code>wsl --unregister &lt;distribution name&gt;</code></p>
 <h2 id="translate-windows-path-to-linux-path">Translate Windows Path to Linux Path<a class="headerlink" href="#translate-windows-path-to-linux-path" title="Permanent link">&para;</a></h2>
 <p>To translate a Windows path to a Linux path, we can use the <code>wslpath</code> command, which is available in Ubuntu WSL distributions.</p>
 <h2 id="execute-commands-from-the-windows">Execute commands from the Windows<a class="headerlink" href="#execute-commands-from-the-windows" title="Permanent link">&para;</a></h2>
@@ -1290,7 +1375,23 @@ Solution: Go to the app setting and select the correct camera</p>
 <h2 id="vmmem-process-uses-a-lot-of-cpu"><code>vmmem</code> process uses a lot of CPU<a class="headerlink" href="#vmmem-process-uses-a-lot-of-cpu" title="Permanent link">&para;</a></h2>
 <p>This process represents all virtual systems. One cultprit is therefore WSL. Try to shutdown the WSL using </p>
 <pre><code>wsl --shutdown
-</code></pre></div>
+</code></pre>
+<h2 id="computer-restarts-without-user-intervention">Computer Restarts without User Intervention<a class="headerlink" href="#computer-restarts-without-user-intervention" title="Permanent link">&para;</a></h2>
+<p>The first thing is to go to the event viewer and check the error eventlogs. </p>
+<p>If the Dump file generation event is in the log, we can further explore the Dump file using the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools">WinDbg</a> tool. To analyze the dump:</p>
+<ol>
+<li>run WinDbg as administrator</li>
+<li><code>File</code> -&gt; <code>Open Dump File</code> and select the dump file (stored in the <code>C:\Windows\Minidump</code> folder)</li>
+<li>After opening the dump file, run <code>!analyze -v</code> to analyze the dump (or click to the link in the main window)</li>
+</ol>
+<p>The most Important information in the log is the <code>BUGCHECK_CODE</code>. The meaning of each code is documented in the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-code-reference2">Microsoft Learn</a>. Encountered codes:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x50--page-fault-in-nonpaged-area"><code>0x00000050</code>: <code>PAGE_FAULT_IN_NONPAGED_AREA</code></a>: invalid memory pointer (nonexisting or freed memory access)</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x3b--system-service-exception"><code>0x0000003B</code>: <code>SYSTEM_SERVICE_EXCEPTION</code></a>: Exeption during a routine for transitioning between user and kernel mode. This is a very nonspecific error, to see what is really going on, we have to inspect the firts parameter of the exception (<code>BUGCHECK_P1</code> in the log). The description of this error code can be found in the <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55">Microsoft Learn</a>. Encountered code:<ul>
+<li><code>c0000005</code>: <code>STATUS_ACCESS_VIOLATION</code>: This means invalid memory access.</li>
+</ul>
+</li>
+</ul></div>
             </div>
         </div>
 

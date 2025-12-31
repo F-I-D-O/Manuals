@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="./" class="dropdown-item active" aria-current="page">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
@@ -396,7 +423,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Common/" class="nav-link">
+                                <a rel="prev" href="../Conda%20and%20Mamba/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -429,7 +456,12 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#gitextensions" class="nav-link">GitExtensions</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#gitextensions" class="nav-link">GitExtensions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#limitations" class="nav-link">Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -463,7 +495,21 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#branches" class="nav-link">Branches</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#renaming-a-branch" class="nav-link">Renaming a branch</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#remote-repositories" class="nav-link">Remote Repositories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#wildcards" class="nav-link">Wildcards</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -485,12 +531,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#wildcards" class="nav-link">Wildcards</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#removing-files-from-all-branches-local-and-remote" class="nav-link">Removing files from all branches, local and remote</a>
+            <li class="nav-item" data-bs-level="1"><a href="#removing-specific-files-from-history" class="nav-link">Removing specific files from history</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#bfg" class="nav-link">BFG</a>
               <ul class="nav flex-column">
@@ -551,11 +592,6 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#renaming-a-branch" class="nav-link">Renaming a branch</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
             <li class="nav-item" data-bs-level="1"><a href="#github" class="nav-link">GitHub</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#creating-a-github-release" class="nav-link">Creating a GitHub Release</a>
@@ -572,9 +608,30 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#synchronizing-a-fork-with-the-original-repository" class="nav-link">Synchronizing a fork with the original repository</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#repository-migration" class="nav-link">Repository Migration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#git-large-file-storage" class="nav-link">Git Large File Storage</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#the-migrate-subcommand" class="nav-link">The migrate subcommand</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#migrate-import" class="nav-link">migrate import</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#git-lfs-limitations" class="nav-link">Git LFS Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -601,13 +658,17 @@
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <h2 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
 <p>Git can be bundeled within other software, but it is best to install it separately (<a href="https://gitforwindows.org/">Git for Windows</a>), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.</p>
-<p>Important options, that defaults to inpractical values:
-- <strong>default text editor</strong>: defaults to vim
-- <strong>default ssh client</strong>: defaults to bundled openssh (part of git bash)
-- <strong>context menu integration</strong>: defaults to "Open in Git GUI" and "Open in Git Bash"</p>
-<h2 id="gitextensions">GitExtensions<a class="headerlink" href="#gitextensions" title="Permanent link">&para;</a></h2>
+<p>Important options, that defaults to inpractical values:</p>
+<ul>
+<li><strong>default text editor</strong>: defaults to vim</li>
+<li><strong>default ssh client</strong>: defaults to bundled openssh (part of git bash)</li>
+<li><strong>context menu integration</strong>: defaults to "Open in Git GUI" and "Open in Git Bash"</li>
+</ul>
+<h1 id="gitextensions">GitExtensions<a class="headerlink" href="#gitextensions" title="Permanent link">&para;</a></h1>
 <p>GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.</p>
 <p>The tool is intuitive it is only important to <strong>install git first</strong>.</p>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p>Unfortunatelly, GitExtensions does not support wordwrap in the diff view. There is an <a href="https://github.com/gitextensions/gitextensions/issues/448#event-16669247488">issue</a> for that (closed, but never resolved).</p>
 <h1 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h1>
 <p>The structure of a single git repository is displayed in the following picture:
 <img alt="Git Repository Structure" src="../Git%20Scheme.png" /></p>
@@ -650,6 +711,26 @@
 <li><code>-r</code>: recursive - deletes content of directories</li>
 <li><code>-n</code> dry run</li>
 </ul>
+<h1 id="branches">Branches<a class="headerlink" href="#branches" title="Permanent link">&para;</a></h1>
+<p>Branches are a way to manage parallel development. Each branch has a name and its own history. Typically (but not necessarily) a local branch tracks a remote branch with the same name.</p>
+<p>To <strong>list the branches</strong>, we call <code>git branch</code>.</p>
+<p>To <strong>switch to a branch</strong>, we call <code>git checkout &lt;branch name&gt;</code>. For that, the branch must exist locally. If it does not, we need to <strong>create</strong> it first:</p>
+<ul>
+<li>new branch from scratch: <code>git branch &lt;branch name&gt;</code></li>
+<li>new branch from a remote branch: <code>git checkout --track origin/&lt;REMOTE_BRANCH_NAME&gt;</code><ul>
+<li>for this, the local repository needs to know about the remote branch. We may need to first <code>git fetch</code> to update the remote branches.</li>
+</ul>
+</li>
+</ul>
+<h2 id="renaming-a-branch">Renaming a branch<a class="headerlink" href="#renaming-a-branch" title="Permanent link">&para;</a></h2>
+<p>When renaming a branch we need to:</p>
+<ol>
+<li>rename the branch locally: <code>git branch -m &lt;old name&gt; &lt;new name&gt;</code></li>
+<li>delete the old branch on the remote and push the new branch: <code>git push origin :&lt;old name&gt; &lt;new name&gt;</code></li>
+<li>on all machines, change the remote branch to the new one</li>
+<li>on any other machine, rename the branch locally</li>
+</ol>
+<p>Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.</p>
 <h1 id="remote-repositories">Remote Repositories<a class="headerlink" href="#remote-repositories" title="Permanent link">&para;</a></h1>
 <p><a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">Git Basics manual</a></p>
 <p>Normally, we have a single remote repository, which is typically called <code>origin</code>. In this repository, we share the code with other developers. In this case we don't have to care about the remote repository handling, because the remote is automatically set to the repository we cloned from.</p>
@@ -664,6 +745,12 @@
 <p>Then we need to specify the remote when we want to use a command that interacts with the remote repository and we want to use a remote other than the default one. For example, to push to a remote repository, instead of just <code>git push</code>, we call:</p>
 <pre><code class="language-bash">git push &lt;remote name&gt; &lt;branch name&gt;
 </code></pre>
+<h1 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h1>
+<p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:</p>
+<ul>
+<li><code>**/</code> in any directory</li>
+<li><code>/**</code> everything in a directory</li>
+</ul>
 <h1 id="reverting">Reverting<a class="headerlink" href="#reverting" title="Permanent link">&para;</a></h1>
 <p>When we want to revert  something using git there are multiple options depending on the situation. The commands are:</p>
 <ul>
@@ -728,13 +815,7 @@
 <p>Note that if the wrong history was already pushed to the remote, we need to fix the history on the remote as well. This is done by force pushing:</p>
 <pre><code class="language-bash">git push -f
 </code></pre>
-<h1 id="wildcards">Wildcards<a class="headerlink" href="#wildcards" title="Permanent link">&para;</a></h1>
-<p>Can be used in gitignore and also in some git commands. All described in the <a href="https://git-scm.com/docs/gitignore#_pattern_format">Manual</a>. Usefull wildcards:</p>
-<ul>
-<li><code>**/</code> in any directory</li>
-<li><code>/**</code> everything in a directory</li>
-</ul>
-<h1 id="removing-files-from-all-branches-local-and-remote">Removing files from all branches, local and remote<a class="headerlink" href="#removing-files-from-all-branches-local-and-remote" title="Permanent link">&para;</a></h1>
+<h1 id="removing-specific-files-from-history">Removing specific files from history<a class="headerlink" href="#removing-specific-files-from-history" title="Permanent link">&para;</a></h1>
 <p>Removing files from history can be done using multiple tools:</p>
 <ol>
 <li><a href="https://rtyley.github.io/bfg-repo-cleaner/">bfg repo cleaner</a> is the simplest tool. It can only select files by filename or size, but that is sufficient in most cases. </li>
@@ -765,23 +846,29 @@
 <p>The git filter-repo can be installed using pip: <code>pip install git-filter-repo</code>.</p>
 <p>To remove file by its path:</p>
 <ol>
-<li>run the command: <code>git filter-repo --invert-paths --force --dry-run --path &lt;PATH TO THE FILE TO BE REMOVED&gt;</code></li>
+<li>run the command with the <code>--dry-run</code> parameter: <code>git filter-repo --invert-paths --force --dry-run --path &lt;PATH TO THE FILE TO BE REMOVED&gt;</code></li>
 <li>inspect the changes in <code>.git/filter-repo</code> directory:<ul>
 <li>Compare the files in KDiff3</li>
-<li>To skip the lines  starting with <code>original-oid</code>, <ol>
+<li>To skip the lines starting with <code>original-oid</code>:<ol>
 <li>go to the file selection dialog</li>
 <li>click Configure</li>
 <li>to the line-matching preprocessor command, add: <code>sed 's/original-oid .*//'</code></li>
+<li>click OK</li>
 </ol>
 </li>
 </ul>
 </li>
-<li>add remote again: <code>git remote add origin &lt;REPO SSH ADDRESS&gt;</code></li>
+<li>run the command without the <code>--dry-run</code> parameter</li>
 <li>force push the comman to the remote <code>git push origin --force --all</code><ul>
-<li>If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config. </li>
+<li>If the push is rejected by the remote hook, the master branch is probably protected. It has to be unprotected first in the repository config.</li>
 </ul>
 </li>
 </ol>
+<p>Appart from exact file path, we can also use:</p>
+<ul>
+<li>glob patterns: <code>--path-glob &lt;GLOB PATTERN&gt;</code></li>
+<li>regex patterns: <code>--path-regex &lt;REGEX PATTERN&gt;</code></li>
+</ul>
 <p><a href="https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html">git filter-repo manual</a></p>
 <p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository">More information on github</a></p>
 <h2 id="filter-branch">filter-branch<a class="headerlink" href="#filter-branch" title="Permanent link">&para;</a></h2>
@@ -862,15 +949,6 @@ This is the content of the file in the branch we are merging
 <li><code>--all</code>: shows the history of all branches, not only the current one</li>
 <li><code>--decorate</code>: shows the names of the branches and tags, not only the commit hashes</li>
 </ul>
-<h1 id="renaming-a-branch">Renaming a branch<a class="headerlink" href="#renaming-a-branch" title="Permanent link">&para;</a></h1>
-<p>When renaming a branch we need to:</p>
-<ol>
-<li>rename the branch locally: <code>git branch -m &lt;old name&gt; &lt;new name&gt;</code></li>
-<li>delete the old branch on the remote and push the new branch: <code>git push origin :&lt;old name&gt; &lt;new name&gt;</code></li>
-<li>on all machines, change the remote branch to the new one</li>
-<li>on any other machine, rename the branch locally</li>
-</ol>
-<p>Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.</p>
 <h1 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h1>
 <h2 id="creating-a-github-release">Creating a GitHub Release<a class="headerlink" href="#creating-a-github-release" title="Permanent link">&para;</a></h2>
 <p>To create a release:</p>
@@ -892,15 +970,21 @@ This is the content of the file in the branch we are merging
 </li>
 </ul>
 <h3 id="token-authentication">Token Authentication<a class="headerlink" href="#token-authentication" title="Permanent link">&para;</a></h3>
-<p>To authenticate using a token, we first need to create a token:</p>
-<ol>
-<li>Go to <code>Settings</code> -&gt; <code>Developer settings</code> -&gt; <code>Personal access tokens</code></li>
-<li>Click <code>Tokens (classic)</code></li>
-<li>Click <code>Generate new token</code> -&gt; <code>Generate new token (classic)</code></li>
-<li>Fill the token description and select the scopes</li>
-<li>Click <code>Generate token</code></li>
-</ol>
-<p>Then we can authenticate using the token. We can either</p>
+<p>To authenticate using a token, we first need to <strong>create a token</strong>. The token settings are in <code>Profile Settings</code> -&gt; <code>Developer settings</code> -&gt; <code>Personal access tokens</code>.</p>
+<p>Thereare two types of tokens:</p>
+<ul>
+<li>classic tokens: legacy access tokens</li>
+<li>fine-grained tokens: new access tokens with more granular permissions</li>
+</ul>
+<p>Unless we need some specific permissions available only in the classic tokens, we should use the fine-grained tokens. This is the only option if we want to limit the scope of the token only to certain repositories.</p>
+<p>To know what specific permissions are needed for a particular command, we can</p>
+<ul>
+<li>call the command with the <code>--help</code> parameter</li>
+<li>read the documentation of the command</li>
+<li>run the command and read the error message</li>
+<li>ask</li>
+</ul>
+<p>Then we can <strong>authenticate using the token</strong>. We can either:</p>
 <ul>
 <li>suply the token to the <code>gh auth login</code> command:
     <code>PowerShell
@@ -910,9 +994,9 @@ This is the content of the file in the branch we are merging
 <h3 id="managing-realeases">Managing realeases<a class="headerlink" href="#managing-realeases" title="Permanent link">&para;</a></h3>
 <p>Required permissions:</p>
 <ul>
-<li><code>public_repo</code> if the repository is public</li>
-<li><code>repo</code> if the repository is private</li>
+<li><code>Read and Write access to code</code></li>
 </ul>
+<p>To <strong>list</strong> releases, we can call the <a href="https://cli.github.com/manual/gh_release_view"><code>gh release view</code></a> command.</p>
 <p>To <strong>create</strong> a release, we can the <a href="https://cli.github.com/manual/gh_release_create"><code>gh release create</code></a> command:</p>
 <pre><code class="language-PowerShell">gh release create &lt;TAG&gt; --repo &lt;REPO&gt; --title &lt;TITLE&gt; --generate-notes
 </code></pre>
@@ -920,8 +1004,89 @@ This is the content of the file in the branch we are merging
 <p>To <strong>delete</strong> a release, we can call the <a href="https://cli.github.com/manual/gh_release_delete"><code>gh release delete</code></a> command:</p>
 <pre><code class="language-PowerShell">gh release delete &lt;TAG&gt; --repo &lt;REPO&gt; --cleanup-tag -y
 </code></pre>
+<h3 id="synchronizing-a-fork-with-the-original-repository">Synchronizing a fork with the original repository<a class="headerlink" href="#synchronizing-a-fork-with-the-original-repository" title="Permanent link">&para;</a></h3>
+<p>Required permissions:</p>
+<ul>
+<li><code>Read and Write access to code</code></li>
+<li><code>Read and Write access to workflows</code></li>
+</ul>
+<p>To synchronize a fork with the original repository, we call:</p>
+<pre><code class="language-PowerShell">gh repo sync &lt;repo path&gt; -b &lt;branch name&gt;
+</code></pre>
+<p>Here, the <code>&lt;repo path&gt;</code> is the path on the <code>github.com</code> domain, e.g. <code>F-I-D-O/Future-Config</code>. We can skip the <code>-b &lt;branch name&gt;</code> parameter if we want to synchronize the default branch.</p>
 <h2 id="repository-migration">Repository Migration<a class="headerlink" href="#repository-migration" title="Permanent link">&para;</a></h2>
-<p>https://github.com/piceaTech/node-gitlab-2-github</p>
+<ul>
+<li><a href="https://github.com/piceaTech/node-gitlab-2-github">Gitlab to GitHub migration tool</a></li>
+</ul>
+<h1 id="git-large-file-storage">Git Large File Storage<a class="headerlink" href="#git-large-file-storage" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://git-lfs.github.com/">Homepage</a></li>
+<li><a href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage">GitHub documentation</a></li>
+</ul>
+<p>Git Large File Storage is a system for storing and versioning large files in git repositories. One of the main use cases is to store experiment code and data in one place.</p>
+<p>Note that <strong>with publicaly available repository hosting services like GitHub, the git LFS has severe limitations preventing almost any practical use.</strong> (see <a href="#git-lfs-limitations">limitations</a>)</p>
+<p>First, <strong>install Git LFS</strong> in the system:</p>
+<ol>
+<li>Run the installer downloaded from the <a href="https://git-lfs.github.com/">homepage</a></li>
+<li>run <code>git lfs install</code> to initialize Git LFS</li>
+</ol>
+<p>Then to <strong>use it in the repository</strong>:</p>
+<ol>
+<li>define for which files Git LFS should be used. For example, by extension:<ul>
+<li>by running <code>git lfs track "*.png"</code></li>
+<li>directly in the <code>.gitattributes</code> file: add the following line: 
+    <code>*.png filter=lfs diff=lfs merge=lfs -text</code></li>
+</ul>
+</li>
+<li>commit all work except the large files, including the changed <code>.gitattributes</code> file where the LFS filters are defined</li>
+<li>check that the LFS status of the files is correct by running <code>git lfs ls-files</code> (optional)</li>
+<li>And that's it, now it should work. The only problematic part may be a slower  push/pull performance.</li>
+</ol>
+<p>Note that <strong>this simple procedure only affects new files</strong>. To affect existing files, we have to distinguish two cases:</p>
+<ul>
+<li>files added in the incorrect (text) mode that are not in the history yet (added, but not commited). These can be fixed by running <code>add</code> with the <a href="https://git-scm.com/docs/git-add#Documentation/git-add.txt---renormalize"><code>--renormalize</code></a> parameter:
+    <code>bash
+    git add . --renormalize</code></li>
+<li>files added before the LFS initialization (already in the history). These can be fixed by running with the <code>migrate</code> subcommand.</li>
+</ul>
+<h2 id="the-migrate-subcommand">The <code>migrate</code> subcommand<a class="headerlink" href="#the-migrate-subcommand" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc">documentation</a></p>
+<p>The <code>migrate</code> subcommand of the <code>git lfs</code> command was introduced to modify history. It has three subcommands:</p>
+<ul>
+<li><code>import</code>: converts files in history to the large file mode</li>
+<li><code>export</code>: converts files in history to the text mode</li>
+<li><code>info</code>: shows the information about the files tracked by LFS
+    <code>bash
+    git lfs migrate import --fixup</code></li>
+</ul>
+<h3 id="migrate-import"><code>migrate import</code><a class="headerlink" href="#migrate-import" title="Permanent link">&para;</a></h3>
+<p>This subcommand is used to convert files in history to the large file mode. There are two possible cases:</p>
+<ul>
+<li>we need to convert files that were committed before we start working with the LFS. We need to select such files manually, for example by specifying extensions:
+    <code>bash
+    git lfs migrate import --include "*.png,*.jpg,*.jpeg,*.gif,*.bmp,*.tiff,*.ico,*.webp"</code></li>
+<li>we need to convert files that were committed after we start working with the LFS and the correct <code>.gitattributes</code> file was already in the history. This is much less likely, but it can happen. In this case, we can run the command with the <code>--fixup</code> parameter:
+    <code>bash
+    git lfs migrate import --fixup</code></li>
+</ul>
+<h2 id="git-lfs-limitations">Git LFS Limitations<a class="headerlink" href="#git-lfs-limitations" title="Permanent link">&para;</a></h2>
+<p>When working with git LFS, we need to consider some limitations:</p>
+<ul>
+<li>it slows down the push/pull operations<ul>
+<li>we need to push early, not right before leaving the office</li>
+<li>the speed can be affected even without any new large files added</li>
+</ul>
+</li>
+<li>There are further limitations depending on the remote repository hosting service:<ul>
+<li>GitHub:<ul>
+<li>maximum file size of 2GB</li>
+<li>forks cannot introduce any new large files</li>
+<li><strong>Maximum bandwidth per month</strong>: 10GB</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
 <h2 id="gui-tools-show-no-history-git-log-results-in-errors">GUI tools show no history, git log results in errors<a class="headerlink" href="#gui-tools-show-no-history-git-log-results-in-errors" title="Permanent link">&para;</a></h2>
 <p>This may be due to broken refs in <code>.git/refs/</code>. Possible errors:</p>

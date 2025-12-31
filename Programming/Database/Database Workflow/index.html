@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -493,6 +520,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installing-extensions-to-the-cluster" class="nav-link">Installing extensions to the cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#monitoring-activity" class="nav-link">Monitoring activity</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="3"><a href="#pg_stat_activity" class="nav-link">pg_stat_activity</a>
@@ -552,6 +583,10 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#logging" class="nav-link">Logging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#language-settings" class="nav-link">Language settings</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -631,6 +666,13 @@
 <ul>
 <li>using the <code>-D</code> parameter of the <code>pg_ctl</code> command</li>
 <li>setting the <code>PGDATA</code> environment variable</li>
+</ul>
+<h2 id="installing-extensions-to-the-cluster">Installing extensions to the cluster<a class="headerlink" href="#installing-extensions-to-the-cluster" title="Permanent link">&para;</a></h2>
+<p>Appart from installing extensions to the database using the <code>CREATE EXTENSION</code> command, we need to install them to the cluster first (if not installed already/by default).</p>
+<p>The installation process differs between different extensions:</p>
+<ul>
+<li><strong>PostGIS</strong> and <strong>PgRouting</strong>: Install it using the stack builder application included in the PostgreSQL installation.</li>
+<li><strong>PgTAP</strong>: Installation is described in the <a href="../PostgreSQL%20Manual/#testing-with-pgtap">PostgreSQL Manual</a>.</li>
 </ul>
 <h2 id="monitoring-activity">Monitoring activity<a class="headerlink" href="#monitoring-activity" title="Permanent link">&para;</a></h2>
 <p>To monitor the activity on Linux, we can use the <a href="https://github.com/dalibo/pg_activity"><code>pg_activity</code></a>:</p>
@@ -767,8 +809,17 @@ SELECT set_config('&lt;parameter name&gt;', '&lt;value&gt;', false);
 <li><code>mod</code>: only statements that modify the database are logged</li>
 <li><code>all</code>: all statements are logged</li>
 </ul>
+<h3 id="language-settings">Language settings<a class="headerlink" href="#language-settings" title="Permanent link">&para;</a></h3>
+<p>By default, language is set during installation according to the system locale (not to be confused with the system language). To change the language, run:</p>
+<pre><code class="language-PostgreSQL">ALTER SYSTEM SET lc_messages = 'en_US.UTF-8';
+</code></pre>
+<p>After that, we need to:</p>
+<ol>
+<li>reload the configuration: <code>SELECT pg_reload_conf();</code></li>
+<li>if we are connected to the database, we need to reconnect to get the new language</li>
+</ol>
 <h2 id="garbage-collection-and-optimization">Garbage collection and optimization<a class="headerlink" href="#garbage-collection-and-optimization" title="Permanent link">&para;</a></h2>
-<p>There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb`</a> command.  </p></div>
+<p>There is a shared command for both garbage collection (vacuum) and optimization (analyze) of the database. To execute it from the command line, use the <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb`</a> command.</p></div>
             </div>
         </div>
 

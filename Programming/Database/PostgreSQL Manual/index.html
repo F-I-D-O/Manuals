@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -660,7 +687,15 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#psql" class="nav-link">psql</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#default-database" class="nav-link">Default database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#meta-commands" class="nav-link">meta-commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#executing-sql-files" class="nav-link">Executing SQL files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1158,6 +1193,7 @@ ORDER BY RANDOM()
 <p><strong>If we need to join the polygons to the original points, we need to do it manually</strong> (e.g. by <code>JOIN ... ON ST_Within(&lt;POINT COLUMN&gt;, &lt;VORONOI POLYGONS GEO DUMP&gt;)</code> ).</p>
 <h2 id="other-useful-functions">Other Useful Functions<a class="headerlink" href="#other-useful-functions" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="https://postgis.net/docs/ST_GeometryType.html"><code>ST_GeometryType</code></a>: returns the type of the geometry as a string.</li>
 <li>[<code>ST_Within</code>] <code>ST_Within</code>(A, B) if A is completly inside B</li>
 <li><a href="https://postgis.net/docs/ST_Intersects.html"><code>ST_Intersects</code></a> <code>ST_Intersects(g1, g2)</code> if <code>g1</code> and <code>g2</code> have at least one point in common.</li>
 <li><a href="https://postgis.net/docs/ST_Transform.html"><code>ST_Transform</code></a>: <code>ST_Transform(g, srid)</code> transforms geometry <code>g</code> to a projection defined by the <code>srid</code> and returns the result as a geometry.</li>
@@ -1361,12 +1397,14 @@ RAISE &lt;another level&gt; 'Some message'; -- just a message
 <h1 id="psql"><code>psql</code><a class="headerlink" href="#psql" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.postgresql.org/docs/current/app-psql.html">Documentation</a></p>
 <p><code>psql</code> is a basic command line utitilty for manipulating postgres database. </p>
-<p>To connect, type:</p>
-<pre><code class="language-bash">psql -d &lt;db name&gt; 
-</code></pre>
-<p>Then the SQL commands can be executed. </p>
-<p>Note that no matter what SQL commands you plan to execute, <strong>you have to connect to a specific database</strong>. Ommitting the <code>-d</code> parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.</p>
-<p>To execute command immediatelly without starting interactive session, use the <code>-c</code> parameter:</p>
+<p>To connect, just type <code>psql</code>. By default, it will connect as a user corresponding to the OS user name to the default database for that user. To change it:</p>
+<ul>
+<li><code>-U &lt;user name&gt;</code>: connect as a different user,</li>
+<li><code>-d &lt;db name&gt;</code>: connect to the specified database.</li>
+</ul>
+<p>This way, we connect to the database in <strong>interactive mode</strong>. In this mode, we can write multiple SQL commands using one connection. The commands are only executed when correct ending punctuation (usually a semicolon) is encountered. Otherwise, enter just adds a new line and the command is not executed.</p>
+<p>To quit the interactive mode, use the <code>\q</code> meta-command.</p>
+<p>To <strong>execute command immediatelly</strong> without starting interactive session, use the <code>-c</code> parameter:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;&lt;command&gt;&quot;
 </code></pre>
 <p>Do not forget to quote the command. Also, note that certain SQL commands, such as <code>CREATE DATABASE</code> requires its own session. To combine them with other SQL commands, you can use multiple <code>-c</code> parameters:</p>
@@ -1375,9 +1413,11 @@ RAISE &lt;another level&gt; 'Some message'; -- just a message
 <p>Other useful parameters:</p>
 <ul>
 <li><code>-X</code>: do not read the <code>~/.psqlrc</code> file. This is useful when debuging the <code>psql</code> commands or running scripts, as it disables any customizations.</li>
-<li><code>-U &lt;user name&gt;</code>: connect as a different user. If not specified, the current user is used.</li>
 <li><code>-p</code><port number>: specify the port number.  (default is 5432)</li>
+<li><code>-l</code>: list all databases</li>
 </ul>
+<h2 id="default-database">Default database<a class="headerlink" href="#default-database" title="Permanent link">&para;</a></h2>
+<p>Note that no matter what SQL commands you plan to execute, <strong>you have to connect to a specific database</strong>. Ommitting the <code>-d</code> parameter will not connect you to the server in some admin mode, but instead, it will connect you to the default database, which is usually the database with the same name as the user name. If there is no such database, the connection will fail.</p>
 <h2 id="meta-commands">meta-commands<a class="headerlink" href="#meta-commands" title="Permanent link">&para;</a></h2>
 <p>The <code>psql</code> has its own set of commands, called <em>meta-commands</em>. These commands start with a backslash (<code>\</code>) and can be used inside SQL queries (either interactively, or in the -c argument). Example:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -c &quot;\l+&quot;
@@ -1397,6 +1437,19 @@ RAISE &lt;another level&gt; 'Some message'; -- just a message
     <code>bash
     echo "COPY (SELECT * FROM opendata.public.nodes WHERE area = 13) TO STDOUT WITH CSV HEADER \g 'nodes.csv'" | psql -d opendata</code></li>
 </ul>
+<p>Useful meta-commands:</p>
+<ul>
+<li><code>\d</code>: list all tables and views in the current schema. We can pass a name as an argument to list only the table or view with the given name.</li>
+<li><code>\d+</code>: same as <code>\d</code>, but with additional information.</li>
+<li><code>\q</code>: quit the interactive mode.</li>
+<li><code>\i</code>: execute a script from a file.</li>
+<li><code>\sf &lt;function name&gt;</code>: show the source code of a function.</li>
+</ul>
+<h2 id="executing-sql-files">Executing SQL files<a class="headerlink" href="#executing-sql-files" title="Permanent link">&para;</a></h2>
+<p>In normal mode, we can execute SQL files using the <code>-f</code> parameter:</p>
+<pre><code class="language-bash">psql -d &lt;db name&gt; -f &lt;file name&gt;
+</code></pre>
+<p>In interactive mode, we can execute SQL files using the <code>\i</code> meta-command. Note that <strong>backslash (<code>\</code>) in the file path needs to be escaped or replaced with a forward slash (<code>/</code>)</strong>.</p>
 <h1 id="importing-data">Importing data<a class="headerlink" href="#importing-data" title="Permanent link">&para;</a></h1>
 <p>A simple SQL data (database dump) can be imported using the <code>psql</code> command:</p>
 <pre><code class="language-bash">psql -d &lt;db name&gt; -f &lt;file name&gt;

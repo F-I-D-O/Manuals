@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Conda and Mamba - Manuals</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../../extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Manuals</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Programming</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">C++</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../C%2B%2B/C%20Manual/" class="dropdown-item">C Manual</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/C%2B%2B%20Debugging%20and%20Profiling/" class="dropdown-item">C++ Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/C%2B%2B%20Manual/" class="dropdown-item">C++ Manual</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/C%2B%2B%20Workflow/" class="dropdown-item">C++ Workflow</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/CMake%20Manual/" class="dropdown-item">CMake Manual</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/Google%20Test/" class="dropdown-item">Google Test</a>
+</li>
+            
+<li>
+    <a href="../C%2B%2B/vcpkg%20Manual/" class="dropdown-item">vcpkg Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Cloud computing</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Cloud%20computing/Lmod/" class="dropdown-item">Lmod</a>
+</li>
+            
+<li>
+    <a href="../Cloud%20computing/RCI%20cluster/" class="dropdown-item">RCI cluster</a>
+</li>
+            
+<li>
+    <a href="../Cloud%20computing/Slurm/" class="dropdown-item">Slurm</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Database</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Database/Database%20Workflow/" class="dropdown-item">Database Workflow</a>
+</li>
+            
+<li>
+    <a href="../Database/PostgreSQL%20Debugging%20and%20Profiling/" class="dropdown-item">PostgreSQL Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../Database/PostgreSQL%20Manual/" class="dropdown-item">PostgreSQL Manual</a>
+</li>
+            
+<li>
+    <a href="../Database/SQL%20Manual/" class="dropdown-item">SQL Manual</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Java</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Java/Debugging%20Java/" class="dropdown-item">Debugging Java</a>
+</li>
+            
+<li>
+    <a href="../Java/Jackson/" class="dropdown-item">Jackson</a>
+</li>
+            
+<li>
+    <a href="../Java/Java%20Manual/" class="dropdown-item">Java Manual</a>
+</li>
+            
+<li>
+    <a href="../Java/Java%20Workflow/" class="dropdown-item">Java Workflow</a>
+</li>
+            
+<li>
+    <a href="../Java/Maven/" class="dropdown-item">Maven</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Python</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Python/Matplotlib%20Manual/" class="dropdown-item">Matplotlib Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Pandas%20Manual/" class="dropdown-item">Pandas Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Plotly%20Manual/" class="dropdown-item">Plotly Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Manual/" class="dropdown-item">Python Manual</a>
+</li>
+            
+<li>
+    <a href="../Python/Python%20Workflow/" class="dropdown-item">Python Workflow</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Web</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../Web/CSS%20Manual/" class="dropdown-item">CSS Manual</a>
+</li>
+            
+<li>
+    <a href="../Web/css/" class="dropdown-item">css</a>
+</li>
+            
+<li>
+    <a href="../Web/Google%20API%20and%20Apps%20Script/" class="dropdown-item">Google API and Apps Script</a>
+</li>
+            
+<li>
+    <a href="../Web/htaccess/" class="dropdown-item">htaccess</a>
+</li>
+            
+<li>
+    <a href="../Web/JavaScript/" class="dropdown-item">JavaScript</a>
+</li>
+            
+<li>
+    <a href="../Web/Jekyll/" class="dropdown-item">Jekyll</a>
+</li>
+            
+<li>
+    <a href="../Web/mkdocs/" class="dropdown-item">mkdocs</a>
+</li>
+            
+<li>
+    <a href="../Web/Selenium/" class="dropdown-item">Selenium</a>
+</li>
+    </ul>
+  </li>
+                                    
+<li>
+    <a href="../Common/" class="dropdown-item">Common</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Conda and Mamba</a>
+</li>
+                                    
+<li>
+    <a href="../Git/" class="dropdown-item">Git</a>
+</li>
+                                    
+<li>
+    <a href="../Gurobi/" class="dropdown-item">Gurobi</a>
+</li>
+                                    
+<li>
+    <a href="../HDF/" class="dropdown-item">HDF</a>
+</li>
+                                    
+<li>
+    <a href="../JSON/" class="dropdown-item">JSON</a>
+</li>
+                                    
+<li>
+    <a href="../Native%20Libraries/" class="dropdown-item">Native Libraries</a>
+</li>
+                                    
+<li>
+    <a href="../Neural%20Networks/" class="dropdown-item">Neural Networks</a>
+</li>
+                                    
+<li>
+    <a href="../Perl/" class="dropdown-item">Perl</a>
+</li>
+                                    
+<li>
+    <a href="../Regex/" class="dropdown-item">Regex</a>
+</li>
+                                    
+<li>
+    <a href="../Ruby%20Workflow/" class="dropdown-item">Ruby Workflow</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">LaTeX</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
+    <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
+</li>
+                                    
+<li>
+    <a href="../../LaTeX/LaTeX%20workflow/" class="dropdown-item">LaTeX workflow</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Linux</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Windows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Windows/Comand%20shell/" class="dropdown-item">Comand shell</a>
+</li>
+                                    
+<li>
+    <a href="../../Windows/Excel%20Manual/" class="dropdown-item">Excel Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Windows/PowerPoint/" class="dropdown-item">PowerPoint</a>
+</li>
+                                    
+<li>
+    <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Windows/Windows%20Manual/" class="dropdown-item">Windows Manual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">.cursor</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">rules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Audio & Video</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/FFMpeg/" class="dropdown-item">FFMpeg</a>
+</li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
+</li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">GIS</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/Overpass%20Manual/" class="dropdown-item">Overpass Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/QGIS/" class="dropdown-item">QGIS</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Images</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
+</li>
+                                    
+<li>
+    <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Arxiv/" class="nav-link">Arxiv</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Hardware%20Manual/" class="nav-link">Hardware Manual</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">index</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Markdown/" class="nav-link">Markdown</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Network/" class="nav-link">Network</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Security/" class="nav-link">Security</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../vscode/" class="nav-link">vscode</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../XML/" class="nav-link">XML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../YAML/" class="nav-link">YAML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Zotero/" class="nav-link">Zotero</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Common/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Git/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#installation-and-initialization" class="nav-link">Installation and Initialization</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#windows" class="nav-link">Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#linux" class="nav-link">Linux</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#environments" class="nav-link">Environments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#packages" class="nav-link">Packages</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#other-commands" class="nav-link">Other commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#run-a-single-command" class="nav-link">Run a single command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#mamba" class="nav-link">Mamba</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#conda" class="nav-link">Conda</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>Conda and Mamba are package managers that shares the same history, principles, and partially a CLI syntax. They are:</p>
+<ul>
+<li>multi-platform</li>
+<li>language-agnostic</li>
+<li>non-destructive (unlike linux system package managers, or Windows installers)</li>
+</ul>
+<p>Mamba differs from Conda in that it is faster and more memory-efficient, which can be crucial for large projects.</p>
+<h1 id="installation-and-initialization">Installation and Initialization<a class="headerlink" href="#installation-and-initialization" title="Permanent link">&para;</a></h1>
+<h2 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Download and Install <a href="https://github.com/conda-forge/miniforge">Miniforge</a><ul>
+<li>On windows, the best way to install Conda and Mamba is to install Miniforge. It is basivally an installation of Conda and Mamba together with some initialization scripts set up so that  it uses the conda-forge repository instead of the default conda repository.</li>
+</ul>
+</li>
+<li>Open the Miniforge Terminal from the start menu and run <code>conda init</code>: <ul>
+<li>After the installation, we can ony use conda and mamba commands using a special terminal shortcut installed to start menu. We can enable the use of conda and mamba commands in PowerShell profile by running the <code>conda init</code> in this terminal.</li>
+</ul>
+</li>
+<li>Open new terminal Window with PowerShell and run <code>conda auto_activate false</code><ul>
+<li>This will disable the automatic activation of the conda environment when the terminal is opened. Auto activation in PowerShell is dangerous, as this puts many conda executables early in the PATH, which can override the system executables (e.g., git, cmake)</li>
+</ul>
+</li>
+</ol>
+<h2 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h2>
+<h1 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h1>
+<p>Conda and Mamba use environments similar to virtual environments of pip. By default, these package managers use the <code>base</code> environment, which is pre-created. However, unlike with pip, <strong>mamba discurages the use of the default (base) environment</strong>.</p>
+<p>Typically, commands can be run with the <code>-n &lt;environment name&gt;</code> parameter to specify the environment. If no environment is specified, the active environment is used.</p>
+<p>To <strong>create a new environment</strong>, we use the <code>create</code> command:</p>
+<pre><code class="language-bash">&lt;conda/mamba&gt; create -n &lt;environment name&gt; &lt;package names&gt;
+</code></pre>
+<p>To <strong>remove an environment</strong>, we use the <code>remove</code> command:</p>
+<pre><code class="language-bash">&lt;conda/mamba&gt; remove -n &lt;environment name&gt; --all
+</code></pre>
+<h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
+<p>Packages in Conda and Mamba are similar to packages in pip, but they are not limited to Python. </p>
+<p>To <strong>list the packages in an environment</strong>, we use the <code>list</code> command:</p>
+<pre><code class="language-bash">&lt;conda/mamba&gt; list -n &lt;environment name&gt;
+</code></pre>
+<p>To <strong>install a package into an environment</strong>, we use the <code>install</code> command:</p>
+<pre><code class="language-bash">&lt;conda/mamba&gt; install -n &lt;environment name&gt; &lt;package name&gt;
+</code></pre>
+<p>If the package is not available in the conda-forge but in in PyPI, we can install it from PyPI using the <code>pip</code> command like we used to do normally. If we are in a conda/mamba environment, the conda/mamba pip will be used instead of the system pip. Usually, it is the best to install all the dependencies first to minimize the number of packages that need to be installed from PyPI instead of conda-forge.</p>
+<h1 id="other-commands">Other commands<a class="headerlink" href="#other-commands" title="Permanent link">&para;</a></h1>
+<h2 id="run-a-single-command">Run a single command<a class="headerlink" href="#run-a-single-command" title="Permanent link">&para;</a></h2>
+<p>To run a single command in a conda/mamba environment we use the <code>run</code> command:</p>
+<pre><code class="language-bash">&lt;conda/mamba&gt; run &lt;command&gt; &lt;command arguments&gt;
+</code></pre>
+<p>Some important parameters:</p>
+<ul>
+<li><code>--no-capture-output</code>: By default, the output is buffered. This parameter disables the buffering and prints the output to the console immediately.</li>
+</ul>
+<h1 id="mamba">Mamba<a class="headerlink" href="#mamba" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://mamba.readthedocs.io/en/latest/">Home</a></li>
+<li><a href="https://mamba.readthedocs.io/en/latest/user_guide/mamba.html">User guide</a></li>
+</ul>
+<h1 id="conda">Conda<a class="headerlink" href="#conda" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Conda_(package_manager)">Wiki</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

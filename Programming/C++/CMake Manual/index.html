@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -470,7 +497,7 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#clean-the-source-files" class="nav-link">Clean the source files</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rebuild-or-clean-the-build-binaries" class="nav-link">Rebuild or Clean the build binaries</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -507,6 +534,22 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#built-in-variables" class="nav-link">Built-in variables</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#variables-available-in-both-modes" class="nav-link">Variables available in both modes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#config-mode-variables" class="nav-link">Config mode variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#script-mode-variables" class="nav-link">Script mode variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#unix-installation-directories" class="nav-link">Unix installation directories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#list-variables" class="nav-link">List variables</a>
@@ -641,6 +684,10 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#searching-for-include-directories-with-find_path" class="nav-link">Searching for include directories with find_path</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#versions" class="nav-link">Versions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#low-level-command-find_library" class="nav-link">Low level command: find_library</a>
@@ -699,6 +746,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#fixing-incorrect-linking-configuration-in-upstream-projects" class="nav-link">Fixing incorrect linking configuration in upstream projects</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#handling-runtime-dependencies-in-the-output-directory" class="nav-link">Handling runtime dependencies in the output directory</a>
@@ -721,8 +772,16 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#installing-the-package-configuration-file-and-the-version-file" class="nav-link">Installing the package configuration file and the version file</a>
+            <li class="nav-item" data-bs-level="4"><a href="#the-package-configuration-file-and-the-version-file" class="nav-link">The package configuration file and the version file</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#the-package-configuration-file" class="nav-link">The package configuration file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="5"><a href="#the-version-file" class="nav-link">The version file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="4"><a href="#sanitation-of-the-public-include-directories" class="nav-link">Sanitation of the public include directories</a>
@@ -942,6 +1001,7 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <li><code>-B &lt;build dir&gt;</code> to specify the build directory. By default, the build directory is the current directory.</li>
 <li><code>-LH</code> to see cmake nonadvanced variables together with the description. </li>
 <li><code>-LHA</code> to see also the advanced variables. Note that this prints only cached variables, to print all variables, we have to edit the CmakeLists.txt.</li>
+<li><code>--graphviz=&lt;file name&gt;</code> to generate a graphviz file of the dependencies. Note that only visible CMake dependencies are included</li>
 </ul>
 <h3 id="legacy-arguments">Legacy arguments<a class="headerlink" href="#legacy-arguments" title="Permanent link">&para;</a></h3>
 <ul>
@@ -983,9 +1043,12 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <p>In multi-configuration systems, the <code>-DCMAKE_BUILD_TYPE</code> parameter is ignored, because the build configuration is supposed to be determined when building the code (i.e., same build scripts for debug and for release). Therefore, we omit it, and instead specify the <code>--config</code> parameter when building the code:</p>
 <pre><code class="language-bash">cmake --build . --config Release
 </code></pre>
-<h2 id="clean-the-source-files">Clean the source files<a class="headerlink" href="#clean-the-source-files" title="Permanent link">&para;</a></h2>
-<p>Run:</p>
-<pre><code>cmake --build . --target clean
+<h2 id="rebuild-or-clean-the-build-binaries">Rebuild or Clean the build binaries<a class="headerlink" href="#rebuild-or-clean-the-build-binaries" title="Permanent link">&para;</a></h2>
+<p>To rebuild, we use the <code>--clean-first</code> argument:</p>
+<pre><code class="language-bash">cmake --build . --clean-first
+</code></pre>
+<p>If we want just to clean the build binaries without building, we use the <code>clean</code> target:</p>
+<pre><code class="language-bash">cmake --build . --target clean
 </code></pre>
 <h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
 <p>To be able to install the project, it needs to be configured to do so. For this, check the <a href="#installation-configuration">installation configuration</a>.</p>
@@ -1052,26 +1115,41 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 </code></pre>
 <h3 id="built-in-variables">Built-in variables<a class="headerlink" href="#built-in-variables" title="Permanent link">&para;</a></h3>
 <p><a href="https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html">documentation</a></p>
-<p>There are some variable generated by default by CMake when run in the <em>config</em> mode. The most usefule are:</p>
+<p>There are some variable generated by default by CMake. Howver, these differ between the <em>script</em> and <em>config</em> modes. </p>
+<h4 id="variables-available-in-both-modes">Variables available in both modes<a class="headerlink" href="#variables-available-in-both-modes" title="Permanent link">&para;</a></h4>
 <ul>
-<li><code>CMAKE_CURRENT_SOURCE_DIR</code>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
-<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_BINARY_DIR.html"><code>CMAKE_CURRENT_BINARY_DIR</code></a>: the directory where the build scripts are located and where the build process is executed. For some generators, this is also the directory where the binaries are stored.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html"><code>CMAKE_SOURCE_DIR</code></a>: the directory where the top level <code>CMakeLists.txt</code> file is located. This variable is rarely the right one, because our project may be used as a subproject in another project.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html"><code>CMAKE_CURRENT_SOURCE_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html"><code>CMAKE_BINARY_DIR</code></a>: the top level build directory. Most of the time, it is appropriate to use <code>CMAKE_CURRENT_BINARY_DIR</code> instead of this variable.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_BINARY_DIR.html"><code>CMAKE_CURRENT_BINARY_DIR</code></a>: the directory where the build scripts for the current target are located and where the build process is executed. For some generators, this is also the directory where the binaries are stored.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
+</ul>
+<h4 id="config-mode-variables">Config mode variables<a class="headerlink" href="#config-mode-variables" title="Permanent link">&para;</a></h4>
+<ul>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_LIST_DIR.html"><code>CMAKE_CURRENT_LIST_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_SOURCE_DIR.html"><code>PROJECT_SOURCE_DIR</code></a>: the nearest directory up in the directory tree where the <code>CMakeLists.txt</code> with the <code>project</code> command is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_ID.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_ID</code></a>: the compiler ID for the language <code>&lt;LANG&gt;</code>.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_VERSION.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_VERSION</code></a>: the compiler version for the language <code>&lt;LANG&gt;</code>.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_PROJECT_NAME.html"><code>CMAKE_PROJECT_NAME</code></a>: the name of the top level project. Most of the time, it is appropriate to use <code>PROJECT_NAME</code> instead of this variable.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_NAME.html"><code>PROJECT_NAME</code></a>: the name of the project.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/MSVC.html"><code>MSVC</code></a>: set to <code>TRUE</code> if the compiler is MSVC.</li>
 </ul>
-<p>In the <em>script</em> mode, there are fewer variables available. To get <strong>the current working directory</strong>, we can use any of the following variables:</p>
-<ul>
-<li><code>CMAKE_SOURCE_DIR</code></li>
-<li><code>CMAKE_CURRENT_SOURCE_DIR</code></li>
-<li><code>CMAKE_BINARY_DIR</code></li>
-<li><code>CMAKE_CURRENT_BINARY_DIR</code></li>
-</ul>
-<p>Other useful variables for the script mode are:</p>
+<h4 id="script-mode-variables">Script mode variables<a class="headerlink" href="#script-mode-variables" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>CMAKE_CURRENT_LIST_DIR</code>: the directory where the currently processed script is located</li>
 </ul>
+<h4 id="unix-installation-directories">Unix installation directories<a class="headerlink" href="#unix-installation-directories" title="Permanent link">&para;</a></h4>
 <p>There are also variables for installation directories typical for Unix systems. Touse them, we have to include the <a href="https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html"><code>GNUInstallDirs</code> module</a>. The variables have two formats:</p>
 <ul>
 <li><code>CMAKE_INSTALL_&lt;dir&gt;</code>: the directory relative to the installation prefix. These variables have to be used in the <code>install</code> command and other commands that use the installation prefix.</li>
@@ -1330,7 +1408,7 @@ endfunction()
 <p>The typical content of the top section is:</p>
 <ul>
 <li>minimum cmake version: <code>cmake_minimum_required(VERSION &lt;version&gt;)</code></li>
-<li>project name and version: <code>project(&lt;name&gt; VERSION &lt;version&gt;)</code></li>
+<li>project name and version: <code>project(&lt;name&gt; [VERSION &lt;version&gt;])</code></li>
 <li>language specification: <code>enable_language(&lt;language&gt;)</code></li>
 <li>cmake variables setup, e.g.: <code>set(CMAKE_CXX_STANDARD &lt;version&gt;)</code></li>
 <li>compile options: <code>add_compile_options(&lt;option 1&gt; &lt;option 2&gt; ...)</code></li>
@@ -1412,7 +1490,7 @@ endif()
 <li><em>module mode</em>, which uses the <code>Find&lt;library name&gt;</code> cmake scripts, typically provided not by the library developers, but somebody else who wants the libraries to be accessible by CMake. All modules provided by CMake itself are listed in the <a href="https://cmake.org/cmake/help/latest/manual/cmake-modules.7.html#find-modules">documentation</a>.</li>
 <li><em>config mode</em> which uses CMake scripts with name <code>&lt;PackageName&gt;Config.cmake</code> or <code>&lt;lowercasePackageName&gt;-config.cmake</code> provided by the developers of the package. They are typically distributed with the source code and downloaded by the package manager.</li>
 </ul>
-<p>To decide the operation mode, the <code>find_package</code> command uses the following logic:</p>
+<p>To find out which of the operation modes is used, the <code>find_package</code> command uses the following logic:</p>
 <ul>
 <li>if the <code>MODULE</code> parameter is used, the module mode is used</li>
 <li>if the <code>CONFIG</code> or <code>No_MODULE</code> parameter is used, the config mode is used</li>
@@ -1483,6 +1561,13 @@ endif()
 <ul>
 <li><code>REQUIRED</code>: if the path is not found, the configuration process is stopped. Similar to the <code>REQUIRED</code> parameter of the <code>find_package</code> command.</li>
 </ul>
+<h4 id="versions">Versions<a class="headerlink" href="#versions" title="Permanent link">&para;</a></h4>
+<p>We may specify the version of package by using the <code>VERSION</code> parameter. The syntax is:</p>
+<ul>
+<li><code>VERSION &lt;minimum version&gt;</code></li>
+<li><code>VERSION &lt;minimum version&gt;...&lt;maximum version&gt;</code></li>
+</ul>
+<p>The version here is the cmake version used in the cmake version file (i.e., <code>&lt;package name&gt;-config-version.cmake</code> or <code>&lt;package name&gt;ConfigVersion.cmake</code>) of the package. Typically, this is the project version of the package, specified in the <code>project</code> command.</p>
 <h3 id="low-level-command-find_library">Low level command: <code>find_library</code><a class="headerlink" href="#low-level-command-find_library" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/find_library.html"><code>find_library</code></a> command is used to populate a variable with a result of a specific file search optimized for libraries. </p>
 <p>The search algorithm works as follows:</p>
@@ -1608,7 +1693,7 @@ find_package_handle_standard_args(MOSEK
 endif()
 </code></pre>
 <h3 id="downolad-dependencies-during-configuration-and-build-them-from-source">Downolad dependencies during configuration and build them from source<a class="headerlink" href="#downolad-dependencies-during-configuration-and-build-them-from-source" title="Permanent link">&para;</a></h3>
-<p>To download and build dependencies during the configuration, we can use the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module. This way, the sources are downloaded at the configuration step, and built during the build step. Note that because of this, the usage of these dpendencies is limited, we cannot, for example, run the dependency tools at configuration time. For details, see the <a href="https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#fetchcontent-and-find-package-integration">dependency management documentation</a>.</p>
+<p>To download and build dependencies during the configuration, we can use the <a href="https://cmake.org/cmake/help/latest/module/FetchContent.html"><code>FetchContent</code></a> module. This way, the sources are downloaded at the configuration step, and built during the build step. Note that because of this, the usage of these dependencies is limited, we cannot, for example, run the dependency tools at configuration time. For details, see the <a href="https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#fetchcontent-and-find-package-integration">dependency management documentation</a>.</p>
 <p>The usual workflow is:</p>
 <ol>
 <li>Download the dependency using the <code>FetchContent_Declare</code> command
@@ -1618,7 +1703,11 @@ endif()
         &lt;SPECIFICATION&gt;
         DOWNLOAD_EXTRACT_TIMESTAMP ON
     )</code><ul>
-<li>The specification can be either a URL or a git repository.</li>
+<li>The <code>&lt;SPECIFICATION&gt;</code> can be:<ul>
+<li><code>URL &lt;url&gt;</code> with and optional <code>HASH &lt;hash&gt;</code></li>
+<li><code>GIT &lt;git repository&gt;</code> with an optional <code>TAG &lt;tag&gt;</code> or <code>BRANCH &lt;branch&gt;</code> or <code>COMMIT &lt;commit&gt;</code></li>
+</ul>
+</li>
 <li>The <code>DOWNLOAD_EXTRACT_TIMESTAMP</code> option ensures that the timestamp of the downloaded files is preserved. This is useful when the dependency is downloaded multiple times, and we want to avoid unnecessary rebuilds.
 Note that <strong>this option shoud be placed before the URL option</strong>. This is because it was introduced in CMake 3.21, so if it is placed after the URL and the CMake version is lower than 3.21, the <code>FetchContent_Declare</code> command will fail as the option will be considered a part of the URL.</li>
 </ul>
@@ -1742,6 +1831,11 @@ target_link_libraries(&lt;target name&gt; &lt;library 2&gt;)
 <pre><code class="language-cmake">get_target_property(LIB_PATH &lt;library name&gt; IMPORTED_LOCATION)
 message(STATUS &quot;LIB_PATH=${LIB_PATH}&quot;)
 </code></pre>
+<h3 id="fixing-incorrect-linking-configuration-in-upstream-projects">Fixing incorrect linking configuration in upstream projects<a class="headerlink" href="#fixing-incorrect-linking-configuration-in-upstream-projects" title="Permanent link">&para;</a></h3>
+<p>Sometimes, an upstream project may incorrectly link a library as a private dependency, despite the fact that it is needed at runtime by the downstream project. We can fix it by set up the linking in our project:</p>
+<pre><code class="language-cmake">target_link_libraries(&lt;upstream target&gt; INTERFACE &lt;library name&gt;)
+</code></pre>
+<p>Of course, the <code>&lt;library name&gt;</code> has to be known, i.e., we may need to also add the appropriate <code>find_package</code> command to our project.</p>
 <h2 id="handling-runtime-dependencies-in-the-output-directory">Handling runtime dependencies in the output directory<a class="headerlink" href="#handling-runtime-dependencies-in-the-output-directory" title="Permanent link">&para;</a></h2>
 <p>When linking dynamically (e.g., by using dynamic toochain, which is default on Windows), the runtime dependencies must be available at runtime, otherwise the program will not run. On Windows, this is usually solved by copying the runtime dependencies to the output directory. There are several ways how to do that.</p>
 <ul>
@@ -1831,10 +1925,10 @@ endif()
 </ul>
 </li>
 </ol>
-<h4 id="installing-the-package-configuration-file-and-the-version-file">Installing the package configuration file and the version file<a class="headerlink" href="#installing-the-package-configuration-file-and-the-version-file" title="Permanent link">&para;</a></h4>
+<h4 id="the-package-configuration-file-and-the-version-file">The package configuration file and the version file<a class="headerlink" href="#the-package-configuration-file-and-the-version-file" title="Permanent link">&para;</a></h4>
 <p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-configuration-file">official guide - package config file</a></p>
-<p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-version-file">official guide - version file</a></p>
 <p>In order for these files to be portable, they should be generated. The appropriate functions for this are in the <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html">`CMakePackageConfigHelpers module</a>, which has to be included. </p>
+<h5 id="the-package-configuration-file">The package configuration file<a class="headerlink" href="#the-package-configuration-file" title="Permanent link">&para;</a></h5>
 <p>To generate the package configuration file:</p>
 <ol>
 <li>
@@ -1855,7 +1949,9 @@ configure_package_config_file(
 - here, the &lt;cmake files installation path&gt; is the same as the</code><destination><code>parameter in the</code>install(EXPORT...` command.</p>
 </li>
 </ol>
-<p>The version file is generated using the <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html#write-basic-package-version-file"><code>write_basic_package_version_file</code></a> command. The syntax is:</p>
+<h5 id="the-version-file">The version file<a class="headerlink" href="#the-version-file" title="Permanent link">&para;</a></h5>
+<p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html#creating-a-package-version-file">official guide - version file</a></p>
+<p>The version file is generated using the <a href="https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html#generating-a-package-version-file"><code>write_basic_package_version_file</code></a> command. The syntax is:</p>
 <pre><code class="language-cmake">write_basic_package_version_file(
     &lt;version file build path&gt;
     VERSION &lt;version&gt;
@@ -1980,12 +2076,16 @@ FetchContent_MakeAvailable(googletest)
 </li>
 </ul>
 <h2 id="multiple-cmakeliststxt-files-in-subdirectories">Multiple <code>CMakeLists.txt</code> files in subdirectories<a class="headerlink" href="#multiple-cmakeliststxt-files-in-subdirectories" title="Permanent link">&para;</a></h2>
-<p>The configuration can be modularized by splitting the <code>CMakeLists.txt</code> file into multiple files, each in a separate directory. Then, these files can be executed using the <a href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code></a> command in the main <code>CMake_lists.txt</code> file or one of the <code>CMakeLists.txt</code> files already added by the <code>add_subdirectory</code> command. This has several advantages:</p>
+<p>The configuration can be modularized by splitting the <code>CMakeLists.txt</code> file into multiple files, each in a separate directory. Then, these files can be executed using the <a href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code></a> command in the main <code>CMake_lists.txt</code> file or one of the <code>CMakeLists.txt</code> files already added by the <code>add_subdirectory</code> command. This has several <strong>advantages</strong>:</p>
 <ul>
 <li>the configuration is more organized, it is easier to find the relevant part of the configuration or reuse the configuration in other projects</li>
 <li>the configuration is more configurable, i.e., we can turn on or off the configuration of a specific part of the project.</li>
 </ul>
-<p>The order of execution follows the order of the <code>add_subdirectory</code> commands, i.e., the processing of the <code>CMakeLists.txt</code> containing the <code>add_subdirectory</code> command is paused until the added <code>CMakeLists.txt</code> file is processed.</p>
+<p>The <strong>order of execution</strong> follows the order of the <code>add_subdirectory</code> commands, i.e., the processing of the <code>CMakeLists.txt</code> containing the <code>add_subdirectory</code> command is paused until the added <code>CMakeLists.txt</code> file is processed.</p>
+<p>The syntax of the <code>add_subdirectory</code> command is:</p>
+<pre><code class="language-cmake">add_subdirectory(&lt;source dir&gt; [&lt;binary dir&gt;])
+</code></pre>
+<p>By default, the <code>&lt;binary dir&gt;</code> is the same as the <code>&lt;source dir&gt;</code>. </p>
 <h3 id="variables-scope">Variables scope<a class="headerlink" href="#variables-scope" title="Permanent link">&para;</a></h3>
 <p>The variable scope for multiple <code>CMakeLists.txt</code> files is hierarchical. This means that the variables defined in the parent <code>CMakeLists.txt</code> file are visible in the child <code>CMakeLists.txt</code> file, but not vice versa.</p>
 <h2 id="decide-based-on-the-build-configuration">Decide based on the build configuration<a class="headerlink" href="#decide-based-on-the-build-configuration" title="Permanent link">&para;</a></h2>

@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
@@ -438,6 +465,36 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#model-parameters" class="nav-link">Model Parameters</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#cuts" class="nav-link">Cuts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#precrush" class="nav-link">PreCrush</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#presolve" class="nav-link">Presolve</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#undersanding-gurobi-logs" class="nav-link">Undersanding Gurobi Logs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#solution-process-info" class="nav-link">Solution Process Info</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#lp-log" class="nav-link">LP Log</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#gurobi-in-python" class="nav-link">Gurobi in Python</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#tupledict" class="nav-link">Tupledict</a>
@@ -492,6 +549,105 @@
 <p>It is also possible to run multiple problems in parallel (<a href="https://support.gurobi.com/hc/en-us/community/posts/360055837711-Solving-different-models-in-parallel-C-OpenMP-">source</a>), but each problem should be run in its own gurobi environment. Also, each environment should be configured to use only a single thread (e.g., in C++: <code>env.set(GRB_IntParam_Threads, 1);</code> ). </p>
 <p>The problem with this approach is that the CPU is usually not the bottleneck of the computation, the bottleneck is the memory (<a href="https://groups.google.com/g/gurobi/c/JcUxe0YibZQ">source</a>). Therefore, solving multiple problems in parallel does not guarantee any speed up, it could be actually slower.</p>
 <p>The performance could be most likely improved when running the problems in parallel on multiple machines (not multiple cores of the same machine). <a href="https://support.gurobi.com/hc/en-us/community/posts/360077591892-Solving-thousands-of-QP-parallelly-on-a-machine-">Some advised to use MPI</a> for that.</p>
+<h1 id="model-parameters">Model Parameters<a class="headerlink" href="#model-parameters" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html">Reference</a></p>
+<p>In some (but not many) cases, we can improve the solution time by tuning the model parameters. The most important parameters are discussed here, for others, see the reference.</p>
+<h2 id="cuts">Cuts<a class="headerlink" href="#cuts" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#cuts">Reference</a></li>
+</ul>
+<p>Cuts parameter affects the cutting plane generation.</p>
+<p>Possible values:</p>
+<ul>
+<li><code>-1</code>: automatic cuts (default)</li>
+<li><code>0</code>: no cuts are generated</li>
+<li><code>1</code>: moderate cut generation</li>
+<li><code>2</code>: aggressive cut generation</li>
+<li><code>3</code>: very aggressive cut generation</li>
+</ul>
+<p>Thgis parameter can be overridden for a specific cut type through other parameters (e.g., <code>CliqueCuts</code> parameter).</p>
+<h2 id="precrush">PreCrush<a class="headerlink" href="#precrush" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#precrush">Reference</a></li>
+</ul>
+<p>PreCrush parameter affects the presolve behavior (see <a href="#presolve">Presolve</a>).</p>
+<ul>
+<li><code>0</code>: presolve creates models as reduced as possible (default)</li>
+<li><code>1</code>: presolve preserve mapping between original and reduced model constraints. This setting is only useful if we want to add user-defined cuts.</li>
+</ul>
+<h2 id="presolve">Presolve<a class="headerlink" href="#presolve" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#presolve">Reference</a></li>
+<li><a href="https://support.gurobi.com/hc/en-us/articles/360024738352-How-does-presolve-work">Explanation</a></li>
+</ul>
+<p>The presolve heuristic works the following way:</p>
+<ol>
+<li>A smaller model is created from the original model together with a mapping of the original variables to the smaller model variables.<ul>
+<li>this model is infeasible if and only if the original model is infeasible</li>
+<li>if it has an optimal solution, it is the same as the optimal solution of the original model if the mapping is followed, and the solution values are the same</li>
+</ul>
+</li>
+<li>The smaller model is solved.</li>
+<li>The solution of the smaller model is mapped back to the original model.</li>
+</ol>
+<p>Possible parameters values:</p>
+<ul>
+<li><code>-1</code>: automatic presolve (default)</li>
+<li><code>0</code>: presolve is disabled</li>
+<li><code>1</code>: conservative presolve</li>
+<li><code>2</code>: aggressive presolve</li>
+</ul>
+<h1 id="undersanding-gurobi-logs">Undersanding Gurobi Logs<a class="headerlink" href="#undersanding-gurobi-logs" title="Permanent link">&para;</a></h1>
+<p>Typically, the Gurobi Solver logs in the following order:</p>
+<ol>
+<li>Header message<ol>
+<li>logging start message</li>
+<li>Output log path, if configured</li>
+<li>Gurobi version</li>
+<li>CPU info</li>
+</ol>
+</li>
+<li>Model info</li>
+<li>Solution process info (depends on the model type, and configuration)</li>
+<li>Solution info</li>
+</ol>
+<h2 id="solution-process-info">Solution Process Info<a class="headerlink" href="#solution-process-info" title="Permanent link">&para;</a></h2>
+<p>The solution process info depends on the model type, and configuration. For a typical MIP model, the process is:</p>
+<ol>
+<li>Heuristic solution</li>
+<li>Presolve</li>
+<li>LP relaxation log</li>
+<li>Integer solution log</li>
+</ol>
+<h3 id="lp-log">LP Log<a class="headerlink" href="#lp-log" title="Permanent link">&para;</a></h3>
+<p>Gurobi uses the <a href="https://en.wikipedia.org/wiki/Interior-point_method">Barrier method</a> for solving LPs. The log in order contains (in order):</p>
+<ol>
+<li><code>Root barrier log...</code></li>
+<li>Ordering</li>
+<li>Barrier statistics</li>
+<li>Barrier iteration log</li>
+</ol>
+<p>The barrier iteration log has the following columns:</p>
+<ul>
+<li><code>Iter</code>: iteration number</li>
+<li><code>Objective</code>: <ul>
+<li><code>Primal</code>: Objective value of the primal</li>
+<li><code>Dual</code>: Objective value of the dual</li>
+</ul>
+</li>
+<li><code>Residual</code>: <ul>
+<li><code>Primal</code>: Scaled measure of the primal feasibility error</li>
+<li><code>Dual</code>: Scaled measure of the dual feasibility error</li>
+</ul>
+</li>
+<li><code>Compl</code>: Scaled complementarity measure</li>
+<li><code>Time</code>: Cumulative time</li>
+</ul>
+<p>Under default setup, Gurobi typically stops iterating when values are as follows:</p>
+<ul>
+<li>both residuals are less than <code>1e-8</code></li>
+<li>the <code>Compl</code> value is less than <code>1e-10</code></li>
+</ul>
 <h1 id="gurobi-in-python">Gurobi in Python<a class="headerlink" href="#gurobi-in-python" title="Permanent link">&para;</a></h1>
 <ul>
 <li><a href="https://support.gurobi.com/hc/en-us/articles/17278438215313-Tutorial-Getting-Started-with-the-Gurobi-Python-API">Official Tutorial</a></li>

@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
@@ -731,6 +758,10 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stdany-storing-any-type-of-value" class="nav-link">std::any: storing any type of value</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -753,6 +784,14 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ternary-operator" class="nav-link">Ternary Operator</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#typeid" class="nav-link">typeid</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -760,6 +799,27 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#switch-statement" class="nav-link">Switch Statement</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#classes-and-structs" class="nav-link">Classes and structs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#static-members" class="nav-link">Static Members</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#class-constants" class="nav-link">Class Constants</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#friend-declaration" class="nav-link">Friend declaration</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#template-friends" class="nav-link">Template friends</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -821,23 +881,6 @@
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#deleting-functions" class="nav-link">Deleting functions</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#classes-and-structs" class="nav-link">Classes and structs</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#class-constants" class="nav-link">Class Constants</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#friend-declaration" class="nav-link">Friend declaration</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#template-friends" class="nav-link">Template friends</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
               </ul>
@@ -1002,6 +1045,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#getting-a-temporary-folder" class="nav-link">Getting a temporary folder</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#manual-text-io" class="nav-link">Manual text IO</a>
@@ -1122,8 +1169,16 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#template-parameters" class="nav-link">Template Parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#organization-rules" class="nav-link">Organization rules</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#templates-and-namespaces" class="nav-link">Templates and Namespaces</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#providing-template-arguments" class="nav-link">Providing Template Arguments</a>
@@ -1166,8 +1221,24 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#templates-and-namespaces" class="nav-link">Templates and Namespaces</a>
+            <li class="nav-item" data-bs-level="2"><a href="#type-erasure" class="nav-link">Type Erasure</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#template-parameter-packs" class="nav-link">Template parameter packs</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#syntax_1" class="nav-link">Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#parameter-pack-expansion" class="nav-link">Parameter Pack Expansion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#fold-expressions" class="nav-link">Fold Expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#using-complicated-types-as-template-arguments" class="nav-link">Using Complicated Types as Template Arguments</a>
@@ -1568,6 +1639,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#attributes" class="nav-link">Attributes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#resources_1" class="nav-link">Resources</a>
               <ul class="nav flex-column">
               </ul>
@@ -1651,6 +1727,15 @@
             </li>
               </ul>
             </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#design-patterns" class="nav-link">Design Patterns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visitor-pattern" class="nav-link">Visitor Pattern</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -2568,8 +2653,6 @@ std::visit([](auto&amp;&amp; arg) { std::cout &lt;&lt; arg &lt;&lt; std::endl; }
 <p>Example:</p>
 <pre><code class="language-cpp">std::bitset&lt;8&gt; b = 0b10101010;
 std::cout &lt;&lt; b.to_ulong() &lt;&lt; std::endl; // prints 170
-
-
 </code></pre>
 <h3 id="stdbitset"><code>std::bitset</code><a class="headerlink" href="#stdbitset" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.cppreference.com/w/cpp/utility/bitset">cppreference</a></p>
@@ -2587,6 +2670,9 @@ std::cout &lt;&lt; b.to_ulong() &lt;&lt; std::endl; // prints 170
 </ul>
 <p>Both methods convert the whole bitset to an integer value of the corresponding type. If the bitset is larger than the integer type, an exception is thrown.</p>
 <p><strong>There is no function for reading a specified sequence of bits</strong>. One way to overcome this is to read the whole bitset and apply a series of bit operations to get the desired bits (same as we would do with built-in arithmetic types). Another, slower option is to read the bits one by one using for loop.</p>
+<h2 id="stdany-storing-any-type-of-value"><code>std::any</code>: storing any type of value<a class="headerlink" href="#stdany-storing-any-type-of-value" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/utility/any">cppreference</a></p>
+<p><code>std::any</code> is a class template that can store any type of value. It is a better alternative to traditional usage of void pointers. If the possible types are known at compile time, we should use <code>std::variant</code> instead.</p>
 <h1 id="value-categories">Value Categories<a class="headerlink" href="#value-categories" title="Permanent link">&para;</a></h1>
 <p>[cppreferencepreerecege/value_category).
 In many contexts, the value category of an expression is important in deciding whether the code compiles or not, or which function or template overload is chosen. Therefore, it is usefull to be able to read value categories.</p>
@@ -2644,6 +2730,15 @@ In many contexts, the value category of an expression is important in deciding w
 <p>The comparability can be checked with a <code>std::equality_comparable&lt;T&gt;</code> concept:</p>
 <pre><code class="language-cpp">staic_assert(std::equality_comparable&lt;My_class&gt;);
 </code></pre>
+<h2 id="ternary-operator">Ternary Operator<a class="headerlink" href="#ternary-operator" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/operator_other#Ternary_operator">cppreference</a></p>
+<p>Ternary operator in C++ has the classical syntax of </p>
+<pre><code>&lt;condition&gt; ? &lt;true_expression&gt; : &lt;false_expression&gt;;
+</code></pre>
+<p>Note that <strong>both the true and false expressions must evaluate to the same type</strong>. Therefore, if we use polymorphism, we need to use manual type casting to the base type for at least one of the expressions (instead of relying on the implicit conversion when assigning to the result variable).</p>
+<h2 id="typeid"><code>typeid</code><a class="headerlink" href="#typeid" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://en.cppreference.com/w/cpp/language/typeid"><code>typeid</code></a> operator returns a <a href="https://en.cppreference.com/w/cpp/types/type_info"><code>std::type_info</code></a> object that contains information about the type of the expression.
+Typically, we store the <code>type_info</code> in a <a href="https://en.cppreference.com/w/cpp/types/type_index"><code>std::type_index</code></a> wrapper.</p>
 <h1 id="control-structures">Control Structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h1>
 <p>C++ supports the control structures known from other languages like Java, Python, or C#. Here, we focus on the specifics of C++.</p>
 <h2 id="switch-statement">Switch Statement<a class="headerlink" href="#switch-statement" title="Permanent link">&para;</a></h2>
@@ -2674,6 +2769,58 @@ In many contexts, the value category of an expression is important in deciding w
     default:{
         // code
     }
+}
+</code></pre>
+<h1 id="classes-and-structs">Classes and structs<a class="headerlink" href="#classes-and-structs" title="Permanent link">&para;</a></h1>
+<p>The only difference between a <code>class</code> and a <code>struct</code> is that in class, all 
+members are private by default.</p>
+<h2 id="static-members">Static Members<a class="headerlink" href="#static-members" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/static.html">cppreference</a></p>
+<p>Inside a class, the keyword <code>static</code> marks members that are not bound to any specific instance of the class, but to the class itself.</p>
+<p>They are declared as with the keyword <code>static</code>, but defined without it. </p>
+<p>To use a static member, we use the syntax <code>&lt;class_name&gt;::&lt;member_name&gt;</code>.</p>
+<h3 id="class-constants">Class Constants<a class="headerlink" href="#class-constants" title="Permanent link">&para;</a></h3>
+<p>Class constants are static members that are defined as constants. They can be defined in two ways:</p>
+<ul>
+<li><code>static constexpr</code> member variable if the constant type supports <code>constexpr</code> specifier, or</li>
+<li><code>static const</code> member variable </li>
+</ul>
+<p>In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:</p>
+<pre><code class="language-cpp">// in the header file
+class My_class{
+    static const int a;
+}
+
+// in the cpp file
+const int My_class::a = 5;
+</code></pre>
+<h2 id="friend-declaration">Friend declaration<a class="headerlink" href="#friend-declaration" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreferececom/friend">cppreference</a></p>
+<p>Sometimes, we need to provide an access to private members of a class to some other classes. In java, for example, we can put both classes to the same package and set the members as package private (no specifier). In C++, there is an even stronger concept of friend classes.</p>
+<p>We put a <code>friend</code> declaration to the body of a class whose <em>private</em> members should be accessible from some other class. The declaratiton can look as follows:</p>
+<pre><code class="language-cpp">Class To_be_accesssed {
+    friend Has_access;
+}
+</code></pre>
+<p>Now the <code>Has_access</code> class has access to the <code>To_be_accesssed</code>'s private members.</p>
+<p>Note that the <strong>friend relation is not transitive, nor symetric, and it is not inherited.</strong></p>
+<h3 id="template-friends">Template friends<a class="headerlink" href="#template-friends" title="Permanent link">&para;</a></h3>
+<p>If we want a template to be a friend, we can modify the code above:</p>
+<pre><code class="language-cpp">class To_be_accesssed {
+    template&lt;class T&gt;
+    friend class Has_access;
+}
+</code></pre>
+<p>Now every <code>Has_access&lt;T&gt;</code> is a friend of <code>To_be_accesssed</code>. Note thet we need to use keyword <code>class</code> next to <code>friend</code>.</p>
+<p>We can also use only a template spetialization: </p>
+<pre><code class="language-cpp">class To_be_accesssed {
+    friend class Has_access&lt;int&gt;;
+}
+</code></pre>
+<p>or we can bound the allowed types of two templates togehter if both <code>Has_access</code> and of <code>To_be_accesssed</code> are templates:</p>
+<pre><code class="language-cpp">template&lt;class T&gt;
+class To_be_accesssed {
+    friend class Has_access&lt;T&gt;;
 }
 </code></pre>
 <h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
@@ -2846,53 +2993,6 @@ Consequently, most of the times, we can just return the local variable and let t
     }
     // we do not want to print doubles even they can be implicitly converted to int
     print_integer(double a) = delete; 
-}
-</code></pre>
-<h1 id="classes-and-structs">Classes and structs<a class="headerlink" href="#classes-and-structs" title="Permanent link">&para;</a></h1>
-<p>The only difference between a <code>class</code> and a <code>struct</code> is that in class, all 
-members are private by default.</p>
-<h2 id="class-constants">Class Constants<a class="headerlink" href="#class-constants" title="Permanent link">&para;</a></h2>
-<p>Class constants can be defined in two ways:</p>
-<ul>
-<li><code>static constexpr</code> member variable if the constant type supports <code>constexpr</code> specifier, or</li>
-<li><code>static const</code> member variable </li>
-</ul>
-<p>In the second case, we have to split the declaration and definition of the variable to avoid multiple definitions:</p>
-<pre><code class="language-cpp">// in the header file
-class My_class{
-    static const int a;
-}
-
-// in the cpp file
-const int My_class::a = 5;
-</code></pre>
-<h2 id="friend-declaration">Friend declaration<a class="headerlink" href="#friend-declaration" title="Permanent link">&para;</a></h2>
-<p><a href="https://en.cppreferececom/friend">cppreference</a></p>
-<p>Sometimes, we need to provide an access to privat e members of a class to some other classes. In java, for example, we can put both classes to the same package and set the members as package private (no specifier). In C++, there is an even stronger concept of friend classes.</p>
-<p>We put a <code>friend</code> declaration to the body of a class whose <em>private</em> members should be accessible from some other class. The declaratiton can look as follows:</p>
-<pre><code class="language-cpp">Class To_be_accesssed {
-    friend Has_access;
-}
-</code></pre>
-<p>Now the <code>Has_access</code> class has access to the <code>To_be_accesssed</code>'s private members.</p>
-<p>Note that the <strong>friend relation is not transitive, nor symetric, and it is not inherited.</strong></p>
-<h3 id="template-friends">Template friends<a class="headerlink" href="#template-friends" title="Permanent link">&para;</a></h3>
-<p>If we want a template to be a friend, we can modify the code above:</p>
-<pre><code class="language-cpp">class To_be_accesssed {
-    template&lt;class T&gt;
-    friend class Has_access;
-}
-</code></pre>
-<p>Now every <code>Has_access&lt;T&gt;</code> is a friend of <code>To_be_accesssed</code>. Note thet we need to use keyword <code>class</code> next to <code>friend</code>.</p>
-<p>We can also use only a template spetialization: </p>
-<pre><code class="language-cpp">class To_be_accesssed {
-    friend class Has_access&lt;int&gt;;
-}
-</code></pre>
-<p>or we can bound the allowed types of two templates togehter if both <code>Has_access</code> and of <code>To_be_accesssed</code> are templates:</p>
-<pre><code class="language-cpp">template&lt;class T&gt;
-class To_be_accesssed {
-    friend class Has_access&lt;T&gt;;
 }
 </code></pre>
 <h1 id="initialization-and-assignment">Initialization and Assignment<a class="headerlink" href="#initialization-and-assignment" title="Permanent link">&para;</a></h1>
@@ -3343,6 +3443,8 @@ std::filesystem::copy(&quot;C:/temp/data&quot;, &quot;c:/data/new&quot;, options
 <li><a href="https://en.cppreference.com/w/cpp/filesystem/is_regular_file"><code>std::filesystem::is_regular_file(&lt;path&gt;)</code></a></li>
 <li><a href="https://en.cppreference.com/w/cpp/filesystem/is_empty"><code>std::filesystem::is_empty(&lt;path&gt;)</code></a></li>
 </ul>
+<h3 id="getting-a-temporary-folder">Getting a temporary folder<a class="headerlink" href="#getting-a-temporary-folder" title="Permanent link">&para;</a></h3>
+<p>To get a temporary folder, we can use the <a href="https://en.cppreference.com/w/cpp/filesystem/temp_directory_path"><code>std::filesystem::temp_directory_path</code></a> function.</p>
 <h2 id="manual-text-io">Manual text IO<a class="headerlink" href="#manual-text-io" title="Permanent link">&para;</a></h2>
 <h3 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
 <p>For input, we can use <a href="https://en.cppreference.com/w/cpp/io/basic_ifstream"><code>std::ifstream</code></a>:</p>
@@ -3687,12 +3789,6 @@ class D: public B, public C {};
 <p>Both for classes and functions, the template declaration has the following form:</p>
 <pre><code class="language-cpp">template&lt;&lt;template parameters&gt;&gt;
 </code></pre>
-<p>The template parameters can be:</p>
-<ul>
-<li>type parameters: <code>class T</code></li>
-<li>value parameters: <code>int N</code></li>
-<li>concept parameters: <code>std::integral T</code></li>
-</ul>
 <h3 id="template-definition">Template definition<a class="headerlink" href="#template-definition" title="Permanent link">&para;</a></h3>
 <p>The definition of template functions or functions fo the template class requires the template declaration to be present. The definition has the following form:</p>
 <pre><code class="language-cpp">template&lt;&lt;template parameters&gt;&gt;
@@ -3705,6 +3801,21 @@ template&lt;&lt;function template parameters&gt;&gt;
 &lt;standard class function definition&gt;
 </code></pre>
 <p>Note that the <strong>template definition has to be in the header file</strong>, either directly or included from another header file. This includes the member function definitions of a template class, even if they are not templated themselves and does not use the template parameters of the class.</p>
+<h2 id="template-parameters">Template Parameters<a class="headerlink" href="#template-parameters" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/template_parameters">cppreference</a></p>
+<p>The template parameters can be:</p>
+<ul>
+<li>type parameters: <code>class T</code></li>
+<li>value parameters: <code>int T</code></li>
+<li>template parameters: <code>template&lt;class T&gt; class TT</code></li>
+</ul>
+<p>Template parameters can be restricted by in several ways: </p>
+<ul>
+<li><code>typename T</code>: any complete type</li>
+<li><code>class T</code>: a class type</li>
+<li><code>&lt;Concept&gt; T</code>: a type constrained by a concept</li>
+<li>by a <code>requires</code> expression, e.g.: <code>template&lt;typename T&gt; requires std::is_integral_v&lt;T&gt;</code></li>
+</ul>
 <h2 id="organization-rules">Organization rules<a class="headerlink" href="#organization-rules" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>*.h</code>: declarations</li>
@@ -3713,6 +3824,33 @@ template&lt;&lt;function template parameters&gt;&gt;
 </ul>
 <p>For simplicity, we include the <code>tpp</code> files at the end of corresponding header files. If we need to speed up the compilation, we can include the <code>tpp</code> files only in the source files that needs the implementations , as described on <a href="https://softwareengineering.stackexchange.com/questions/373916/c-preferred-method-of-dealing-with-implementation-for-large-templates">SE</a></p>
 <p>To speed up the build it <strong>is also desireble to move any non-template code to source files</strong>, even through inheritance, if needed.</p>
+<h3 id="templates-and-namespaces">Templates and Namespaces<a class="headerlink" href="#templates-and-namespaces" title="Permanent link">&para;</a></h3>
+<p>If the templated code resides in a namespace, it can be tempting to save few lines of code by sorrounding both <code>.h</code> and <code>.tpp</code> files using one namespace expression:</p>
+<pre><code class="language-cpp">// structs.h hile
+namespace my_namespace {
+    // declarations...
+
+    #include 'structs.tpp'
+}
+
+// structs.tpp
+    // definitions
+
+</code></pre>
+<p>However, this can confuse some IDEs (e.g., false positive errors in IntelliSense), so it is better to introduce the namespace in both files:</p>
+<pre><code class="language-cpp">// structs.h hile
+namespace my_namespace {
+    // declarations...
+}
+
+#include 'structs.tpp'
+
+// structs.tpp
+namespace my_namespace {
+    // definitions
+}
+</code></pre>
+<p>Don't forget to close the file and reopen it after the change to clear the errors.</p>
 <h2 id="providing-template-arguments">Providing Template Arguments<a class="headerlink" href="#providing-template-arguments" title="Permanent link">&para;</a></h2>
 <p>A template can be instantiated only if all the template arguments are provided.</p>
 <p>The <strong>templete arguments need to be complete types</strong>.</p>
@@ -3934,33 +4072,116 @@ void Object::print(std::string value);
 </ul>
 </li>
 </ul>
-<h2 id="templates-and-namespaces">Templates and Namespaces<a class="headerlink" href="#templates-and-namespaces" title="Permanent link">&para;</a></h2>
-<p>If the templated code resides in a namespace, it can be tempting to save few lines of code by sorrounding both <code>.h</code> and <code>.tpp</code> files using one namespace expression:</p>
-<pre><code class="language-cpp">// structs.h hile
-namespace my_namespace {
-    // declarations...
-
-    #include 'structs.tpp'
-}
-
-// structs.tpp
-    // definitions
-
+<h2 id="type-erasure">Type Erasure<a class="headerlink" href="#type-erasure" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/type_erasure">cppreference</a></p>
+<p>When working with templates, one soon realizes that they are contiguous. Once we use a template with a parameter <code>T</code>, we have to use <code>T</code> in the calling code if we do not know the exact type, and that is also true for the calling code of the calling code, etc, all the way to the point where we know the exact type.</p>
+<p>Often times, this is principially unavoidable, because we need to use the template parameter to keep the contract on the template parameter type.
+However, there are situation where this is absolutely useless. Imagine this scenario:</p>
+<pre><code class="language-cpp">template&lt;class T&gt;
+class Vector_statistic{
+    void print_vector_size(const std::vector&lt;T&gt;&amp; vector){
+        return vector.size();
+    }
+};
 </code></pre>
-<p>However, this can confuse some IDEs (e.g., false positive errors in IntelliSense), so it is better to introduce the namespace in both files:</p>
-<pre><code class="language-cpp">// structs.h hile
-namespace my_namespace {
-    // declarations...
-}
+<p>Here, there is no type contract on the template parameter <code>T</code> needed. Yet, we have to implement <code>Vector_statistic</code> as a template class, otherwise it won't compile. To avoid this, we can use the technic called <em>type erasure</em>.</p>
+<p>The principle of type erasure is to create a parent class without the template parameter <code>T</code> that contain the necessary methods that does not depend on the type <code>T</code>. Then, we use this polymorphic interface to avoid the need for the template parameter <code>T</code>. For the above example, we also need a wrapper class as we cannot change the <code>std::vector</code> class template to inherit from our parent class.</p>
+<pre><code class="language-cpp">class Vector_statistic_wrapper{
+public:
+    virtual void print_vector_size() = 0;
+};
 
-#include 'structs.tpp'
+template&lt;class T&gt;
+class Vector_statistic_wrapper_impl: public Vector_statistic_wrapper{
+public:
+    Vector_statistic_wrapper_impl(const std::vector&lt;T&gt;&amp; vector): vector(vector){}
+    void print_vector_size() override{
+        return vector.size();
+    }
+private:
+    std::vector&lt;T&gt;&amp; vector;
+};
 
-// structs.tpp
-namespace my_namespace {
-    // definitions
+class Vector_statistic{
+public:
+    Vector_statistic(){}
+
+    void print_vector_size(const Vector_statistic_wrapper&amp; wrapper){
+        return wrapper.print_vector_size();
+    }
+};
+</code></pre>
+<p>Note that for this example, it is probably simpler to use the class template even though we do not need the template parameter <code>T</code>. However, if the call chain independent of the type <code>T</code> is complex, the type erasure solution can become much simpler and more readable. </p>
+<p>Also note that the type erasure solution can never be more efficient. We can save a little bit on the compile time and code size, but the runtime performance will be strictly lower (due to the virtual function calls)</p>
+<p>Sources
+- https://davekilian.com/cpp-type-erasure.html</p>
+<h2 id="template-parameter-packs">Template parameter packs<a class="headerlink" href="#template-parameter-packs" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.cppreference.com/w/cpp/language/parameter_pack">cppreference on all parameter packs, but mostly template parameter packs</a></p>
+<p>From many programming languages, ve know the concept of function parameter packs (Java), or variable length argument lists (Python). These are available in C++ as well. However, in C++, we also have a much more complex and powerful concept of template parameter packs.</p>
+<p>The differnece from function parameter packs is that template parameter packs are resolved at compile time, efectively creating function or class types with a variable number of arguments.</p>
+<p>A practical example can be a template function that measures the time of the execution of a function:</p>
+<pre><code class="language-cpp">template&lt;typename F, typename... A&gt;
+auto measure_time(F func, A... args){
+    auto start = std::chrono::high_resolution_clock::now();
+    func(args...);
+    auto end = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start).count();
 }
 </code></pre>
-<p>Don't forget to close the file and reopen it after the change to clear the errors.</p>
+<h3 id="syntax_1">Syntax<a class="headerlink" href="#syntax_1" title="Permanent link">&para;</a></h3>
+<p>Be aware that the dots (<code>...</code>) placement is different for:</p>
+<ul>
+<li>declaration of the template parameter pack: dots after the parameter restriction</li>
+<li>use of the template parameter pack as a type specifier: dots after the type name</li>
+<li>using the parameter pack in an expression: dots after the parameter pack name</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-cpp">template&lt;typename... T&gt; // dots after the parameter restriction
+void func(T... args) { // dots after the parameter type
+    auto result = other_func(args...); // dots after the parameter pack name
+} 
+</code></pre>
+<h3 id="parameter-pack-expansion">Parameter Pack Expansion<a class="headerlink" href="#parameter-pack-expansion" title="Permanent link">&para;</a></h3>
+<p>When using the dots (<code>...</code>), the parameter pack is expanded. There are many allowed contexts for the expansion, with different rules for the expansion.</p>
+<p>When having a parameter pack <code>A...</code>, available as <code>A... args</code>, it can be used:</p>
+<ul>
+<li>in a function call: <code>func(args...)</code> expands to <code>func(arg1, arg2, ..., argN)</code></li>
+<li>class initialization: <code>My_class(args...)</code> expands to <code>My_class(arg1, arg2, ..., argN)</code></li>
+<li>brace initialization: <code>{args...}</code> expands to <code>{arg1, arg2, ..., argN}</code></li>
+<li>template argument list: <code>std::tuple&lt;args...&gt;</code> expands to <code>std::tuple&lt;arg1, arg2, ..., argN&gt;</code></li>
+<li>function parameter list: <code>template&lt;typename... A&gt; void func(A... args)</code> expands to <code>void func(A1 arg1, A2 arg2, ..., AN argN)</code></li>
+<li>class template parameter list: <code>template&lt;typename... A&gt; class My_class&lt;A...&gt;</code> expands to <code>My_class&lt;A1, A2, ..., AN&gt;</code></li>
+<li>base class specifier: <code>class My_class: public Args...</code> expands to <code>class My_class: public A1, public A2, ..., public AN</code></li>
+<li>lambda capture: <code>[args...]</code> expands to <code>[arg1, arg2, ..., argN]</code></li>
+</ul>
+<h3 id="fold-expressions">Fold Expressions<a class="headerlink" href="#fold-expressions" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.cppreference.com/w/cpp/language/fold">cppreference</a></p>
+<p>Fold expressions is a powerful feature that allows to cleanly implement operations on the whole parameter pack at once, which would otherwise be very difficult to implement.</p>
+<p>There are four possible patterns for fold expressions:</p>
+<ul>
+<li><code>(&lt;pack&gt; &lt;operator&gt; ...)</code></li>
+<li><code>(... &lt;operator&gt; &lt;pack&gt;)</code></li>
+<li><code>(&lt;pack&gt; &lt;operator&gt; ... &lt;operator&gt; &lt;initial value&gt;)</code>  </li>
+<li><code>(&lt;initial value&gt; &lt;operator&gt; ... &lt;operator&gt; &lt;pack&gt;)</code></li>
+</ul>
+<p>Here, </p>
+<ul>
+<li>the <code>&lt;operator&gt;</code> is any binary operator (arithmetic, logical, bitwise, assignment, <code>,</code>,...).</li>
+<li>the <code>&lt;initial value&gt;</code> is an expression without any operator with higher precedence than the <code>&lt;operator&gt;</code>.</li>
+</ul>
+<p>The fold expression is evaluated as follows:</p>
+<ul>
+<li><code>(T... &lt;operator&gt; ...)</code> evaluates to <code>(&lt;T1&gt; &lt;operator&gt; (&lt;T2&gt; &lt;operator&gt; ... &lt;operator&gt; &lt;TN&gt;))</code></li>
+<li><code>(... &lt;operator&gt; T...)</code> evaluates to <code>((&lt;T1&gt; &lt;operator&gt; &lt;T2&gt;) &lt;operator&gt; ... &lt;operator&gt; &lt;TN&gt;)</code></li>
+<li><code>(T... &lt;operator&gt; ... &lt;operator&gt; &lt;initial value&gt;)</code> evaluates to <code>(&lt;T1&gt; &lt;operator&gt; (&lt;T2&gt; &lt;operator&gt; ... &lt;operator&gt; (&lt;TN&gt; &lt;operator&gt; &lt;initial value&gt;)))</code></li>
+<li><code>(&lt;initial value&gt; &lt;operator&gt; ... &lt;operator&gt; &lt;T...&gt;)</code> evaluates to <code>((((&lt;initial value&gt; &lt;operator&gt; &lt;T1&gt;) &lt;operator&gt; &lt;T2&gt;) &lt;operator&gt; ... &lt;operator&gt; &lt;TN&gt;)</code></li>
+</ul>
+<p>An example of a fold expression used for a sum function template:</p>
+<pre><code class="language-cpp">template&lt;typename... Args&gt;
+auto sum(Args... args){
+    return (... + args);
+}
+</code></pre>
 <h2 id="using-complicated-types-as-template-arguments">Using Complicated Types as Template Arguments<a class="headerlink" href="#using-complicated-types-as-template-arguments" title="Permanent link">&para;</a></h2>
 <p>Sometimes, it can be very tricky to determine the template argument we need in order to use the template. The correct argument can be for example a return value of some function,  templete function, or even member function of a template instanciation which has other templates as argument...</p>
 <p>To make it easier, we can, istead of suplying the correct arguments, evaluate an expression that returns the correct type and then use the <a href="https://en.cppreference.com/w/cpp/language/decltype"><code>decltype</code></a> specifier.  For more info, see the <em>Determining Type from Expressions</em> section.</p>
@@ -5033,6 +5254,18 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
     #pragma message(&quot;MACRO is not defined&quot;)
 #endif
 </code></pre>
+<h1 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.cppreference.com/w/cpp/language/attributes">cppreference</a></p>
+<p>Atrributes mechanism provides compilers with a standard way to extend the language with new features (as opose to preprocessor macros). Additionally, some standard attributes are listed in the C++ standard.</p>
+<p>The syntax is:</p>
+<pre><code class="language-cpp">[[ &lt;attribute&gt; ]]
+</code></pre>
+<p>where <code>&lt;attribute&gt;</code> is the attribute name (potentially prefixed with the namespace of the attribute) optionally followed by arguments.</p>
+<p>Attributes may appear almost anywhere in the code, however, the usage of each attribute is typically restricted to a specific context.</p>
+<p>Standard attributes are:</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/language/attributes/nodiscard"><code>[[nodiscard]]</code></a>: marks a function that the return value should not be ignored. If the return value is ignored, a warning is issued.</li>
+</ul>
 <h1 id="resources_1">Resources<a class="headerlink" href="#resources_1" title="Permanent link">&para;</a></h1>
 <p>In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. </p>
 <p>Moreover, there is no built-in way how to determine the localtion of the running executable so that we can load the resources from the same directory. Typically, this has to be implemented for each platform separately:</p>
@@ -5234,7 +5467,16 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
 <h4 id="render-errors">Render Errors<a class="headerlink" href="#render-errors" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>empty expression</code>: this signalize that some expression is empty. Unfortunatelly, the line number is incorrect (it is always 1). Look for empty conditions, loops, etc. (e.g., <code>{% if %}</code>, <code>{% for %}</code>, <code>{% else if %}</code>).</li>
-</ul></div>
+</ul>
+<h1 id="design-patterns">Design Patterns<a class="headerlink" href="#design-patterns" title="Permanent link">&para;</a></h1>
+<p>This section describe how to implement various design patterns in C++.</p>
+<h2 id="visitor-pattern">Visitor Pattern<a class="headerlink" href="#visitor-pattern" title="Permanent link">&para;</a></h2>
+<p>C++ has a much more clear and efficient way how to implement the visitor pattern than other languages like Java. Instead of classical polymorphism, we use:</p>
+<ul>
+<li><a href="#unions-and-variants">std::variant</a> to list all possible types</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/variant/visit2.html">std::visit</a> to implement a visitor</li>
+</ul>
+<p>The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.</p></div>
             </div>
         </div>
 

@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Programming/Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Linux/Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="../../Linux/Linux%20Manual/" class="dropdown-item">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../../Linux/Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
@@ -396,7 +423,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../GIS%20formats/" class="nav-link">
+                                <a rel="prev" href="../OpenStreetMap/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -483,6 +510,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="1"><a href="#get-historical-data" class="nav-link">Get historical data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#overpass-in-python" class="nav-link">Overpass in Python</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -586,6 +618,15 @@ out geom;
 area[name=&quot;City of New York&quot;];
 node(pivot);
 out geom;
+</code></pre>
+<h1 id="overpass-in-python">Overpass in Python<a class="headerlink" href="#overpass-in-python" title="Permanent link">&para;</a></h1>
+<p>In Python, we can use the <a href="https://github.com/dellsystem/overpy"><code>overpy</code></a> to access the Overpass API. The basic usage is:</p>
+<pre><code class="language-Python">import overpy
+
+api = overpy.Overpass()
+
+query = &quot;node(50.0878, 14.4207, 50.0888, 14.4217); out;&quot;
+result = api.query(query)
 </code></pre></div>
             </div>
         </div>

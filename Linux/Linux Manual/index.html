@@ -156,7 +156,7 @@
 </li>
             
 <li>
-    <a href="../../Programming/Python/Python%20Debugging/" class="dropdown-item">Python Debugging</a>
+    <a href="../../Programming/Python/Python%20Debugging%20and%20Profiling/" class="dropdown-item">Python Debugging and Profiling</a>
 </li>
             
 <li>
@@ -212,6 +212,10 @@
 </li>
                                     
 <li>
+    <a href="../../Programming/Conda%20and%20Mamba/" class="dropdown-item">Conda and Mamba</a>
+</li>
+                                    
+<li>
     <a href="../../Programming/Git/" class="dropdown-item">Git</a>
 </li>
                                     
@@ -253,6 +257,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../LaTeX/Bibliography/" class="dropdown-item">Bibliography</a>
+</li>
+                                    
+<li>
     <a href="../../LaTeX/Latex%20manual/" class="dropdown-item">Latex manual</a>
 </li>
                                     
@@ -266,7 +274,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../Bash%20Manual/" class="dropdown-item">Bash Manual</a>
+</li>
+                                    
+<li>
+    <a href="../Fedora/" class="dropdown-item">Fedora</a>
+</li>
+                                    
+<li>
     <a href="./" class="dropdown-item active" aria-current="page">Linux Manual</a>
+</li>
+                                    
+<li>
+    <a href="../Ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                 </ul>
                             </li>
@@ -288,10 +308,6 @@
                                     
 <li>
     <a href="../../Windows/Powershell%20Manual/" class="dropdown-item">Powershell Manual</a>
-</li>
-                                    
-<li>
-    <a href="../../Windows/VSCode/" class="dropdown-item">VSCode</a>
 </li>
                                     
 <li>
@@ -319,6 +335,10 @@
 <li>
     <a href="../../Audio%20%26%20Video/VLC/" class="dropdown-item">VLC</a>
 </li>
+                                    
+<li>
+    <a href="../../Audio%20%26%20Video/yt-dlp/" class="dropdown-item">yt-dlp</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -327,6 +347,10 @@
                                     
 <li>
     <a href="../../GIS/GIS%20formats/" class="dropdown-item">GIS formats</a>
+</li>
+                                    
+<li>
+    <a href="../../GIS/OpenStreetMap/" class="dropdown-item">OpenStreetMap</a>
 </li>
                                     
 <li>
@@ -350,6 +374,9 @@
     <a href="../../Images/Photopea/" class="dropdown-item">Photopea</a>
 </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../Android/" class="nav-link">Android</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
@@ -396,12 +423,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../LaTeX/LaTeX%20workflow/" class="nav-link">
+                                <a rel="prev" href="../Fedora/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Windows/Comand%20shell/" class="nav-link">
+                                <a rel="next" href="../Ubuntu/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -427,10 +454,6 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#versions" class="nav-link">Versions</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#check-ubuntu-version" class="nav-link">Check Ubuntu Version</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-bs-level="3"><a href="#check-os-distribution-and-version" class="nav-link">Check OS Distribution and Version</a>
               <ul class="nav flex-column">
               </ul>
@@ -545,94 +568,6 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#bash" class="nav-link">Bash</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#general-remarks" class="nav-link">General Remarks</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-modes-and-environment-initialization" class="nav-link">Bash modes and environment initialization</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#assigning-the-output-of-a-command-to-a-variable" class="nav-link">Assigning the output of a command to a variable</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#list-all-variables" class="nav-link">List all variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#operations-on-variables" class="nav-link">Operations on variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#working-with-io" class="nav-link">Working with I/O</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#output-forwarding" class="nav-link">Output Forwarding</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#output-redirection" class="nav-link">Output Redirection</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#use-bash-variables-as-input" class="nav-link">Use bash variables as input</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#command-substitution" class="nav-link">Command Substitution</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-script-arguments" class="nav-link">Bash Script Arguments</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conditions" class="nav-link">Conditions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#string-comparison" class="nav-link">String comparison</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#loops" class="nav-link">Loops</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#forward-to-loop" class="nav-link">Forward to loop</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#strings-literals" class="nav-link">Strings literals</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#multiline-string-literals" class="nav-link">Multiline string literals</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#functions" class="nav-link">Functions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#reading-from-command-line" class="nav-link">Reading from command line</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#bash-script-header-content" class="nav-link">Bash Script Header Content</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#calling-a-script-from-another-script-in-the-same-directory" class="nav-link">Calling a script from another script in the same directory</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -651,26 +586,6 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#managing-packages" class="nav-link">Managing packages</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#installing-non-stable-package-versions" class="nav-link">Installing non-stable package versions</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#some-useful-repositories" class="nav-link">Some useful repositories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#changing-default-package-repositories" class="nav-link">Changing default package repositories</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#possible-issues" class="nav-link">Possible issues</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#the-repository-repo-no-longer-has-a-release-file" class="nav-link">The repository '&lt;repo&gt;' no longer has a Release file</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -841,14 +756,6 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#upgrade" class="nav-link">Upgrade</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#manual-upgrade" class="nav-link">Manual upgrade</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#wsl-backup" class="nav-link">WSL backup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             
@@ -887,9 +794,6 @@
 
 <h1 id="usefull-comands">Usefull Comands<a class="headerlink" href="#usefull-comands" title="Permanent link">&para;</a></h1>
 <h2 id="versions">Versions<a class="headerlink" href="#versions" title="Permanent link">&para;</a></h2>
-<h3 id="check-ubuntu-version">Check Ubuntu Version<a class="headerlink" href="#check-ubuntu-version" title="Permanent link">&para;</a></h3>
-<pre><code class="language-bash">lsb_release -a
-</code></pre>
 <h3 id="check-os-distribution-and-version">Check OS Distribution and Version<a class="headerlink" href="#check-os-distribution-and-version" title="Permanent link">&para;</a></h3>
 <pre><code class="language-bash">cat /etc/*-release
 </code></pre>
@@ -1133,329 +1037,7 @@ appendWindowsPath = false
 <li><code>-a</code>: show all connections. Without this, some connections can be skipped.</li>
 </ul>
 <h1 id="bash">Bash<a class="headerlink" href="#bash" title="Permanent link">&para;</a></h1>
-<p><a href="https://www.gnu.org/software/bash/manual/bash.html">documentation</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">wiki</a></p>
-<p>Bash can refer to a typical Unix shell, or just the command line interpreter for this shell or to the language used to write shell commands and scripts.</p>
-<p>In bash, <strong>commands can be separated</strong> by</p>
-<ul>
-<li>a newline, or</li>
-<li>a semicolon.</li>
-</ul>
-<p>Therefore, we can write even complicated commands to a single line in the terminal.</p>
-<h2 id="general-remarks">General Remarks<a class="headerlink" href="#general-remarks" title="Permanent link">&para;</a></h2>
-<ul>
-<li>It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error</li>
-<li>Empty constructs are not allowed, i.e, empty function or loop results in an error</li>
-<li>brackets needs spaces around them, otherwise, there will be a syntax error</li>
-<li>space around <code>=</code>, which is typical in other languages, is not allowed in bash </li>
-<li>bash does not support any data structures, only arrays</li>
-</ul>
-<h2 id="bash-modes-and-environment-initialization">Bash modes and environment initialization<a class="headerlink" href="#bash-modes-and-environment-initialization" title="Permanent link">&para;</a></h2>
-<p>Bash can run in several modes. These modes have some effect, but mainly, it affects the initialization of the environment, i.e., which files are executed at the start of the shell. The modes are:</p>
-<ul>
-<li><strong>login shell</strong>: mode is used when the user logs in. <ul>
-<li>also used when the shell is run with the <code>-l</code>, <code>--login</code> parameter</li>
-</ul>
-</li>
-<li><strong>interactive shell</strong>: mode is used when the user interacts with the shell.<ul>
-<li>also used when the shell is run with the <code>-i</code> parameter</li>
-</ul>
-</li>
-<li><strong>non-interactive shell</strong>: mode is used when the shell is run in a script.<ul>
-<li>this shell mode is used when we run commands over ssh or wsl</li>
-</ul>
-</li>
-</ul>
-<p>The execution of the initialization files is displayed in the image below:</p>
-<p><img alt="Bash initialization files" src="../Bash%20environment%20loading.png" /></p>
-<p>Note that the initialized environment persists in the system. In other words, the environment variables set in the files processed by the login shell are available even in the non-interactive non-login shells opened later on. However, there are still cases when the environment variables are not available because the login shell has not been run, e.g.:</p>
-<ul>
-<li>when the shell is run over ssh as a command: <code>ssh user@host &lt;command&gt;</code></li>
-<li>when the shell is run from wsl as a command: <code>wsl &lt;command&gt;</code></li>
-</ul>
-<p>In those cases, if we need the environment variables, we have to run the login or interactive shell explicitly, e.g.: <code>wsl bash -lc &lt;command&gt;</code>.</p>
-<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
-<p>Variables can be defined as:</p>
-<pre><code class="language-bash">var=value
-</code></pre>
-<p>Note that <strong>there must not be any spaces around <code>=</code></strong>. </p>
-<p>We can also declare variables with a specific type, so that no other type can be assigned to it using the <code>declare</code> command:</p>
-<pre><code class="language-bash">declare -i var # integer
-declare -a var # array
-declare -r var # read only
-</code></pre>
-<p>To access the value of a variable, we use <code>$</code>:</p>
-<pre><code class="language-bash">echo $var
-</code></pre>
-<h3 id="assigning-the-output-of-a-command-to-a-variable">Assigning the output of a command to a variable<a class="headerlink" href="#assigning-the-output-of-a-command-to-a-variable" title="Permanent link">&para;</a></h3>
-<p>The output of a command can be assigned to a variable only with the <a href="#command-substitution">command substitution</a>:</p>
-<pre><code class="language-bash">var=&lt;command&gt; # wrong, the first token of the command is assigned to the variable
-
-var=$(&lt;command&gt;) # correct, the output of the command is assigned to the variable
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">var=$(echo $var | sed 's/old/new/')
-</code></pre>
-<h3 id="list-all-variables">List all variables<a class="headerlink" href="#list-all-variables" title="Permanent link">&para;</a></h3>
-<p>To list all variables, we can use the declare command:</p>
-<pre><code class="language-bash">declare
-</code></pre>
-<p>However, this command also lists the functions. To list only the variables, we can use:</p>
-<pre><code class="language-bash">declare -p
-</code></pre>
-<p>which also prints the type and attributes of the variables.</p>
-<h3 id="operations-on-variables">Operations on variables<a class="headerlink" href="#operations-on-variables" title="Permanent link">&para;</a></h3>
-<p>There are many operations on variables, the most important are:</p>
-<ul>
-<li><code>${#&lt;variable&gt;}</code>: length of the variable</li>
-<li><code>${&lt;variable&gt;%%&lt;pattern&gt;}</code>: remove the longest suffix matching the pattern</li>
-<li><code>${&lt;variable&gt;##&lt;pattern&gt;}</code>: remove the longest prefix matching the pattern</li>
-</ul>
-<h2 id="working-with-io">Working with I/O<a class="headerlink" href="#working-with-io" title="Permanent link">&para;</a></h2>
-<h3 id="output-forwarding">Output Forwarding<a class="headerlink" href="#output-forwarding" title="Permanent link">&para;</a></h3>
-<p>Output forwarding is a process of redirecting the output of a command to an input of another command. The operator for that is the pipe <code>|</code>. The syntax is:</p>
-<pre><code class="language-bash">&lt;command 1&gt; | &lt;command 2&gt;
-</code></pre>
-<p>Note that the content of the pipe cannot be examined, the process on the right hand side consume it. Therefore, <strong>it is not possible to simply branch on pipe content</strong> while use it in the subsequent process.</p>
-<h3 id="output-redirection">Output Redirection<a class="headerlink" href="#output-redirection" title="Permanent link">&para;</a></h3>
-<p>Output redirection is a process of redirecting the output (stdout, stderr,..) from the console to a file. The syntax is:</p>
-<pre><code class="language-bash">&lt;command&gt; &lt;operator&gt; &lt;file&gt;
-</code></pre>
-<p>The possible operators and their effects are listed in the table (full explanation on <a href="https://askubuntu.com/a/731237/603617">SO</a>) below:</p>
-<table>
-<thead>
-<tr>
-<th>Operator</th>
-<th>Stdout</th>
-<th>Stderr</th>
-<th>Mode (in file)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&gt;</code></td>
-<td>file</td>
-<td>console</td>
-<td>overwrite</td>
-</tr>
-<tr>
-<td><code>&gt;&gt;</code></td>
-<td>file</td>
-<td>console</td>
-<td>append</td>
-</tr>
-<tr>
-<td><code>&amp;&gt;</code></td>
-<td>file</td>
-<td>file</td>
-<td>overwrite</td>
-</tr>
-<tr>
-<td><code>&amp;&gt;&gt;</code></td>
-<td>file</td>
-<td>file</td>
-<td>append</td>
-</tr>
-<tr>
-<td><code>2&gt;</code></td>
-<td>console</td>
-<td>file</td>
-<td>overwrite</td>
-</tr>
-<tr>
-<td><code>2&gt;&gt;</code></td>
-<td>console</td>
-<td>file</td>
-<td>append</td>
-</tr>
-<tr>
-<td><code>\| tee</code></td>
-<td>both</td>
-<td>console</td>
-<td>overwrite</td>
-</tr>
-<tr>
-<td><code>\| tee -a</code></td>
-<td>both</td>
-<td>console</td>
-<td>append</td>
-</tr>
-<tr>
-<td><code>\|&amp; tee</code></td>
-<td>both</td>
-<td>both</td>
-<td>overwrite</td>
-</tr>
-<tr>
-<td><code>\|&amp; tee -a</code></td>
-<td>both</td>
-<td>both</td>
-<td>append</td>
-</tr>
-</tbody>
-</table>
-<p><code>tee</code> is actully a command, not an operator. It is used as follows:</p>
-<pre><code class="language-bash">&lt;command&gt; | tee &lt;file&gt;
-</code></pre>
-<p>We can also use <code>tee</code> to forward the output of a command to multiple commands:</p>
-<pre><code class="language-bash">&lt;command 1&gt; | tee &gt;(&lt;command 2&gt;) | &lt;command 3&gt;
-</code></pre>
-<p>This forward <code>&lt;command 1&gt;</code> to both <code>&lt;command 2&gt;</code> and <code>&lt;command 3&gt;</code>.</p>
-<h3 id="use-bash-variables-as-input">Use bash variables as input<a class="headerlink" href="#use-bash-variables-as-input" title="Permanent link">&para;</a></h3>
-<p>Bash variables can be used as input of a command. Syntax:</p>
-<pre><code class="language-bash">&lt;command&gt; &lt;&lt;&lt; $&lt;variable&gt;` 
-</code></pre>
-<h2 id="command-substitution">Command Substitution<a class="headerlink" href="#command-substitution" title="Permanent link">&para;</a></h2>
-<p>When we need to use an output of a command instead of a constant or variable, we have to use command substtution:</p>
-<pre><code class="language-bash">`&lt;command&gt;`
-# or equivalently
-$(&lt;command&gt;)
-</code></pre>
-<p>e.g.:</p>
-<pre><code class="language-bash">echo resut is: `cut -d, -f 7`
-# or equivalently
-echo resut is: $(cut -d, -f 7)
-</code></pre>
-<h2 id="bash-script-arguments">Bash Script Arguments<a class="headerlink" href="#bash-script-arguments" title="Permanent link">&para;</a></h2>
-<p>We refer the arguments of a bash script as</p>
-<ul>
-<li><code>$0</code> - the name of the script</li>
-<li><code>$1..$n</code> - the arguments of the script</li>
-<li><code>$@</code> - all the arguments of the script</li>
-</ul>
-<p>Sometimes, it is useful to throw away processed arguments. This can be done using the <code>shift</code> command <code>shift &lt;n&gt;</code>, where <code>&lt;n&gt;</code> is the number of arguments to be thrown away (default is 1). The remaining arguments are then shifted to the left, i.e., <code>$2</code> becomes <code>$1</code> and so on. </p>
-<h2 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h2>
-<p>In general, condition in bash has the following syntax:</p>
-<pre><code class="language-bash">if &lt;condition&gt; 
-    then &lt;command&gt;
-    else &lt;command&gt;
-fi
-</code></pre>
-<p>The condition can have several formats:</p>
-<ul>
-<li>
-<p><strong>plain command</strong>: the condition is true if the command returns 0
-    <code>bash
-    if grep -q "$text" $file 
-        then ...
-    fi</code></p>
-</li>
-<li>
-<p><strong><code>[ &lt;condition&gt; ] or test &lt;condition&gt;</code></strong>: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
-    <code>bash
-    if [ $var = 1 ]
-    then ...
-    fi</code></p>
-</li>
-<li>
-<p><strong><code>[[ &lt;condition&gt; ]]</code></strong>: The extended test construct. This is the recommended way of writing conditions, due to <a href="https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash">several practical features</a> (e.g., no need to quote variables, regex support, logical operators, etc.).
-    <code>bash
-    if [[ $var = 1 ]]
-    then ...
-    fi</code></p>
-</li>
-<li>
-<p><strong><code>(( &lt;condition&gt; ))</code></strong>: The arithmetic test construct. This is used for arithmetic conditions.
-    <code>bash
-    if (( $var == 1 ))
-    then ...
-    fi</code></p>
-</li>
-</ul>
-<p>Note that if we want to use some arbitrary value (e. g. the <em>return value</em> of a command), or comparisons in the condition (similar to programming languages), we have to use one of the test constructs. </p>
-<p><strong>Mind the spaces around the braces!</strong></p>
-<h3 id="string-comparison">String comparison<a class="headerlink" href="#string-comparison" title="Permanent link">&para;</a></h3>
-<p>Strings can be compared using the standard <code>=</code> operator or the <code>==</code> operator. </p>
-<p>If we use the <code>[ ]</code> construct, we have to quote the variables, otherwise, the script will fail on empty strings or strings containing spaces:</p>
-<pre><code class="language-bash">if [ &quot;$var&quot; = &quot;string&quot; ]
-then ...
-fi
-
-# or equivalently
-if [[ $var = &quot;string&quot; ]]
-then ...
-fi
-</code></pre>
-<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
-<p>The syntax of the loop is:</p>
-<pre><code class="language-bash">while &lt;condition&gt;
-do
-   &lt;command1&gt;
-   &lt;command2&gt;
-   ...
-done
-</code></pre>
-<h3 id="forward-to-loop">Forward to loop<a class="headerlink" href="#forward-to-loop" title="Permanent link">&para;</a></h3>
-<p>We can forward an input into while loop using <code>|</code> as usuall. Additionally, it is possible to read from file directly by adding <code>&lt;</code> to the end like this:</p>
-<pre><code class="language-bash">while condition
-do
-   &lt;command1&gt;
-   &lt;command2&gt;
-   ...
-done &lt; &lt;input&gt;
-</code></pre>
-<p>The same goes for the output, i.e., we can forward th outut of a loop with <code>|</code>.</p>
-<h2 id="strings-literals">Strings literals<a class="headerlink" href="#strings-literals" title="Permanent link">&para;</a></h2>
-<p>String literals can be easily defined as:</p>
-<pre><code class="language-bash">str=&quot;string literal&quot;
-# or equivalently
-str='string literal'
-</code></pre>
-<p>If we use double quotes, the variables are expanded, e.g., <code>echo "Hello $USER"</code> will print <code>Hello &lt;username&gt;</code>.</p>
-<p>The problem arises when we want to use double quotes in the string literal containing variables, e.g., <code>normal string "quotted string" $myvar</code>. In this case, we have to use quite cumbersome syntax:</p>
-<pre><code class="language-bash">a = &quot;normal string &quot;\&quot;&quot;quotted string&quot;\&quot;
-# or equivalently
-a = &quot;normal string &quot;'&quot;'&quot;quotted string&quot;'&quot;'
-</code></pre>
-<h3 id="multiline-string-literals">Multiline string literals<a class="headerlink" href="#multiline-string-literals" title="Permanent link">&para;</a></h3>
-<p>There is no dedicated syntax for multiline string literals. However, we can use the <em>here document</em> syntax:</p>
-<pre><code class="language-bash">&lt;target&gt; &lt;&lt; &lt;delimiter&gt; &lt;content&gt; 
-&lt;delimiter&gt;
-</code></pre>
-<p>For example, to store the command in a variable, we can use:</p>
-<pre><code class="language-bash">db_sql = $(cat &lt;&lt; SQL
-CREATE DATABASE test_$name OWNER $name;
-grant all privileges on database test_$name to $name;
-SQL)
-</code></pre>
-<p>Note that the <code>&lt;delimiter&gt;</code> must be at the beginning of the line, otherwise, it will not work.</p>
-<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
-<p>Functions are defined as:</p>
-<pre><code class="language-bash">function_name() {
-    &lt;command 1&gt;
-    &lt;command 2&gt;
-    ...
-}
-</code></pre>
-<p>For access the arguments of the function, we use the same syntax as for the script arguments (e.g., <code>$1</code> for the first argument).</p>
-<p>We can create local variables in the function using the <code>local</code> keyword:</p>
-<pre><code class="language-bash">function_name() {
-    local var1=&quot;value&quot;
-    ...
-}
-</code></pre>
-<h2 id="reading-from-command-line">Reading from command line<a class="headerlink" href="#reading-from-command-line" title="Permanent link">&para;</a></h2>
-<p>To read from command line, we can use the <code>read</code> command. The syntax is:</p>
-<pre><code class="language-bash">read &lt;variable&gt;
-</code></pre>
-<p>where <code>&lt;variable&gt;</code> is the name of the variable to store the input. Important parameters:</p>
-<ul>
-<li><code>-p &lt;prompt&gt;</code>: prints the <code>&lt;prompt&gt;</code> before reading the input</li>
-<li><code>-s</code>: do not echo the input (usefull for passwords)</li>
-</ul>
-<h2 id="bash-script-header-content">Bash Script Header Content<a class="headerlink" href="#bash-script-header-content" title="Permanent link">&para;</a></h2>
-<p>Usually, here are some special lines at the beginning of the bash script.</p>
-<p>First, we can specify the interpreter to be used:</p>
-<pre><code class="language-bash">#!/bin/bash
-</code></pre>
-<p>Then we can set the script to exit on error:</p>
-<pre><code class="language-bash">set -e
-</code></pre>
-<h2 id="calling-a-script-from-another-script-in-the-same-directory">Calling a script from another script in the same directory<a class="headerlink" href="#calling-a-script-from-another-script-in-the-same-directory" title="Permanent link">&para;</a></h2>
-<p>To call a script <em>b</em> from script <em>a</em> in the same directory, it is not wise to use the relative path, it is evaluated from the current directory, not from the directory of the script. To be sure that we can call script <em>a</em> from anywhere, we need to change the working directory to the directory of the scripts first:</p>
-<pre><code class="language-bash">cd &quot;$(dirname &quot;$0&quot;)&quot;
-./B.sh
-</code></pre>
+<p>See <a href="../Bash%20Manual/">Bash Manual</a> for detailed information about Bash scripting and commands.</p>
 <h1 id="root-access">Root Access<a class="headerlink" href="#root-access" title="Permanent link">&para;</a></h1>
 <p>Some commands require root privilages. The basic way how to run a command as root, we can use the <code>sudo</code> command:</p>
 <pre><code class="language-bash">sudo &lt;command&gt;
@@ -1488,68 +1070,9 @@ SQL)
 <li>move commands to a separate script and execute the script as a different user</li>
 </ol>
 <h1 id="managing-packages">Managing packages<a class="headerlink" href="#managing-packages" title="Permanent link">&para;</a></h1>
-<p>To <strong>update the list</strong> of possible updates:</p>
-<pre><code class="language-bash">sudo apt update
-</code></pre>
-<p>To perform the <strong>update</strong>:</p>
-<pre><code class="language-bash">sudo apt upgrade
-</code></pre>
-<p>To <strong>list installed</strong> packages:</p>
-<pre><code class="language-bash">apt list --installed
-</code></pre>
-<p>We can filter the list using the <code>grep</code> command.</p>
-<p>To <strong>find the install location</strong> of a package:</p>
-<pre><code class="language-bash">dpkg -L &lt;package&gt;
-</code></pre>
-<p>Unfortunately, it is not possible to easily search for the user who installed the package.</p>
-<p>To <strong>search</strong> for a package:</p>
-<pre><code class="language-bash">apt-cache search &lt;package&gt;
-</code></pre>
-<p>We can limit the search to check only names of the packages using the <code>--names-only</code> parameter.</p>
-<p>To <strong>remove</strong> a package:</p>
-<pre><code class="language-bash">sudo apt remove &lt;package&gt;
-</code></pre>
-<h2 id="installing-non-stable-package-versions">Installing non-stable package versions<a class="headerlink" href="#installing-non-stable-package-versions" title="Permanent link">&para;</a></h2>
-<p>On Linux, the stable package versions are usually outdated, sometimes years behind the current version. To install the newer version, we have usually a few options:</p>
+<p>Package management heavily depends on the distribution. Therefore, check the manual for the specific distribution:</p>
 <ul>
-<li><strong>upgrade the system</strong>: if we use an old version of the system, we can check whether the newer version is available that includes the newer package version. For more, see the <a href="#upgrade">Upgrade</a> section.</li>
-<li><strong>install from source</strong>: We can manually build the package from the source and install it. See the <a href="../../Programming/C%2B%2B/C%2B%2B%20Workflow/">C++ Workflow</a> for more.</li>
-<li><strong>install package from an alternative repository</strong>: We can add an alternative repository to the system and install the package from there.</li>
-</ul>
-<p>The first two options are covered in different part of this manual. Here, we focus on the third option.</p>
-<p>To use an alternative repository, we have to a) add the repository to the system, which is a one time task, and b) install the specific package from the repository.</p>
-<p>To <strong>add a repository</strong>, we have to:</p>
-<ol>
-<li>add the repository to the <code>/etc/apt/sources.list</code> (or to a separate file in the <code>/etc/apt/sources.list.d/</code> directory). Each repository should has the line that should be added to the file on its website.</li>
-<li><code>sudo apt update</code> to update the list of available packages</li>
-</ol>
-<p>To <strong>install a package from the repository</strong>:</p>
-<pre><code class="language-bash">sudo apt install -t &lt;repository&gt; &lt;package&gt;
-</code></pre>
-<h3 id="some-useful-repositories">Some useful repositories<a class="headerlink" href="#some-useful-repositories" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="https://backports.debian.org/Instructions/">debian backports</a>: the repository with the newer versions of the packages for the stable Debian version</li>
-</ul>
-<h2 id="changing-default-package-repositories">Changing default package repositories<a class="headerlink" href="#changing-default-package-repositories" title="Permanent link">&para;</a></h2>
-<p>If the downolad speed is not satisfactory, we can change the repositories. To find the fastest repository from the list of nearby repositories, run:</p>
-<pre><code class="language-bash">curl -s http://mirrors.ubuntu.com/mirrors.txt | xargs -n1 -I {} sh -c 'echo `curl -r 0-10240000 -s -w %{speed_download} -o /dev/null {}/ls-lR.gz` {}' | sort -g -r
-</code></pre>
-<p>The number in the leftmost column indicates the bandwidth in bytes (larger number is better).</p>
-<p>To change the repositories to the best mirror, we need to replace the mirror in <code>etc/apt/source.list</code>. We can do it manually, however, to prevent the mistakes, it is better to use a dedicated python script: <a href="https://apt-mirror-updater.readthedocs.io/en/latest/readme.html"><code>apt-mirror-updater</code></a>. Steps:</p>
-<ol>
-<li>install the python script: <code>sudo pip install apt-mirror-updater</code></li>
-<li>backup the old file: <code>sudo cp sources.list sources.list.bak</code></li>
-<li>change the mirror with the script: <code>apt-mirror-updater -c &lt;mirror URL&gt;</code></li>
-</ol>
-<p>Note that the <code>apt-mirror-updater</code> script can also measure the bandwidth, however, the result does not seem to be reliable.</p>
-<h2 id="possible-issues">Possible issues<a class="headerlink" href="#possible-issues" title="Permanent link">&para;</a></h2>
-<h3 id="the-repository-repo-no-longer-has-a-release-file"><code>The repository '&lt;repo&gt;' no longer has a Release file</code><a class="headerlink" href="#the-repository-repo-no-longer-has-a-release-file" title="Permanent link">&para;</a></h3>
-<p>This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:</p>
-<ul>
-<li>change the repository to a newer one manually or</li>
-<li>change the url of all repositories to <code>http://old-releases.ubuntu.com/ubuntu/</code> and then upgrade the system to the newer version:
-    <code>bash
-    sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list</code></li>
+<li><a href="../Ubuntu/#managing-packages">Ubuntu package management</a></li>
 </ul>
 <h1 id="string-processing">String Processing<a class="headerlink" href="#string-processing" title="Permanent link">&para;</a></h1>
 <h2 id="string-filtering-with-grep">String filtering with <code>grep</code><a class="headerlink" href="#string-filtering-with-grep" title="Permanent link">&para;</a></h2>
@@ -1807,40 +1330,8 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-&lt;version&gt;
 <pre><code class="language-bash">ls | xargs rm # remove all files in the current directory
 </code></pre>
 <h1 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h1>
-<p>For a system upgrade, follow these steps:</p>
-<ol>
-<li>run the <a href="#managing-packages">update of the current version</a>.</li>
-<li>Then optionaly backup the WSL</li>
-<li>
-<p>perform the upgrade:</p>
-<ul>
-<li>If a) you are on a LTS version, and b) there is a new LTS version available, run <code>sudo do-release-upgrade</code>.</li>
-<li>Otherwise, follow the steps in the next section.</li>
-</ul>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Ubuntu_version_history">Ubuntu versions</a></p>
-</li>
-</ol>
-<h2 id="manual-upgrade">Manual upgrade<a class="headerlink" href="#manual-upgrade" title="Permanent link">&para;</a></h2>
-<p>For manual upgrade, follow these steps:</p>
-<ol>
-<li>perform steps 1 and 2 from the normal upgrade</li>
-<li>open the <code>/etc/update-manager/release-upgrades</code> file and set the <code>Prompt</code> parameter to <code>normal</code> or <code>lts</code> (depending on the desired version)</li>
-<li>backup the <code>/etc/apt/sources.list</code> file</li>
-<li>change the sources to the new version:<ul>
-<li>e.g., run <code>sudo sed -i 's/&lt;current version name&gt;/&lt;new version name&gt;/g' /etc/apt/sources.list</code></li>
-</ul>
-</li>
-<li>run a normal upgrade: <code>sudo apt update &amp;&amp; sudo apt upgrade</code></li>
-<li>finalizing the upgrade: <code>sudo apt dist-upgrade</code></li>
-</ol>
-<h2 id="wsl-backup">WSL backup<a class="headerlink" href="#wsl-backup" title="Permanent link">&para;</a></h2>
-<ol>
-<li>check the WSL distro name: <code>wsl -l -v</code></li>
-<li>shutdown WSL: <code>wsl --shutdown</code></li>
-<li>backup the distro: <code>wsl --export &lt;disto name&gt; &lt;backup folder path&gt;/&lt;backup name&gt;.tar</code></li>
-</ol>
+<p>For a system upgrade, refer to the manual for the specific distribution:
+- <a href="../Ubuntu/#upgrade">Ubuntu upgrade</a></p>
 <h1 id="vim">vim<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h1>
 <p>Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:</p>
 <ul>
