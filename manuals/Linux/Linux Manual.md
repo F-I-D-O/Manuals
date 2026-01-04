@@ -25,7 +25,9 @@ Exit code of the last command: `$?`
 [Common exit codes for C++ programs](https://www.geeksforgeeks.org/exit-codes-in-c-c-with-examples/)
 
 ## Show path to executable
-Use the `which` command: `which <executable>`
+Use the `which` command: `which <executable>`.
+
+Other option is to use the [`command`](https://manned.org/man/command) command: `command -v <executable>`.
 
 
 ## Unpack file
@@ -63,7 +65,7 @@ To enable the variable even if you use `sudo`, you need to edit sudo config usin
 3.  logout and login again to load the new added varibales
 
 ## Enable the Variable Outside Bash
-If you need the variable outside bash, the above-mentioned approach wonâ€™t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for [PAM shells](https://en.wikipedia.org/wiki/Linux_PAM)  (see [this SO answer](https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible) why).
+If you need the variable outside bash, the above-mentioned approach won't work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for [PAM shells](https://en.wikipedia.org/wiki/Linux_PAM)  (see [this SO answer](https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible) why).
 
 Add the variable to `/etc/environment`. Note that it is not a script file, so you can use only simple variable assignments.
 
@@ -91,6 +93,18 @@ appendWindowsPath = false
 
 
 # File System
+Unlike Windows, Linux typically doe not split the filesystem into partitions that much. Moreover, each partition path can start anywhere, instead of `<drive letter>:` like in Windows. Typically, the main partition is mounted at `/`. 
+
+
+## Standard folder structure
+The [standard folder structure](https://en.wikipedia.org/wiki/Filesystem_hierarchy_standard) is:
+
+- `/bin` core binaries, usually a limited set distributed with the OS
+- `/home/<user name>` home directory for the user `<user name>`
+- `/opt` for software packages distributed in the Windows style, i.e., as a single installation directory.
+- `/sbin` same as `/bin`, but for system binaries, i.e., binaries for system maintenance
+- `/usr/bin` and `/usr/sbin` For binares installed by package managers. Binaries from other sources should not be installed here, as there is a risk of overwritting them by the package manager.
+- `/usr/local/bin` and `/usr/local/sbin`: For binaries installed by the user, i.e., not by the package manager.
 
 ## List files
 To list files, use `ls <path>`. By default, it lists the files in the current directory. The most used options are:

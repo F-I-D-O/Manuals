@@ -43,6 +43,8 @@ Note that the initialized environment persists in the system. In other words, th
 
 In those cases, if we need the environment variables, we have to run the login or interactive shell explicitly, e.g.: `wsl bash -lc <command>`.
 
+
+
 # Variables
 Variables can be defined as:
 ```bash
@@ -97,6 +99,14 @@ There are many operations on variables, the most important are:
 - `${<variable>%%<pattern>}`: remove the longest suffix matching the pattern
 - `${<variable>##<pattern>}`: remove the longest prefix matching the pattern
 
+
+# Executable execution
+
+## Executing binaries while skipping the shell aliases
+[wiki](https://en.wikipedia.org/wiki/Command_(Unix))
+
+We can do this by using the [`command`](https://manned.org/man/command) command: `command <executable> <arguments>`.
+This command will execute the executable directly, without any shell aliases.
 
 
 # Working with I/O
@@ -280,7 +290,7 @@ a = "normal string "'"'"quotted string"'"'
 ```
 
 ## Multiline string literals
-There is no dedicated syntax for multiline string literals. However, we can use the *here document* syntax:
+There is no dedicated syntax for multiline string literals. However, we can use the [here document (HEREDOC)](https://en.wikipedia.org/wiki/Here_document) syntax:
 ```bash
 <target> << <delimiter> <content> 
 <delimiter>
@@ -293,7 +303,7 @@ CREATE DATABASE test_$name OWNER $name;
 grant all privileges on database test_$name to $name;
 SQL)
 ```
-Note that the `<delimiter>` must be at the beginning of the line, otherwise, it will not work.
+Note that the end `<delimiter>` must be at the beginning of the line, otherwise, it will not work.
 
 # Functions
 Functions are defined as:

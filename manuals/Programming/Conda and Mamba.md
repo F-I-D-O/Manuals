@@ -21,7 +21,20 @@ Mamba differs from Conda in that it is faster and more memory-efficient, which c
     - This will disable the automatic activation of the conda environment when the terminal is opened. Auto activation in PowerShell is dangerous, as this puts many conda executables early in the PATH, which can override the system executables (e.g., git, cmake)
 
 ## Linux
+On linux, we have several options to install Conda and Mamba:
 
+- install [Miniforge](https://github.com/conda-forge/miniforge) using the instructions on the website
+- install mamba using the system package manager. Note that this typically installs micromamba, so:
+    - only mamba executables are available, no conda
+    - default environment location have to be set up using environment variables, as the installation defaults to `/envs`.
+
+
+## Set up the environment root directory
+Sometimes, we may want to change the default environment root directory. For this, we change the following environment variables:
+
+- `CONDA_ROOT_PREFIX`: for conda
+- `MAMBA_ROOT_PREFIX`: for mamba
+- `MICROMAMBA_ROOT_PREFIX`: for micromamba
 
 # Environments
 Conda and Mamba use environments similar to virtual environments of pip. By default, these package managers use the `base` environment, which is pre-created. However, unlike with pip, **mamba discurages the use of the default (base) environment**.

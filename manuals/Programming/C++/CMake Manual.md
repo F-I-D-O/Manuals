@@ -516,6 +516,19 @@ The `<mode>` can be:
 - `FATAL_ERROR` - the message is printed as a fatal error and the configuration process is stopped
 - `DEPRECATION` - the message is printed as a deprecation warning
 
+
+## `execute_process`
+The [`execute_process`](https://cmake.org/cmake/help/latest/command/execute_process.html) command is used to execute an external command. The syntax is:
+
+```cmake
+execute_process(COMMAND <command> [OPTIONS])
+```
+
+Important options:
+
+- `RESULT_VARIABLE <variable name>`: the variable that will store the result (exit code) of the command.
+    
+
 ## `find_program`
 The [`find_program`](https://cmake.org/cmake/help/latest/command/find_program.html) command is used to find an executable in the system. It's adventages over providing our own path/logic is:
 
@@ -1374,6 +1387,8 @@ To both commands, we can pass the `COMMAND` as a list of strings, where the firs
 
 Additionally, when using the `add_custom_command` command, we can to use the `COMMAND_EXPAND_LISTS` option to expand the generator expressions in the command.
 
+
+
 # CMake Cache
 CMake has two types of variables:
 
@@ -1582,6 +1597,9 @@ To use the public CDash server, we have to:
 1. create an account on the [CDash server](https://my.cdash.org)
 1. create a project on the server
 1. download the `CTestConfig.cmake` file from the project page and put it in the project directory (the directory where the `CMakeLists.txt` file is located)
+
+
+## Troubleshooting
 
 
 ## Problems

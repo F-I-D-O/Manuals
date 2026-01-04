@@ -539,7 +539,7 @@ wsl <command>
 Important arguments:
 
 - `-u <user>, --user <user>`: run the command as the specified user. This can be useful for running the command as the root user.
-
+- `--shutdown`: shutdown the WSL after the command is executed.
 
 # Dual Boot
 

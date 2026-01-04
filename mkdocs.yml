@@ -34,7 +34,7 @@ nav:
     - Matplotlib Manual: Programming/Python/Matplotlib Manual.md
     - Pandas Manual: Programming/Python/Pandas Manual.md
     - Plotly Manual: Programming/Python/Plotly Manual.md
-    - Python Debugging: Programming/Python/Python Debugging.md
+    - Python Debugging and Profiling: Programming/Python/Python Debugging and Profiling.md
     - Python Manual: Programming/Python/Python Manual.md
     - Python Workflow: Programming/Python/Python Workflow.md
   - Web:
@@ -47,6 +47,7 @@ nav:
     - mkdocs: Programming/Web/mkdocs.md
     - Selenium: Programming/Web/Selenium.md
   - Common: Programming/Common.md
+  - Conda and Mamba: Programming/Conda and Mamba.md
   - Git: Programming/Git.md
   - Gurobi: Programming/Gurobi.md
   - HDF: Programming/HDF.md
@@ -57,29 +58,35 @@ nav:
   - Regex: Programming/Regex.md
   - Ruby Workflow: Programming/Ruby Workflow.md
 - LaTeX:
+  - Bibliography: LaTeX/Bibliography.md
   - Latex manual: LaTeX/Latex manual.md
   - LaTeX workflow: LaTeX/LaTeX workflow.md
 - Linux:
+  - Bash Manual: Linux/Bash Manual.md
+  - Fedora: Linux/Fedora.md
   - Linux Manual: Linux/Linux Manual.md
+  - Ubuntu: Linux/Ubuntu.md
 - Windows:
   - Comand shell: Windows/Comand shell.md
   - Excel Manual: Windows/Excel Manual.md
   - PowerPoint: Windows/PowerPoint.md
   - Powershell Manual: Windows/Powershell Manual.md
-  - VSCode: Windows/VSCode.md
   - Windows Manual: Windows/Windows Manual.md
 - .cursor:
   - rules: []
 - Audio & Video:
   - FFMpeg: Audio & Video/FFMpeg.md
   - VLC: Audio & Video/VLC.md
+  - yt-dlp: Audio & Video/yt-dlp.md
 - GIS:
   - GIS formats: GIS/GIS formats.md
+  - OpenStreetMap: GIS/OpenStreetMap.md
   - Overpass Manual: GIS/Overpass Manual.md
   - QGIS: GIS/QGIS.md
 - Images:
   - Midjourney: Images/Midjourney.md
   - Photopea: Images/Photopea.md
+- Android: Android.md
 - Arxiv: Arxiv.md
 - Google office apps: Google office apps.md
 - Hardware Manual: Hardware Manual.md

@@ -2846,13 +2846,30 @@ The fold expression is evaluated as follows:
 - `(T... <operator> ... <operator> <initial value>)` evaluates to `(<T1> <operator> (<T2> <operator> ... <operator> (<TN> <operator> <initial value>)))`
 - `(<initial value> <operator> ... <operator> <T...>)` evaluates to `((((<initial value> <operator> <T1>) <operator> <T2>) <operator> ... <operator> <TN>)`
 
-An example of a fold expression used for a sum function template:
+Note that we can use fold expressions anywhere where we can use parameter pack expansion. Therefore, we can use them even in e.g. requires expression.
+
+#### Examples
+An example of a fold expression used for a sum **function template**:
 ```cpp
 template<typename... Args>
 auto sum(Args... args){
 	return (... + args);
 }
 ```
+
+Fold expression in the **requires expression**:
+```cpp
+template<typename... NO>
+template<template <typename, class...> class S>
+requires(DARP_benchmark_solver_constructor_interface<S,NO> && ...)
+```
+
+The above requires expression will be expanded to:
+```cpp
+(DARP_benchmark_solver_constructor_interface<S,NO1> && DARP_benchmark_solver_constructor_interface<S,NO2> && ... && DARP_benchmark_solver_constructor_interface<S,NON>)
+```
+
+
 
 
 
@@ -2939,10 +2956,12 @@ Either form we chose, the atomic constraint have to always evaluate to bool.
 ## Requires Expression
 Requires expressions ar ethe most powerfull conctraints. The syntax is:
 ```cpp
-requires(parameter list){requirements}
+requires(<parameter list>) { <requirements> }
 ```
 
-There are four types of requirements that can appear in the requires expression:
+Here, the `<parameter list>` is a list of objects (instances of types) that we need to use in the `<requirements>`.
+
+There are four types of `<requirements>` that can appear in the requires expression:
 
 - *simple requiremnet*: a requirement that can contain any expression. Evaluates to true if the expression is valid.
 	```cpp
@@ -4226,6 +4245,7 @@ Attributes may appear almost anywhere in the code, however, the usage of each at
 Standard attributes are:
 
 - [`[[nodiscard]]`](https://en.cppreference.com/w/cpp/language/attributes/nodiscard): marks a function that the return value should not be ignored. If the return value is ignored, a warning is issued.
+- [`[[maybe_unused]]`](https://en.cppreference.com/w/cpp/language/attributes/maybe_unused): marks a variable that may be unused. This suppresses the unused variable warning in modern compilers.
 
 # Resources
 In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. 
