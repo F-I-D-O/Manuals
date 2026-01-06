@@ -19,6 +19,28 @@ Note that **all entities in the translation units added to the target are compil
 
 
 
+# Storage Duration
+[cppreference](https://en.cppreference.com/w/cpp/language/storage_duration)
+
+The storage duration of a variable is the period for which the storage is guaranteed to be available. There are the following **storage durations**:
+
+- **static storage duration**: these variables are initialized at the start of the program before the main function is called. They are destroyed at the end of the program, after the main function returns.
+- **thread storage duration**: these variables are initialized at the start of the thread before the thread function is called. They are destroyed at the end of the thread, after the thread function returns.
+- **automatic storage duration**: these variables are initialized at the point of their declaration and destroyed at the end of the block they are declared in.
+- **dynamic storage duration**: these variables are initialized by some memory management mechanism, and they are destroyed by an analogous mechanism.
+
+To determine the scope of a variable, we can use the following **rules**:
+
+1. Variables within the namespace scope (including the undeclared global namespace) have static storage duration unless they are declared with the `thread_local` specifier, in which case they have thread storage duration.
+1. block scope variables have automatic storage duration unless they are declared with the `static` specifier, in which case they have static storage duration.
+	- block static variables, unlike namespace static variables, are not initialized at the start of the program, but at the first time the line with the declaration is executed.
+1. parameters have automatic storage duration.
+1. objects created with mechanics like `new`/`delete`, `malloc`/`free`, `new[]`/`delete[]`, or `std::make_unique`, `std::make_shared`, etc. have dynamic storage duration.
+
+An important lesson from these rules is that the global variables have static storage duration even without the `static` specifier. The reason for using the `static` specifier for globals is to control the *linkage* of the variable.
+
+
+
 # Type System
 [cppreference](https://en.cppreference.com/w/cpp/language/type)
 
@@ -720,6 +742,11 @@ Unfortunatelly, the STL has case changing functions only for characters, so we n
 
 auto upper = boost::to_upper(str);
 ``` 
+
+Alternatively, we can use the [`std::transform`](https://en.cppreference.com/w/cpp/algorithm/transform) algorithm and the [`std::toupper`](https://en.cppreference.com/w/cpp/string/byte/toupper) or [`std::tolower`](https://en.cppreference.com/w/cpp/string/byte/tolower) functions:
+```cpp
+std::transform(str.begin(), str.end(), str.begin(), std::toupper);
+```
 
 
 ### Building strings
@@ -4498,3 +4525,32 @@ C++ has a much more clear and efficient way how to implement the visitor pattern
 - [std::visit](https://en.cppreference.com/w/cpp/utility/variant/visit2.html) to implement a visitor
 
 The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.
+
+
+## Compile-time Plugins using Static Registration
+Sometimes, we want to enable extension of the functionality of some executable at compile time. The problem is: how we can call the extended code from main function, if we do not know it? The answer is to use the static registration pattern. The principle is simple:
+
+1. in the executable, we define a registry of available plugins
+2. in the plugin, we call some registration function to register the plugin in the registry. As this registration cannot be called from the main function, we use the static variable initialization to register the plugin.
+
+The static registration in the plugin looks like this:
+```cpp
+#include <plugin_registry.h>
+
+struct Plugin{
+
+	// constructor
+	Plugin(){
+		PLugin_registry::register_plugin(<parameters>);
+	}
+
+};
+
+
+Plugin plugin; // here, the constructor is called as the variable has static storage duration.
+```
+
+This technique has some important pitfall. Because the main executable does not reference the plugin, the compiler may discard the whole plugin object and not link it to the executable. To prevent this, several techniques can be used:
+
+- link the plugin with [`/WHOLEARCHIVE`](https://learn.microsoft.com/en-us/cpp/build/reference/wholearchive-include-all-library-object-files?view=msvc-170) flag.
+- 

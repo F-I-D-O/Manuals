@@ -924,6 +924,15 @@ Library targets are defined using the `add_library` command. The syntax is:
 add_library(<target name> <type> <source file 1> <source file 2> ...)
 ```
 
+#### Object libraries
+[Manual](https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#object-libraries)
+
+CMake can define [object libraries](../Native%20Libraries.md#object-libraries), which are similar to source files, just pre-compiled. The syntax is:
+```cmake
+add_library(<object librarytarget name> OBJECT <source file 1> <source file 2> ...)
+```
+
+Later, we can use object libraries as dependencies of other targets using [`target_sources`](https://cmake.org/cmake/help/latest/command/target_sources.html) command or specify them instead of source files in the `add_library` or `add_executable` commands. To specify the object library, we can use the expression `$<TARGET_OBJECTS:<object library target name>>`.
 
 
 
@@ -1599,12 +1608,12 @@ To use the public CDash server, we have to:
 1. download the `CTestConfig.cmake` file from the project page and put it in the project directory (the directory where the `CMakeLists.txt` file is located)
 
 
-## Troubleshooting
+### Troubleshooting
 
 
 ## Problems
 
-#### `Warning! <name> library version mismatched error`
+### `Warning! <name> library version mismatched error`
 This error typically occures when the library `<name>` used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:
 
 1. The library relies on the `PATH` variable to find the library at runtime, but the path used during the build is specified manually.

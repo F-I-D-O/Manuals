@@ -461,3 +461,12 @@ In both CLion and Visual Studio, the size and alignment of the structure is disp
 Additionally, Visual Studio shows the memory layout if we click the appropriate button in the tooltip.
 
 [Visual Studio tutorial](https://devblogs.microsoft.com/visualstudio/size-alignment-and-memory-layout-insights-for-c-classes-structs-and-unions/)
+
+
+# Showing Linked Libraries
+To show dynamically linked libraries, we can use the [`Process Explorer`](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer) tool.
+
+1. Find the process of the running executable
+1. `View` -> `Lower Pane View` -> `DLLs`
+
+If we need to see all linked libraries, and maybe also the specific objects, it is best to inspect the compiler logs when running the build using the verbose mode.

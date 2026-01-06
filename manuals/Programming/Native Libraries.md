@@ -61,3 +61,11 @@ The **search order** differs between operating systems. Here, we present only th
 1. The system directory and the Windows directory
 1. The CWD (folder where the program is run)
 1. The directories listed in the PATH environment variable in the order they are listed
+
+
+# Object Libraries
+[CMake description of object libraries](https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#object-libraries)
+
+In some computer languages, compilation units are first compiled into object files, and then these object files are linked into a library. This is the case for C and C++. These languages can use these objects as libraries and integrate them into other libraries or executables. 
+
+Unlike other libraries, object libraries are not linked to the binaries, but directly included. They are similar to source files, just pre-compiled. Static libraries are then archives of object files that are linked.
