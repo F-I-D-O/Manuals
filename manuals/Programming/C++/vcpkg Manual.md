@@ -16,14 +16,17 @@ To install vcpkg:
 # Basic commands
 
 ## Install a package
-To install a package, use the `install <package name>` command. Important options are:
+To install a package, use the [`install <package name>`](https://learn.microsoft.com/en-us/vcpkg/commands/install) command. Important options are:
 
-- `--triplet <triplet>`: the target triplet. 
+- `--triplet <triplet>`: the target triplet.
+- [`--binarysource <binarysource>`](https://learn.microsoft.com/en-us/vcpkg/commands/common-options#binarysource): the source of the binary packages.
+    - `clear`: do not use binary cache
 
 ## Remove a package
 To remove a package, use the `remove <package name>` command. Important options are:
 
 - `--triplet <triplet>`: the target triplet.
+
 
 ## Search for a package
 To search for a package, use the `search <package name>` command. 
