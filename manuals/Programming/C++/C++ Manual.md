@@ -4275,6 +4275,37 @@ Standard attributes are:
 - [`[[nodiscard]]`](https://en.cppreference.com/w/cpp/language/attributes/nodiscard): marks a function that the return value should not be ignored. If the return value is ignored, a warning is issued.
 - [`[[maybe_unused]]`](https://en.cppreference.com/w/cpp/language/attributes/maybe_unused): marks a variable that may be unused. This suppresses the unused variable warning in modern compilers.
 
+
+# Comments
+The C++ standard does not specify the comment syntax. However, the most common comments are:
+```cpp
+// single-line comment
+/* multi-line comment */
+```
+
+Also, there are special comment blocks for documentation systems like Doxygen. Those, like in Java, are typically enclosed in `/**` and `*/` blocks.
+```cpp
+/**
+ * This is a multi-line comment.
+ * It can contain multiple lines.
+ */
+```
+
+## Function Comment Blocks
+For function comment blocks, there is a special syntax in Doxygen:
+```cpp
+/**
+ * @brief This is a function comment block.
+ * It can contain multiple lines.
+ * @param param1 This is a parameter.
+ * @param param2 This is a parameter.
+ * @return This is a return value.
+ */
+```
+
+Additionaly, we can refer to the parameters in the text using `@p <param name>`.
+
+
 # Resources
 In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. 
 
