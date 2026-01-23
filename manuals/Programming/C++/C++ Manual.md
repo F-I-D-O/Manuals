@@ -3045,6 +3045,7 @@ concept Stock = requires(S stock) {
 ## STL Concepts
 
 - [iterator concepts](https://en.cppreference.com/w/cpp/header/iterator)
+- [`std::same_as`](https://en.cppreference.com/w/cpp/types/same_as): checks if two types are the same
 
 ## Usefull Patterns
 ### Constrain a Template Argument
