@@ -1826,21 +1826,41 @@ It's mostly better to delete everything you don’t need. Most likely, either
 
 - copyable object
 - We need
-	- copy constructor
-	- copy assignment
-	- move constructor
-	- move assignment
+    - copy constructor
+    - copy assignment
+    - move constructor
+    - move assignment
 
 
-# Const vs non-const 
-The `const` keyword makes the object non-mutable. This means that:
+# Const vs non-const
 
-- it cannot be reassigned
-- non-const member functions of the object cannot be called
 
-The const keyword is usually used for local variables, function parameters, etc.
+The `const` keyword can be used in two contexts:
 
-**For members, the const keyword should not be used**, as it sometimes breaks the move operations on the object. For example we cannot move from a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
+- as a type qualifier, making the variable non-mutable ([cppreference](https://en.cppreference.com/w/cpp/language/cv))
+
+- as a member function qualifier, making the function work with const pointer to the instance ([cppreference](https://en.cppreference.com/w/cpp/language/member_functions.html#Member_functions_with_cv-qualifiers))
+
+A variable is non-mutable (const) if it is:
+
+- `const`-qualified
+- it is a member of a const object and it is not declared as [mutable](https://en.cppreference.com/w/cpp/language/cv.html#mutable)
+
+Non mutable variables:
+
+- cannot be reassigned
+- non-const member functions of them cannot be called
+
+
+A member function can be declared with const qualifier at the end of the declaration. A function declared with const:
+
+- accesses its instance as `const *<class_name>` instead of `<class_name>*`
+- by conclusion, see all members as const which means:
+    - non-const member functions of the object cannot be called
+    - non-const member variables of the object are accessed as const references
+
+
+**For members, the const keyword can break the move operations on the object**. For example we cannot move from a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
 
 ## Avoiding duplication between const and non-const version of the same function
 To solve this problem without threatening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:
