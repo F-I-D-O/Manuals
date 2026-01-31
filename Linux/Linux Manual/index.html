@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -506,6 +510,10 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#file-system" class="nav-link">File System</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#standard-folder-structure" class="nav-link">Standard folder structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#list-files" class="nav-link">List files</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="3"><a href="#list-the-full-paths" class="nav-link">List the full paths</a>
@@ -807,7 +815,8 @@
 <p>Exit code of the last command: <code>$?</code></p>
 <p><a href="https://www.geeksforgeeks.org/exit-codes-in-c-c-with-examples/">Common exit codes for C++ programs</a></p>
 <h2 id="show-path-to-executable">Show path to executable<a class="headerlink" href="#show-path-to-executable" title="Permanent link">&para;</a></h2>
-<p>Use the <code>which</code> command: <code>which &lt;executable&gt;</code></p>
+<p>Use the <code>which</code> command: <code>which &lt;executable&gt;</code>.</p>
+<p>Other option is to use the <a href="https://manned.org/man/command"><code>command</code></a> command: <code>command -v &lt;executable&gt;</code>.</p>
 <h2 id="unpack-file">Unpack file<a class="headerlink" href="#unpack-file" title="Permanent link">&para;</a></h2>
 <p>Foe unpacking, you can use the <code>tar -f &lt;file&gt;</code> command. The most used options are:</p>
 <ul>
@@ -839,7 +848,7 @@
 <li>logout and login again to load the new added varibales</li>
 </ol>
 <h2 id="enable-the-variable-outside-bash">Enable the Variable Outside Bash<a class="headerlink" href="#enable-the-variable-outside-bash" title="Permanent link">&para;</a></h2>
-<p>If you need the variable outside bash, the above-mentioned approach wonâ€™t work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for <a href="https://en.wikipedia.org/wiki/Linux_PAM">PAM shells</a>  (see <a href="https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible">this SO answer</a> why).</p>
+<p>If you need the variable outside bash, the above-mentioned approach won't work. Currently, I do not know about any general solution for variables. The solution below, unfortunately, work only for <a href="https://en.wikipedia.org/wiki/Linux_PAM">PAM shells</a>  (see <a href="https://unix.stackexchange.com/questions/473001/env-vars-in-etc-environment-not-globally-visible">this SO answer</a> why).</p>
 <p>Add the variable to <code>/etc/environment</code>. Note that it is not a script file, so you can use only simple variable assignments.</p>
 <h2 id="enable-variable-on-a-device-without-root-access">Enable Variable on a Device Without Root Access<a class="headerlink" href="#enable-variable-on-a-device-without-root-access" title="Permanent link">&para;</a></h2>
 <p>Without root access, we can only edit the user config files. put the necessary config into:</p>
@@ -861,6 +870,17 @@ appendWindowsPath = false
 <li>restart WSL</li>
 </ol>
 <h1 id="file-system">File System<a class="headerlink" href="#file-system" title="Permanent link">&para;</a></h1>
+<p>Unlike Windows, Linux typically doe not split the filesystem into partitions that much. Moreover, each partition path can start anywhere, instead of <code>&lt;drive letter&gt;:</code> like in Windows. Typically, the main partition is mounted at <code>/</code>. </p>
+<h2 id="standard-folder-structure">Standard folder structure<a class="headerlink" href="#standard-folder-structure" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Filesystem_hierarchy_standard">standard folder structure</a> is:</p>
+<ul>
+<li><code>/bin</code> core binaries, usually a limited set distributed with the OS</li>
+<li><code>/home/&lt;user name&gt;</code> home directory for the user <code>&lt;user name&gt;</code></li>
+<li><code>/opt</code> for software packages distributed in the Windows style, i.e., as a single installation directory.</li>
+<li><code>/sbin</code> same as <code>/bin</code>, but for system binaries, i.e., binaries for system maintenance</li>
+<li><code>/usr/bin</code> and <code>/usr/sbin</code> For binares installed by package managers. Binaries from other sources should not be installed here, as there is a risk of overwritting them by the package manager.</li>
+<li><code>/usr/local/bin</code> and <code>/usr/local/sbin</code>: For binaries installed by the user, i.e., not by the package manager.</li>
+</ul>
 <h2 id="list-files">List files<a class="headerlink" href="#list-files" title="Permanent link">&para;</a></h2>
 <p>To list files, use <code>ls &lt;path&gt;</code>. By default, it lists the files in the current directory. The most used options are:</p>
 <ul>

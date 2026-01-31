@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -465,6 +469,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#set-up-the-environment-root-directory" class="nav-link">Set up the environment root directory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -526,6 +534,22 @@
 </li>
 </ol>
 <h2 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h2>
+<p>On linux, we have several options to install Conda and Mamba:</p>
+<ul>
+<li>install <a href="https://github.com/conda-forge/miniforge">Miniforge</a> using the instructions on the website</li>
+<li>install mamba using the system package manager. Note that this typically installs micromamba, so:<ul>
+<li>only mamba executables are available, no conda</li>
+<li>default environment location have to be set up using environment variables, as the installation defaults to <code>/envs</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="set-up-the-environment-root-directory">Set up the environment root directory<a class="headerlink" href="#set-up-the-environment-root-directory" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we may want to change the default environment root directory. For this, we change the following environment variables:</p>
+<ul>
+<li><code>CONDA_ROOT_PREFIX</code>: for conda</li>
+<li><code>MAMBA_ROOT_PREFIX</code>: for mamba</li>
+<li><code>MICROMAMBA_ROOT_PREFIX</code>: for micromamba</li>
+</ul>
 <h1 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h1>
 <p>Conda and Mamba use environments similar to virtual environments of pip. By default, these package managers use the <code>base</code> environment, which is pre-created. However, unlike with pip, <strong>mamba discurages the use of the default (base) environment</strong>.</p>
 <p>Typically, commands can be run with the <code>-n &lt;environment name&gt;</code> parameter to specify the environment. If no environment is specified, the active environment is used.</p>

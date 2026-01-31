@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -451,6 +455,11 @@
         <ul class="nav flex-column">
             
             <li class="nav-item" data-bs-level="1"><a href="#source-and-header-files" class="nav-link">Source and Header Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#storage-duration" class="nav-link">Storage Duration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1237,6 +1246,10 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#fold-expressions" class="nav-link">Fold Expressions</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#examples" class="nav-link">Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1644,6 +1657,15 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#comments" class="nav-link">Comments</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#function-comment-blocks" class="nav-link">Function Comment Blocks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#resources_1" class="nav-link">Resources</a>
               <ul class="nav flex-column">
               </ul>
@@ -1738,6 +1760,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#compile-time-plugins-using-static-registration" class="nav-link">Compile-time Plugins using Static Registration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#-link-the-plugin-with-wholearchive-flag" class="nav-link">- link the plugin with /WHOLEARCHIVE flag.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -1765,6 +1795,26 @@
 </ul>
 <p>Typically, each header has a corresponding source file, that contains the definition of all entities declared in the header. However, there is no requirement to have a single source file for each header, we can separate the code into multiple source files.</p>
 <p>Note that <strong>all entities in the translation units added to the target are compiled, even if they are not used</strong>. This is in contrast with the statements inside functions, which are not compiled if they are not used.</p>
+<h1 id="storage-duration">Storage Duration<a class="headerlink" href="#storage-duration" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.cppreference.com/w/cpp/language/storage_duration">cppreference</a></p>
+<p>The storage duration of a variable is the period for which the storage is guaranteed to be available. There are the following <strong>storage durations</strong>:</p>
+<ul>
+<li><strong>static storage duration</strong>: these variables are initialized at the start of the program before the main function is called. They are destroyed at the end of the program, after the main function returns.</li>
+<li><strong>thread storage duration</strong>: these variables are initialized at the start of the thread before the thread function is called. They are destroyed at the end of the thread, after the thread function returns.</li>
+<li><strong>automatic storage duration</strong>: these variables are initialized at the point of their declaration and destroyed at the end of the block they are declared in.</li>
+<li><strong>dynamic storage duration</strong>: these variables are initialized by some memory management mechanism, and they are destroyed by an analogous mechanism.</li>
+</ul>
+<p>To determine the scope of a variable, we can use the following <strong>rules</strong>:</p>
+<ol>
+<li>Variables within the namespace scope (including the undeclared global namespace) have static storage duration unless they are declared with the <code>thread_local</code> specifier, in which case they have thread storage duration.</li>
+<li>block scope variables have automatic storage duration unless they are declared with the <code>static</code> specifier, in which case they have static storage duration.<ul>
+<li>block static variables, unlike namespace static variables, are not initialized at the start of the program, but at the first time the line with the declaration is executed.</li>
+</ul>
+</li>
+<li>parameters have automatic storage duration.</li>
+<li>objects created with mechanics like <code>new</code>/<code>delete</code>, <code>malloc</code>/<code>free</code>, <code>new[]</code>/<code>delete[]</code>, or <code>std::make_unique</code>, <code>std::make_shared</code>, etc. have dynamic storage duration.</li>
+</ol>
+<p>An important lesson from these rules is that the global variables have static storage duration even without the <code>static</code> specifier. The reason for using the <code>static</code> specifier for globals is to control the <em>linkage</em> of the variable.</p>
 <h1 id="type-system">Type System<a class="headerlink" href="#type-system" title="Permanent link">&para;</a></h1>
 <p><a href="https://en.cppreference.com/w/cpp/language/type">cppreference</a></p>
 <p><em>Type</em> is a property of each:</p>
@@ -2364,6 +2414,9 @@ std::string_view s = std::string_view(part) // valid in C++23
 <pre><code class="language-cpp">#include &lt;boost/algorithm/string.hpp&gt;
 
 auto upper = boost::to_upper(str);
+</code></pre>
+<p>Alternatively, we can use the <a href="https://en.cppreference.com/w/cpp/algorithm/transform"><code>std::transform</code></a> algorithm and the <a href="https://en.cppreference.com/w/cpp/string/byte/toupper"><code>std::toupper</code></a> or <a href="https://en.cppreference.com/w/cpp/string/byte/tolower"><code>std::tolower</code></a> functions:</p>
+<pre><code class="language-cpp">std::transform(str.begin(), str.end(), str.begin(), std::toupper);
 </code></pre>
 <h3 id="building-strings">Building strings<a class="headerlink" href="#building-strings" title="Permanent link">&para;</a></h3>
 <p>Unlike other languages, in C++, strings are mutable, so we can build them using the <code>+</code> operator without performance penalty. Alternatively, we can use the <code>std::stringstream</code> class.</p>
@@ -3335,13 +3388,35 @@ Type t = T(f()) // no move constructor call, copy elision
 </li>
 </ul>
 <h1 id="const-vs-non-const">Const vs non-const<a class="headerlink" href="#const-vs-non-const" title="Permanent link">&para;</a></h1>
-<p>The <code>const</code> keyword makes the object non-mutable. This means that:</p>
+<p>The <code>const</code> keyword can be used in two contexts:</p>
 <ul>
-<li>it cannot be reassigned</li>
-<li>non-const member functions of the object cannot be called</li>
+<li>
+<p>as a type qualifier, making the variable non-mutable (<a href="https://en.cppreference.com/w/cpp/language/cv">cppreference</a>)</p>
+</li>
+<li>
+<p>as a member function qualifier, making the function work with const pointer to the instance (<a href="https://en.cppreference.com/w/cpp/language/member_functions.html#Member_functions_with_cv-qualifiers">cppreference</a>)</p>
+</li>
 </ul>
-<p>The const keyword is usually used for local variables, function parameters, etc.</p>
-<p><strong>For members, the const keyword should not be used</strong>, as it sometimes breaks the move operations on the object. For example we cannot move from a const <code>std::unique_ptr&lt;T&gt;</code> object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const <code>std::unique_ptr&lt;T&gt;</code>  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.</p>
+<p>A variable is non-mutable (const) if it is:</p>
+<ul>
+<li><code>const</code>-qualified</li>
+<li>it is a member of a const object and it is not declared as <a href="https://en.cppreference.com/w/cpp/language/cv.html#mutable">mutable</a></li>
+</ul>
+<p>Non mutable variables:</p>
+<ul>
+<li>cannot be reassigned</li>
+<li>non-const member functions of them cannot be called</li>
+</ul>
+<p>A member function can be declared with const qualifier at the end of the declaration. A function declared with const:</p>
+<ul>
+<li>accesses its instance as <code>const *&lt;class_name&gt;</code> instead of <code>&lt;class_name&gt;*</code></li>
+<li>by conclusion, see all members as const which means:<ul>
+<li>non-const member functions of the object cannot be called</li>
+<li>non-const member variables of the object are accessed as const references</li>
+</ul>
+</li>
+</ul>
+<p><strong>For members, the const keyword can break the move operations on the object</strong>. For example we cannot move from a const <code>std::unique_ptr&lt;T&gt;</code> object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const <code>std::unique_ptr&lt;T&gt;</code>  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.</p>
 <h2 id="avoiding-duplication-between-const-and-non-const-version-of-the-same-function">Avoiding duplication between const and non-const version of the same function<a class="headerlink" href="#avoiding-duplication-between-const-and-non-const-version-of-the-same-function" title="Permanent link">&para;</a></h2>
 <p>To solve this problem without threatening the const-correctness, we need to implement the <em>const</em> version of a function and call it from the non-const one with double type cast:</p>
 <ul>
@@ -4176,11 +4251,21 @@ void func(T... args) { // dots after the parameter type
 <li><code>(T... &lt;operator&gt; ... &lt;operator&gt; &lt;initial value&gt;)</code> evaluates to <code>(&lt;T1&gt; &lt;operator&gt; (&lt;T2&gt; &lt;operator&gt; ... &lt;operator&gt; (&lt;TN&gt; &lt;operator&gt; &lt;initial value&gt;)))</code></li>
 <li><code>(&lt;initial value&gt; &lt;operator&gt; ... &lt;operator&gt; &lt;T...&gt;)</code> evaluates to <code>((((&lt;initial value&gt; &lt;operator&gt; &lt;T1&gt;) &lt;operator&gt; &lt;T2&gt;) &lt;operator&gt; ... &lt;operator&gt; &lt;TN&gt;)</code></li>
 </ul>
-<p>An example of a fold expression used for a sum function template:</p>
+<p>Note that we can use fold expressions anywhere where we can use parameter pack expansion. Therefore, we can use them even in e.g. requires expression.</p>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<p>An example of a fold expression used for a sum <strong>function template</strong>:</p>
 <pre><code class="language-cpp">template&lt;typename... Args&gt;
 auto sum(Args... args){
     return (... + args);
 }
+</code></pre>
+<p>Fold expression in the <strong>requires expression</strong>:</p>
+<pre><code class="language-cpp">template&lt;typename... NO&gt;
+template&lt;template &lt;typename, class...&gt; class S&gt;
+requires(DARP_benchmark_solver_constructor_interface&lt;S,NO&gt; &amp;&amp; ...)
+</code></pre>
+<p>The above requires expression will be expanded to:</p>
+<pre><code class="language-cpp">(DARP_benchmark_solver_constructor_interface&lt;S,NO1&gt; &amp;&amp; DARP_benchmark_solver_constructor_interface&lt;S,NO2&gt; &amp;&amp; ... &amp;&amp; DARP_benchmark_solver_constructor_interface&lt;S,NON&gt;)
 </code></pre>
 <h2 id="using-complicated-types-as-template-arguments">Using Complicated Types as Template Arguments<a class="headerlink" href="#using-complicated-types-as-template-arguments" title="Permanent link">&para;</a></h2>
 <p>Sometimes, it can be very tricky to determine the template argument we need in order to use the template. The correct argument can be for example a return value of some function,  templete function, or even member function of a template instanciation which has other templates as argument...</p>
@@ -4245,9 +4330,10 @@ concept Addable = requires (T x) { x + x; };
 <p>Either form we chose, the atomic constraint have to always evaluate to bool. </p>
 <h2 id="requires-expression">Requires Expression<a class="headerlink" href="#requires-expression" title="Permanent link">&para;</a></h2>
 <p>Requires expressions ar ethe most powerfull conctraints. The syntax is:</p>
-<pre><code class="language-cpp">requires(parameter list){requirements}
+<pre><code class="language-cpp">requires(&lt;parameter list&gt;) { &lt;requirements&gt; }
 </code></pre>
-<p>There are four types of requirements that can appear in the requires expression:</p>
+<p>Here, the <code>&lt;parameter list&gt;</code> is a list of objects (instances of types) that we need to use in the <code>&lt;requirements&gt;</code>.</p>
+<p>There are four types of <code>&lt;requirements&gt;</code> that can appear in the requires expression:</p>
 <ul>
 <li>
 <p><em>simple requiremnet</em>: a requirement that can contain any expression. Evaluates to true if the expression is valid.
@@ -5265,7 +5351,30 @@ std::function&lt;int(int, int)&gt; func = add; // fails due to ambiguity.
 <p>Standard attributes are:</p>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/language/attributes/nodiscard"><code>[[nodiscard]]</code></a>: marks a function that the return value should not be ignored. If the return value is ignored, a warning is issued.</li>
+<li><a href="https://en.cppreference.com/w/cpp/language/attributes/maybe_unused"><code>[[maybe_unused]]</code></a>: marks a variable that may be unused. This suppresses the unused variable warning in modern compilers.</li>
 </ul>
+<h1 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h1>
+<p>The C++ standard does not specify the comment syntax. However, the most common comments are:</p>
+<pre><code class="language-cpp">// single-line comment
+/* multi-line comment */
+</code></pre>
+<p>Also, there are special comment blocks for documentation systems like Doxygen. Those, like in Java, are typically enclosed in <code>/**</code> and <code>*/</code> blocks.</p>
+<pre><code class="language-cpp">/**
+ * This is a multi-line comment.
+ * It can contain multiple lines.
+ */
+</code></pre>
+<h2 id="function-comment-blocks">Function Comment Blocks<a class="headerlink" href="#function-comment-blocks" title="Permanent link">&para;</a></h2>
+<p>For function comment blocks, there is a special syntax in Doxygen:</p>
+<pre><code class="language-cpp">/**
+ * @brief This is a function comment block.
+ * It can contain multiple lines.
+ * @param param1 This is a parameter.
+ * @param param2 This is a parameter.
+ * @return This is a return value.
+ */
+</code></pre>
+<p>Additionaly, we can refer to the parameters in the text using <code>@p &lt;param name&gt;</code>.</p>
 <h1 id="resources_1">Resources<a class="headerlink" href="#resources_1" title="Permanent link">&para;</a></h1>
 <p>In C++, there is no facility for resource management like in Java or Python. Instead, resources have to be loaded like standard files. </p>
 <p>Moreover, there is no built-in way how to determine the localtion of the running executable so that we can load the resources from the same directory. Typically, this has to be implemented for each platform separately:</p>
@@ -5476,7 +5585,30 @@ However, the <code>system</code> calls are not portable, e.g., the quotes around
 <li><a href="#unions-and-variants">std::variant</a> to list all possible types</li>
 <li><a href="https://en.cppreference.com/w/cpp/utility/variant/visit2.html">std::visit</a> to implement a visitor</li>
 </ul>
-<p>The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.</p></div>
+<p>The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.</p>
+<h2 id="compile-time-plugins-using-static-registration">Compile-time Plugins using Static Registration<a class="headerlink" href="#compile-time-plugins-using-static-registration" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we want to enable extension of the functionality of some executable at compile time. The problem is: how we can call the extended code from main function, if we do not know it? The answer is to use the static registration pattern. The principle is simple:</p>
+<ol>
+<li>in the executable, we define a registry of available plugins</li>
+<li>in the plugin, we call some registration function to register the plugin in the registry. As this registration cannot be called from the main function, we use the static variable initialization to register the plugin.</li>
+</ol>
+<p>The static registration in the plugin looks like this:</p>
+<pre><code class="language-cpp">#include &lt;plugin_registry.h&gt;
+
+struct Plugin{
+
+    // constructor
+    Plugin(){
+        PLugin_registry::register_plugin(&lt;parameters&gt;);
+    }
+
+};
+
+
+Plugin plugin; // here, the constructor is called as the variable has static storage duration.
+</code></pre>
+<p>This technique has some important pitfall. Because the main executable does not reference the plugin, the compiler may discard the whole plugin object and not link it to the executable. To prevent this, several techniques can be used:</p>
+<h2 id="-link-the-plugin-with-wholearchive-flag">- link the plugin with <a href="https://learn.microsoft.com/en-us/cpp/build/reference/wholearchive-include-all-library-object-files?view=msvc-170"><code>/WHOLEARCHIVE</code></a> flag.<a class="headerlink" href="#-link-the-plugin-with-wholearchive-flag" title="Permanent link">&para;</a></h2></div>
             </div>
         </div>
 

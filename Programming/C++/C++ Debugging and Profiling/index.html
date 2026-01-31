@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -683,6 +687,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="1"><a href="#showing-size-alignment-and-memory-layout-of-structures" class="nav-link">Showing size, alignment, and memory layout of structures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#showing-linked-libraries" class="nav-link">Showing Linked Libraries</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1066,7 +1075,14 @@ Basic usage:</p>
 <h1 id="showing-size-alignment-and-memory-layout-of-structures">Showing size, alignment, and memory layout of structures<a class="headerlink" href="#showing-size-alignment-and-memory-layout-of-structures" title="Permanent link">&para;</a></h1>
 <p>In both CLion and Visual Studio, the size and alignment of the structure is displayed in the tooltip when hovering over the structure name, or member name.</p>
 <p>Additionally, Visual Studio shows the memory layout if we click the appropriate button in the tooltip.</p>
-<p><a href="https://devblogs.microsoft.com/visualstudio/size-alignment-and-memory-layout-insights-for-c-classes-structs-and-unions/">Visual Studio tutorial</a></p></div>
+<p><a href="https://devblogs.microsoft.com/visualstudio/size-alignment-and-memory-layout-insights-for-c-classes-structs-and-unions/">Visual Studio tutorial</a></p>
+<h1 id="showing-linked-libraries">Showing Linked Libraries<a class="headerlink" href="#showing-linked-libraries" title="Permanent link">&para;</a></h1>
+<p>To show dynamically linked libraries, we can use the <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer"><code>Process Explorer</code></a> tool.</p>
+<ol>
+<li>Find the process of the running executable</li>
+<li><code>View</code> -&gt; <code>Lower Pane View</code> -&gt; <code>DLLs</code></li>
+</ol>
+<p>If we need to see all linked libraries, and maybe also the specific objects, it is best to inspect the compiler logs when running the build using the verbose mode.</p></div>
             </div>
         </div>
 

@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -476,6 +480,15 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#operations-on-variables" class="nav-link">Operations on variables</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#executable-execution" class="nav-link">Executable execution</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#executing-binaries-while-skipping-the-shell-aliases" class="nav-link">Executing binaries while skipping the shell aliases</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -645,6 +658,11 @@ var=$(&lt;command&gt;) # correct, the output of the command is assigned to the v
 <li><code>${&lt;variable&gt;%%&lt;pattern&gt;}</code>: remove the longest suffix matching the pattern</li>
 <li><code>${&lt;variable&gt;##&lt;pattern&gt;}</code>: remove the longest prefix matching the pattern</li>
 </ul>
+<h1 id="executable-execution">Executable execution<a class="headerlink" href="#executable-execution" title="Permanent link">&para;</a></h1>
+<h2 id="executing-binaries-while-skipping-the-shell-aliases">Executing binaries while skipping the shell aliases<a class="headerlink" href="#executing-binaries-while-skipping-the-shell-aliases" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Command_(Unix)">wiki</a></p>
+<p>We can do this by using the <a href="https://manned.org/man/command"><code>command</code></a> command: <code>command &lt;executable&gt; &lt;arguments&gt;</code>.
+This command will execute the executable directly, without any shell aliases.</p>
 <h1 id="working-with-io">Working with I/O<a class="headerlink" href="#working-with-io" title="Permanent link">&para;</a></h1>
 <h2 id="output-forwarding">Output Forwarding<a class="headerlink" href="#output-forwarding" title="Permanent link">&para;</a></h2>
 <p>Output forwarding is a process of redirecting the output of a command to an input of another command. The operator for that is the pipe <code>|</code>. The syntax is:</p>
@@ -842,7 +860,7 @@ str='string literal'
 a = &quot;normal string &quot;'&quot;'&quot;quotted string&quot;'&quot;'
 </code></pre>
 <h2 id="multiline-string-literals">Multiline string literals<a class="headerlink" href="#multiline-string-literals" title="Permanent link">&para;</a></h2>
-<p>There is no dedicated syntax for multiline string literals. However, we can use the <em>here document</em> syntax:</p>
+<p>There is no dedicated syntax for multiline string literals. However, we can use the <a href="https://en.wikipedia.org/wiki/Here_document">here document (HEREDOC)</a> syntax:</p>
 <pre><code class="language-bash">&lt;target&gt; &lt;&lt; &lt;delimiter&gt; &lt;content&gt; 
 &lt;delimiter&gt;
 </code></pre>
@@ -852,7 +870,7 @@ CREATE DATABASE test_$name OWNER $name;
 grant all privileges on database test_$name to $name;
 SQL)
 </code></pre>
-<p>Note that the <code>&lt;delimiter&gt;</code> must be at the beginning of the line, otherwise, it will not work.</p>
+<p>Note that the end <code>&lt;delimiter&gt;</code> must be at the beginning of the line, otherwise, it will not work.</p>
 <h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
 <p>Functions are defined as:</p>
 <pre><code class="language-bash">function_name() {

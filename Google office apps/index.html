@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -460,6 +464,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conditional-formatting" class="nav-link">Conditional formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#subscript-and-superscript" class="nav-link">Subscript and superscript</a>
               <ul class="nav flex-column">
               </ul>
@@ -492,6 +500,19 @@
 </ul>
 <h2 id="date-and-time">Date and time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h2>
 <p>To refer to the current date, we can use the <code>TODAY()</code> function.</p>
+<h2 id="conditional-formatting">Conditional formatting<a class="headerlink" href="#conditional-formatting" title="Permanent link">&para;</a></h2>
+<p>To apply conditional formatting to a range of cells, select the range and go to <code>Format</code> -&gt; <code>Conditional formatting</code>. The rules are sorted from highest to lowest priority. Rule types:</p>
+<ul>
+<li><strong>Value is (lower, equal, greater) than...</strong></li>
+<li><strong>Date is (older, equal, newer) than...</strong><ul>
+<li>but not for complex date operations</li>
+</ul>
+</li>
+<li><strong>Custom formula</strong> for complex conditions<ul>
+<li><code>=AND(E2&gt;=TODAY(); E2&lt;=TODAY()+90)</code>: date in the next three months</li>
+</ul>
+</li>
+</ul>
 <h2 id="subscript-and-superscript">Subscript and superscript<a class="headerlink" href="#subscript-and-superscript" title="Permanent link">&para;</a></h2>
 <p>There is no direct way to format text as subscript or superscript. The easiest way is to copy the subscript/superscript characters from and paste them into the cell. A source for that can be the <a href="https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts">wiki page for Unicode subscript and superscript</a>.</p>
 <h1 id="google-docs">Google docs<a class="headerlink" href="#google-docs" title="Permanent link">&para;</a></h1>

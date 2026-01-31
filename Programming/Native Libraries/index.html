@@ -367,6 +367,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../Images/IrfanView/" class="dropdown-item">IrfanView</a>
+</li>
+                                    
+<li>
     <a href="../../Images/Midjourney/" class="dropdown-item">Midjourney</a>
 </li>
                                     
@@ -456,6 +460,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="1"><a href="#runing-a-program-depending-on-a-native-library" class="nav-link">Runing a program depending on a native library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#object-libraries" class="nav-link">Object Libraries</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -563,7 +572,11 @@
 <li>The system directory and the Windows directory</li>
 <li>The CWD (folder where the program is run)</li>
 <li>The directories listed in the PATH environment variable in the order they are listed</li>
-</ol></div>
+</ol>
+<h1 id="object-libraries">Object Libraries<a class="headerlink" href="#object-libraries" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#object-libraries">CMake description of object libraries</a></p>
+<p>In some computer languages, compilation units are first compiled into object files, and then these object files are linked into a library. This is the case for C and C++. These languages can use these objects as libraries and integrate them into other libraries or executables. </p>
+<p>Unlike other libraries, object libraries are not linked to the binaries, but directly included. They are similar to source files, just pre-compiled. Static libraries are then archives of object files that are linked.</p></div>
             </div>
         </div>
 
