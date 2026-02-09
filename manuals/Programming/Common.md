@@ -65,14 +65,16 @@ There are many types of software tests:
 
 - **Unit tests**: The most common and known ype of tests. They test individual units of code, e.g., functions, classes, or modules.
 - **Integration tests**: test how different units of code work together.
-- **Functional tests**: test the functionality of the software from the user's perspective.
-- [**Smoke tests**](https://en.wikipedia.org/wiki/Smoke_testing_(software)): Test the minimum functionality of the software.
-    - sometimes, it just builds the software. In this case, it may be called a *build verification test*.
-    - sometimes, it runs the software with a minimal set of inputs. This way, we can check if the runtime libraries are correctly linked and if the software can be executed.
-- [**Regression tests**](https://en.wikipedia.org/wiki/Regression_testing): test if the new version of the software behaves the same as the previous one. This can mean testing the equivalence of:
-    - the output of the software,
-    - the performance of the software,
-    - the compilation time or the size of the binary,..
+    - still a white-box test: we test internction of multiple components, but not the whole software.
+- [**Functional tests**](https://en.wikipedia.org/wiki/Functional_testing): test the functionality of the software from the user's perspective.
+    - typically a black-box test: we run an executable and check the outputs.
+    - [**Smoke tests**](https://en.wikipedia.org/wiki/Smoke_testing_(software)): Test the minimum functionality of the software.
+        - sometimes, it just builds the software. In this case, it may be called a *build verification test*.
+        - sometimes, it runs the software with a minimal set of inputs. This way, we can check if the runtime libraries are correctly linked and if the software can be executed.
+    - [**Regression tests**](https://en.wikipedia.org/wiki/Regression_testing): test if the new version of the software behaves the same as the previous one. This can mean testing the equivalence of:
+        - the output of the software,
+        - the performance of the software,
+        - the compilation time or the size of the binary,..
 
 Test cases for each test type can be written using two main approaches:
 

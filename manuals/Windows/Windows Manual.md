@@ -507,7 +507,7 @@ git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
 VPN is natively supported in Windows. It can be set up in two ways:
 
 - using a system dialog
-- in PowerShell
+- in [PowerShell](<Windows/Powershell Manual.md#vpn-management>)
 
 If the system dialog does not work, try the PowerShell method.
 

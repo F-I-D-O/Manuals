@@ -167,19 +167,20 @@ Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolc
 #### Multiple WSL toolchains
 When using multiple WSL toolchains, we need to manually set the compilers. To do so, fill also the `C Compiler` and `C++ Compiler` fields in the toolchain settings with the path to the compiler executable.
 
+
 ### Project configuration
 Most project settings resides (hereinafter *Project settings*) in `settings` -> `Build, Execution, Deployment` -> `CMake`. For each build configuration, add a new template and set:
 
--   `Name` to whatever you want   
--   `Build type` to `debug`
--   To `Cmake options`, add:
-	-   path to vcpkg toolchain file:
-		-   Linux: `-DCMAKE_TOOLCHAIN_FILE=/opt/vcpkg/scripts/buildsystems/vcpkg.cmake`
-		-   Windows: `-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake`
-	-   Set the correct vcpkg triplet
-		-   MSVC:   `-DVCPKG_TARGET_TRIPLET=x64-windows`
-		-   MinGW:  `-DVCPKG_TARGET_TRIPLET=x64-MinGW`
-		-   Linux: `-DVCPKG_TARGET_TRIPLET=x64-linux`
+- `Name` to whatever you want
+- `Build type` to `debug`
+- To `Cmake options`, add:
+    - path to vcpkg toolchain file:
+        - Linux: `-DCMAKE_TOOLCHAIN_FILE=/opt/vcpkg/scripts/buildsystems/vcpkg.cmake`
+        - Windows: `-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake`
+    - Set the correct vcpkg triplet
+        - MSVC:   `-DVCPKG_TARGET_TRIPLET=x64-windows`
+        - MinGW:  `-DVCPKG_TARGET_TRIPLET=x64-MinGW`
+        - Linux: `-DVCPKG_TARGET_TRIPLET=x64-linux`
 
 #### WSL extra configuration
 The CLion does not see the WSL's environment variables (as of 2023-03, see [here](https://intellij-support.jetbrains.com/hc/en-us/community/posts/5633934229906-Programs-cannot-get-environment-variables-from-wsl)). To fix it, go to *Project settings* and set add the necessary environment variables to `Environment` field. 
@@ -190,6 +191,13 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
 1. go to `settings` -> `Build, Execution, Deployment` -> `CMake` 
 1. select the profile you want to deactivate
 1. uncheck the `Enable profile` checkbox located at the top of the profile settings
+
+
+### Running tests
+Clion has a built-in support for certain test frameworks, e.g., Google Test. In addition to running the whole test target, we can run each individual test by clicking the test icon next to the first line of the test function.
+
+Note that **bare ctest tests are not supported**. To run them, use the CLion terminal to run the `ctest` command.
+
 
 
 ### Troubleshooting
