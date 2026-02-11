@@ -1707,9 +1707,46 @@ The default implementationof copy constructor calls recursively the copy constru
 
 
 ### Checking if a class is copy constructible
-We can check if a class is copy constructible using the [`std::is_copy_constructible`](https://en.cppreference.com/w/cpp/types/is_copy_constructible) type trait. 
+We can check if a class is copy constructible using the [`std::is_copy_constructible`](https://en.cppreference.com/w/cpp/types/is_copy_constructible) type trait:
+```cpp
+static_assert(std::is_copy_constructible<My_class>::value); // or equivalent using
+static_assert(std::is_copy_constructible_v<My_class>); 
+```
 
+However, **the `std::is_copy_constructible` is not a reliable way to check if a class is copy constructible!**. When it evaluates to false:
 
+- the class have an explicitly deleted copy constructor
+- the copy constructor is inaccessible (protected, private)
+- the copy constructor is not declared because of the rule of five/five, i.e., one of the other constructors/assignments/destructors is defined
+- only non-const copy constructor is available
+
+When it evaluates to true, while the class is not copy constructible:
+
+- the copy constructor is implicitly deleted due to members that are not copy constructible
+- the copy constructor is declared, but not defined (results in linker error)
+
+The only robust solution is to create a test where an actual copy constructor is called. An example:
+
+```cpp
+// message to be displayed in the compiler output. Without this, developers can be confused, as the test file or function is typically not in the error stack trace.
+#pragma message("NOTICE: Compiling copy contract test: Test_class. If the compilation of this unit fails, it almost certainly means that the contract was broken and Test_class class is not copy constructible.")
+
+#include <type_traits>
+#include "gtest/gtest.h"
+
+#include "test_class.h"
+
+namespace {
+static_assert(std::is_copy_constructible_v<Test_class>);
+
+TEST(compile_time, test) {
+	Test_class t1;
+	Test_class t2 = t1;
+}
+}
+```
+
+    
 ## Copy Assignment
 Copy Assignment is needed when  we use the `=` operator with the existing class instances, e.g.:
 ```cpp
