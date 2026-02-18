@@ -1707,9 +1707,46 @@ The default implementationof copy constructor calls recursively the copy constru
 
 
 ### Checking if a class is copy constructible
-We can check if a class is copy constructible using the [`std::is_copy_constructible`](https://en.cppreference.com/w/cpp/types/is_copy_constructible) type trait. 
+We can check if a class is copy constructible using the [`std::is_copy_constructible`](https://en.cppreference.com/w/cpp/types/is_copy_constructible) type trait:
+```cpp
+static_assert(std::is_copy_constructible<My_class>::value); // or equivalent using
+static_assert(std::is_copy_constructible_v<My_class>); 
+```
 
+However, **the `std::is_copy_constructible` is not a reliable way to check if a class is copy constructible!**. When it evaluates to false:
 
+- the class have an explicitly deleted copy constructor
+- the copy constructor is inaccessible (protected, private)
+- the copy constructor is not declared because of the rule of five/five, i.e., one of the other constructors/assignments/destructors is defined
+- only non-const copy constructor is available
+
+When it evaluates to true, while the class is not copy constructible:
+
+- the copy constructor is implicitly deleted due to members that are not copy constructible
+- the copy constructor is declared, but not defined (results in linker error)
+
+The only robust solution is to create a test where an actual copy constructor is called. An example:
+
+```cpp
+// message to be displayed in the compiler output. Without this, developers can be confused, as the test file or function is typically not in the error stack trace.
+#pragma message("NOTICE: Compiling copy contract test: Test_class. If the compilation of this unit fails, it almost certainly means that the contract was broken and Test_class class is not copy constructible.")
+
+#include <type_traits>
+#include "gtest/gtest.h"
+
+#include "test_class.h"
+
+namespace {
+static_assert(std::is_copy_constructible_v<Test_class>);
+
+TEST(compile_time, test) {
+	Test_class t1;
+	Test_class t2 = t1;
+}
+}
+```
+
+    
 ## Copy Assignment
 Copy Assignment is needed when  we use the `=` operator with the existing class instances, e.g.:
 ```cpp
@@ -1826,21 +1863,41 @@ It's mostly better to delete everything you don’t need. Most likely, either
 
 - copyable object
 - We need
-	- copy constructor
-	- copy assignment
-	- move constructor
-	- move assignment
+    - copy constructor
+    - copy assignment
+    - move constructor
+    - move assignment
 
 
-# Const vs non-const 
-The `const` keyword makes the object non-mutable. This means that:
+# Const vs non-const
 
-- it cannot be reassigned
-- non-const member functions of the object cannot be called
 
-The const keyword is usually used for local variables, function parameters, etc.
+The `const` keyword can be used in two contexts:
 
-**For members, the const keyword should not be used**, as it sometimes breaks the move operations on the object. For example we cannot move from a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
+- as a type qualifier, making the variable non-mutable ([cppreference](https://en.cppreference.com/w/cpp/language/cv))
+
+- as a member function qualifier, making the function work with const pointer to the instance ([cppreference](https://en.cppreference.com/w/cpp/language/member_functions.html#Member_functions_with_cv-qualifiers))
+
+A variable is non-mutable (const) if it is:
+
+- `const`-qualified
+- it is a member of a const object and it is not declared as [mutable](https://en.cppreference.com/w/cpp/language/cv.html#mutable)
+
+Non mutable variables:
+
+- cannot be reassigned
+- non-const member functions of them cannot be called
+
+
+A member function can be declared with const qualifier at the end of the declaration. A function declared with const:
+
+- accesses its instance as `const *<class_name>` instead of `<class_name>*`
+- by conclusion, see all members as const which means:
+    - non-const member functions of the object cannot be called
+    - non-const member variables of the object are accessed as const references
+
+
+**For members, the const keyword can break the move operations on the object**. For example we cannot move from a const `std::unique_ptr<T>` object. While this is also true for local variable, in members, it can lead to hard to find compilation errors, as a single const `std::unique_ptr<T>`  member deep in the object hierarchy breaks the move semantic for the whole class and all subclasses.
 
 ## Avoiding duplication between const and non-const version of the same function
 To solve this problem without threatening the const-correctness, we need to implement the *const* version of a function and call it from the non-const one with double type cast:

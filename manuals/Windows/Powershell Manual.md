@@ -577,6 +577,19 @@ By default, the netstat command translates IPs into names. Unfortunatelly, on Wi
 To display executable for all connection, just use the `-b` swith. For filtering out only some, you have to use the `-Context` parameter in the `Select-String` command, as the executable is printed one line below the connection: `netstat -b | sls <search pattern> -Context 0,1`
 
 
+## VPN Management
+To **add a VPN connection**, use the `Add-VpnConnection` command. Example:
+```PowerShell
+Add-VpnConnection -Name "My VPN" -ServerAddress "vpn.example.com" -AuthenticationMethod "MSCHAPv2" -EncryptionLevel "Required" -SplitTunneling -AllUserConnection -RememberCredential
+```
+
+To use this connection, we can use the [`RasDial`](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/ff859533(v=ws.11)) command:
+```PowerShell
+RasDial "<VPN name>" "<username>" "<password>"
+```
+
+
+
 
 # System Information
 [CIM documentation](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets)
