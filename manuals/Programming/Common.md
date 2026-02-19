@@ -213,6 +213,47 @@ Code stylke can be only configured in the `settings.json` file, there is no GUI 
 - `editor.insertSpaces`: if true, the editor will insert spaces instead of tabs
 
 
+### Layout
+Compared to a typical IDE, Visual Studio Code offers only a limited layout options. There are four layout areas that can be toggled on or off:
+
+- **Editor area**: in the center, by default
+- **Primary sidebar**: on the left, by default
+- **Secondary sidebar**: on the right, by default
+- **Panel**: at the bottom, by default
+
+#### Editor area
+By default, there is a single editor area. Individual files are opened in separate tabs. The area can be divided into multiple columns by two ways:
+
+- showing a preview (if available for the file type): split icon with a looking glass
+- split horizontally: edit multiple files side by side: split icon
+
+Specific configurations for the editor area:
+
+- **Show whitespace characters**: `View` > `Apppearance` > `Render Whitespace`.
+    - Line endings cannot be shown in the editor, but the status bar shows the line ending of the current file, and by clicking on it, you can change it.
+
+#### Primary sidebar
+The primary sidebar has *containers* that behaves like tabs for the primary sidebar. Instead container names, icons are displayed. The important aspect is that **there is no way to create a custom container**. New containers can only by added by installing a specific extension that provides a new container. The containers present in a vanilla VS Code are:
+
+- **Explorer**: contains files, outlines, and Timeline collapsable areas
+- **Search**
+- **Git**
+- **Run and Debug**
+- **Extensions**
+
+Extensions that provide new containers are:
+
+- [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+
+
+#### Secondary sidebar
+
+
+#### Panel
+Panel is the only area which we can position at all four sides (top, bottom, left, right). **There can be only one panel**. The panel is divided into tabs.
+
+
+
 
 ## Code Formatting
 Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
@@ -242,6 +283,17 @@ The important properties are:
 - `command`: the command or process to run
 - `args`: the arguments of the command or process (array of strings). Extra quoting is not needed (unlike in Visual Studio).
 - `problemMatcher`: the [problem matcher](https://code.visualstudio.com/docs/debugtest/tasks#_defining-a-problem-matcher) to use for the task (array of strings). If not set, the IDE may ask the user to set it when the task is run.
+
+
+
+# Cursor
+Cursor is a port of Visual Studio Code. Therefore, only things that differ from VS Code are described here.
+
+
+## Configuration
+
+### Layout
+Cursor's layout is even more limited than VS Code's. The secondary sidebar is occupied by the chat interface, and there is no way to change that. Views can be moved in the secondary sidebar, but they appear as another chat window, which dramatically limits the usability.
 
 
 # Releasing the software
