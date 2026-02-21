@@ -572,6 +572,11 @@ As a shim, we can use:
 Usually, it is a good idea to configure autosave. This functionality is available in a plugin called Autosave.
 
 
+# OwnCloud Troubleshooting
+If there is a problem, go to `Settings -> Advanced -> Log Settings` and enable the logging. 
+
+
+
 # Problems
 
 ## Folder Sharing Problems
