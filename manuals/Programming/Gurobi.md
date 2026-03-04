@@ -45,6 +45,17 @@ Possible values:
 Thgis parameter can be overridden for a specific cut type through other parameters (e.g., `CliqueCuts` parameter).
 
 
+## OutputFlag
+
+- [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#outputflag)
+
+OutputFlag parameter is a toggle for the output of the solver (both in the console and in the log file).
+
+Possible values:
+
+- `0`: off
+- `1`: on (default)
+
 ## PreCrush
 
 - [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#precrush)
