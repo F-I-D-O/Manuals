@@ -337,7 +337,9 @@ We can load the datetime from string using the [`strptime`](https://docs.python.
 ```python
 d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
 ```
-For all possible time formats, check the [`strftime` cheatsheet](https://strftime.org/)
+For all possible time formats, check the [`strftime` cheatsheet](https://strftime.org/).
+
+Finally, we can [create a `datetime` object from a unix timestamp](#converting-fromto-unix-timestamp).
 
 
 ### Accessing the parts of `datetime`
@@ -371,8 +373,13 @@ d2 = d + interval # '2022-05-20 19:00'
 ```
 
 
-### Converting to Unix timestamp
-To convert a `datetime` object to unix timestamp, we can use the `timestamp` method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that **the timestamp is computed based on the `datetime` object's timezone, or your local timezone if the `datetime` object has no timezone information.**
+### Converting from/to Unix timestamp
+To **convert a `datetime` to [unix timestamp](https://en.wikipedia.org/wiki/Unix_time)**, we can use the `timestamp` method. It returns the number of seconds since the epoch (1.1.1970 00:00:00).
+
+To **convert a unix timestamp to a `datetime` object**, we can use the [`datetime.fromtimestamp`](https://docs.python.org/3/library/datetime.html#datetime.datetime.fromtimestamp) function.
+
+
+Note however, that **the timestamp/datetime is computed based on the `datetime` object's/supplied timezone, or your local timezone if no timezone information is supplied.**
 
 ### Time and date objects
 Instead of using the `datetime` object, we can use the [`time`](https://docs.python.org/3/library/datetime.html#time-objects) and [`date`](https://docs.python.org/3/library/datetime.html#date-objects) objects if we need to work with time or date only. 

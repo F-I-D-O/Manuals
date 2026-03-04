@@ -4415,6 +4415,16 @@ public:
 ```
 
 
+## Skipping a test
+To set test to be skipped unless we mention it explicitly, we can use the `DISABLED_` prefix. Example:
+```cpp
+TEST(MyTest, DISABLED_test_name){
+	...
+}
+```
+This way, the test is skipped by default, but it can be run explicitly by mentioning it in the command line.
+
+
 # Memory Alignment
 [Allignment FAQ](https://c-faq.com/struct/align.esr.html)
 

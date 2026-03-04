@@ -205,8 +205,6 @@ H\textsubscript{2}O
 ```
 
 
-
-
 ## Lists
 The list enviroments have the following syntax:
 ```latex
@@ -221,9 +219,21 @@ The following list types are available:
 
 - `itemize`: bullet points
 - `enumerate`: numbered list
-- `description`: description list. Items can have a label, which is specified as an optional argument of the `\item` command. 
+- `description`: description list. Items can have a label, which is specified as an optional argument of the `\item` command.
 
 More typoes of lists like questions or checklists can be created using external packages.
+
+
+### Nested lists
+To create nested lists, we just start a new list environment instead of an `\item` command:
+```latex
+\begin{itemize}
+    \item <item 1>
+    \begin{itemize}
+        \item <nested item 1>
+    \end{itemize}
+\end{itemize}
+```
 
 
 ## Units, numbers, and currency with `siunitx`
