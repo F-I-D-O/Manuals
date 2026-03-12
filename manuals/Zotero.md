@@ -61,3 +61,7 @@ Again, there are two options on how to sync your local reference file with Overl
 ## Git
 
 
+# Import from PDF
+To import a pdf file as a new item, just drag and drop the file into the Zotero window.
+
+
