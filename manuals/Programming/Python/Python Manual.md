@@ -1,5 +1,25 @@
 # Basics
 
+## Code Organization
+In Python, we can organize the code as follows:
+
+- **interactive mode**: We can just type python in the terminal and start coding. But this way, everything is lost after the session is closed.
+- **scripts**: If we have some code we want to repeat, we can put it into `.py` file and run it using the `python <script_name>.py` command.
+- [**modules**](https://docs.python.org/3/tutorial/modules.html): If there is more code, we typically split it into multiple `*.py` files. These files, introduced using the `import` statement, are called *modules*.
+- [**packages**](https://docs.python.org/3/tutorial/modules.html#packages): If there are many modules, we may want to organize them into multiple directories. These directories must contain a `__init__.py` and they are called *packages*.
+
+## Naming conventions
+[Official Naming conventions](https://peps.python.org/pep-0008/#naming-conventions) (Part of the [PEP 8](https://peps.python.org/pep-0008/) style guide)
+
+Python has the following naming conventions:
+
+- [variables and functions](https://peps.python.org/pep-0008/#function-and-variable-names) snake_case
+- [classes](https://peps.python.org/pep-0008/#class-names): CamelCase
+- [constants](https://peps.python.org/pep-0008/#constants): SNAKE_CASE
+- [packages and modules](https://peps.python.org/pep-0008/#package-and-module-names): short names, all lowercase
+    - underscores can be used in  long names to improve readability
+- [types](https://peps.python.org/pep-0008/#type-variable-names): single letter, uppercase, or CamelCase
+
 ## Variables
 
 To check if a local variable is defined, we can use the `locals` function:
@@ -1405,7 +1425,7 @@ There are several ways how to implement a singleton in Python. The most common a
 - using a decorator
 
 ## Module-level variable
-The most simple way is to use a module-level variable. **Note taht if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!**
+The most simple way is to use a module-level variable. **Note that if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!**
 ```Python
 class Singleton:
     def __init__(self):

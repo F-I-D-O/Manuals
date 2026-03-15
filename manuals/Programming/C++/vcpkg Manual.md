@@ -330,3 +330,9 @@ Then, the submission process is as follows (The *emphezised* steps are not neede
 1. push the branch to the forked vcpkg repository
 1. *open the forked repository in the browser and create a new pull request to the main vcpkg repository*
 
+
+
+# Troubleshooting
+
+## `vcpkg was unable to detect the active compiler's information`
+THis typically happens if, by mistake, the vcpkg was previously installed or run with root privileges. To fix it, run `sudo chown -R <user>:<group> <vcpkg root>`.

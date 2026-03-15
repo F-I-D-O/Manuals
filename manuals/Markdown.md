@@ -41,6 +41,13 @@ Images can be added to a markdown file by using the following syntax:
 ![Alt text](/path/to/image.png)
 ```
 
+There is no way how to **center the image** using markdown, we have to use HTML:
+
+```html
+<p align="center">
+    <img src="/path/to/image.png" alt="Alt text">
+</p>
+```
 
 # Text formatting
 

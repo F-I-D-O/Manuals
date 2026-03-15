@@ -406,6 +406,199 @@ To set an address breakpoint, we nned to first find the address of the variable.
 The address should have a format `0x0000000000000000`.
 
 
+## GNU Debugger (GDB)
+
+- [wiki](https://en.wikipedia.org/wiki/GNU_Debugger)
+- [official documentation](https://www.gnu.org/software/gdb/documentation/)
+
+The typical usage is to:
+
+1. start gdb: `gdb <program>` (do not specify arguments here)
+1. set breakpoints: `b <line number>` or `b <function name>`
+1. run the program: `r <arguments>`
+1. step through the code: `s` or `n` for next line
+
+
+### Location specifications
+The location can be specified by:
+
+- [file and line number](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Linespec-Locations.html#Linespec-Locations): `<file name>:<line number>`
+- function name: `<function name>`
+- address: `<address>`
+
+For more details, see the [official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Location-Specifications.html#Location-Specifications).
+
+
+### Breakpoints
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Breaks.html)
+
+We set breakpoints as using the `break` or `b` command:
+```gdb
+b <location specification> if <condition>
+```
+
+If location specification is not specified, breakpoint is set at next line. If condition is not specified, breakpoint is hit unconditionally.
+
+### Watches
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Watchpoints.html#Set-Watchpoints)
+
+### Print variables and expressions
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Data.html#Data)
+
+Mostly, we can use the `print`/`p` command to print the value of almost any expression as `print <expression>`.
+
+### Custom Python Code
+Custom Python code may be used to enhance the debugger experience, e.g., to print the value of the expression in a more readable format.
+
+To plug in the custom Python code, there are multiple options:
+
+- **loader script**: placing a loader script named `<object file name>-gdb.py` in the same directory as the object file (executable or shared library). This script is executed when the object file is loaded into the debugger.
+- **binary embedding**: We can embed either a link to a Python script or the script itself into source or header file.
+- **.gdbinit file**: We can place a `.gdbinit` file in the home directory, which is executed when the debugger starts. There, we can configure the debugger to load the custom Python code.
+
+The following table summarizes the pros and cons of the different options:
+
+| Option | autoload | requires a loader | requires Python scripts in executable dir | single configuration for static libraries | easy modification |
+| -- | -- | -- | -- | -- | -- |
+| loader script | when the object file named as the loader script is loaded | yes | yes | no | yes |
+| binary embedding | when the object file with the embedded code is loaded | no | no if full Python code embedded | yes |no |
+| .gdbinit file | every time | yes | yes | no | yes |
+
+
+#### Loader script
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/objfile_002dgdbdotext-file.html)
+
+The loader script is executed when an object file (executable or shared library) with the matching name as the loader script is loaded into the debugger. For example, if the object file is named `my_program`, the loader script should be named `my_program-gdb.py`.
+
+Note that the loader script is not the main python program, and so it cannot import files from the same directory as the loader script. To enable that, we have to modify the `PYTHONPATH` environment variable:
+```Python
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+```
+
+We mus modify the path before any local imports are executed.
+
+
+##### Reloading the Python code
+Typically, we are not successful in creating a perfect code on the first try. It can be impractical to restart the debugger every time we want to try a modification. Instead, we can reload the Python code using the `source` command:
+```gdb
+source <path to the loader script>
+```
+
+Note that this only reload the loader script, not its imports, that are cached. To do a full reload, we need to reload each import separately:
+```Python
+
+import importlib
+
+importlib.reload(our_local_module)
+import our_local_module
+```
+
+#### Embedding gdb Python code into a binary
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/dotdebug_005fgdb_005fscripts-section.html)
+
+
+### Pretty printing
+Similar to Visual Studio natvis, we can define pretty printing of the variables in the debugger. This is done using Python code, see [Custom Python Code](#custom-python-code) section for details on how to plug the python code into the debugger.
+
+Typical workflow (see [official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Writing-a-Pretty_002dPrinter.html#Writing-a-Pretty_002dPrinter) for details):
+
+1. define the printer:
+    ```python
+    class MyPrinter:
+        def __init__(self, value):
+            self.__value = value
+
+        def to_string(self):
+            return f"My value is {self.__value}"
+    ```
+2. add the printer to a printer collection
+    ```python
+    import gdb.printing
+    
+    def build_printer_collection():
+        printer_collection = gdb.printing.RegexpCollectionPrettyPrinter("myproject")
+        printer_collection.add_printer('my_class', '^MyClass$', MyPrinter)
+        return printer_collection
+    ```
+    - there should be just one collection per project.
+
+3. plug the printer collection into the debugger:
+    ```python
+    gdb.printing.register_pretty_printer(gdb.current_objfile(), build_printer_collection())
+    ```
+
+
+#### Reloading the printer collection
+We can reload printers using the `source` command as described in [Reloading the Python code](#reloading-the-python-code) section. However, we need to unregister the old printer collection first. To do that, add the following code to the registration function:
+```Python
+def _remove_existing_printer(objfile, name):
+    printers = objfile.pretty_printers if objfile is not None else gdb.pretty_printers
+    for i, p in enumerate(list(printers)):
+        if getattr(p, "name", None) == name:
+            del printers[i]
+            return True
+    return False
+```
+
+Then, right before the `register_pretty_printer` call, add the following code:
+```Python
+_remove_existing_printer(gdb.current_objfile(), <name of the printer collection>)
+```
+
+#### Printing members of the class
+The example above actually prints the whole class as is, so the printer has no effect. But we can do much more.
+
+The most easy thing is to **print the data members** of the class. These can ve accessed using the `__dict__` attribute of the `__value`. If our C++ class has a member `my_member`, we can access it as `self.__value['my_member']`. To **show all available members**, you can use the following code:
+```Python
+for f in self.__value.type.strip_typedefs().fields():
+    print(f.name)
+```
+
+With **function members**, it is more complicated. These cannot be accesed directly from Python. Insted, we have to evaluate a C++ expression to get the return value. Example:
+```Python
+return_value = gdb.parse_and_eval(f"({val.address})-><function name>()")
+```
+To do this in a robust way, the following helper function can be used:
+```Python
+def call_method(val, name):
+    t = val.type.strip_typedefs()
+
+    # If val is a reference, get the referred object.
+    if t.code == gdb.TYPE_CODE_REF:
+        val = val.referenced_value()
+        t = val.type.strip_typedefs()
+
+    # If val is already a pointer, use it directly.
+    if t.code == gdb.TYPE_CODE_PTR:
+        ptr = val
+    else:
+        # Otherwise take its address.
+        ptr = val.address
+        if ptr is None:
+            raise gdb.error("Value is not addressable")
+    return gdb.parse_and_eval(f"(({ptr.type}) {int(ptr):#x})->{name}()")
+```
+
+
+#### Printer collection building
+Let's look back to the printer collection building code:
+```Python
+def build_printer_collection():
+    printer_collection = gdb.printing.RegexpCollectionPrettyPrinter("myproject")
+    printer_collection.add_printer('my_class', '^MyClass$', MyPrinter)
+    return printer_collection
+```
+Here, the `myproject` is the name of the printer collection, as it will be displayed in gdb when calling the `info pretty printers` command. It does not have to match anything. The `my_class` is then the name of the printer in the collection. Agin, it is just for our convenience, it does not have to match anything. 
+
+The `^MyClass$` (second argument of the `add_printer` function) is a regular expression that determines the types this printer will be used for. We may want to match multiple types for the same printer. Typically, we do it for template classes: `^MyClass<.*>$`.
+
+
+#### Resources
+
+- [printer interface documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing-API.html#Pretty-Printing-API)
 
 
 # Profiling
