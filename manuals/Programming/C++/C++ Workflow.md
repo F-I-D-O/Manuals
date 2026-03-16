@@ -230,7 +230,7 @@ This can be caused by the clangd engine used by the old Clion engine. To fix it,
 	- unfortunately, as of 01/2023, there is no good way how to share resharper settings
 4. Install roamed plugins
 
-### Basic Configuration
+### IDE Configuration
 
 1. [Add 120 char guideline](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines)
 	- install the extension 
@@ -244,7 +244,6 @@ This can be caused by the clangd engine used by the old Clion engine. To fix it,
 1. If you use `*.tpp` file, configure a support for them (described below).
 
 
-installation
 #### Enable template implementation files (`.*tpp`) syntax highlighting:
 
 -   Go to `Tools` -> `Options` -> `Text Editor` -> `File Extension`
@@ -256,8 +255,15 @@ installation
 
 1. Go to `Tools` -> `Options` -> `Projects and Solutions` -> `Build and Run`
 2. Change the value of the MSBuild project build output verbosity.
-    
-### Project Setting
+
+#### Other Configuration
+
+- show white spaces: `Edit` -> `Advanced` -> `View White Space`.
+- configure indentation: described [here](https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022)
+
+
+### Project Specific Configuration and Build Settings
+Most project specific settings relates to CMake and should be set using [CMake Presets](CMake%20Manual.md#cmake-presets).
 
 #### Configure Visual Studio to use system CMake:
 
@@ -266,40 +272,15 @@ installation
 - Scroll to the bottom and click on `show advanced settings`
 - Set the CMake executable to point to the `cmake.exe` file of your system CMake
 
-#### Build Setting and Enviromental Variables
-The build configuration is in the file `CMakePresets.json`, located in the root of the project. The  file can be also opened by right clicking on `CMakeLists.txt` ad selecting `Edit CMake presets`.
-
-##### Set the CMake Toolchain File
-To set the vcpkg toolchain file add the following value to the base configuration `cacheVariables` dictionary:
-```json
-"CMAKE_TOOLCHAIN_FILE": {
-    "value": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
-    "type": "FILEPATH"
-}
-```
-
-##### Set the Compiler
-The MSVC toolchain has two compiler executables, default one, and clang. The default compiler configuration looks like this:
-
-```json
-"cacheVariables": {
-	...
-	"CMAKE_C_COMPILER": "cl.exe",
-	"CMAKE_CXX_COMPILER": "cl.exe"
-	...
-},
-```
-
-To change the compiler to clang, replace `cl.exe` by `clang-cl.exe` in both rows.
-
-##### Old Method Using CMakeSettings.json
+#### Old Project Specific Settings Using `CMakeSettings.json`
 We can open the build setting by right click on `CMakeList.txt` -> `Cmake Settings`
 
 To configure configure vcpkg toolchain file: Under `General`, fill to the `Cmake toolchain file` the following: `C:/vcpkg/scripts/buildsystems/vcpkg.cmake`
 
 To configure the enviromental variable, edit the `CmakeSettings.json` file directly. The global variables can be set in the `environments` array, the per configuration ones in `<config object>/environments` ([exmaple](https://devblogs.microsoft.com/cppblog/set-environment-variables-for-debug-launch-and-tools-with-cmake-and-open-folder/)).
 
-#### Launch Setting 
+
+### Launch Setting
 The launch settings determins the launch configuration, most importantly, the run arguments. To modify the run arguments:
  1. open the `launch.vs.json` file:
 	- use the context menu:
@@ -319,7 +300,7 @@ If the configuration is not visible in the drop-down menu, double-check the `lau
 - syntax error in the json (should be marked by red squiggly line)
 - typo in the target name
 
-##### Other launch.vs.json options
+Other launch.vs.json options:
 
 - `cwd`: the working directory
 
@@ -331,12 +312,6 @@ For using GCC 10:
 - go to `CmakeSettings.json` -> `CMake variables and cache`
 - select `show advanced variables checkbox`
 - set `CMAKE_CXX_COMPILER` variable to `/usr/bin/g++-10`
-
-
-### Other Configuration
-
-- show white spaces: `Edit` -> `Advanced` -> `View White Space`.
-- configure indentation: described [here](https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022)
 
 
 ### Determine Visual Studio version

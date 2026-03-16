@@ -1589,6 +1589,33 @@ The rule is that once a cache variable is set, it is not changed when the `cmake
 
 
 
+# CMake Presets
+[documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)
+
+To preserve a CMake configuration of a project, CMake provides a system of presets. This configuration can be used directly by the `cmake` when run with the `-P`/`--preset` argument, and it is also the default configuration system for Visual Studio and Visual Studio Code.
+
+There are two types of presets:
+
+- **project presets**, stored in the `CMakePresets.json`.
+    - this file should be shared between all users of the project and tracked in the version control system.
+- **user presets**, stored in the `CMakeUserPresets.json`.
+    - this file is personal and not tracked in the version control system.
+
+Both types of presets are stored in the root directory of the project.
+
+Important properties:
+
+- `version` (required): the version of the preset schema to use. See [Official documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#versions) for details.
+- `configurePresets`: an array of configure presets objects. Each object has the following important properties:
+    - `name` (required): the name of the preset.
+    - `toolchainFile`: equals to the `--toolchain` argument of the `cmake` command.
+- `buildPresets`: an array of build presets objects. Each object has the following important properties:
+    - `name` (required): the name of the preset. This name is displayed in the Visual Studio in place where the old `CMakeSettings.json` CMake configuration was displayed.
+    - `configurePreset` (required): the name of the configure preset to use. Basically link the build directory to the configure directory.
+    - `configuration`: equals to the `-C`/ `--config` argument of the `cmake` command.
+
+
+
 # CMake Directory Structure
 
 ## System Find_XXX.cmake files
