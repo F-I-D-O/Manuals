@@ -4087,11 +4087,6 @@ decltype(std::bind<const ActionData<N>& (std::vector<ActionData<N>>::*)(size_t) 
 
 
 
-
-
-
-
-
 # Parallelization
 While there wa no support of parallelization i earlier versions of C++ , now there are many tools.
 

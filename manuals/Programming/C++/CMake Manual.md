@@ -1605,7 +1605,7 @@ Both types of presets are stored in the root directory of the project.
 
 Important properties:
 
-- `version` (required): the version of the preset schema to use. See [Official documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#versions) for details.
+- `version` (required): the version of the preset schema to use. See [Official documentation](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#versions) for details. Also see [Visual Studio documentation](https://learn.microsoft.com/en-us/cpp/build/cmake-presets-vs?view=msvc-170#supported-cmake-and-cmakepresetsjson-versions) for the supported versions.
 - `configurePresets`: an array of configure presets objects. Each object has the following important properties:
     - `name` (required): the name of the preset.
     - `toolchainFile`: equals to the `--toolchain` argument of the `cmake` command.

@@ -263,6 +263,8 @@ This can be caused by the clangd engine used by the old Clion engine. To fix it,
 
 
 ### Project Specific Configuration and Build Settings
+[Official documentation](https://learn.microsoft.com/en-us/cpp/build/cmake-presets-vs?view=msvc-170)
+
 Most project specific settings relates to CMake and should be set using [CMake Presets](CMake%20Manual.md#cmake-presets).
 
 #### Configure Visual Studio to use system CMake:
