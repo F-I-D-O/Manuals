@@ -401,6 +401,10 @@ To read a file, use the [`Get-Content`](https://learn.microsoft.com/en-us/powers
 Get-Content "C:\Users\user\file.txt"
 ```
 
+Important arguments:
+
+- `-Head <number>`: read the first <number> lines
+
 ##  Outputs
 There are many output streams in PowerShell. We can use:
 

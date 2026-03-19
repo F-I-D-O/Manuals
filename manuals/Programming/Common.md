@@ -1,23 +1,4 @@
-# Keymap
 
-- **Copy**: `Ctrl` + `C`
-- **Cut**: `Ctrl` + `X`
-- **Paste**: `Ctrl` + `V`
-- **Toggle comment**: `Ctrl` + `Q`
-- **Search in file**: `Ctrl` + `S`
-- **Sellect all**: `Ctrl` + `A`
-- **Format selection**: `Ctrl` + `F`
-- **Format File**: `Ctrl` + `Shift` + `F`
-- **Build**: `Ctrl` + `B`
-
-## Refactoring
-
-- **Rename**: `Ctrl` + `R` 
-- **Change signature**: `Ctrl` + `G`
-- **Text transform**: `Ctrl` + `T`
-    - ` + U`: to upper case
-    - ` + T`: toggle case
-- **Surround with**: `Ctrl` + `W`
 
 
 
@@ -106,6 +87,45 @@ The possible approaches are:
     - In Python, the `__test__` attribute can be used to mark a method as visible for testing.
 
 
+# Profiling
+[wikipedia](https://en.wikipedia.org/wiki/Profiling_(computer_programming))
+
+Profiling is a process of measuring the performance of the code and finding bottlenecks. Typically, we profile CPU, memory, GPU, or I/O operations. Profiling may be achieved in two ways:
+
+- **Built-in capabilities of the programming language**: Callback are build into the running environment (virtual machine), e.g., in Python
+- [**Instrumentation**](https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)): The code is modified to include profiling code, e.g., in C++
+
+The profilers may differ in the measuring precission. Two main approaches are:
+
+- **Deterministic (event-based)**: The profiler measures the time spent in each function call.
+- **Statistical (sample-based)**: The profiler measures the time spent in each function call by sampling the execution trace.
+
+Finally, compilers may also be classified by the level of granularity:
+
+- **Function-level**: The profiler measures the time spent in each function call.
+- **Line-level**: The profiler measures the time spent in each line of code.
+
+The level of granularity is important for the profiler results. The more granular the profiler is, the more detailed the results are. However, the more granular the profiler is, the more data is collected and the more time is needed to process the results.
+
+
+## Profiler Results
+There are various ways how to display the profiler results. The most common are:
+
+- [**Flame Graph**](https://tech.popdata.org/Flame-Graphs-Performance-Tuning-Made-Easy/): A quite modern visualization. On y-axis, it displays each function call positioning it according to the call stack. On x-axis, it displays the time spent in each function call. Typically, the main function is displayed at the bottom (y = 0) and spans the entire x-axis. 
+    - The hotspots are calls that are both wide and have a high y-value, more precisely, blocks with high absolute difference between their width and the sum of the widths of the blocks on top of them.
+    - example:
+    ![Flame Graph example](https://tech.popdata.org/images/cps1970_before_fix_dwarf_gcc53.svg)
+- **Call Tree**: An hierarchic tree-like view where the root is typically the main function, and nodes on the same level should be called from the same function, their parent node.
+    - in GUI applications, the individual nodes are typically expandable
+- **Function List**: A flat list of functions, typical columns are execution time and own execution time.
+- [**Call Graph**](https://en.wikipedia.org/wiki/Call_graph): A graph where the nodes are the functions and the edges are the function calls. 
+    example:
+    ![Call Graph example](https://upload.wikimedia.org/wikipedia/commons/2/2f/A_Call_Graph_generated_by_pycallgraph.png)
+
+- [**Call Stack**](https://en.wikipedia.org/wiki/Call_stack): A stack of the function calls. The top is the main function. The bottom is the function calls. The time spent in each function call is the time spent in each function call.
+
+
+
 # Finding Duplicates
 For finding duplicates, there are two possible approaches:
 
@@ -117,6 +137,59 @@ Comparison:
 | --- | --- | --- | --- | --- |
 | Sets | *O(log n)* (both contains and add) | *O(1)* (both contains and add) | *O(n)* | *O(1)* |
 | Sorting | *O(n log n)* (sorting) | *O(n log n)* (sorting) + *O(n)* (duplicates check) | *0* or *O(n)* if we need to left the source collection unsorted | *0* or *O(1)* in case of new collection |
+
+
+# Releasing the software
+When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:
+
+- **Versioning**: update the version number in the distribution files (e.g., `setup.py`, `pom.xml`, `package.json`, etc.).
+- **Changelog**: update the changelog file with the new version and the changes.
+- **License**: check if the license is present in all files and if it is up-to-date.
+
+## Licenses
+Licensing has two parts:
+
+- add the `LICENSE` file to the root of the project if not already present and
+- add the license to the top of each source file.
+
+The first part is easy, just copy the license text to an empty file named `LICENSE` at the root of the project. To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.
+
+The second part can be automated using the [licenseheaders fork](https://github.com/F-I-D-O/licenseheaders) of the original [licenseheaders](https://github.com/johann-petrak/licenseheaders) project. A typical usage is:
+```bash
+licenseheaders -t mit -o "Czech Technical University in Prague" -cy -n ShoDi -u "https://github.com/aicenter/ShoDi" -d C:\Workspaces\AIC\shortest-distances\
+```
+where:
+
+- `-t mit` specifies the template to use (MIT license in this case),
+- `-o "Czech Technical University in Prague"` specifies the organization name,
+- `-cy` specifies to replace the years in the existing headers with the current year,
+- `-n ShoDi` specifies the project name,
+- `-u "https://github.com/aicenter/ShoDi"` specifies the project URL,
+- `-d C:\Workspaces\AIC\shortest-distances\` specifies the directory to process.
+
+
+
+# Keymap
+
+- **Copy**: `Ctrl` + `C`
+- **Cut**: `Ctrl` + `X`
+- **Paste**: `Ctrl` + `V`
+- **Toggle comment**: `Ctrl` + `Q`
+- **Search in file**: `Ctrl` + `S`
+- **Sellect all**: `Ctrl` + `A`
+- **Format selection**: `Ctrl` + `F`
+- **Format File**: `Ctrl` + `Shift` + `F`
+- **Build**: `Ctrl` + `B`
+
+## Refactoring
+
+- **Rename**: `Ctrl` + `R` 
+- **Change signature**: `Ctrl` + `G`
+- **Text transform**: `Ctrl` + `T`
+    - ` + U`: to upper case
+    - ` + T`: toggle case
+- **Surround with**: `Ctrl` + `W`
+
 
 
 # JetBrains Products 
@@ -296,32 +369,6 @@ Cursor is a port of Visual Studio Code. Therefore, only things that differ from 
 Cursor's layout is even more limited than VS Code's. The secondary sidebar is occupied by the chat interface, and there is no way to change that. Views can be moved in the secondary sidebar, but they appear as another chat window, which dramatically limits the usability.
 
 
-# Releasing the software
-When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:
 
-- **Versioning**: update the version number in the distribution files (e.g., `setup.py`, `pom.xml`, `package.json`, etc.).
-- **Changelog**: update the changelog file with the new version and the changes.
-- **License**: check if the license is present in all files and if it is up-to-date.
-
-## Licenses
-Licensing has two parts:
-
-- add the `LICENSE` file to the root of the project if not already present and
-- add the license to the top of each source file.
-
-The first part is easy, just copy the license text to an empty file named `LICENSE` at the root of the project. To choose a license for your project, you can use the [Choose a License](https://choosealicense.com/) website.
-
-The second part can be automated using the [licenseheaders fork](https://github.com/F-I-D-O/licenseheaders) of the original [licenseheaders](https://github.com/johann-petrak/licenseheaders) project. A typical usage is:
-```bash
-licenseheaders -t mit -o "Czech Technical University in Prague" -cy -n ShoDi -u "https://github.com/aicenter/ShoDi" -d C:\Workspaces\AIC\shortest-distances\
-```
-where:
-
-- `-t mit` specifies the template to use (MIT license in this case),
-- `-o "Czech Technical University in Prague"` specifies the organization name,
-- `-cy` specifies to replace the years in the existing headers with the current year,
-- `-n ShoDi` specifies the project name,
-- `-u "https://github.com/aicenter/ShoDi"` specifies the project URL,
-- `-d C:\Workspaces\AIC\shortest-distances\` specifies the directory to process.
 
 

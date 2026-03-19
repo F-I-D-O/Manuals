@@ -49,6 +49,26 @@ There is no way how to **center the image** using markdown, we have to use HTML:
 </p>
 ```
 
+
+## Tables
+Tables can be added to a markdown file by using the following syntax:
+```markdown
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+```
+
+To set column width, we need to use HTML. The best is typically to insert a single div element to the header:
+```html
+| Header 1 | Header 2 | <div style="width: 200px;">Header 3</div> |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+```
+
+
+
 # Text formatting
 
 Only simple text formatting is supported:
