@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -456,6 +456,14 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#basics" class="nav-link">Basics</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#code-organization" class="nav-link">Code Organization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#naming-conventions" class="nav-link">Naming conventions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#variables" class="nav-link">Variables</a>
               <ul class="nav flex-column">
               </ul>
@@ -583,7 +591,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#converting-to-unix-timestamp" class="nav-link">Converting to Unix timestamp</a>
+            <li class="nav-item" data-bs-level="3"><a href="#converting-fromto-unix-timestamp" class="nav-link">Converting from/to Unix timestamp</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1066,6 +1074,27 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h1>
+<h2 id="code-organization">Code Organization<a class="headerlink" href="#code-organization" title="Permanent link">&para;</a></h2>
+<p>In Python, we can organize the code as follows:</p>
+<ul>
+<li><strong>interactive mode</strong>: We can just type python in the terminal and start coding. But this way, everything is lost after the session is closed.</li>
+<li><strong>scripts</strong>: If we have some code we want to repeat, we can put it into <code>.py</code> file and run it using the <code>python &lt;script_name&gt;.py</code> command.</li>
+<li><a href="https://docs.python.org/3/tutorial/modules.html"><strong>modules</strong></a>: If there is more code, we typically split it into multiple <code>*.py</code> files. These files, introduced using the <code>import</code> statement, are called <em>modules</em>.</li>
+<li><a href="https://docs.python.org/3/tutorial/modules.html#packages"><strong>packages</strong></a>: If there are many modules, we may want to organize them into multiple directories. These directories must contain a <code>__init__.py</code> and they are called <em>packages</em>.</li>
+</ul>
+<h2 id="naming-conventions">Naming conventions<a class="headerlink" href="#naming-conventions" title="Permanent link">&para;</a></h2>
+<p><a href="https://peps.python.org/pep-0008/#naming-conventions">Official Naming conventions</a> (Part of the <a href="https://peps.python.org/pep-0008/">PEP 8</a> style guide)</p>
+<p>Python has the following naming conventions:</p>
+<ul>
+<li><a href="https://peps.python.org/pep-0008/#function-and-variable-names">variables and functions</a> snake_case</li>
+<li><a href="https://peps.python.org/pep-0008/#class-names">classes</a>: CamelCase</li>
+<li><a href="https://peps.python.org/pep-0008/#constants">constants</a>: SNAKE_CASE</li>
+<li><a href="https://peps.python.org/pep-0008/#package-and-module-names">packages and modules</a>: short names, all lowercase<ul>
+<li>underscores can be used in  long names to improve readability</li>
+</ul>
+</li>
+<li><a href="https://peps.python.org/pep-0008/#type-variable-names">types</a>: single letter, uppercase, or CamelCase</li>
+</ul>
 <h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
 <p>To check if a local variable is defined, we can use the <code>locals</code> function:</p>
 <pre><code class="language-Python">if 'my_variable' in locals():
@@ -1301,7 +1330,8 @@ d = datetime(2022, 12, 20, 22, 30, 0) # 2022-12-20 22:30:00
 <p>We can load the datetime from string using the <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior"><code>strptime</code></a> function:</p>
 <pre><code class="language-python">d = datetime.strptime('2022-05-20 18:00', '%Y-%m-%d %H:%M')
 </code></pre>
-<p>For all possible time formats, check the <a href="https://strftime.org/"><code>strftime</code> cheatsheet</a></p>
+<p>For all possible time formats, check the <a href="https://strftime.org/"><code>strftime</code> cheatsheet</a>.</p>
+<p>Finally, we can <a href="#converting-fromto-unix-timestamp">create a <code>datetime</code> object from a unix timestamp</a>.</p>
 <h3 id="accessing-the-parts-of-datetime">Accessing the parts of <code>datetime</code><a class="headerlink" href="#accessing-the-parts-of-datetime" title="Permanent link">&para;</a></h3>
 <p>The <code>datetime</code> object has the following attributes:</p>
 <ul>
@@ -1325,8 +1355,10 @@ interval = d2 - d1 # 30 minutes
 interval = timedelta(hours=1)
 d2 = d + interval # '2022-05-20 19:00'
 </code></pre>
-<h3 id="converting-to-unix-timestamp">Converting to Unix timestamp<a class="headerlink" href="#converting-to-unix-timestamp" title="Permanent link">&para;</a></h3>
-<p>To convert a <code>datetime</code> object to unix timestamp, we can use the <code>timestamp</code> method. It returns the number of seconds since the epoch (1.1.1970 00:00:00). Note however, that <strong>the timestamp is computed based on the <code>datetime</code> object's timezone, or your local timezone if the <code>datetime</code> object has no timezone information.</strong></p>
+<h3 id="converting-fromto-unix-timestamp">Converting from/to Unix timestamp<a class="headerlink" href="#converting-fromto-unix-timestamp" title="Permanent link">&para;</a></h3>
+<p>To <strong>convert a <code>datetime</code> to <a href="https://en.wikipedia.org/wiki/Unix_time">unix timestamp</a></strong>, we can use the <code>timestamp</code> method. It returns the number of seconds since the epoch (1.1.1970 00:00:00).</p>
+<p>To <strong>convert a unix timestamp to a <code>datetime</code> object</strong>, we can use the <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.fromtimestamp"><code>datetime.fromtimestamp</code></a> function.</p>
+<p>Note however, that <strong>the timestamp/datetime is computed based on the <code>datetime</code> object's/supplied timezone, or your local timezone if no timezone information is supplied.</strong></p>
 <h3 id="time-and-date-objects">Time and date objects<a class="headerlink" href="#time-and-date-objects" title="Permanent link">&para;</a></h3>
 <p>Instead of using the <code>datetime</code> object, we can use the <a href="https://docs.python.org/3/library/datetime.html#time-objects"><code>time</code></a> and <a href="https://docs.python.org/3/library/datetime.html#date-objects"><code>date</code></a> objects if we need to work with time or date only. </p>
 <p>Analogously to the <code>datetime</code> object, these objects can be <strong>constructed from the parts</strong>:</p>
@@ -2083,7 +2115,7 @@ def my_func(param_1, param_2):
 <li>using a decorator</li>
 </ul>
 <h2 id="module-level-variable">Module-level variable<a class="headerlink" href="#module-level-variable" title="Permanent link">&para;</a></h2>
-<p>The most simple way is to use a module-level variable. <strong>Note taht if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!</strong></p>
+<p>The most simple way is to use a module-level variable. <strong>Note that if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!</strong></p>
 <pre><code class="language-Python">class Singleton:
     def __init__(self):
         self.initialized = False

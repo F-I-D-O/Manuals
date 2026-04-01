@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -453,12 +453,54 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#workflow" class="nav-link">Workflow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#nodejs" class="nav-link">Node.js</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#npm" class="nav-link">npm</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-</div>
+<h1 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h1>
+<p>JavaScript is originally a browser scripting language. However, today, many other environments use it. Here we describe the following stack:</p>
+<ul>
+<li>Environment: <a href="https://nodejs.org/">Node.js</a></li>
+<li>Package manager: <a href="https://www.npmjs.com/">npm</a></li>
+</ul>
+<h1 id="nodejs">Node.js<a class="headerlink" href="#nodejs" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Node.js">wikipedia</a></p>
+<h1 id="npm">npm<a class="headerlink" href="#npm" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Npm_(software)">wikipedia</a></li>
+<li><a href="https://www.npmjs.com/">official website</a></li>
+<li><a href="https://docs.npmjs.com/cli/v11/commands">official documentation</a></li>
+</ul>
+<p>npm is the package manager for Node.js. To <strong>install</strong> a package, use the <a href="https://docs.npmjs.com/cli/v11/commands/npm-install"><code>install</code></a> command as:</p>
+<pre><code class="language-bash">npm install &lt;package specification&gt;
+</code></pre>
+<p>The <code>&lt;package specification&gt;</code> can be:</p>
+<ul>
+<li>a package name, e.g. <code>npm install express</code><ul>
+<li>this can also contain a scope, e.g. <code>npm install @openai/codex</code></li>
+</ul>
+</li>
+</ul>
+<p>Important options are:</p>
+<ul>
+<li><code>-g</code>, <code>--global</code>: install the package globally. On Linux, this requires <code>sudo</code> permissions.</li>
+</ul></div>
             </div>
         </div>
 

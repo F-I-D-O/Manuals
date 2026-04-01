@@ -386,6 +386,9 @@
                                 <a href="../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./" class="nav-link active" aria-current="page">Web Tricks</a>
@@ -427,7 +427,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../vscode/" class="nav-link">
+                                <a rel="prev" href="../Security/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -454,6 +454,15 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-bs-level="1"><a href="#exporting-cookies-from-a-browser" class="nav-link">Exporting cookies from a browser</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#edge" class="nav-link">Edge</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#download-all-photos-from-rajcecz" class="nav-link">Download all photos from rajce.cz</a>
               <ul class="nav flex-column">
               </ul>
@@ -463,6 +472,18 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="exporting-cookies-from-a-browser">Exporting cookies from a browser<a class="headerlink" href="#exporting-cookies-from-a-browser" title="Permanent link">&para;</a></h1>
+<h2 id="edge">Edge<a class="headerlink" href="#edge" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Open the developer tools (F12)</li>
+<li>Go to the <code>Application</code> tab -&gt; <code>Cookies</code> </li>
+<li>Select rows you want to export, <code>Ctrl</code> + <code>C</code> to copy</li>
+<li>Paste the cookies into a file </li>
+<li>Paste this header:
+    <code>Name    Value   Domain  Path    Expires Max-Age Size    HttpOnly    Secure  SameSite    Partition Key   Site Cross Site Priority</code></li>
+<li>And save</li>
+<li>Optionally, to convert the cookies to the Netscape format, use a <a href="https://github.com/F-I-D-O/tools/blob/master/cookies_to_netscape.py">converting script</a>.</li>
+</ol>
 <h1 id="download-all-photos-from-rajcecz">Download all photos from <code>rajce.cz</code><a class="headerlink" href="#download-all-photos-from-rajcecz" title="Permanent link">&para;</a></h1>
 <pre><code class="language-JavaScript">$(&quot;#photoList img&quot;).each(function () {var a = $(this).closest(&quot;a&quot;); if (a.length){$(document.body).append(&quot;&lt;img src='&quot; + a.attr(&quot;href&quot;) + &quot;' \/&gt;&quot;);}});$(&quot;body&gt;*:not(img)&quot;).remove();
 </code></pre></div>

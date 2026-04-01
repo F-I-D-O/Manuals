@@ -386,6 +386,9 @@
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -672,6 +672,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#vpn-management" class="nav-link">VPN Management</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
@@ -1069,6 +1073,10 @@ else {
 <p>To read a file, use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content"><code>Get-Content</code></a> cmdlet. Example:</p>
 <pre><code class="language-PowerShell">Get-Content &quot;C:\Users\user\file.txt&quot;
 </code></pre>
+<p>Important arguments:</p>
+<ul>
+<li><code>-Head &lt;number&gt;</code>: read the first <number> lines</li>
+</ul>
 <h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
 <p>There are many output streams in PowerShell. We can use:</p>
 <ul>
@@ -1194,6 +1202,13 @@ $date = Get-Date -Date &quot;2025-01-01&quot; # date from a string
 </ul>
 <h3 id="display-executable-for-connection">Display executable for connection<a class="headerlink" href="#display-executable-for-connection" title="Permanent link">&para;</a></h3>
 <p>To display executable for all connection, just use the <code>-b</code> swith. For filtering out only some, you have to use the <code>-Context</code> parameter in the <code>Select-String</code> command, as the executable is printed one line below the connection: <code>netstat -b | sls &lt;search pattern&gt; -Context 0,1</code></p>
+<h2 id="vpn-management">VPN Management<a class="headerlink" href="#vpn-management" title="Permanent link">&para;</a></h2>
+<p>To <strong>add a VPN connection</strong>, use the <code>Add-VpnConnection</code> command. Example:</p>
+<pre><code class="language-PowerShell">Add-VpnConnection -Name &quot;My VPN&quot; -ServerAddress &quot;vpn.example.com&quot; -AuthenticationMethod &quot;MSCHAPv2&quot; -EncryptionLevel &quot;Required&quot; -SplitTunneling -AllUserConnection -RememberCredential
+</code></pre>
+<p>To use this connection, we can use the <a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/ff859533(v=ws.11)"><code>RasDial</code></a> command:</p>
+<pre><code class="language-PowerShell">RasDial &quot;&lt;VPN name&gt;&quot; &quot;&lt;username&gt;&quot; &quot;&lt;password&gt;&quot;
+</code></pre>
 <h1 id="system-information">System Information<a class="headerlink" href="#system-information" title="Permanent link">&para;</a></h1>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/cimcmdlets">CIM documentation</a></p>
 <p><a href="https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-classes">WMI classes</a></p>

@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -563,6 +563,15 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#publishing" class="nav-link">Publishing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#vcpkg-was-unable-to-detect-the-active-compilers-information" class="nav-link">vcpkg was unable to detect the active compiler's information</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -881,7 +890,10 @@ file(INSTALL &quot;${CMAKE_CURRENT_LIST_DIR}/usage&quot; DESTINATION &quot;${CUR
 <li>commit again to the package branch in the vcpkg repository</li>
 <li>push the branch to the forked vcpkg repository</li>
 <li><em>open the forked repository in the browser and create a new pull request to the main vcpkg repository</em></li>
-</ol></div>
+</ol>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<h2 id="vcpkg-was-unable-to-detect-the-active-compilers-information"><code>vcpkg was unable to detect the active compiler's information</code><a class="headerlink" href="#vcpkg-was-unable-to-detect-the-active-compilers-information" title="Permanent link">&para;</a></h2>
+<p>THis typically happens if, by mistake, the vcpkg was previously installed or run with root privileges. To fix it, run <code>sudo chown -R &lt;user&gt;:&lt;group&gt; &lt;vcpkg root&gt;</code>.</p></div>
             </div>
         </div>
 

@@ -386,6 +386,9 @@
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -454,15 +454,6 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#keymap" class="nav-link">Keymap</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
             <li class="nav-item" data-bs-level="1"><a href="#command-line-interface-cli" class="nav-link">Command Line Interface (CLI)</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#options" class="nav-link">Options</a>
@@ -490,8 +481,35 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#profiling" class="nav-link">Profiling</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#profiler-results" class="nav-link">Profiler Results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#finding-duplicates" class="nav-link">Finding Duplicates</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#licenses" class="nav-link">Licenses</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#keymap" class="nav-link">Keymap</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#refactoring" class="nav-link">Refactoring</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -552,6 +570,26 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#layout" class="nav-link">Layout</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#editor-area" class="nav-link">Editor area</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#primary-sidebar" class="nav-link">Primary sidebar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#secondary-sidebar" class="nav-link">Secondary sidebar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#panel" class="nav-link">Panel</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#code-formatting" class="nav-link">Code Formatting</a>
@@ -565,10 +603,14 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#releasing-the-software" class="nav-link">Releasing the software</a>
+            <li class="nav-item" data-bs-level="1"><a href="#cursor" class="nav-link">Cursor</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#licenses" class="nav-link">Licenses</a>
+            <li class="nav-item" data-bs-level="2"><a href="#configuration_2" class="nav-link">Configuration</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#layout_1" class="nav-link">Layout</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -578,29 +620,6 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="keymap">Keymap<a class="headerlink" href="#keymap" title="Permanent link">&para;</a></h1>
-<ul>
-<li><strong>Copy</strong>: <code>Ctrl</code> + <code>C</code></li>
-<li><strong>Cut</strong>: <code>Ctrl</code> + <code>X</code></li>
-<li><strong>Paste</strong>: <code>Ctrl</code> + <code>V</code></li>
-<li><strong>Toggle comment</strong>: <code>Ctrl</code> + <code>Q</code></li>
-<li><strong>Search in file</strong>: <code>Ctrl</code> + <code>S</code></li>
-<li><strong>Sellect all</strong>: <code>Ctrl</code> + <code>A</code></li>
-<li><strong>Format selection</strong>: <code>Ctrl</code> + <code>F</code></li>
-<li><strong>Format File</strong>: <code>Ctrl</code> + <code>Shift</code> + <code>F</code></li>
-<li><strong>Build</strong>: <code>Ctrl</code> + <code>B</code></li>
-</ul>
-<h2 id="refactoring">Refactoring<a class="headerlink" href="#refactoring" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Rename</strong>: <code>Ctrl</code> + <code>R</code> </li>
-<li><strong>Change signature</strong>: <code>Ctrl</code> + <code>G</code></li>
-<li><strong>Text transform</strong>: <code>Ctrl</code> + <code>T</code><ul>
-<li><code>+ U</code>: to upper case</li>
-<li><code>+ T</code>: toggle case</li>
-</ul>
-</li>
-<li><strong>Surround with</strong>: <code>Ctrl</code> + <code>W</code></li>
-</ul>
 <h1 id="command-line-interface-cli">Command Line Interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Permanent link">&para;</a></h1>
 <p>This chapter should guide you on how to design CLI in a user-friendly and predictable way. Mostly, it follows the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html">POSIX standard</a>, with the <a href="https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html">GNU long option extensions</a>.</p>
 <p>There are two main types of CLI arguments:</p>
@@ -634,8 +653,12 @@
 <p>There are many types of software tests:</p>
 <ul>
 <li><strong>Unit tests</strong>: The most common and known ype of tests. They test individual units of code, e.g., functions, classes, or modules.</li>
-<li><strong>Integration tests</strong>: test how different units of code work together.</li>
-<li><strong>Functional tests</strong>: test the functionality of the software from the user's perspective.</li>
+<li><strong>Integration tests</strong>: test how different units of code work together.<ul>
+<li>still a white-box test: we test internction of multiple components, but not the whole software.</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Functional_testing"><strong>Functional tests</strong></a>: test the functionality of the software from the user's perspective.<ul>
+<li>typically a black-box test: we run an executable and check the outputs.</li>
 <li><a href="https://en.wikipedia.org/wiki/Smoke_testing_(software)"><strong>Smoke tests</strong></a>: Test the minimum functionality of the software.<ul>
 <li>sometimes, it just builds the software. In this case, it may be called a <em>build verification test</em>.</li>
 <li>sometimes, it runs the software with a minimal set of inputs. This way, we can check if the runtime libraries are correctly linked and if the software can be executed.</li>
@@ -645,6 +668,8 @@
 <li>the output of the software,</li>
 <li>the performance of the software,</li>
 <li>the compilation time or the size of the binary,..</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -680,6 +705,47 @@
 </ul>
 </li>
 </ul>
+<h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Profiling_(computer_programming)">wikipedia</a></p>
+<p>Profiling is a process of measuring the performance of the code and finding bottlenecks. Typically, we profile CPU, memory, GPU, or I/O operations. Profiling may be achieved in two ways:</p>
+<ul>
+<li><strong>Built-in capabilities of the programming language</strong>: Callback are build into the running environment (virtual machine), e.g., in Python</li>
+<li><a href="https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)"><strong>Instrumentation</strong></a>: The code is modified to include profiling code, e.g., in C++</li>
+</ul>
+<p>The profilers may differ in the measuring precission. Two main approaches are:</p>
+<ul>
+<li><strong>Deterministic (event-based)</strong>: The profiler measures the time spent in each function call.</li>
+<li><strong>Statistical (sample-based)</strong>: The profiler measures the time spent in each function call by sampling the execution trace.</li>
+</ul>
+<p>Finally, compilers may also be classified by the level of granularity:</p>
+<ul>
+<li><strong>Function-level</strong>: The profiler measures the time spent in each function call.</li>
+<li><strong>Line-level</strong>: The profiler measures the time spent in each line of code.</li>
+</ul>
+<p>The level of granularity is important for the profiler results. The more granular the profiler is, the more detailed the results are. However, the more granular the profiler is, the more data is collected and the more time is needed to process the results.</p>
+<h2 id="profiler-results">Profiler Results<a class="headerlink" href="#profiler-results" title="Permanent link">&para;</a></h2>
+<p>There are various ways how to display the profiler results. The most common are:</p>
+<ul>
+<li><a href="https://tech.popdata.org/Flame-Graphs-Performance-Tuning-Made-Easy/"><strong>Flame Graph</strong></a>: A quite modern visualization. On y-axis, it displays each function call positioning it according to the call stack. On x-axis, it displays the time spent in each function call. Typically, the main function is displayed at the bottom (y = 0) and spans the entire x-axis. <ul>
+<li>The hotspots are calls that are both wide and have a high y-value, more precisely, blocks with high absolute difference between their width and the sum of the widths of the blocks on top of them.</li>
+<li>example:
+<img alt="Flame Graph example" src="https://tech.popdata.org/images/cps1970_before_fix_dwarf_gcc53.svg" /></li>
+</ul>
+</li>
+<li><strong>Call Tree</strong>: An hierarchic tree-like view where the root is typically the main function, and nodes on the same level should be called from the same function, their parent node.<ul>
+<li>in GUI applications, the individual nodes are typically expandable</li>
+</ul>
+</li>
+<li><strong>Function List</strong>: A flat list of functions, typical columns are execution time and own execution time.</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Call_graph"><strong>Call Graph</strong></a>: A graph where the nodes are the functions and the edges are the function calls. 
+    example:
+    <img alt="Call Graph example" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/A_Call_Graph_generated_by_pycallgraph.png" /></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Call_stack"><strong>Call Stack</strong></a>: A stack of the function calls. The top is the main function. The bottom is the function calls. The time spent in each function call is the time spent in each function call.</p>
+</li>
+</ul>
 <h1 id="finding-duplicates">Finding Duplicates<a class="headerlink" href="#finding-duplicates" title="Permanent link">&para;</a></h1>
 <p>For finding duplicates, there are two possible approaches:</p>
 <ul>
@@ -691,6 +757,55 @@
 | --- | --- | --- | --- | --- |
 | Sets | <em>O(log n)</em> (both contains and add) | <em>O(1)</em> (both contains and add) | <em>O(n)</em> | <em>O(1)</em> |
 | Sorting | <em>O(n log n)</em> (sorting) | <em>O(n log n)</em> (sorting) + <em>O(n)</em> (duplicates check) | <em>0</em> or <em>O(n)</em> if we need to left the source collection unsorted | <em>0</em> or <em>O(1)</em> in case of new collection |</p>
+<h1 id="releasing-the-software">Releasing the software<a class="headerlink" href="#releasing-the-software" title="Permanent link">&para;</a></h1>
+<p>When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:</p>
+<ul>
+<li><strong>Versioning</strong>: update the version number in the distribution files (e.g., <code>setup.py</code>, <code>pom.xml</code>, <code>package.json</code>, etc.).</li>
+<li><strong>Changelog</strong>: update the changelog file with the new version and the changes.</li>
+<li><strong>License</strong>: check if the license is present in all files and if it is up-to-date.</li>
+</ul>
+<h2 id="licenses">Licenses<a class="headerlink" href="#licenses" title="Permanent link">&para;</a></h2>
+<p>Licensing has two parts:</p>
+<ul>
+<li>add the <code>LICENSE</code> file to the root of the project if not already present and</li>
+<li>add the license to the top of each source file.</li>
+</ul>
+<p>The first part is easy, just copy the license text to an empty file named <code>LICENSE</code> at the root of the project. To choose a license for your project, you can use the <a href="https://choosealicense.com/">Choose a License</a> website.</p>
+<p>The second part can be automated using the <a href="https://github.com/F-I-D-O/licenseheaders">licenseheaders fork</a> of the original <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> project. A typical usage is:</p>
+<pre><code class="language-bash">licenseheaders -t mit -o &quot;Czech Technical University in Prague&quot; -cy -n ShoDi -u &quot;https://github.com/aicenter/ShoDi&quot; -d C:\Workspaces\AIC\shortest-distances\
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>-t mit</code> specifies the template to use (MIT license in this case),</li>
+<li><code>-o "Czech Technical University in Prague"</code> specifies the organization name,</li>
+<li><code>-cy</code> specifies to replace the years in the existing headers with the current year,</li>
+<li><code>-n ShoDi</code> specifies the project name,</li>
+<li><code>-u "https://github.com/aicenter/ShoDi"</code> specifies the project URL,</li>
+<li><code>-d C:\Workspaces\AIC\shortest-distances\</code> specifies the directory to process.</li>
+</ul>
+<h1 id="keymap">Keymap<a class="headerlink" href="#keymap" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>Copy</strong>: <code>Ctrl</code> + <code>C</code></li>
+<li><strong>Cut</strong>: <code>Ctrl</code> + <code>X</code></li>
+<li><strong>Paste</strong>: <code>Ctrl</code> + <code>V</code></li>
+<li><strong>Toggle comment</strong>: <code>Ctrl</code> + <code>Q</code></li>
+<li><strong>Search in file</strong>: <code>Ctrl</code> + <code>S</code></li>
+<li><strong>Sellect all</strong>: <code>Ctrl</code> + <code>A</code></li>
+<li><strong>Format selection</strong>: <code>Ctrl</code> + <code>F</code></li>
+<li><strong>Format File</strong>: <code>Ctrl</code> + <code>Shift</code> + <code>F</code></li>
+<li><strong>Build</strong>: <code>Ctrl</code> + <code>B</code></li>
+</ul>
+<h2 id="refactoring">Refactoring<a class="headerlink" href="#refactoring" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Rename</strong>: <code>Ctrl</code> + <code>R</code> </li>
+<li><strong>Change signature</strong>: <code>Ctrl</code> + <code>G</code></li>
+<li><strong>Text transform</strong>: <code>Ctrl</code> + <code>T</code><ul>
+<li><code>+ U</code>: to upper case</li>
+<li><code>+ T</code>: toggle case</li>
+</ul>
+</li>
+<li><strong>Surround with</strong>: <code>Ctrl</code> + <code>W</code></li>
+</ul>
 <h1 id="jetbrains-products">JetBrains Products<a class="headerlink" href="#jetbrains-products" title="Permanent link">&para;</a></h1>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <h3 id="compact-tabs">Compact tabs<a class="headerlink" href="#compact-tabs" title="Permanent link">&para;</a></h3>
@@ -761,6 +876,43 @@
 <ul>
 <li><code>editor.insertSpaces</code>: if true, the editor will insert spaces instead of tabs</li>
 </ul>
+<h3 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h3>
+<p>Compared to a typical IDE, Visual Studio Code offers only a limited layout options. There are four layout areas that can be toggled on or off:</p>
+<ul>
+<li><strong>Editor area</strong>: in the center, by default</li>
+<li><strong>Primary sidebar</strong>: on the left, by default</li>
+<li><strong>Secondary sidebar</strong>: on the right, by default</li>
+<li><strong>Panel</strong>: at the bottom, by default</li>
+</ul>
+<h4 id="editor-area">Editor area<a class="headerlink" href="#editor-area" title="Permanent link">&para;</a></h4>
+<p>By default, there is a single editor area. Individual files are opened in separate tabs. The area can be divided into multiple columns by two ways:</p>
+<ul>
+<li>showing a preview (if available for the file type): split icon with a looking glass</li>
+<li>split horizontally: edit multiple files side by side: split icon</li>
+</ul>
+<p>Specific configurations for the editor area:</p>
+<ul>
+<li><strong>Show whitespace characters</strong>: <code>View</code> &gt; <code>Apppearance</code> &gt; <code>Render Whitespace</code>.<ul>
+<li>Line endings cannot be shown in the editor, but the status bar shows the line ending of the current file, and by clicking on it, you can change it.</li>
+</ul>
+</li>
+</ul>
+<h4 id="primary-sidebar">Primary sidebar<a class="headerlink" href="#primary-sidebar" title="Permanent link">&para;</a></h4>
+<p>The primary sidebar has <em>containers</em> that behaves like tabs for the primary sidebar. Instead container names, icons are displayed. The important aspect is that <strong>there is no way to create a custom container</strong>. New containers can only by added by installing a specific extension that provides a new container. The containers present in a vanilla VS Code are:</p>
+<ul>
+<li><strong>Explorer</strong>: contains files, outlines, and Timeline collapsable areas</li>
+<li><strong>Search</strong></li>
+<li><strong>Git</strong></li>
+<li><strong>Run and Debug</strong></li>
+<li><strong>Extensions</strong></li>
+</ul>
+<p>Extensions that provide new containers are:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">Latex Workshop</a></li>
+</ul>
+<h4 id="secondary-sidebar">Secondary sidebar<a class="headerlink" href="#secondary-sidebar" title="Permanent link">&para;</a></h4>
+<h4 id="panel">Panel<a class="headerlink" href="#panel" title="Permanent link">&para;</a></h4>
+<p>Panel is the only area which we can position at all four sides (top, bottom, left, right). <strong>There can be only one panel</strong>. The panel is divided into tabs.</p>
 <h2 id="code-formatting">Code Formatting<a class="headerlink" href="#code-formatting" title="Permanent link">&para;</a></h2>
 <p>Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that <strong>if the formatting is not defined for a language, selection formatting do nothing</strong>. To check the availability, try to format the whole document, then, an error box should appear.</p>
 <h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
@@ -787,32 +939,11 @@
 <li><code>args</code>: the arguments of the command or process (array of strings). Extra quoting is not needed (unlike in Visual Studio).</li>
 <li><code>problemMatcher</code>: the <a href="https://code.visualstudio.com/docs/debugtest/tasks#_defining-a-problem-matcher">problem matcher</a> to use for the task (array of strings). If not set, the IDE may ask the user to set it when the task is run.</li>
 </ul>
-<h1 id="releasing-the-software">Releasing the software<a class="headerlink" href="#releasing-the-software" title="Permanent link">&para;</a></h1>
-<p>When releasing the software, you should follow the steps for each particular language and distribution channel. However, there are some common steps that should be done for each release which are described in this section, namely:</p>
-<ul>
-<li><strong>Versioning</strong>: update the version number in the distribution files (e.g., <code>setup.py</code>, <code>pom.xml</code>, <code>package.json</code>, etc.).</li>
-<li><strong>Changelog</strong>: update the changelog file with the new version and the changes.</li>
-<li><strong>License</strong>: check if the license is present in all files and if it is up-to-date.</li>
-</ul>
-<h2 id="licenses">Licenses<a class="headerlink" href="#licenses" title="Permanent link">&para;</a></h2>
-<p>Licensing has two parts:</p>
-<ul>
-<li>add the <code>LICENSE</code> file to the root of the project if not already present and</li>
-<li>add the license to the top of each source file.</li>
-</ul>
-<p>The first part is easy, just copy the license text to an empty file named <code>LICENSE</code> at the root of the project. To choose a license for your project, you can use the <a href="https://choosealicense.com/">Choose a License</a> website.</p>
-<p>The second part can be automated using the <a href="https://github.com/F-I-D-O/licenseheaders">licenseheaders fork</a> of the original <a href="https://github.com/johann-petrak/licenseheaders">licenseheaders</a> project. A typical usage is:</p>
-<pre><code class="language-bash">licenseheaders -t mit -o &quot;Czech Technical University in Prague&quot; -cy -n ShoDi -u &quot;https://github.com/aicenter/ShoDi&quot; -d C:\Workspaces\AIC\shortest-distances\
-</code></pre>
-<p>where:</p>
-<ul>
-<li><code>-t mit</code> specifies the template to use (MIT license in this case),</li>
-<li><code>-o "Czech Technical University in Prague"</code> specifies the organization name,</li>
-<li><code>-cy</code> specifies to replace the years in the existing headers with the current year,</li>
-<li><code>-n ShoDi</code> specifies the project name,</li>
-<li><code>-u "https://github.com/aicenter/ShoDi"</code> specifies the project URL,</li>
-<li><code>-d C:\Workspaces\AIC\shortest-distances\</code> specifies the directory to process.</li>
-</ul></div>
+<h1 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h1>
+<p>Cursor is a port of Visual Studio Code. Therefore, only things that differ from VS Code are described here.</p>
+<h2 id="configuration_2">Configuration<a class="headerlink" href="#configuration_2" title="Permanent link">&para;</a></h2>
+<h3 id="layout_1">Layout<a class="headerlink" href="#layout_1" title="Permanent link">&para;</a></h3>
+<p>Cursor's layout is even more limited than VS Code's. The secondary sidebar is occupied by the chat interface, and there is no way to change that. Views can be moved in the secondary sidebar, but they appear as another chat window, which dramatically limits the usability.</p></div>
             </div>
         </div>
 

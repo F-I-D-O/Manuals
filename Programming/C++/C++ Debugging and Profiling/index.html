@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -646,6 +646,62 @@
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#address-breakpoints" class="nav-link">Address breakpoints</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#gnu-debugger-gdb" class="nav-link">GNU Debugger (GDB)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#location-specifications" class="nav-link">Location specifications</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#breakpoints" class="nav-link">Breakpoints</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#watches" class="nav-link">Watches</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#print-variables-and-expressions" class="nav-link">Print variables and expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#custom-python-code" class="nav-link">Custom Python Code</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#loader-script" class="nav-link">Loader script</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="5"><a href="#reloading-the-python-code" class="nav-link">Reloading the Python code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#embedding-gdb-python-code-into-a-binary" class="nav-link">Embedding gdb Python code into a binary</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#pretty-printing" class="nav-link">Pretty printing</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="4"><a href="#reloading-the-printer-collection" class="nav-link">Reloading the printer collection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#printing-members-of-the-class" class="nav-link">Printing members of the class</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#printer-collection-building" class="nav-link">Printer collection building</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="4"><a href="#resources" class="nav-link">Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
@@ -1033,6 +1089,189 @@ Basic usage:</p>
 <li>use the <code>&amp;</code> operator on the variable in the immediate window</li>
 </ul>
 <p>The address should have a format <code>0x0000000000000000</code>.</p>
+<h2 id="gnu-debugger-gdb">GNU Debugger (GDB)<a class="headerlink" href="#gnu-debugger-gdb" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/GNU_Debugger">wiki</a></li>
+<li><a href="https://www.gnu.org/software/gdb/documentation/">official documentation</a></li>
+</ul>
+<p>The typical usage is to:</p>
+<ol>
+<li>start gdb: <code>gdb &lt;program&gt;</code> (do not specify arguments here)</li>
+<li>set breakpoints: <code>b &lt;line number&gt;</code> or <code>b &lt;function name&gt;</code></li>
+<li>run the program: <code>r &lt;arguments&gt;</code></li>
+<li>step through the code: <code>s</code> or <code>n</code> for next line</li>
+</ol>
+<h3 id="location-specifications">Location specifications<a class="headerlink" href="#location-specifications" title="Permanent link">&para;</a></h3>
+<p>The location can be specified by:</p>
+<ul>
+<li><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Linespec-Locations.html#Linespec-Locations">file and line number</a>: <code>&lt;file name&gt;:&lt;line number&gt;</code></li>
+<li>function name: <code>&lt;function name&gt;</code></li>
+<li>address: <code>&lt;address&gt;</code></li>
+</ul>
+<p>For more details, see the <a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Location-Specifications.html#Location-Specifications">official documentation</a>.</p>
+<h3 id="breakpoints">Breakpoints<a class="headerlink" href="#breakpoints" title="Permanent link">&para;</a></h3>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Breaks.html">official documentation</a></p>
+<p>We set breakpoints as using the <code>break</code> or <code>b</code> command:</p>
+<pre><code class="language-gdb">b &lt;location specification&gt; if &lt;condition&gt;
+</code></pre>
+<p>If location specification is not specified, breakpoint is set at next line. If condition is not specified, breakpoint is hit unconditionally.</p>
+<h3 id="watches">Watches<a class="headerlink" href="#watches" title="Permanent link">&para;</a></h3>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Watchpoints.html#Set-Watchpoints">official documentation</a></p>
+<h3 id="print-variables-and-expressions">Print variables and expressions<a class="headerlink" href="#print-variables-and-expressions" title="Permanent link">&para;</a></h3>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Data.html#Data">official documentation</a></p>
+<p>Mostly, we can use the <code>print</code>/<code>p</code> command to print the value of almost any expression as <code>print &lt;expression&gt;</code>.</p>
+<h3 id="custom-python-code">Custom Python Code<a class="headerlink" href="#custom-python-code" title="Permanent link">&para;</a></h3>
+<p>Custom Python code may be used to enhance the debugger experience, e.g., to print the value of the expression in a more readable format.</p>
+<p>To plug in the custom Python code, there are multiple options:</p>
+<ul>
+<li><strong>loader script</strong>: placing a loader script named <code>&lt;object file name&gt;-gdb.py</code> in the same directory as the object file (executable or shared library). This script is executed when the object file is loaded into the debugger.</li>
+<li><strong>binary embedding</strong>: We can embed either a link to a Python script or the script itself into source or header file.</li>
+<li><strong>.gdbinit file</strong>: We can place a <code>.gdbinit</code> file in the home directory, which is executed when the debugger starts. There, we can configure the debugger to load the custom Python code.</li>
+</ul>
+<p>The following table summarizes the pros and cons of the different options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>autoload</th>
+<th>requires a loader</th>
+<th>requires Python scripts in executable dir</th>
+<th>single configuration for static libraries</th>
+<th>easy modification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loader script</td>
+<td>when the object file named as the loader script is loaded</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>binary embedding</td>
+<td>when the object file with the embedded code is loaded</td>
+<td>no</td>
+<td>no if full Python code embedded</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>.gdbinit file</td>
+<td>every time</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="loader-script">Loader script<a class="headerlink" href="#loader-script" title="Permanent link">&para;</a></h4>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/objfile_002dgdbdotext-file.html">official documentation</a></p>
+<p>The loader script is executed when an object file (executable or shared library) with the matching name as the loader script is loaded into the debugger. For example, if the object file is named <code>my_program</code>, the loader script should be named <code>my_program-gdb.py</code>.</p>
+<p>Note that the loader script is not the main python program, and so it cannot import files from the same directory as the loader script. To enable that, we have to modify the <code>PYTHONPATH</code> environment variable:</p>
+<pre><code class="language-Python">import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+</code></pre>
+<p>We mus modify the path before any local imports are executed.</p>
+<h5 id="reloading-the-python-code">Reloading the Python code<a class="headerlink" href="#reloading-the-python-code" title="Permanent link">&para;</a></h5>
+<p>Typically, we are not successful in creating a perfect code on the first try. It can be impractical to restart the debugger every time we want to try a modification. Instead, we can reload the Python code using the <code>source</code> command:</p>
+<pre><code class="language-gdb">source &lt;path to the loader script&gt;
+</code></pre>
+<p>Note that this only reload the loader script, not its imports, that are cached. To do a full reload, we need to reload each import separately:</p>
+<pre><code class="language-Python">
+import importlib
+
+importlib.reload(our_local_module)
+import our_local_module
+</code></pre>
+<h4 id="embedding-gdb-python-code-into-a-binary">Embedding gdb Python code into a binary<a class="headerlink" href="#embedding-gdb-python-code-into-a-binary" title="Permanent link">&para;</a></h4>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/dotdebug_005fgdb_005fscripts-section.html">official documentation</a></p>
+<h3 id="pretty-printing">Pretty printing<a class="headerlink" href="#pretty-printing" title="Permanent link">&para;</a></h3>
+<p>Similar to Visual Studio natvis, we can define pretty printing of the variables in the debugger. This is done using Python code, see <a href="#custom-python-code">Custom Python Code</a> section for details on how to plug the python code into the debugger.</p>
+<p>Typical workflow (see <a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Writing-a-Pretty_002dPrinter.html#Writing-a-Pretty_002dPrinter">official documentation</a> for details):</p>
+<ol>
+<li>
+<p>define the printer:
+    ```python
+    class MyPrinter:
+        def <strong>init</strong>(self, value):
+            self.__value = value</p>
+<pre><code>def to_string(self):
+    return f"My value is {self.__value}"
+</code></pre>
+<p><code>2. add the printer to a printer collection</code>python
+import gdb.printing</p>
+<p>def build_printer_collection():
+    printer_collection = gdb.printing.RegexpCollectionPrettyPrinter("myproject")
+    printer_collection.add_printer('my_class', '^MyClass$', MyPrinter)
+    return printer_collection
+```
+- there should be just one collection per project.</p>
+</li>
+<li>
+<p>plug the printer collection into the debugger:
+    <code>python
+    gdb.printing.register_pretty_printer(gdb.current_objfile(), build_printer_collection())</code></p>
+</li>
+</ol>
+<h4 id="reloading-the-printer-collection">Reloading the printer collection<a class="headerlink" href="#reloading-the-printer-collection" title="Permanent link">&para;</a></h4>
+<p>We can reload printers using the <code>source</code> command as described in <a href="#reloading-the-python-code">Reloading the Python code</a> section. However, we need to unregister the old printer collection first. To do that, add the following code to the registration function:</p>
+<pre><code class="language-Python">def _remove_existing_printer(objfile, name):
+    printers = objfile.pretty_printers if objfile is not None else gdb.pretty_printers
+    for i, p in enumerate(list(printers)):
+        if getattr(p, &quot;name&quot;, None) == name:
+            del printers[i]
+            return True
+    return False
+</code></pre>
+<p>Then, right before the <code>register_pretty_printer</code> call, add the following code:</p>
+<pre><code class="language-Python">_remove_existing_printer(gdb.current_objfile(), &lt;name of the printer collection&gt;)
+</code></pre>
+<h4 id="printing-members-of-the-class">Printing members of the class<a class="headerlink" href="#printing-members-of-the-class" title="Permanent link">&para;</a></h4>
+<p>The example above actually prints the whole class as is, so the printer has no effect. But we can do much more.</p>
+<p>The most easy thing is to <strong>print the data members</strong> of the class. These can ve accessed using the <code>__dict__</code> attribute of the <code>__value</code>. If our C++ class has a member <code>my_member</code>, we can access it as <code>self.__value['my_member']</code>. To <strong>show all available members</strong>, you can use the following code:</p>
+<pre><code class="language-Python">for f in self.__value.type.strip_typedefs().fields():
+    print(f.name)
+</code></pre>
+<p>With <strong>function members</strong>, it is more complicated. These cannot be accesed directly from Python. Insted, we have to evaluate a C++ expression to get the return value. Example:</p>
+<pre><code class="language-Python">return_value = gdb.parse_and_eval(f&quot;({val.address})-&gt;&lt;function name&gt;()&quot;)
+</code></pre>
+<p>To do this in a robust way, the following helper function can be used:</p>
+<pre><code class="language-Python">def call_method(val, name):
+    t = val.type.strip_typedefs()
+
+    # If val is a reference, get the referred object.
+    if t.code == gdb.TYPE_CODE_REF:
+        val = val.referenced_value()
+        t = val.type.strip_typedefs()
+
+    # If val is already a pointer, use it directly.
+    if t.code == gdb.TYPE_CODE_PTR:
+        ptr = val
+    else:
+        # Otherwise take its address.
+        ptr = val.address
+        if ptr is None:
+            raise gdb.error(&quot;Value is not addressable&quot;)
+    return gdb.parse_and_eval(f&quot;(({ptr.type}) {int(ptr):#x})-&gt;{name}()&quot;)
+</code></pre>
+<h4 id="printer-collection-building">Printer collection building<a class="headerlink" href="#printer-collection-building" title="Permanent link">&para;</a></h4>
+<p>Let's look back to the printer collection building code:</p>
+<pre><code class="language-Python">def build_printer_collection():
+    printer_collection = gdb.printing.RegexpCollectionPrettyPrinter(&quot;myproject&quot;)
+    printer_collection.add_printer('my_class', '^MyClass$', MyPrinter)
+    return printer_collection
+</code></pre>
+<p>Here, the <code>myproject</code> is the name of the printer collection, as it will be displayed in gdb when calling the <code>info pretty printers</code> command. It does not have to match anything. The <code>my_class</code> is then the name of the printer in the collection. Agin, it is just for our convenience, it does not have to match anything. </p>
+<p>The <code>^MyClass$</code> (second argument of the <code>add_printer</code> function) is a regular expression that determines the types this printer will be used for. We may want to match multiple types for the same printer. Typically, we do it for template classes: <code>^MyClass&lt;.*&gt;$</code>.</p>
+<h4 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing-API.html#Pretty-Printing-API">printer interface documentation</a></li>
+</ul>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
 <p>There are multiple <a href="https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing">profiler options for C++</a>, but not all the tools are easy to use or maintained.</p>
 <h2 id="cpu-profiling">CPU Profiling<a class="headerlink" href="#cpu-profiling" title="Permanent link">&para;</a></h2>

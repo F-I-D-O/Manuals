@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -1238,7 +1238,11 @@ df.loc[idx[:, 15:30]] # try to select all rows and columns between 15 and 30 (pr
 <p>for sorting the dataframe, we can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>sort_values</code></a> function. The first argument is the list of columns to sort by, starting with the most important column. Example:</p>
 <pre><code class="language-python">df.sort_values(['col1', 'col2'])
 </code></pre>
-<p>If we want to use a custom sorting function, we can use the <code>key</code> argument. The key function should</p>
+<p>Important parameters:</p>
+<ul>
+<li><code>ascending</code>: by default, the sorting is ascending. To sort in descending order, we can set this parameter to <code>False</code>.</li>
+</ul>
+<p>If we want to use a <strong>custom sorting function</strong>, we can use the <code>key</code> argument. The key function should</p>
 <ul>
 <li>satisfy the classical python sorting interface (see <a href="../Python%20Manual/">Python manual</a>) and</li>
 <li>it should be a vector function, i.e., instead of returning a single position for a given value, it should return a vector of positions for a given vector of values. </li>

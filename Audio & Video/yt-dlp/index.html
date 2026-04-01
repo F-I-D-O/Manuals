@@ -386,6 +386,9 @@
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -458,6 +458,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#possible-problems" class="nav-link">Possible problems</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#youtube-h8qqhgupprs-sign-in-to-confirm-your-age" class="nav-link">[youtube] H8QQHGupPrs: Sign in to confirm your age.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#error-youtube-mbxlbilr0oe-the-page-needs-to-be-reloaded" class="nav-link">ERROR: [youtube] MbXLBIlR0oE: The page needs to be reloaded.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -469,7 +482,16 @@
 <p>useful parameters:</p>
 <ul>
 <li><code>-x</code>, <code>--extract-audio</code>: extract only the audio from the video</li>
-</ul></div>
+</ul>
+<h1 id="possible-problems">Possible problems<a class="headerlink" href="#possible-problems" title="Permanent link">&para;</a></h1>
+<h2 id="youtube-h8qqhgupprs-sign-in-to-confirm-your-age">[youtube] H8QQHGupPrs: Sign in to confirm your age.<a class="headerlink" href="#youtube-h8qqhgupprs-sign-in-to-confirm-your-age" title="Permanent link">&para;</a></h2>
+<p>This means that this video is age restricted. Signing in with a Google account is required. With yt-dlp, there are two options:</p>
+<ul>
+<li>using a browser with non-encrypted cookies (e.g. Firefox) and passing the <code>--cookies-from-browser</code> argument to yt-dlp</li>
+<li>exporting cookies from the browser with encrypted cookies (Chrome, Edge, Opera, ...) and passing the <code>--cookies</code> argument to yt-dlp</li>
+</ul>
+<h2 id="error-youtube-mbxlbilr0oe-the-page-needs-to-be-reloaded">ERROR: [youtube] MbXLBIlR0oE: The page needs to be reloaded.<a class="headerlink" href="#error-youtube-mbxlbilr0oe-the-page-needs-to-be-reloaded" title="Permanent link">&para;</a></h2>
+<p>This is an <a href="https://github.com/yt-dlp/yt-dlp/issues/16212#issuecomment-4041111155">open issue</a>. Basically, yt-dlp currently (2026-03-12) cannot download YouTube videos that are age restricted. </p></div>
             </div>
         </div>
 

@@ -386,6 +386,9 @@
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -472,6 +472,10 @@
             <li class="nav-item" data-bs-level="1"><a href="#model-parameters" class="nav-link">Model Parameters</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#cuts" class="nav-link">Cuts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#outputflag" class="nav-link">OutputFlag</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -570,6 +574,16 @@
 <li><code>3</code>: very aggressive cut generation</li>
 </ul>
 <p>Thgis parameter can be overridden for a specific cut type through other parameters (e.g., <code>CliqueCuts</code> parameter).</p>
+<h2 id="outputflag">OutputFlag<a class="headerlink" href="#outputflag" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#outputflag">Reference</a></li>
+</ul>
+<p>OutputFlag parameter is a toggle for the output of the solver (both in the console and in the log file).</p>
+<p>Possible values:</p>
+<ul>
+<li><code>0</code>: off</li>
+<li><code>1</code>: on (default)</li>
+</ul>
 <h2 id="precrush">PreCrush<a class="headerlink" href="#precrush" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#precrush">Reference</a></li>

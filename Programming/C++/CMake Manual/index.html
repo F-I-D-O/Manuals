@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -532,6 +532,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#lists" class="nav-link">Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="3"><a href="#enviromental-variables" class="nav-link">Enviromental variables</a>
               <ul class="nav flex-column">
               </ul>
@@ -556,10 +560,6 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#list-variables" class="nav-link">List variables</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
             <li class="nav-item" data-bs-level="3"><a href="#print-all-variables" class="nav-link">Print all variables</a>
               <ul class="nav flex-column">
               </ul>
@@ -568,6 +568,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#escape-sequences" class="nav-link">Escape sequences</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#command-arguments-and-literals" class="nav-link">Command Arguments and Literals</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#control-structures" class="nav-link">Control structures</a>
@@ -590,19 +598,7 @@
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#file-operations" class="nav-link">File operations</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#path-operations" class="nav-link">Path operations</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#path-decomposition" class="nav-link">Path decomposition</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#list-operations" class="nav-link">List operations</a>
+            <li class="nav-item" data-bs-level="2"><a href="#properties" class="nav-link">Properties</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -622,12 +618,36 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#regular-expressions" class="nav-link">Regular expressions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#useful-functions" class="nav-link">Useful functions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#built-in-commands" class="nav-link">Built-in commands</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#message" class="nav-link">message</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#string-commands" class="nav-link">String commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#file-commands" class="nav-link">File commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#path-commands" class="nav-link">Path commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#path-decomposition" class="nav-link">Path decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#list-commands" class="nav-link">List commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -734,7 +754,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#set-properties-for-a-target" class="nav-link">Set properties for a target</a>
+            <li class="nav-item" data-bs-level="3"><a href="#set-preprocessor-variables-for-a-target" class="nav-link">Set preprocessor variables for a target</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -774,6 +794,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#dependencies-between-targets" class="nav-link">Dependencies between targets</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#installation-configuration" class="nav-link">Installation Configuration</a>
@@ -867,6 +891,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#generating-files-based-on-templates" class="nav-link">Generating files based on templates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -875,9 +903,27 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="1"><a href="#cmake-presets" class="nav-link">CMake Presets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#cmake-directory-structure" class="nav-link">CMake Directory Structure</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#system-find_xxxcmake-files" class="nav-link">System Find_XXX.cmake files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cmake-policies" class="nav-link">CMake Policies</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#cmake_minimum_required-command" class="nav-link">cmake_minimum_required command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cmake_policy-command" class="nav-link">cmake_policy command</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -956,7 +1002,15 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#setting-test-properties" class="nav-link">Setting test properties</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#test-fixtures" class="nav-link">Test fixtures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#using-cmake-scripts-as-test-commands" class="nav-link">Using cmake scripts as test commands</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -1121,6 +1175,24 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
     <code>cmake
     set(dirs "C:/Program Files" "C:/Program Files (x86)")</code></li>
 </ul>
+<h3 id="lists">Lists<a class="headerlink" href="#lists" title="Permanent link">&para;</a></h3>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#lists">documentation</a></p>
+<p>In CMake, strings are interpreted as lists in many contexts if they contain semicolons (<code>;</code>), which serves as a list delimiter. For example, if an unquoted argument contains a semicolon, it is interpreted as a list of arguments.</p>
+<p>List variables are defined similarly to scalar variables using the <code>set</code> command:</p>
+<pre><code class="language-cmake">set(&lt;name&gt; &lt;value 1&gt; &lt;value 2&gt; ...) # stores `&lt;value 1&gt;;&lt;value 2&gt;;...` in the `&lt;name&gt;` variable
+</code></pre>
+<p>If we need to use a string containing a semicolon in context that evaluates lists, we need to escape it using <code>\;</code>.</p>
+<p>When working with lists, it is important to think about how we want to use them:</p>
+<ul>
+<li>many commands accept list arguments -&gt; we want to pass the list as a single argument, quoted<ul>
+<li>commands that accept lists (e.g., <code>add_executable</code>, <code>add_library</code>, <code>target_link_libraries</code>)</li>
+</ul>
+</li>
+<li>in other contexts, we want to pass the list as a list of arguments, unquoted<ul>
+<li>for loops</li>
+</ul>
+</li>
+</ul>
 <h3 id="enviromental-variables">Enviromental variables<a class="headerlink" href="#enviromental-variables" title="Permanent link">&para;</a></h3>
 <p>We can use environmental variables using the <code>ENV</code> variable:</p>
 <pre><code class="language-cmake">if(DEFINED ENV{&lt;name&gt;})
@@ -1134,14 +1206,6 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <p>There are some variable generated by default by CMake. Howver, these differ between the <em>script</em> and <em>config</em> modes. </p>
 <h4 id="variables-available-in-both-modes">Variables available in both modes<a class="headerlink" href="#variables-available-in-both-modes" title="Permanent link">&para;</a></h4>
 <ul>
-<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html"><code>CMAKE_SOURCE_DIR</code></a>: the directory where the top level <code>CMakeLists.txt</code> file is located. This variable is rarely the right one, because our project may be used as a subproject in another project.<ul>
-<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
-</ul>
-</li>
-<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html"><code>CMAKE_CURRENT_SOURCE_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.<ul>
-<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
-</ul>
-</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html"><code>CMAKE_BINARY_DIR</code></a>: the top level build directory. Most of the time, it is appropriate to use <code>CMAKE_CURRENT_BINARY_DIR</code> instead of this variable.<ul>
 <li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
 </ul>
@@ -1150,16 +1214,30 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
 </ul>
 </li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_FUNCTION_LIST_DIR.html"><code>CMAKE_CURRENT_FUNCTION_LIST_DIR</code></a>: the directory where the function or macro that is currently being processed is located.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_FUNCTION_LIST_FILE.html"><code>CMAKE_CURRENT_FUNCTION_LIST_FILE</code></a>: the path to the file that contains the function or macro that is currently being processed.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_LIST_FILE.html"><code>CMAKE_CURRENT_LIST_FILE</code></a>: the path to the currently processed <code>CMakeLists.txt</code> file <code>*.cmake</code> file. <ul>
+<li>does not consider function and macro calls. If you want to know the path to the file that contains the current function or macro, use <code>CMAKE_CURRENT_FUNCTION_LIST_FILE</code>.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html"><code>CMAKE_CURRENT_SOURCE_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html"><code>CMAKE_SOURCE_DIR</code></a>: the directory where the top level <code>CMakeLists.txt</code> file is located. This variable is rarely the right one, because our project may be used as a subproject in another project.<ul>
+<li>in the <em>script</em> mode, this variable is set to the directory where the script is located.</li>
+</ul>
+</li>
 </ul>
 <h4 id="config-mode-variables">Config mode variables<a class="headerlink" href="#config-mode-variables" title="Permanent link">&para;</a></h4>
 <ul>
-<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_LIST_DIR.html"><code>CMAKE_CURRENT_LIST_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
-<li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_SOURCE_DIR.html"><code>PROJECT_SOURCE_DIR</code></a>: the nearest directory up in the directory tree where the <code>CMakeLists.txt</code> with the <code>project</code> command is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_ID.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_ID</code></a>: the compiler ID for the language <code>&lt;LANG&gt;</code>.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_VERSION.html"><code>CMAKE_&lt;LANG&gt;_COMPILER_VERSION</code></a>: the compiler version for the language <code>&lt;LANG&gt;</code>.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_LIST_DIR.html"><code>CMAKE_CURRENT_LIST_DIR</code></a>: the directory where the currently processed <code>CMakeLists.txt</code> file is located.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/CMAKE_PROJECT_NAME.html"><code>CMAKE_PROJECT_NAME</code></a>: the name of the top level project. Most of the time, it is appropriate to use <code>PROJECT_NAME</code> instead of this variable.</li>
-<li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_NAME.html"><code>PROJECT_NAME</code></a>: the name of the project.</li>
 <li><a href="https://cmake.org/cmake/help/latest/variable/MSVC.html"><code>MSVC</code></a>: set to <code>TRUE</code> if the compiler is MSVC.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_NAME.html"><code>PROJECT_NAME</code></a>: the name of the project.</li>
+<li><a href="https://cmake.org/cmake/help/latest/variable/PROJECT_SOURCE_DIR.html"><code>PROJECT_SOURCE_DIR</code></a>: the nearest directory up in the directory tree where the <code>CMakeLists.txt</code> with the <code>project</code> command is located.</li>
 </ul>
 <h4 id="script-mode-variables">Script mode variables<a class="headerlink" href="#script-mode-variables" title="Permanent link">&para;</a></h4>
 <ul>
@@ -1174,17 +1252,8 @@ cmake &lt;dir&gt; -DCMAKE_TOOLCHAIN_FILE=&lt;vcpkg location&gt;/scripts/buildsys
 <p>Notable variables are:</p>
 <ul>
 <li><code>BINDIR</code>: the directory for executables (<code>bin</code>)</li>
-<li><code>LIBDIR</code>: the directory for libraries (<code>lib</code>)</li>
 <li><code>INCLUDEDIR</code>: the directory for headers (<code>include</code>)</li>
-</ul>
-<h3 id="list-variables">List variables<a class="headerlink" href="#list-variables" title="Permanent link">&para;</a></h3>
-<p>List variables are defined similarly to scalar variables using the <code>set</code> command:</p>
-<pre><code class="language-cmake">set(&lt;name&gt; &lt;value 1&gt; &lt;value 2&gt; ...)
-</code></pre>
-<p>Then, we can use the list variable in:</p>
-<ul>
-<li>commands that accept lists (e.g., <code>add_executable</code>, <code>add_library</code>, <code>target_link_libraries</code>)</li>
-<li>for loops</li>
+<li><code>LIBDIR</code>: the directory for libraries (<code>lib</code>)</li>
 </ul>
 <h3 id="print-all-variables">Print all variables<a class="headerlink" href="#print-all-variables" title="Permanent link">&para;</a></h3>
 <p>To print all variables, the following function can be used:</p>
@@ -1226,6 +1295,47 @@ endfunction()
 <li>If variable is already set (either a cache variable or a normal variable), the <code>option</code> command is ignored.</li>
 <li>Otherwise, a cache variable is created if we are in the project mode, and a normal variable is created if we are in the script mode.</li>
 </ul>
+<h2 id="escape-sequences">Escape sequences<a class="headerlink" href="#escape-sequences" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#escape-sequences">documentation</a></p>
+<p>Escape sequences are used to escape special characters in strings. In CMake, there are the following escape sequences:</p>
+<ul>
+<li><code>\n</code>: new line</li>
+<li><code>\r</code>: carriage return</li>
+<li><code>\t</code>: tab</li>
+<li><code>\&lt;non-alphanumeric character&gt;</code>: the character itself</li>
+</ul>
+<h2 id="command-arguments-and-literals">Command Arguments and Literals<a class="headerlink" href="#command-arguments-and-literals" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#command-arguments">documentation</a></p>
+<p>In CMake, there is nothing like assignment, event a simple variable setting is done using a command. Therefore, literals are not considered at all in CMake language, instead, CMake defines <em>command arguments</em> as the basic building blocks.</p>
+<p>There are three types of command arguments, mostly different in whether they evaluate variables, <a href="#escape-sequences">escape sequences</a>, or whether they perform list division:</p>
+<ul>
+<li><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#unquoted-arguments">unquoted arguments</a>: continous text without special characters<ul>
+<li>The following characters need to be escaped: <code>(</code>, <code>)</code>, <code>#</code>, <code>;</code>, <code>\</code>, or any whitespace character.</li>
+<li>the resulting value is divided using the list logic. Therefore, <code>;</code> needs to be escaped as well, if we do not want to pass a list.</li>
+<li>escape sequences and variables are evaluated.</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#quoted-arguments">quoted arguments</a>: text surrounded by double quotes<ul>
+<li>unlike unquoted arguments, quoted arguments may contain unescaped whitespace characters</li>
+<li>if we escape a new line character, it is interpreted as a line-continuation (basically, no line break is inserted)</li>
+<li>the resulting value is not divided using the list logic.</li>
+<li>empty string (<code>""</code>) is valid (not possible for unquoted arguments)</li>
+<li>otherwise, the behavior is the same as for unquoted arguments</li>
+</ul>
+</li>
+<li><a href="https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#bracket-arguments">bracket arguments</a>: text surrounded by special delimiter: <code>[=*[</code> for opening and <code>]=*]</code> for closing (where <code>*</code> means that the <code>=</code> may appear any number of times)<ul>
+<li>no characters need to be escaped</li>
+<li>escape sequences and variables are evaluated.</li>
+<li>no list division is performed.</li>
+</ul>
+</li>
+</ul>
+<p>Note that we need to chose a single argument type for the whole argument. Example:</p>
+<pre><code class="language-cmake">EXPECTED=Hello # fine a single unquoted argument
+EXPECTED=&quot;Hello&quot; # wrong
+&quot;EXPECTED=Hello&quot; # fine, single quoted argument
+EXPECTED=[==[Hello \nWorld]==] # wrong
+</code></pre>
 <h2 id="control-structures">Control structures<a class="headerlink" href="#control-structures" title="Permanent link">&para;</a></h2>
 <h3 id="if"><code>if</code><a class="headerlink" href="#if" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/if.html"><code>if</code></a> command has the following syntax:</p>
@@ -1237,18 +1347,23 @@ else()
 ...
 endif()
 </code></pre>
-<p>The condition can be:</p>
+<p>The <code>&lt;condition&gt;</code> can be:</p>
 <ul>
 <li>a variable</li>
 <li>an expression</li>
 </ul>
-<p>Each expression can use some of the supported operators:</p>
+<p>The <code>&lt;condition&gt;</code> result is a boolean value:</p>
+<ul>
+<li><code>FALSE</code>, <code>""</code>, <code>0</code>, <code>NOTFOUND</code>, <code>OFF</code>, <code>NO</code>, <code>N</code>, <code>IGNORE</code>, or string ending with <code>-NOTFOUND</code> evaluate to <code>FALSE</code></li>
+<li>any other value evaluates to <code>TRUE</code></li>
+</ul>
+<p>Each <strong>expression</strong> can use some of the supported operators:</p>
 <ul>
 <li>logical operators: <code>AND</code>, <code>OR</code>, <code>NOT</code></li>
 <li>comparison operators: <code>EQUAL</code>, <code>LESS</code>, <code>GREATER</code>, <code>LESS_EQUAL</code>, <code>GREATER_EQUAL</code>, <code>STREQUAL</code>, <code>STRLESS</code>, <code>STRGREATER</code>, <code>STRLESS_EQUAL</code>, <code>STRGREATER_EQUAL</code></li>
 <li>file operators: <code>EXISTS</code>, <code>IS_DIRECTORY</code>, <code>IS_REGULAR_FILE</code>, <code>IS_SYMLINK</code>, <code>IS_ABSOLUTE</code>, <code>IS_RELATIVE</code>, <code>IS_NEWER_THAN</code>, <code>IS_OLDER_THAN</code></li>
 <li>string operators: <code>MATCHES</code>, <code>LESS</code>, <code>GREATER</code>, <code>LESS_EQUAL</code>, <code>GREATER_EQUAL</code>, <code>STREQUAL</code>, <code>STRLESS</code>, <code>STRGREATER</code>, <code>STRLESS_EQUAL</code>, <code>STRGREATER_EQUAL</code><ul>
-<li>The <code>MATCHES</code> operator requires a regex, not a simplified filesystem filter pattern. See the <a href="https://cmake.org/cmake/help/latest/command/string.html#regex-specification">regex documentation</a> for more.</li>
+<li>The <code>MATCHES</code> operator requires a regex, not a simplified filesystem filter pattern. See the <a href="#regular-expressions">regex documentation</a> for more.</li>
 </ul>
 </li>
 <li>
@@ -1293,29 +1408,33 @@ endforeach()
 <pre><code class="language-cmake">file(GENERATE OUTPUT &lt;filename&gt; CONTENT &lt;string-with-generator-expression&gt;)
 </code></pre>
 <p>This way, we receive the evaluated value of the generator expression in the file for one of the build configurations.</p>
-<h2 id="file-operations">File operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h2>
-<p>To perform file operations, use the <a href="https://cmake.org/cmake/help/latest/command/file.html"><code>file</code></a> command. The most useful subcommands are:</p>
+<h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
+<p>Besides setting variables, we can set properties that are bound to specific entities in the build system.</p>
 <ul>
-<li><code>MAKE_DIRECTORY &lt;directory&gt;</code> - create a directory</li>
-<li><code>RENAME &lt;from&gt; &lt;to&gt;</code> - renames/moves a file or directory. The <code>&lt;from&gt;</code> must exist, and the parent directory of <code>&lt;to&gt;</code> must exist. </li>
-<li><code>REMOVE &lt;file&gt;</code> - remove a file </li>
-<li><code>REMOVE_RECURSE &lt;directory&gt;</code> - remove a directory and all its content</li>
+<li>For setting properties, we use the <a href="https://cmake.org/cmake/help/latest/command/set_property.html"><code>set_property</code></a> command:
+    <code>cmake
+    set_property(&lt;scope&gt; &lt;target/directory/file/variable&gt; PROPERTY &lt;property name&gt; &lt;property value&gt;)</code></li>
+<li>For getting properties, we use the <a href="https://cmake.org/cmake/help/latest/command/get_property.html"><code>get_property</code></a> command.
+    <code>cmake
+    get_property(&lt;scope&gt; &lt;target/directory/file/variable&gt; PROPERTY &lt;property name&gt; &lt;output variable&gt;)</code></li>
 </ul>
-<h2 id="path-operations">Path operations<a class="headerlink" href="#path-operations" title="Permanent link">&para;</a></h2>
-<p>Path operations are performed using the <a href="https://cmake.org/cmake/help/latest/command/cmake_path.html"><code>cmake_path</code></a> command. The sytax for this command varies based on the subcommand.</p>
-<h3 id="path-decomposition">Path decomposition<a class="headerlink" href="#path-decomposition" title="Permanent link">&para;</a></h3>
-<p>The syntax for the path decomposition is:</p>
-<pre><code class="language-cmake">cmake_path(GET &lt;path&gt; &lt;path part&gt; &lt;output variable&gt;)
-</code></pre>
-<p>Here, <code>&lt;path part&gt;</code> can be:</p>
+<p>Here, the <code>&lt;scope&gt;</code> is the type of the entity to which the property is bound. It can be:</p>
 <ul>
-<li><code>PARENT_PATH</code> - the parent directory of the path</li>
+<li><code>TARGET</code></li>
+<li><code>DIRECTORY</code></li>
+<li><code>FILE</code></li>
+<li><code>VARIABLE</code></li>
+<li><code>TEST</code></li>
 </ul>
-<h2 id="list-operations">List operations<a class="headerlink" href="#list-operations" title="Permanent link">&para;</a></h2>
-<p>For list operations, use the <a href="https://cmake.org/cmake/help/latest/command/list.html"><code>list</code></a> command. The most useful subcommands are:</p>
+<p>We can use these properties for our custom variables, e.g., if we want to bound them to a specific target. However, <a href="https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html">lot of entities have a specific set of properties predefined</a>.</p>
+<p>For properties bound to targets, we can use dedicated commands:</p>
 <ul>
-<li><a href="https://cmake.org/cmake/help/latest/command/list.html#append"><code>APPEND</code></a> - append an element to the list: <code>list(APPEND &lt;list name&gt; &lt;elements&gt;)</code></li>
-<li><a href="https://cmake.org/cmake/help/latest/command/list.html#join"><code>JOIN</code></a> - join the list elements into a string: <code>list(JOIN &lt;list name&gt; &lt;separator&gt; &lt;output variable&gt;)</code></li>
+<li><a href="https://cmake.org/cmake/help/latest/command/set_target_properties.html"><code>set_target_properties</code></a>
+    <code>cmake
+    set_target_properties(&lt;target names&gt;... PROPERTIES &lt;property names&gt; &lt;property values&gt;)</code></li>
+<li><a href="https://cmake.org/cmake/help/latest/command/get_target_property.html"><code>get_target_property</code></a>
+    <code>cmake
+    get_target_property(&lt;output variable&gt; &lt;target name&gt; &lt;property name&gt;)</code></li>
 </ul>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <p>Functions are defined using the <a href="https://cmake.org/cmake/help/latest/command/function.html"><code>function</code></a> command. The syntax is:</p>
@@ -1374,7 +1493,41 @@ endfunction()
     set(${return_var_name} &lt;value&gt; PARENT_SCOPE)
 endfunction()
 </code></pre>
-<h1 id="useful-functions">Useful functions<a class="headerlink" href="#useful-functions" title="Permanent link">&para;</a></h1>
+<h2 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h2>
+<p>CMake has a support for regular expressions. However, beware that:</p>
+<ul>
+<li>the <strong>syntax is limited</strong> compared to the usual regex engines,</li>
+<li>the <strong>usage is limited</strong> as well,</li>
+<li>many <strong>things work contrary to the expected behavior</strong>, and</li>
+<li>the regexes in CMake are <strong>poorly documented</strong></li>
+</ul>
+<p>We can use regexes in these contexts:</p>
+<ul>
+<li>in some <code>string</code> commands (see <a href="#string-commands">String commands</a> section),</li>
+<li>in the <code>if</code> control structure, when the <code>MATCHES</code> operator is used.</li>
+</ul>
+<p>The CMake <a href="https://cmake.org/cmake/help/latest/command/string.html#regex-specification">regex syntax</a> is limited to following special characters:</p>
+<ul>
+<li><code>.</code>: any character</li>
+<li><code>*</code>, <code>+</code>, and <code>?</code>: zero or more, one or more, and zero or one quantifiers</li>
+<li><code>[]</code>: character class (matching literals inside the brackets). <ul>
+<li>A range can be used inside the brackets, specified by a hyphen, e.g., <code>[a-z]</code> matches any lowercase letter.</li>
+<li>The negation (<code>^</code>) can be used to match any character except the ones inside the brackets.</li>
+</ul>
+</li>
+<li><code>^</code> and <code>$</code>: anchor to the start and end of the string</li>
+<li><code>|</code>: OR operator</li>
+<li><code>()</code>: capture group</li>
+<li><code>\</code>: escape character for matching any of the special characters literally</li>
+</ul>
+<p><strong>No other special characters are supported.</strong></p>
+<p>To match whitespace characters, we can use the CMake escape sequences. However, we need to make sure that they will be evaluated before the string is processed by the regex engine:</p>
+<ul>
+<li><code>if("TESTSTRING\n" MATCHES ".*\n")</code> works, escape sequence is evaluated by cmake</li>
+<li><code>if("TESTSTRING\n" MATCHES ".*\\n")</code> does not work, sequence <code>\n</code> is processed by the regex engine, which interprets it as sequence of two characters: <code>\</code> and <code>n</code> literally</li>
+<li><code>if("TESTSTRING\n" MATCHES [=[.*\n]=])</code> does work, from the same reason as the previous case.</li>
+</ul>
+<h1 id="built-in-commands">Built-in commands<a class="headerlink" href="#built-in-commands" title="Permanent link">&para;</a></h1>
 <h2 id="message"><code>message</code><a class="headerlink" href="#message" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/message.html"><code>message</code></a> command is used to print messages during the configuration process. The syntax is:</p>
 <pre><code class="language-cmake">message(&lt;mode&gt; &lt;message&gt;)
@@ -1387,6 +1540,43 @@ endfunction()
 <li><code>SEND_ERROR</code> - the message is printed as an error and the configuration process is stopped</li>
 <li><code>FATAL_ERROR</code> - the message is printed as a fatal error and the configuration process is stopped</li>
 <li><code>DEPRECATION</code> - the message is printed as a deprecation warning</li>
+</ul>
+<h2 id="string-commands">String commands<a class="headerlink" href="#string-commands" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/command/string.html">documentation</a></p>
+<p>String commands have the following syntax:</p>
+<pre><code class="language-cmake">string(&lt;command&gt; &lt;arguments&gt;)
+</code></pre>
+<p>Where typically, the last arguments are <code>&lt;output variable&gt;</code> and <code>&lt;input&gt;</code>, if present, in this order.</p>
+<p>Notable string commands:</p>
+<ul>
+<li><code>REGEX MATCH &lt;regex&gt; &lt;output variable&gt; &lt;input&gt;</code>: matches the regex against the input and stores the result in the output variable. <ul>
+<li>see the <a href="#regular-expressions">regular expressions</a> section for information about the regex syntax.</li>
+</ul>
+</li>
+</ul>
+<h2 id="file-commands">File commands<a class="headerlink" href="#file-commands" title="Permanent link">&para;</a></h2>
+<p>To perform file operations, use the <a href="https://cmake.org/cmake/help/latest/command/file.html"><code>file</code></a> command. The most useful subcommands are:</p>
+<ul>
+<li><code>MAKE_DIRECTORY &lt;directory&gt;</code> - create a directory</li>
+<li><code>RENAME &lt;from&gt; &lt;to&gt;</code> - renames/moves a file or directory. The <code>&lt;from&gt;</code> must exist, and the parent directory of <code>&lt;to&gt;</code> must exist. </li>
+<li><code>REMOVE &lt;file&gt;</code> - remove a file </li>
+<li><code>REMOVE_RECURSE &lt;directory&gt;</code> - remove a directory and all its content</li>
+</ul>
+<h2 id="path-commands">Path commands<a class="headerlink" href="#path-commands" title="Permanent link">&para;</a></h2>
+<p>Path operations are performed using the <a href="https://cmake.org/cmake/help/latest/command/cmake_path.html"><code>cmake_path</code></a> command. The sytax for this command varies based on the subcommand.</p>
+<h3 id="path-decomposition">Path decomposition<a class="headerlink" href="#path-decomposition" title="Permanent link">&para;</a></h3>
+<p>The syntax for the path decomposition is:</p>
+<pre><code class="language-cmake">cmake_path(GET &lt;path&gt; &lt;path part&gt; &lt;output variable&gt;)
+</code></pre>
+<p>Here, <code>&lt;path part&gt;</code> can be:</p>
+<ul>
+<li><code>PARENT_PATH</code> - the parent directory of the path</li>
+</ul>
+<h2 id="list-commands">List commands<a class="headerlink" href="#list-commands" title="Permanent link">&para;</a></h2>
+<p>For list operations, use the <a href="https://cmake.org/cmake/help/latest/command/list.html"><code>list</code></a> command. The most useful subcommands are:</p>
+<ul>
+<li><a href="https://cmake.org/cmake/help/latest/command/list.html#append"><code>APPEND</code></a> - append an element to the list: <code>list(APPEND &lt;list name&gt; &lt;elements&gt;)</code></li>
+<li><a href="https://cmake.org/cmake/help/latest/command/list.html#join"><code>JOIN</code></a> - join the list elements into a string: <code>list(JOIN &lt;list name&gt; &lt;separator&gt; &lt;output variable&gt;)</code></li>
 </ul>
 <h2 id="execute_process"><code>execute_process</code><a class="headerlink" href="#execute_process" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://cmake.org/cmake/help/latest/command/execute_process.html"><code>execute_process</code></a> command is used to execute an external command. The syntax is:</p>
@@ -1789,10 +1979,11 @@ Note that <strong>this option shoud be placed before the URL option</strong>. Th
 </li>
 <li>and some more...</li>
 </ul>
-<h3 id="set-properties-for-a-target">Set properties for a target<a class="headerlink" href="#set-properties-for-a-target" title="Permanent link">&para;</a></h3>
-<p>To set <strong>compile options</strong> for a target, use the <a href="https://cmake.org/cmake/help/latest/command/target_compile_definitions.html"><code>target_compile_definitions</code></a> command. The syntax is:</p>
+<h3 id="set-preprocessor-variables-for-a-target">Set preprocessor variables for a target<a class="headerlink" href="#set-preprocessor-variables-for-a-target" title="Permanent link">&para;</a></h3>
+<p>To set preprocessor variables for a target, use the <a href="https://cmake.org/cmake/help/latest/command/target_compile_definitions.html"><code>target_compile_definitions</code></a> command. The syntax is:</p>
 <pre><code class="language-cmake">target_compile_definitions(&lt;target name&gt; &lt;SCOPE&gt; &lt;definition 1&gt; &lt;definition 2&gt; ...)
 </code></pre>
+<p>Note that there is no good way to set list variables this way, as the preprocessor does not support lists. To pass lists of variables, use generated header files (see <a href="#generating-files-based-on-templates">generating files based on templates</a>).</p>
 <h2 id="include-directories">Include directories<a class="headerlink" href="#include-directories" title="Permanent link">&para;</a></h2>
 <p>Typically, <strong>we only need to include the headers for non-standard packages</strong>, as the standard cmake config packages include the headers automatically from the packege config files that are read by the <code>find_package</code> command. </p>
 <p>To include the headers, we need to use a <code>inlude_directories</code> (global), or better <code>target_include_directories</code> command. The difference:</p>
@@ -1888,6 +2079,11 @@ endif()
 <h3 id="runtime-dependencies-and-subdirectories">Runtime dependencies and subdirectories<a class="headerlink" href="#runtime-dependencies-and-subdirectories" title="Permanent link">&para;</a></h3>
 <p>When using the <code>add_subdirectory</code> command, a new build directory is created for the subdirectory. However, the runtime dependencies in the parent directory are not accessible and therefore it must be duplicated in the subdirectory (<code>VCPKG_APPLOCAL_DEPS</code> handles this automatically). </p>
 <p>One can think that we can solve that by using the same output directory for the parent and the subdirectory (using the <code>build dir</code> parameter of the <code>add_subdirectory command</code>). However, this is prohibited by CMake. </p>
+<h2 id="dependencies-between-targets">Dependencies between targets<a class="headerlink" href="#dependencies-between-targets" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we can have dependencies between targets other than the linking dependencies. For example, our test target may use a functional test, and thus it depends on the executable target. To ensure that such a dependency is built before the test target, we can use the <a href="https://cmake.org/cmake/help/latest/command/add_dependencies.html"><code>add_dependencies</code></a> command. The syntax is:</p>
+<pre><code class="language-cmake">add_dependencies(&lt;target name&gt; &lt;dependencies&gt;)
+</code></pre>
+<p>Here, the <code>&lt;dependencies&gt;</code> is a list of target names.</p>
 <h2 id="installation-configuration">Installation Configuration<a class="headerlink" href="#installation-configuration" title="Permanent link">&para;</a></h2>
 <p><a href="https://cmake.org/cmake/help/latest/guide/importing-exporting/index.html">Importing and Exporting Guide</a></p>
 <p>To enable installation, we have to provide several commands and do some adjustments in the <code>CMakeLists.txt</code> file. Specific steps depends on what we want to achieve.</p>
@@ -2156,6 +2352,16 @@ endif()
 </ul>
 <p>To both commands, we can pass the <code>COMMAND</code> as a list of strings, where the first string is the command to execute.</p>
 <p>Additionally, when using the <code>add_custom_command</code> command, we can to use the <code>COMMAND_EXPAND_LISTS</code> option to expand the generator expressions in the command.</p>
+<h2 id="generating-files-based-on-templates">Generating files based on templates<a class="headerlink" href="#generating-files-based-on-templates" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/command/configure_file.html">documentation</a></p>
+<p>For passing variables from the configuration scripts to C++ code, the <a href="#set-preprocessor-variables-for-a-target"><code>target_compile_definitions</code></a> command is typically used. However, if we need multiple variables, or lists of variables, the better approach is to skip the C++ preprocesser and generate a C++ header directly. Typically a template with patterns to be replaced is prepared, and the configuration script fill the patterns with the actual values. In CMake, there is a dedicated command for this purpose:</p>
+<pre><code class="language-cmake">configure_file(&lt;input&gt; &lt;output&gt;)
+</code></pre>
+<p>Here, the <code>&lt;input&gt;</code> is the path to a template file, the <code>&lt;output&gt;</code> is the output file path.</p>
+<p>Other important parameters:</p>
+<ul>
+<li><code>@ONLY</code>: only replace pattern of this syntax: <code>@&lt;variable name&gt;@</code>. Otherwise, even <code>${&lt;variable name&gt;}</code> is considered as a pattern.</li>
+</ul>
 <h1 id="cmake-cache">CMake Cache<a class="headerlink" href="#cmake-cache" title="Permanent link">&para;</a></h1>
 <p>CMake has two types of variables:</p>
 <ul>
@@ -2171,9 +2377,73 @@ The <a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/CMake%20C
 <li>by using the <code>-C</code> option: <code>cmake -C &lt;cache file&gt; &lt;dir&gt;</code></li>
 </ul>
 <p>The rule is that once a cache variable is set, it is not changed when the <code>cmake</code> command is run again (that is why it is called cache :) ). Moreover, the cache variables are not overwritten by the <code>set</code> command in the <code>CMakeLists.txt</code> file. In other words, the <code>set</code> command in the <code>CMakeLists.txt</code> is only used to set the default value of the variable. If the variable is already set in the cache, the <code>set</code> command is ignored. However, the cache variables can be still overridden from the <code>CMakeLists.txt</code> if the <code>set</code> command is used without the <code>CACHE</code> option (by normal variables).</p>
+<h1 id="cmake-presets">CMake Presets<a class="headerlink" href="#cmake-presets" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">documentation</a></p>
+<p>To preserve a CMake configuration of a project, CMake provides a system of presets. This configuration can be used directly by the <code>cmake</code> when run with the <code>-P</code>/<code>--preset</code> argument, and it is also the default configuration system for Visual Studio and Visual Studio Code.</p>
+<p>There are two types of presets:</p>
+<ul>
+<li><strong>project presets</strong>, stored in the <code>CMakePresets.json</code>.<ul>
+<li>this file should be shared between all users of the project and tracked in the version control system.</li>
+</ul>
+</li>
+<li><strong>user presets</strong>, stored in the <code>CMakeUserPresets.json</code>.<ul>
+<li>this file is personal and not tracked in the version control system.</li>
+</ul>
+</li>
+</ul>
+<p>Both types of presets are stored in the root directory of the project.</p>
+<p>Important properties:</p>
+<ul>
+<li><code>version</code> (required): the version of the preset schema to use. See <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#versions">Official documentation</a> for details. Also see <a href="https://learn.microsoft.com/en-us/cpp/build/cmake-presets-vs?view=msvc-170#supported-cmake-and-cmakepresetsjson-versions">Visual Studio documentation</a> for the supported versions.</li>
+<li><code>configurePresets</code>: an array of configure presets objects. Each object has the following important properties:<ul>
+<li><code>name</code> (required): the name of the preset.</li>
+<li><code>toolchainFile</code>: equals to the <code>--toolchain</code> argument of the <code>cmake</code> command.</li>
+</ul>
+</li>
+<li><code>buildPresets</code>: an array of build presets objects. Each object has the following important properties:<ul>
+<li><code>name</code> (required): the name of the preset. This name is displayed in the Visual Studio in place where the old <code>CMakeSettings.json</code> CMake configuration was displayed.</li>
+<li><code>configurePreset</code> (required): the name of the configure preset to use. Basically link the build directory to the configure directory.</li>
+<li><code>configuration</code>: equals to the <code>-C</code>/ <code>--config</code> argument of the <code>cmake</code> command.</li>
+</ul>
+</li>
+</ul>
 <h1 id="cmake-directory-structure">CMake Directory Structure<a class="headerlink" href="#cmake-directory-structure" title="Permanent link">&para;</a></h1>
 <h2 id="system-find_xxxcmake-files">System Find_XXX.cmake files<a class="headerlink" href="#system-find_xxxcmake-files" title="Permanent link">&para;</a></h2>
 <p>The system find scripts are located in the <code>CMake/share/cmake-&lt;version&gt;/Modules/</code> directory.</p>
+<h1 id="cmake-policies">CMake Policies<a class="headerlink" href="#cmake-policies" title="Permanent link">&para;</a></h1>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-policies.7.html">documentation</a></p>
+<p>To control the changes in cmake behavior, it uses the policies. With CMake policies, we can determine whether to use the old behavior (default) or the new behavior.
+This way, backward compatibility is ensured, even when there are radical changes in the behavior.</p>
+<p>If a policy is not explicitly set (see below), the <em>old</em> behavior is used, and a warning is issued.</p>
+<p>For project owners, there are many multiple ways how to set the policies:</p>
+<ul>
+<li>using the <a href="https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html"><code>cmake_minimum_required</code> command</a>, we are saying that all policies introduced in the specified minimum version and older are set to <em>new</em> behavior.<ul>
+<li>this should be the way how to set the policies, unless there are strong reasons to not use the new behavior (costly migration, etc.)</li>
+</ul>
+</li>
+<li>using the <a href="https://cmake.org/cmake/help/latest/command/cmake_policy.html"><code>cmake_policy</code> command</a>, we can set a specific policy.</li>
+</ul>
+<h2 id="cmake_minimum_required-command"><code>cmake_minimum_required</code> command<a class="headerlink" href="#cmake_minimum_required-command" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html">documentation</a></p>
+<p>The syntax is:</p>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION &lt;version&gt;)
+</code></pre>
+<p>Here the version can be:</p>
+<ul>
+<li>a single version number, e.g., <code>3.22</code>, in this case, all policies introduced in the version 3.22 and older are set to <em>new</em> behavior. Older cmake versions are not supported.</li>
+<li>a range of version numbers, e.g., <code>3.22...3.24</code>, in this case, all policies introduced in the version 3.24 and older are set to <em>new</em> behavior. However, the project has a backward compatibility with versions 3.22 and newer (i.e., for version between 3.22 and 3.24, both <em>old</em> and <em>new</em> behavior should work for all policies).</li>
+</ul>
+<h2 id="cmake_policy-command"><code>cmake_policy</code> command<a class="headerlink" href="#cmake_policy-command" title="Permanent link">&para;</a></h2>
+<p><a href="https://cmake.org/cmake/help/latest/command/cmake_policy.html">documentation</a></p>
+<p>The syntax is:</p>
+<pre><code class="language-cmake">cmake_policy(SET &lt;policy&gt; &lt;value&gt;)
+</code></pre>
+<p>Here the <code>&lt;policy&gt;</code> is in a form of <code>CMP&lt;NNNN&gt;</code>, where <code>NNNN</code> is the policy number. The <code>&lt;value&gt;</code> is either <code>OLD</code> or <code>NEW</code>.</p>
+<p>Note that in general, the policies should be set using this command only temporarily. Warning may be issued after long time when the policy is set this way:</p>
+<ul>
+<li>if the policy is set to <code>OLD</code>, CMake versions released at least 2 years after the policy was introduced will raise a warning.</li>
+<li>if the policy is set to <code>NEW</code>, CMake versions released at least 5 years after the policy was introduced will raise a warning.</li>
+</ul>
 <h1 id="various-tasks">Various Tasks<a class="headerlink" href="#various-tasks" title="Permanent link">&para;</a></h1>
 <h2 id="showing-the-generator-for-a-configured-directory">Showing the generator for a configured directory<a class="headerlink" href="#showing-the-generator-for-a-configured-directory" title="Permanent link">&para;</a></h2>
 <p>If the configuration step is already done, we can show the generator used for the configuration by reading the <code>CMAKE_GENERATOR</code> variable from the <code>CMakeCache.txt</code> file:</p>
@@ -2212,9 +2482,13 @@ add_custom_command(
 <h1 id="testing-with-cmake">Testing with CMake<a class="headerlink" href="#testing-with-cmake" title="Permanent link">&para;</a></h1>
 <p><a href="https://cmake.org/cmake/help/book/mastering-cmake/chapter/Testing%20With%20CMake%20and%20CTest.html">documentation</a></p>
 <p>CMake has a built-in capability for organizing and running tests. This is useful, because for testing, we usually need information about the build configuration, which is already available in CMake.</p>
-<p>To enable testing in a project, we have to:</p>
+<p>To setup testing in a project, we have to:</p>
 <ol>
-<li>add <code>include(CTest)</code> to the <code>CMakeLists.txt</code> file,</li>
+<li>Enable testing inthe <code>CMakeLists.txt</code> file,<ul>
+<li>either basic support using the <a href="https://cmake.org/cmake/help/latest/command/enable_testing.html"><code>enable_testing()</code></a> command, or</li>
+<li>full support using <code>include(CTest)</code></li>
+</ul>
+</li>
 <li>add the individual tests using the <code>add_test</code> command, and</li>
 <li>configure the project</li>
 </ol>
@@ -2224,14 +2498,21 @@ add_custom_command(
 <pre><code class="language-cmake">add_test(NAME &lt;test name&gt; COMMAND &lt;command&gt;)
 </code></pre>
 <p>By default, the command is executed in the build directory. Therefore, we can directly call the project executable by using the target name.</p>
-<p>We can also modify the test (e.g.: check the output of the test) using the <a href="https://cmake.org/cmake/help/latest/command/set_property.html"><code>set_property</code></a> command:</p>
-<pre><code class="language-cmake">set_property(TEST &lt;test name&gt; PROPERTY &lt;property name&gt; &lt;property value&gt;)
-</code></pre>
-<p>The most useful properties are:</p>
+<p>The <strong>test result</strong> is determined in a very simple way:</p>
 <ul>
-<li><a href="https://cmake.org/cmake/help/latest/prop_test/PASS_REGULAR_EXPRESSION.html#prop_test:PASS_REGULAR_EXPRESSION"><code>PASS_REGULAR_EXPRESSION</code></a>: a regular expression that the output of the test has to match:
-    <code>cmake
-    set_property(TEST &lt;test name&gt; PROPERTY PASS_REGULAR_EXPRESSION "expected output")</code></li>
+<li>if the test command exits with 0, the test is considered passed</li>
+<li>otherwise, the test is considered failed</li>
+</ul>
+<p>To get a more sophisticated test result determination, we have two options:</p>
+<ul>
+<li>set test properties - see <a href="#setting-test-properties">Setting test properties</a> (only for very simple tests), or</li>
+<li>implement the testing logic, including assertion, in the test command itself. For that purpose, we can set <code>&lt;command&gt;</code> to:<ul>
+<li>cmake script,</li>
+<li>python script,</li>
+<li>C++ code,</li>
+<li>or any other executable, e.g., bash script</li>
+</ul>
+</li>
 </ul>
 <h2 id="ctest-execution">CTest execution<a class="headerlink" href="#ctest-execution" title="Permanent link">&para;</a></h2>
 <p><a href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">documentation</a></p>
@@ -2333,6 +2614,11 @@ add_custom_command(
 <li>download the <code>CTestConfig.cmake</code> file from the project page and put it in the project directory (the directory where the <code>CMakeLists.txt</code> file is located)</li>
 </ol>
 <h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<p>If any of the test phases crash, we should inspect the logs, as the command line typically does not show the specific error message.</p>
+<ul>
+<li>when using the dashboard mode, there should be a link in the dashboard to the specific test log.</li>
+<li>otherwise, go to bin directory of the test build, ad look for the logs in <code>Testing/Temporary/</code></li>
+</ul>
 <h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
 <h3 id="warning-name-library-version-mismatched-error"><code>Warning! &lt;name&gt; library version mismatched error</code><a class="headerlink" href="#warning-name-library-version-mismatched-error" title="Permanent link">&para;</a></h3>
 <p>This error typically occures when the library <code>&lt;name&gt;</code> used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:</p>
@@ -2355,6 +2641,18 @@ add_custom_command(
 <li>click on the test process</li>
 <li>In the Lower Pane View, there is a list of all DLLs loaded by the test process. Find the problematic library and check the path to it.</li>
 </ol>
+<h2 id="setting-test-properties">Setting test properties<a class="headerlink" href="#setting-test-properties" title="Permanent link">&para;</a></h2>
+<p>We can modify the test (e.g.: check the output of the test) using the <a href="https://cmake.org/cmake/help/latest/command/set_property.html"><code>set_property</code></a> command with the <code>TEST</code> scope:</p>
+<pre><code class="language-cmake">set_property(TEST &lt;test name&gt; PROPERTY &lt;property name&gt; &lt;property value&gt;)
+</code></pre>
+<p>The most useful properties are:</p>
+<ul>
+<li><a href="https://cmake.org/cmake/help/latest/prop_test/PASS_REGULAR_EXPRESSION.html#prop_test:PASS_REGULAR_EXPRESSION"><code>PASS_REGULAR_EXPRESSION</code></a>: a regular expression that the output of the test has to match:
+    <code>cmake
+    set_property(TEST &lt;test name&gt; PROPERTY PASS_REGULAR_EXPRESSION "expected output")</code></li>
+<li><a href="https://cmake.org/cmake/help/latest/prop_test/WILL_FAIL.html#prop_test:WILL_FAIL"><code>WILL_FAIL</code></a>: if set to <code>TRUE</code>, the test is expected to fail.</li>
+</ul>
+<p><a href="https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html#properties-on-tests">List of all test properties</a></p>
 <h2 id="test-fixtures">Test fixtures<a class="headerlink" href="#test-fixtures" title="Permanent link">&para;</a></h2>
 <p>In CMake, there is no dirrect suppor for fixtures as we know them from other testing frameworks. Instead, we define the setup and teardown code as separate tests and then, we use a <code>set_tests_properties</code> command to set up the dependencies between the tests. Example:</p>
 <pre><code class="language-cmake">add_test(NAME setup COMMAND &lt;setup command&gt;)
@@ -2366,6 +2664,25 @@ set_tests_properties(test1, test2 PROPERTIES FIXTURES_REQUIRED my_test_suite)
 set_tests_properties(setup PROPERTIES FIXTURES_SETUP my_test_suite)
 set_tests_properties(teardown PROPERTIES FIXTURES_CLEANUP my_test_suite)
 </code></pre>
+<h2 id="using-cmake-scripts-as-test-commands">Using cmake scripts as test commands<a class="headerlink" href="#using-cmake-scripts-as-test-commands" title="Permanent link">&para;</a></h2>
+<p>CMake files can be used as test commands for the <code>add_test</code> command. Advantages:</p>
+<ul>
+<li>easy passing of project configuration parameters to the test script</li>
+<li>no compilation step needed (compared to C++)</li>
+<li>no additional dependencies (compared to Python)</li>
+<li>platform-independent (compared to shell scripts)</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>no testing framework, everything has to be implemented</li>
+<li>CMake can be more cumbersome than a typical programming language</li>
+</ul>
+<p>Therefore:</p>
+<ul>
+<li>cmake scripts are <strong>very good for functional tests and smoke tests</strong>, but</li>
+<li>cmake scripts are <strong>not good for unit tests or integration tests</strong></li>
+<li>cmake scripts are <strong>the only way how to test CMake functions</strong></li>
+</ul>
 <h2 id="running-tests-not-related-to-any-cmake-project">Running tests not related to any CMake project<a class="headerlink" href="#running-tests-not-related-to-any-cmake-project" title="Permanent link">&para;</a></h2>
 <p>There is no way how to run tests that are not related to any CMake project directly using the <code>ctest</code> command, and we cannot add such tests in the ctest starter script. The minimal solution is to:</p>
 <ul>

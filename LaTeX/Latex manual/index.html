@@ -386,6 +386,9 @@
                                 <a href="../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -541,6 +541,10 @@
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#lists" class="nav-link">Lists</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#nested-lists" class="nav-link">Nested lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#units-numbers-and-currency-with-siunitx" class="nav-link">Units, numbers, and currency with siunitx</a>
@@ -1023,9 +1027,18 @@ Some text at the bottom
 <ul>
 <li><code>itemize</code>: bullet points</li>
 <li><code>enumerate</code>: numbered list</li>
-<li><code>description</code>: description list. Items can have a label, which is specified as an optional argument of the <code>\item</code> command. </li>
+<li><code>description</code>: description list. Items can have a label, which is specified as an optional argument of the <code>\item</code> command.</li>
 </ul>
 <p>More typoes of lists like questions or checklists can be created using external packages.</p>
+<h3 id="nested-lists">Nested lists<a class="headerlink" href="#nested-lists" title="Permanent link">&para;</a></h3>
+<p>To create nested lists, we just start a new list environment instead of an <code>\item</code> command:</p>
+<pre><code class="language-latex">\begin{itemize}
+    \item &lt;item 1&gt;
+    \begin{itemize}
+        \item &lt;nested item 1&gt;
+    \end{itemize}
+\end{itemize}
+</code></pre>
 <h2 id="units-numbers-and-currency-with-siunitx">Units, numbers, and currency with <code>siunitx</code><a class="headerlink" href="#units-numbers-and-currency-with-siunitx" title="Permanent link">&para;</a></h2>
 <p>Units are usually typeset with a small space between the number and the unit. Normal space should be avoidedas it is too wide. Also, we sometimes want a special separator in large numbers. For these purposes, the best practice is to use the <a href="https://ctan.org/pkg/siunitx"><code>siunitx</code></a> package. </p>
 <p>Eith <code>siunitx</code>, the units are typeset using the <code>\SI</code> command. Example:</p>

@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -1674,6 +1674,10 @@
             <li class="nav-item" data-bs-level="1"><a href="#testing-with-google-test" class="nav-link">Testing with Google Test</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#private-method-testing" class="nav-link">Private method testing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#skipping-a-test" class="nav-link">Skipping a test</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -3282,7 +3286,40 @@ f(a); // copy constructor called
 </ol>
 <p>The default implementationof copy constructor calls recursively the copy constructor of all base classes and on all members. For a pointer member, the copy object’s member points to the same object as the original object’s member</p>
 <h3 id="checking-if-a-class-is-copy-constructible">Checking if a class is copy constructible<a class="headerlink" href="#checking-if-a-class-is-copy-constructible" title="Permanent link">&para;</a></h3>
-<p>We can check if a class is copy constructible using the <a href="https://en.cppreference.com/w/cpp/types/is_copy_constructible"><code>std::is_copy_constructible</code></a> type trait. </p>
+<p>We can check if a class is copy constructible using the <a href="https://en.cppreference.com/w/cpp/types/is_copy_constructible"><code>std::is_copy_constructible</code></a> type trait:</p>
+<pre><code class="language-cpp">static_assert(std::is_copy_constructible&lt;My_class&gt;::value); // or equivalent using
+static_assert(std::is_copy_constructible_v&lt;My_class&gt;); 
+</code></pre>
+<p>However, <strong>the <code>std::is_copy_constructible</code> is not a reliable way to check if a class is copy constructible!</strong>. When it evaluates to false:</p>
+<ul>
+<li>the class have an explicitly deleted copy constructor</li>
+<li>the copy constructor is inaccessible (protected, private)</li>
+<li>the copy constructor is not declared because of the rule of five/five, i.e., one of the other constructors/assignments/destructors is defined</li>
+<li>only non-const copy constructor is available</li>
+</ul>
+<p>When it evaluates to true, while the class is not copy constructible:</p>
+<ul>
+<li>the copy constructor is implicitly deleted due to members that are not copy constructible</li>
+<li>the copy constructor is declared, but not defined (results in linker error)</li>
+</ul>
+<p>The only robust solution is to create a test where an actual copy constructor is called. An example:</p>
+<pre><code class="language-cpp">// message to be displayed in the compiler output. Without this, developers can be confused, as the test file or function is typically not in the error stack trace.
+#pragma message(&quot;NOTICE: Compiling copy contract test: Test_class. If the compilation of this unit fails, it almost certainly means that the contract was broken and Test_class class is not copy constructible.&quot;)
+
+#include &lt;type_traits&gt;
+#include &quot;gtest/gtest.h&quot;
+
+#include &quot;test_class.h&quot;
+
+namespace {
+static_assert(std::is_copy_constructible_v&lt;Test_class&gt;);
+
+TEST(compile_time, test) {
+    Test_class t1;
+    Test_class t2 = t1;
+}
+}
+</code></pre>
 <h2 id="copy-assignment">Copy Assignment<a class="headerlink" href="#copy-assignment" title="Permanent link">&para;</a></h2>
 <p>Copy Assignment is needed when  we use the <code>=</code> operator with the existing class instances, e.g.:</p>
 <pre><code class="language-cpp">Class instanceA {};
@@ -4389,6 +4426,7 @@ concept Stock = requires(S stock) {
 <h2 id="stl-concepts">STL Concepts<a class="headerlink" href="#stl-concepts" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/header/iterator">iterator concepts</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/types/same_as"><code>std::same_as</code></a>: checks if two types are the same</li>
 </ul>
 <h2 id="usefull-patterns">Usefull Patterns<a class="headerlink" href="#usefull-patterns" title="Permanent link">&para;</a></h2>
 <h3 id="constrain-a-template-argument">Constrain a Template Argument<a class="headerlink" href="#constrain-a-template-argument" title="Permanent link">&para;</a></h3>
@@ -5414,6 +5452,13 @@ std::string get_executable_path() {
 public:
     void _private_function();
 </code></pre>
+<h2 id="skipping-a-test">Skipping a test<a class="headerlink" href="#skipping-a-test" title="Permanent link">&para;</a></h2>
+<p>To set test to be skipped unless we mention it explicitly, we can use the <code>DISABLED_</code> prefix. Example:</p>
+<pre><code class="language-cpp">TEST(MyTest, DISABLED_test_name){
+    ...
+}
+</code></pre>
+<p>This way, the test is skipped by default, but it can be run explicitly by mentioning it in the command line.</p>
 <h1 id="memory-alignment">Memory Alignment<a class="headerlink" href="#memory-alignment" title="Permanent link">&para;</a></h1>
 <p><a href="https://c-faq.com/struct/align.esr.html">Allignment FAQ</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Data_structure_alignment">Wikipedia</a></p>

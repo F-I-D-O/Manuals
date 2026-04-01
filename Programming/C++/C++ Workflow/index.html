@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -555,6 +555,10 @@
             </li>
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="3"><a href="#running-tests" class="nav-link">Running tests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="3"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="4"><a href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" class="nav-link">Editor reports errors despite the code compiles in all compilers</a>
@@ -579,7 +583,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#basic-configuration" class="nav-link">Basic Configuration</a>
+            <li class="nav-item" data-bs-level="3"><a href="#ide-configuration" class="nav-link">IDE Configuration</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="4"><a href="#enable-template-implementation-files-tpp-syntax-highlighting" class="nav-link">Enable template implementation files (.*tpp) syntax highlighting:</a>
               <ul class="nav flex-column">
@@ -589,45 +593,29 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="4"><a href="#other-configuration" class="nav-link">Other Configuration</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="3"><a href="#project-setting" class="nav-link">Project Setting</a>
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#project-specific-configuration-and-build-settings" class="nav-link">Project Specific Configuration and Build Settings</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="4"><a href="#configure-visual-studio-to-use-system-cmake" class="nav-link">Configure Visual Studio to use system CMake:</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#build-setting-and-enviromental-variables" class="nav-link">Build Setting and Enviromental Variables</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="5"><a href="#set-the-cmake-toolchain-file" class="nav-link">Set the CMake Toolchain File</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="5"><a href="#set-the-compiler" class="nav-link">Set the Compiler</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="5"><a href="#old-method-using-cmakesettingsjson" class="nav-link">Old Method Using CMakeSettings.json</a>
+            <li class="nav-item" data-bs-level="4"><a href="#old-project-specific-settings-using-cmakesettingsjson" class="nav-link">Old Project Specific Settings Using CMakeSettings.json</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="4"><a href="#launch-setting" class="nav-link">Launch Setting</a>
+            <li class="nav-item" data-bs-level="3"><a href="#launch-setting" class="nav-link">Launch Setting</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="5"><a href="#other-launchvsjson-options" class="nav-link">Other launch.vs.json options</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
               </ul>
             </li>
             <li class="nav-item" data-bs-level="3"><a href="#wsl-configuration" class="nav-link">WSL Configuration</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#other-configuration" class="nav-link">Other Configuration</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -958,7 +946,7 @@ The structure inside the project element is as follows (only the most important 
 <h3 id="project-configuration">Project configuration<a class="headerlink" href="#project-configuration" title="Permanent link">&para;</a></h3>
 <p>Most project settings resides (hereinafter <em>Project settings</em>) in <code>settings</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>CMake</code>. For each build configuration, add a new template and set:</p>
 <ul>
-<li><code>Name</code> to whatever you want   </li>
+<li><code>Name</code> to whatever you want</li>
 <li><code>Build type</code> to <code>debug</code></li>
 <li>To <code>Cmake options</code>, add:<ul>
 <li>path to vcpkg toolchain file:<ul>
@@ -984,6 +972,9 @@ The structure inside the project element is as follows (only the most important 
 <li>select the profile you want to deactivate</li>
 <li>uncheck the <code>Enable profile</code> checkbox located at the top of the profile settings</li>
 </ol>
+<h3 id="running-tests">Running tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h3>
+<p>Clion has a built-in support for certain test frameworks, e.g., Google Test. In addition to running the whole test target, we can run each individual test by clicking the test icon next to the first line of the test function.</p>
+<p>Note that <strong>bare ctest tests are not supported</strong>. To run them, use the CLion terminal to run the <code>ctest</code> command.</p>
 <h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
 <h4 id="editor-reports-errors-despite-the-code-compiles-in-all-compilers">Editor reports errors despite the code compiles in all compilers<a class="headerlink" href="#editor-reports-errors-despite-the-code-compiles-in-all-compilers" title="Permanent link">&para;</a></h4>
 <p>This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.</p>
@@ -1010,7 +1001,7 @@ The structure inside the project element is as follows (only the most important 
 </li>
 <li>Install roamed plugins</li>
 </ol>
-<h3 id="basic-configuration">Basic Configuration<a class="headerlink" href="#basic-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="ide-configuration">IDE Configuration<a class="headerlink" href="#ide-configuration" title="Permanent link">&para;</a></h3>
 <ol>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines">Add 120 char guideline</a><ul>
 <li>install the extension </li>
@@ -1027,7 +1018,6 @@ The structure inside the project element is as follows (only the most important 
 <li>If you need to use the system CMake, configure it now (described below)</li>
 <li>If you use <code>*.tpp</code> file, configure a support for them (described below).</li>
 </ol>
-<p>installation</p>
 <h4 id="enable-template-implementation-files-tpp-syntax-highlighting">Enable template implementation files (<code>.*tpp</code>) syntax highlighting:<a class="headerlink" href="#enable-template-implementation-files-tpp-syntax-highlighting" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Text Editor</code> -&gt; <code>File Extension</code></li>
@@ -1040,7 +1030,14 @@ The structure inside the project element is as follows (only the most important 
 <li>Go to <code>Tools</code> -&gt; <code>Options</code> -&gt; <code>Projects and Solutions</code> -&gt; <code>Build and Run</code></li>
 <li>Change the value of the MSBuild project build output verbosity.</li>
 </ol>
-<h3 id="project-setting">Project Setting<a class="headerlink" href="#project-setting" title="Permanent link">&para;</a></h3>
+<h4 id="other-configuration">Other Configuration<a class="headerlink" href="#other-configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li>show white spaces: <code>Edit</code> -&gt; <code>Advanced</code> -&gt; <code>View White Space</code>.</li>
+<li>configure indentation: described <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022">here</a></li>
+</ul>
+<h3 id="project-specific-configuration-and-build-settings">Project Specific Configuration and Build Settings<a class="headerlink" href="#project-specific-configuration-and-build-settings" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/en-us/cpp/build/cmake-presets-vs?view=msvc-170">Official documentation</a></p>
+<p>Most project specific settings relates to CMake and should be set using <a href="../CMake%20Manual/#cmake-presets">CMake Presets</a>.</p>
 <h4 id="configure-visual-studio-to-use-system-cmake">Configure Visual Studio to use system CMake:<a class="headerlink" href="#configure-visual-studio-to-use-system-cmake" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Go to <code>Project</code> -&gt; <code>CMake Settings</code></li>
@@ -1048,30 +1045,11 @@ The structure inside the project element is as follows (only the most important 
 <li>Scroll to the bottom and click on <code>show advanced settings</code></li>
 <li>Set the CMake executable to point to the <code>cmake.exe</code> file of your system CMake</li>
 </ul>
-<h4 id="build-setting-and-enviromental-variables">Build Setting and Enviromental Variables<a class="headerlink" href="#build-setting-and-enviromental-variables" title="Permanent link">&para;</a></h4>
-<p>The build configuration is in the file <code>CMakePresets.json</code>, located in the root of the project. The  file can be also opened by right clicking on <code>CMakeLists.txt</code> ad selecting <code>Edit CMake presets</code>.</p>
-<h5 id="set-the-cmake-toolchain-file">Set the CMake Toolchain File<a class="headerlink" href="#set-the-cmake-toolchain-file" title="Permanent link">&para;</a></h5>
-<p>To set the vcpkg toolchain file add the following value to the base configuration <code>cacheVariables</code> dictionary:</p>
-<pre><code class="language-json">&quot;CMAKE_TOOLCHAIN_FILE&quot;: {
-    &quot;value&quot;: &quot;C:/vcpkg/scripts/buildsystems/vcpkg.cmake&quot;,
-    &quot;type&quot;: &quot;FILEPATH&quot;
-}
-</code></pre>
-<h5 id="set-the-compiler">Set the Compiler<a class="headerlink" href="#set-the-compiler" title="Permanent link">&para;</a></h5>
-<p>The MSVC toolchain has two compiler executables, default one, and clang. The default compiler configuration looks like this:</p>
-<pre><code class="language-json">&quot;cacheVariables&quot;: {
-    ...
-    &quot;CMAKE_C_COMPILER&quot;: &quot;cl.exe&quot;,
-    &quot;CMAKE_CXX_COMPILER&quot;: &quot;cl.exe&quot;
-    ...
-},
-</code></pre>
-<p>To change the compiler to clang, replace <code>cl.exe</code> by <code>clang-cl.exe</code> in both rows.</p>
-<h5 id="old-method-using-cmakesettingsjson">Old Method Using CMakeSettings.json<a class="headerlink" href="#old-method-using-cmakesettingsjson" title="Permanent link">&para;</a></h5>
+<h4 id="old-project-specific-settings-using-cmakesettingsjson">Old Project Specific Settings Using <code>CMakeSettings.json</code><a class="headerlink" href="#old-project-specific-settings-using-cmakesettingsjson" title="Permanent link">&para;</a></h4>
 <p>We can open the build setting by right click on <code>CMakeList.txt</code> -&gt; <code>Cmake Settings</code></p>
 <p>To configure configure vcpkg toolchain file: Under <code>General</code>, fill to the <code>Cmake toolchain file</code> the following: <code>C:/vcpkg/scripts/buildsystems/vcpkg.cmake</code></p>
 <p>To configure the enviromental variable, edit the <code>CmakeSettings.json</code> file directly. The global variables can be set in the <code>environments</code> array, the per configuration ones in <code>&lt;config object&gt;/environments</code> (<a href="https://devblogs.microsoft.com/cppblog/set-environment-variables-for-debug-launch-and-tools-with-cmake-and-open-folder/">exmaple</a>).</p>
-<h4 id="launch-setting">Launch Setting<a class="headerlink" href="#launch-setting" title="Permanent link">&para;</a></h4>
+<h3 id="launch-setting">Launch Setting<a class="headerlink" href="#launch-setting" title="Permanent link">&para;</a></h3>
 <p>The launch settings determins the launch configuration, most importantly, the run arguments. To modify the run arguments:
  1. open the <code>launch.vs.json</code> file:
     - use the context menu:
@@ -1090,7 +1068,7 @@ The structure inside the project element is as follows (only the most important 
 <li>syntax error in the json (should be marked by red squiggly line)</li>
 <li>typo in the target name</li>
 </ul>
-<h5 id="other-launchvsjson-options">Other launch.vs.json options<a class="headerlink" href="#other-launchvsjson-options" title="Permanent link">&para;</a></h5>
+<p>Other launch.vs.json options:</p>
 <ul>
 <li><code>cwd</code>: the working directory</li>
 </ul>
@@ -1101,11 +1079,6 @@ The structure inside the project element is as follows (only the most important 
 <li>go to <code>CmakeSettings.json</code> -&gt; <code>CMake variables and cache</code></li>
 <li>select <code>show advanced variables checkbox</code></li>
 <li>set <code>CMAKE_CXX_COMPILER</code> variable to <code>/usr/bin/g++-10</code></li>
-</ul>
-<h3 id="other-configuration">Other Configuration<a class="headerlink" href="#other-configuration" title="Permanent link">&para;</a></h3>
-<ul>
-<li>show white spaces: <code>Edit</code> -&gt; <code>Advanced</code> -&gt; <code>View White Space</code>.</li>
-<li>configure indentation: described <a href="https://docs.microsoft.com/en-us/visualstudio/ide/reference/options-text-editor-all-languages-tabs?view=vs-2022">here</a></li>
 </ul>
 <h3 id="determine-visual-studio-version">Determine Visual Studio version<a class="headerlink" href="#determine-visual-studio-version" title="Permanent link">&para;</a></h3>
 <p>At total, <a href="https://blog.knatten.org/2022/08/26/microsoft-c-versions-explained/">there are 5 different versionigs related to Visual Studio</a>. </p>

@@ -386,6 +386,9 @@
                                 <a href="../../../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../../../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../../../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -469,7 +469,23 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#profiling" class="nav-link">Profiling</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#line-profiling" class="nav-link">Line Profiling</a>
+            <li class="nav-item" data-bs-level="2"><a href="#pyinstrument" class="nav-link">pyinstrument</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#line-profiler" class="nav-link">Line Profiler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pycharm-profiler" class="nav-link">PyCharm Profiler</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cprofile" class="nav-link">cProfile</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#scalene" class="nav-link">Scalene</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -489,6 +505,118 @@
 <p>To break on exceptions in jupyter, we have to breake on raise. By this setting, however, we stop even on expected/handeled exceptions, stoping potentially on hundereds breakpoints in library code.</p>
 <p>Another issue is with the setting itself. <strong>To propagate the change between breaking on raise/termination, we have to deactivate and then activate again the exception breakpoints, otherwise, the setting is ignored.</strong></p>
 <h1 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h1>
+<p>Profiling in Python is surprisingly difficult compared to other languages. There is no all-in-one profiler for Python, and most of the profilers fail to analyze complex code and thus are unreliable. The table below summarizes the situation:</p>
+<table>
+<thead>
+<tr>
+<th>Profiler</th>
+<th>Reliable</th>
+<th>Granularity</th>
+<th>Call Graph</th>
+<th>Mode</th>
+<th>Code Modif. Required</th>
+<th>Scrip must finish</th>
+<th><div style="width: 200px;">Notes</div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#cprofile">cProfile</a></td>
+<td>Yes</td>
+<td>function-level</td>
+<td>No</td>
+<td>Det.</td>
+<td>No</td>
+<td>Yes</td>
+<td>Included in the standard library. Mostly useful as a backend for other profilers</td>
+</tr>
+<tr>
+<td><a href="#pycharm-profiler">PyCharm</a></td>
+<td>Partially</td>
+<td>function-level</td>
+<td>incomplete and confusing</td>
+<td>Det.</td>
+<td>No</td>
+<td>No</td>
+<td>Built-in profiler in PyCharm. By default, it uses cProfile as a backend.</td>
+</tr>
+<tr>
+<td><a href="#line-profiler">line_profiler</a></td>
+<td>Yes</td>
+<td>line-level</td>
+<td>No</td>
+<td>Det.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#pyinstrument">pyinstrument</a></td>
+<td>Yes</td>
+<td>function-level</td>
+<td>Yes</td>
+<td>Sampling</td>
+<td>No</td>
+<td>Yes</td>
+<td>Both command line and HTML GUI</td>
+</tr>
+<tr>
+<td><a href="https://github.com/benfred/py-spy">py-spy</a></td>
+<td>?</td>
+<td>function-level</td>
+<td>No</td>
+<td>Sampling</td>
+<td>No</td>
+<td>Yes</td>
+<td>Broken on Windows</td>
+</tr>
+<tr>
+<td><a href="#scalene">Scalene</a></td>
+<td>No</td>
+<td>line-level</td>
+<td>No</td>
+<td>Sampling</td>
+<td>No</td>
+<td>Yes</td>
+<td>Absolutely random results</td>
+</tr>
+</tbody>
+</table>
+<p>Typically, <strong>the best profiling approach is</strong>:</p>
+<ol>
+<li>find the functions that are taking the most time using pyinstrument</li>
+<li>If we need to find specific lines of a function, use line_profiler for just that specific function identified as a bottleneck using pyinstrument</li>
+</ol>
+<h2 id="pyinstrument">pyinstrument<a class="headerlink" href="#pyinstrument" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/joerick/pyinstrument">GitHub</a></li>
+<li><a href="https://pyinstrument.readthedocs.io/en/stable/home.html">Documentation</a></li>
+</ul>
+<p>The pyinstrument profiler is the most reliable profiler that provides a call tree. Usage</p>
+<ol>
+<li>Run the profiler: <code>pyinstrument &lt;script&gt; &lt;script arguments&gt;</code>.<ul>
+<li>the results are displayed immediately in the terminal</li>
+</ul>
+</li>
+<li>Explore the results: <code>pyinstrument --load-prev &lt;previous profile name&gt;</code>. Parameters:<ul>
+<li><code>--show-all</code>: show all functions, including library functions</li>
+<li><code>-r</code>: render variant. Possible values:<ul>
+<li><code>html</code>: HTML output</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="line-profiler">Line Profiler<a class="headerlink" href="#line-profiler" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/pyutils/line_profiler">GitHub</a></p>
+<p>The line_profiler package provides line-by-line profiling of the code. Unfortunately, the <a href="https://plugins.jetbrains.com/plugin/16536-line-profiler">corresponding PyCharm plugin</a> is currently broken and <a href="https://gitlab.com/line-profiler-pycharm/line-profiler-pycharm-plugin/-/issues?show=eyJpaWQiOiIyOSIsImZ1bGxfcGF0aCI6ImxpbmUtcHJvZmlsZXItcHljaGFybS9saW5lLXByb2ZpbGVyLXB5Y2hhcm0tcGx1Z2luIiwiaWQiOjE3MTY3MDk4Nn0%3D">does not work with latest PyCharm version (2025.2)</a>, so we have to use the command line interface.</p>
+<p>The usage is: </p>
+<ol>
+<li>decorate functions of interest with @profile decorator</li>
+<li>run the profiler: <code>kernprof -l -v &lt;script&gt; &lt;script arguments&gt;</code></li>
+</ol>
+<h2 id="pycharm-profiler">PyCharm Profiler<a class="headerlink" href="#pycharm-profiler" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.jetbrains.com/help/pycharm/profiler.html">official documentation</a></p>
 <p>Pycharm has a built-in profiler with a very simple use:</p>
 <ol>
 <li>Select three dots next to the debug button and click on <code>Profile &lt;script name&gt;</code></li>
@@ -496,9 +624,41 @@
 <li>in the left panel, select <code>create snapshot</code></li>
 <li>Explore the results</li>
 </ol>
-<p>The built-in profiler is statistical and provides only aggregated results for each function. To get line-by-line results we need a <a href="https://github.com/pyutils/line_profiler">line_profiler</a> package.</p>
-<h2 id="line-profiling">Line Profiling<a class="headerlink" href="#line-profiling" title="Permanent link">&para;</a></h2>
-<p>The <a href="https://github.com/pyutils/line_profiler">line_profiler</a> package provides line-by-line profiling of the code. Unfortunately, the <a href="https://plugins.jetbrains.com/plugin/16536-line-profiler">corresponding PyCharm plugin</a> is currently broken and <a href="https://gitlab.com/line-profiler-pycharm/line-profiler-pycharm-plugin/-/issues?show=eyJpaWQiOiIyOSIsImZ1bGxfcGF0aCI6ImxpbmUtcHJvZmlsZXItcHljaGFybS9saW5lLXByb2ZpbGVyLXB5Y2hhcm0tcGx1Z2luIiwiaWQiOjE3MTY3MDk4Nn0%3D">does not work with latest PyCharm version (2025.2)</a>.</p></div>
+<p>Each snapshot contains the following tabs:</p>
+<ul>
+<li><code>Flame Graph</code>: Frequently broken - absolutely incorrect visualization.</li>
+<li><code>Call Tree</code>: Again frequently broken</li>
+<li><code>Method list</code>: Can be broken as well</li>
+<li><code>Statistics</code>: This view comes directly from the cProfile backend and is the only reliable view in PyCharm.</li>
+<li><code>Call Graph</code>: Typically both incorerect and totally visually broken.</li>
+</ul>
+<p>The built-in profiler provides only aggregated results for each function. To get line-by-line results we need a <a href="https://github.com/pyutils/line_profiler">line_profiler</a> package.</p>
+<h2 id="cprofile">cProfile<a class="headerlink" href="#cprofile" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.python.org/3/library/profile.html">Official documentation</a></p>
+<p>Usage: <code>python -m cProfile &lt;script&gt; &lt;script arguments&gt;</code></p>
+<p>This way, everything is outputed to the terminal, which is not very convenient, as the list of functions may be too long. One option is to redirect the output to a file and then read the top. But there is also a GUI option using <code>snakeviz</code> package:</p>
+<pre><code class="language-bash">pip install snakeviz
+python -m cProfile -o profile.prof &lt;script&gt; &lt;script arguments&gt;
+snakeviz profile.prof
+</code></pre>
+<p>Individual outputs columns:</p>
+<ul>
+<li><code>ncalls</code>: number of calls</li>
+<li><code>tottime</code>: total time spent in the function. The most important column to look at.</li>
+<li><code>percall</code>: time spent in the function per call</li>
+<li><code>cumtime</code>: total time spent in the function including the time spent in the called functions. This is the column by which the list of functions is sorted.</li>
+<li><code>percall</code>: time spent in the function per call including the time spent in the called functions.</li>
+<li><code>filename:lineno(function)</code>: filename, line number, and function name</li>
+</ul>
+<h2 id="scalene">Scalene<a class="headerlink" href="#scalene" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/plasma-umass/scalene">GitHub</a></p>
+<p>Scalane is a profiler that allegedly provides CPU, memory, and GPU profiling, all with minimal performance impact. The reality is however, that the profiler results are quite random, not at all showing all the function calls, totally failing to identify the bottlenecks.</p>
+<p>Usage: <code>scalene run &lt;script&gt; --- &lt;script arguments&gt;</code>. Important parameters:</p>
+<ul>
+<li><code>--cpu-only</code>: only CPU profiling</li>
+<li><code>--profile-all</code>: profile all files. By default, only the main script is profiled (even more useless)</li>
+</ul>
+<p>To display the results, use <code>scalene view</code>.</p></div>
             </div>
         </div>
 

@@ -386,6 +386,9 @@
                                 <a href="../Arxiv/" class="nav-link">Arxiv</a>
                             </li>
                             <li class="nav-item">
+                                <a href="../CTU/" class="nav-link">CTU</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="../Google%20office%20apps/" class="nav-link">Google office apps</a>
                             </li>
                             <li class="nav-item">
@@ -402,9 +405,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="../Security/" class="nav-link">Security</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../vscode/" class="nav-link">vscode</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../Web%20Tricks/" class="nav-link">Web Tricks</a>
@@ -465,6 +465,10 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#images" class="nav-link">Images</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tables" class="nav-link">Tables</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -531,6 +535,24 @@
 <h2 id="images">Images<a class="headerlink" href="#images" title="Permanent link">&para;</a></h2>
 <p>Images can be added to a markdown file by using the following syntax:</p>
 <pre><code class="language-markdown">![Alt text](/path/to/image.png)
+</code></pre>
+<p>There is no way how to <strong>center the image</strong> using markdown, we have to use HTML:</p>
+<pre><code class="language-html">&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;/path/to/image.png&quot; alt=&quot;Alt text&quot;&gt;
+&lt;/p&gt;
+</code></pre>
+<h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
+<p>Tables can be added to a markdown file by using the following syntax:</p>
+<pre><code class="language-markdown">| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+</code></pre>
+<p>To set column width, we need to use HTML. The best is typically to insert a single div element to the header:</p>
+<pre><code class="language-html">| Header 1 | Header 2 | &lt;div style=&quot;width: 200px;&quot;&gt;Header 3&lt;/div&gt; |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
 </code></pre>
 <h1 id="text-formatting">Text formatting<a class="headerlink" href="#text-formatting" title="Permanent link">&para;</a></h1>
 <p>Only simple text formatting is supported:</p>
