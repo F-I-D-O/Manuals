@@ -238,6 +238,8 @@ There are several tools for formatting:
 - `diskpart` command line tool
 
 
+## Discover programs blocking files or folders for writing
+The blocking program can be discovered using the Sysinternals Process Explorer. Click on `Find` -> `Find Handles or DLLs...` and enter the path (or part of it) to the search field. Note that **you have to wait a long time** (up to several minutes) for the search to complete. There is not any indicator of the progress or completion.
 
 
 # Sugarsync

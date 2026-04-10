@@ -326,11 +326,27 @@ Extensions that provide new containers are:
 Panel is the only area which we can position at all four sides (top, bottom, left, right). **There can be only one panel**. The panel is divided into tabs.
 
 
-
-
 ## Code Formatting
 Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
 
+
+## Grammar Checking
+Unfortunately, intelligent grammar checking using Grammarly is no longer supported in VS Code. Simple check can be achieved using the [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.ltex-ls) or [LTeX+](https://github.com/ltex-plus/ltex-ls-plus) extensions.
+
+Installation and configuration:
+
+1. install the extension ([LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.ltex-ls) or [LTeX+](https://ltex-plus.github.io/ltex-plus/) seems to be more up-to-date)
+2. in `settings.json`, add the following:
+    ```json
+    "ltex.enabled": [
+        "text",
+        "plaintext",
+        <any other language...>
+    ]
+    ```
+3. if it does not work, start the language server manually by pressing `Ctrl` + `Shift` + `P` and selecting `LTeX: Start Language Server`.
+
+To show the server status, press `Ctrl` + `Shift` + `P` and select `LTeX: Show Language Server Status`.
 
 ## Tasks
 [Documentation](https://code.visualstudio.com/docs/debugtest/tasks)

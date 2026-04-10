@@ -2136,6 +2136,28 @@ for (YAML::const_iterator it = node.begin(); it != node.end(); ++it) {
 }
 ```
 
+To **check the type of a node**, we can use the `Type()` method. The possible types are:
+
+- `NodeType::Null`
+- `NodeType::Scalar`
+- `NodeType::Sequence`
+- `NodeType::Map`
+- `NodeType::Undefined`
+
+To **get the value of a node**, we can use the `as<T>()` method, where `T` is the type of the value we want to get. Unfortunately, there is no way to check if the conversion is possible. The solution for cases with multiple supported types in a single node is to use exceptions as control statements:
+
+```cpp
+try {
+	int value = node.as<int>();
+} catch (const YAML::BadConversion& e) {
+	std::string string_value = node.as<std::string>();
+    ...
+}
+```
+
+
+
+
 ## HDF
 
 To load data from HDF5 files, the HDF5 C++ API can be used. Typical usage:

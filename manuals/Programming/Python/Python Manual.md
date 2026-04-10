@@ -1020,6 +1020,66 @@ If we do not have sections in the INI file, we have to:
     ```
 
 
+## YAML
+YAML files in Python are typically parsed using the [pyyaml](https://pyyaml.org/wiki/PyYAMLDocumentation) library. The basic usage is:
+
+```Python
+import yaml
+
+with open('file.yaml', 'r') as f:
+    data = yaml.safe_load(f)
+```
+
+The `safe_load` function is a safe version of the `load` function that prevents arbitrary python objects creation from the YAML data. This is a good practice to avoid security vulnerabilities (as most of the time, we do not need to create arbitrary python objects from the YAML data).
+
+PyYAML tries to automatically convert strings to appropriate types. The implicit conversions are:
+
+- **numbers**: int, float, 
+- **booleans**: True, False
+- **dates**: datetime.datetime
+
+
+### Datetime conversion
+The datetime conversion logic is as follows:
+
+- if time zone is not specified, the `tzinfo` is set to `None`
+- if only date is specified but not time, the time is set to `00:00:00`
+
+### Modifying the parsing logic
+To modify the parsing logic, we need to:
+
+1. create our own YAML loader, most likely a subclass of the `yaml.SafeLoader` class:
+    ```Python
+    class MyLoader(yaml.SafeLoader):
+        pass
+    ```
+
+2. customizing the parsing of a specific type, e.g., datetime:
+
+    ```Python
+    def construct_timestamp_force_utc(loader, node):
+        # use the original PyYAML logic first
+        value = yaml.SafeLoader.construct_yaml_timestamp(loader, node)
+
+        # attach UTC if datetime has no tzinfo
+        if isinstance(value, datetime) and value.tzinfo is None:
+            value = value.replace(tzinfo=timezone.utc)
+
+        return value
+
+
+    MyLoader.add_constructor(
+        'tag:yaml.org,2002:timestamp',
+        construct_timestamp_force_utc,
+    )
+    ```
+
+3. register the custom loader:
+    ```Python
+    yaml.safe_load(file, Loader=MyLoader)
+    ```
+
+
 # Command line arguments
 The `sys` module provides access to the command line arguments. They are stored in the `argv` list with the first element being the name of the script.
 

@@ -403,7 +403,7 @@ Get-Content "C:\Users\user\file.txt"
 
 Important arguments:
 
-- `-Head <number>`: read the first <number> lines
+- `-Head <number>`: read the first `<number>` lines
 
 ##  Outputs
 There are many output streams in PowerShell. We can use:
@@ -427,7 +427,7 @@ By default, only the standard and error output streams are displayed. To display
 
 [redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
 
-Output forwading is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
+Output forwarding is done using `|` (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:
 
 - `>`: redirect to file, overwrite if exists
 - `>>`: redirect to file, append if exists
@@ -452,7 +452,7 @@ In new PowerShell, we have even more options:
 
 
 # Data Types
-Powershell uses .NET types for data types. We can encounter nubers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.
+PowerShell uses .NET types for data types. We can encounter numbers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.
 
 ## Dates
 The date is represented by the `System.DateTime` type. To create a date, we can use the [`Get-Date`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date) command. Example:

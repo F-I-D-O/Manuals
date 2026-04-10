@@ -1,6 +1,14 @@
 # Installation
 
 ## Windows
+Tested stack (install in this order):
+
+1. Git for Windows
+1. KDiff3
+1. GitExtensions
+
+### Git for Windows
+
 Git can be bundeled within other software, but it is best to install it separately ([Git for Windows](https://gitforwindows.org/)), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.
 
 Important options, that defaults to inpractical values:
@@ -9,10 +17,17 @@ Important options, that defaults to inpractical values:
 - **default ssh client**: defaults to bundled openssh (part of git bash)
 - **context menu integration**: defaults to "Open in Git GUI" and "Open in Git Bash"
 
+
+### GitExtensions
+Most installation settings have good defaults. It is necessary to configure the mergetool to use KDiff3, including the path to the KDiff3 executable. Note that a full path to KDiff3 executable should be specified, instead of adding KDiff3 bin directory to the PATH variable. There are many other executables and libraries that we definitely don't want to add to the PATH variable.
+
+
+
 # GitExtensions
 GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.
 
 The tool is intuitive it is only important to **install git first**.
+
 
 ## Limitations
 Unfortunatelly, GitExtensions does not support wordwrap in the diff view. There is an [issue](https://github.com/gitextensions/gitextensions/issues/448#event-16669247488) for that (closed, but never resolved).
@@ -103,6 +118,16 @@ When renaming a branch we need to:
 1. on any other machine, rename the branch locally
 
 Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.
+
+
+## Moving commits to a new branch
+Sometimes, we make changes to the master branch, but then we realize that we should rather move them to a new branch as it is experimental stuff. To do that, 
+
+1. stash uncommitted changes we want in the master branch, if there are any
+1. checkout the master branch
+1. create a new branch
+1. reset hard the master branch to the last commit before the changes were made
+1. force push with the `--force-with-lease` parameter to the remote
 
 
 # Remote Repositories
