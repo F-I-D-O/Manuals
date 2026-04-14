@@ -4412,7 +4412,7 @@ std::string get_executable_path() {
 # Testing with Google Test
 
 ## Private method testing
-The testing of private method is not easy with Google Test, but that is common also for other tets frameworks or even computer languages (see the common manual). Some solutions are described in [this SO question](https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest).
+The testing of private method is not easy with Google Test, but that is common also for other test frameworks or even computer languages (see the common manual). Some solutions are described in [this SO question](https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest).
 
 Usually, the easiest solution is to aplly some naming/namespace convention and make the function accessible.
 
