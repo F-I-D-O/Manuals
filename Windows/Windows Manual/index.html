@@ -569,6 +569,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#discover-programs-blocking-files-or-folders-for-writing" class="nav-link">Discover programs blocking files or folders for writing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1046,6 +1050,8 @@
 <li><code>Disk Management</code> tool in <code>Computer Management</code></li>
 <li><code>diskpart</code> command line tool</li>
 </ul>
+<h2 id="discover-programs-blocking-files-or-folders-for-writing">Discover programs blocking files or folders for writing<a class="headerlink" href="#discover-programs-blocking-files-or-folders-for-writing" title="Permanent link">&para;</a></h2>
+<p>The blocking program can be discovered using the Sysinternals Process Explorer. Click on <code>Find</code> -&gt; <code>Find Handles or DLLs...</code> and enter the path (or part of it) to the search field. Note that <strong>you have to wait a long time</strong> (up to several minutes) for the search to complete. There is not any indicator of the progress or completion.</p>
 <h1 id="sugarsync">Sugarsync<a class="headerlink" href="#sugarsync" title="Permanent link">&para;</a></h1>
 <p>Quick orientation in the desktop app:</p>
 <ul>
@@ -1276,6 +1282,8 @@
 <p>To <strong>list available WSL distributions</strong>, run <code>wsl --list --online</code></p>
 <p>To <strong>install a WSL distribution</strong>, run <code>wsl --install -d &lt;distribution name&gt;</code></p>
 <p>Finally, to <strong>remove a WSL distribution</strong>, run <code>wsl --unregister &lt;distribution name&gt;</code></p>
+<p>To <strong>shut down the WSL</strong>, run <code>wsl --shutdown</code></p>
+<p>To <strong>restart a WSL distribution</strong>, run <code>wsl -t &lt;distribution name&gt;</code></p>
 <h2 id="translate-windows-path-to-linux-path">Translate Windows Path to Linux Path<a class="headerlink" href="#translate-windows-path-to-linux-path" title="Permanent link">&para;</a></h2>
 <p>To translate a Windows path to a Linux path, we can use the <code>wslpath</code> command, which is available in Ubuntu WSL distributions.</p>
 <h2 id="execute-commands-from-the-windows">Execute commands from the Windows<a class="headerlink" href="#execute-commands-from-the-windows" title="Permanent link">&para;</a></h2>
@@ -1285,7 +1293,6 @@
 <p>Important arguments:</p>
 <ul>
 <li><code>-u &lt;user&gt;, --user &lt;user&gt;</code>: run the command as the specified user. This can be useful for running the command as the root user.</li>
-<li><code>--shutdown</code>: shutdown the WSL after the command is executed.</li>
 </ul>
 <h1 id="dual-boot">Dual Boot<a class="headerlink" href="#dual-boot" title="Permanent link">&para;</a></h1>
 <h2 id="make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub">Make Windows Work after Linux Uninstall if the Bootloader is Grub<a class="headerlink" href="#make-windows-work-after-linux-uninstall-if-the-bootloader-is-grub" title="Permanent link">&para;</a></h2>

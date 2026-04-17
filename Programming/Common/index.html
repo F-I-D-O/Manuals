@@ -596,6 +596,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#grammar-checking" class="nav-link">Grammar Checking</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#tasks" class="nav-link">Tasks</a>
               <ul class="nav flex-column">
               </ul>
@@ -915,6 +919,21 @@
 <p>Panel is the only area which we can position at all four sides (top, bottom, left, right). <strong>There can be only one panel</strong>. The panel is divided into tabs.</p>
 <h2 id="code-formatting">Code Formatting<a class="headerlink" href="#code-formatting" title="Permanent link">&para;</a></h2>
 <p>Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that <strong>if the formatting is not defined for a language, selection formatting do nothing</strong>. To check the availability, try to format the whole document, then, an error box should appear.</p>
+<h2 id="grammar-checking">Grammar Checking<a class="headerlink" href="#grammar-checking" title="Permanent link">&para;</a></h2>
+<p>Unfortunately, intelligent grammar checking using Grammarly is no longer supported in VS Code. Simple check can be achieved using the <a href="https://marketplace.visualstudio.com/items?itemName=valentjn.ltex-ls">LTeX</a> or <a href="https://github.com/ltex-plus/ltex-ls-plus">LTeX+</a> extensions.</p>
+<p>Installation and configuration:</p>
+<ol>
+<li>install the extension (<a href="https://marketplace.visualstudio.com/items?itemName=valentjn.ltex-ls">LTeX</a> or <a href="https://ltex-plus.github.io/ltex-plus/">LTeX+</a> seems to be more up-to-date)</li>
+<li>in <code>settings.json</code>, add the following:
+    <code>json
+    "ltex.enabled": [
+        "text",
+        "plaintext",
+        &lt;any other language...&gt;
+    ]</code></li>
+<li>if it does not work, start the language server manually by pressing <code>Ctrl</code> + <code>Shift</code> + <code>P</code> and selecting <code>LTeX: Start Language Server</code>.</li>
+</ol>
+<p>To show the server status, press <code>Ctrl</code> + <code>Shift</code> + <code>P</code> and select <code>LTeX: Show Language Server Status</code>.</p>
 <h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
 <p><a href="https://code.visualstudio.com/docs/debugtest/tasks">Documentation</a></p>
 <p>When coding, running various command line tools (e.g., <code>pytest</code>, <code>npm</code>, <code>cargo</code>, etc.) is often required. To avoid repeating typing the same commands over and over again in console, we can store them as tasks.</p>

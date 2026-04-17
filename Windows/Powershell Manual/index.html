@@ -1075,7 +1075,7 @@ else {
 </code></pre>
 <p>Important arguments:</p>
 <ul>
-<li><code>-Head &lt;number&gt;</code>: read the first <number> lines</li>
+<li><code>-Head &lt;number&gt;</code>: read the first <code>&lt;number&gt;</code> lines</li>
 </ul>
 <h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
 <p>There are many output streams in PowerShell. We can use:</p>
@@ -1096,7 +1096,7 @@ else {
 <h1 id="pipes-and-redirection">Pipes and Redirection<a class="headerlink" href="#pipes-and-redirection" title="Permanent link">&para;</a></h1>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines">pipe documentation</a></p>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection">redirection documentation</a></p>
-<p>Output forwading is done using <code>|</code> (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:</p>
+<p>Output forwarding is done using <code>|</code> (pipe) operator, just like in Linux. For redirecting the output to a file, there are the following operators:</p>
 <ul>
 <li><code>&gt;</code>: redirect to file, overwrite if exists</li>
 <li><code>&gt;&gt;</code>: redirect to file, append if exists</li>
@@ -1116,7 +1116,7 @@ dir 2&gt; err.txt # redirect standard error stream to err.txt
 <li><code>*&gt;</code>: redirect all streams</li>
 </ul>
 <h1 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h1>
-<p>Powershell uses .NET types for data types. We can encounter nubers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.</p>
+<p>PowerShell uses .NET types for data types. We can encounter numbers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.</p>
 <h2 id="dates">Dates<a class="headerlink" href="#dates" title="Permanent link">&para;</a></h2>
 <p>The date is represented by the <code>System.DateTime</code> type. To create a date, we can use the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date"><code>Get-Date</code></a> command. Example:</p>
 <pre><code class="language-PowerShell">$date = Get-Date # current date

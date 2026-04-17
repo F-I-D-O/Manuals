@@ -3636,6 +3636,22 @@ if (node[&quot;key&quot;]) {
     YAML::Node value = it-&gt;second;
 }
 </code></pre>
+<p>To <strong>check the type of a node</strong>, we can use the <code>Type()</code> method. The possible types are:</p>
+<ul>
+<li><code>NodeType::Null</code></li>
+<li><code>NodeType::Scalar</code></li>
+<li><code>NodeType::Sequence</code></li>
+<li><code>NodeType::Map</code></li>
+<li><code>NodeType::Undefined</code></li>
+</ul>
+<p>To <strong>get the value of a node</strong>, we can use the <code>as&lt;T&gt;()</code> method, where <code>T</code> is the type of the value we want to get. Unfortunately, there is no way to check if the conversion is possible. The solution for cases with multiple supported types in a single node is to use exceptions as control statements:</p>
+<pre><code class="language-cpp">try {
+    int value = node.as&lt;int&gt;();
+} catch (const YAML::BadConversion&amp; e) {
+    std::string string_value = node.as&lt;std::string&gt;();
+    ...
+}
+</code></pre>
 <h2 id="hdf">HDF<a class="headerlink" href="#hdf" title="Permanent link">&para;</a></h2>
 <p>To load data from HDF5 files, the HDF5 C++ API can be used. Typical usage:</p>
 <pre><code class="language-cpp">#include &lt;H5Cpp.h&gt;
@@ -5438,7 +5454,7 @@ std::string get_executable_path() {
 </code></pre>
 <h1 id="testing-with-google-test">Testing with Google Test<a class="headerlink" href="#testing-with-google-test" title="Permanent link">&para;</a></h1>
 <h2 id="private-method-testing">Private method testing<a class="headerlink" href="#private-method-testing" title="Permanent link">&para;</a></h2>
-<p>The testing of private method is not easy with Google Test, but that is common also for other tets frameworks or even computer languages (see the common manual). Some solutions are described in <a href="https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest">this SO question</a>.</p>
+<p>The testing of private method is not easy with Google Test, but that is common also for other test frameworks or even computer languages (see the common manual). Some solutions are described in <a href="https://stackoverflow.com/questions/47354280/what-is-the-best-way-of-testing-private-methods-with-googletest">this SO question</a>.</p>
 <p>Usually, the easiest solution is to aplly some naming/namespace convention and make the function accessible.</p>
 <p>For free functions:</p>
 <pre><code class="language-cpp">namespace internal {

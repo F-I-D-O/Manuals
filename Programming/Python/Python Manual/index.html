@@ -785,6 +785,18 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#yaml" class="nav-link">YAML</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#datetime-conversion" class="nav-link">Datetime conversion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#modifying-the-parsing-logic" class="nav-link">Modifying the parsing logic</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -1797,6 +1809,59 @@ value = config['section']['key']
     <code>Python
     value = config[configparser.UNNAMED_SECTION]['key']</code></li>
 </ul>
+<h2 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h2>
+<p>YAML files in Python are typically parsed using the <a href="https://pyyaml.org/wiki/PyYAMLDocumentation">pyyaml</a> library. The basic usage is:</p>
+<pre><code class="language-Python">import yaml
+
+with open('file.yaml', 'r') as f:
+    data = yaml.safe_load(f)
+</code></pre>
+<p>The <code>safe_load</code> function is a safe version of the <code>load</code> function that prevents arbitrary python objects creation from the YAML data. This is a good practice to avoid security vulnerabilities (as most of the time, we do not need to create arbitrary python objects from the YAML data).</p>
+<p>PyYAML tries to automatically convert strings to appropriate types. The implicit conversions are:</p>
+<ul>
+<li><strong>numbers</strong>: int, float, </li>
+<li><strong>booleans</strong>: True, False</li>
+<li><strong>dates</strong>: datetime.datetime</li>
+</ul>
+<h3 id="datetime-conversion">Datetime conversion<a class="headerlink" href="#datetime-conversion" title="Permanent link">&para;</a></h3>
+<p>The datetime conversion logic is as follows:</p>
+<ul>
+<li>if time zone is not specified, the <code>tzinfo</code> is set to <code>None</code></li>
+<li>if only date is specified but not time, the time is set to <code>00:00:00</code></li>
+</ul>
+<h3 id="modifying-the-parsing-logic">Modifying the parsing logic<a class="headerlink" href="#modifying-the-parsing-logic" title="Permanent link">&para;</a></h3>
+<p>To modify the parsing logic, we need to:</p>
+<ol>
+<li>
+<p>create our own YAML loader, most likely a subclass of the <code>yaml.SafeLoader</code> class:
+    <code>Python
+    class MyLoader(yaml.SafeLoader):
+        pass</code></p>
+</li>
+<li>
+<p>customizing the parsing of a specific type, e.g., datetime:</p>
+<p>```Python
+def construct_timestamp_force_utc(loader, node):
+    # use the original PyYAML logic first
+    value = yaml.SafeLoader.construct_yaml_timestamp(loader, node)</p>
+<pre><code># attach UTC if datetime has no tzinfo
+if isinstance(value, datetime) and value.tzinfo is None:
+    value = value.replace(tzinfo=timezone.utc)
+
+return value
+</code></pre>
+<p>MyLoader.add_constructor(
+    'tag:yaml.org,2002:timestamp',
+    construct_timestamp_force_utc,
+)
+```</p>
+</li>
+<li>
+<p>register the custom loader:
+    <code>Python
+    yaml.safe_load(file, Loader=MyLoader)</code></p>
+</li>
+</ol>
 <h1 id="command-line-arguments">Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">&para;</a></h1>
 <p>The <code>sys</code> module provides access to the command line arguments. They are stored in the <code>argv</code> list with the first element being the name of the script.</p>
 <p>However,  mostly, we use the <a href="https://docs.python.org/3/library/argparse.html">argparse</a> module to parse the command line arguments. Example:</p>

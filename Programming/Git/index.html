@@ -458,12 +458,20 @@
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#windows" class="nav-link">Windows</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="3"><a href="#git-for-windows" class="nav-link">Git for Windows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="3"><a href="#gitextensions" class="nav-link">GitExtensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#gitextensions" class="nav-link">GitExtensions</a>
+            <li class="nav-item" data-bs-level="1"><a href="#gitextensions_1" class="nav-link">GitExtensions</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#limitations" class="nav-link">Limitations</a>
               <ul class="nav flex-column">
@@ -478,6 +486,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="1"><a href="#configuration" class="nav-link">Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#git-over-ssh" class="nav-link">Git over SSH</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -502,6 +515,10 @@
             <li class="nav-item" data-bs-level="1"><a href="#branches" class="nav-link">Branches</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#renaming-a-branch" class="nav-link">Renaming a branch</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#moving-commits-to-a-new-branch" class="nav-link">Moving commits to a new branch</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -661,6 +678,13 @@
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <h2 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
+<p>Tested stack (install in this order):</p>
+<ol>
+<li>Git for Windows</li>
+<li>KDiff3</li>
+<li>GitExtensions</li>
+</ol>
+<h3 id="git-for-windows">Git for Windows<a class="headerlink" href="#git-for-windows" title="Permanent link">&para;</a></h3>
 <p>Git can be bundeled within other software, but it is best to install it separately (<a href="https://gitforwindows.org/">Git for Windows</a>), because the installer contains a lot of important configuration options, that can have very inconvenient defaults.</p>
 <p>Important options, that defaults to inpractical values:</p>
 <ul>
@@ -668,7 +692,9 @@
 <li><strong>default ssh client</strong>: defaults to bundled openssh (part of git bash)</li>
 <li><strong>context menu integration</strong>: defaults to "Open in Git GUI" and "Open in Git Bash"</li>
 </ul>
-<h1 id="gitextensions">GitExtensions<a class="headerlink" href="#gitextensions" title="Permanent link">&para;</a></h1>
+<h3 id="gitextensions">GitExtensions<a class="headerlink" href="#gitextensions" title="Permanent link">&para;</a></h3>
+<p>Most installation settings have good defaults. It is necessary to configure the mergetool to use KDiff3, including the path to the KDiff3 executable. Note that a full path to KDiff3 executable should be specified, instead of adding KDiff3 bin directory to the PATH variable. There are many other executables and libraries that we definitely don't want to add to the PATH variable.</p>
+<h1 id="gitextensions_1">GitExtensions<a class="headerlink" href="#gitextensions_1" title="Permanent link">&para;</a></h1>
 <p>GitExtensions is a GUI for Git that can make some operations easier, as diffs and branch structure are more clear when using a GUI.</p>
 <p>The tool is intuitive it is only important to <strong>install git first</strong>.</p>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -700,6 +726,12 @@
 <p>We can also show whether the configuration results from the system, user or local configuration file:</p>
 <pre><code class="language-bash">git config --list --show-origin
 </code></pre>
+<h1 id="git-over-ssh">Git over SSH<a class="headerlink" href="#git-over-ssh" title="Permanent link">&para;</a></h1>
+<p>To use SSH for transfering data to and from the remote repository, the following must be configured:</p>
+<ul>
+<li>the repository origin must be set using the SSH URL of the repository (automatic if we use that URL when cloning)</li>
+<li>If we want to use a private key for authentication, the remote repository server must have the corresponding record in the <code>.ssh/config</code> file (see the <a href="../../Security/#setting-up-the-private-key-to-be-used-for-ssh-connection">SSH manual</a>)</li>
+</ul>
 <h1 id="basic-tasks">Basic Tasks<a class="headerlink" href="#basic-tasks" title="Permanent link">&para;</a></h1>
 <h2 id="rewrite-remote-with-local-changes-without-merging">Rewrite remote with local changes without merging<a class="headerlink" href="#rewrite-remote-with-local-changes-without-merging" title="Permanent link">&para;</a></h2>
 <pre><code class="language-bash">git push -f
@@ -735,6 +767,15 @@
 <li>on any other machine, rename the branch locally</li>
 </ol>
 <p>Not that if the branch is protected or default, we cannot delete it directly. In that can, we need to remove the protection first, usually using the web interface of the particular remote.</p>
+<h2 id="moving-commits-to-a-new-branch">Moving commits to a new branch<a class="headerlink" href="#moving-commits-to-a-new-branch" title="Permanent link">&para;</a></h2>
+<p>Sometimes, we make changes to the master branch, but then we realize that we should rather move them to a new branch as it is experimental stuff. To do that, </p>
+<ol>
+<li>stash uncommitted changes we want in the master branch, if there are any</li>
+<li>checkout the master branch</li>
+<li>create a new branch</li>
+<li>reset hard the master branch to the last commit before the changes were made</li>
+<li>force push with the <code>--force-with-lease</code> parameter to the remote</li>
+</ol>
 <h1 id="remote-repositories">Remote Repositories<a class="headerlink" href="#remote-repositories" title="Permanent link">&para;</a></h1>
 <p><a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">Git Basics manual</a></p>
 <p>Normally, we have a single remote repository, which is typically called <code>origin</code>. In this repository, we share the code with other developers. In this case we don't have to care about the remote repository handling, because the remote is automatically set to the repository we cloned from.</p>
