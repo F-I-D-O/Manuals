@@ -6,6 +6,15 @@ update steps:
 1. generate site: `mkdocs build`
 1. deploy: `mkdocs gh-deploy`
 
+
+
+# Configuration
+The configuration is done in the `mkdocs.yml` file. The most important options are:
+
+- `site_name`: the name of the site
+- `nav`: the navigation structure
+- [`exclude_docs`](https://www.mkdocs.org/user-guide/configuration/#exclude_docs): a list of documents to exclude from the site
+
 # Known limitations
 MkDocs use the [Python-Markdown](https://python-markdown.github.io/) parser which does not follow the CommonMark specification. Therefore, some markdown elements may not work as expected:
 

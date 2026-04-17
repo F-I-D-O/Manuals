@@ -1,11 +1,10 @@
 docs_dir: manuals
+exclude_docs: "Household.md   \n"
 extra_css:
 - extra.css
 markdown_extensions:
 - toc:
     permalink: true
-exclude_docs: |
-  Household.md   
 nav:
 - Programming:
   - C++:
@@ -91,13 +90,13 @@ nav:
   - Photopea: Images/Photopea.md
 - Android: Android.md
 - Arxiv: Arxiv.md
+- CTU: CTU.md
 - Google office apps: Google office apps.md
 - Hardware Manual: Hardware Manual.md
 - index: index.md
 - Markdown: Markdown.md
 - Network: Network.md
 - Security: Security.md
-- vscode: vscode.md
 - Web Tricks: Web Tricks.md
 - XML: XML.md
 - YAML: YAML.md
