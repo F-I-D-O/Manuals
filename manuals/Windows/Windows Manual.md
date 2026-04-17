@@ -515,7 +515,6 @@ If the system dialog does not work, try the PowerShell method.
 
 
 
-
 # WSL
 Windows Subsystem for Linux (WSL) is basically a virtual machine running Linux. 
 
@@ -529,6 +528,11 @@ To **install a WSL distribution**, run `wsl --install -d <distribution name>`
 
 Finally, to **remove a WSL distribution**, run `wsl --unregister <distribution name>`
 
+To **shut down the WSL**, run `wsl --shutdown`
+
+To **restart a WSL distribution**, run `wsl -t <distribution name>`
+
+
 ## Translate Windows Path to Linux Path
 To translate a Windows path to a Linux path, we can use the `wslpath` command, which is available in Ubuntu WSL distributions.
 
@@ -541,7 +545,8 @@ wsl <command>
 Important arguments:
 
 - `-u <user>, --user <user>`: run the command as the specified user. This can be useful for running the command as the root user.
-- `--shutdown`: shutdown the WSL after the command is executed.
+
+
 
 # Dual Boot
 

@@ -4,6 +4,8 @@ extra_css:
 markdown_extensions:
 - toc:
     permalink: true
+exclude_docs: |
+  Household.md   
 nav:
 - Programming:
   - C++:
