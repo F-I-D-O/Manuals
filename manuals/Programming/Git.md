@@ -72,6 +72,16 @@ We can also show whether the configuration results from the system, user or loca
 git config --list --show-origin
 ```
 
+
+
+# Git over SSH
+To use SSH for transfering data to and from the remote repository, the following must be configured:
+
+- the repository origin must be set using the SSH URL of the repository (automatic if we use that URL when cloning)
+- If we want to use a private key for authentication, the remote repository server must have the corresponding record in the `.ssh/config` file (see the [SSH manual](../Security.md#setting-up-the-private-key-to-be-used-for-ssh-connection))
+
+
+
 # Basic Tasks
 
 ## Rewrite remote with local changes without merging
