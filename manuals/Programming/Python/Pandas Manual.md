@@ -5,6 +5,7 @@ Pandas extensively uses the term axis. In Pandas, axis 0 is vertical (rows) and 
 # Pandas Data Types
 [Documentation of basic data types](https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes)
 
+
 Mainly, pandas uses the [numpy data types](./Python%20Manual.md#numpy).
 
 ## Object
