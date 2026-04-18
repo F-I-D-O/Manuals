@@ -2,6 +2,11 @@
 
 First download [binaries for Windows](https://www.gyan.dev/ffmpeg/builds/).
 
+
+# Various tools
+
+- `atempo`: change the speed of the audio. Useful for audio tracks from the movie of a different framerate.
+
 # Converting a Video to Gif Image
 Example:
 ```

@@ -24,7 +24,8 @@ To apply conditional formatting to a range of cells, select the range and go to 
 There is no direct way to format text as subscript or superscript. The easiest way is to copy the subscript/superscript characters from and paste them into the cell. A source for that can be the [wiki page for Unicode subscript and superscript](https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts).
 
 
-# Google docs
+
+# Google Docs
 
 ## Troubleshooting
 ### Can't open a document on Android
