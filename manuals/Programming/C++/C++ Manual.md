@@ -369,7 +369,7 @@ Important details:
 - the reference type has to be a function template argument, not a class template argument 
 
 #### `auto` forwarding reference
-When we assign to `auto&&, it is a forwarding reference, not rvalue reference:
+When we assign to `auto&&`, it is a forwarding reference, not rvalue reference:
 ```cpp
 auto&& a = f() // both type and value category depends on the return value of f()
 
@@ -386,7 +386,7 @@ There are two types of arrays:
 - *static*, i.e., their size is known at compile type, and
 - *dynamic*, the size of which is computed at runtime
 
-We can use the array name to access the first elemnt of the array as it is the pointer to that element.
+We can use the array name to access the first element of the array as it is the pointer to that element.
 
 ### Static arrays
 
@@ -439,6 +439,7 @@ int main(){
 
 Using the matrix syntax adds the possibility to access the element of the array using multiple dimensions. But the underlying memory is the same.
 
+
 ### Dynamic arrays
 Declaration:
 ```cpp
@@ -486,13 +487,13 @@ a[x * cols + y] = 5
 #### Array of pointers to array
 Declaration and Definition
 ```cpp
-int** a= new int*[rows]
+int** a = new int*[rows]
 
 for(int i = 0; i < rows; ++i){
 	a[i] = new int[cols]
 }
 ```
-Access is than like for static 2D array: `a[x][y] = 5`. This works because the pointers can be also accessed using the array index operator (`[]`). In other words, it works "by coincidence", but we have not created a real 2D array.
+Access is like for static 2D array: `a[x][y] = 5`. This works because the pointers can be also accessed using the array index operator (`[]`). In other words, it works "by coincidence", but we have not created a real 2D array.
 
 ### Auto dealocation of dynamic arrays
 We can replace the error-prone usage of `new` and `delete` by wraping the array into unique pointer:
@@ -769,7 +770,6 @@ ss >> std::get_time(&tm, "%Y-%b-%d %H:%M:%S");
 ```
 
 
-
 ## Collections
 In C++, the collections are implemented as templates, so they can store any type. The most common collections are:
 
@@ -779,7 +779,7 @@ In C++, the collections are implemented as templates, so they can store any type
 - [std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)
 - [std::pair](https://en.cppreference.com/w/cpp/utility/pair) and [std::tuple](https://en.cppreference.com/w/cpp/utility/tuple)
 
-Currently, the collection semantic requirmenets are not imposed on the whole connection, bu on its member functions instead. Depending on the function used, there are different requirements for the stored types. This adds a lot of flexibility, as we can, for example, use move only types in collections when we refrain from using functions that require copying. On the other hand, it can make the debugging harder, as the compiler usually does not recognize the methods that caused the template to have stricter requirements but instead complains on the place where the template is instantiated.
+Currently, the collection semantic requirements are not imposed on the whole connection, but on its member functions instead. Depending on the function used, there are different requirements for the stored types. This adds a lot of flexibility, as we can, for example, use move only types in collections when we refrain from using functions that require copying. On the other hand, it can make the debugging harder, as the compiler usually does not recognize the methods that caused the template to have stricter requirements but instead complains on the place where the template is instantiated.
 
 
 ### Sets
@@ -1073,40 +1073,43 @@ Both methods convert the whole bitset to an integer value of the corresponding t
 
 
 # Value Categories
-[cppreferencepreerecege/value_category).
+[cppreference](https://en.cppreference.com/w/cpp/language/value_category).
+
 In many contexts, the value category of an expression is important in deciding whether the code compiles or not, or which function or template overload is chosen. Therefore, it is usefull to be able to read value categories.
 
 expression value types:
 
 - *lvalue*, meaning left-value. An expression typically on the left side of compound expression a statement, e.g. variable, member, or function name. Also, lvalues expressions are are:
-	- function ratoalls to fuctions returning lvalue
-	- assignments
-	-  `++a`, `--a` and similar pre operators
-	- `*a` indirection
-	- string literal
-	- cast
-- *prvalue*, meaning pure rvalue. It is either a result of some operand (`+`, `/`) or a constructor/initializer result. The foloowing expressions are prvalues:
-	- literals with exception of string literals, e.g.: `4`, `true`, `nullptr`
-	- function or operator calls that return rvalue (non-reference)
-	- `a++`, `a--` and other post operators
-	- arithmetic and logical expressions
-	- `&a` address of expression
-	- `this`
-	- non-type template parameters, unless they are references
-	- lambda expressions
-	- requires expressions and concept spetializations
+    - function ratoalls to fuctions returning lvalue
+    - assignments
+    - `++a`, `--a` and similar pre operators
+    - `*a` indirection
+    - string literal
+    - cast
+    - *prvalue*, meaning pure rvalue. It is either a result of some operand (`+`, `/`) or a constructor/initializer result. The foloowing expressions are prvalues:
+    - literals with exception of string literals, e.g.: `4`, `true`, `nullptr`
+    - function or operator calls that return rvalue (non-reference)
+    - `a++`, `a--` and other post operators
+    - arithmetic and logical expressions
+    - `&a` address of expression
+    - `this`
+    - non-type template parameters, unless they are references
+    - lambda expressions
+    - requires expressions and concept spetializations
 - *xvalue*, meaning expiring value. These valaues usually represent lvalues converted to rvalues. Xvalue expressions are:
-	- function call to functions returning rvalue reference (e.g., [`std::move`](https://en.cppreference.com/w/cpp/utility/move)).
-	- member object expression (`a.m`) if `a` is an rvlaue and `m` is a non-reference type
-- *glvalue* = *lvalue* `||` *xvalue*. 
-- *rvalue* = *prvlaue* `||` *xvalue*. 
+- function call to functions returning rvalue reference (e.g., [`std::move`](https://en.cppreference.com/w/cpp/utility/move)).
+- member object expression (`a.m`) if `a` is an rvlaue and `m` is a non-reference type
+- *glvalue* = *lvalue* `||` *xvalue*.
+- *rvalue* = *prvlaue* `||` *xvalue*.
 
 
 
 # Operators
-[cppreferencen](https://en.cppreference.com/w/cpp/language/operators)
 
-C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, thsese operators can be overloaded.
+- [cppreferencen](https://en.cppreference.com/w/cpp/language/operators)
+- [SO answer describing typical operator overloading idioms](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421719#4421719)
+
+C++ supports almost all the standard operators known from other languages like Java, Python, or C#. Additionally, these operators can be overloaded.
 
 There are several categories of operators:
 
@@ -1116,9 +1119,6 @@ There are several categories of operators:
 - assignment operators
 
 Note that the standard also supports [**alternative tokens**](https://en.cppreference.com/w/cpp/language/operator_alternative) for some operators (e.g., `&&` -> `and`, `||` -> `or`, `!` -> `not`). However, these are not supported by all compilers. In MSVC, the [`/permissive-`](https://docs.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=vs-2019) flag needs to be used to enable these tokens.
-
-## User-defined Operators
-In C++ there are more operators than in other popular es like Python or Java. Additionally, these operators can be overloaded. See [cppreferencen](https://en.cppreferencempp.com/w/cpp/language/operators) page for detailed description.
 
 
 ## Comparison Operators
@@ -1290,12 +1290,30 @@ If the function is not used outside the translation unit, the declaration and de
 Basically, you should decide as follows:
 
 1. Function needs access to instance -> **member function**
-2. Function 
-	- should be called only by class members (i.e., member functions), so we want to limit its visibility, or
-	- we need to access static members of the class -> **static member function**
+1. Function
+    - should be called only by class members (i.e., member functions), so we want to limit its visibility, or
+    - we need to access static members of the class -> **static member function**
 1. Otherwise -> **free function**
 
-## Argument-parameter Conversions
+
+## Function Parameters
+We can pass parameters to a function in several ways:
+
+- by value: `void func(int a)`
+- by reference: `void func(int& a)`
+- by const reference: `void func(const int& a)`
+- by pointer: `void func(int* a)`
+- by rvalue reference: `void func(int&& a)`
+- and several other less common ways.
+
+Below is the decision tree for choosing the parameter type:
+
+![Parameter decision tree](./Parameters_Decision_Tree.png)
+
+Sometimes, we can see `auto` as a parameter type. This is not parameter type, but a shorthand for the function template called [abbreviated function templates](#abbreviated-function-templates).
+
+
+### Argument-parameter Conversions
 
 Arg/param | value | reference | rvalue
 -- |--|--|--
@@ -1304,7 +1322,7 @@ reference | implicit copy | - | copy constructor
 rvalue | - | not possible | -
 
 
-## Default Parameters
+### Default Parameters
 Default function parameters  in C++ works similarly to other languages:
 ```c++
 int add(int a, int b = 10);
@@ -1324,7 +1342,7 @@ addf(1) // does not compile
 
 Also, the default parameters need to be values, not references or pointers. For references and pointers, we should use function overloading.
 
-### Default Parameters and Inheritance
+#### Default Parameters and Inheritance
 TLDR: do not use default parameters in virtual functions.
 
 The default parameters are resolved at compile time. Therefore, the value does not depend on the actual type of the object, but on the declared type of the variable. This have following consequences:
@@ -2977,14 +2995,41 @@ The above requires expression will be expanded to:
 
 
 
-
-
 ## Using Complicated Types as Template Arguments
 Sometimes, it can be very tricky to determine the template argument we need in order to use the template. The correct argument can be for example a return value of some function,  templete function, or even member function of a template instanciation which has other templates as argument...
 
 To make it easier, we can, istead of suplying the correct arguments, evaluate an expression that returns the correct type and then use the [`decltype`](https://en.cppreference.com/w/cpp/language/decltype) specifier.  For more info, see the *Determining Type from Expressions* section.
 
 
+## Abbreviated function templates
+[cppreference](https://en.cppreference.com/cpp/language/function_template#Abbreviated_function_template)
+
+We can use `auto` instead of a function parameter type. This effectively creates a function template. Example:
+```cpp
+void func(auto a);
+```
+Is equivalent to:
+```cpp
+template<typename T>
+void func(T a);
+```
+
+We can restrict the auto type by using a concept:
+
+```cpp
+void func(Integral auto a);
+```
+Is equivalent to:
+```cpp
+template<Integral T>
+void func(T a);
+```
+
+This shorthand syntax has some limitations. We cannot use it if:
+
+- we need support for C++17 or older,
+- there is a dependency between the template parameters (e.g. `func(T a, T b)`,
+- We need to acces the type of the parameter in the function body.
 
 
 # Type Traits
@@ -4009,6 +4054,10 @@ namespace fs = std::filesystem;
 
 
 # `decltype`: Determining Type from Expressions
+
+- [cppreference](https://en.cppreference.com/w/cpp/language/decltype)
+- [wiki](https://en.wikipedia.org/wiki/Decltype)
+
 Sometimes, it is usefull to declare a type from expression, instead of do it manualy. Using  [`decltype`](https://en.cppreference.com/w/cpp/language/decltype) specifier, we can get the resulting type of an expression as if it was evaluated. Examples:
 
 ```cpp

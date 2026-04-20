@@ -5,7 +5,7 @@ In C++, the workflow and especially the build pipeline is much more complicated 
 
 This guide presents mostly the following workflows:
 
-- Clion or Visual Studio IDE
+- CLion or Visual Studio IDE
 - CMake
 - any sequencing tool (these are discribed only briefly as they are configured automaticvally by CMake)
 - MSVC and GCC compiler toolchains
@@ -13,7 +13,7 @@ This guide presents mostly the following workflows:
 Appart from the build pipeline, we also cover the dependency management. For this, we focus on the dependency manager vcpkg.
 
 # Compiler Toolchains
-There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with Clion.
+There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with CLion.
 
 ## MSYS2 (Windows)
 
@@ -51,7 +51,7 @@ Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
 
 - [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
 - [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags
-    
+- [Warning level](https://learn.microsoft.com/en-us/cpp/build/reference/compiler-option-warning-level?view=msvc-180), typically best to set to `/Wall`, which enables all warnings.
 
 ## GCC (Linux/WSL)
 
@@ -67,7 +67,7 @@ If GCC is not installed:
 4. `sudo apt-get install gcc-<version>`
 
 ### g++
-`g++` is the main executable for the GCC compiler. It is botha compiler and a wrapper for the linker. Typical usage is:
+`g++` is the main executable for the GCC compiler. It is both a compiler and a wrapper for the linker. Typical usage is:
 
 - `g++ -o <output file> <cpp files and library files>`: compilation and linking 
 - `g++ -c <cpp files>`: compilation only
@@ -119,18 +119,20 @@ The propertis for each configuration are structured as follows:
 		1. `sudo chmod +x <INSTALLER>`
 		2. `sudo <INSTALLER>`
 		3. `sudo rm <INSTALLER>`
-	-   add cmake executable to path
+	-   add CMake executable to path
 
 Other details about CMake can be found in the [CMake Manual](CMake%20Manual.md).
+
 
 
 # vcpkg
 For detailed information about vcpkg, see the [vcpkg Manual](vcpkg%20Manual.md).
 
 
+
 # IDE
 
-## Clion
+## CLion
 
 ### Configuration
 
@@ -139,27 +141,38 @@ For detailed information about vcpkg, see the [vcpkg Manual](vcpkg%20Manual.md).
 
 
 #### Set up the new Nova engine
-The new Nova engine is a new Clion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to `settings` -> `Advanced Settings` and under `Clion` check the `Use the ReSharper C++ language engine (Clion Nova)`.
+The new Nova engine is a new CLion's engine that is faster and have more features. It is the engine that is used in Visual Studio Resharper C++ plugin. To enable it, go to `settings` -> `Advanced Settings` and under `CLion` check the `Use the ReSharper C++ language engine (CLion Nova)`.
 
-Apart from the new features, the Nova engine can prevent some false errors that are caused by the clangd engine used by the old Clion engine.
+Apart from the new features, the Nova engine can prevent some false errors that are caused by the clangd engine used by the old CLion engine.
 
 
 #### Set up new surround with template
-In Clion, there are two types of surround with templates: `surrond with` and `surround with live template`. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. 
+In CLion, there are two types of surround with templates: `surrond with` and `surround with live template`. The first type use simple predefined templates and cannot be modified. However, the second type can be modified and new templates can be added. 
 
+
+#### Clang-Tidy Configuration
+
+- [Clang-Tidy Section](#clang-tidy)
+- [CLion default configuration specification](https://youtrack.jetbrains.com/articles/CPP-A-90276519/Clang-Tidy-in-CLion-default-configuration)
+
+To **specify the active Clang-Tidy checkers**:
+
+1. Go `Settings` -> `Inspections` -> `C/C++` -> `Static Analysis Tools` -> `Clang-Tidy`. 
+1. In `Options`, click the pencil icon next to the text field with the list of checkers.
+1. Check or uncheck the checkboxes to enable or disable the checkers.
 
 ### Toolchain configuration
 Go to `settings` -> `Build, Execution, Deployment` -> `toolchain`, add new toolchain and set:
 
 - Name to whatever you want
 - The environment should point to your toolchain:
-	- MSVC: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community`
-	- MSYS: `C:\MSYS2` 
-	- WSL: From the drop-down list, choose the environment you configured for using with CLion in the previous steps
-- Credentials (WSL) click to the setting button next to the credentials and fill
-	- host: `localhost`
-	- port: `2222`
-	- user and password according to your WSL system credentials
+    - MSVC: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community`
+    - MSYS: `C:\MSYS2`
+    - WSL: From the drop-down list, choose the environment you configured for using with CLion in the previous steps
+    - Credentials (WSL) click to the setting button next to the credentials and fill
+    - host: `localhost`
+    - port: `2222`
+    - user and password according to your WSL system credentials
 - Architecture (non WSL): amd64
 - CMake: `C:\Program Files\CMake\bin\cmake.exe`, for WSL, leave it as it is
 - other fields should be filled automatically
@@ -194,7 +207,7 @@ When we click on the CMake reconiguration button, all profiles are reconfigured.
 
 
 ### Running tests
-Clion has a built-in support for certain test frameworks, e.g., Google Test. In addition to running the whole test target, we can run each individual test by clicking the test icon next to the first line of the test function.
+CLion has a built-in support for certain test frameworks, e.g., Google Test. In addition to running the whole test target, we can run each individual test by clicking the test icon next to the first line of the test function.
 
 Note that **bare ctest tests are not supported**. To run them, use the CLion terminal to run the `ctest` command.
 
@@ -203,7 +216,7 @@ Note that **bare ctest tests are not supported**. To run them, use the CLion ter
 ### Troubleshooting
 
 #### Editor reports errors despite the code compiles in all compilers
-This can be caused by the clangd engine used by the old Clion engine. To fix it, enable the new Nova engine.
+This can be caused by the clangd engine used by the old CLion engine. To fix it, enable the new Nova engine.
 
 #### Editor actions are not available, `Ctrl + click` does nothing
 
@@ -392,13 +405,27 @@ Unlike in VS Code, Cursor does not have a built-in IntelliSense. Instead, it rel
 1. type `clangd: Restart language server`
 
 
+
+# Linters
+
+## Clang-tidy
+[official documentation](https://clang.llvm.org/extra/clang-tidy/)
+
+Clang-tidy is a linter that is part of the LLVM project. 
+
+### Possible problems with individual checks
+
+- `readability-misleading-indentation`: This can be sometimes triggered if tabs and spaces are mixed in the code. The indentation may look completely fine, until we display the whitespace characters.
+
+
+
 # Typical directory structure
 The typical directory structure for a C++ project is as follows:
 
 - `data`: the directory containing the data files, including test data and default configuration files
 - `include`: the directory containing public header files
-	- this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory
-	- the projects own headers should be in the `include/<project name>` directory to mimic the installation directory structure
+    - this directory is for the headers that are meant to be included by other projects. Typically, only library projects have this directory
+    - the projects own headers should be in the `include/<project name>` directory to mimic the installation directory structure
 - `install`: the directory containing the installation scripts. Only needed for library projects or projects that are meant to be distributed
 - `port`: the directory containing the vcpkg port files. Only needed for libraries that are meant to be distributed via vcpkg
 - `src`: the directory containing the source files and private headers
@@ -497,7 +524,7 @@ For testing purposes, we can follow this simple pattern:
 
 
 ## Dependencies with WSL and CLion
-In WSL, when combined with CLion, some find scripts does not work, because they depend on system variables, that are not correctly passed from CLIon SSH connection to CMake. Therefore, it is necessary to add hints with absolute path to these scripts. Some of them can be downloaded [here](https://drive.google.com/drive/folders/1rWVl_T3p0cIf6QBYFtc-sEfuA-TUs2CU?usp=sharing). Package that require these hints:
+In WSL, when combined with CLion, some find scripts does not work, because they depend on system variables, that are not correctly passed from CLion SSH connection to CMake. Therefore, it is necessary to add hints with absolute path to these scripts. Some of them can be downloaded [here](https://drive.google.com/drive/folders/1rWVl_T3p0cIf6QBYFtc-sEfuA-TUs2CU?usp=sharing). Package that require these hints:
 
 -   JNI
 -   Gurobi

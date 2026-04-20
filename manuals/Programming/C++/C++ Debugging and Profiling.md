@@ -217,12 +217,12 @@ These exception are raised when an unallocated memory is accesed.  The following
 
 First, **most of the memory errors can be caught by various assertions and guards in the debug mode.** If possible, try to run the program in the debugg mode, even if it takes a long time, because this way, you can catch the problem when it happens, before the memory is corrupted. If that does not help, read the following sections.
 
-Other reassons are also discussed [here](https://localcoder.org/access-violation-exception-when-calling-a-method)
+Other reasons are also discussed [here](https://localcoder.org/access-violation-exception-when-calling-a-method)
 
 ### Accessing null pointer 
 A frequent cause of memory errors is accessing a null pointer object's data. In this case, the cause of the problem can be quickly determined in the debugger. Just follow the lifetime of the pointer and find the momemnt when it becom null.
 
-### Read Access Violation Caused by a Demaged vtable
+### Read Access Violation Caused by a Damaged vtable
 In case of some previous memory mismanagement, the heap can be demaged, possibly resulting in a corrupted virtual table for objects on the heap. 
 To check whether the virtual table is corrupted, add the following watch to the debugger:
 ```cpp
@@ -348,15 +348,24 @@ For test debugging, some google test options may be usefull:
 If the refactoring options like change signature are not present, try to send the Resharper bug reports :), or create a new project.
 
 ## IntalliSense false errors
-Sometimes, the errors disappears by deleting the `.suo` file located in `<project dir>/.vs/<project name>/<VS version>`
+Sometimes, the errors disappear by deleting the `.suo` file located in `<project dir>/.vs/<project name>/<VS version>`
 
 
 # Using the debugger
 
-## Clion
-Unlike in Visual Studio, the Clion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.
+## CLion
+[official documentation](https://www.jetbrains.com/help/clion/configuring-debugger-options.html)
 
-To debug multiple targets at once:
+In CLion, we can configure which debuggers to use. The bundled debuggers are:
+
+- **Windows**:
+    - MSVC Toolchain: LLDB for MSVC,
+    - Other Toolchains: GDB
+- **Linux**: LLDB
+
+Unlike in Visual Studio, the CLion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.
+
+To **debug multiple targets at once**:
 
 1. Open the `Run/Debug Configurations` dialog
 2. Add a new configuration of type `Compound`
@@ -365,7 +374,7 @@ To debug multiple targets at once:
 
 ## Visual Studio
 
-### Improve debugger experience with natvis
+### Improve debugger experience with Natvis
 [Natvis](https://learn.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022) is a visualization system that enables to enhance the presentation of variables in debugger locals or watch windows. It is a XML file, where we can define visualization rules for any type. Structure:
 ```XML
   <Type Name="My_class">
@@ -374,17 +383,17 @@ To debug multiple targets at once:
 ```
 The name must be fully qualified, i.e., **we have to include namespaces.**
 
-The big advantage is that **natvis files can be changed while the debugger is running** and the presentation of the type in locals/watch window is changed immediatly after saving the natvis file.
+The big advantage is that **Natvis files can be changed while the debugger is running** and the presentation of the type in locals/watch window is changed immediately after saving the Natvis file.
 
 #### Natvis expressions
-The expression in natvis are sorounded by `{}`. If we want curly braces in the text, we can double them `{{...}}`.
-**Unfortunatelly, function calles cannot be used in natvis expressions**.
+The expressions in Natvis are surrounded by `{}`. If we want curly braces in the text, we can double them `{{...}}`.
+**Unfortunately, function calls cannot be used in Natvis expressions**.
 
 #### Natvis Errors
-Natvis errors can be displayed in the output window if turned on in settins: `Debug` -> `Options` -> `Debugging` -> `Output Window`.
+Natvis errors can be displayed in the output window if turned on in settings: `Debug` -> `Options` -> `Debugging` -> `Output Window`.
 
-#### Existing visualisations
-Existing natvis files are stored in `<VS Installation Folder>\Common7\Packages\Debugger\Visualizers` folder. The STL visualizations are in `stl.natvis`
+#### Existing visualizations
+Existing Natvis files are stored in `<VS Installation Folder>\Common7\Packages\Debugger\Visualizers` folder. The STL visualizations are in `stl.Natvis`
 
 ### Debugging polymorphic classes
 Unfortunately, the debugger does not show the actual type of the object when the object is cast to a base class.
@@ -501,7 +510,7 @@ import our_local_module
 
 
 ### Pretty printing
-Similar to Visual Studio natvis, we can define pretty printing of the variables in the debugger. This is done using Python code, see [Custom Python Code](#custom-python-code) section for details on how to plug the python code into the debugger.
+Similar to Visual Studio Natvis, we can define pretty printing of the variables in the debugger. This is done using Python code, see [Custom Python Code](#custom-python-code) section for details on how to plug the python code into the debugger.
 
 Typical workflow (see [official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Writing-a-Pretty_002dPrinter.html#Writing-a-Pretty_002dPrinter) for details):
 
@@ -599,6 +608,19 @@ The `^MyClass$` (second argument of the `add_printer` function) is a regular exp
 #### Resources
 
 - [printer interface documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing-API.html#Pretty-Printing-API)
+
+
+## LLDB
+
+- [wiki](https://en.wikipedia.org/wiki/LLDB)
+- [official documentation](https://lldb.llvm.org/)
+
+To start debugging a program, run the `lldb <program>` command.
+
+
+## Inspecting variables
+To inspect variables, we can use the `frame variable` (or just `v`) command. Without arguments, it prints all variables in the current frame. To select a specific variable, run `frame variable <variable name>`. 
+
 
 
 # Profiling

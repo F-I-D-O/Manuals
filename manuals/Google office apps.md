@@ -7,7 +7,9 @@ This is how we can create various data types in Google Sheets:
 
 ## Date and time
 
-To refer to the current date, we can use the `TODAY()` function.
+To refer to the **current date**, we can use the `TODAY()` function.
+
+To **convert seconds to a time**, just divide the seconds by 86400 (number of seconds in a day), and format the cell as time.
 
 
 ## Conditional formatting
@@ -28,5 +30,6 @@ There is no direct way to format text as subscript or superscript. The easiest w
 # Google Docs
 
 ## Troubleshooting
+
 ### Can't open a document on Android
 This can sometime happen for large documents. The solution is to open the Google Docs application settings and clear both the cache and the app data.
