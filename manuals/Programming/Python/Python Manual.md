@@ -1291,7 +1291,7 @@ my_function(importlib.resources.as_file(file))
 # Numpy
 
 ## Data types
-[Documentation of basic data types](https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes)
+[Documentation of basic data types](hhttps://numpy.org/doc/stable/user/basics.types.html)
 
 ### Date and time
 [Documentation](https://numpy.org/doc/2.1/reference/arrays.datetime.html)
