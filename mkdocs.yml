@@ -1,5 +1,7 @@
 docs_dir: manuals
-exclude_docs: "Household.md   \n"
+exclude_docs: 
+- Household.md
+- Social Networks.md
 extra_css:
 - extra.css
 markdown_extensions:

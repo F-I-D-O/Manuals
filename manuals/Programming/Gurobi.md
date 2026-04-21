@@ -185,19 +185,16 @@ Each index may be specified as:
 
 - A **single value**: in that case, the number marks the length of the dimension.
 - A **list of values**: in that case, the list marks the values of the dimension.
-- A **list of tuples**: in that case, each tuple specifies a single value for each dimension. This is useful when the index is sparse (contrary to the cartesian product of all indices).
+- A **list of tuples**: in that case, each tuple specifies a single value for each dimension. This is useful when the index is sparse (contrary to the Cartesian product of all indices).
 
-Another special argument is the `name` argument. It is specified as constant, and the indices in the name are generated from the index arguments automatically.
+Another special argument is the `name` argument. It is specified as constant, and the indices in the name are generated from the index arguments automatically (see [Automatic name generation](#automatic-name-generation)).
 
 Other `addVars` arguments can be set up in two ways:
 
 - Using a scalar value: result in a constant value for all variables
 - Using a collection proportional to the index:
     - list of values for one-dimensional index
-    - dict with tuples as keys for multi-dimensional index
-
-The 
-    - 
+    - dict with tuples as keys for multidimensional index
 
 
 The `addVars` method returns a [`tupledict`](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/tupledict.html#tupledict) object, which is a dictionary that maps the indices to the variables.
@@ -230,11 +227,15 @@ We can add multiple constraints at once using the [`addConstrs`](https://docs.gu
 - The *generator*, and
 - The name of the constraint
 
-The name of the constraint is automatically generated similarly to the `addVars` method.
-
 The generator is a Python generator function that produces a Gurobi constraint expression.
 
+The name of the constraint is automatically generated similarly to the `addVars` method (see [Automatic name generation](#automatic-name-generation)).
 
+
+## Automatic name generation
+When using the `addVars` or `addConstrs` methods, the name of the variables or constraints is automatically generated as `<name argument>[<index 1>,<index 2>,...]`.The indices are automatically inferred from the generator argument of the `addVars` or `addConstrs` methods.
+
+Sometimes this fails and only one index is picked up, resulting in duplicate names. The only way how to securely avoid this is to use a for loop and the `addConstr` or `addVar` methods directly.
 
 ## Linear Expressions
 The linear expression is represented by the [LinExpr](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/linexpr.html#LinExpr) class. There are several ways how to build a linear expression, here **sorted from slowest to fastest**:
