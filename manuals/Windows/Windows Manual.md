@@ -125,6 +125,18 @@ Unlike Command Shell and PowerShell, the system execution does not consider scri
 - `Win` + `Space`: change keyboard input method
 
 
+# Ethernet
+
+## Problem: No ethernet connection
+This problem is manifested by missing ethernet icon in the taskbar. To narrow down the problem:
+
+1. Go to the Device Manager -> `Network adapters`
+1. If the adapter is not listed, select `View` -> `Show hidden devices`
+1. If the adapter is now listed, it means that it is non-functional.
+    1. first, just try to restart the computer
+    1. if it does not help, find the adapter in Device Manager again, right click, select Uninstall device, and check the `Try to uninstall the driver software for this device` checkbox. Then restart the computer again.
+
+
 # Wireless Network
 
 ## Problem: Can't connect to this network
@@ -666,6 +678,7 @@ This process represents all virtual systems. One cultprit is therefore WSL. Try 
 wsl --shutdown
 ```
 
+
 ## Computer Restarts without User Intervention
 The first thing is to go to the event viewer and check the error eventlogs. 
 
@@ -680,3 +693,7 @@ The most Important information in the log is the `BUGCHECK_CODE`. The meaning of
 - [`0x00000050`: `PAGE_FAULT_IN_NONPAGED_AREA`](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x50--page-fault-in-nonpaged-area): invalid memory pointer (nonexisting or freed memory access)
 - [`0x0000003B`: `SYSTEM_SERVICE_EXCEPTION`](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x3b--system-service-exception): Exeption during a routine for transitioning between user and kernel mode. This is a very nonspecific error, to see what is really going on, we have to inspect the firts parameter of the exception (`BUGCHECK_P1` in the log). The description of this error code can be found in the [Microsoft Learn](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/596a1078-e883-4972-9bbc-49e60bebca55). Encountered code:
     - `c0000005`: `STATUS_ACCESS_VIOLATION`: This means invalid memory access.
+
+
+## Text selection cursor turns white in Edge browser
+The problem can be the hardware acceleration. To disable it, go to the Edge settings and disable the `Use hardware acceleration when available` option. Then restart the browser.
