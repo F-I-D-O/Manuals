@@ -15,12 +15,6 @@ Appart from the build pipeline, we also cover the dependency management. For thi
 # Compiler Toolchains
 There are various toolchains available on Windows and Linux, but we limit this guide for only some of them, specifically those which are frequently updated and works great with CLion.
 
-## MSYS2 (Windows)
-
-- [download](https://www.msys2.org/)
-- follow the installation guide on the homepage
-- install MinGW64 using: `pacman -S mingw-w64-x86_64-gcc`
-
 
 ## MSVC (Windows)
 [Visual Studio Comunity Edition](https://visualstudio.microsoft.com/cs/vs/)
@@ -53,6 +47,14 @@ Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
 - [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags
 - [Warning level](https://learn.microsoft.com/en-us/cpp/build/reference/compiler-option-warning-level?view=msvc-180), typically best to set to `/Wall`, which enables all warnings.
 
+
+## MSYS2 (Windows)
+
+- [download](https://www.msys2.org/)
+- follow the installation guide on the homepage
+- install MinGW64 using: `pacman -S mingw-w64-x86_64-gcc`
+
+
 ## GCC (Linux/WSL)
 
 ### Installation
@@ -77,6 +79,13 @@ Other frequently used flags are:
 
 - `-g`: include debug information
 - `-l<library>`: link the library named `lib<library>`. Unlike direct library specification, here the linkers searches for the library in standard directories.
+
+
+## Detecting the Compiler Toolchain in Build Scripts
+For this each compiler toolchain provides a set of macros that are specific to the toolchain. Moreover, we can typically detect the toolchain version and some other toolchain-specific information.
+
+[Macros for each compiler toolchain](https://sourceforge.net/p/predef/wiki/Compilers/)
+
 
 
 # Build Sequencing Tools

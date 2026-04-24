@@ -212,15 +212,18 @@ If the missing library is not in this dependency tree, we should inspect the exe
 ## Memory Errors
 These exception are raised when an unallocated memory is accesed.  The following signalize a memory error:
 
-- *Read Access Violation*
--  *HEAP CORRUPTION DETECTED* 
+- `Read Access Violation`
+- `HEAP CORRUPTION DETECTED`
+- `Access violation - no RTTI data`
 
 First, **most of the memory errors can be caught by various assertions and guards in the debug mode.** If possible, try to run the program in the debugg mode, even if it takes a long time, because this way, you can catch the problem when it happens, before the memory is corrupted. If that does not help, read the following sections.
 
 Other reasons are also discussed [here](https://localcoder.org/access-violation-exception-when-calling-a-method)
 
-### Accessing null pointer 
+
+### Accessing null pointer
 A frequent cause of memory errors is accessing a null pointer object's data. In this case, the cause of the problem can be quickly determined in the debugger. Just follow the lifetime of the pointer and find the momemnt when it becom null.
+
 
 ### Read Access Violation Caused by a Damaged vtable
 In case of some previous memory mismanagement, the heap can be demaged, possibly resulting in a corrupted virtual table for objects on the heap. 
@@ -365,7 +368,15 @@ In CLion, we can configure which debuggers to use. The bundled debuggers are:
 
 Unlike in Visual Studio, the CLion debugger does not break be default. To break on exceptions or breakpoints, we need to use the debug button instead of the run button.
 
-To **debug multiple targets at once**:
+### Natvis
+Although CLion does not use the Visual Studio debugger, it can use the Natvis files to specify format for LLDB. By default, only the project's Natvis files are used. To use the Natvis files from other locations:
+
+1. Open the `settings` -> `Build, Execution, Deployment` -> `Debugger` -> `Data Views`
+1. Locate the `Renderers` -> `Additional directories` section
+1. Add the path to the directory containing the Natvis files
+
+
+### Debugging multiple targets at once
 
 1. Open the `Run/Debug Configurations` dialog
 2. Add a new configuration of type `Compound`

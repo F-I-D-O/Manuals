@@ -1638,6 +1638,19 @@ Sometimes, it may be usefull to print the value of a macro, or show which branch
 ```
 
 
+# Detecting Available Features
+[cppreference](https://en.cppreference.com/w/cpp/feature_test)
+
+Sometimes, we need to detect if a feature is available and if not, compile a fallback version of the code.  For that C++ provides a set of macros that can be used to detect the availability of the feature. Example:
+```cpp
+#if __has_include(<optional>)                
+	#include <optional>
+#else
+	#include <experimental/optional>
+#endif
+```
+
+
 # Attributes
 [cppreference](https://en.cppreference.com/w/cpp/language/attributes)
 
@@ -1771,20 +1784,60 @@ Appart from padding, each data structure is alligned to its largest member. If t
 
 
 
-
-
-
-
 # Design Patterns
 This section describe how to implement various design patterns in C++.
+
 
 ## Visitor Pattern
 C++ has a much more clear and efficient way how to implement the visitor pattern than other languages like Java. Instead of classical polymorphism, we use:
 
-- [std::variant](#unions-and-variants) to list all possible types
+- [std::variant](./C++%20Types.md#unions-and-variants) to list all possible types
 - [std::visit](https://en.cppreference.com/w/cpp/utility/variant/visit2.html) to implement a visitor
 
 The advantage is that the visitor use a procedural way to choose the appropriate function for the given type, which is much more efficient than the runtime dispatching of the classical visitor pattern. Also there is no circular dependency between the visitor and the visited classes.
+
+
+## Curiously Recurring Template Pattern (CRTP)
+Curiously Recurring Template Pattern (CRTP) is a compile-time polymorphism technique based on templates. Imagine the following class hierarchy:
+```cpp
+class Base{
+public:
+	virtual void print() = 0;
+};
+
+class Derived: public Base{
+public:
+	void print() override{
+		std::cout << "Derived" << std::endl;
+	}
+};
+```
+
+With CRTP, we can achieve the same polymorphic behavior without using virtual functions:
+
+```cpp
+template<class T>
+class Base{
+public:
+	void print() {
+		static_cast<T*>(this)->print();
+	}
+};
+
+class Derived: public Base<Derived>{
+public:
+	void print() override{
+		std::cout << "Derived" << std::endl;
+	}
+};
+```
+
+Normally, this is not very useful as it makes the intention less obvious. However, in performance-critical applications, this can make sense as it is better from both memory and computational point of view.
+
+Resources:
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)
+- [Eli Bendersky's blogpost](https://eli.thegreenplace.net/2011/05/17/the-curiously-recurring-template-pattern-in-c/)
 
 
 ## Compile-time Plugins using Static Registration
@@ -1813,4 +1866,5 @@ Plugin plugin; // here, the constructor is called as the variable has static sto
 This technique has some important pitfall. Because the main executable does not reference the plugin, the compiler may discard the whole plugin object and not link it to the executable. To prevent this, several techniques can be used:
 
 - link the plugin with [`/WHOLEARCHIVE`](https://learn.microsoft.com/en-us/cpp/build/reference/wholearchive-include-all-library-object-files?view=msvc-170) flag.
-- 
+
+

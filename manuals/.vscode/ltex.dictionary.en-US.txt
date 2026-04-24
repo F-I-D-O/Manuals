@@ -5,3 +5,4 @@ vcpkg
 toolchains
 toolchain
 cppreference
+Natvis
