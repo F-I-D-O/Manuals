@@ -345,6 +345,7 @@ PostgreSQL supports an extended syntax for [window functions](https://www.postgr
 We can use it for example to retrieve the value of a column that has maximum value in another column, as demonstrated in an [SO answer](https://stackoverflow.com/questions/73773017/sql-group-by-get-value-on-one-column-based-on-order-of-another-column).
 
 
+
 # Return data from `INSERT`, `UPDATE`, and `DELETE` statements
 In PostgreSQL, the `INSERT`, `UPDATE`, and `DELETE` statements can return data with the `RETURNING` clause. The syntax is as follows:
 ```SQL
@@ -352,6 +353,25 @@ INSERT INTO <table name> ... RETURNING <column name>
 ```
 
 This is especially useful when inserting data into a table with an auto-incrementing column, as we can retrieve the value of the column after the insert.
+
+
+# Comments
+For commenting, we can use [standard SQL comments](./SQL%20Manual.md#comments). 
+
+There is also a special functionality in PostgreSQL that allows to store the comments directly in the database objects:
+
+```PostgreSQL
+CREATE TABLE trip (
+    id SERIAL PRIMARY KEY,
+    origin TEXT,
+    destination TEXT
+);
+
+COMMENT ON TABLE trip IS 'Stores trips for MoD simulation';
+COMMENT ON COLUMN trip.origin IS 'Origin location (zone id)';
+COMMENT ON COLUMN trip.destination IS 'Destination location (zone id)';
+```
+
 
 
 # Various specific tasks

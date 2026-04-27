@@ -221,6 +221,13 @@ CLion has a built-in support for certain test frameworks, e.g., Google Test. In 
 Note that **bare ctest tests are not supported**. To run them, use the CLion terminal to run the `ctest` command.
 
 
+### Linting
+The only linting tool built into CLion is [Clang-Tidy](#clang-tidy) (see also the [configuration section](#clang-tidy-configuration)), but it unfortunatelly does not support custom checks.
+
+A paid option is to use the [IntelliJ Qodana](https://www.jetbrains.com/qodana/) tool, but that one costs $5 per user per month and the checks are performed in cloud, not in the IDE.
+
+Finally, it is not even possible to automatically run custom tools on file change, or pre-build.
+
 
 ### Troubleshooting
 
@@ -418,9 +425,11 @@ Unlike in VS Code, Cursor does not have a built-in IntelliSense. Instead, it rel
 # Linters
 
 ## Clang-tidy
-[official documentation](https://clang.llvm.org/extra/clang-tidy/)
 
-Clang-tidy is a linter that is part of the LLVM project. 
+- [official documentation](https://clang.llvm.org/extra/clang-tidy/)
+- [list of checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html)
+
+Clang-tidy is a linter that is part of the LLVM project. It contains a lot of checks sorted into categories. Unfortuantelly, **there is no way how to develop cross-platform custom checks without recompiling LLVM**.
 
 ### Possible problems with individual checks
 

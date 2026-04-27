@@ -386,5 +386,62 @@ Cursor's layout is even more limited than VS Code's. The secondary sidebar is oc
 
 
 
+# Static Analysis with Semgrep
+
+- [github](https://github.com/semgrep/semgrep)
+- [homepage](https://semgrep.dev/)
+- [CLI reference](https://semgrep.dev/docs/cli-reference)
+
+Semgrep can be used to analyze many programming languages. It can be invoked manually, as a commit hook, or in CI pipelines.
+
+To install Semgrep, just run `pip install semgrep`. This enables the `semgrep` executable. 
+
+Semgrep has multiple subcommands, most important one is `scan` (default, can be omitted).
+
+There is a [IntelliJ plugin](https://semgrep.dev/docs/extensions/semgrep-intellij) for Semgrep, but it is currently (2026-04-26) not functional on Windows.
 
 
+## Scanning
+Scanning is invoked by `semgrep scan [<options>] <path>` or just `semgrep [<options>] <path>`. If the `<path>` is a directory, the entire directory is scanned. The most important options are:
+
+- `-e <regex>`: the regex to match. Useful for testing
+- `--config <config file>`: the config file to use.
+
+## Configuration Files
+Semgrep is configured by `YAML` files. The most important root property is `rules`, which is an array of rule objects. Each rule object then define a single rule we want to apply.
+
+The rule object has the following required properties:
+
+- `id`: the id of the rule displayed on the second line of the log message, right below the offending file name. Typical format is like Clang-Tidy's rule names, e.g., `my-rule-name`.
+- `message`: the message describing the rule. Displayed under the `id`. User should be able to fix the issue after reading the message.
+- `languages`: the languages the rule is applicable to. The valid keys are defined in the [documentation](https://semgrep.dev/docs/writing-rules/rule-syntax#language-extensions-and-languages-key-values).
+- `severity`: the severity of the rule. One of the `LOW`, `MEDIUM`, `HIGH`, and `CRITICAL` (all-caps).
+- `<pattern rules>`: the pattern rules determine the code to match.
+
+For detailes, see the [documentation](https://semgrep.dev/docs/writing-rules/rule-syntax).
+
+### Pattern Rules
+The following pattern rules are supported:
+
+- `pattern`: single pattern to match, e.g., `pattern: do_not_do_this`.
+- `patterns`: array of patterns which must all match, e.g.,
+    ```yaml
+    patterns:
+    - pattern: do_not_do_this
+    - pattern: when_you_also_do_that
+    ```
+- `pattern-either`: array of patterns, one of which must match, e.g.,
+    ```yaml
+    pattern-either:
+    - pattern: do_not_do_this
+    - pattern: and_also_do_not_do_that
+    ```
+- `pattern-regex`: match by a regex, e.g., `pattern-regex: ^do_not_do_this$`.
+
+We can use [ellipsis operator](https://semgrep.dev/docs/writing-rules/pattern-syntax#ellipsis-operator) (`...`) to match anything in specific contexts, like, for example, for function calls: `pattern: print(...)`.
+
+
+## Troubleshooting
+
+### 'charmap' codec can't encode character '\u202a'
+This is a current (2026-04-26) bug of Semgrep [[issue](https://github.com/semgrep/semgrep/issues/11280)]. It should be fixed when using Python 3.15. The current workaround is to set python to use UTF-8 encoding by setting the `PYTHONUTF8` environment variable to `1`.

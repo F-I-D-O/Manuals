@@ -597,7 +597,16 @@ Sadly, the concept of SQL schema is not standardized across different database s
 
 
 
-# Performace Optimization
+# Comments
+There are two syntaxes for comments in SQL:
+
+- one-line: `-- <comment>`
+- multi-line: `/* <comment> */`
+
+Unfortunately, there is no standard system like JavaDoc or Doxygen for SQL.
+
+
+# Performance Optimization
 When the query is slow, first inspect the following checklist:
 
 - Do not use `OR` or `IN` for a set of columns (see replacing `OR` below).

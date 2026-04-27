@@ -627,7 +627,7 @@ map[0] = "world" // OK, tha value is overwritten
 a = map[1] // a == map[1] == "" unintuitively, the default value is inserted if the key does not exist
 ```
 
-Therefore, **if we just read from the map, it is safer to use the `at()`** member function.
+Therefore, **if we just read from the map, it is safer to use the [`at()`](https://en.cppreference.com/cpp/container/unordered_map/at)** member function.
 
 ### Inserting into map
 There are five options:
@@ -660,17 +660,18 @@ We have two standard class templates for tuples:
 Although named differently, these class templates behaves mostly the same.
 
 ### Creating tuples
-There are two ways of creating a tuple:
+There are the following ways of creating a tuple:
 
 - constructor (`auto p = std::pair(...)`)
 - initializer (`auto p = {}`)
+- `std::make_pair`/`std::make_tuple` (deprecated since C++17)
 
-Beware that **by default**, the deduced types are decayed, i.e., const and references are removed and the **tuple stores value types**. If you need to store the reference in a tuple, you have to specify the type: 
+Beware that **by default**, the deduced types are decayed, i.e., const and references are removed and the **tuple stores value types**. Especially, the reference decay is dangerous, as an unintended copy may lead to dangling references. Therefore, always specify the type:
 ```cpp
 auto p = std::pair<int, constr std::string&>(...)
 ```
 
-Also, beware that the RVO does not apply for tuple members. **This means that if we store values types in the tuple, the types are copied/moved, and in conclusion, they have to by copyable/movable!** This is the reason why we frequently use smart pointers in tuples even though we would reurn directly by value if we returned a single value.
+Also, beware that the RVO does not apply for tuple members. **This means that if we store values types in the tuple, the types are copied/moved, and in conclusion, they have to by copyable/movable!** This is the reason why we frequently use smart pointers in tuples even though we would return directly by value if we returned a single value.
 
 #### Creating tuples with `std::make_pair` or `std::make_tuple`
 **TLDR: from C++17, there is no reason to use `make_pair`/`make_tuple`**.

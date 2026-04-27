@@ -1638,6 +1638,7 @@ Sometimes, it may be usefull to print the value of a macro, or show which branch
 ```
 
 
+
 # Detecting Available Features
 [cppreference](https://en.cppreference.com/w/cpp/feature_test)
 
@@ -1649,6 +1650,7 @@ Sometimes, we need to detect if a feature is available and if not, compile a fal
 	#include <experimental/optional>
 #endif
 ```
+
 
 
 # Attributes
