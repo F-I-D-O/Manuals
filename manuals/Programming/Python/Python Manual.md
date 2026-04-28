@@ -727,6 +727,8 @@ p = Path("~/project/file.txt")
 p = p.expanduser() # 'C:\\Users\\user\\project\\file.txt'
 ```
 
+Be carful with the path starting with `~` as they are recognized as relative paths (`is_absolute()` returns `False`), before being expanded by the `expanduser` method. This may lead to unexpected results, if relative paths are appended to some fixed directory manually.
+
 
 
 ## Working directory

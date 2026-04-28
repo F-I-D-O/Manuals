@@ -1,6 +1,3 @@
-fido7382
-
-
 # Data types
 [official documentation](https://www.postgresql.org/docs/current/datatype.html)
 
@@ -992,7 +989,7 @@ SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '<sc
 
 
 ## Databases
-To list all databases, we can use the `-l` parameter:
+To **list** all databases, we can use the `-l` parameter:
 ```bash
 psql -l
 ```
@@ -1003,6 +1000,12 @@ To check if a specific database exists, we can use the following query:
 ```SQL
 SELECT EXISTS (SELECT 1 FROM pg_database WHERE datname = '<db name>');
 ```
+
+To [**create** a database](https://www.postgresql.org/docs/current/manage-ag-createdb.html), we can use the [`CREATE DATABASE` statement](SQL%20Manual.md#databases). Additionally, we can use the [`createdb`](https://www.postgresql.org/docs/current/app-createdb.html) command:
+```bash
+createdb <db name>
+```
+
 
 
 

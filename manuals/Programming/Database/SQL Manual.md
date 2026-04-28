@@ -597,6 +597,19 @@ Sadly, the concept of SQL schema is not standardized across different database s
 
 
 
+# Databases
+To **create** a database, we use the `CREATE DATABASE` statement:
+```SQL
+CREATE DATABASE <DATABASE NAME>;
+```
+
+To **delete** a database, we use the `DROP DATABASE` statement:
+```SQL
+DROP DATABASE <DATABASE NAME>;
+```
+
+
+
 # Comments
 There are two syntaxes for comments in SQL:
 

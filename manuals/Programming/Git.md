@@ -363,12 +363,17 @@ There are two possible scenarios:
 If there are changes requested by the reviewer or we just forgot to add something, we can update the pull request by pushing the updates to the PR branch. The pull request will be automatically updated.
 
 
-# Showing the state in the command line
+# Showing Repository State
 Mostly, we use GUI tools to show the state of the repository. However, sometimes we may need to show the state in the command line. The following commands can be useful:
 
 - `git status`: shows the state of the repository
 - `git log`: shows the history of the repository
 - `git diff`: shows the changes between the working tree and the index
+- [`git shortlog`](https://git-scm.com/docs/git-shortlog): shows the commit history in a compact form
+
+Also, there are some useful external tools that can be used to show the repository state:
+
+- [git-fame](https://github.com/casperdcl/git-fame): shows the authors sorted by the number of lines in the current codebase
 
 ## `git log`
 The `git log` shows the history of the repository. It is the analogue of the main view in GitExtensions. The most useful parameters are:
@@ -377,6 +382,27 @@ The `git log` shows the history of the repository. It is the analogue of the mai
 - `--graph`: shows the history as a graph
 - `--all`: shows the history of all branches, not only the current one
 - `--decorate`: shows the names of the branches and tags, not only the commit hashes
+
+
+## `git shortlog`
+[Reference](https://git-scm.com/docs/git-shortlog)
+
+Summarize the git log by grouping the commits by author. Usefull for contributor reports.
+
+Important parameters:
+
+- `-n`, `--numbered`: sort the authors by the number of commits instead of alphabetical order
+- `-s`, `--summary`: show only commit counts
+
+
+## git-fame
+[GitHub](https://github.com/casperdcl/git-fame)
+
+Tool to analyze the contribution of the authors to the repository. By default, it shows the authors sorted by the number of lines of code they have authored in the HEAD. Default columns are:
+
+- `loc`: number of lines of code
+- `coms`: number of commits
+- `fils`: number of files
 
 
 
