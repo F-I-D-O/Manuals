@@ -493,6 +493,7 @@ Sometimes, it may be usefull to find out which boost components require linking.
 ### JNI
 for JNI, a `JAVA_HOME` system property needs to be set to the absolute path to the JDK, e.g., `C:\Program Files\Java\jdk-15.0.1`
 
+
 ## Gurobi
  1.  If you don’t have Gurobi installed, do it now, and check that the installation is working
 	-   Windows: just install as usual  

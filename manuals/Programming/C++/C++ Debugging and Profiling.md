@@ -629,11 +629,11 @@ The `^MyClass$` (second argument of the `add_printer` function) is a regular exp
 To start debugging a program, run the `lldb <program>` command.
 
 
-## Inspecting variables
+### Inspecting variables
 To inspect variables, we can use the `frame variable` (or just `v`) command. Without arguments, it prints all variables in the current frame. To select a specific variable, run `frame variable <variable name>`. 
 
 
-## Expressions
+### Expressions
 
 To evaluate expressions, we can use the `expression` (or `expr`) command. 
 

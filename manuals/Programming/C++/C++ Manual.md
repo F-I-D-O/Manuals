@@ -1790,6 +1790,32 @@ Appart from padding, each data structure is alligned to its largest member. If t
 This section describe how to implement various design patterns in C++.
 
 
+## Singleton
+We can create singleton clasicaly by testing if a static member variable holding the singleton instance is initialized and if not, initialize it. However, this pattern is not usable for true aggregate types (which are non-existent in languages like Java or Python). The problem is that there is no safe mechanism how to tell if an aggregate member is initialized.
+
+There are two solutions to this problem:
+
+- initialize the singleton instance statically. 
+    - This is only safe if we never access the singleton instance from the static initialization context.
+    ```cpp
+    class Singleton{
+        static Singleton instance;
+    };
+
+    Singleton::instance = Singleton();
+    ```
+- Instead of static member, store the singleton instance in a static variable of the getter function:
+    ```cpp
+    class Singleton{
+        static Singleton get_instance(){
+            static Singleton instance;
+            return instance;
+        }
+    };
+    ```
+    - However ugly it may look, this is by far the safest solution, the only one not prone to the static initialization order bugs.
+
+
 ## Visitor Pattern
 C++ has a much more clear and efficient way how to implement the visitor pattern than other languages like Java. Instead of classical polymorphism, we use:
 

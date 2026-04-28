@@ -1,7 +1,9 @@
 [Wiki](https://en.wikipedia.org/wiki/Fedora_Linux)
 
 # Basics
-Fedora works mostly like other Linux distributions. The build in command-line text editor is `vi` not `vim`.
+Fedora works mostly like other Linux distributions. 
+
+The build in command-line text editor is `vi` not `vim`.
 
 
 # Managing packages

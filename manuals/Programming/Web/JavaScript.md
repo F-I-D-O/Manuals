@@ -14,7 +14,7 @@ JavaScript is originally a browser scripting language. However, today, many othe
 - [official website](https://www.npmjs.com/)
 - [official documentation](https://docs.npmjs.com/cli/v11/commands)
 
-npm is the package manager for Node.js. To **install** a package, use the [`install`](https://docs.npmjs.com/cli/v11/commands/npm-install) command as:
+npm is the package manager for Node.js. To **install or update** a package, use the [`install`](https://docs.npmjs.com/cli/v11/commands/npm-install) command as:
 
 ```bash
 npm install <package specification>
