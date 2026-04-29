@@ -529,10 +529,31 @@ Select-String -Pattern "pattern" | ForEach-Object { $_.Matches.Value }
 
 
 # `Select-Object`
-The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object) selects the specified properties of an object. Example:
+The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object) is a multi-purpose cmdlet that can be used to:
+
+- selects the specified properties of an object. or set of objectsExample:
+    ```PowerShell
+    Get-Process | Select-Object -Property Name, Id
+    ```
+- select unique objects
+- select a specific number of objects
+    ```PowerShell
+    Get-Process | Select-Object -First 10
+    ```
+- select objects on specific positions of an array
+
+
+Important parameters:
+
+- [`-First <number>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-first): select the first `number` of objects
+
+
+# `Where-Object`
+The [`Where-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object) is a cmdlet that can be used to filter objects based on a condition. The syntax is: `Where-Object <condition>`. Example:
 ```PowerShell
-Get-Process | Select-Object -Property Name, Id
+Get-Process | Where-Object { $_.Name -eq "powershell" }
 ```
+
 
 
 # File System

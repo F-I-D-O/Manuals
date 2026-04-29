@@ -291,17 +291,21 @@ Finally, create a new Python project (either clean, or from existing code) and c
 
 
 ### Other Sources
-[Microsoft official documentation](https://docs.microsoft.com/en-us/visualstudio/python/debugging-mixed-mode-c-cpp-python-in-visual-studio?view=vs-2022)
-[Python tools for Visual Studio GitHub page](https://github.com/microsoft/PTVS)
+- [Microsoft official documentation](https://docs.microsoft.com/en-us/visualstudio/python/debugging-mixed-mode-c-cpp-python-in-visual-studio?view=vs-2022)
+- [Python tools for Visual Studio GitHub page](https://github.com/microsoft/PTVS)
 
 
 # Distribution
+[Official documentation](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+
 In the past, the python packaging was determined by the packiging tool used. However, now it is standardized
 
-To turn a project into a setuptools package:
+To prepare a project for distribution:
 
 - create a root package folder named `<package name>` with an `__init__.py` file,
 - create a `pyproject.toml` file in the same folder where the root package folder is.
+
+No that by default, only the source files are included in the distribution. To include other files (e.g. resources), consult your builder's documentation [[source](https://packaging.python.org/en/latest/tutorials/packaging-projects/#including-other-files)].
 
 ## `pyproject.toml`
 
@@ -343,22 +347,63 @@ dynamic = ["version"]
 
 The fields recognized by most builders are:
 
-- [`name`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#name): the name of the package
-
-## Configuration files
-There are three configuration file formats:
-
-- `setup.py` (legacy, original procedural approach)
-- `pyproject.toml` (recommended)
-- `setup.cfg` (legacy, INI format)
-
-Each of the formats has a very similar underlying model (set of setup parameters). Most of the setup parameters are optional, but most of the time, we provide at least these:
-
 - [`name`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#name): the name of the package. Required, and cannot be dynamic.
 - [`version`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#version): the version of the package. Required, and can be dynamic.
 - [`dependencies`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#dependencies): the runtime dependencies of the package. Listed as a TOML array.
-- [`python-requires`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#python-requires): the minimum Python version required to use the package.
+- [`requires-python`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#python-requires): the minimum Python version required to use the package.
 - [`authors`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#authors-maintainers): the authors of the package. Listed as an array of objects with each object having a `name` (required) and `email` field.
+- [`description`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#description): a one-line description of the package.
+- [`license`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license): the license of the package. It must be one of the [SPDX license identifiers](https://spdx.org/licenses/).
+
+
+## Setuptools
+[Official documentation](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)
+
+There are three configuration file formats:
+
+- `setup.py` (legacy, original procedural approach)
+- `pyproject.toml` (recommended, Python standard)
+- `setup.cfg` (legacy, INI format)
+
+Each of the formats has a very similar underlying model (set of setup parameters).
+
+### Setuptools parameters
+[Official documentation](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)
+
+Most of the setup parameters are optional, and most of them overlap with [standard `pyproject.toml` parameters](#project). Important [setuptools-specific parameters](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#setuptools-specific-configuration) are:
+
+- `packages`: specify the package search paths for projects with non-standard directory structure.
+
+
+### Package Discovery
+[Official documentation](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html)
+
+The package discovery can be:
+
+- **automatic**, or
+- **manual**: using the `packages` or `py_modules` parameters.
+
+#### Automatic package discovery
+[Official documentation](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#auto-discovery)
+
+Automatic package discovery is triggerd when none of the `packages` or `py_modules` parameters are specified. 
+
+Automatic discovery only works for two specified directory structures, for any other structure, the installation will fail. These structures are:
+
+- [*src layout*](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout): All package files and subdirectories are stored in `<package config directory>/src`
+- [*flat layout*](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout): The `<package config directory>` contains only the root package folder and some specific directories that are automatically excluded from the discovery (e.g. `tests`, `docs`, `examples`)
+	- note that if the `<package config directory>` contains more than one folder not listed in the automatic exclusion list, the installation will fail. This is because the introduction of [*implicit namespace packages*](https://packaging.python.org/en/latest/guides/packaging-namespace-packages/) that does not require the `__init__.py` file in the package root.
+
+
+### Distributind Resources
+[Official documentation](https://setuptools.pypa.io/en/latest/userguide/datafiles.html)
+
+The only reliable way how to use resources in Python is to place them inside the package. In setuptools, we need to do at least one additional step to make the resources ready for distribution: 
+
+- for automatic data discovery, we need to either:
+	- add the resources to the `MANIFEST.in` file, or
+	- set up the CMS-based automatic data discovery
+- for manual data discovery, we need to set the specific files and directories to include in the package configuration
 
 
 

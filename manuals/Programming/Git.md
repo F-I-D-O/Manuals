@@ -370,6 +370,8 @@ Mostly, we use GUI tools to show the state of the repository. However, sometimes
 - `git log`: shows the history of the repository
 - `git diff`: shows the changes between the working tree and the index
 - [`git shortlog`](https://git-scm.com/docs/git-shortlog): shows the commit history in a compact form
+- [`git ls-files`](https://git-scm.com/docs/git-ls-files): shows the files in the repository (only tracked files by default)
+- [`git blame`](https://git-scm.com/docs/git-blame): shows the author for each line of a specified file
 
 Also, there are some useful external tools that can be used to show the repository state:
 
@@ -403,6 +405,21 @@ Tool to analyze the contribution of the authors to the repository. By default, i
 - `loc`: number of lines of code
 - `coms`: number of commits
 - `fils`: number of files
+
+Important parameters:
+
+- `-e`, `--email`: show the email of the authors instead of the name. It can also help to group contributions of authors who use different names on different machines.
+- `--excl <pattern>`: exclude files matching the regex pattern. For multiple exclusions, use a single regex pattern (and use the `|` operator to separate the exclusions). Example: 
+    ```bash
+    git-fame --excl '.*\.ipynb|SQL/Archive/.*|.*\.osm'
+    ```
+
+## Showing files to which a specific author has contributed
+There is no dedicated command for this, but we can use a combination of `git ls-files` and `git blame`. In PowerShell, this can be done as follows:
+
+```PowerShell
+git ls-files | Where-Object { git blame --line-porcelain HEAD -- $_ | Select-String "^author <AUTHOR NAME>$" -Quiet  }
+```
 
 
 
