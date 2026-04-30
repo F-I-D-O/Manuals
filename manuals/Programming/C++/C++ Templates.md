@@ -331,9 +331,9 @@ class Object<T, C>{}; // not a full specialization, types are not exactly specif
 While behaving similarly, there are some important **differences between the full and partial specialization**:
 
 - **Declaration and definition:**
-	- Full specialization is a new type. Therefore, it must be declared in the header and defined in the source file (`.cpp`).
-		- additionaly, if the full specialization is a member of a class, the declaration must be outside the class:
-			```cpp
+    - Full specialization is a new type. Therefore, it must be declared in the header and defined in the source file (`.cpp`).
+        - additionaly, if the full specialization is a member of a class, the declaration must be outside the class:
+            ```cpp
 			template<>
 			class Object{
 			public:
@@ -353,18 +353,56 @@ While behaving similarly, there are some important **differences between the ful
 			// template full specialization declaration - correct
 			template<>
 			void Object::print(std::string value);
-			```
+            ```
 
-	- Partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
-- **For functions, we cannot provide a partial specialization**. 
-	- For member functions we can solve this by specializing the whole class. 
-	- For free functions, we have to use other techniques like [compile-time branching](#compile-time-branching).
+    - Partial specialization is still just a template, so it must be defined in the header file (`.h` or `.tpp`).
+- **For functions, we cannot provide a partial specialization**.
+    - For member functions we can solve this by specializing the whole class.
+    - For free functions, we have to use other techniques like [compile-time branching] (#compile-time-branching).
+
+
+
+# Dependent Names
+In some context it is not possible to determine what a name is until the template parameters are known. Such names are called *dependent names*.
+
+To enable compilers to find template related errors before the template instantiation, the C++ standard requires that dependent names are prefixed with `typename`. Example:
+
+```cpp
+template<class T>
+class My_class{
+	std::vector<T> v;
+};
+
+decltype(T::v) // error, T is not known at this point
+decltype(typename T::v) // correct
+```
+
+The same problem can arise with names that are templates themselves. The solution is similar, but here, we use the `template` keyword instead of `typename`. Example:
+```cpp
+template<class T>
+class My_class{
+	template<class U>
+	static void func(U u){
+		...
+    }
+}
+
+My_class<A>::func<Other_class>(1); // error, interpreted as My_class<A>::func is less than Other_class
+
+My_class<A>::template func<Other_class>(1); // correct
+```
+
+Resources:
+
+- [SO C++ 20 answer](https://stackoverflow.com/a/77195126/1827955)
+- [SO answer](https://stackoverflow.com/a/613132/1827955)
+
 
 
 # Type Erasure
 [cppreference](https://en.cppreference.com/w/cpp/language/type_erasure)
 
-When working with templates, one soon realizes that they are contiguous. Once we use a template with a parameter `T`, we have to use `T` in the calling code if we do not know the exact type, and that is also true for the calling code of the calling code, etc, all the way to the point where we know the exact type.
+When working with templates, one soon realizes that they are contiguous. Once we use a template with a parameter `T`, we have to use `T` in the calling code if we do not know the exact type, and that is also true for the calling code of the calling code, etc., all the way to the point where we know the exact type.
 
 Often times, this is principially unavoidable, because we need to use the template parameter to keep the contract on the template parameter type.
 However, there are situation where this is absolutely useless. Imagine this scenario:

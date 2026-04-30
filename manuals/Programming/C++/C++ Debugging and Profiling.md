@@ -462,6 +462,13 @@ If location specification is not specified, breakpoint is set at next line. If c
 ### Watches
 [official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Watchpoints.html#Set-Watchpoints)
 
+
+### Showing stack trace
+[official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Backtrace.html)
+
+To show the stack trace, we can use the `bt` command.
+
+
 ### Print variables and expressions
 [official documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Data.html#Data)
 
@@ -620,6 +627,11 @@ The `^MyClass$` (second argument of the `add_printer` function) is a regular exp
 
 - [printer interface documentation](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing-API.html#Pretty-Printing-API)
 
+
+### AI Debugging with GDB/MI
+[official documentation](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_22.html)
+
+LLM agents cannot run the debugger in the interactive mode. However, GDB has a special MI interface that can be used to communicate with the debugger. Notably, LLMs typically know how to operate the MI interface, so no additional instructions are needed.
 
 ## LLDB
 

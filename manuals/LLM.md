@@ -12,7 +12,12 @@ In the interactive mode, all text is interpreted as a single message, except:
 
 - special keystrokes:
     - `Enter` (or `Ctrl+J`): send the message
-    - `Ctrl+C`: exit the message creation or the interactive mode back to the terminal if there is no message being created.
+    - `Ctrl+C`:
+        - if during message creation, delete the message,
+        - if during execution, cancel the execution and return to the interactive mode,
+        - otherwise, exit to the terminal.
     - `Ctrl+Z`: exit to terminal.
 - special commands starting with `/`:
     - `/model`: set the model to use.
+
+We can also use `@` to refer to files and directories. However, this functionality is currently limited, there is no way how to expand the suggestion deeper to the directory structure.

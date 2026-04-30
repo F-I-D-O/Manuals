@@ -34,14 +34,14 @@ To generate a key pair, use the `ssh-keygen` command.
 ### Setting up the private key to be used for ssh connection
 To use a private key for ssh connection, two conditions have to be met:
 
-1. the private key has to have the right permissions:
-	- in Linux, the permissions have to be read/write only for the owner (`600`)
+1. in Linux the private key has to have the right permissions:
+    - the key file has to be read/write only for the owner (`600`)
+    - the folder containing the key file has to be read/write/execute only for the owner (`700`)
 1. you have to specify that the private key should be used for the connection. This can be done in multiple ways:
-	- using the `-i` parameter of the `ssh` command
-	- specifying the key in the `~/.ssh/config` file
-	- using ssh agent (see the SSH Agent section below)
-	- selecting the key in an application with GUI
-
+    - using the `-i` parameter of the `ssh` command
+    - specifying the key in the `~/.ssh/config` file
+    - using ssh agent (see the SSH Agent section below)
+    - selecting the key in an application with GUI
 
 
 ## SSH Tunneling

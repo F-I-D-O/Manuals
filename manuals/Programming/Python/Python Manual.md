@@ -17,12 +17,27 @@ Python has the following naming conventions:
 - [classes](https://peps.python.org/pep-0008/#class-names): CamelCase
 - [constants](https://peps.python.org/pep-0008/#constants): SNAKE_CASE
 - [packages and modules](https://peps.python.org/pep-0008/#package-and-module-names): short names, all lowercase
-    - underscores can be used in  long names to improve readability
+    - underscores can be used in long names to improve readability
 - [types](https://peps.python.org/pep-0008/#type-variable-names): single letter, uppercase, or CamelCase
 
-## Variables
 
-To check if a local variable is defined, we can use the `locals` function:
+## Scopes
+Unlike traditional languages, Python creates scopes only in a very limited number of contexts:
+
+- global scope
+- module scope
+- class scope
+- function scope
+- comprehension scope (see [Comprehensions](#comprehensions) for more details)
+
+On the other hand, the **following contexts do not create a new scope**:
+
+- loops
+- conditions
+- with statements
+- try-except statements
+
+To **check if a local variable is defined in the current scope**, we can use the `locals` function:
 ```Python
 if 'my_variable' in locals():
     print('Variable exists')
@@ -580,7 +595,9 @@ import tests/common
 
 
 # Exceptions
-[documentation](https://docs.python.org/3/tutorial/errors.html)
+
+- [documentation](https://docs.python.org/3/tutorial/errors.html)
+- [except block documentation](https://docs.python.org/3/reference/compound_stmts.html?utm_source=chatgpt.com#except-clause)
 
 Syntax:
 ```Python
@@ -593,6 +610,9 @@ finally:
 ```
 
 The `except` and `finally` blocks are optional. In other words, we can handle errors without having any default cleanup code, and we can have cleanup code without handling errors.
+
+Beware that the `<ERROR VAR>` is cleared at the end of the `except` block (unlike other variables defined in the except block, see [Scopes](#scopes)). This includes the case when another exception is raised in the `except` block.
+
 
 ## Raising exceptions
 To raise an exception, we can use the `raise` keyword:
@@ -1592,8 +1612,12 @@ In the table below, we can see a comparison of the most common plotting librarie
 To save a figure, we can use the `savefig` function. The **`savefig` function has to be called before the `show` function, otherwise the figure will be empty**.
 
 
+
 # Docstrings
-For documenting Python code, we use docstrings, special comments soroudned by three quotation marks: `""" docstring """`
+
+- [PEP 257](https://peps.python.org/pep-0257/)
+
+For documenting Python code, we use docstrings, special comments surrounded by three quotation marks: `""" docstring """`
 
 Unlike in other languages, there are multiple styles for docstring content. The most common are:
 

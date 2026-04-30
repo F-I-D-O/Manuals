@@ -584,6 +584,12 @@ To **modify a symlink**, we use the same command, we just need to add the `-Forc
 Note that **administrator privileges are required to create or modify symlinks**.
 
 
+## Other commands
+
+- `Get-Location`, `pwd`: get the current working directory
+    - [Wikipedia](https://en.wikipedia.org/wiki/Pwd)
+
+
 
 # Network
 
