@@ -508,7 +508,7 @@ Classes in Python are defined using the `class` keyword:
 class MyClass:
     ...
 ```
-Unlike in other languages, we only declare the function members, other members are declared in the constructor or even later.
+Unlike in other languages, we only declare the function members, data members are declared in the constructor or even later.
 
 ## Constructor
 The constructor is a special function named `__init__`. Usually, non-function members are declared in the constructor:
@@ -1506,8 +1506,15 @@ There are several ways how to implement a singleton in Python. The most common a
 - use a metaclass
 - using a decorator
 
+
 ## Module-level variable
-The most simple way is to use a module-level variable. **Note that if the singleton has to be initialized from the outside, the initialization has to be done in a singleton method, not in the constructor!**
+The most simple way is to use a module-level variable. **Note that if the singleton has to be initialized from the outside we have to:**
+
+- initialize in a singleton method, not in the constructor, as in the example below, or
+- import just the module, not the singleton object
+
+If we initialize the singleton in the constructor, and import the singleton object directly, we end up with a non-initialized singleton object.
+
 ```Python
 class Singleton:
     def __init__(self):
@@ -1619,15 +1626,18 @@ To save a figure, we can use the `savefig` function. The **`savefig` function ha
 
 For documenting Python code, we use docstrings, special comments surrounded by three quotation marks: `""" docstring """`
 
-Unlike in other languages, there are multiple styles for docstring content. The most common are:
+Unlike in other languages, the docstring content is not standardized. The most common styles are summarized in the table below:
 
-- [Epytext](https://epydoc.sourceforge.net/manual-epytext.html)
-    ```Python
-    """
-    @param <param name>: <param description>
-    @return: <return description>
-    """
-    ```
+| Style | [PyCharm support](https://www.jetbrains.com/help/pycharm/settings-tools-python-integrated-tools.html) | VSCode support | Sphinx support |
+| --- | --- | --- | --- |
+| [Google](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings) | yes | yes | yes |
+| [Numpy](https://numpydoc.readthedocs.io/en/latest/format.html) | yes | yes | yes |
+| [reStructuredText](https://docutils.sourceforge.io/docs/user/rst/quickref.html) | yes | yes | yes |
+| [Epytext](https://epydoc.sourceforge.net/manual-epytext.html) | no | no | no |
+| Plain text | yes | yes | yes |
+
+The following are the examples of the most common styles:
+
 - [Google](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
     ```Python
     """
@@ -1655,6 +1665,13 @@ Unlike in other languages, there are multiple styles for docstring content. The 
     """
     :param <param name>: <param description>
     :return: <return description>
+    """
+    ```
+- [Epytext](https://epydoc.sourceforge.net/manual-epytext.html)
+    ```Python
+    """
+    @param <param name>: <param description>
+    @return: <return description>
     """
     ```
 
