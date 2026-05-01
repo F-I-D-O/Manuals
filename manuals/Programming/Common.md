@@ -326,6 +326,14 @@ Extensions that provide new containers are:
 Panel is the only area which we can position at all four sides (top, bottom, left, right). **There can be only one panel**. The panel is divided into tabs.
 
 
+### Keyboard Shortcuts
+Keyboard shortcuts can be customized in GUI, or in the `keybindings.json` file. 
+
+To open the `keybindings.json` file, open the GUI and click on the icon at the top right corner of the window with a tooltip `Open Keyboard Shortcuts (JSON)`.
+
+Most of the operations are available in the GUI, but adding new entries is only possible in the `keybindings.json` file.
+
+
 ## Code Formatting
 Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
 
