@@ -508,10 +508,36 @@ Classes in Python are defined using the `class` keyword:
 class MyClass:
     ...
 ```
-Unlike in other languages, we only declare the function members, data members are declared in the constructor or even later.
+
+All members are *public*, and function members are *virtual*.
+
+We create an *instance* of the class by calling the class as a function:
+
+```Python
+class MyClass:
+    ...
+
+a = MyClass()
+```
+
+## Function members
+For each class member function object, the instance have an equivalent *method object*. When we call the method object, the instance is automatically injected as a first argument to the function (typically named `self`). Example:
+
+```Python
+class MyClass:
+    def foo(self):
+        print("foo")
+
+a = MyClass()
+
+a.foo() # calls the foo function
+MyClass.foo(a) # equivalent
+```
+
+
 
 ## Constructor
-The constructor is a special function named `__init__`. Usually, non-function members are declared in the constructor:
+The constructor is a special function named `__init__`. Usually, data members are defined in the constructor:
 ```Python
 class MyClass:
     def __init__(self, a, b):
@@ -521,16 +547,9 @@ class MyClass:
         self.d = None
 ```
 
-## Check if an object contains a member
-To check whether an object contains a member, we can use the `hasattr` function:
-```Python
-if hasattr(obj, 'member'):
-    ...
-```
-
 
 ### Constructor overloading
-Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerfull mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.
+Python does not support function overloading, including the constructor. That is unfortunate as default arguments are less powerful mechanism. For other functions, we can supplement overloading using a function with a different name. However, for the constructor, we need to use a different approach.
 
 The most clean way is to use a class method as a constructor. Example:
 ```Python
@@ -545,6 +564,46 @@ class MyClass:
     def from_a(cls, b):
         return cls(0, b)
 ```
+
+
+## Data members
+Unlike function members, **data members have no declaration**. We define them like local variables, using the instance reference:
+
+```Python
+class MyClass:
+    def __init__(self):
+        self.member = 1
+
+    def method(self):
+        self.another_member = 2 # completely legal
+
+
+a = MyClass()
+a.yet_another_member = 3 # completely legal to add a new member from outside the class
+```
+
+### Class data members
+Class data members are similar to static members in other languages. We defined them:
+
+- inside the class as a regular data member in other languages:
+    ```Python
+    class MyClass:
+        class_member = 1
+    ```
+- outside the class using the class object:
+    ```Python
+    MyClass.class_member = 1
+    ```
+
+### Check if an object contains a member
+To check whether an object contains a member, we can use the `hasattr` function:
+```Python
+if hasattr(obj, 'member'):
+    ...
+```
+
+
+
 
 
 
@@ -1167,9 +1226,6 @@ This can be useful for avoiding expensive computations needed just for logging i
 
 
 
-
-
-
 # Type hints
 [Official Manual](https://docs.python.org/3/library/typing.html)
 
@@ -1186,11 +1242,24 @@ from typing import List, Dict, Tuple, Set, Optional, Union, Any
 a: List[int] = [1, 2, 3]
 ```
 
-We can also specify the type of a function argument and return value:
+We can also specify the types of **function arguments and return values**:
 ```Python
 def foo(a: int, b: str) -> List[int]:
     return [a, b]
 ```
+
+## Class data members hints
+We can specify class data members types prior their definition:
+```Python
+class MyClass:
+    a: int
+    b: str
+    c: List[int]
+```
+Note that this by no means introduces the members, it is just a hint, and the members are not actually present till properly defined. 
+
+Also note that you should not assign values to the hints, as this will effectively turn the expression into a class member definition.
+
 
 ## Type hints in loops
 The type of the loop variable is usually inferred by IDE from the type of the iterable. However, this sometimes fails, e.g., for zip objects. In such cases, we need to specify the type of the loop variable. However, **we cannot use the `:` directly in the loop, but instead, we have to declare the variable before the loop**:
