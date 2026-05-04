@@ -10,3 +10,12 @@ Docstrings
 docstrings
 docstring
 Plotly
+geodataframe
+Dataframe
+geopandas
+dataframes
+dataframe
+GeoSeries
+LineString
+Geopandas
+DataGrip

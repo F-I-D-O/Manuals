@@ -1,8 +1,9 @@
 # Using the debugger
-Pycharm has a build in debugger, however, there are some tricky problems described below.
+PyCharm has a build in debugger, however, there are some tricky problems described below.
+
 
 ## Breaking on Exception
-Breaking on exception is one of the most important debugger tools. However, there are some problems with Pycharm exception debugging.
+Breaking on exception is one of the most important debugger tools. However, there are some problems with PyCharm exception debugging.
 
 ### Breake on Termination vs on Raise
 By default, the program breakes on termination (unhandled exception). This is usually a correct configuration. However, in jupyter, all exceptions are caught to not break the jupyter itself. Therefore, **in jupyter, all exceptions are ignored by the debugger if the breakpoins are set to break on termination.**
@@ -10,6 +11,30 @@ By default, the program breakes on termination (unhandled exception). This is us
 To break on exceptions in jupyter, we have to breake on raise. By this setting, however, we stop even on expected/handeled exceptions, stoping potentially on hundereds breakpoints in library code.
 
 Another issue is with the setting itself. **To propagate the change between breaking on raise/termination, we have to deactivate and then activate again the exception breakpoints, otherwise, the setting is ignored.**
+
+
+## Attaching debugger to running process
+We can attach `debuggpy` to a running process. To do it in the command line, run:
+
+```bash
+debugpy --listen <host>:<port> --pid <process id>
+```
+
+If the process is running locally, the `<host>` is `localhost`. The `<port>` is arbitrary, we can use any free port.
+
+If `debugpy` cannot be attached to a process due to a time out, it is likely that the process is stuck in some system call or native code execution. In this case, we cannot attach the debugger, and need to either restart the process, wait, or use a different tool like `py-spy`, or a native debugger to inspect what is going on.
+
+
+
+# Using py-spy profiler to get the information about the running process
+[GitHub](https://github.com/benfred/py-spy)
+
+py-spy is a Python sampling profiler. But other than the profiling, it can also be used get the information about the running process, especially when the process is stuck and cannot be attached to the debugger.
+
+To get the information, run:
+```bash
+py-spy dump --pid <process id>
+```
 
 
 # Profiling

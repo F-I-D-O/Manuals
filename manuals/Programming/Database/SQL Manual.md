@@ -343,8 +343,6 @@ ORDER BY <LIST OF COLUMNS>
 
 
 
-
-
 # `INSERT`
 Standard syntax for the [`INSERT`](https://en.wikipedia.org/wiki/Insert_(SQL)) statement is
 ```sql

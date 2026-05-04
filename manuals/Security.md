@@ -70,7 +70,7 @@ The connection can be canceled any time byping `exit` to the console.
 [More information](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
 
 ### Debugging a SSH tunnel
-This guide suppose that the tunnel creation comman run without any error message.
+This guide suppose that the tunnel creation command run without any error message.
 
 1. If the tunnel seems to not work, first use a command line tool to be sure:
 	- web browser for HTTP tunnels (remote port 80)

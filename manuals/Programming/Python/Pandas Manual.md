@@ -980,7 +980,7 @@ The [`squeeze`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sq
 # Geopandas
 [homepage](https://geopandas.org/en/stable/)
 
-Geopandas is a GIS addon to pandas. Geometric operations are implemented in Shapely. 
+Geopandas is a GIS extension to pandas. Geometric operations are implemented in Shapely. 
 
 ## Basics
 Geopandas works with [`GeoDataFrame`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html), a subclass of pandas `DataFrame`. The `GeoDataFrame` can contain normal columns (i.e., Pandas, non-geometric columns) and a geometry column implemented by [`GeoSeries`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.html) (instead of the usual Pandas `Series`).
@@ -1039,11 +1039,12 @@ gdf = gpd.read_file(<PATH TO FOLDER WITH SHAPEFILES>)
 ## Working with the geometry
 The geometry can be accessed using the `geometry` property of the geodataframe.
 
+
 ### GeoSeries operations
 There are many useful functions for working with the geometry columns or GeoSeries in general:
 
 - [`line_merge`](https://geopandas.org/en/v1.1.0/docs/reference/api/geopandas.GeoSeries.line_merge.html): for each member of the series, this function merge MultiLineStrings into a single LineString if possible.
-- [`union_all`](https://geopandas.org/en/v1.1.0/docs/reference/api/geopandas.GeoSeries.union_all.html): compute the union of all geometries in the series. 
+- [`union_all`](https://geopandas.org/en/v1.1.0/docs/reference/api/geopandas.GeoSeries.union_all.html): compute the union of all geometries in the series.
     - for linestring geometries, this typically creates a MultiLineString (i.e., it does no merge the lines into a single one)
 
 #### Merging linestrings in the whole series
@@ -1059,6 +1060,8 @@ gdf = gdf.explode()
 ```
 
 
+### Changing the coordinate system (CRS)
+To project the geometry to a different coordinate system, we can use the [`to_crs`](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_crs.html) function.
 
 
 ## Insert geodataframe into db

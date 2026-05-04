@@ -39,6 +39,12 @@ In all cases, the layer data has to fulfill the following requirements:
 
 
 
+# Database Connection
+
+## SSH Tunnels on Application level
+In QGIS, there is a [Remote DB Plugin](https://plugins.qgis.org/plugins/remote_db/) that can be used to create an SSH tunnel to a remote database on application level. Unfortunately, this plugin currently does not support QGIS 4 [[source](https://github.com/lymperis-e/qgis_remote_db_plugin/pull/18)]
+
+
 # Debugging
 As an open-source project, QGIS has many bugs.
 

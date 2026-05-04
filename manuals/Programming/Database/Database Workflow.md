@@ -1,10 +1,10 @@
 # DataGrip
 
 ## Import Formats
-DataGrip can handle imports only from separator baset files (csv, tsv).
+DataGrip can handle imports only from separator based files (`csv`, `tsv`).
 
 ## View Geometry
-In the reuslt window/tab, click on the gear wheel -> `Show GeoView`. However, the **geoviewer has a fixed WGS84 projection, so you have to project the result to this projection first**.
+In the result window/tab, click on the gear wheel -> `Show GeoView`. However, the **geoviewer has a fixed WGS84 projection, so you have to project the result to this projection first**.
 
 ##  Create a spatial Index
 There is currently no GUI tool for that in DataGrip. Just add a normal index and modify the auto generated statement by changing `<column>` to `USING GIST(<column>)` at the end of the statement.
@@ -111,6 +111,21 @@ The `pg_stat_activity` collection contains information about the current activit
 ```SQL
 SELECT * FROM pg_stat_activity WHERE state IS NOT NULL;
 ```
+
+Important columns:
+
+- `pid`: the process ID of the activity
+- `state`: the state of the activity. Possible values:
+    - `active`: the query is running
+    - `idle`: the query finished, but the connection is still open (we can proceed with the next query)
+    - `idle in transaction`: query finished, but the transaction is still open. Potentially problematic.
+- `wait_event_type`: this is the key column showing the reason for the activity to be in the current state, and not progressing further. Note that even if the `state` is `active`, the query may be waiting! Possible values:
+    - `Client`: the query is waiting for the client (e.g., Python script, DataGrip)
+    - `Lock`: the query is blocked by another transaction
+- `wait_event`: The specific event that prevents the activity from progressing further. Possible values:
+    - `Client Read`: we are waiting for data from the client (e.g., data for the `COPY` command)
+    
+- `query`: the SQL query, or `ROLLBACK` if the query was cancelled.
 
 
 

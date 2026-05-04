@@ -1,12 +1,12 @@
 # Data types
 [official documentation](https://www.postgresql.org/docs/current/datatype.html)
 
-## Date
+## Date and time
 [official documentation](https://www.postgresql.org/docs/current/datatype-datetime.html)
 
 - `date`: for dates
 - `time` for time
-- `timestmp` for both date and time
+- `timestamp` for both date and time
 - `interval`
 
 ### Select a part of date/time/timestamp
