@@ -2,55 +2,75 @@
 
 - [wiki/Overpass QL](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL)
 
-# Strucutre
-Every statement ents with `;`.
+# Structure
+Every statement ends with `;`. There are three types of statements:
 
-## Sets
+- **Settings**: for configuring the whole query, enclosed in square brackets
+- **Block statements**: for enabling branching, loops, etc.
+- **Standalone queries**: for selecting data
+
+
+# Settings
+Each setting is a key-value pair enclosed in square brackets. All must be specified in the first statement. Example:
+```Overpass QL
+[out:json][timeout:25];
+```
+
+
+
+# Sets
 Almost all statements works with sets of data. Unless specified, we work with a default set (`_`).
 
-To wrrito to a specific set, we can use `->.` operator: `<statement>->.<set>` writes the result of the `<statement>` to the <set>. The default set can be ommited: `<statement>` is equal to `<statement>->._`.
+To write to a specific set, we can use `->.` operator: `<statement>->.<set>` writes the result of the `<statement>` to the `<set>`. The default set can be omitted: `<statement>` is equal to `<statement>->._`.
 
 
 
-# `out` statement
+# Standalone statements
+
+## `out` statement
 All queries should contain an `out` statement that determines the output format.
 
 - `out` is used for data only request
 - `out geom` returns data with all elements associated with their geometry.
 
-Note that while the output format can be specified, we cannot filter the output (e.g., [we cannot filter the ralation members](https://gis.stackexchange.com/questions/433800/exclude-filter-relation-members-by-type-or-role)).
+Note that while the output format can be specified, we cannot filter the output (e.g., [we cannot filter the relation members](https://gis.stackexchange.com/questions/433800/exclude-filter-relation-members-by-type-or-role)).
 
-# Area specification
-We select an area by name as:
-```
-area["name"="Letkov"];
-```
-And then we used it as: 
-```
-node(area);
-```
+## Query Statements
+These statements query for `osm` data. The syntax is: `<data type><tag filters><query filter>`.
 
-If we need more areas in a query, we can store them in variable:
-```
-area["name"="Letkov"]->.let;
-```
-And:
-```
-node(area.let);
-```
+The `<data type>` is one of the following:
 
-**Important note:** If an area needs to be used repetadly, it has to be named, as the value of `area` (`area._`) is replaced by the output of any statement.
+- `node`: for nodes
+- `way`: for ways
+- `relation` or `rel`: for relations
+- `area`: for areas
+- `derived`: ?
 
-# Filtering
-filters are specified in brackets:
-```
-rel["admin_level"=8];
-```
+Additionally, there are shortcuts for querying multiple data types at once: `nr`, `nw`, `wr`, and `nwr`.
 
-It is also possible to use a regex filtering, we just neeed to replace `=` with `~`:
-```
-rel["admin_level"~".*"];
-```
+The [`<tag filters>`](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_tag_(has-kv)) is a (possibly empty) set of filters applied to the data type, effectively filtering the elements by their tags. Each filter is enclosed in square brackets. There are several types of filters:
+
+- **key-value**: `key=value`, or `key!=value`
+- **existence**: `key`, or `!key`
+- **regex**: `key~regex`
+
+
+The `<query filter>` is a special filter that uses other logic than the tag filters. It is enclosed in parentheses. There are several types of query filters:
+
+- **bounding box**: `<south>, <west>, <north>, <east>`
+- [**child/parent**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#Recurse_(n,_w,_r,_bn,_bw,_br)): `[b]<element type><set name>` only select child/parent elements from the specified set.
+    - The filter can be:
+        - forward (default): select the child elements of the specified set
+        - backward (prefixed with `b`): select the parent elements of the specified set
+    - Each set is prefixed by an element type (`n`, `w`, `r`), so we can only select one type of elements from a set
+    - Examples:
+        - `node(w)` selects all nodes that are children of a way.
+        - `node(w.let)` selects all nodes that are children of a way in the set `let`.
+        - `way(bn.let)` selects all ways that are parent of a node in the set `let`.
+- [**set membership**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_input_set_(.setname)): `.<setname>`
+- [**area**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_area_(area)): `[<set name>.]area`. If the `<set name>` is omitted, the default set (`_`) is used. lter by the previously stored result of an area query statement.
+
+
 
 # Selecting Multiple Data Sets
 Implicitely, all filters are aplied to a default dataset called `_`  and also written to it. Therefore, we cannot do:

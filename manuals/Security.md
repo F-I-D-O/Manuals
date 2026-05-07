@@ -44,6 +44,16 @@ To use a private key for ssh connection, two conditions have to be met:
     - selecting the key in an application with GUI
 
 
+### Authentication Troubleshooting
+
+**If the server does not respond:**
+
+1. check the ssh status with: `service ssh status`
+2. check the ssh port with `sudo netstat -tpln`
+
+**If the key is not accepted:**
+Check the log file: `sudo tail -c 5000 /var/log/auth.log`
+
 ## SSH Tunneling
 An SSH tunnel can be created by the `ssh` command. The usuall syntax is following:
 ```bash
@@ -69,8 +79,14 @@ The connection can be canceled any time byping `exit` to the console.
 
 [More information](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
 
-### Debugging a SSH tunnel
-This guide suppose that the tunnel creation command run without any error message.
+### Tunnel Troubleshooting
+This guide suppose that the tunnel creation command run without any error message. If there is an error during the tunnel creation, check the [Authentication Troubleshooting](#authentication-troubleshooting) section.
+
+#### `channel 3: open failed: connect failed: Name or service not known`
+This error means that the ssh server cannot find the server specified as the tunnel destination. Check the tunnel destination address and port for typos.
+
+
+#### General Tools
 
 1. If the tunnel seems to not work, first use a command line tool to be sure:
 	- web browser for HTTP tunnels (remote port 80)
@@ -215,15 +231,7 @@ lsof -i -n | grep ssh
 ```
 
 
-## Debugging
 
-**If the server does not respond:**
-
-1. check the ssh status with: `service ssh status`
-2. check the ssh port with `sudo netstat -tpln`
-
-**If the key is not accepted:**
-Check the log file: `sudo tail -c 5000 /var/log/auth.log`
 
 
 
