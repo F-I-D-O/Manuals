@@ -577,6 +577,8 @@ To list all services, we can use one of the following commands:
 
 # SSH
 
+To see the last login of each user, we can use the `lastlog` command.
+
 ## Inspecting commands executed over SSH
 There are various possible ways to inspect the commands executed over SSH. Commands from interactive console should appear in history and we should see them when running `history` command, just like in local console. 
 

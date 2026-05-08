@@ -370,6 +370,18 @@ COMMENT ON COLUMN trip.destination IS 'Destination location (zone id)';
 ```
 
 
+# Extensions
+[official documentation](https://www.postgresql.org/docs/current/external-extensions.html)
+
+In postgreSQl, we can extend the functionality of the database by extensions. To work with an extension, we need to:
+
+1. install the extension to the database server: fro that, follow the instructions of the extension documentation
+1. enable the extension in the database we want to use it in:
+	```SQL
+	CREATE EXTENSION <extension name>;
+	```
+	
+
 
 # Various specific tasks
 
@@ -822,6 +834,7 @@ Useful meta-commands:
 
 - `\d`: list all tables and views in the current schema. We can pass a name as an argument to list only the table or view with the given name.
 - `\d+`: same as `\d`, but with additional information.
+- `\dx`: list all extensions in the current database.
 - `\q`: quit the interactive mode.
 - `\i`: execute a script from a file.
 - `\sf <function name>`: show the source code of a function.

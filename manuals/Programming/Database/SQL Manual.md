@@ -292,8 +292,6 @@ Nevertheless, this query can still lead to problems, despite being more compact.
 
 
 
-
-
 # GROUP BY
 [wiki](https://en.wikipedia.org/wiki/Group_by_(SQL))
 

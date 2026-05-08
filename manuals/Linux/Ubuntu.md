@@ -6,38 +6,18 @@ lsb_release -a
 ```
 
 # Managing packages
-To **update the list** of possible updates:
-```bash
-sudo apt update
-```
+In Debian-based distributions, we can manage packages using the `apt` command, typically in the `sudo` context.
 
-To perform the **update**:
-```bash
-sudo apt upgrade
-```
+- **update the list** of possible updates: `sudo apt update`
+- **perform the update**: `sudo apt upgrade`
+- **list installed** packages: `apt list --installed`
+- **remove** a package: `sudo apt remove <package>`
+- **install** a package: `sudo apt install <package>`
+- **find the install location** of a package: `dpkg -L <package>`
+	- unfortunately, it is not possible to easily search for the user who installed the package.
+- **search** for a package: `apt-cache search <package>`
 
-To **list installed** packages:
-```bash
-apt list --installed
-```
-We can filter the list using the `grep` command.
-
-To **find the install location** of a package:
-```bash
-dpkg -L <package>
-```
-Unfortunately, it is not possible to easily search for the user who installed the package.
-
-To **search** for a package:
-```bash
-apt-cache search <package>
-```
-We can limit the search to check only names of the packages using the `--names-only` parameter.
-
-To **remove** a package:
-```bash
-sudo apt remove <package>
-```
+The repositories for the packages are defined in the `/etc/apt/sources.list` file. Typically, we need to edit this file during the system upgrade process, or when we want to install a package from an alternative repository.
 
 
 ## Installing non-stable package versions
@@ -85,7 +65,7 @@ Note that the `apt-mirror-updater` script can also measure the bandwidth, howeve
 ## Possible issues
 
 ### `The repository '<repo>' no longer has a Release file`
-This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of Ubuntu. The solution is to either:
+This can happen when the repository is outdated, which can happen quickly if we use non-stable (non-LTS) versions of OS. The solution is to either:
 
 - change the repository to a newer one manually or
 - change the url of all repositories to `http://old-releases.ubuntu.com/ubuntu/` and then upgrade the system to the newer version:
