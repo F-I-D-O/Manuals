@@ -334,6 +334,26 @@ To open the `keybindings.json` file, open the GUI and click on the icon at the t
 Most of the operations are available in the GUI, but adding new entries is only possible in the `keybindings.json` file.
 
 
+## Running and Debugging
+Unlike in JetBrains products, running and debugging is the same operation in VS Code. To run a specific configuration, go to the `Run and Debug` container in the primary sidebar and select the desired configuration.
+
+To **add a new configuration**, edit the `launch.json` file. The file is located in the `.vscode` folder. You can also open it from the `Run and Debug` container by clicking `create a launch.json file`.
+
+Note that the Run and Debug container is mostly for executing the code you develop, typically, using the debugger. If you need to execute external tools, without debugging, see the [Tasks](#tasks) section.
+
+
+### `launch.json` file
+[official documentation](https://code.visualstudio.com/docs/debugtest/debugging-configuration)
+
+The `launch.json` file is a JSON file that contains the launch configurations for the project. It is located in the `.vscode` folder.
+
+Typically, the root JSON object  contains only two properties: `version` and `configurations`. The `configurations` property is an array of configuration objects. The most important properties of a configuration object are:
+
+- `name`: the name of the configuration displayed in the drop-down menu in the `Run and Debug` container
+- `type`: the type of the configuration, it can be:
+    - `debugpy`: for Python
+
+
 ## Code Formatting
 Formatting in VS Code is defined only for some languages. For others, it has to be installed as an extension. Note that **if the formatting is not defined for a language, selection formatting do nothing**. To check the availability, try to format the whole document, then, an error box should appear.
 
@@ -363,11 +383,16 @@ When coding, running various command line tools (e.g., `pytest`, `npm`, `cargo`,
 
 Tasks for a project are stored in the `.vscode/tasks.json` file. 
 
+### Creating tasks
 For some languages, tasks are automatically suggested by the IDE. If the suggestions are accepted, the corresponding tasks are automatically added to the `.vscode/tasks.json` file.
 
 We can also [create tasks manually](https://code.visualstudio.com/docs/debugtest/tasks#_custom-tasks) by adding task objects to the tasks array in the `.vscode/tasks.json` file.
 
-The important properties are:
+
+### `tasks.json` file
+`tasks.json` file is similar to `launch.json` file: the root JSON object contains a `version` property and a `tasks` property, which is an array of task objects.
+
+The important properties of a task object are:
 
 - `label`: the name of the task displayed in the IDE
 - `type`: the type of the task, it can be:
@@ -392,6 +417,38 @@ Cursor is a port of Visual Studio Code. Therefore, only things that differ from 
 ### Layout
 Cursor's layout is even more limited than VS Code's. The secondary sidebar is occupied by the chat interface, and there is no way to change that. Views can be moved in the secondary sidebar, but they appear as another chat window, which dramatically limits the usability.
 
+
+## Model Types
+There are multiple model types available, we can choose them per conversation. We can also change the model mid-conversation, without losing the content of the conversation.
+
+The key fact is that models have different [usage limits](https://cursor.com/help/models-and-usage/usage-limits):
+
+- `auto` and `composer` modes are practically unlimited
+- other models have a shared spending limit depending on the subscription plan ($20 for the Pro plan)
+
+The current usage can be checked in the [cursor dashboard](https://cursor.com/dashboard/usage). Disable the `default` and `composer` models in the chart to see the spending on the limited models.
+
+
+## Rules
+Rules can be used to guide the agent's behavior. There are two types of rules:
+
+- **User rules**: Applied to all projects
+- **Project rules**: Applied to a specific project
+    - note that user rules are not applied in the *workspace* (multi-repo) mode
+
+Project rules can be applied:
+
+- Always
+- Agent decides when to apply
+- Apply to specific files & folders
+
+
+## Troubleshooting
+
+### Agent gets stuck
+It can happen. The advantage is, that the file changes already done can be reviewed and accepted or rejected. So that should be the first step.
+
+The next step is to click the stop button. Paradoxically, this sometimes unsticks the agent.
 
 
 # Static Analysis with Semgrep

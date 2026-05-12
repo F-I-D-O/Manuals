@@ -1894,5 +1894,3 @@ Plugin plugin; // here, the constructor is called as the variable has static sto
 This technique has some important pitfall. Because the main executable does not reference the plugin, the compiler may discard the whole plugin object and not link it to the executable. To prevent this, several techniques can be used:
 
 - link the plugin with [`/WHOLEARCHIVE`](https://learn.microsoft.com/en-us/cpp/build/reference/wholearchive-include-all-library-object-files?view=msvc-170) flag.
-
-

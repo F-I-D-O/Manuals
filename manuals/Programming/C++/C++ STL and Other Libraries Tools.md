@@ -1,12 +1,12 @@
 # STL and Other Libraries Tools
 
-# IO and Filesystem
+# IO and File system
 The simple way to print to standard input is:
 ```cpp
 std::cout << "Hello world" << std::endl;
 ```
 
-To return to the begining of the line and overwrite the previous output, we can use the `'\r'` character:
+To return to the beginning of the line and overwrite the previous output, we can use the `'\r'` character:
 ```cpp
 std::cout << "Hello world" << '\r' << std::flush;
 ```
@@ -17,17 +17,17 @@ Although we can use strings to work with file paths in C++, the standard format 
 
 Basic operations:
 
-- To **create a path**, we jusct call `std::filesystem::path(<string path>)`.
+- To **create a path**, we just call `std::filesystem::path(<string path>)`.
 - We can easily **join two paths** by `auto full_path = <path 1> / <path 2>`;
-- To get the **asolute path**, we call
+- To get the **absolute path**, we call
 	- [`std::filesystem::absolute(<path>)`](https://en.cppreference.com/w/cpp/filesystem/absolute) to get the path as `CWD/<path>`
-	- [`std::filesystem::canonical(<path>)`](https://en.cppreference.com/w/cpp/filesystem/canonical) to get the dots resolved. Note that this method throws exception if the path does not exists.
+	- [`std::filesystem::canonical(<path>)`](https://en.cppreference.com/w/cpp/filesystem/canonical) to get the dots resolved. Note that this method throws exception if the path does not exist.
 - The path to the **current working directory** can be obtained by calling `std::filesystem::current_path()` and set using `std::filesystem::current_path(<path>)`.
-- To change the file extension (in the C++ representation, not in the filesystem), we can call the [`replace_extension`](https://en.cppreference.com/w/cpp/filesystem/path/replace_extension) method.
+- To change the file extension (in the C++ representation, not in the file system), we can call the [`replace_extension`](https://en.cppreference.com/w/cpp/filesystem/path/replace_extension) method.
 
 
 
-## Filesystem manipulation
+## File system manipulation
 [cppreference](https://en.cppreference.com/w/cpp/filesystem) 
 
 ### Copying

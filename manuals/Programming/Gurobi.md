@@ -29,6 +29,22 @@ The performance could be most likely improved when running the problems in paral
 In some (but not many) cases, we can improve the solution time by tuning the model parameters. The most important parameters are discussed here, for others, see the reference.
 
 
+## Method
+[Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#method)
+
+Solution method for continuous problems. Also used for the LP relaxation of the MIP model.
+
+Possible values:
+
+- `-1`: automatic selection of the method (default)
+- `0`: primal simplex method
+- `1`: dual simplex method
+- `2`: barrier method
+- `3`: concurrent
+- `4`: deterministic concurrent
+- `5`: deterministic concurrent simplex (deprecated)
+- `6`: Primal-Dual Hybrid Grandient
+
 ## Cuts
 - [Reference](https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#cuts)
 
