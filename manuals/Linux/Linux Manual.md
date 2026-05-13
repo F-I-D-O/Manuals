@@ -614,16 +614,16 @@ Much more complicated is to see the commands executed over SSH in a non-interact
     ```
 
 
-## Screen: executing a long running process over SSH 
+## Screen: executing a long-running process over SSH 
 When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
 
 A typical **workflow** can look like this:
 
 1. execute `screen` to start the screen session
-2. run the long running command
+2. run the long-running command
 3. disconnect
 4. connect to the server again
-5. run `screen -r` to recconect to the session and see the results of the command.
+5. run `screen -r` to reconnect to the session and see the results of the command.
 1. after the command is finished, exit the screen session with `exit`
 
 To **detect** if we are running in a screen session, we can use `echo "$STY"`. If the output is not empty, we are running in a screen session.
