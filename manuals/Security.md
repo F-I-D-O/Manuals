@@ -192,24 +192,6 @@ It is important to delete/updete all of these recorsds in case the server change
 More info is at this [SO answer](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh/20710#20710).
 
 
-## Screen: executing a long running process over SSH 
-When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
-
-A typical workflow can look like this:
-
-1. execute `screen` to start the screen session
-2. run the long running command
-3. disconnect
-4. connect to the server again
-5. run `screen -r` to recconect to the session and see the results of the command.
-1. after the command is finished, exit the screen session with `exit`
-
-Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
-
-6. `screen -ls`
-7. read the ID from the output and exec `screen -rd <ID>`
-
-
 ## SCP: Copying files over SSH using 
 The `scp` command is used to copy files over SSH. The syntax is:
 ```bash

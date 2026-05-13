@@ -9,7 +9,15 @@ I use the following stack:
 
 
 # Python
-Python should be installed from the [official web page](https://www.python.org/), not using any package manager. Steps:
+Python should be installed from the [official web page](https://www.python.org/), not using any package manager. The recommended way for Windows is now to use the Python Install Manager. 
+
+Note that this installs Python into *user space*. **System-wide installations are no longer supported** [[source](https://peps.python.org/pep-0773/?utm_source=chatgpt.com#administrator-installs)].
+
+
+## Windows Legacy MSI installer
+This method is still supported, but its support ends with Python 3.16.
+
+Steps:
 
 1. Dowload the 64-bit installer
 2. Run the installer, choose advanced install

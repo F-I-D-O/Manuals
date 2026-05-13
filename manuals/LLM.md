@@ -4,7 +4,11 @@
 - [GitHub](https://github.com/openai/codex)
 - [CLI manual](https://developers.openai.com/codex/cli/features)
 
-Codex is a command line LLM tool that uses ChatGPT API. Typically, it is run interactively in the terminal by executing `codex` command in the directory where the code is located. The important parameters are:
+Codex is a command line LLM tool that uses ChatGPT API. It requires [Node.js](./Programming/Web/JavaScript.md#nodejs) to be installed. Ster that, it can be installed using `npm i -g @openai/codex` (requires administrator permissions).
+
+
+## The `codex` command
+Typically, it is run interactively in the terminal by executing `codex` command in the directory where the code is located. The important parameters are:
 
 - `--add-dir`: add and additional directory to be accessible for codex.
 

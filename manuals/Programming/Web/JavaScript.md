@@ -10,6 +10,7 @@ JavaScript is originally a browser scripting language. However, today, many othe
 - [wikipedia](https://en.wikipedia.org/wiki/Node.js)
 - [official website](https://nodejs.org/)
 
+To install `node.js`, download the `.msi` installer from the official website. During the installation, **do not check the option to install necessary dependencies like Python, Visual Studio, etc.** This will install everything again as a Chocolatey package, even if you already have them installed.
 
 # npm
 

@@ -576,6 +576,7 @@ To list all services, we can use one of the following commands:
 
 
 # SSH
+[SSH Manual](../Security.md#ssh)
 
 To see the last login of each user, we can use the `lastlog` command.
 
@@ -611,6 +612,30 @@ Much more complicated is to see the commands executed over SSH in a non-interact
     ```bash
     echo "command=<path to the script> ssh-rsa AAAA..." >> ~/.ssh/authorized_keys
     ```
+
+
+## Screen: executing a long running process over SSH 
+When the SSH connection to a server is disconnected (either manually, or by network failure or timeout), the process running in the console is canceled. To overcome this limitation, we can use the `screen` command, which is especially usefull for long running processes.
+
+A typical **workflow** can look like this:
+
+1. execute `screen` to start the screen session
+2. run the long running command
+3. disconnect
+4. connect to the server again
+5. run `screen -r` to recconect to the session and see the results of the command.
+1. after the command is finished, exit the screen session with `exit`
+
+To **detect** if we are running in a screen session, we can use `echo "$STY"`. If the output is not empty, we are running in a screen session.
+
+To **exit** the screen session, we can use `exit` command.
+
+### What to do if the reconnect fails
+Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
+
+6. `screen -ls`
+7. read the ID from the output and exec `screen -rd <ID>`
+
 
 # Frequently used software
 
@@ -697,6 +722,8 @@ ls | xargs rm # remove all files in the current directory
 For a system upgrade, refer to the manual for the specific distribution:
 - [Ubuntu upgrade](Ubuntu.md#upgrade)
 
+
+
 # vim
 Vim is a console text editor. It is a modal editor, i.e., it has different modes for different operations. The most important modes are:
 
@@ -740,3 +767,9 @@ To **copy** text to the system clipboard, we can:
 To **paste** text from the system clipboard, we press `Ctrl` + `Shift` + `v`.
 
 
+## Troubleshooting
+
+### If `vim` complains about existing swap file
+Some programs create temporary files when editing files. When such a file exists for the file you are trying to edit, `vim` will complain about it. If you do not suspect that your file is actually modified, you can safely delete the swap file.
+
+To see the swap file, you need to use the `-a` option of the `ls` command. Typically, it is named `.<your file name>.swp`.
