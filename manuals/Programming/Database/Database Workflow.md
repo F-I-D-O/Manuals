@@ -73,9 +73,19 @@ Limitations:
 # PostgreSQL
 As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.
 
+
 ## Starting, stopping, and restarting the cluster
 
-Sometimes it is needed to restart the cluster. There are two commands:
+### Debian-based distributions
+On Debian-based distributions, `systemctl` should be used to start, stop, and restart the cluster.
+
+- `systemctl start postgresql@<version>-main`: starts the cluster
+- `systemctl stop postgresql@<version>-main`: stops the cluster
+- `systemctl restart postgresql@<version>-main`: restarts the cluster
+
+
+### Low-level commands (non-Debian-based distributions)
+The cluster can be operated using the [`pg_ctl`](https://www.postgresql.org/docs/current/app-pg-ctl.html) command.
 
 - `pg_ctl restart`: restarts the cluster
 - `pg_ctl reload`: reloads the configuration of the cluster
@@ -86,14 +96,28 @@ Always check which one is needed in each case. For both commands, the path to th
 - setting the `PGDATA` environment variable
 
 
-## Installing extensions to the cluster
-Appart from installing extensions to the database using the `CREATE EXTENSION` command, we need to install them to the cluster first (if not installed already/by default).
+## Database server extensions
+Some PostgreSQL extensions uses separate libraries. These are installed from each version of the PostgreSQL server separately as OS packages. We need to install these packages before we can install the extensions to the database using the `CREATE EXTENSION` command.
 
+
+### Installing extensions to the cluster
+
+#### Windows
 The installation process differs between different extensions:
 
 - **PostGIS** and **PgRouting**: Install it using the stack builder application included in the PostgreSQL installation.
 - **PgTAP**: Installation is described in the [PostgreSQL Manual](./PostgreSQL%20Manual.md#testing-with-pgtap).
 
+#### Linux
+All extensions should be installed using the package manager of the distribution.
+
+
+### Upgrading extensions
+Usually, upgrading extensions is a two-step process:
+
+1. upgrade the extension package
+	- On linux, extensions can be easily upgraded using the package manager.
+2. upgrade the extension to the database: `ALTER EXTENSION <extension name> UPDATE;`
 
 
 ## Monitoring activity
@@ -202,8 +226,9 @@ Description:
 - `<old/new conf file>`: The path to the `postgresql.conf` file.
 	- usually `/etc/postgresql/<old/new version>/main/postgresql.conf`
 
-## Upgrading extensions
-Some PostgreSQL extensions uses separate libraries. These are installed fro each version of the PostgreSQL server separately. If a library is not foun on the new cluster, it is detected by the `pg_upgrade` command automaticly. In that case, you have to install the library according to the instructions of the library provider.
+
+### Regarding extensions
+If a library is not found on the new cluster, it is detected by the `pg_upgrade` command automaticly. In that case, you have to install the library according to the instructions of the library provider.
 
 
 ## Managing access to the database

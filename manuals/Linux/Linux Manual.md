@@ -630,6 +630,8 @@ To **detect** if we are running in a screen session, we can use `echo "$STY"`. I
 
 To **exit** the screen session, we can use `exit` command.
 
+When using screen, we cannot scroll back. To **scroll back**, we need to switch to the insert mode using `Ctrl` + `a` + `[`.
+
 ### What to do if the reconnect fails
 Sometimes, the server does not detect the connection failure and do not allow you to resume the session (step 5). In this way, we need to find the screen session ID and perform a detach and atach:
 

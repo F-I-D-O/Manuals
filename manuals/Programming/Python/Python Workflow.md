@@ -37,8 +37,29 @@ Parameters:
 - `-m` executes a module as a script, e.g. `python -m venv`. This is useful for executing scripts whithout knowing the path to the script.
 
 
+
 # pip
 [official documentation](https://pip.pypa.io/en/stable/)
+
+## Using `pip` on Linux
+In new python versions, the management of system-wide Python is discouraged, and not supported. On Windows, this is handled by disabling system-wide Python installation completely. On Linux however, Python is required for many system services, and thus the solution is to block the user (even root) from modifying the system-wide Python installation. 
+
+Typically, this message is displayed on Linux when trying to install a package into the system-wide Python installation:
+```bash
+error: externally-managed-environment
+
+× This environment is externally managed
+```
+
+The recommended solution is to use:
+
+- [`pipx`](https://pipx.pypa.io/stable/) for applications that we use (not dependencies)
+- *virtual environments* for reproducible development environments
+- or separate Python installations, if we want the shared Python installation when developing multiple applications
+
+
+### `pipx`
+The `pipx` can be installed using `pip install pipx`. Then, we can use it just like pip.
 
 ## Installing Packages
 Normal packages are installed using: `pip install <package name>`.
