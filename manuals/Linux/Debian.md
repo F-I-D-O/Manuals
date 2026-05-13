@@ -5,6 +5,7 @@
 - [Official Wiki](https://wiki.debian.org/Debian)
 
 # System Upgrade
+
 - [Official Wiki - general tips](https://wiki.debian.org/DebianUpgrade)
 - [Release Notes for Debian 13 (Trixie)](https://www.debian.org/releases/trixie/release-notes/index.en.html)
 - [Release Notes for Debian 12 (Bookworm)](https://www.debian.org/releases/bookworm/amd64/release-notes/)
