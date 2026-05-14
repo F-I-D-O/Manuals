@@ -36,6 +36,8 @@ All queries should contain an `out` statement that determines the output format.
 Note that while the output format can be specified, we cannot filter the output (e.g., [we cannot filter the relation members](https://gis.stackexchange.com/questions/433800/exclude-filter-relation-members-by-type-or-role)).
 
 ## Query Statements
+[Overpass Wiki](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#The_Query_Statement)
+
 These statements query for `osm` data. The syntax is: `<data type><tag filters><query filter>`.
 
 The `<data type>` is one of the following:
@@ -48,6 +50,12 @@ The `<data type>` is one of the following:
 
 Additionally, there are shortcuts for querying multiple data types at once: `nr`, `nw`, `wr`, and `nwr`.
 
+The query statement can be filtered by:
+
+- tag filters in square brackets
+- query filters in parentheses
+
+### Tag Filters
 The [`<tag filters>`](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_tag_(has-kv)) is a (possibly empty) set of filters applied to the data type, effectively filtering the elements by their tags. Each filter is enclosed in square brackets. There are several types of filters:
 
 - **key-value**: `key=value`, or `key!=value`
@@ -55,7 +63,8 @@ The [`<tag filters>`](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_
 - **regex**: `key~regex`
 
 
-The `<query filter>` is a special filter that uses other logic than the tag filters. It is enclosed in parentheses. There are several types of query filters:
+### Query Filters
+The `<query filter>` is a special filter that uses different logic than the tag filters. It is enclosed in parentheses. There are several types of query filters:
 
 - **bounding box**: `<south>, <west>, <north>, <east>`
 - [**child/parent**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#Recurse_(n,_w,_r,_bn,_bw,_br)): `[b]<element type><set name>` only select child/parent elements from the specified set.
@@ -69,7 +78,16 @@ The `<query filter>` is a special filter that uses other logic than the tag filt
         - `way(bn.let)` selects all ways that are parent of a node in the set `let`.
 - [**set membership**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_input_set_(.setname)): `.<setname>`
 - [**area**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#By_area_(area)): `[<set name>.]area`. If the `<set name>` is omitted, the default set (`_`) is used. lter by the previously stored result of an area query statement.
+- [**general conditions**](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL#Conditional_query_filter_(if:)): `if: <evaluator>`. The `<evaluator>` is an expression, posibly using tagg, literlas, operators, and more. Evaluators are described in a dedicated [Evaluator section](#evaluators).
 
+
+
+# Evaluators
+In general, we can use:
+
+- literals: `1`, `"string"`, `true`, `false`, `null`
+- tag valyes: `t["<tag key>"]`
+- operators: `+`, `-`, `*`, `/`, `%`, `==`, `!=`, `<`, `>`, `<=`, `>=`, `&&`, `||`, `!`
 
 
 # Selecting Multiple Data Sets

@@ -19,8 +19,33 @@ Additionally, there are some **semantic elements** - elements that have no dedic
 
 There are over 100 000 tag keys and 190 million unique tag values on OpenStreetMap. The most common tag keys are:
 
-- [`name`](https://wiki.openstreetmap.org/wiki/Key:name): name of the element. This key holds the most obvious and most used name of the element, not always the official name.
+- [`admin_level`](https://wiki.openstreetmap.org/wiki/Key:admin_level): administrative level of the element. See [Administrative levels](#administrative-levels) for more details.
 - [`boundary`](https://wiki.openstreetmap.org/wiki/Key:boundary): area boundary. Most common value is [`administrative`](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative) for official boundaries.
+- [`name`](https://wiki.openstreetmap.org/wiki/Key:name): name of the element. This key holds the most obvious and most used name of the element, not always the official name.
+
+
+## Administrative levels
+
+- [Key: admin_level](https://wiki.openstreetmap.org/wiki/Key:admin_level)
+- [Admin Level Hierarchy for individual countries](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#Table_:_Admin_level_for_all_countries)
+- [USA admin level hierarchy](https://wiki.openstreetmap.org/wiki/United_States_admin_level)
+
+
+Numeric value determining the level of the element in the hierarchy. Here , we discuss only the administrative levels (i.e., elements with `boundary=administrative` tag), which is the most common use case.
+
+Administrative levels ar numbered from 2 (independent country) to 10 (smallest administrative unit). An effort is taken to use the same numbering for the same type of administrative unit in different countries. In result, some numbers are not used for some countries (e.g., 3 in USA). 
+
+Nevertheless, the numbering is only consistent within a country. For the numbering for each country, see [Admin Level Hierarchy for individual countries](https://wiki.openstreetmap.org/wiki/Tag:boundary%3Dadministrative#Table_:_Admin_level_for_all_countries). The typical meaning of individual levels is:
+
+- 2: country
+- 3: region. Unused in the majority of countries.
+- 3: state, province, canton, 
+- 5: district, prefecture, 
+- 6: county, municipality, city
+- 7: town, village, city district
+
+The lower numbers differ too much between countries, so giving a general rule is not at all possible. 
+
 
 # Search element by id
 The searchbox does not work for ids. However, we can edit the URL to search for an element by id. Example:
