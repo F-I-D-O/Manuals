@@ -13,6 +13,12 @@ Typically, it is run interactively in the terminal by executing `codex` command 
 
 - `--add-dir`: add and additional directory to be accessible for codex. This can sometimes fail, in that case, use the [configuration file](#configuration) to add the directory.
 
+There are also some subcommands:
+
+- `resume`: resume the previous session. The first argument is the name (hash) of the session to resume. We can also skip the hash and use `--last` to resume the last session.
+
+
+## Interactive mode
 In the interactive mode, all text is interpreted as a single message, except:
 
 - special keystrokes:

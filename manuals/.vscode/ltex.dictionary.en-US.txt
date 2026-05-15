@@ -19,3 +19,4 @@ GeoSeries
 LineString
 Geopandas
 DataGrip
+subcommands

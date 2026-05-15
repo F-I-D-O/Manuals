@@ -1,3 +1,4 @@
 site/
 *.lock
 manuals-backup
+/manuals/.codex/config.toml
