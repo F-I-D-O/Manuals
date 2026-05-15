@@ -285,7 +285,7 @@ CALL compute_speeds_for_segments(1::smallint);
 ## Deciding the language
 For simple statements, we can use the SQL language. We need the PL/pgSQL if:
 
-- we need to use variables or control statements specific to PL/pgSQL
+- we need to use variables or other constructs specific to PL/pgSQL
 - we need to use temporary tables, as the SQL language fails to recognize them if they are created inside the function/procedure
 
 
