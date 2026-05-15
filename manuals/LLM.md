@@ -11,7 +11,7 @@ Codex is a command line LLM tool that uses ChatGPT API. It requires [Node.js](./
 ## The `codex` command
 Typically, it is run interactively in the terminal by executing `codex` command in the directory where the code is located. The important parameters are:
 
-- `--add-dir`: add and additional directory to be accessible for codex.
+- `--add-dir`: add and additional directory to be accessible for codex. This can sometimes fail, in that case, use the [configuration file](#configuration) to add the directory.
 
 In the interactive mode, all text is interpreted as a single message, except:
 
@@ -31,7 +31,9 @@ We can also use `@` to refer to files and directories. However, this functionali
 
 
 ## Configuration
-[Official manual](https://developers.openai.com/codex/config-basic)
+
+- [Official manual](https://developers.openai.com/codex/config-basic)
+- [Configuration Reference](https://developers.openai.com/codex/config-reference)
 
 The configuration is determined by (ordered from the highest to the lowest priority):
 
@@ -39,9 +41,16 @@ The configuration is determined by (ordered from the highest to the lowest prior
 - project-specific configuration: `.codex/config.toml`
 - user-specific configuration: `~/.codex/config.toml`
 
+
+### `config.toml`
 The most important configuration keys are:
 
 - `sandbox_mode`: the sandbox mode to use. Valid values are:
     - `read-only`: approval required for all edits
     - `workspace-write`: most files in the workspace are editable (except for `.codex`, `.git`, and similar files)
     - `danger-full-access`: No sandboxing
+
+There can be several sections in the `config.toml` file:
+
+- `[sandbox_workspace_write]`: the configuration for the `workspace-write` sandbox mode. Most important keys are:
+    - `writable_roots`: the directories that are writable in the `workspace-write` sandbox mode. Array of strings.
