@@ -188,6 +188,24 @@ WITH NO DATA
 This way, we use the result of the `SELECT` statement to create the table structure, but the table is empty.
 
 
+# Deleting all rows with `TRUNCATE`
+[official documentation](https://www.postgresql.org/docs/current/sql-truncate.html)
+
+Truncate in PostgreSQL has the following behavior:
+
+- if the table is referenced by foreign keys from another table that is not part of the same `TRUNCATE` statement, the operation will fail (even if both tables are empty!)
+- if executed in a transaction, the operation will be rolled back if any error occurs
+
+`TRUNCATE` can be configured, the syntax is:
+```PostgreSQL
+TRUNCATE <table names> [<sequence reset configuration>] [<cascade configuration>]
+```
+
+Where:
+
+- `<sequence reset configuration>`: if set to `CONTINUE IDENTITY` (default), all sequences are kept as they are, if set to `RESTART IDENTITY`, the sequences are restarted.
+- `<cascade configuration>`: if set to `RESTRICT` (default), the operation will fail if any of the referenced tables is not empty, if set to `CASCADE`, the operation will be cascaded to all tables that are referenced by foreign keys from the table.
+
 
 # Procedures and functions
 To store a set of SQL commands for later use, PostgreSQL provides two options: procedures and functions. Both are similar and can use SQL, PL/pgSQL, or other languages supported by PostgreSQL. The key differences are:

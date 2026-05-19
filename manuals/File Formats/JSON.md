@@ -9,6 +9,7 @@
 
 - [Wikipedia](https://en.wikipedia.org/wiki/JSON_Schema)
 - [Official website](https://json-schema.org/)
+- [Keywords Index](https://json-schema.org/understanding-json-schema/keywords)
 
 JSON Schema is a JSON-based format for defining the structure of JSON data, similar to XML Schema. It can be used to validate JSON data.
 
@@ -62,6 +63,29 @@ When the complexity of the JSON Schema grows, and we may need to use the same ch
     }
     ```
 
+### Referencing schemas in the same file
+
+- [Official documentation](https://json-schema.org/understanding-json-schema/structuring#defs)
+- [Reference](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-00#rfc.section.8.2.4)
+
+We can also embed the schema directly in the root object of the JSON Schema. For defining an embedded schema, we can use the `$defs` property. The value of this property is an object, where the keys are the names of the embedded schemas, and the values are the schemas themselves. Example:
+```json
+{
+    "$defs": {
+        "child": {
+            "type": "object"
+        }
+    }
+    "childs": {
+        "type": "array",
+        "items": {
+            "$ref": "#/$defs/child"
+        }
+    }
+}
+```
+
+
 ## Conditions
 [official documentation](https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse)
 
@@ -86,18 +110,60 @@ Example:
 {
     "if": {
         "properties": {
-        "country": { "const": "United States of America" }
+            "country": { "const": "United States of America" }
         }
     },
     "then": {
         "properties": {
-        "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" }
+            "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" }
         }
     },
     "else": {
         "properties": {
-        "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" }
+            "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" }
         }
     }
 }
 ```
+Note that we can go much deeper in the hierarchy in all of the three branches. We can even follow references to other schemas.
+
+
+## Schema Composition
+[official documentation](https://json-schema.org/understanding-json-schema/reference/combining)
+
+There are some logical operators objects we can use to compose schemas. Example:
+```json
+{
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "country": { "const": "United States of America" }
+                }
+            },
+            "then": {
+                "properties": {
+                    "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" }
+                }
+            },
+        }
+        {
+            "if": {
+                "properties": {
+                    "country": { "const": "United Kingdom" }
+                }
+            },
+            "then": {
+                "properties": {
+                    "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" }
+                }
+            },
+        }
+    ]
+}
+```
+This is the only way how to use two if-then-else on the same level of the hierarchy, but there are other composition operators:
+
+- [`allOf`](https://json-schema.org/understanding-json-schema/reference/combining#allof): all of the schemas must be valid
+- [`anyOf`](https://json-schema.org/understanding-json-schema/reference/combining#anyof): any of the schemas must be valid
+- [`oneOf`](https://json-schema.org/understanding-json-schema/reference/combining#oneof): exactly one of the schemas must be valid

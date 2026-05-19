@@ -402,14 +402,31 @@ WHERE new.way_id = old.way_id AND new.area = old.area AND new.position = old.pos
 ```
 
 
+# Deleting Rows
+In SQL, there are two ways how to delete rows:
 
-# `DELETE`
-To delete records from a table, we use the [`DELETE`](https://en.wikipedia.org/wiki/Delete_(SQL)) statement:
+- `DELETE` statement: for deleting specific rows
+- `TRUNCATE` statement: for deleting all rows from a table
+
+
+## `DELETE`
+To delete specific rows from a table, we use the [`DELETE`](https://en.wikipedia.org/wiki/Delete_(SQL)) statement:
 ```sql
-DELETE FROM <table_name> WHERE <condition>
+DELETE FROM <table_name> [WHERE <condition>]
 ```
+We can omit the `WHERE` clause, but that is hardly useful, as in that case, we can just use the `TRUNCATE` statement instead.
+
+If any of the rows to be deleted are referenced by foreign keys, this operation will fail (unless `CASCADE` is used).
 
 If some data from another table are required for the selection of the records to be deleted, the syntax varies depending on the database engine. 
+
+
+## `TRUNCATE`
+[Wikipedia](https://en.wikipedia.org/wiki/Truncate_(SQL))
+
+Truncate is an optimized way of deleting all rows from a table. The behavior varies a lot between database engines, but there is one thing in common: individual rows are not checked for foreign key constraints, and therefore, the operation is much faster than `DELETE` without `WHERE` clause.
+
+In all cases, refer to the documentation of your database engine for the exact behavior.
 
 
 
