@@ -38,8 +38,11 @@ The Windows `msi` installer can be downloaded from the [Releases page](https://g
 The basic usage of d2 is to run it in command line: `d2 <input file>`. This command will compile the file to svg. Most useful options are:
 
 - `--watch`, `-w`: This will automatically start a server where the generated `svg` file is displayed. It will also watch the file for changes and reload the web page with the new diagram.
-- `--scale`: Scale the output. Default is `-1`, which means fit the whole `svg` to the screen.
-
+- `--scale <float>`: Scale the output. Default is `-1`, which means fit the whole `svg` to the screen.
+- `--layout <layout engine>`: Layout engine to use. Options are:
+    - `dagre`: Directed Acyclic Graph Layout (default)
+    - `elk`: ELK Layout
+    
 ## Basic Syntax
 Any new line not prefixed with an existing key is considered a new element, e.g.,
 
@@ -115,3 +118,21 @@ Some shapes does not have a keyword, but can be created using styling:
 
 ### Text Wrapping
 Automatic text wrapping is not supported. We have to wrap the text manually by using the `\n` character.
+
+
+## Layout engine configuration
+[Documentation](https://d2lang.com/tour/layouts/)
+
+D2 supports three layout engines: Dagre, ELK, and TALA, these can be set by the `--layout` command line option. Moreover, we can configure each layout engine by its specific command line options, named as `<layout engine>-<option>`.
+
+
+### ELK
+
+- [D2 Documentation](https://d2lang.com/tour/elk/)
+- [ELK Documentation](https://eclipse.dev/elk/reference.html)
+
+Supported ELK layout options:
+
+- [`--elk-nodeNodeBetweenLayers`](https://eclipse.dev/elk/reference/options/org-eclipse-elk-layered-spacing-nodeNodeBetweenLayers.html): Distance between nodes in different layers (see the Layered algorithm documentation to understand the meaning of layers)
+    - lower number means more dense layout, but also greater chance of overlapping
+    - D2 default is `70`, but ELK default is `20`, so there is definitely a room for decreasing the value
