@@ -120,10 +120,42 @@ Some shapes does not have a keyword, but can be created using styling:
 Automatic text wrapping is not supported. We have to wrap the text manually by using the `\n` character.
 
 
-## Layout engine configuration
+
+## Positioning
+[Documentation](https://d2lang.com/tour/positions/)
+
+The D2 positioning system is very basic. Except for the TALA layout engine, we can only position the elements to the side of the canvas. Position objects relative to other objects is not supported, nor is absolute positioning.
+
+
+## Legend
+[Documentation](https://d2lang.com/tour/legend/)
+
+We can create a legend using a special variable `d2-legend`. However, this is not very useful, as this legend is always positioned in the bottom right corner of the diagram. There are two more flexible ways to create a legend:
+
+- adding objects with grid layout - basically creating the legend from diagram elements
+- using HTML inside markdown label of some element. Example:
+    ```d2
+    my element: |md
+        <div style="margin-top:0.5em;margin-left:2em;padding:0px 10px;font-size:0.95em;">
+            <div style="display:flex;align-items:center;gap:8px;margin:2px 0;"><span style="display:inline-block;width:14px;height:14px;background-color:#6eb0e6;border:1px solid #333;"></span><span>Arrays</span></div>
+            <div style="display:flex;align-items:center;gap:8px;margin:2px 0;"><span style="display:inline-block;width:14px;height:14px;background-color:#a78dfc;border:1px solid #333;"></span><span>Dynamic Arrays</span></div>
+            <div style="display:flex;align-items:center;gap:8px;margin:2px 0;"><span style="display:inline-block;width:14px;height:14px;background-color:#90f597;border:1px solid #333;"></span><span>Sets</span></div>
+            <div style="display:flex;align-items:center;gap:8px;margin:2px 0;"><span style="display:inline-block;width:14px;height:14px;background-color:#fa8989;border:1px solid #333;"></span><span>Maps</span></div>
+        </div>
+    |
+    ```
+
+
+## Layout engines
 [Documentation](https://d2lang.com/tour/layouts/)
 
 D2 supports three layout engines: Dagre, ELK, and TALA, these can be set by the `--layout` command line option. Moreover, we can configure each layout engine by its specific command line options, named as `<layout engine>-<option>`.
+
+### Dagre
+Dagre is the default layout engine. It has the following properties:
+
+- rounded arrows
+- lot of overlapping of arrows over other objects
 
 
 ### ELK
@@ -131,8 +163,22 @@ D2 supports three layout engines: Dagre, ELK, and TALA, these can be set by the 
 - [D2 Documentation](https://d2lang.com/tour/elk/)
 - [ELK Documentation](https://eclipse.dev/elk/reference.html)
 
+ELK is the best engine for complex diagrams.
+
 Supported ELK layout options:
 
 - [`--elk-nodeNodeBetweenLayers`](https://eclipse.dev/elk/reference/options/org-eclipse-elk-layered-spacing-nodeNodeBetweenLayers.html): Distance between nodes in different layers (see the Layered algorithm documentation to understand the meaning of layers)
     - lower number means more dense layout, but also greater chance of overlapping
     - D2 default is `70`, but ELK default is `20`, so there is definitely a room for decreasing the value
+
+
+### TALA
+
+- [D2 Documentation](https://d2lang.com/tour/tala/)
+- [TALA Documentation](https://github.com/terrastruct/tala)
+
+TALA is a new layout engine from the developers of D2. It works better than Dagre, but worse than ELK for complex diagrams. Properties:
+
+
+## Automatic Post-processing
+Unfortunately, D2 does not support any hooks for post-processing. The only way to post-process the diagram automatically is to create a D2 plugin (in Go).
