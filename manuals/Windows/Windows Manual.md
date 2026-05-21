@@ -596,7 +596,7 @@ If there is a problem, go to `Settings -> Advanced -> Log Settings` and enable t
 
 
 
-# Problems
+# Troubleshooting
 
 ## Folder Sharing Problems
 Note that updated **Windows 10 disabled anonymous sharing**, so password protected sharing has to be turned on. 
@@ -697,3 +697,13 @@ The most Important information in the log is the `BUGCHECK_CODE`. The meaning of
 
 ## Text selection cursor turns white in Edge browser
 The problem can be the hardware acceleration. To disable it, go to the Edge settings and disable the `Use hardware acceleration when available` option. Then restart the browser.
+
+
+## SugarSync does not sync changes
+Sometimes, the syncing stops without any error. What to do:
+
+1. check [online](https://app.sugarsync.com/), if the files are there
+1. If the files are not there, restart sugarsync:
+    1. exit SugarSync
+    1. in services, restart the SugarSync service
+    1. start SugarSync again
