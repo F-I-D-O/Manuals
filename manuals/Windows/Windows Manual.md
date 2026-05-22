@@ -226,6 +226,32 @@ The user specific shortcuts are stored in: `%appdata%\Microsoft\Windows\Start Me
 The system wide shortcuts are stored in: `%programdata%\Microsoft\Windows\Start Menu\Programs`.
 
 
+## Permissions
+[Documentation](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/access-control)
+
+Every possible permission can be granted to a:
+
+- user
+- group
+
+Each user and group, some times referred as *security principals*, is assigned a Security Identifier (SID).
+
+Each resource (file, folder, etc.) has an *owner* who can grant permissions to other security principals. By default, the owner is the user who created the resource. Regardless of the permission granted, the owner always has all permissions.
+
+The permissions available depend on the type of the resource, but most resources support at least the following permissions:
+
+- read
+- modify
+- change owner
+- delete
+
+
+
+
+### Managing permissions using the GUI
+To manage permissions using the GUI, right click on the resource in the Windows Explorer and select `Properties` -> `Security` -> `Advanced`.
+
+
 ## Read Only Files and Folders
 An ancient form of file protection on Windows is the read only flag that can be set on files and folders. It is not a real protection, as it can be easily removed by the user, but it can be used to prevent accidental changes.
 

@@ -68,6 +68,25 @@ However, if a package uses a C/C++ backend and does not contain the compiled whe
 
 
 ### Troubleshooting package installation
+
+
+#### Missing permissions for the pip cache
+Usually, we see a message like this:
+```
+ERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: <path to the wheel>
+```
+
+This can have multiple causes:
+
+- the cache is located in the system folder, and we do not have admin rights: 
+	- if you can elevate, do it, otherwise
+	- install in user mode
+- the cache is located in the user folder:
+	- check the user folder permissions, the owner should be the user executing `pip install`
+	- if the owner is correct, it may be broken pip cache. You can resolve it by deleting the cache: `pip cache purge`
+
+
+#### General troubleshooting
 If the installation fails, check the following:
 
 1.  if you installed the package by name, check for the wheel on the Chris Golthke page.
