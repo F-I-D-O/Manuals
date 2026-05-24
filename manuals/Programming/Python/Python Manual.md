@@ -1486,6 +1486,11 @@ Apart from logical operations, we can use dedicated mask functions:
 
 - [`unique`](https://numpy.org/doc/stable/reference/generated/numpy.unique.html): returns the unique elements of the array. Important parameters:
     - `return_counts`: if set to `True`, the function returns the counts of the unique elements (same as `value_counts` in pandas)
+- [`divide`](https://numpy.org/doc/stable/reference/generated/numpy.divide.html): vectorized division:
+    - `x1`: numerator
+    - `x2`: denominator
+    - `out`: output array. If not provided, a new array is created.
+    - `where`: filter mask. Where the mask is `False`, the value in the output array is not changed.
 
 
 

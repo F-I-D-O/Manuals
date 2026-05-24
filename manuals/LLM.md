@@ -60,3 +60,9 @@ There can be several sections in the `config.toml` file:
 
 - `[sandbox_workspace_write]`: the configuration for the `workspace-write` sandbox mode. Most important keys are:
     - `writable_roots`: the directories that are writable in the `workspace-write` sandbox mode. Array of strings.
+
+
+## Notifications
+By default, codex CLI sends notifications using the `OSC 9` (see [Operating System Command (OSC) Escape Sequences](./Programming/Common.md#terminal-control-escape-sequences)) escape sequence. This sequence is not supported by all terminals, including the Windows Terminal. Therefore, as a fallback, the CLI sends a `BEL` control code (see [Single characters (C0 control codes)](./Programming/Common.md#terminal-control-escape-sequences)) to send an alert sound.
+
+To get a notification in Windows Terminal without a sound, Windows Terminal can be configured to react to the `BEL` control code by flashing the window or the taskbar icon (see [Windows Terminal Configuration](./Windows/Windows%20Manual.md#windows-terminal-configuration)).

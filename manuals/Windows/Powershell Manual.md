@@ -25,6 +25,10 @@ A basic unit of execution in PowerShell is a *script block*. A script block can 
 - a script
 
 
+## Escaping
+PowerShell is special in using the backslash `` ` `` as an escape charactr. For example, to print a new line, we use `` `n ``.
+
+
 ## Resources
 
 - [Microsoft documentation](https://learn.microsoft.com/en-us/powershell/scripting/overview)

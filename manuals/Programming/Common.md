@@ -1,9 +1,5 @@
-
-
-
-
 # Command Line Interface (CLI)
-This chapter should guide you on how to design CLI in a user-friendly and predictable way. Mostly, it follows the [POSIX standard](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html), with the [GNU long option extensions](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html).
+This chapter follows the [POSIX standard](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html), with the [GNU long option extensions](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html).
 
 There are two main types of CLI arguments:
 
@@ -29,6 +25,75 @@ Also, short options can be grouped, e.g., `-h -v -o file.txt` can be written as 
 
 ## Multiple values in one option or operand
 If an option or operand contains multiple values (e.g., a list of files), the values should be separated by a comma, e.g., `--files file1.txt,file2.txt,file3.txt`.
+
+
+# Escape Sequences
+[Wikipedia](https://en.wikipedia.org/wiki/Escape_sequences_in_C)
+
+Escape sequences are sequences of characters in text with some prefix that have a special meaning. There are multiple reasons why to introduce escape sequences:
+
+- **clashing characters escape sequences**: to use characters that have a special meaning in the context, e.g.:
+    - `\{` in regular expressions to match a literal `{` character
+    - `{{` in Python string literals to match a literal `{` character
+    - `\"` in YAML string literals wrapped in double quotes to match a literal `"` character
+- **whitespace escape sequences**: to use visible and non-disruptive whitespace characters, e.g.:
+    - `\t` to insert a tab character in C-like languages
+    - `` `t `` in insert a tab character in PowerShell
+- **control escape sequences**: to encode non-textual instructions in text (a form of [in-band signaling](https://en.wikipedia.org/wiki/In-band_signaling)), e.g.:
+    - `\a` to send an alert sound in C-like languages
+    - `\x1b M` to move the cursor up in terminal (ANSI escape sequence)
+
+Escape sequences are composed of a *prefix*, typically shared by all escape sequences of the same type, and the character (or sequence of characters) that have a special meaning. Note that even non-printable characters can be used, which is mostly used for control escape sequences.
+
+The name "escape sequence" was probably coined by the massive use of ANSI escape sequences (prefixed with the escape character `\x1b`) in the before-GUI era.
+
+
+## Terminal Control Escape Sequences
+Terminal control escape sequences are *control escape sequences* that are used to control the terminal or terminal emulator. Without them, programs would need a separate program interface to control the terminal to do anything besides printing text. As there are many different terminals and programs, running different operating systems, such interface program interface would be impossible to create. Instead, control escape sequences established as a standard for terminal control.
+
+The standard for terminal control escape sequences are the [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code). In the reminder of this section, we will refer to  this standard.
+
+There are several **groups of ANSI escape sequences**:
+
+- [**Single characters (C0 control codes)**](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C0_controls): technically, these are not escape sequences, as they have no prefix. But we list them here as they are used to control the terminal, and they are part of the same control sequence standards. Examples:
+    - `0x07`, `\a`: Bell (alert sound)
+    - `0x0D`, `\r`: Carriage Return
+    - `0x1B`: Escape
+- [**Field Separator (FS) Escape Sequences**](https://en.wikipedia.org/wiki/ANSI_escape_code#Fe_Escape_sequences): in the format of `ESC<character>`, where the `<character>`, referred to as [C1 control code](https://en.wikipedia.org/wiki/C0_and_C1_control_codes#C1_controls), is between `0x80` and `0x9F`. Examples (prefixed with ESC):
+    - `M`, `0x8D`: Move up one line
+    - `[`, `0x9B`: Control Sequence Introducer
+    - `]`, `0x9D`: Operating System Command
+- [**Control Sequence Introducer (CSI) Escape Sequences**](https://en.wikipedia.org/wiki/ANSI_escape_code#Control_Sequence_Introducer_commands): in the format of `ESC[<character sequence>]`, where the `<character sequence>` is a sequence of characters. Examples (prefixed with `ESC[`):
+    - `<n>A`: Move cursor up by `<n>` lines
+    - `<n>;<m>H`: Move cursor to line `<n>` and column `<m>`
+    - `<n>T`: Scroll down by `<n>` lines
+    - `<styling>m`: Set text styling using the [Set Graphics Rendition (SGR) codes](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR)
+- [**Operating System Command (OSC) Escape Sequences**](https://wezterm.org/escape-sequences.html#operating-system-command-sequences): in the format of `ESC]<character sequence>`, where the `<character sequence>` is a sequence of characters. Examples (prefixed with `ESC]`):
+    - `0;<title>ST`: Set terminal title to `<title>`
+    - `9;<notification>ST`: Send OS notification with `<notification>`
+
+
+We have multiple ways how to **represent ANSI escape sequences**:
+
+| Representation Name | Example: Bell | Usage |
+| - | - | - |
+| Name | Bell | Used in manuals and documentation |
+| Abbreviation | BEL | Convential abbreviation, typically used in text editors when non-printable characters are displayed |
+| [Hexadecimal notation](https://en.wikipedia.org/wiki/Hexadecimal) | `\x07` | real data representation, input for terminals |
+| [C escape sequence](https://en.wikipedia.org/wiki/C_escape_sequence) | `\a` | Literals in C-like languages |
+| [Caret notation](https://en.wikipedia.org/wiki/Caret_notation) | `^G` | Typical terminal output representation of non-printable characters. Also, some programs, e.g., screen, accept this notation as input. |
+
+
+When **typing ANSI escape sequences into the terminal** (e.g., with `echo`), we need to be careful, as there are many pitfalls:
+
+- It may be tempting to use the "corresponding" key on the keyboard, but that typically does not work. For example, the Escape key does not emit the ASCII [Escape character](https://en.wikipedia.org/wiki/Escape_character#ASCII_escape_character).
+- Most terminals support C escape sequences, but these are defined only for a limited set of characters.
+- Hexadecimal notation usually works, but the input syntax differs between terminals.
+
+
+### Support
+Unix terminals typically support ANSI escape sequences. In Windows console host, the support started in Windows 10, version 1511 (2016). But even this upgraded console host, or the Windows Terminal, do not support all ANSI escape sequences.
+
 
 
 

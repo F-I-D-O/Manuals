@@ -1,3 +1,4 @@
+# YAML
 YAML is a simple markup language that uses the syntax that can be easily read by non-programmers.
 
 Important links:
@@ -5,6 +6,9 @@ Important links:
 - [YAML official website](https://yaml.org/)
 
 The YAML files should have a `.yaml` extension [[source](https://yaml.org/faq.html)].
+
+# Basic Syntax
+The basic unit present in any YAML file is a *mapping*: `key: value`.
 
 
 # String Literals
@@ -70,6 +74,75 @@ The result is:
 ```text
 This is a folded style string. This is still a single line. 
 This is a new line.
+```
+
+
+# Objects
+[specification](https://yaml.org/spec/1.2.2/#21-collections)
+
+In YAML, we create objects by using *mappings of mappings*. There aretwo possible syntaxes:
+
+- [*block style*](https://yaml.org/spec/1.2.2/#block-mappings) :
+    ```yaml
+    object:
+      key1: value1
+      key2: value2
+    ```
+- [*flow style*](https://yaml.org/spec/1.2.2/#flow-mappings) (JSON-like syntax): `object: {key1: value1, key2: value2}`
+
+
+# Sequences
+[specification](https://yaml.org/spec/1.2.2/#21-collections)
+
+There are two syntaxes for sequences:
+
+- [*block style*](https://yaml.org/spec/1.2.2/#block-collection-styles) :
+    ```yaml
+    - value1
+    - value2
+    - value3
+    ```
+- [*flow style*](https://yaml.org/spec/1.2.2/#flow-sequences) (JSON-like syntax): `[value1, value2, value3]`
+
+
+Typically, we map sequences to a key:
+
+```yaml
+# compact style
+my_sequence:
+  - value1
+  - value2
+  - value3
+
+# flow style
+my_sequence: [value1, value2, value3]
+```
+
+## Sequence of objects
+Following JSON syntax, it is clear how to create a sequence of objects using the flow style:
+```yaml
+my_sequence: [ {key1: value1, key2: value2}, {key1: value1, key2: value2} ]
+```
+
+But how to create a sequence of mappings using the block style? The following syntax is the answer:
+```yaml
+my_sequence:
+  - 
+    key1: value1
+    key2: value2
+  - 
+    key1: value1
+    key2: value2
+```
+
+The newlines are not significant, so the following syntax is also valid:
+
+```yaml
+my_sequence:
+  - key1: value1
+    key2: value2
+  - key1: value1    
+    key2: value2
 ```
 
 # Characters with special meaning in YAML

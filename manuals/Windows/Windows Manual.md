@@ -3,7 +3,7 @@
 
 Using shell to manage the operating system is an essential task and therefore, we start with the [terminals](https://en.wikipedia.org/wiki/Terminal_emulator) and [shells](https://en.wikipedia.org/wiki/Shell_(computing)). In the history of Windows and DOS, there were many shell or built-in script interpreters, and also numerous terminal applications. Here, we only cover the shells and terminals relevant to the most recent versions of Windows.
 
-There are two **shells** in Windows:
+There are two CLI **shells** in Windows:
 
 - [command prompt (Command shell)](https://en.wikipedia.org/wiki/Cmd.exe) (`cmd.exe`)
     - very simple and limited functionality
@@ -43,8 +43,13 @@ The Windows Terminal is a new terminal application with many great features:
 To configure Windows Terminal, click the `v` button in the top bar and select `Settings`. There are two kinds of settings:
 
 - Global settings sorted in categories in the left panel
-- Profile settings for each profile. The profiles are listed in the left panel. After selecting a profile, the settings are displayed in the right panel. Nonbasic settings are sorted in categories under the `Additonal settings` header. 
+- Profile settings for each profile. The profiles are listed in the left panel. After selecting a profile, the settings are displayed in the right panel. Nonbasic settings are sorted in categories under the `Additonal settings` header.
 
+
+### Windows Terminal Configuration
+Configuration can be accessed by right clicking on the terminal window top bar and selecting `Settings`. Most useful settings are:
+
+- **Bell character action**: In `Profiles` -> `<Profile Name>` -> `Advanced` -> `Bell notification style`. By default, only a sound is played. We can select also to flash the window (when active) or to flash taskbar icon (when minimized).
 
 ### Windows terminal pass stdout to text editor instead displaying it
 This can happen if the output is too long or wide for the terminal. 
