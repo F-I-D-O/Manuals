@@ -1,3 +1,13 @@
+# AGENTS.md
+[Official website](https://agents.md/)
+
+Agents.md is a standard for LLM agent rules that work in most of the LLM tools. It is a markdown file that is read by the agent to determine basic rules.
+
+The file can be used for:
+
+- **project-specific rules** - in this case, the file belongs to the project root directory
+- **user-specific rules** - in this case, refer to the LLM tool documentation. Typically, the file should be placed in a provider-specific subdirectory in the user's home directory.
+
 # Codex
 
 - [Homepage](https://openai.com/codex/)
@@ -66,3 +76,9 @@ There can be several sections in the `config.toml` file:
 By default, codex CLI sends notifications using the `OSC 9` (see [Operating System Command (OSC) Escape Sequences](./Programming/Common.md#terminal-control-escape-sequences)) escape sequence. This sequence is not supported by all terminals, including the Windows Terminal. Therefore, as a fallback, the CLI sends a `BEL` control code (see [Single characters (C0 control codes)](./Programming/Common.md#terminal-control-escape-sequences)) to send an alert sound.
 
 To get a notification in Windows Terminal without a sound, Windows Terminal can be configured to react to the `BEL` control code by flashing the window or the taskbar icon (see [Windows Terminal Configuration](./Windows/Windows%20Manual.md#windows-terminal-configuration)).
+
+
+## Rules
+[Official documentation](https://developers.openai.com/codex/guides/agents-md)
+
+Rules are defined in `AGENTS.md` file. The user-specific global rules are stored in `~/.codex/AGENTS.md` file.
