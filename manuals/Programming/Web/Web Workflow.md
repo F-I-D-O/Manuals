@@ -43,7 +43,7 @@ Each step is an object with the following structure:
 - `name` (optional): the name of the step in the UI
 - `uses`: the action to use to run the step, specified as `<actor owner>/<action name>@<version>`
 - `run`: the command to run. An alternative to `uses` if there is no action available for the task.
-- `with`: configuration object for the action.
+- [`with`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepswith): configuration object for the action.
 
 
 ## Actions
@@ -63,6 +63,7 @@ For sensitive data that we do not want to store in the repository, we can use se
 1. we refer to the secrets in the workflow file using the `${{ secrets.<secret name> }}` syntax.
 
 
+
 # FTP Deploy Github Action
 [Github](https://github.com/SamKirkland/FTP-Deploy-Action)
 
@@ -75,3 +76,10 @@ Important configuration parameters are:
 - `password`: the FTP password
 - `local_dir`: the local directory to deploy
 - `server_dir`: the remote directory to deploy to
+
+
+
+# Testing websites locally
+Most of the time, we can just open local files in the browser. However, this way, we may not test some URL specific features, and we may not be able to access some resources (e.g., local SVG images are blocked by the browser if embedded in the HTML).
+
+An alternative is to use a simple local HTTP server (i.e., no server side scripting or database). To do this in Python, just run `python -m http.server <port>`. 

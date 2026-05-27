@@ -567,6 +567,63 @@ function(return_value return_var_name)
 endfunction()
 ```
 
+
+## Comments
+[documentation](https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#comments)
+
+There are two types of comments in CMake:
+
+- **line comments**: `# <comment>`
+- **multi-line (bracket) comments**: `#[[ <comment> ]]`. Note that this uses the [bracket argument syntax](https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#bracket-arguments), i.e., we can actually add `=` signs between the brackets to make the comment open and close more explicitly. However, it is necessary to use the same number of `=` signs for the opening and closing brackets.
+
+### Documentation comments
+There is no standard or support for documentation comments in CMake. However, the CMake's own code uses the following documentation comment convention:
+
+```cmake
+#[=======================================================================[.rst:
+my_function
+-----------
+
+Performs some useful configuration step.
+
+Synopsis
+^^^^^^^^
+
+.. code-block:: cmake
+
+  my_function(
+    TARGET <target>
+    INPUT  <file>
+    [OPTIONAL]
+  )
+
+Arguments
+^^^^^^^^^
+
+``TARGET <target>``
+  Target to which the generated configuration is applied.
+
+``INPUT <file>``
+  Input file used during generation.
+
+``OPTIONAL``
+  Allows the input file to be absent.
+
+Result Variables
+^^^^^^^^^^^^^^^^
+
+``MY_FUNCTION_RESULT``
+  Set to the path of the generated file in the calling scope.
+
+#]=======================================================================]
+function(my_function)
+    cmake_parse_arguments(ARG "OPTIONAL" "TARGET;INPUT" "" ${ARGN})
+
+    # Implementation...
+endfunction()
+```
+
+
 ## Regular expressions
 CMake has a support for regular expressions. However, beware that:
 
