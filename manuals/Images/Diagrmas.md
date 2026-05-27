@@ -35,6 +35,8 @@ The Windows `msi` installer can be downloaded from the [Releases page](https://g
 
 
 ## CLI
+[Manual](https://d2lang.com/tour/man/)
+
 The basic usage of d2 is to run it in command line: `d2 <input file>`. This command will compile the file to svg. Most useful options are:
 
 - `--watch`, `-w`: This will automatically start a server where the generated `svg` file is displayed. It will also watch the file for changes and reload the web page with the new diagram.
@@ -80,6 +82,16 @@ The connection type is one of the following:
 - `--`: line
 
 Same as for normal elements, collection may have properties and labels.
+
+
+### Markdown or other content labels
+We can use styled content like markdown, HTML, LaTeX, or more. We just put these blocks on the place of D2 labels:
+```d2
+<element id>: |<content type>
+    <content>
+|
+```
+
 
 
 ### Object Lables

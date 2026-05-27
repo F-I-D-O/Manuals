@@ -61,3 +61,17 @@ For sensitive data that we do not want to store in the repository, we can use se
 
 1. we define secrets in `Settings -> Secrets and variables -> Actions`
 1. we refer to the secrets in the workflow file using the `${{ secrets.<secret name> }}` syntax.
+
+
+# FTP Deploy Github Action
+[Github](https://github.com/SamKirkland/FTP-Deploy-Action)
+
+This GitHub action allows to automatically deploy a website to an FTP server. The action string is `SamKirkland/FTP-Deploy-Action@v4.4.0`.
+
+Important configuration parameters are:
+
+- `server`: the FTP server address
+- `username`: the FTP username
+- `password`: the FTP password
+- `local_dir`: the local directory to deploy
+- `server_dir`: the remote directory to deploy to
