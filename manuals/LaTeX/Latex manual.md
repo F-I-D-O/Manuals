@@ -787,7 +787,17 @@ The following environments are available for equations:
 
 The new line is created using the `\\` command. Nothe that **the `\\` command is not allowed in the `equation` environment**.
 
-To align the equations in the `align` and `alignat` environments, we use the `&` character. 
+
+### Aligned equations
+We can align equations using either the `align` or `alignat` environment. We write the equations inside these environments normally and add the `&` characters (same number of them per line). The equations will be aligned at the `&` characters.  
+
+The differences (see [SO thread](https://tex.stackexchange.com/questions/200813/difference-between-align-and-alignat-environments) for more details):
+
+| Property | `align` | `alignat` |
+| --- | --- | --- |
+| `begin` argument | none | number of alignment points (number of `&` characters) |
+| horizontal spacing | automatic | manual |
+| compatibility | usually good | incompatible e.g. with INFORMS journal templates |
 
 
 ## Problem and similar environments

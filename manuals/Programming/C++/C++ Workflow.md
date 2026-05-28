@@ -116,11 +116,23 @@ The propertis for each configuration are structured as follows:
 - `<Link>`: contains the properties for the linking of the target (e.g., the libraries to link, the output file, etc.)
 
 
+### Troubleshooting
+
+`Cannot read Module Dependencies file test_run .dir\Debug\common.cpp.module.json: Index was outside the bounds of the array. The build order might be incorrect.`
+
+This error is caused by the MSBuild that does not support translation units with the same name when the module scan is enabled (which is the default in CMake).
+
+To fix it, the easiest way is to disable the module scan for the target:
+```cmake
+set_target_properties(<target name> PROPERTY CXX_SCAN_FOR_MODULES OFF)
+```
+
+
 # Cmake
 
--   Windows: Install CMake from [https://cmake.org/download/](https://cmake.org/download/)
+- Windows: Install CMake from [https://cmake.org/download/](https://cmake.org/download/)
 	-  if your CMake is too old (e.g. error: “CMake 3.15 or higher is required”), update CMake (same as new install)
--   Linux:
+- Linux:
 	-   If cmake is installed already, uninstall it!
 	-   Do not use the cmake from linux repositories!!
 	-   Download CMake `sh` installer from [https://cmake.org/download/](https://cmake.org/download/)
