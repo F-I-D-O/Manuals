@@ -412,11 +412,14 @@ Note that the Run and Debug container is mostly for executing the code you devel
 
 The `launch.json` file is a JSON file that contains the launch configurations for the project. It is located in the `.vscode` folder.
 
-Typically, the root JSON object  contains only two properties: `version` and `configurations`. The `configurations` property is an array of configuration objects. The most important properties of a configuration object are:
+Typically, the root JSON object  contains only two properties: `version` and `configurations`. The `configurations` property is an array of configuration objects. The following properties are required:
 
 - `name`: the name of the configuration displayed in the drop-down menu in the `Run and Debug` container
 - `type`: the type of the configuration, it can be:
     - `debugpy`: for Python
+    - `cppvsdbg`: for C++ using the Visual Studio Debugger
+- `request`: the request type for the debugger. Either `launch` or `attach`.
+- `program`: the path to the program to debug.
 
 
 ## Code Formatting

@@ -372,18 +372,33 @@ go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz co
 ## Visual Studio Code
 In VS Code, the C++ support is provided by multiple extensions.
 
-### CMake support extension
-The CMake support extension is provided by the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension.
 
-To set the vcpkg toolchain file, it is best to edit the extension settings, so that the toolchain file is set for all projects:
+### CMake support
+The CMake support extension is provided by the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension. To run the configuration or other CMake tasks, open the newly installed CMake view.
 
-1. In the extension settings, go to `CMake: Configure Args`
+By default, the CMake extension uses [CMake presets](./CMake%20Manual.md#cmake-presets) to configure the project. To use CMake without presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
+
+The root build directory is `out/build/<configuration name>`.
+
+To switch between build presets, click the edit button next to the build preset in the CMake view.
+
+
+#### Setting the toolchain file
+Unfortunately, VS Code does not support batch script CMake shims. Therefore, to set the vcpkg toolchain file, it is best to edit the extension settings, so that the toolchain file is set for all projects:
+
+1. Go to the extension settings,
+1. Set `Cmake: CMake Path` to the path to the CMake executable.
+1. Set `Cmake: Configure Args` to the following:
 1. Add argument `--toolchain`
 1. Add argument with the path to the vcpkg toolchain file
 
-To run the configuration or other CMake tasks, open the newly installed CMake view.
 
-By default, the CMake extension uses CMake presets to configure the project. To use CMake  withou presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
+## Run and Debug Configuration
+[C++ Extension Documentation](https://code.visualstudio.com/docs/cpp/config-msvc)
+
+The type of the configuration for MSVC is `cppvsdbg`. In addition to [standard required properties](../Common.md#launchjson-file), we need to set the `cwd` property.
+
+
 
 ## Cursor
 For Cursor, the situation is almost the same as for VS Code. Important differences:
