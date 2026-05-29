@@ -1918,7 +1918,12 @@ If any of the test phases crash, we should inspect the logs, as the command line
 - otherwise, go to bin directory of the test build, ad look for the logs in `Testing/Temporary/`
 
 
-## Problems
+## Troubleshooting
+
+
+### `Test not available without configuration` 
+This means that we need to specify the build configuration the test should be run with using the `-C` argument (e.g., `Debug`, `Release`, etc.).
+
 
 ### `Warning! <name> library version mismatched error`
 This error typically occures when the library `<name>` used during the build is different from the library used at runtime when running the tests. This can happen due to following scenario:
