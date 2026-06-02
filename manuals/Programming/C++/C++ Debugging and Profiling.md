@@ -651,18 +651,29 @@ To evaluate expressions, we can use the `expression` (or `expr`) command.
 
 
 
-# Profiling
-There are multiple [profiler options for C++](https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing), but not all the tools are easy to use or maintained.
+# Profiling - Windows
+There are multiple [profiler options for C++](https://docs.google.com/spreadsheets/d/1nvOmqWVMX6H1Q-Y6JDqRW5Ocaj6oPoKDQogz2kRkHHE/edit?usp=sharing), but not all the tools are easy to use or maintain.
 
 ## CPU Profiling
 
-### Visual Studio
-In visual studio:
+### Built-in Windows CPU Profiler
+Quick run from Visual Studio:
 
 1. Run the program and either wait for breakpoint hit or manually pause the execution
 2. In `Diagnostic Tools` tab, hit the `Enable CPU Profiling` button
 3. Unpause the execution
 4. Pause the execution again, the profiler results covering the period between resume and pause should be available
+
+
+#### Windows built-in profiler overview
+The structure of the Windows profiler is quite complicated, as we can see on the diagram below:
+![Windows profiler structure](https://learn.microsoft.com/en-us/visualstudio/profiling/media/profiling-tools-overview.png)
+
+The core component is called [Event Tracing for Windows (ETW)](https://learn.microsoft.com/en-us/windows/win32/etw/event-tracing-portal). This is a high-performance, low-overhead, scalable tracing system that is built into the Windows operating system. Visual Studio ships two program bundles that use ETW for profiling:
+
+- [Diagnostic Tools](https://learn.microsoft.com/en-us/visualstudio/profiling/diagnostic-tools?view=vs-2022): this is basically the profiler that is integrated into the Visual Studio GUI.
+- [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows/win32/wpt/windows-performance-toolkit): standalone package for general Windows profiling.
+
 
 ### CLion
 [documentation](https://www.jetbrains.com/help/clion/cpu-profiler.html)

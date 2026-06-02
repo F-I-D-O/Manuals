@@ -1671,6 +1671,25 @@ Important properties:
     - `configurePreset` (required): the name of the configure preset to use. Basically link the build directory to the configure directory.
     - `configuration`: equals to the `-C`/ `--config` argument of the `cmake` command.
 
+## Making presets ready for both single and multi-configuration generators
+Different build sequencing tools (e.g., ninja, MSBuild) have different ways how to specify the build configuration (Debug, Release, ...). For details, see the [Specify the build type section](#specify-the-build-type-debug-release).
+
+To make presets ready for both single and multi-configuration generators, the typical approach is to use all types we need in both configure and build presets:
+
+- in `configurePresets`, we set the configuration type using:
+    ```json
+    "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+    }
+    ```
+- in `buildPresets`, we set the configuration type using:
+    ```json
+    "configuration": "Debug"
+    ```
+
+The string we use (e.g., `Debug`) is the same we would use in the command line.
+
+
 
 
 # CMake Directory Structure

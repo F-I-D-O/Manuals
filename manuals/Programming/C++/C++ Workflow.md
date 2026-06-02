@@ -363,10 +363,14 @@ At total, [there are 5 different versionigs related to Visual Studio](https://bl
 The version which the [compiler support table](https://en.cppreference.com/w/cpp/compiler_support) refers to is the version of the compiler (`cl.exe`).
 we can find it be examining the compiler executable stored in `C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64`.
 
-### Problems & solutions
+### Troubleshooting
 
 #### Cannot regenerate Cmake cache
 go to `./vs` and look for file named `CmakeWorkspaceSettings`. It most likelz contains a line with `disable = true`. Just delete the file, or the specific line.
+
+
+#### No cmake or build or run targets recognized.
+This can be due to a wrong cmake configuration. Some non-typical CMake configurations supported by build sequencing tools may not be supported by Visual Studio. Therefore, make sure that the CMake configuration, typically defined by CMake presets is as expected. Especially, check that build type is specified in both configure and build presets (see [Making presets ready for both single and multi-configuration generators](./CMake%20Manual.md#making-presets-ready-for-both-single-and-multi-configuration-generators) .
 
 
 ## Visual Studio Code
@@ -393,7 +397,7 @@ Unfortunately, VS Code does not support batch script CMake shims. Therefore, to 
 1. Add argument with the path to the vcpkg toolchain file
 
 
-## Run and Debug Configuration
+### Run and Debug Configuration
 [C++ Extension Documentation](https://code.visualstudio.com/docs/cpp/config-msvc)
 
 The type of the configuration for MSVC is `cppvsdbg`. In addition to [standard required properties](../Common.md#launchjson-file), we need to set the `cwd` property.

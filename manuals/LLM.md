@@ -25,7 +25,9 @@ Typically, it is run interactively in the terminal by executing `codex` command 
 
 There are also some subcommands:
 
-- `resume`: resume the previous session. The first argument is the name (hash) of the session to resume. We can also skip the hash and use `--last` to resume the last session.
+- `resume`: resume the previous session. The first argument is the name (hash) of the session to resume.
+    - We can use `--last` instead of the hash to resume the last session, or 
+    - we can skip the argument completely to get a list of all available sessions and choose one to resume interactively.
 
 
 ## Interactive mode

@@ -444,6 +444,7 @@ Installation and configuration:
 
 To show the server status, press `Ctrl` + `Shift` + `P` and select `LTeX: Show Language Server Status`.
 
+
 ## Tasks
 [Documentation](https://code.visualstudio.com/docs/debugtest/tasks)
 
@@ -474,6 +475,30 @@ The important properties of a task object are:
 - `args`: the arguments of the command or process (array of strings). Extra quoting is not needed (unlike in Visual Studio).
 - `problemMatcher`: the [problem matcher](https://code.visualstudio.com/docs/debugtest/tasks#_defining-a-problem-matcher) to use for the task (array of strings). If not set, the IDE may ask the user to set it when the task is run.
 
+
+## Command palette
+Command palette is a powerful tool that allows us to run any command available in the IDE. We can start it by
+
+- pressing `Ctrl` + `Shift` + `P`
+- clicking to the search box and typing `>` 
+
+Each command has a format of `<group>: <command name>`, where group can be extension name or a vscode component name. 
+
+
+## Troubleshooting
+Useful troubleshooting tools are:
+
+- **Developer Tools**: similar to the developer tools in web browsers. Can be opened by:
+    - `Help` -> `Toggle Developer Tools`
+    - `> Developer: Toggle Developer Tools`
+- **Keyboard Shortcuts Troubleshooting**: to check why keyboard shortcuts do not work as expected. To open it: `>Developer: Toggle Keyboard Shortcuts Troubleshooting`
+- **Context Inspection**: We can see the context values for current location in the editor. Steps:
+    1. `>Developer: Toggle Context Keys`
+    2. Click on the desired location in the editor
+    3. Check the context object in the developer tools console. 
+
+### Partial suggestions acceptance does not work
+This can happen when the accessibility support is enabled. Disable it in `Editor: Accessibility Support` setting (`"editor.accessibilitySupport": "off"` in `settings.json`).
 
 
 # Cursor

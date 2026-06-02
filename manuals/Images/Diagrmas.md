@@ -101,6 +101,7 @@ Objects labels are the text printed in or below the object. **By default, the la
 - by adding the text behind semicolon: `<element id>: <label text>`
 
 By default, the label is printed inside the object, which resizes  to fit the label. If the size of the object is set, the behavior defers between *Layout engines*:
+
 - Dagre: the set size of the object is ignored,
 - ELK: the label is printed below the object.
 
