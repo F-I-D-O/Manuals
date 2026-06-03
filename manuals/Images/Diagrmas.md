@@ -128,6 +128,7 @@ Some shapes does not have a keyword, but can be created using styling:
 ### Style keywords
 
 - [border-radius](https://d2lang.com/tour/style/#border-radius)
+- [stroke](https://d2lang.com/tour/style/#stroke)
 
 ### Text Wrapping
 Automatic text wrapping is not supported. We have to wrap the text manually by using the `\n` character.

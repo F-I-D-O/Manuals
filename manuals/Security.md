@@ -96,15 +96,20 @@ This error means that the ssh server cannot find the server specified as the tun
 
 
 ## Enabnling SSH Access on Server
+To enable SSH access, follow these steps:
 
-1. install openssh:
-	- `sudo apt update`
-	- `sudo apt install openssh-server`
-2. configure password access
-	1. open `/etc/ssh/sshd_config`
-	2. set `PasswordAuothentication yes`
-	3. after restrat you can log in with the user and password used in Ubuntu
-3. restart the ssh server: `sudo service ssh restart`
+1. Install openssh server
+	- Ubuntu: `sudo apt update && sudo apt install openssh-server`
+	- Windows: `Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0`
+2. Configure access
+	- Password authentication
+		1. open `shd_config`
+		2. set `PasswordAuothentication yes`
+		3. after restrat you can log in with the user and password used in OS
+	- [Key authentication](#enabling-key-authentication-for-a-user)
+3. Restart the ssh server:
+	- Ubuntu: `sudo service ssh restart`
+	- Windows: `Restart-Service sshd`
 
 
 ### Enabling key authentication for a user
@@ -112,6 +117,9 @@ The user can only use a private key for authentication if the corresponding publ
 
 Note that **the `authorized_keys` file has to have the right permissions**, which is read/write only for the owner, and read only for the group and others (`644`).
 
+The format of the file is simple: each line contains one public key. Empty lines, or lines starting with `#` are ignored. The public key is specified in the same format as in the public key file (`<key name>.pub`).
+
+#### Restricting access to a specific command
 With the `authorized_keys` file, we can also restrict the user by wrapping the commands he can execute with our own script. This restriction applies to a specific key. We configure the wrapping command by adding the following to the beginning of the key line:
 ```
 command="<path to the command>" ssh-rsa AAAA...
@@ -214,6 +222,21 @@ lsof -i -n | grep ssh
 
 
 
+# Virtual Private Network (VPN)
+[wiki](https://en.wikipedia.org/wiki/Virtual_private_network)
+
+Virtual Private Network is a network
+
+- that is established over the internet, ignoring the real network topology (i.e., *virtual*)
+- you can operate sacurely, shielded against actors outside the network (i.e., *private*)
+
+We can divide VPN by the provider type:
+
+- **Commercial**: the provider is a company that offers a VPN service.
+- **Institutional**: the provider is a company or organization that offers a VPN to its employees/members.
+- **Self-hosted**: we run the VPN ourselves.
+	- [WireGuard](https://www.wireguard.com/) 
+	- [Tailscale](https://tailscale.com/) ([Wiki](https://en.wikipedia.org/wiki/Tailscale)): wrapper around WireGuard, makes it easier to use
 
 
 
