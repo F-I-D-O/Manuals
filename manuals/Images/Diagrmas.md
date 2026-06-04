@@ -144,7 +144,33 @@ The D2 positioning system is very basic. Except for the TALA layout engine, we c
 ## Legend
 [Documentation](https://d2lang.com/tour/legend/)
 
-We can create a legend using a special variable `d2-legend`. However, this is not very useful, as this legend is always positioned in the bottom right corner of the diagram. There are two more flexible ways to create a legend:
+We can create a legend using a special variable `d2-legend`:
+
+```d2
+vars: {
+    d2-legend: {
+        a: <label and style for first legend item>
+        b: <label and style for second legend item>
+        ...
+        a -> b: <label and style for first connection>
+        a -> b: <label and style for second connection>
+        ...
+    }
+}
+```
+
+If we wandt to skip connections, we can just omit the connection part of the legend. However, we cannot skip the object part. If we skip `a` and `b` in the legend, but `a -> b` is present, the `a` and `b` will be still present in the legend. To avoid this, we have to hide the objects:
+
+```d2
+vars: {
+    d2-legend: {
+        a.style.opacity = 0
+        b.style.opacity = 0
+    }
+}
+```
+
+However, this is frequently impractical, as this legend is always positioned in the bottom right corner of the diagram. There are two more flexible ways to create a legend:
 
 - adding objects with grid layout - basically creating the legend from diagram elements
 - using HTML inside markdown label of some element. Example:

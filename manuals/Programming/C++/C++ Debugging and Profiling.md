@@ -664,15 +664,87 @@ Quick run from Visual Studio:
 3. Unpause the execution
 4. Pause the execution again, the profiler results covering the period between resume and pause should be available
 
+For more details, see the [Visual Studio Profiler Manual](https://learn.microsoft.com/en-us/visualstudio/profiling/cpu-usage?view=visualstudio)
 
-#### Windows built-in profiler overview
-The structure of the Windows profiler is quite complicated, as we can see on the diagram below:
-![Windows profiler structure](https://learn.microsoft.com/en-us/visualstudio/profiling/media/profiling-tools-overview.png)
+#### Windows built-in profiler tools overview
+The structure of the Windows profiler tools is quite complicated, as we can see on the diagram below:
+![Windows profiler structure](https://fido.ninja/diagrams/Windows%20Profiling.svg)
 
-The core component is called [Event Tracing for Windows (ETW)](https://learn.microsoft.com/en-us/windows/win32/etw/event-tracing-portal). This is a high-performance, low-overhead, scalable tracing system that is built into the Windows operating system. Visual Studio ships two program bundles that use ETW for profiling:
+The core component is called [Event Tracing for Windows (ETW)](#event-tracing-for-windows-etw). This is a high-performance, low-overhead, scalable tracing system that is built into the Windows operating system. Visual Studio ships two program bundles that use ETW for profiling:
 
 - [Diagnostic Tools](https://learn.microsoft.com/en-us/visualstudio/profiling/diagnostic-tools?view=vs-2022): this is basically the profiler that is integrated into the Visual Studio GUI.
 - [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows/win32/wpt/windows-performance-toolkit): standalone package for general Windows profiling.
+
+
+#### Event Tracing for Windows (ETW)
+
+- [official summary from WPT manual](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/event-tracing-for-windows)
+- [official documentation](https://learn.microsoft.com/en-us/windows/win32/etw/event-tracing-portal)
+- [Github User Summary](https://github.com/ustayready/tradecraft/blob/master/miscellaneous-reversing-forensics/windows-kernel-internals/etw-event-tracing-for-windows-101.md)
+- [MSDN Magazine 2007](https://learn.microsoft.com/en-us/archive/msdn-magazine/2007/april/event-tracing-improve-debugging-and-performance-tuning-with-etw)
+
+
+#### Windows Performance Toolkit
+
+- [official documentation](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/)
+
+Windows Performance Toolkit is a software package that provides native performance analysis tools for Windows. It consists of
+
+- [Windows Performance Recorder](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/windows-performance-recorder): a GUI performance recording tool. It outputs the data to the `*.etl` files
+- [Windows Performance Analyzer](#windows-performance-analyzer): a GUI tool that analyzes performance in the `*.etl` files
+- `xperf`: a command-line tool that can be used to record performance data an save it to the `*.etl` files
+
+In the Visual Studio Installer, it is listed as an individual component under `SDKs, Libraries, and Frameworks` section.
+
+
+##### Windows Performance Analyzer
+
+Windows Performance Analyzer is a GUI tool that analyzes performance recorded in the `*.etl` files. It has the following views:
+
+- `Graph Explorer`: List of trace groups of different types:
+    - `System Activity`
+    - `Computation`: This is the CPU usage trace group
+    - `Power`
+    - `Other`
+- `Trace Properties`: Properties of the selected trace
+
+For a correct CPU trace, we should see:
+
+- The `Computation` trace group
+- `CPU usage (Sampled)` trace
+- In the `Trace Properties` view of the `CPU usage (Sampled)` trace:
+    - values in the `Count` and `Weight` columns
+    - specific libs when we expand values in the `Stack` column
+
+
+
+##### xperf
+[Reference](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/xperf-command-line-reference)
+
+
+#### Diagnostic Hub
+
+Diagnostic Hub is a part of Visual Studio that is used for GUI profiling. It also contains the `VSDiagnostics` CLI tool.
+
+The Diagnostic Hub is installed at `<Visual Studio Installation>/Team Tools/DiagnosticsHub/`. In the Visual Studio Installer, it is listed as a set of components under `Debugging and testing` section.
+
+
+##### VSDiagnostics
+[documentation](https://learn.microsoft.com/en-us/visualstudio/profiling/profile-apps-from-command-line)
+
+VSDiagnostics is a CLI tool that can be used to record the profiling data and store it as a `.diagsession` file. Typical usage:
+
+1. `VSDiagnostics.exe start <session ID> /attach:<process ID> /loadConfig:AgentConfigs\<config file>`
+2. `VSDiagnostics.exe stop <session ID> /output:"<output file>"`
+
+Here:
+
+- `<session ID>` is our unique identifier for the, e.g., `1`
+- `<process ID>` is the process ID of the program we want to profile
+- `<config file>` (see [documentation](/output:"C:\Users\david\Downloads\darp6-cpu.diagsession") for more) is one of the
+    - `AgentConfigs\CPUUsageLow.json`: 100 samples per second
+    - `AgentConfigs\CPUUsageHigh.json`: 4000 samples per second
+    - `AgentConfigs\CPUUsageBase.json`: some default configuration, most likely between low and high
 
 
 ### CLion
@@ -686,6 +758,7 @@ Currently I have a problem with the profiler: after clicking the buytton to stop
 
 #### Old CLion WSL issue
 However, in WSL, [currently the profiler does not work](https://youtrack.jetbrains.com/issue/CPP-41239/Cannot-run-Perf-profiler-in-WSL) (the profiler immediatelly terminates with an unknown error). Fortunatelly, there is a workaround (described in [another issue](https://youtrack.jetbrains.com/issue/CPP-40742/Profiling-doesnt-work-in-WSL)):
+
 - open the Clion registry: `Help` -> `Find Action` -> `Registry`
 - disable the `wsl.use.remote.agent.for.launch.processes` option
 
