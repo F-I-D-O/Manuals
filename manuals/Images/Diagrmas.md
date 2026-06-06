@@ -135,6 +135,23 @@ Automatic text wrapping is not supported. We have to wrap the text manually by u
 
 
 
+## Grid Layout
+[Documentation](https://d2lang.com/tour/grid-diagrams/)
+
+We can make the diagrams organized in a grid layout using the `grid-rows` and `grid-columns` properties:
+
+```d2
+grid-rows: 2
+
+object1
+object2
+object3
+object4
+```
+Results in a 2x2 grid layout.
+
+Additionally, we can set the [grid-gap](https://d2lang.com/tour/grid-diagrams/#gap-size) property to set the gap between the objects in the grid.
+
 ## Positioning
 [Documentation](https://d2lang.com/tour/positions/)
 
