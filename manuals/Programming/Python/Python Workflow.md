@@ -355,6 +355,7 @@ To prepare a project for distribution:
 
 No that by default, only the source files are included in the distribution. To include other files (e.g. resources), consult your builder's documentation [[source](https://packaging.python.org/en/latest/tutorials/packaging-projects/#including-other-files)].
 
+
 ## `pyproject.toml`
 
 - [Official Python Specification](https://peps.python.org/pep-0621/)
@@ -368,6 +369,7 @@ There are three standardized `pyproject.toml` sections (tables):
 - `[build-system]`: sets the toolchain to build the package. Strongly recommended.
 - `[project]`: contains the project metadata. This is the section most builders will use to configure the build.
 - `[tool]`: for configuration of specific tools like mypy
+
 
 ### `[build-system]`
 [Official documentation](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#declaring-the-build-backend)
@@ -384,6 +386,7 @@ Typically, we fill both parameters according to the builder documentation. Below
 	requires = ["setuptools"]
 	build-backend = "setuptools.build_meta"
 	```
+
 
 ### `[project]`
 The project section contains the project metadata used by the builders. 
@@ -403,6 +406,20 @@ The fields recognized by most builders are:
 - [`description`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#description): a one-line description of the package.
 - [`license`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license): the license of the package. It must be one of the [SPDX license identifiers](https://spdx.org/licenses/).
 
+
+#### `[project.scripts]`
+[Official documentation](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#creating-executable-scripts)
+
+This section defines executable scripts for the project. Each entry is one executable script. The format is:
+```toml
+<executable name> = "<full module name>:<function name>"
+```
+
+Example:
+```toml
+[project.scripts]
+build-parameters-db = "cppdev.build_parameters_database:main"
+```
 
 ## Setuptools
 [Official documentation](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)

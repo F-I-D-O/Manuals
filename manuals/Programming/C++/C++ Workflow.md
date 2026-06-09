@@ -38,7 +38,10 @@ Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
 ```
 
 
-### Common Compiler Flags
+### Compiler Flags
+[Reference](https://learn.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-alphabetically)
+
+Compilar flags for MSVC may start with either `/` or `-`, i.e. the compiler flag `/O1` is the same as `-O1`. The most common flags are:
 
 - Optimization level: Specify the optimization level of the binary. There are either:
 	- [high-level options](https://learn.microsoft.com/en-us/cpp/build/reference/o1-o2-minimize-size-maximize-speed):
@@ -59,11 +62,22 @@ Enter-VsDevShell -VsInstallPath $vs -DevCmdArguments '-arch=x64 -host_arch=x64'
 	- `/Tp`: C++ source file
 	- `/TC`: Apply `/Tc` to all specified source files
 	- `/TP`: Apply `/Tp` to all specified source files
+- [Standard library linking](#setting-up-the-correct-crt-with-msvc) (`/MD`, `/MT`, ...)
 - [Warning levels](https://learn.microsoft.com/en-us/cpp/build/reference/compiler-option-warning-level?view=msvc-180), typically best to set to `/Wall`, which enables all warnings.
+	- to disable certain warnings, we can use `/wd<warning number>`, e.g., `/wd4244` to disable the warning `C4244`.
+- [`/bigobj`](https://learn.microsoft.com/en-us/cpp/build/reference/bigobj-increase-number-of-sections-in-dot-obj-file): increase the maximum number of sections in the `.obj` file from `2^16` to `2^32`. This is typically required only for code with heavy template usage. This flag can resolve the compiler error `C1128`.
 - [`/EH`](https://learn.microsoft.com/en-us/cpp/build/reference/eh-exception-handling-model): exception handeling flags. Its options are typed directly after the `/EH` flag, e.g., `/EHa` for asynchronous exception handling. Options are:
 	- `c`: Only effective if `s` is also specified. If effective, the compiler assumes `extern C` functions to never throw C++ exceptions.
 	- `s`: Enables C++ stack unwinding for C++ exceptions. Catches only standard C++ exceptions.
+- [`/FS`](https://learn.microsoft.com/en-us/cpp/build/reference/fs-force-synchronous-pdb-writes): force synchronous PDB writes
+- [`/I<dir>`](https://learn.microsoft.com/en-us/cpp/build/reference/i-additional-include-directories): Add `<dir>` to the list of directories to search for include files.
 - [`/nologo`](https://learn.microsoft.com/en-us/cpp/build/reference/nologo-suppress-startup-banner-c-cpp): do not print the copyright banner and information messages
+- [`/openmp`](https://learn.microsoft.com/en-us/cpp/build/reference/openmp-enable-openmp-2-0-support): enable OpenMP 2.0 support
+- [`/std`](https://learn.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version): specify the language standard version. Specified as `/std:<option>`. Typically, we want to set this to `/std:c++latest` to use the latest C++ standard.
+- [`/utf-8`](https://learn.microsoft.com/en-us/cpp/build/reference/utf-8-set-source-and-execution-character-sets-to-utf-8): set the source and execution character sets to UTF-8
+- [`/Zc`](https://learn.microsoft.com/en-us/cpp/build/reference/zc-conformance) Specify the MSVC-specific compiler behavior (Conformance). Specified as `/Zc:<option>`. Common options are:
+	- [`Zc:__cplusplus`](https://learn.microsoft.com/en-us/cpp/build/reference/zc-cplusplus): Changes the value of `__cplusplus` preprocessor macro based on the supplied `/std` option.
+- [`@<file>`: Response files](https://learn.microsoft.com/en-us/cpp/build/reference/at-specify-a-compiler-response-file): basically reads the `<file> and applies the options specified in it to the compiler.
 
 ## MSYS2 (Windows)
 
