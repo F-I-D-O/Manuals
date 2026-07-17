@@ -1,4 +1,32 @@
-# Diagnostic
+# Choosing the right PC components
+
+Usually, the proceedure should be:
+
+1. Choose the amount of RAM, its level (DDR4, DDR5, ...) and the configuration (number of sticks)
+1. Choose the CPU
+1. Choose the GPU, hard drives, and other devices we need
+1. Choose the motherboard
+1. Choose the power supply
+1. Choose the case
+
+
+## Choosing the Motherboard
+We should first filter the motherboards by:
+
+1. the board format: choose the largest that fits the case
+1. the CPU compatibility
+1. the RAM level
+1. the number of RAM slots
+1. the maximum supported RAM size
+1. WiFi adapter, if we do not own external WiFi adapter
+1. Bluetooth adapter, if we do not own external Bluetooth adapter
+1. PCIe slots compatibility with the PCIe cards we want to use
+1. M2 slots number and compatibility (lenght, M.2 generation)
+1. display compatibility (HDMI, DisplayPort, the count of the ports for multiple monitors)
+1. voltage, amperage and cooling
+
+
+# Troubleshooting & Diagnostic
 This chapter is about diagnosing the problem with the PC. Solutions to the problems described here are provided in the following chapters.
 
 
@@ -8,8 +36,16 @@ This chapter is about diagnosing the problem with the PC. Solutions to the probl
  2. If the problem persists, check whether the source is not completely dead by connecting the green cable in the ATX 24 pin connector with anz of the black ones
  3. If the source works (power supply fan started), check the voltage on each PIN by the multimeter
 
-## Corsair PIN Voltage![Corsair PIN Voltage](https://cdn.shopify.com/s/files/1/0015/3776/9518/files/PSU_Pinout_Voltage_-_Corsair_Type_4.png?v=1578641655)
 
+## The USB is not detected in BIOS
+This problem can have two very different causes:
+
+- The USB is not bootable.
+    - We could use a wrong procedure to create it, or
+    - the USB image we try to use is not actually a bootable one, but requires some hardware support to be loaded (e.g., HP PC Hardware Diagnostics).
+- The USB is faulty. We can try to use
+    1. another USB port, or if still not detected
+    1. another USB stick.
 
 ## Hard drive diagnostics
 When handling hard drive problems, we typically want to:
@@ -25,6 +61,13 @@ This section is about step 1, i.e., identifying whether the hard drive is really
 1. Move the hard drive to another slot, or connect it to another cable, in case of SATA drive.
 
 If none of this helps, the hard drive is faulty. It is time to proceed further and try to backup the data.
+
+## Corsair PIN Voltage
+
+![Corsair PIN Voltage](https://cdn.shopify.com/s/files/1/0015/3776/9518/files/PSU_Pinout_Voltage_-_Corsair_Type_4.png?v=1578641655)
+
+
+
 
 
 
@@ -60,18 +103,6 @@ Steps:
 4. run the PC, boot DOS from USB
 5. backup the old vBIOS
 6. run the update tool using the `.rom` file
-
-# Possible problems
-
-## The USB is not detected in BIOS
-This problem can have two very different causes:
-
-- The USB is not bootable.
-    - We could use a wrong procedure to create it, or
-    - the USB image we try to use is not actually a bootable one, but requires some hardware support to be loaded (e.g., HP PC Hardware Diagnostics).
-- The USB is faulty. We can try to use
-    1. another USB port, or if still not detected
-    1. another USB stick.
 
 
 
