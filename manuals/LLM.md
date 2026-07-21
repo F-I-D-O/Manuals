@@ -83,3 +83,85 @@ To get a notification in Windows Terminal without a sound, Windows Terminal can 
 [Official documentation](https://developers.openai.com/codex/guides/agents-md)
 
 Rules are defined in `AGENTS.md` file. The user-specific global rules are stored in `~/.codex/AGENTS.md` file.
+
+
+# Claude Code
+[Wikipedia](https://en.wikipedia.org/wiki/Claude_(AI))
+
+## Configuration
+[Official documentation](https://code.claude.com/docs/en/settings)
+
+There are three layers of configuration:
+
+- **User-specific configuration**: `~/.claude/`
+- **Project-specific configuration**: `<project-root>/.claude/`
+- **Project local configuration**: `<project-root>/.claude/`
+
+For each layer except the project local configuration, there can be several files:
+
+| Configuration | User location | Project location | Project local location |
+| --- | --- | --- | --- |
+**Main Settings and plugins** | `settings.json` | `settings.json` | `settings.local.json` |
+**Sub-agent configuration** |  `agents` |  `agents` |  - |
+**Instructions** | `CLAUDE.md` | `CLAUDE.md` | `CLAUDE.local.md` |
+
+
+### Settings
+
+- [Official documentation](https://code.claude.com/docs/en/settings#settings-files)
+- [Settings Reference](https://code.claude.com/docs/en/settings#available-settings)
+
+The most important settings are:
+
+- `permissions`: list of permissions. This is a large configuration part, described in a separate section.
+
+
+#### Permissions
+[Reference](https://code.claude.com/docs/en/settings#permission-settings)
+
+Most important permissions are:
+
+- [`additionalDirectories`](https://code.claude.com/docs/en/permissions#working-directories): add write file acces for additional directories. 
+
+
+### Instructions
+[Official documentation](https://code.claude.com/docs/en/memory)
+
+Instead of `AGENTS.md`, claude code uses `CLAUDE.md` file. The format is the same as `AGENTS.md`, except that the `CLAUDE.md`  can refer to files using the `@` syntax: `@<path>`. This way, we can refer to the shared `AGENTS.md` file from the `CLAUDE.md` file:
+
+```md
+@AGENTS.md
+```
+
+## Progress bars
+[Claudionary](https://claudionary.com)
+
+Claude use more than a hundred different progress descriptions, depending on the current state of the LLM tool. The most common ones are:
+
+- `Building`: Claude codes
+- [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
+- [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
+- [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
+- [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete,
+- [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
+- [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
+
+## Auto mode
+[Official documentation](https://code.claude.com/docs/en/auto-mode-config)
+
+In auto mode, Claude Code does not wait for the changes to be accepted (no wait for code review). Instead, the changes are applied immediately and new branches are created, code is commited.
+
+
+## Agents View
+[Official documentation](https://code.claude.com/docs/en/agents-view)
+
+To monitor all agents on the system at once, we can use the agents view. This can be started by:
+
+- `claude agents`: start the agents view from command line
+- `left arrow` from an open session: leave the session and go to the agents view
+
+In the agents view, agents are divided into three categories:
+
+- **Needs Input**
+- **Working**
+- **Completed**

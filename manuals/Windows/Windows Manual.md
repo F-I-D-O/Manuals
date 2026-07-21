@@ -130,9 +130,11 @@ Unlike Command Shell and PowerShell, the system execution does not consider scri
 - `Win` + `Space`: change keyboard input method
 
 
-# Ethernet
+# Networking
 
-## Problem: No ethernet connection
+## Ethernet
+
+### Problem: No ethernet connection
 This problem is manifested by missing ethernet icon in the taskbar. To narrow down the problem:
 
 1. Go to the Device Manager -> `Network adapters`
@@ -142,12 +144,12 @@ This problem is manifested by missing ethernet icon in the taskbar. To narrow do
     1. if it does not help, find the adapter in Device Manager again, right click, select Uninstall device, and check the `Try to uninstall the driver software for this device` checkbox. Then restart the computer again.
 
 
-# Wireless Network
+## Wireless Network
 
-## Problem: Can't connect to this network
+### Problem: Can't connect to this network
 Solution: Forget the connection and connect to the network manually
 
-## Connect to a Network Manually
+### Connect to a Network Manually
 
 1. `Control Panel` -> `Network and Internet` -> `Network and Sharing Center`
 2. `Set up a new connection or network`
@@ -162,40 +164,41 @@ Solution: Forget the connection and connect to the network manually
 
 There are various usefull comands. For most of the commands, you need to open PowerShell as admin.
 
-## Various Commands Related to the Wifi
+### Various Commands Related to the Wifi
 
-### Show All Network Profiles
+#### Show All Network Profiles
 This command show network configurations stored on the device.
 ```
 netsh wlan show profile
 ```
 
-### Various Wifi Reports in HTML
+#### Various Wifi Reports in HTML
 ```
 netsh wlan show wlanreport
 ```
 
 
+## Bluetooth
 
+### Troiubleshooting
 
-
-
-# Bluetooth
-## Troiubleshooting
-### Cannot connect to the device
+#### Cannot connect to the device
 
 1. Try to remove the device and pair it with the PC again
 2. If it does not help, proceeed to the next section (even if the pairing is successfull)
 
-### Cannot pair with the device
+#### Cannot pair with the device
 Turn off the device and unplug it from the electricity/remove batteries. Then plug it back after ~10 seconds, power it of, and try to pair with it again.
 
-## Bluetooth Command Line Tools
+### Bluetooth Command Line Tools
 https://bluetoothinstaller.com/bluetooth-command-line-tools
 
 Bluetooth Command Line Tools is a set off tools that enables command line interaction with blootooth services. Basic usage:
 
 - discover and list available devices: `btdiscovery -s`
+
+
+
 
 # Filesytem
 
@@ -285,52 +288,27 @@ There are several tools for formatting:
 The blocking program can be discovered using the Sysinternals Process Explorer. Click on `Find` -> `Find Handles or DLLs...` and enter the path (or part of it) to the search field. Note that **you have to wait a long time** (up to several minutes) for the search to complete. There is not any indicator of the progress or completion.
 
 
-# Sugarsync
-Quick orientation in the desktop app:
+## Diskpart
+[documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart)
 
-- for file changes, check left menu -> `Activity`
-- for deleted files, check left menu -> `Deleted Items`
+Diskpart is a useful command line tool for work with disks, partitions, etc. We start it by running `diskpart` command, and then, we use other commands to manage the disks. 
 
-## Solving sync problems
+Basic general commands:
 
-1. check if the file is updated in cloud using web browser
-2. if not, check the activity log on the computer with the updated file
-3. if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.
+- `list disk`: list all disks
+- `exit`: exit diskpart
+- `select disk <disk number>`: select the disk to manage
 
+When a disk is selected, we can use other commands:
 
-
-# Useful Commands
-
-## Get Motherboard Info
-```PowerShell
-wmic baseboard get product,Manufacturer,version,serialnumber
-```
-
-## Copy multiple files/dirs
-[`robocopy`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) is the best command for that. Usefull params:
-
-- `/e`: Copy subdirectories, including empty ones
-- `/b`: Copy in the backup mode, so that even files with a different owner can be copied
-- `/xc`: Excludes changed files.
-- `/xn`: Excludes newer files.
-- `/xo`: Excludes older files.
-- `/r:<n>`: Specifies the number of retries on failed copies. The default value of _n_ is 1,000,000 (one million retries).
-- `/w:<n>`: Specifies the wait time between retries, in seconds. The default value of _n_ is 30 (wait time 30 seconds).
+- `list partition`: list all partitions on the selected disk
+- `list volume`: list all volumes on the selected disk. A volume is a mount point for a partition.
+- `select partition <partition number>`: select the partition to manage
 
 
-## `echoargs`: Print arguments as passed to the script
-Sometimes, it is hard to see what are the exact arguments passed to an executable. To debug it quickly, we can use the `echoargs.exe` tool present in Portable Programs or at [ss64]( https://ss64.com/ps/EchoArgs.exe). Usage:
-
-```PowerShell
-echoargs <command> <arguments>
-```
 
 
-## User info
-Information about users can be obtained with the [`Get-LocalUser`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1) command. By default, the command lists all users. Some useful params:
 
-- `-Name`: Specifies the user account names of the users to get. 
-- `-SID`: Specifies the security identifier (SID) of the users to get. 
 
 
 # Installation
@@ -460,25 +438,67 @@ Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.
 
 
 
+# Managing Applications
+Traditionally, Windows application are installed using the [Windows Installer](https://en.wikipedia.org/wiki/Windows_Installer). Application installed with windows installer are registered in the registry, and can be uninstalled using the Windows Settings app. The installer uses the `msi` file format.
 
-# Diskpart
-[documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart)
+Since Windows 10, the Microsoft Store was introduced, using an alternative package installer called [App Installer](https://en.wikipedia.org/wiki/App_Installer). The Microsoft Store itself is used to manage applications installed with App Installer. The App Installer uses the `msix` file format.
 
-Diskpart is a useful command line tool for work with disks, partitions, etc. We start it by running `diskpart` command, and then, we use other commands to manage the disks. 
+Additionally, there are several command line package managers for Windows:
 
-Basic general commands:
-
-- `list disk`: list all disks
-- `exit`: exit diskpart
-- `select disk <disk number>`: select the disk to manage
-
-When a disk is selected, we can use other commands:
-
-- `list partition`: list all partitions on the selected disk
-- `list volume`: list all volumes on the selected disk. A volume is a mount point for a partition.
-- `select partition <partition number>`: select the partition to manage
+- [Windows Package Manager (Winget)](https://learn.microsoft.com/en-us/windows/package-manager/): Official command line package manager.
+- [Chocolatey](https://chocolatey.org/): command line package manager based on the NuGet infrastructure and PowerShell.
+- [Scoop](https://scoop.sh/): package manager for installation of local packages (everything is installed to the home directory).
 
 
+## Windows Package Manager (Winget)
+
+- [GitHub](https://github.com/microsoft/winget-cli)
+- [Official Documentation](https://learn.microsoft.com/en-us/windows/package-manager/)
+
+To **install a package**, run `winget install <package name>`.
+
+To **search for a package**, run `winget search <search term>`.
+
+### `winget install`
+[Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/install)
+
+Common options are:
+
+- `-h`, `--silent`: this supresses all UI of the installation 
+
+
+# Useful Commands
+
+## Get Motherboard Info
+```PowerShell
+wmic baseboard get product,Manufacturer,version,serialnumber
+```
+
+## Copy multiple files/dirs
+[`robocopy`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy) is the best command for that. Usefull params:
+
+- `/e`: Copy subdirectories, including empty ones
+- `/b`: Copy in the backup mode, so that even files with a different owner can be copied
+- `/xc`: Excludes changed files.
+- `/xn`: Excludes newer files.
+- `/xo`: Excludes older files.
+- `/r:<n>`: Specifies the number of retries on failed copies. The default value of _n_ is 1,000,000 (one million retries).
+- `/w:<n>`: Specifies the wait time between retries, in seconds. The default value of _n_ is 30 (wait time 30 seconds).
+
+
+## `echoargs`: Print arguments as passed to the script
+Sometimes, it is hard to see what are the exact arguments passed to an executable. To debug it quickly, we can use the `echoargs.exe` tool present in Portable Programs or at [ss64]( https://ss64.com/ps/EchoArgs.exe). Usage:
+
+```PowerShell
+echoargs <command> <arguments>
+```
+
+
+## User info
+Information about users can be obtained with the [`Get-LocalUser`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-7.1) command. By default, the command lists all users. Some useful params:
+
+- `-Name`: Specifies the user account names of the users to get. 
+- `-SID`: Specifies the security identifier (SID) of the users to get. 
 
 
 
@@ -738,3 +758,16 @@ Sometimes, the syncing stops without any error. What to do:
     1. exit SugarSync
     1. in services, restart the SugarSync service
     1. start SugarSync again
+
+
+# Sugarsync
+Quick orientation in the desktop app:
+
+- for file changes, check left menu -> `Activity`
+- for deleted files, check left menu -> `Deleted Items`
+
+## Solving sync problems
+
+1. check if the file is updated in cloud using web browser
+2. if not, check the activity log on the computer with the updated file
+3. if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.

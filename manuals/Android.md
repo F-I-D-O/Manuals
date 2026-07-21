@@ -5,3 +5,5 @@ ADB is a command-line tool that allows you that allows to manipulate Android dev
 1. On the Android device, enable the "Developer options" 
 1. Connect the Android device to the PC via USB and select "Transfer files" mode.
 
+# Google Docs or Sheets cannot load a document
+When this happens, go to the app settings and use the `Clear cache` button.
