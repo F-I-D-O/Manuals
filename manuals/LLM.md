@@ -165,3 +165,11 @@ In the agents view, agents are divided into three categories:
 - **Needs Input**
 - **Working**
 - **Completed**
+
+
+# Sandboxing
+It is important to isolate the LLM from the host machine so that it does not demage it by accident. 
+
+
+## Docker Sandbox
+[Homepage](https://docs.docker.com/ai/sandboxes/)
