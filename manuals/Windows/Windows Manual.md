@@ -771,3 +771,40 @@ Quick orientation in the desktop app:
 1. check if the file is updated in cloud using web browser
 2. if not, check the activity log on the computer with the updated file
 3. if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.
+
+
+# Google Drive
+Google Drive app can do two things:
+
+- back up local files to Google Drive
+- sync Google Drive files to a computer
+
+We will only cover the Google Drive syncing part.
+
+The wole application can work with **multiple accounts**. To switch between accounts, click the account icon in the top right corner and select the desired account.
+
+Google drive sync can work in two modes:
+
+- **Stream files** (default): The files are synced to a virtual folder or drive.
+    - Files are downloaded on-demand (when opened), unless the file/folder is set to be available offline.
+    - Some applications (e.g., LLMs) may have trouble to access the files, eeven when downloaded. Therefore, this mode is not very useful.
+- **Mirror files**: The files are synced normally.
+
+
+
+## Configuration
+The configuration is very confusing as:
+
+- the *basic configuration* is under `Gear Icon` -> `Preferences`. You need to select the account you want to configure prior to opening the preferences.
+- the *advanced configuration* is under `Gear Icon` -> `Preferences` `Google Drive` -> `Gear Icon`. All accounts can be configured here.
+
+
+### Setting up the sync location
+The sync location setting depends on the sync mode.
+
+- for **Stream files**, the sync location setting is in the advanced configuration -> `Google Drive streaming location`.
+- for **Mirror files**, the sync location can be configured only when setting up this mode. This means that if we want to chang the mirror location, we need to
+    1. change the mode to `Stream files` and restart the application
+    2. change the mode back to `Mirror files`, set up the new location and restart the application
+
+In both cases, changing the location requires the folder to be empty. Note that the location set in the `Google Drive streaming location` makes the folder occupied, even if the active mode is `Mirror files`.
