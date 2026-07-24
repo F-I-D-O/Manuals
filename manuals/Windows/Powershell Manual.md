@@ -66,7 +66,8 @@ Thic creates an inherent incompatibility with most command line tools, as `:` is
 
 
 ## Parameter blocks
-defined using the `param` keyword. Example:
+Parameter blocks are defined using the `param` keyword. he parameter block defines the parameters of the script block. By default (`param()`), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:
+
 ```PowerShell
 $myFunction = {
     param($param1, $param2)
@@ -83,14 +84,6 @@ function MyFunction {
 param($param1, $param2)
 ```
 
-## Parameter blocks
-The parameter block defines the parameters of the script block. By default (`param()`), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:
-```PowerShell
-$myFunction = {
-    param($param1, $param2)
-    # do something
-}
-```
 
 Parameters can be **typed**. Example:
 ```PowerShell

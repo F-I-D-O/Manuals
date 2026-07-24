@@ -62,7 +62,7 @@ To see the default value of a configuration, search in the [git config documenta
 
 The git **local configuration** is stored in the `.gitconfig` file in the user's home directory. It can be edited by editing the file directly, or by calling `git config` command.
 
-To display the active configuration in the command line, call:
+To display the **active configuration** in the command line, call:
 ```bash
 git config --list
 ```
@@ -72,6 +72,15 @@ We can also show whether the configuration results from the system, user or loca
 git config --list --show-origin
 ```
 
+## Configuration parameters
+[Official documentation](https://git-scm.com/docs/git-config)
+
+Important parameters:
+
+- [`showUntrackedFiles`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles): This has three possible values:
+    - `normal` (default): show untracked files and directories on `git status` or `git commit`
+    - `no`: do not show untracked files and directories
+    - `all`: like `normal`, but also show individual files under untracked directories
 
 
 # Git over SSH
