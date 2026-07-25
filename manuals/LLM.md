@@ -216,3 +216,9 @@ sbx run claude /home/user/my-project /home/data:ro
 
 Be carefull to add all the required directories, as **directories cannot be added after the sandbox is created**.
 
+
+### Execute code inside sandbox
+[Official documentation](https://docs.docker.com/reference/cli/sbx/exec/)
+
+In addition to start a claude interactive session, we can also execute arbitrary commands inside the sandbox
+
