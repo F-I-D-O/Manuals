@@ -22,16 +22,17 @@ Therefore, we can write even complicated commands to a single line in the termin
 - space around `=`, which is typical in other languages, is not allowed in bash 
 - bash does not support any data structures, only arrays
 
-# Bash modes and environment initialization
+# Bash modes
 Bash can run in several modes. These modes have some effect, but mainly, it affects the initialization of the environment, i.e., which files are executed at the start of the shell. The modes are:
 
-- **login shell**: mode is used when the user logs in. 
+- **login shell**: mode is used when the user logs in.
 	- also used when the shell is run with the `-l`, `--login` parameter
 - **interactive shell**: mode is used when the user interacts with the shell.
 	- also used when the shell is run with the `-i` parameter
 - **non-interactive shell**: mode is used when the shell is run in a script.
 	- this shell mode is used when we run commands over ssh or wsl
 
+## Bash modes and environment initialization
 The execution of the initialization files is displayed in the image below:
 
 ![Bash initialization files](Bash%20environment%20loading.png)
@@ -43,7 +44,13 @@ Note that the initialized environment persists in the system. In other words, th
 
 In those cases, if we need the environment variables, we have to run the login or interactive shell explicitly, e.g.: `wsl bash -lc <command>`.
 
+## Passing arguments to a non-interactive shell
+[Official documentation](https://www.gnu.org/software/bash/manual/html_node/Invoking-Bash.html)
 
+To pass arguments to a non-interactive shell, we have two options:
+
+- `bash <arguments>`: treats the first argument from `<arguments>` as a path to a shell script to be executed, and passes the remaining arguments to the script.
+- `bash -c "<arguments>"`: executes `<arguments>` inside bash.
 
 # Variables
 Variables can be defined as:

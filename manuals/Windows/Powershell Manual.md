@@ -471,9 +471,11 @@ To **create** an array, use the `@()` operator: `a = @()`.
 
 To **add an element** to an array, use the `+=` operator: `a += 1`. The same operator can be used to **append** one array to another: `a += @("1", "bar")`.
 
+To **pass the array as a series of arguments to an executable**, just pass the array to the executable: `<executable> $<array name>`.
+
 The arrays can be **iterated** over using the `foreach` loop.
 
-To join the elements of an array into a space-separated string, we can just use the array in a string context. Example:
+To **join the elements of an array into a space-separated string**, we can just use the array in a string context. Example:
 ```PowerShell
 $a = @("foo", "bar")
 "$a" # prints "foo bar"

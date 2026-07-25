@@ -154,6 +154,13 @@ Selected top level keys:
         - [Claude.ai MCP servers auto-injected into Claude Code without opt-in — causes OOM crashes on resource-constrained systems](https://github.com/anthropics/claude-code/issues/20412)
         - [[BUG] Root cause identified: GrowthBook A/B flags tengu_permission_friction + tengu_quill_harbor silently override defaultMode:bypassPermissions via periodic server sync — macOS Desktop](https://github.com/anthropics/claude-code/issues/62205)
 
+
+### Use an alternative user directory
+[Official documentation](https://code.claude.com/docs/en/env-vars#variables)
+
+To use an alternative user directory, we can set the `CLAUDE_CONFIG_DIR` environment variable to the path of the directory.
+
+
 ## Progress bars
 [Claudionary](https://claudionary.com)
 
@@ -197,12 +204,17 @@ It is important to isolate the LLM from the host machine so that it does not dem
 
 First, install Docker Sandbox according to the instructions. Docker desktop is not required.
 
-To run a sandboxed LLM, run `sbx run <image name>`, where `<image name>` is the name of the image to run, typically named after the LLM, e.g., `claude`. 
+To **run a sandboxed LLM**, run `sbx run <image name>`, where `<image name>` is the name of the image to run, typically named after the LLM, e.g., `claude`. 
 
 This `sbx run` command for a directory automatically creates a new sandbox. To reattach to this sandbox after exiting, run `sbx run <image name> --name <sandbox name>`. The `<sandbox name>` is:
 
 - the name provided when creating the sandbox using the `--name` flag, or
 - an automatically generated name, typically `<image name>-<workspace root directory>`
+
+### Create a sandbox without running it
+[Official documentation](https://docs.docker.com/ai/sandboxes/usage/#create-without-attaching)
+
+To **create a sandbox without running it**, use the `sbx create` command: `sbx create <image name> <flags>`.
 
 
 ### Add additional directories to the sandbox
@@ -220,5 +232,9 @@ Be carefull to add all the required directories, as **directories cannot be adde
 ### Execute code inside sandbox
 [Official documentation](https://docs.docker.com/reference/cli/sbx/exec/)
 
-In addition to start a claude interactive session, we can also execute arbitrary commands inside the sandbox
+In addition to start a claude interactive session, we can also execute arbitrary commands inside the sandbox. To do that, we can use the `sbx exec` command: `sbx exec <image name> <flags> <command>`.
+
+Important flags:
+
+- `-i`, `--interactive`: start an interactive session
 
