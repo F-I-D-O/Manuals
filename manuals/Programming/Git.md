@@ -83,6 +83,24 @@ Important parameters:
     - `all`: like `normal`, but also show individual files under untracked directories
 
 
+## Controlling allowed protocols
+Git can operate over different protocols:
+
+- `file`: normal file system operations
+- `http` or `https`: remote operations over HTTP/HTTPS
+- `ssh`: remote operations over SSH
+- `git`: remote operations over the Git protocol
+- `<external protocol name>:`: remote operations over a custom protocol
+
+In git configuration, this can be controlled using the [`protocol.allow`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-protocolallow) (for all protocols) or [`protocol.<protocol>.allow`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-protocolallow) (for specific protocols) parameters. The values are:
+
+- `always`: allow allways (default for safe protocols: `http`, `https`, `ssh`, `git`)
+- `never`: do not allow (default for unsafe protocols: `ext`)
+- `user`: protocol is directly usable by the user, but cannot be used by commands that has no user input (e.g., `clone`, `fetch`, `push`, `pull`) (default for `file`)
+
+We can control this also by an environment variable: [`GIT_ALLOW_PROTOCOL=<protocol list>`](https://git-scm.com/docs/git#Documentation/git.txt-GITALLOWPROTOCOL), where `<protocol list>` is a comma-separated list of allowed protocols.
+
+
 # Git over SSH
 To use SSH for transfering data to and from the remote repository, the following must be configured:
 

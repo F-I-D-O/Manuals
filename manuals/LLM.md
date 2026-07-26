@@ -143,6 +143,8 @@ Instead of `AGENTS.md`, claude code uses `CLAUDE.md` file. The format is the sam
 @AGENTS.md
 ```
 
+To **see all active instructions** in a session, run `/context all` the `CLAUDE.md` and similar files are under the `memory` category.
+
 ### `~/.claude.json`
 [Official documentation](https://code.claude.com/docs/en/settings#global-config-settings)
 
@@ -166,13 +168,22 @@ To use an alternative user directory, we can set the `CLAUDE_CONFIG_DIR` environ
 
 Claude use more than a hundred different progress descriptions, depending on the current state of the LLM tool. The most common ones are:
 
+- [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
 - `Building`: Claude codes
+- [`Canoodling`](https://claudionary.com/definition/canoodling/): Shared activations beteen multiple Claude threads.
+- [`Cogitating`](https://claudionary.com/definition/cogitating/): Intensive computation, Claude approached hard analytical problem.
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
+- [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
+- [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
+- [`Orbiting`](https://claudionary.com/definition/orbiting/): Failing to getting closer to the answer or solution of the problem
 - [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete,
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
+- [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
+- [`Unfurling`](https://claudionary.com/definition/unfurling/): Claude already knows the solution, and only acts upnon the knowledge
+
 
 ## Auto mode
 [Official documentation](https://code.claude.com/docs/en/auto-mode-config)
@@ -238,3 +249,12 @@ Important flags:
 
 - `-i`, `--interactive`: start an interactive session
 
+
+### Copy files from the sandbox
+In the shared directories added as writable during the sandbox creation, the files are accessible automatically from the host machine. However, files can be created in the sandbox outside of the writable shared directories. To copy such files, run: 
+```bash
+sbx cp <sandbox name>:<path in the sandbox> <path in the host machine>
+```
+
+### Paste image to the sandbox
+This currently does not work due to a bug [[source]](https://github.com/docker/sbx-releases/issues/265).
