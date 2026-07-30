@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build
-        uses: romw314/mkdocs-action@v2
+        uses: romw314/mkdocs-action@v9
       - name: Synchronize
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
