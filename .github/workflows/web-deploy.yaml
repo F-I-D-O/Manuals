@@ -1,0 +1,22 @@
+
+name: Deploy to fido.ninja
+on:
+  push:
+    branches:
+      - main
+jobs:
+  web-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        uses: romw314/mkdocs-action@v2
+      - name: Synchronize
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: _site/
+          server-dir: www/manuals/

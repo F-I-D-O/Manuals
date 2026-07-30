@@ -177,6 +177,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
+- [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
 - [`Orbiting`](https://claudionary.com/definition/orbiting/): Failing to getting closer to the answer or solution of the problem
 - [`Razzmatazzing`](https://claudionary.com/definition/razzmatazzing/): Claude is excited, as the prompt is exactly at the right direction, it aligns with Claude's own thoughts.
