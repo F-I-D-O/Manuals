@@ -16,6 +16,8 @@ jobs:
           python3 generate_nav.py
       - name: Build
         uses: romw314/mkdocs-action@v9
+      - name: Fix site ownership
+        run: sudo chown -R "$USER:" _site
       - name: Synchronize
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
