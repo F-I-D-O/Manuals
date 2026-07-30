@@ -1,7 +1,9 @@
 docs_dir: manuals
-exclude_docs: 
-- Household.md
-- Social Networks.md
+exclude_docs: 'Household.md
+
+  Social Networks.md
+
+  '
 extra_css:
 - extra.css
 markdown_extensions:
@@ -9,10 +11,19 @@ markdown_extensions:
     permalink: true
 nav:
 - Programming:
+  - .NET:
+    - .NET Debugging, Profiling, and Testing: Programming/.NET/.NET Debugging, Profiling,
+        and Testing.md
+    - .NET Workflow: Programming/.NET/.NET Workflow.md
   - C++:
     - C Manual: Programming/C++/C Manual.md
+    - C++ Classes: Programming/C++/C++ Classes.md
     - C++ Debugging and Profiling: Programming/C++/C++ Debugging and Profiling.md
     - C++ Manual: Programming/C++/C++ Manual.md
+    - C++ STL and Other Libraries Tools: Programming/C++/C++ STL and Other Libraries
+        Tools.md
+    - C++ Templates: Programming/C++/C++ Templates.md
+    - C++ Types: Programming/C++/C++ Types.md
     - C++ Workflow: Programming/C++/C++ Workflow.md
     - CMake Manual: Programming/C++/CMake Manual.md
     - Google Test: Programming/C++/Google Test.md
@@ -49,12 +60,11 @@ nav:
     - Jekyll: Programming/Web/Jekyll.md
     - mkdocs: Programming/Web/mkdocs.md
     - Selenium: Programming/Web/Selenium.md
+    - Web Workflow: Programming/Web/Web Workflow.md
   - Common: Programming/Common.md
   - Conda and Mamba: Programming/Conda and Mamba.md
   - Git: Programming/Git.md
   - Gurobi: Programming/Gurobi.md
-  - HDF: Programming/HDF.md
-  - JSON: Programming/JSON.md
   - Native Libraries: Programming/Native Libraries.md
   - Neural Networks: Programming/Neural Networks.md
   - Perl: Programming/Perl.md
@@ -66,6 +76,8 @@ nav:
   - LaTeX workflow: LaTeX/LaTeX workflow.md
 - Linux:
   - Bash Manual: Linux/Bash Manual.md
+  - Debian-based distributions: Linux/Debian-based distributions.md
+  - Debian: Linux/Debian.md
   - Fedora: Linux/Fedora.md
   - Linux Manual: Linux/Linux Manual.md
   - Ubuntu: Linux/Ubuntu.md
@@ -75,34 +87,46 @@ nav:
   - PowerPoint: Windows/PowerPoint.md
   - Powershell Manual: Windows/Powershell Manual.md
   - Windows Manual: Windows/Windows Manual.md
+- .codex: []
 - .cursor:
   - rules: []
+- .vscode: []
 - Audio & Video:
   - FFMpeg: Audio & Video/FFMpeg.md
   - VLC: Audio & Video/VLC.md
   - yt-dlp: Audio & Video/yt-dlp.md
+- File Formats:
+  - HDF: File Formats/HDF.md
+  - JSON: File Formats/JSON.md
+  - Markdown: File Formats/Markdown.md
+  - TOML: File Formats/TOML.md
+  - XML: File Formats/XML.md
+  - YAML: File Formats/YAML.md
 - GIS:
   - GIS formats: GIS/GIS formats.md
   - OpenStreetMap: GIS/OpenStreetMap.md
   - Overpass Manual: GIS/Overpass Manual.md
   - QGIS: GIS/QGIS.md
 - Images:
+  - Diagrmas: Images/Diagrmas.md
+  - Google Photos: Images/Google Photos.md
   - IrfanView: Images/IrfanView.md
   - Midjourney: Images/Midjourney.md
   - Photopea: Images/Photopea.md
+- Science:
+  - Arxiv: Science/Arxiv.md
+  - CTU: Science/CTU.md
+  - Researchgate: Science/Researchgate.md
+  - Zotero: Science/Zotero.md
 - Android: Android.md
-- Arxiv: Arxiv.md
-- CTU: CTU.md
+- Apps: Apps.md
 - Google office apps: Google office apps.md
 - Hardware Manual: Hardware Manual.md
 - index: index.md
-- Markdown: Markdown.md
+- LLM: LLM.md
 - Network: Network.md
 - Security: Security.md
 - Web Tricks: Web Tricks.md
-- XML: XML.md
-- YAML: YAML.md
-- Zotero: Zotero.md
 site_name: Manuals
 theme:
   name: mkdocs

@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Generate navigation
+        run: |
+          pip install pyyaml pathspec
+          python3 generate_nav.py
       - name: Build
         uses: romw314/mkdocs-action@v9
       - name: Synchronize
