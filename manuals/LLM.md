@@ -175,6 +175,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
+- [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
