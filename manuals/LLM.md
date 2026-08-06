@@ -131,7 +131,13 @@ The most important settings are:
 
 Most important permissions are:
 
+- [permission rule lists](https://code.claude.com/docs/en/settings#permission-rule-syntax), specifycally:
+    - `allow`: allow the operation
+    - `deny`: deny the operation
+    - `ask`: ask the user for permission
 - [`additionalDirectories`](https://code.claude.com/docs/en/permissions#working-directories): add write file acces for additional directories. 
+
+The [permission rules](https://code.claude.com/docs/en/settings#permission-rule-syntax) have syntax `<Tool>` or `<Tool>(<specifier>)`
 
 
 ### Instructions
@@ -173,6 +179,40 @@ Note that **there is no way to retrieve the directories claude has access to**.
 [Official documentation](https://code.claude.com/docs/en/env-vars#variables)
 
 To use an alternative user directory, we can set the `CLAUDE_CONFIG_DIR` environment variable to the path of the directory.
+
+
+## Permission System
+[Official documentation](https://code.claude.com/docs/en/permissions)
+
+The main thing that determines what claude can and cannot allowed to do is the **mode**. The modes are:
+
+- `default`, or `manual`: all tools and file edits must be approved by the user.
+- `acceptEdits`: automatically accepts file edits and a small set off tools such as `mkdir`, `mv`, `cp`, in the working directories.
+- `plan`: no edits or modifications are even attempted, Claude only performs read operations and provides a plan at the end.
+- `auto`: tool usage is automatically approved for all tools, except some dangerous operations, determined heuristically by an independent classifier.
+- `dontAsk`: reverse of `auto`, all toolsthat would trigger a prompt in `default` mode are automatically denied.
+- `bypassPermissions`: same as `auto`, but without the command review.
+
+To change the mode interactively, press `Shift` + `Tab`. 
+
+The following table shows what Claude can and cannot do in each mode:
+
+| Operation | `default` | `acceptEdits` | `plan` | `auto`* | `dontAsk` | `bypassPermissions` |
+| --- | --- | --- | --- | --- | --- | --- |
+| File reads inside working directories (including read-only commands) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| File reads outside working directories | ask | ask | ask | ✅ | ❌ | ✅ |
+| File modifications inside working directories | ask | ✅ | ❌ | ✅ | ❌ | ✅ |
+| File modifications outside working directories | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| Command execution (except read-only commands) | ask | ask | ask | ✅ | ❌ | ✅ |
+
+In addition to changing mode, we may modify the permissions more finely. This is described in the following sections.
+
+
+### Read and Edit Permissions
+[Official documentation](https://code.claude.com/docs/en/permissions#read-and-edit)
+
+For each path, we may set the read access and the edit access. Denied read access automatically denies edit access. If the path in the rule does not exist, the rule is ignored.
+
 
 
 ## Progress bars
