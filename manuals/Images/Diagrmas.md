@@ -16,6 +16,12 @@ Flowchart diagram components are:
 - **Decision**, diamond, used to represent a decision
 
 
+# Component Diagrams
+[Wiki](https://en.wikipedia.org/wiki/Component_diagram)
+
+Component diagrams depict the structure of a system. The nodes represent the components of the system, and they may be grouped into larger components.
+Arrows doe NOT represent the flow, but instead the relationships between the components.
+
 
 # Diagrams with D2
 
