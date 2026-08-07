@@ -213,6 +213,8 @@ In addition to changing mode, we may modify the permissions more finely. This is
 
 For each path, we may set the read access and the edit access. Denied read access automatically denies edit access. If the path in the rule does not exist, the rule is ignored.
 
+Note that **read and write file rules are soft rules**. Only the direct Claude commands and known system commands are covered. Claude can still write a python script and read or write files behind the deny rules.
+
 
 
 ## Progress bars

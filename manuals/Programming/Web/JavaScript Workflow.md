@@ -47,3 +47,10 @@ Important options are:
 [official documentation](https://docs.npmjs.com/cli/v11/commands/npm-run)
 
 This can run scripts specified in the `scripts` field of the `package.json` file. 
+
+
+## `npx`
+[Official documentation](https://docs.npmjs.com/cli/v12/commands/npx)
+
+By executing `npx <command>`, we can run a command similar to `npm run <command>`. The difference is that with `npx`, we can run even commands not installed in the local environment, by fetching the binary first.
+
