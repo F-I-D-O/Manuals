@@ -273,6 +273,19 @@ In the agents view, agents are divided into three categories:
 - **Completed**
 
 
+## MCP servers
+[Official documentation](https://code.claude.com/docs/en/mcp-quickstart)
+
+An MCP server is added by running:
+```bash
+claude mcp add <claud mcp params> <server name> <serve source>
+```
+
+Typically, the specific command is provided by the MCP server provider.
+
+The settings are stored in the `~/.claude.json` file.
+
+
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident. 
 
