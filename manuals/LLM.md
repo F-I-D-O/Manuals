@@ -285,6 +285,9 @@ Typically, the specific command is provided by the MCP server provider.
 
 The settings are stored in the `~/.claude.json` file.
 
+To **list** all MCP servers, run `claude mcp list`.
+
+
 
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident. 

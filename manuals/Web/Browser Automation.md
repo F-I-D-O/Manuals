@@ -178,7 +178,37 @@ else:
 Playwright is a browser automation suite that can be used for testing, scraping, or as a gateway for LLMs.
 
 ## Playwright MCP
-[Official documentation](https://playwright.dev/mcp/introduction)
+
+- [Introduction](https://playwright.dev/mcp/introduction)
+- [Official documentation](https://playwright.dev/docs/getting-started-mcp)
+
+To start the Playwright MCP server, run:
+```bash
+npx @playwright/mcp@latest <args>
+```
+
+which is typically set up in `JSON` like
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        <args>
+      ]
+    }
+  }
+}
+```
+
+Typical arguments are:
+
+- `--browser <browser>`: specify the browser to use, e.g., `chromium`, `firefox`, `webkit`
+- `--extension`: connect to a running browser instance with the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm) installed
+- `--headless`: run the browser in headless mode, i.e., without a user interface
+- `--isolated`: start a new browser every time, instead of having one session per workspace and reusing it
 
 
 ## Connecting to Browsers
@@ -197,7 +227,7 @@ There are two ways how to connect to a browser:
 ### Connecting via Playwright Extension
 [Official documentation](https://github.com/microsoft/playwright/blob/main/packages/extension/README.md)
 
-1. Install the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/), if not yet installed
+1. Install the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm), if not yet installed
 1. Add `--extension` as an argument to the MCP server configuration:
     ```json
     "mcpServers": {
@@ -210,6 +240,7 @@ There are two ways how to connect to a browser:
           ]
         }
     }
+1. If running another browser than Chrome, you also need to use the `--browser` argument to specify the browser to use.
 
 
 ### Connecting via Chrome DevTools Protocol
