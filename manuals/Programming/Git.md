@@ -77,7 +77,7 @@ git config --list --show-origin
 
 Important parameters:
 
-- [`showUntrackedFiles`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles): This has three possible values:
+- [`status.showUntrackedFiles`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles): This has three possible values:
     - `normal` (default): show untracked files and directories on `git status` or `git commit`
     - `no`: do not show untracked files and directories
     - `all`: like `normal`, but also show individual files under untracked directories
