@@ -23,6 +23,7 @@ To install `node.js`, download the `.msi` installer from the official website. D
 - `install`: install or update a package
 - `uninstall`: uninstall a package
 - `run`: run a script from the package (defined in the `package.json` file)
+- [`init`](https://docs.npmjs.com/cli/v11/commands/npm-init): initialize a new package (create a `package.json` file)
 
 
 ## Installing packages with `npm install`
@@ -35,6 +36,7 @@ The `<package specification>` can be:
 
 - a package name, e.g. `npm install express`
     - this can also contain a scope, e.g. `npm install @openai/codex`
+- a local path, e.g. `npm install .`. This way, we install a local package in editable mode, similar to `pip install -e .`.
 
 Important options are:
 
@@ -45,3 +47,10 @@ Important options are:
 [official documentation](https://docs.npmjs.com/cli/v11/commands/npm-run)
 
 This can run scripts specified in the `scripts` field of the `package.json` file. 
+
+
+## `npx`
+[Official documentation](https://docs.npmjs.com/cli/v12/commands/npx)
+
+By executing `npx <command>`, we can run a command similar to `npm run <command>`. The difference is that with `npx`, we can run even commands not installed in the local environment, by fetching the binary first.
+

@@ -3,7 +3,8 @@
 - [Wikipedia](https://en.wikipedia.org/wiki/JSON)
 - [Official website](https://www.json.org/json-en.html)
 
-
+# Pretty Printing
+An easy way to pretty print JSON is to use the JSON Viewer plugin in Notepad++. After the installation. click `plugins` -> `JSON Viewer` -> `Format JSON`.
 
 # JSON Schema
 

@@ -131,7 +131,13 @@ The most important settings are:
 
 Most important permissions are:
 
+- [permission rule lists](https://code.claude.com/docs/en/settings#permission-rule-syntax), specifycally:
+    - `allow`: allow the operation
+    - `deny`: deny the operation
+    - `ask`: ask the user for permission
 - [`additionalDirectories`](https://code.claude.com/docs/en/permissions#working-directories): add write file acces for additional directories. 
+
+The [permission rules](https://code.claude.com/docs/en/settings#permission-rule-syntax) have syntax `<Tool>` or `<Tool>(<specifier>)`
 
 
 ### Instructions
@@ -157,10 +163,58 @@ Selected top level keys:
         - [[BUG] Root cause identified: GrowthBook A/B flags tengu_permission_friction + tengu_quill_harbor silently override defaultMode:bypassPermissions via periodic server sync — macOS Desktop](https://github.com/anthropics/claude-code/issues/62205)
 
 
+### Additional working directories
+By default, claude can edit only files in the folder it is started from.
+
+There are three ways how to add editable working directories to a claude workspace:
+
+- using the `additionalDirectories` permissinon (see [Permissions](#permissions))
+- using the `--add-dir` option of the `claude` command
+- using the `/add-dir` command inside the claude interactive session
+
+Note that **there is no way to retrieve the directories claude has access to**.
+
+
 ### Use an alternative user directory
 [Official documentation](https://code.claude.com/docs/en/env-vars#variables)
 
 To use an alternative user directory, we can set the `CLAUDE_CONFIG_DIR` environment variable to the path of the directory.
+
+
+## Permission System
+[Official documentation](https://code.claude.com/docs/en/permissions)
+
+The main thing that determines what claude can and cannot allowed to do is the **mode**. The modes are:
+
+- `default`, or `manual`: all tools and file edits must be approved by the user.
+- `acceptEdits`: automatically accepts file edits and a small set off tools such as `mkdir`, `mv`, `cp`, in the working directories.
+- `plan`: no edits or modifications are even attempted, Claude only performs read operations and provides a plan at the end.
+- `auto`: tool usage is automatically approved for all tools, except some dangerous operations, determined heuristically by an independent classifier.
+- `dontAsk`: reverse of `auto`, all toolsthat would trigger a prompt in `default` mode are automatically denied.
+- `bypassPermissions`: same as `auto`, but without the command review.
+
+To change the mode interactively, press `Shift` + `Tab`. 
+
+The following table shows what Claude can and cannot do in each mode:
+
+| Operation | `default` | `acceptEdits` | `plan` | `auto`* | `dontAsk` | `bypassPermissions` |
+| --- | --- | --- | --- | --- | --- | --- |
+| File reads inside working directories (including read-only commands) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| File reads outside working directories | ask | ask | ask | ✅ | ❌ | ✅ |
+| File modifications inside working directories | ask | ✅ | ❌ | ✅ | ❌ | ✅ |
+| File modifications outside working directories | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| Command execution (except read-only commands) | ask | ask | ask | ✅ | ❌ | ✅ |
+
+In addition to changing mode, we may modify the permissions more finely. This is described in the following sections.
+
+
+### Read and Edit Permissions
+[Official documentation](https://code.claude.com/docs/en/permissions#read-and-edit)
+
+For each path, we may set the read access and the edit access. Denied read access automatically denies edit access. If the path in the rule does not exist, the rule is ignored.
+
+Note that **read and write file rules are soft rules**. Only the direct Claude commands and known system commands are covered. Claude can still write a python script and read or write files behind the deny rules.
+
 
 
 ## Progress bars
@@ -169,23 +223,33 @@ To use an alternative user directory, we can set the `CLAUDE_CONFIG_DIR` environ
 Claude use more than a hundred different progress descriptions, depending on the current state of the LLM tool. The most common ones are:
 
 - [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
+- [`Blanching`](https://claudionary.com/definition/blanching/): refining the user prompt to produce the answer more efficiently.
 - `Building`: Claude codes
 - [`Canoodling`](https://claudionary.com/definition/canoodling/): Shared activations beteen multiple Claude threads.
+- [`Caramelizing`](https://claudionary.com/definition/caramelizing/): Composing an existing knowledge into a perfct response.
 - [`Cogitating`](https://claudionary.com/definition/cogitating/): Intensive computation, Claude approached hard analytical problem.
+- [`Cultivating`](https://claudionary.com/definition/cultivating/): Expand the response from a small initial idea.
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
+- [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
+- [`Philosophising`](https://claudionary.com/definition/philosophising/): suspending all the tasks in favor of trying to understand the meaning of the user prompt.
 - [`Orbiting`](https://claudionary.com/definition/orbiting/): Failing to getting closer to the answer or solution of the problem
+- [`Quantumizing`](https://claudionary.com/definition/quantumizing/): Claude does not commit to a single interpretation of the user request, but persues multiple ways instead.
 - [`Razzmatazzing`](https://claudionary.com/definition/razzmatazzing/): Claude is excited, as the prompt is exactly at the right direction, it aligns with Claude's own thoughts.
 - [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete,
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
+- [`Sprouting`](https://claudionary.com/definition/sprouting/): Branching the cognitive process
 - [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
+- [`Twisting`](https://claudionary.com/definition/twisting/): Processing theoretically compatible ideas, that are, however contradictory in meaning.
 - [`Unfurling`](https://claudionary.com/definition/unfurling/): Claude already knows the solution, and only acts upnon the knowledge
+- [`Whirpooling`](https://claudionary.com/definition/whirlpooling/): A recursive thinking pattern known to most humans, where resolving question A leads to question B, which leads to question C, and so on.
+- [`Wrangling`](https://claudionary.com/definition/wrangling/): dealing with bad, malform, corrupt, or incomplete inputs.
 
 
 ## Auto mode
@@ -207,6 +271,19 @@ In the agents view, agents are divided into three categories:
 - **Needs Input**
 - **Working**
 - **Completed**
+
+
+## MCP servers
+[Official documentation](https://code.claude.com/docs/en/mcp-quickstart)
+
+An MCP server is added by running:
+```bash
+claude mcp add <claud mcp params> <server name> <serve source>
+```
+
+Typically, the specific command is provided by the MCP server provider.
+
+The settings are stored in the `~/.claude.json` file.
 
 
 # Sandboxing

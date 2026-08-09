@@ -16,6 +16,29 @@ Selectors are so powerful because we can combine them:
 - `<selector 1> > <selector 2>`: select elements that match `<selector 2>` as a direct child of `<selector 1>`
 
 
+
+# Styling
+[Mozilla reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
+
+
+## Units
+For many properties, we have to specify the unit. The most common units are:
+
+- `px`: pixel
+- `em`: 
+- `%`: percent
+- `vw`: viewport width
+- `vh`: viewport height
+
+If the value is `0`, we can omit the unit.
+
+For shorhand properties setting multiple sides at once (e.g., `border`, `margin`, `padding`), we can set:
+
+- all sides to same value: `<property>: <value>`
+- same top and bottom, same left and right: `<property>: <top-bottom value> <left-right value>`
+- all sides separately: `<property>: <top> <right> <bottom> <left>`
+
+
 # Layout options
 
 ## Grid Layout

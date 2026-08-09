@@ -1,4 +1,6 @@
-# Introduction
+# Selenium
+
+## Introduction
 [Selenium](https://www.selenium.dev/) is a browser automation tool that allows you to automate browser actions such as clicking, typing, and scrolling.
 
 Basic usage:
@@ -9,7 +11,7 @@ driver = webdriver.Chrome()
 driver.get("https://www.google.com")
 ```
 
-# Selecting elements
+## Selecting elements
 We can select any element on the page using the `find_element(<method>, <selector>)` method. The method can be:
 
 - `By.ID`: DOM ID
@@ -17,7 +19,7 @@ We can select any element on the page using the `find_element(<method>, <selecto
 - `By.XPATH`: XPath query
 
 
-# Waiting
+## Waiting
 Frequently, we need to wait for an element to be present on the page or active. We can do this using the `WebDriverWait` class.
 
 ```Python
@@ -34,10 +36,10 @@ The expected condition can be:
 - `element_to_be_clickable`: the element is clickable
 
 
-# Interacting with elements
+## Interacting with elements
 There are several methods to interact with, each described in its own section.
 
-## Clicking
+### Clicking
 We can click on buttons, links, but also inputs to activate them. To do this:
 
 ```Python
@@ -49,7 +51,7 @@ Sometimes, we may encounter the `ElementClickInterceptedException` error with a 
 
 
 
-## Typing
+### Typing
 We can type text into inputs using the `send_keys` method:
 
 ```Python
@@ -70,7 +72,7 @@ element.send_keys(Keys.CONTROL + "v")
 ```
 
 
-# Downloading files
+## Downloading files
 First it is useful to configure the browser to download files to a specific directory and not ask for confirmation:
 
 ```Python
@@ -114,11 +116,11 @@ stable_since = time.time()
 
 
 
-# Login
+## Login
 Login is one of the most complicated things to automate, due to several layers of security and the fact that the login page usually serves as the guard point against automation.
 
 
-## Using Undetected Chrome Driver to prevent automation detection
+### Using Undetected Chrome Driver to prevent automation detection
 Sometimes, login through chrome testing driver is detected as automation and the login fails. In this case, we can try to use the [Undetected Chrome Driver](https://github.com/ultrafunkamsterdam/undetected-chromedriver) to prevent detection. To use it, we need to:
 
 - import the driver:
@@ -139,7 +141,7 @@ Sometimes, login through chrome testing driver is detected as automation and the
     driver = uc.Chrome(options=options, use_subprocess=True)
     ```
 
-## Storing cookies to avoid re-login
+### Storing cookies to avoid re-login
 We can store the cookies so that we do not have to re-login every time. Example:
 
 ```Python
@@ -166,5 +168,88 @@ else:
 
 
 
+# Playwright
+
+- [Official website](https://playwright.dev/)
+- [GitHub](https://github.com/microsoft/playwright)
+- [Wikipedia](https://en.wikipedia.org/wiki/Playwright_(software))
+
+
+Playwright is a browser automation suite that can be used for testing, scraping, or as a gateway for LLMs.
+
+## Playwright MCP
+[Official documentation](https://playwright.dev/mcp/introduction)
+
+
+## Connecting to Browsers
+[Official documentation](https://playwright.dev/mcp/configuration/browser-extension)
+
+Normally, Playwright uses its own browser instance. However, sometimes, it may be usefull to let it access a running user browser, i.e., to access sites behind a login without giving the credentials to the LLM. Currently, this is only supported in Chrome and Edge.
+
+There are two ways how to connect to a browser:
+
+- via [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/): access to a specific tab
+    - best for a specific task on a single page
+- via [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/): access to browser as a whole, including all tabs and cookies.
+    - best for browser-wide debugging
+
+
+### Connecting via Playwright Extension
+[Official documentation](https://github.com/microsoft/playwright/blob/main/packages/extension/README.md)
+
+1. Install the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/), if not yet installed
+1. Add `--extension` as an argument to the MCP server configuration:
+    ```json
+    "mcpServers": {
+        "playwright": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--extension"
+          ]
+        }
+    }
+
+
+### Connecting via Chrome DevTools Protocol
+We can either use automatic discovery of the browser instance with enabled remote debugging, or we can manually set the remote debugging port.
+
+For **automatic discovery**:
+
+1. go to [chrome://inspect/#remote-debugging](chrome://inspect/#remote-debugging), and check the `Allow remote debugging for this browser instance` checkbox
+1. add `--cdp-endpoint=chrome` as an argument to the MCP server configuration:
+    ```json
+    "mcpServers": {
+        "playwright": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--cdp-endpoint=chrome"
+          ]
+        }
+    }
+    ```
+
+For **manual discovery**:
+
+1. Run the browser with the debugging port specified, e.g.:
+    ```bash
+    chrome --remote-debugging-port=9222
+    ```
+1. Add `--cdp-endpoint=http://localhost:9222` as an argument to the MCP server configuration:
+    ```json
+    "mcpServers": {
+        "playwright": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--cdp-endpoint=http://localhost:9222"
+          ]
+        }
+    }
+    ```
 
 

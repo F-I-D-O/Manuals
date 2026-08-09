@@ -49,6 +49,8 @@ The following scheme shows the operations that can be performed between the work
 
 
 # Configuration
+[git config documentation](https://git-scm.com/docs/git-config#_variables)
+
 For configuration, we can use the `git config` command. There are three levels of configuration:
 
 - *system*: the configuration is applied to all users on the system. This configuration is set during the installation of git.
@@ -534,6 +536,29 @@ Here, the `<repo path>` is the path on the `github.com` domain, e.g. `F-I-D-O/Fu
 
 - [Gitlab to GitHub migration tool](https://github.com/piceaTech/node-gitlab-2-github)
 
+
+
+# Newlines Handling
+By default, git is set up in a way that:
+
+- internally, and in Unix clones, it uses `LF` as the newline character
+- on Windows clones, it uses `CRLF` as the newline character
+
+This is correct most of the time. However, in some exceptional cases, we may want to use `LF` even on Windows. For example, if we mount the Windows repository on a Unix machine, we may want to use `LF`, as Windows handlling of `LF` is much better than Unix handling of `CRLF`.
+
+The related **settings** are:
+
+- `core.eol`: sets line endings for local text files. Valid values are `lf`, `crlf`, and `native` (default).
+    - if `core.autocrlf` is set to `true` or `input`, this setting is ignored.
+- `core.autocrlf`: `true` (default on Windows) means `CRLF` line endings in the local repository, but commits are done with `LF` line endings.
+    - it basically set two things at once:
+        - the `core.eol` setting is set to `crlf`
+        - the text attribut for all files is set to `auto` (autodectect text vs binary files)
+
+If there are changes already applied with the `LF` line endings (before the setting is changed to `LF`), we need to also **convert the existing line endings**:
+
+1. `git add --renormalize .`: we add all files again, forcing the line endings conversion (and autodetection of text files)
+1. commit the changes (typically a lot of files with zero visiblechanges)
 
 
 # Git Large File Storage

@@ -6,7 +6,17 @@ To install, just run: `pip install yt-dlp`
 useful parameters:
 
 - `-x`, `--extract-audio`: extract only the audio from the video
+- `--js-runtimes`: enable non default JavaScript runtimes. Only Deno is enebeld without this option, but others (e.g. Node) must be enabled.
+    - Example: `--js-runtimes node`
+    - Only required for certain YouTube operations
 
+
+# Configuration
+[Official documentation](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#configuration)
+
+Among the many layers of configuration, the user configuration is most tyical. It can be located in several places, e.g.: `~/yt-dlp.conf`.
+
+The format of the file is simple, just command line options, each on a separate line. Lines starting with `#` are comments, empty lines are ignored.
 
 
 # Possible problems
