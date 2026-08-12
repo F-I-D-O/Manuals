@@ -305,6 +305,20 @@ $env:PATH += ";C:\Program Files\Java\jdk1.8.0_181\bin"
 $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 ```
 
+
+## Test if a variable is defined
+To test if a variable is defined, use the `Test-Path` command:
+
+```PowerShell
+if (Test-Path variabls:myVar) {
+    # do something
+}
+```
+
+For global variables, we use the `variables:global:` prefix. For environment variables, we use the `env:` prefix.
+
+
+
 # Operators
 [documentation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07)
 

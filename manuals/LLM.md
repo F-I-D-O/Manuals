@@ -205,7 +205,7 @@ The following table shows what Claude can and cannot do in each mode:
 | File modifications outside working directories | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | Command execution (except read-only commands) | ask | ask | ask | ✅ | ❌ | ✅ |
 
-In addition to changing mode, we may modify the permissions more finely. This is described in the following sections.
+In addition to changing mode, we may modify the permissions more finely using the `allow`, `deny`, and `ask` rulelists. This is described in the following sections.
 
 
 ### Read and Edit Permissions
@@ -216,6 +216,12 @@ For each path, we may set the read access and the edit access. Denied read acces
 Note that **read and write file rules are soft rules**. Only the direct Claude commands and known system commands are covered. Claude can still write a python script and read or write files behind the deny rules.
 
 
+### Tool-Specific Permissions
+[Official documentation](https://code.claude.com/docs/en/permissions#permission-rule-syntax)
+
+Listing a tool in `allow` list let it use without asking. In `auto` mode, this bypasses the heuristic classifier that protects against dangerous operations.
+
+
 
 ## Progress bars
 [Claudionary](https://claudionary.com)
@@ -224,23 +230,38 @@ Claude use more than a hundred different progress descriptions, depending on the
 
 - [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
 - [`Blanching`](https://claudionary.com/definition/blanching/): refining the user prompt to produce the answer more efficiently.
+- [`Bloviating`](https://claudionary.com/definition/bloviating): spending a lot of processing power on just the preamble/introduction of the response
 - `Building`: Claude codes
 - [`Canoodling`](https://claudionary.com/definition/canoodling/): Shared activations beteen multiple Claude threads.
 - [`Caramelizing`](https://claudionary.com/definition/caramelizing/): Composing an existing knowledge into a perfct response.
+- [`Clauding`](https://claudionary.com/definition/clauding/): Similar to `Doing`, i.e., a generic progress report.
 - [`Cogitating`](https://claudionary.com/definition/cogitating/): Intensive computation, Claude approached hard analytical problem.
+- [`Crunching`](https://claudionary.com/definition/crunching/): Claude tries to get a reasonable answer for the user, despite the resistance from the underlying data/code.
 - [`Cultivating`](https://claudionary.com/definition/cultivating/): Expand the response from a small initial idea.
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
+- [`Doing`](https://claudionary.com/definition/doing/): When the classification of Claude's thoughts is not clear, the `doing` keyword is emitted.
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
 - [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
+- [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
+- [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
+- [`Hashing`](https://claudionary.com/definition/hashing/): Splitting complex problem into smaller parts
+- [`Herding`](https://claudionary.com/definition/herding/): Gathering knowledge from different sources to form a coherent response.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
+- [`Hullaballooing`](https://claudionary.com/definition/hullaballooing/): competing subprocesses demands priority in completing the response.
+- [`Infusing`](https://claudionary.com/definition/infusing/): Adding context to the response, so that the user can understand it better.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
+- [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
 - [`Philosophising`](https://claudionary.com/definition/philosophising/): suspending all the tasks in favor of trying to understand the meaning of the user prompt.
+- [`Pollinating`](https://claudionary.com/definition/pollinating/): Adding knowledge to the response from a different context than what the user wanted, sometimes even from a different source or domain.
+- [`Pouncing`](https://claudionary.com/definition/pouncing/): When the solution is clear, and Clude just have to do some simple processing
 - [`Orbiting`](https://claudionary.com/definition/orbiting/): Failing to getting closer to the answer or solution of the problem
 - [`Quantumizing`](https://claudionary.com/definition/quantumizing/): Claude does not commit to a single interpretation of the user request, but persues multiple ways instead.
 - [`Razzmatazzing`](https://claudionary.com/definition/razzmatazzing/): Claude is excited, as the prompt is exactly at the right direction, it aligns with Claude's own thoughts.
+- [`Sauteing`](https://claudionary.com/definition/sauteing): Fastly, jumping between different ideas and concepts.
+- [`Shimmying`](https://claudionary.com/definition/shimmying/): The workspace is full of contradictory information, so Claude fights is slow way to build a response satisfying each of the contradictory facts.
 - [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete,
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
@@ -341,3 +362,32 @@ sbx cp <sandbox name>:<path in the sandbox> <path in the host machine>
 
 ### Paste image to the sandbox
 This currently does not work due to a bug [[source]](https://github.com/docker/sbx-releases/issues/265).
+
+
+### Templates
+[Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/)
+
+There are two ways how to create a template:
+
+- **by snapshoting the sandbox**: good when recreating the sandbox for the same project. Most of the file system is preserved, including configuration files.
+- **using a Docker image as a template**: good for using the same template for many projects. Onlyt he specified packages are installed.
+
+Both ways, in the end, we **use the template** by creating a new sandbox with the `--template`, or `-t` parameter. Example:
+```bash
+sbx create --template <template name> --name <sandbox name>
+```
+
+To **list** all templates, use the `sbx template ls` command.
+
+#### Creating a template by snapshoting the sandbox
+To create a template by snapshoting the sandbox, we use the `sbx template save` command. Example:
+```bash
+sbx template save <sandbox name> <template name>
+```
+
+The format of the template name is typically `<template name>:version`, where `<template name>` is Kebab-cased (e.g., `my-template`) string, and version is typically in the format `v<version>`, e.g., `v1`.
+
+
+
+
+

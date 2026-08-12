@@ -541,24 +541,32 @@ Here, the `<repo path>` is the path on the `github.com` domain, e.g. `F-I-D-O/Fu
 # Newlines Handling
 By default, git is set up in a way that:
 
-- internally, and in Unix clones, it uses `LF` as the newline character
-- on Windows clones, it uses `CRLF` as the newline character
+- on Unix, it uses `LF` as the newline character
+- on Windows, the index uses `LF`, but the working tree uses `CRLF` as the newline character
 
-This is correct most of the time. However, in some exceptional cases, we may want to use `LF` even on Windows. For example, if we mount the Windows repository on a Unix machine, we may want to use `LF`, as Windows handlling of `LF` is much better than Unix handling of `CRLF`.
+This is correct most of the time. However, in some exceptional cases, we may want to use `LF` in the working tree even on Windows. For example, if we mount the Windows repository on a Unix machine, we may want to use `LF`, as Windows handlling of `LF` is much better than Unix handling of `CRLF`.
 
 The related **settings** are:
 
-- `core.eol`: sets line endings for local text files. Valid values are `lf`, `crlf`, and `native` (default).
+- `core.eol`: sets line endings for text files in the working tree. Valid values are `lf`, `crlf`, and `native` (default).
     - if `core.autocrlf` is set to `true` or `input`, this setting is ignored.
-- `core.autocrlf`: `true` (default on Windows) means `CRLF` line endings in the local repository, but commits are done with `LF` line endings.
+- `core.autocrlf`: `true` (default on Windows) means `CRLF` line endings in the working tree, but `LF` line endings in the index.
     - it basically set two things at once:
         - the `core.eol` setting is set to `crlf`
         - the text attribut for all files is set to `auto` (autodectect text vs binary files)
 
-If there are changes already applied with the `LF` line endings (before the setting is changed to `LF`), we need to also **convert the existing line endings**:
+Note that if we want to change the working tree line endings, we need to do two things:
 
-1. `git add --renormalize .`: we add all files again, forcing the line endings conversion (and autodetection of text files)
-1. commit the changes (typically a lot of files with zero visiblechanges)
+- change the `core.eol` and `core.autocrlf` settings
+- convert all files' line endings in the working tree (by, e.g., Notepad++)
+
+**Important Warning**: some guides suggest to use [`git add --renormalize .`](https://git-scm.com/docs/git-add#Documentation/git-add.txt---renormalize) after line endings conversion. Despite the name, however, this command does not normalize the line endings according to the `core.eol` setting. It is a very narrow usage for cases where
+
+1. we already added files with wrong line endings to the index
+1. after that, we convert the line endings in the working tree
+1. now we want to fix the index line endings
+
+However, in the common case, where there are no index changes, but the working tree line endings are still wrong, waiting for manual intervention, we can, by this command, introduce the incorrect line endings to the index.
 
 
 # Git Large File Storage
