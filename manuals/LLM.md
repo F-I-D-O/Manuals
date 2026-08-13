@@ -234,6 +234,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - `Building`: Claude codes
 - [`Canoodling`](https://claudionary.com/definition/canoodling/): Shared activations beteen multiple Claude threads.
 - [`Caramelizing`](https://claudionary.com/definition/caramelizing/): Composing an existing knowledge into a perfct response.
+- [`Churning`](https://claudionary.com/definition/churning/): Comparing several possible responses and crafting the best one, discarding most of the work.
 - [`Clauding`](https://claudionary.com/definition/clauding/): Similar to `Doing`, i.e., a generic progress report.
 - [`Cogitating`](https://claudionary.com/definition/cogitating/): Intensive computation, Claude approached hard analytical problem.
 - [`Crunching`](https://claudionary.com/definition/crunching/): Claude tries to get a reasonable answer for the user, despite the resistance from the underlying data/code.
@@ -267,6 +268,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
 - [`Sprouting`](https://claudionary.com/definition/sprouting/): Branching the cognitive process
 - [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
+- [`Synthesizing`](https://claudionary.com/definition/synthesizing/): Using several external sources to form a coherent response.
 - [`Twisting`](https://claudionary.com/definition/twisting/): Processing theoretically compatible ideas, that are, however contradictory in meaning.
 - [`Unfurling`](https://claudionary.com/definition/unfurling/): Claude already knows the solution, and only acts upnon the knowledge
 - [`Whirpooling`](https://claudionary.com/definition/whirlpooling/): A recursive thinking pattern known to most humans, where resolving question A leads to question B, which leads to question C, and so on.
