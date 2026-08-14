@@ -132,6 +132,27 @@ Unlike Command Shell and PowerShell, the system execution does not consider scri
 
 # Networking
 
+## `netstat`
+
+- [Linux Manual](../Linux/Linux%20Manual.md#netstat)
+- [Winndows Documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat)
+
+The [`netstat`](https://en.wikipedia.org/wiki/Netstat) is the basic network monitoring program. It displays TCP connections. It originated on Linux, so the usage and parameters are described in the [Linux manual](../Linux/Linux%20Manual.md#netstat). Below, we discuss the differencies in the command interface and behavior of the Windows version of the command.
+
+Specific Windows Options:
+
+- `-o`: display the PID of the process using the connection
+
+
+### Lot of kubernetes entries in the log
+By default, the netstat command translates IPs into names. Unfortunatelly, on Windows, it also uses the information from the hosts file (`C:\Windows\System32\drivers\etc\hosts`). This is a problem, because some services, like Docker, can use the `hosts` file to redirect some adddress to localhost. Therefore, at the end, all localhost entries are named kubernetes. Solution options:
+
+- use the `-n` parameter for `netstat` or
+- remove the redirection to `localhost` in the `hosts` file 
+
+### Display executable for connection
+To display executable for all connection, just use the `-b` swith. For filtering out only some, you have to use the `-Context` parameter in the `Select-String` command, as the executable is printed one line below the connection: `netstat -b | sls <search pattern> -Context 0,1`
+
 ## Ethernet
 
 ### Problem: No ethernet connection

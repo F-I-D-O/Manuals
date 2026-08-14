@@ -13,6 +13,18 @@ Docker is the most popular containerization platform. Docker images can be run i
 
 Each setup is typically specified by a `YAML` file called *Compose file*.
 
+
+## Docker Desktop
+
+[Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+Docker Desktop is a GUI program for running Docker containers on a local machine. The subcommand for it is `docker desktop`. The most important subcommands are:
+
+- `docker desktop start`: starts the Docker Desktop application
+- `docker desktop stop`: stops the Docker Desktop application
+- `docker desktop restart`: restarts the Docker Desktop application
+
+
 ## Compose File
 
 - [Documentation](https://docs.docker.com/compose/intro/compose-application-model/#the-compose-file)
@@ -161,8 +173,9 @@ Most used commands are:
 
 ## Docker Compose
 
-- [Docker Compose](https://docs.docker.com/compose/)
-- [Docker Compose CLI](https://docs.docker.com/compose/intro/compose-application-model/#cli)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Docker Compose CLI Documentation](https://docs.docker.com/compose/intro/compose-application-model/#cli)
+- [Docker Compose CLI Reference](https://docs.docker.com/reference/cli/docker/compose/)
 
 Docker Compose is a core tool for managing containers. It is used for starting, stopping, and building containers, for viewing the status of running containers, or one a single command in a container.
 
@@ -174,7 +187,14 @@ The basic subcommands are:
 - `docker compose ps`: shows the status of the containers
 
 
-## Docker Desktop
+### `docker compose up`
+[Reference](https://docs.docker.com/reference/cli/docker/compose/up/)
 
-[Docker Desktop](https://www.docker.com/products/docker-desktop/)
+This command starts the services defined in the Compose file. The most important options are:
+
+- `-d`, `--detach`: starts the services in the background. Without this option, the terminal application switches from the host shell to the container shell, displaying the logs of the container. When the services are detached, we can inspect the output with the `docker compose logs` command.
+- `--wait`: only return the control to the host shell after all services are started. Only meaningful if the `--detach` option is used.
+
+
+
 

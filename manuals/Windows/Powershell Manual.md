@@ -37,7 +37,11 @@ PowerShell is special in using the backslash `` ` `` as an escape charactr. For 
 
 
 
-# Reading script block arguments
+# Script Language
+
+
+
+## Reading script block arguments
 Each script block can be called with parameters. The arguments are first parsed by PowerShell and then passed to the script block. See [Parameter parsing](#parameter-parsing) for details. Note that this parsing happens even if the script was invoked from outside PowerShell.
 
 We have two ways how to read the arguments passed to the script:
@@ -53,7 +57,7 @@ echo $args[1]
 echo $args[2]
 ```
 
-## Parametr parsing
+### Parametr parsing
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters)
 
 In PowerShell, all arguments are named. However, the name may be set as non-required, in which case we can omit it. The syntax is:
@@ -65,7 +69,7 @@ In PowerShell, all arguments are named. However, the name may be set as non-requ
 Thic creates an inherent incompatibility with most command line tools, as `:` is a valid argument separator in PowerShell. Therefore, **any argument passed to a PowerShell script block that contains `:` has to be quoted**. This is a known limitation of PowerShell [[source](https://github.com/PowerShell/PowerShell/issues/23819)].
 
 
-## Parameter blocks
+### Parameter blocks
 Parameter blocks are defined using the `param` keyword. he parameter block defines the parameters of the script block. By default (`param()`), only the build in parameters are available. In the parameter block, individual parameters are divided by commas. Example:
 
 ```PowerShell
@@ -129,11 +133,28 @@ $myFunction = {
 
 The advanced usage of parameters is described in the [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters).
 
+### Advanced Script blocks
+Any script block can be made an advanced script block. Advanced script blocks are run similarly to the compiled cmdlets. To make a script block an advanced script block, we have to use the `[CmdletBinding()]` attribute at the beginning of the script block. 
 
-# Command parsing
+Example:
+```PowerShell
+function MyFunction {
+    [CmdletBinding()]
+    # do something
+}
+```
+
+The advanced functions and scripts have the following features:
+
+- parameters are not available as `$args` (have to be parsed using the `param` block)
+- builtin parameters like `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` are parsed automatically
+- support for pipeline input
+
+
+## Command parsing
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing)
 
-## Quoting
+### Quoting
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules)
 
 In PowerShell, there are two types of quoting:
@@ -157,7 +178,7 @@ In case we need the same quoting for both levels, we can escape the first level 
 echo "a \"b\"" # prints a "b"
 ```
 
-### Arguments starting with `-` and containing `.`
+#### Arguments starting with `-` and containing `.`
 If a program argument starts with `-`, **and** contains `.` it needs to be wrapped by `'`. Otherwise, the argument will be split on the dot. Example:
 ```PowerShell
 mvn exec:java -Dexec.mainClass=com.example.MyExample -Dfile.encoding=UTF-8
@@ -178,7 +199,7 @@ Example:
 mvn exec:exec '-Dexec.executable="java"' '-Dexec.args="-Xmx30g -Djava.library.path=''C:\Program Files\HDF_Group\HDF5\1.14.3\bin'' -classpath %classpath cz.cvut.fel.aic.simod.OnDemandVehiclesSimulation"'
 ```
 
-### Escaping `"` and `'` in Arguments
+#### Escaping `"` and `'` in Arguments
 Double quotes `"` contained in arguments can be preserved by escaping with backslash: `\"`. Example for that can be passing an argument list to some executable:
 ```PowerShell
 'args=\"arg1 arg2\"'
@@ -192,7 +213,7 @@ Single quotes `'` are esceped by duble single quote: `''`. Example can be passin
 
 
 
-# Executable Execution
+## Executable Execution
 There are several ways how to run an executable in PowerShell:
 
 - The standard way is to just type the command.
@@ -210,7 +231,7 @@ There are several ways how to run an executable in PowerShell:
     Invoke-Expression "java $argument"
     ```
 
-## Using the call (`&`) operator
+### Using the call (`&`) operator
 
 - [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators#call-operator-)
 - [ss64 documentation](https://ss64.com/ps/call.html)
@@ -242,7 +263,7 @@ Unfortunatelly, there is no nice solution for this, if we want to use the call o
     ```
 
 
-## Using the Invoke-Expression command
+### Using the Invoke-Expression command
 The [`Invoke-Expression`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-expression) command executes a string as a command with arguments. Example:
 ```PowerShell
 $argument = "--version"
@@ -258,19 +279,19 @@ Invoke-Expression "echo `$test" # prints nothing as variable is not defined. The
 Invoke-Expression 'echo `$test' # prints $test. The single quotes prevent the evaluation of the escape character during the first string evaluation.
 ```
 
-## Print the exit code
+### Print the exit code
 To print the exit code of the last command, there are two options:
 
 - `$?`: returns `True` if the last command was successful, `False` otherwise
 - `$LastExitCode` variable contains the exit code of the last command
 
 
-## No Output for EXE file
+### No Output for EXE file
 Some errors are unfortunatelly not reported by powershell (e.g. [missing dll](https://stackoverflow.com/questions/23012332/how-to-make-powershell-tell-me-about-missing-dlls)). The solution is to run such program in cmd, which reports the error.
 
 
 
-# Variables
+## Variables
 Variables are defined by the `$` sign. Example:
 ```PowerShell
 $myVar = "Hello, World!"
@@ -280,20 +301,20 @@ To print the variable, just type its name. Example:
 $myVar
 ```
 
-## Environment variables
+### Environment variables
 They are accessed by the `$env:` prefix. Example:
 ```PowerShell
 $env:PATH
 ```
 
-## Operations on Variables
+### Operations on Variables
 The variables can be used in expressions. Example:
 ```PowerShell
 $myVar = 5
 $myVar + 3
 ```
 
-### String Operations
+#### String Operations
 Strings can be concatenated using the `+` operator. Examples:
 ```PowerShell
 $myVar = "Hello, " + "World!"
@@ -306,7 +327,7 @@ $env:PATH = "C:\Program Files\Java\jdk1.8.0_181\bin;" + $env:PATH
 ```
 
 
-## Test if a variable is defined
+### Test if a variable is defined
 To test if a variable is defined, use the `Test-Path` command:
 
 ```PowerShell
@@ -319,18 +340,18 @@ For global variables, we use the `variables:global:` prefix. For environment var
 
 
 
-# Operators
+## Operators
 [documentation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07)
 
 
-## The additive operator
+### The additive operator
 The additive operator (`+`) is overloaded for different types:
 
 - for numeric types, it performs the [arithmetic addition](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#771-addition)
 - for string types, it performs the [string concatenation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#772-string-concatenation)
 - for arrays and hashtables, it performs the array/hashtable concatenation
 
-## Comparison and Matching Operators
+### Comparison and Matching Operators
 
 - [help page](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators)
 - [documentation](https://learn.microsoft.com/en-us/powershell/scripting/lang-spec/chapter-07#78-comparison-operators)
@@ -350,7 +371,7 @@ Matching operators:
 - `-match`: match
 
 
-## Logical Operators
+### Logical Operators
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators)
 
 - `-and`: logical and
@@ -358,11 +379,11 @@ Matching operators:
 - `-not`: logical not
 
 
-# Control Structures
+## Control Structures
 
-## Conditions
+### Conditions
 
-### `if`
+#### `if`
 The `if` statement is used for conditional execution. The syntax is:
 ```PowerShell
 if ($condition) {
@@ -383,12 +404,9 @@ If ($condition) { "True" } Else { "False" }
 The `If` cmdlet is also available as an alias `if` and `?`.
 
 
+### Loops
 
-
-
-## Loops
-
-### `foreach`
+#### `foreach`
 The `foreach` cycle iterates over a collection. The syntax is:
 ```PowerShell
 foreach ($item in $collection) {
@@ -404,9 +422,11 @@ The above command lists the names of all files in the current directory.
 
 The alias for the `ForEach-Object` cmdlet is `foreach` and `%`.
 
-# Inputs and Outputs
 
-## Inputs
+
+## Inputs and Outputs
+
+### Inputs
 To read a file, use the [`Get-Content`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-content) cmdlet. Example:
 ```PowerShell
 Get-Content "C:\Users\user\file.txt"
@@ -416,7 +436,7 @@ Important arguments:
 
 - `-Head <number>`: read the first `<number>` lines
 
-##  Outputs
+###  Outputs
 There are many output streams in PowerShell. We can use:
 
 - `Write-Output`: for standard output
@@ -433,7 +453,7 @@ By default, only the standard and error output streams are displayed. To display
 - make the function or script we are running an *Advanced Function or Script* and use the `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` parameters
 
 
-# Pipes and Redirection
+## Pipes and Redirection
 [pipe documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines)
 
 [redirection documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection)
@@ -462,10 +482,10 @@ In new PowerShell, we have even more options:
 
 
 
-# Data Types
+## Data Types
 PowerShell uses .NET types for data types. We can encounter numbers, characters strings, or boolean values. Additionally, we can have composite types, like arrays, or objects.
 
-## Dates
+### Dates
 The date is represented by the `System.DateTime` type. To create a date, we can use the [`Get-Date`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date) command. Example:
 ```PowerShell
 $date = Get-Date # current date
@@ -480,7 +500,7 @@ if ($date1 -lt $date2) {
 ```
 
 
-## Arrays
+### Arrays
 To **create** an array, use the `@()` operator: `a = @()`.
 
 To **add an element** to an array, use the `+=` operator: `a += 1`. The same operator can be used to **append** one array to another: `a += @("1", "bar")`.
@@ -497,12 +517,12 @@ $a = @("foo", "bar")
 
 
 
-# String Manipulation
+## String Manipulation
 
-## Concatenation
+### Concatenation
 The concatenation operator is the `+` operator, see [The additive (`+`) operator section](#the-additive-operator).
 
-## Replace
+### Replace
 For replacing a substring in a string, we have two options:
 
 - `Replace` method
@@ -522,29 +542,33 @@ Multiple replacements can be done using chained `-replace` operators. Example:
 $myString -replace "pattern1", "newString1" -replace "pattern2", "newString2"
 ```
 
-## Match
+### Match
 To test if a string matches a regular expression, use the `Match` method. The syntax is:
 ```PowerShell
 $myString -match "pattern"
 ```
 
-# `Select-String`
+
+
+# Usefull Cmdlets
+
+## `Select-String`
 The [`Select-String`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-string) is the `grep` equivalent for PowerShell. The alias for the comand is `sls`. Parameters:
 
 - `-Content <before>[, <after>]`: Select also `<before>` lines before the matched line and `<after>` lines after the matched line
 - `-Pattern`: If we want to use a regular expression for searching, not a plain string
 
-## Selecting the matched string
+### Selecting the matched string
 If we use the `Select-String` with the `-Pattern` parameter, the matching lines are returned with the matching string highlighted. If we want to get only the matching string, we have to access the `Matches.Value` property for each line. Example:
 ```PowerShell
 Select-String -Pattern "pattern" | ForEach-Object { $_.Matches.Value }
 ```
 
 
-# `Select-Object`
+## `Select-Object`
 The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object) is a multi-purpose cmdlet that can be used to:
 
-- selects the specified properties of an object. or set of objectsExample:
+- selects the specified properties of an object, or set of objects. Example:
     ```PowerShell
     Get-Process | Select-Object -Property Name, Id
     ```
@@ -559,9 +583,12 @@ The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/micros
 Important parameters:
 
 - [`-First <number>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-first): select the first `number` of objects
+- [`-ExpandProperty <property>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-expandproperty): Returns the string value of the specified property of each input object.
+- [`-Property <property list>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-property): select the specified properties of an object. The `<property list>` is a comma-separated list of properties. The output is a [PSObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.psobject?view=powershellsdk-7.6.0) with the selected properties for each input object.
 
 
-# `Where-Object`
+
+## `Where-Object`
 The [`Where-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object) is a cmdlet that can be used to filter objects based on a condition. The syntax is: `Where-Object <condition>`. Example:
 ```PowerShell
 Get-Process | Where-Object { $_.Name -eq "powershell" }
@@ -569,9 +596,9 @@ Get-Process | Where-Object { $_.Name -eq "powershell" }
 
 
 
-# File System
+## File System
 
-## Listing files
+### Listing files
 [Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem)
 
 For listing files, we can use the `Get-ChildItem` command, which has an alias `ls`. 
@@ -586,7 +613,7 @@ The result will print the files with various properties out of which the **Mode*
 - `s`: system
 
 
-## Symlinks
+### Symlinks
 To **create a symlink**, use the `New-Item` command with the `-ItemType` parameter set to `SymbolicLink`. Example:
 ```PowerShell
 New-Item -ItemType SymbolicLink -Path <source> -Target <target>
@@ -597,31 +624,16 @@ To **modify a symlink**, we use the same command, we just need to add the `-Forc
 Note that **administrator privileges are required to create or modify symlinks**.
 
 
-## Other commands
+### Other commands
 
 - `Get-Location`, `pwd`: get the current working directory
     - [Wikipedia](https://en.wikipedia.org/wiki/Pwd)
 
 
 
-# Network
+## Network
 
-## [`netstat`](https://en.wikipedia.org/wiki/Netstat)
-The [`netstat`](https://en.wikipedia.org/wiki/Netstat) is the basic network monitoring program. It displays TCP connections. It originated on Linux, so the usage and parameters are described in the Linux manual. Below, we discuss the differencies in the command interface and behavior of the Windows version of the command.
-
-[Winndows manual](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat).
-
-### Lot of kubernetes entries in the log
-By default, the netstat command translates IPs into names. Unfortunatelly, on Windows, it also uses the information from the hosts file (`C:\Windows\System32\drivers\etc\hosts`). This is a problem, because some services, like Docker, can use the `hosts` file to redirect some adddress to localhost. Therefore, at the end, all localhost entries are named kubernetes. Solution options:
-
-- use the `-n` parameter for `netstat` or
-- remove the redirection to `localhost` in the `hosts` file 
-
-### Display executable for connection
-To display executable for all connection, just use the `-b` swith. For filtering out only some, you have to use the `-Context` parameter in the `Select-String` command, as the executable is printed one line below the connection: `netstat -b | sls <search pattern> -Context 0,1`
-
-
-## VPN Management
+### VPN Management
 To **add a VPN connection**, use the `Add-VpnConnection` command. Example:
 ```PowerShell
 Add-VpnConnection -Name "My VPN" -ServerAddress "vpn.example.com" -AuthenticationMethod "MSCHAPv2" -EncryptionLevel "Required" -SplitTunneling -AllUserConnection -RememberCredential
@@ -634,8 +646,7 @@ RasDial "<VPN name>" "<username>" "<password>"
 
 
 
-
-# System Information
+## System Information
 [CIM documentation](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets)
 
 [WMI classes](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-classes)
@@ -646,7 +657,7 @@ There are several interfaces for getting system information in PowerShell:
 - Using the [*`Windows Management Instrumentation` (WMI)*](https://en.wikipedia.org/wiki/Windows_Management_Instrumentation) 
 - By reading from the [*registry*](https://en.wikipedia.org/wiki/Windows_Registry)
 
-## CIM and WMI
+### CIM and WMI
 Because the CIM and WMI interfaces are very similar, we will discuss them together. The main difference is that the CIM is the newer interface, which is more powerful and more user-friendly. The CIM is also cross-platform, while the WMI is Windows-only.
 
 The advantage of the CIM and WMI interfaces is that they are clear and object-oriented. The information can be queried using database-like operations. The disadvantage is that they are slow.
@@ -669,26 +680,17 @@ For both commands, we need to specify the class of the object we want to get usi
 To access the Windows registry, we use the same commands that are used for file system:
 
 - [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key
- - [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
+- [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
 
 
+## Services
+There are several cmdlets for managing services:
 
-# Advanced Script blocks
-Any script block can be made an advanced script block. Advanced script blocks are run similarly to the compiled cmdlets. To make a script block an advanced script block, we have to use the `[CmdletBinding()]` attribute at the beginning of the script block. 
+- [`Get-Service`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service): to get the list of services
+- [`Set-Service`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service): to configure a service
+- [`Start-Service`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-service): to start a service
+- [`Stop-Service`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-service): to stop a service
 
-Example:
-```PowerShell
-function MyFunction {
-    [CmdletBinding()]
-    # do something
-}
-```
-
-The advanced functions and scripts have the following features:
-
-- parameters are not available as `$args` (have to be parsed using the `param` block)
-- builtin parameters like `-Verbose`, `-Debug`, `-WarningAction`, `-InformationAction` are parsed automatically
-- support for pipeline input
 
 
 # Elevation

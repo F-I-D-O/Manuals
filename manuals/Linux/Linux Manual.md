@@ -275,11 +275,13 @@ Most important columns are:
 - `FSAVAIL`: available file system space
 
 # Network
-## [`netstat`](https://en.wikipedia.org/wiki/Netstat)
+
+## `netstat`
 The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic command to monitor the networ. It displays the TCP connections. It is available both on Linux and on Windows, although the interface differs. Important parameters:
 
-- `-n`: do not translate IP and ports into human readable names
 - `-a`: show all connections. Without this, some connections can be skipped.
+- `-n`: do not translate IP and ports into human readable names
+- `-o`: 
 
 
 
