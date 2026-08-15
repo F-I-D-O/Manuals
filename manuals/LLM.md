@@ -244,6 +244,8 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Doing`](https://claudionary.com/definition/doing/): When the classification of Claude's thoughts is not clear, the `doing` keyword is emitted.
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
+- [`Flambéing`](https://claudionary.com/definition/flambeing/): Removing confuding details and ambiguities from the response, leaving only the coherent core of the idea.
+- [`Flummoxing`](https://claudionary.com/definition/flummoxing/): The model questions the user prompt itself, considering the question irrelevant, stupid, or not clear to be answered.
 - [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
 - [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.

@@ -328,7 +328,14 @@ When a disk is selected, we can use other commands:
 
 
 
+# Registry
+Registry is a hierarchical database that stores configuration data for both the system and applications. It can be explored and manipulated using:
 
+- **Command shell**: e.g., `reg query HKEY_CURRENT_USER\Software\Microsoft\...`
+    - see the [Command shell manual](./Comand%20shell.md#registry-manipulation) for more info
+- **PowerShell**: e.g., `Get-ItemProperty -Path HKCU:\Software\Microsoft\...`
+    - see the [PowerShell manual](./Powershell%20Manual.md#windows-registry) for more info
+- **RegEdit**: a GUI tool for registry manipulation
 
 
 
