@@ -1,3 +1,6 @@
+# Introduction
+[Wikipedia](https://en.wikipedia.org/wiki/Diagram)
+
 # Flowcharts
 [Wiki](https://en.wikipedia.org/wiki/Flowchart)
 
@@ -21,6 +24,12 @@ Flowchart diagram components are:
 
 Component diagrams depict the structure of a system. The nodes represent the components of the system, and they may be grouped into larger components.
 Arrows doe NOT represent the flow, but instead the relationships between the components.
+
+
+# Euler Diagrams
+[Wiki](https://en.wikipedia.org/wiki/Euler_diagram)
+
+Euler diagrams are diagrams depicting set membership relationships. Unlike Venn diagrams, Euler diagrams do not have to contain all possible combinations of the sets. Euler diagrams are essential for depicting any complex terminology.
 
 
 # Diagrams with D2

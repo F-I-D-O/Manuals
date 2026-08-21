@@ -88,8 +88,15 @@ function MyFunction {
 param($param1, $param2)
 ```
 
+Note that **by default, positional arguments are bound to parameters**, in order of their appearance in the parameter block. To disable this, write:
+```PowerShell
+[CmdletBinding(PositionalBinding = $false)]
+param(...)
+```
 
-Parameters can be **typed**. Example:
+
+#### Typed Parameters
+Example:
 ```PowerShell
 $myFunction = {
     param([int]$param1, [string]$param2, [switch]$param3)
@@ -98,7 +105,8 @@ $myFunction = {
 ```
 The [`switch` type](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.5#switch-parameters) is a boolean parameter that does not require a value. It is set to `True` if the parameter is present.
 
-Parameters can be **mandatory**. Example:
+#### Mandatory Parameters
+Example:
 ```PowerShell
 $myFunction = {
     param(
@@ -110,7 +118,8 @@ $myFunction = {
 }
 ```
 
-We can also **validate** the parameters. Example:
+#### Argument Validation
+Example:
 ```PowerShell
 $myFunction = {
     param(

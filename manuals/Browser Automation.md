@@ -209,6 +209,7 @@ Typical arguments are:
 - `--extension`: connect to a running browser instance with the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm) installed
 - `--headless`: run the browser in headless mode, i.e., without a user interface
 - `--isolated`: start a new browser every time, instead of having one session per workspace and reusing it
+- `--port <port>`: specify the port to use for the Playwright server
 
 
 ## Connecting to Browsers
@@ -228,6 +229,7 @@ There are two ways how to connect to a browser:
 [Official documentation](https://github.com/microsoft/playwright/blob/main/packages/extension/README.md)
 
 1. Install the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm), if not yet installed
+1. in the extension settings in the browser, check the `Allow access to file URLs` checkbox (otherwise, file uploads are not possible)
 1. Add `--extension` as an argument to the MCP server configuration:
     ```json
     "mcpServers": {
@@ -241,6 +243,11 @@ There are two ways how to connect to a browser:
         }
     }
 1. If running another browser than Chrome, you also need to use the `--browser` argument to specify the browser to use.
+
+When strting the Playwright server manually, e.g., for external use from a sandbox, the command line can be:
+```bash
+npx @playwright/mcp@latest --port 8931 --browser msedge --extension
+```
 
 
 ### Connecting via Chrome DevTools Protocol

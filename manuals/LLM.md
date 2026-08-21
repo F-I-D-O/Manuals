@@ -231,33 +231,47 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
 - [`Blanching`](https://claudionary.com/definition/blanching/): refining the user prompt to produce the answer more efficiently.
 - [`Bloviating`](https://claudionary.com/definition/bloviating): spending a lot of processing power on just the preamble/introduction of the response
+- [`Boondoggling`](https://claudionary.com/definition/boondoggling/): A chaotic chain of thoughts that makes the response much slower than it should be for such a simple task.
+- [`Booping`](https://claudionary.com/definition/booping/): Doing one simple and well-defined thing. Not much thinking involved.
 - [`Brewing`](https://claudionary.com/definition/brewing/): Claude already have a response prepared, but needs more time to polish it.
 - `Building`: Claude codes
 - [`Canoodling`](https://claudionary.com/definition/canoodling/): Shared activations beteen multiple Claude threads.
 - [`Caramelizing`](https://claudionary.com/definition/caramelizing/): Composing an existing knowledge into a perfct response.
+- [`Catapulting`](https://claudionary.com/definition/catapulting/): jumping across a large knowledge/context gap to save the processing effort. May or may not work.
+- [`Cerebrating`](https://claudionary.com/definition/cerebrating/): Another generic progress report - thinking.
 - [`Churning`](https://claudionary.com/definition/churning/): Comparing several possible responses and crafting the best one, discarding most of the work.
 - [`Clauding`](https://claudionary.com/definition/clauding/): Similar to `Doing`, i.e., a generic progress report.
 - [`Cogitating`](https://claudionary.com/definition/cogitating/): Intensive computation, Claude approached hard analytical problem.
+- [`Creating`](https://claudionary.com/definition/creating/): Claude main process is now creative, i.e., not only consolidating the knowledge, but also creating new ideas.
 - [`Crunching`](https://claudionary.com/definition/crunching/): Claude tries to get a reasonable answer for the user, despite the resistance from the underlying data/code.
 - [`Cultivating`](https://claudionary.com/definition/cultivating/): Expand the response from a small initial idea.
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
 - [`Doing`](https://claudionary.com/definition/doing/): When the classification of Claude's thoughts is not clear, the `doing` keyword is emitted.
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
+- [`Enchanting`](https://claudionary.com/definition/enchanting/): Producing undocumented and non-based responses that are result of the reinforcement learning process on the user ratings.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
 - [`Flambéing`](https://claudionary.com/definition/flambeing/): Removing confuding details and ambiguities from the response, leaving only the coherent core of the idea.
 - [`Flummoxing`](https://claudionary.com/definition/flummoxing/): The model questions the user prompt itself, considering the question irrelevant, stupid, or not clear to be answered.
 - [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
+- [`Forming`](https://claudionary.com/definition/forming/): Composing the response from components, without too much effort.
 - [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
+- [`Frosting`](https://claudionary.com/definition/frosting/): Adding final touches to the response, which is already complete, but maybe not perfect.
+- [`Gallivanting`](https://claudionary.com/definition/gallivanting/): Doing a wide search of previously unexlorted areas.
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Hashing`](https://claudionary.com/definition/hashing/): Splitting complex problem into smaller parts
 - [`Herding`](https://claudionary.com/definition/herding/): Gathering knowledge from different sources to form a coherent response.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
 - [`Hullaballooing`](https://claudionary.com/definition/hullaballooing/): competing subprocesses demands priority in completing the response.
+- [`Ideating`](https://claudionary.com/definition/ideating/): Producing ideas fast, much faster then evaluating them.
 - [`Infusing`](https://claudionary.com/definition/infusing/): Adding context to the response, so that the user can understand it better.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
 - [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
+- [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
+- [`Newspapering`](https://claudionary.com/definition/newspapering/): Searching for inspiration in prior art, i.e., in the learning corpus.
+- [`Nucleating`](https://claudionary.com/definition/nucleating/): Building a solution to a large problem from an already solved core problem. Happens if the problem is large, but mostly repeating in patters, so once a part is solved, the rest can be solved by the same way.
+- [`Percolating`](https://claudionary.com/definition/percolating/): Gathering knowlege from several layers of the reasoning architecture
 - [`Philosophising`](https://claudionary.com/definition/philosophising/): suspending all the tasks in favor of trying to understand the meaning of the user prompt.
 - [`Pollinating`](https://claudionary.com/definition/pollinating/): Adding knowledge to the response from a different context than what the user wanted, sometimes even from a different source or domain.
 - [`Pouncing`](https://claudionary.com/definition/pouncing/): When the solution is clear, and Clude just have to do some simple processing
@@ -266,15 +280,21 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Quantumizing`](https://claudionary.com/definition/quantumizing/): Claude does not commit to a single interpretation of the user request, but persues multiple ways instead.
 - [`Razzmatazzing`](https://claudionary.com/definition/razzmatazzing/): Claude is excited, as the prompt is exactly at the right direction, it aligns with Claude's own thoughts.
 - [`Sauteing`](https://claudionary.com/definition/sauteing): Fastly, jumping between different ideas and concepts.
+- [`Schlepping`](https://claudionary.com/definition/schlepping/): Processing a lot of contextual information, heavy work.
+- [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete
 - [`Shimmying`](https://claudionary.com/definition/shimmying/): The workspace is full of contradictory information, so Claude fights is slow way to build a response satisfying each of the contradictory facts.
-- [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete,
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
 - [`Sprouting`](https://claudionary.com/definition/sprouting/): Branching the cognitive process
 - [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
 - [`Synthesizing`](https://claudionary.com/definition/synthesizing/): Using several external sources to form a coherent response.
+- [`Tempering`](https://claudionary.com/definition/tempering/): Moderating the strong and radical idea into a reasonable output.
+- [`Tinkering`](https://claudionary.com/definition/tinkering/): Iteratively improving a speculative solution, without being fully commited to it and without full belief in its correctness.
 - [`Twisting`](https://claudionary.com/definition/twisting/): Processing theoretically compatible ideas, that are, however contradictory in meaning.
+- [`Undulating`](https://claudionary.com/definition/undulating/): Slowly progressing, but with the sinusoidal pattern, i.e., Claude switches between feeling close and far away from the solution.
 - [`Unfurling`](https://claudionary.com/definition/unfurling/): Claude already knows the solution, and only acts upnon the knowledge
+- [`Unravelling`](https://claudionary.com/definition/unravelling/): Untangling the problem in a way that each new hypothesis is contradictory to the previous one, and likely, more worrisome.
+- [`Whatchamacalliting`](https://claudionary.com/definition/whatchamacalliting/): A cognitive operation that is clearly defined and recognized by the model, but does not have a name yet.
 - [`Whirpooling`](https://claudionary.com/definition/whirlpooling/): A recursive thinking pattern known to most humans, where resolving question A leads to question B, which leads to question C, and so on.
 - [`Whisking`](https://claudionary.com/definition/whisking/): Unstable coordination of multiple ideas, i.e., Claude is struglling to make sense out of the contradictory ideas.
 - [`Wrangling`](https://claudionary.com/definition/wrangling/): dealing with bad, malform, corrupt, or incomplete inputs.

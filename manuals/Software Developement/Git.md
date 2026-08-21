@@ -464,6 +464,16 @@ To create a release:
 1. Click `Publish release`
 
 
+## Comparing commits, branches, and tags
+[Official documentation](https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits)
+
+Everything is done on `https://github.com/<OWNER>/<REPOSITORY>/compare`. 
+
+For **branches and tags**, we can use the dropdowns. 
+
+For **commits**, we need to enter the commits manually to url as `https://github.com/<OWNER>/<REPOSITORY>/compare/<COMMIT1>..<COMMIT2>`, where `<COMMIT1>` and `<COMMIT2>` are the six-digit commit hashes.
+
+
 ## GitHub CLI
 Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
 
