@@ -198,10 +198,12 @@ For finding duplicates, there are two possible approaches:
 - **Sorting**: sorting the collection and then for each element checking if the current element is the same as the previous one. 
 
 Comparison:
+
 | Approach | Time complexity (worst case asymptothic)| Time complexity (average expected) | Space complexity | allocation complexity |
 | --- | --- | --- | --- | --- |
 | Sets | *O(log n)* (both contains and add) | *O(1)* (both contains and add) | *O(n)* | *O(1)* |
 | Sorting | *O(n log n)* (sorting) | *O(n log n)* (sorting) + *O(n)* (duplicates check) | *0* or *O(n)* if we need to left the source collection unsorted | *0* or *O(1)* in case of new collection |
+
 
 
 # Releasing the software

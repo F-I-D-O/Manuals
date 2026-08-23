@@ -228,6 +228,7 @@ Listing a tool in `allow` list let it use without asking. In `auto` mode, this b
 
 Claude use more than a hundred different progress descriptions, depending on the current state of the LLM tool. The most common ones are:
 
+- [`Accomplishing`](https://claudionary.com/definition/accomplishing/): When Claude thinks it has accomplished something, but the response is not yet complete.
 - [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
 - [`Blanching`](https://claudionary.com/definition/blanching/): refining the user prompt to produce the answer more efficiently.
 - [`Bloviating`](https://claudionary.com/definition/bloviating): spending a lot of processing power on just the preamble/introduction of the response
