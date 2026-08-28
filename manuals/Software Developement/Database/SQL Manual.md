@@ -1,5 +1,17 @@
+
+# Introduction
 SQL is a standard for relational databases. There is no complete implementation of the standard. The standard is not free, you have to pay for it. Therefore, it is sometimes hard to say what exactly is SQL and what is not.
 
+
+
+# Quotting
+In SQL, three types of strings are used in queries:
+
+- unquoted strings: for keywords and folded identifiers
+- single quoted strings: for string literals
+- double quoted strings: for exact identifiers
+
+The difference between folded and exact identifiers is that folded identifiers are case insensitive and automatically converted to case specific for the database system, while the case of exact identifiers is preserved.
 
 # Operators
 **Comparison** operators:

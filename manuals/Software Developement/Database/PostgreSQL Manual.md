@@ -1,3 +1,6 @@
+# Introduction
+The default case for PostgreSQL is lower case. Therefore, it is advisable to use lower case for all identifiers.
+
 # Data types
 [official documentation](https://www.postgresql.org/docs/current/datatype.html)
 
