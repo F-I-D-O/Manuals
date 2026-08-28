@@ -258,6 +258,7 @@ where:
 - **Surround with**: `Ctrl` + `W`
 
 
+
 # EditorConfig
 [homepage](https://editorconfig.org/)
 
@@ -268,7 +269,45 @@ Common settings are:
 - `end_of_line`: the end of line character, e.g., `lf`, `cr`, `crlf`
 
 
-# JetBrains Products 
+
+# MSBuild
+
+- [Wikipedia](https://en.wikipedia.org/wiki/MSBuild)
+- [GitHub](https://github.com/dotnet/msbuild)
+- [Official documentation](https://learn.microsoft.com/en-us/visualstudio/msbuild/)
+
+The MSBuild is a XML-based build sequencing tool. It is used for building C++, C#, and Visual Basic Applications.
+
+The main files MSBUild use to build a project are called *project files*:
+
+- `.vcxproj`: for C++ projects
+- `.csproj`: for C# projects
+
+Besides, there can be also solution files (`.sln`, or more recent `slnx` format) that group multiple projects.
+
+All properties are stored in the root element of the project file: `
+
+
+## Project File
+[Official documentation](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file)
+
+The MSBuild project file is a XML file. The file is structure is presented in the following picture:
+
+![Project File](./image2.png)
+source: https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file
+
+Under the root `Project` element, the project definition is divided into three types of elements:
+
+- [`PropertyGroup`](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file#properties-and-conditions): contains the properties for the project, like .NET version
+- [`ItemGroup`](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file#items-and-item-groups): contains the items for the project, like source files, dependencies, etc.
+- [`Target`](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file#targets-and-tasks): build target specification
+- `ItemDefinitionGroup Condition="<configuration>"`: contains the properties for the given configuration.
+
+Other targets can be referenced using `<ProjectReference>` elements inside `<ItemGroup>`. Theses targets are built before the current target.
+
+
+
+# JetBrains Products
 
 ## Configuration
 
