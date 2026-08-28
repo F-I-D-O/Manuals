@@ -282,6 +282,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Pollinating`](https://claudionary.com/definition/pollinating/): Adding knowledge to the response from a different context than what the user wanted, sometimes even from a different source or domain.
 - [`Pouncing`](https://claudionary.com/definition/pouncing/): When the solution is clear, and Clude just have to do some simple processing
 - [`Prestidigitating`](https://claudionary.com/definition/prestidigitating/): Claude does something that cannot be explained.
+- [`Puttering`](https://claudionary.com/definition/puttering/): Claude is occupied by a lot of small tasks that are prerequisities for the actual job
 - [`Orbiting`](https://claudionary.com/definition/orbiting/): Failing to getting closer to the answer or solution of the problem
 - [`Osmosing`](https://claudionary.com/definition/osmosing/): Connecting the user's intent with prior knowledge. Claude has some model of the problem, and need to press the user's point of view into that model.
 - [`Quantumizing`](https://claudionary.com/definition/quantumizing/): Claude does not commit to a single interpretation of the user request, but persues multiple ways instead.
