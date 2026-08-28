@@ -258,6 +258,15 @@ where:
 - **Surround with**: `Ctrl` + `W`
 
 
+# EditorConfig
+[homepage](https://editorconfig.org/)
+
+EditorConfig is a standard for defining coding styles and configurations for IDEs.
+
+Common settings are:
+
+- `end_of_line`: the end of line character, e.g., `lf`, `cr`, `crlf`
+
 
 # JetBrains Products 
 
