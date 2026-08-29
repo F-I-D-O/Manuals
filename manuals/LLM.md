@@ -369,6 +369,8 @@ This `sbx run` command for a directory automatically creates a new sandbox. To r
 
 To **create a sandbox without running it**, use the `sbx create` command: `sbx create <image name> <flags>`.
 
+For `<image name>`, look to the [Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/?utm_source=chatgpt.com#base-images) for the list of available images. If the image is not listed, you can use the `shell` image and configure it yourself.
+
 
 ### Add additional directories to the sandbox
 [Official documentation](https://docs.docker.com/ai/sandboxes/usage/#multiple-workspaces)
@@ -426,6 +428,110 @@ sbx template save <sandbox name> <template name>
 The format of the template name is typically `<template name>:version`, where `<template name>` is Kebab-cased (e.g., `my-template`) string, and version is typically in the format `v<version>`, e.g., `v1`.
 
 
+### Policies
+
+- [Official documentation](https://docs.docker.com/ai/sandboxes/governance/concepts/)
+- [CLI reference](https://docs.docker.com/ai/sandboxes/governance/concepts/)
+
+What is allowed in sandbox is defined by a set of *policies*, which contain one or more *rules*. All policies can be defined either globally or per sandbox.
+
+To **list** the policies, use the `sbx policy ls` command.
+
+To **check a specific thing is allowed**, use the `sbx policy check` command.
+
+To **change** the policies, use the `sbx policy allow` and `sbx policy deny` commands.
+
+Each rule has the following properties:
+
+- **ID**: unique ID
+- **Name** Human readable name. For global policies with human readable IDs, this field is empty.
+- **Action**: the type of the rule, like `network`, `filesystem`
+- **Resources**: the resources that are affected by the rule
+- **Decision**: `allow` or `deny`
+
+The policy evaluation folows the following **important principles**:
+
+- everything not explicitly allowed is denied
+- when multiple policies governing the same action are defined for a sandbox:
+    - deny overrides allow
+    - resources are merged
 
 
+#### `sbx policy ls`
+[Official documentation](https://docs.docker.com/reference/cli/sbx/policy/ls/)
 
+By default, all policies are listed, one row per policy, with the last row being the global policy. The columns are:
+
+- `POLICY`: the ID of the policy for policies created by an image/kit, this is typically a generated ID (e.g., `8a0f0791-8985-46c4-b2ee-607b44400e0d`)
+- `SOURCE`: `kit` for policies created by an image/kit, `local` for policies created by Docker Sandbox itself
+- `APPLIES TO`: the sandboxes to which the policy applies. Either `all` for all sandboxes, or a list of sandbox names
+- `SUMMARY`: a summary of the policy
+
+To only **list the policies for a specific sandbox**, call `sbx policy ls <sandbox name>`. With this, the output is a summary of active policies per sandbox.
+
+Many times, we need a more detailed view to undestand the policy - key details can be skipped. To obtain the detailed view, use the `--wide` parameter. With wide view, we have a few more columns:
+
+- `TYPE`: the type of the policy (e.g., `network`)
+- `DECISION`: `allow` or `deny`
+- `RESOURCES`: sometimes, the policy can be limited to specific resources. These will be listed here.
+
+
+#### `sbx policy check`
+[Official documentation](https://docs.docker.com/reference/cli/sbx/policy/check/)
+
+To **check if a specific thing is allowed**, we can use the `sbx policy check <action>`
+
+For **network policies**, we have a dedicated [`sbx policy check network` command](https://docs.docker.com/reference/cli/sbx/policy/check/network/). We can limit this command to a specific sandbox using the `--sandbox` parameter. Also we can test a specific URL to check if it fits the resources defined in the policy:
+
+```bash
+sbx policy check network --sandbox <sandbox name> <URL>
+```
+
+
+# Harness
+
+## Hermes
+
+- [Homepage](https://hermes-agent.org/)
+- [GitHub](https://github.com/NousResearch/hermes-agent)
+
+Hermes is an agent wrapper with a set of tools. The main advantages are:
+
+- Context that can be potentially shared between agents
+- Connectivity to multiple chat interfaces
+
+We can call Hermes commands in two modes:
+
+- `hermes <command>`: execute the `<command>` in the current profile
+- `<profile name> <command>`: execute the `<command>` in the specified profile
+
+Basic commands are:
+
+- `config`: configuration
+- `doctor`: diagnosis
+- `tools`: tools configuration
+
+### Profiles
+Herems can be setup differently for each profile. A profile is ceated using the `hermes profile create <profile name>`.
+
+With existing profile, we can operate on it using the command named by the profile, e.g., `<profile name> setup` starts the setup wizard for the profile.
+
+
+### Configuration
+[Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration)
+
+Configuration is done by running the `hermes config set` command. We can configure:
+
+- `agent.max_turns`: the maximum number of query -> response cycles to perform
+- `terminal.cwd`: the working directory to use
+- `timezone`: the timezone to use. This is important for CRON jobs.
+
+#### Guardrails
+[Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#tool-loop-guardrails)
+
+Guardrail system prevents the unproductive loops. Two things need to be configured:
+
+- enable the guardrails: `tool_loop_guardrails.hard_stop_enabled true`
+- set the conditions for the guardrails: 
+    `tool_loop_guardrails.hard_stop_after.exact_failure <number>`: after `<number>` identical failures
+    `tool_loop_guardrails.hard_stop_after.idempotent_no_progress <number>`: same result after `<number>` query -> response cycles

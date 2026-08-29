@@ -95,6 +95,14 @@ param(...)
 ```
 
 
+#### Default Values
+For default values, use the following syntax:
+```PowerShell
+param(
+    <parameter specification> = <default value>
+)
+```
+
 #### Typed Parameters
 Example:
 ```PowerShell

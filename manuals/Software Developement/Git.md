@@ -100,7 +100,7 @@ In git configuration, this can be controlled using the [`protocol.allow`](https:
 - `never`: do not allow (default for unsafe protocols: `ext`)
 - `user`: protocol is directly usable by the user, but cannot be used by commands that has no user input (e.g., `clone`, `fetch`, `push`, `pull`) (default for `file`)
 
-We can control this also by an environment variable: [`GIT_ALLOW_PROTOCOL=<protocol list>`](https://git-scm.com/docs/git#Documentation/git.txt-GITALLOWPROTOCOL), where `<protocol list>` is a comma-separated list of allowed protocols.
+We can control this also by an environment variable: [`GIT_ALLOW_PROTOCOL=<protocol list>`](https://git-scm.com/docs/git#Documentation/git.txt-GITALLOWPROTOCOL), where `<protocol list>` is a **colon**-separated list of allowed protocols.
 
 
 # Git over SSH
