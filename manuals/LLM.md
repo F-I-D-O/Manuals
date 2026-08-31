@@ -520,7 +520,7 @@ With existing profile, we can operate on it using the command named by the profi
 ### Configuration
 [Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration)
 
-Configuration is done by running the `hermes config set` command. We can configure:
+Configuration is stored in the `~/.hermes/config.yaml` file. It can be also edited by running the `hermes config set` command. We can configure:
 
 - `agent.max_turns`: the maximum number of query -> response cycles to perform
 - `terminal.cwd`: the working directory to use
@@ -535,3 +535,5 @@ Guardrail system prevents the unproductive loops. Two things need to be configur
 - set the conditions for the guardrails: 
     `tool_loop_guardrails.hard_stop_after.exact_failure <number>`: after `<number>` identical failures
     `tool_loop_guardrails.hard_stop_after.idempotent_no_progress <number>`: same result after `<number>` query -> response cycles
+
+#### MCP servers
