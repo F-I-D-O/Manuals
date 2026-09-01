@@ -21,8 +21,15 @@ Useful commands:
 - [Homepage](https://cloud.google.com/cli)
 - [Installation Guide](https://docs.cloud.google.com/sdk/docs/install-sdk)
 - [`gcloud` command reference](https://docs.cloud.google.com/sdk/gcloud/reference)
+- [`gcloud` command cheat sheet](https://cloud.google.com/sdk/docs/cheatsheet)
 
 Google Cloud CLI is a set of tools to manage Google Cloud services from the command line.
+
+Most used subcommands:
+
+- `gcloud auth`: authentication
+- `gcloud info`: show information about the current configuration (installation, project, paths, etc.)
+- `gcloud organizations`: see and manage organizations
 
 
 ## Authentication
@@ -55,7 +62,7 @@ Sometimes, a **reauthentication** is required, with a prompt like the following:
 Reauthentication required.
 Please enter your password:
 ```
-In this case, we need to typr the password to the active google account.
+In this case, we need to type the password to the active google account.
 
 
 ## Google Cloud Console

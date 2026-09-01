@@ -255,32 +255,6 @@ The user specific shortcuts are stored in: `%appdata%\Microsoft\Windows\Start Me
 The system wide shortcuts are stored in: `%programdata%\Microsoft\Windows\Start Menu\Programs`.
 
 
-## Permissions
-[Documentation](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/access-control)
-
-Every possible permission can be granted to a:
-
-- user
-- group
-
-Each user and group, some times referred as *security principals*, is assigned a Security Identifier (SID).
-
-Each resource (file, folder, etc.) has an *owner* who can grant permissions to other security principals. By default, the owner is the user who created the resource. Regardless of the permission granted, the owner always has all permissions.
-
-The permissions available depend on the type of the resource, but most resources support at least the following permissions:
-
-- read
-- modify
-- change owner
-- delete
-
-
-
-
-### Managing permissions using the GUI
-To manage permissions using the GUI, right click on the resource in the Windows Explorer and select `Properties` -> `Security` -> `Advanced`.
-
-
 ## Read Only Files and Folders
 An ancient form of file protection on Windows is the read only flag that can be set on files and folders. It is not a real protection, as it can be easily removed by the user, but it can be used to prevent accidental changes.
 
@@ -326,6 +300,71 @@ When a disk is selected, we can use other commands:
 - `list volume`: list all volumes on the selected disk. A volume is a mount point for a partition.
 - `select partition <partition number>`: select the partition to manage
 
+
+# Ownership and Permissions
+
+- [Documentation](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/access-control)
+- [Official documentation - Managing Ownership](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc732983(v=ws.11))
+
+Every possible permission can be granted to a:
+
+- user
+- group
+
+Each user and group, some times referred as *security principals*, is assigned a Security Identifier (SID).
+
+Each resource (file, folder, etc.) has an *owner* who can grant permissions to other security principals. By default, the owner is the user who created the resource. Regardless of the permission granted, the owner always has all permissions.
+
+The permissions available depend on the type of the resource, but most resources support at least the following permissions:
+
+- read
+- modify
+- change owner
+- delete
+
+The permissions assigned to a resource are stored in the *Access Control List* (ACL).
+
+By default, the owner of a resource is the user who created it. No matter the permissions assigned, the owner can always modify the permissions of the resource.
+
+The **following users can take the ownership** of a resource:
+
+- **Administrators**: they have the `Take ownership of files or other objects` user right
+- Users which have the **`Take ownership`** permission on the resource
+- Users with the **`Restore files and directories`** right
+
+Adititionally, the **owner can transfer the ownership** to another user.
+
+
+## Managing permissions using the GUI
+[Official documentation](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753659(v=ws.10))
+
+To manage permissions using the GUI, right click on the resource in the Windows Explorer and select `Properties` -> `Security` -> `Advanced`.
+
+
+## Managing permissions using the command line
+To display the ownership and permissions, use the built-in shell commands:
+
+- `Get-Acl`: in [PowerShell](./Powershell%20Manual.md#ownership-and-permissions)
+- `dir /q`: in [Command shell](./Comand%20shell.md#usefull-commands)
+
+To **change the ownership**, there are two programs:
+
+- `takeown`: to take the ownership yourself
+- `icacls`: to manage the permissions and ownership. If you need to set some other user as the owner, you have to use this program.
+
+
+### `takeown`
+[Official documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/takeown)
+
+Takown is a simple program for taking ownership. The basic syntax is:
+
+```PowerShell
+takeown /f <path>
+```
+
+Important parameters:
+
+- `/r`: take ownership recursively
 
 
 # Registry

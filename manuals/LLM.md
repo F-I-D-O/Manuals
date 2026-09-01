@@ -262,6 +262,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
 - [`Frosting`](https://claudionary.com/definition/frosting/): Adding final touches to the response, which is already complete, but maybe not perfect.
 - [`Gallivanting`](https://claudionary.com/definition/gallivanting/): Doing a wide search of previously unexlorted areas.
+- [`Gesticulating`](https://claudionary.com/definition/gesticulating/): Instead of thinking and processing, Claude is very sure about something.
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Hashing`](https://claudionary.com/definition/hashing/): Splitting complex problem into smaller parts
@@ -272,6 +273,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Infusing`](https://claudionary.com/definition/infusing/): Adding context to the response, so that the user can understand it better.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
 - [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response
+- [`Leavening`](https://claudionary.com/definition/leavening/): Transforming a dense response into a longer response, without adding new information.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
 - [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
 - [`Nebulizing`](https://claudionary.com/definition/nebulizing/): spliting a coherent thought into many small parts that no loger fit together.

@@ -38,6 +38,14 @@ Sometimes, DataGrip displays objects that were deleted. Additionally, it it disp
 
 
 # Navicat
+Navicat is a paid product for managing database systems. It supports many database systems, including
+
+- MySQL
+- PostgreSQL
+- SQL Server
+- Oracle
+- Redis
+
 ## Cannot connect to db
 Symptoms:
 
@@ -56,8 +64,15 @@ Try:
 # PgAdmin
 The best way to install the PgAdmin is to use the [EDB PostgreSQL installer](https://www.postgresql.org/download/windows/) and uncheck the database installation during the installation configuration. This way, we also install useful tools like `psql`
 
+
 ## Diagrams
+For ER diagrams, PGAdmin has a separate ERD tool. Note that this tool is kind of separate from the other functionalities of the application, so most of its functionality is self contained in the ERD tool window.
+
 To create diagram from an existing database: right click on the database -> `Generate ERD`
+
+To open the ERD tool, use `Tools` > `ERD Tool`.
+
+To open an existing diagram, first start the ERD tool, then use the open diagram icon in the toolbar.
 
 
 # Visual Studio Code

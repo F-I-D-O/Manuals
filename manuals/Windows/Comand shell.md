@@ -226,6 +226,9 @@ Typical subcommands:
 
 # Usefull Commands
 
+- `dir`: list files and folders
+    - `/q`: include file owner
+
 ## Get the path of the executable/command
 To get the path of the executable/command, we can use the `where` command. Example:
 ```batch

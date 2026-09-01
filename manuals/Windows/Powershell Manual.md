@@ -630,6 +630,12 @@ The result will print the files with various properties out of which the **Mode*
 - `s`: system
 
 
+### Ownership and Permissions
+To see the ownership and permissions of a file, we can use the `Get-Acl` command.
+
+To **change the ownership**, 
+
+
 ### Symlinks
 To **create a symlink**, use the `New-Item` command with the `-ItemType` parameter set to `SymbolicLink`. Example:
 ```PowerShell
