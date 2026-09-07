@@ -303,6 +303,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Synthesizing`](https://claudionary.com/definition/synthesizing/): Using several external sources to form a coherent response.
 - [`Tempering`](https://claudionary.com/definition/tempering/): Moderating the strong and radical idea into a reasonable output.
 - [`Tinkering`](https://claudionary.com/definition/tinkering/): Iteratively improving a speculative solution, without being fully commited to it and without full belief in its correctness.
+- [`Topsy-turvuing`](https://claudionary.com/definition/topsy-turvying): Changing the direction of thoughts radically several times
 - [`Twisting`](https://claudionary.com/definition/twisting/): Processing theoretically compatible ideas, that are, however contradictory in meaning.
 - [`Undulating`](https://claudionary.com/definition/undulating/): Slowly progressing, but with the sinusoidal pattern, i.e., Claude switches between feeling close and far away from the solution.
 - [`Unfurling`](https://claudionary.com/definition/unfurling/): Claude already knows the solution, and only acts upnon the knowledge

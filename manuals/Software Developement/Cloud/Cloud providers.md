@@ -74,7 +74,23 @@ The most important is the project selector in the top left corner.
 
 Important sections:
 
+- **IAM & Admin**: Main administration section. Accessible from `menu` > `IAM & Admin`
 - **Google Auth Platform**: Accessible from `menu` > `APIs & Services` > `OAuth consent screen`
+
+
+### IAM & Admin
+In the IAM & Admin section, we can:
+
+- manage service accounts
+
+
+#### Service Accounts
+Service accounts can be used to access some Google Cloud services. To use service account from local computer, we have to first authenticate to the service account using
+
+- a key file, or
+- Workload Identity Federation (WIF)
+
+The key authentification is simple, just clikc `manage keys` > `add key` > `JSON` and save the key file.
 
 
 ### Google Auth Platform

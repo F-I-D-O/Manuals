@@ -203,6 +203,7 @@ The most used options are:
 The `rm` command is used to remove files. The most used options are:
 
 - `-r`, `-R`: remove recursively
+- `-f`: force
 
 To remove all files in a directory, you can use
 
