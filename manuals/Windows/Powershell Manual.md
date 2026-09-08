@@ -177,9 +177,10 @@ The advanced functions and scripts have the following features:
 In PowerShell, there are two types of quoting:
 
 - `"` (double quotes): for expandable strings. These strings can contain variables and expressions that are evaluated.
-    - non-basic variables need to be wrapped by expression `$()`, e.g. `$($PSVersionTable.PSVersion)`
+    - expressions and non-basic variables need to be wrapped by expression `$()`, e.g. `$($PSVersionTable.PSVersion)`
     - To separate the variable from the following text, use `${}`. Example: `${myVar}Text`
     - to escape (not evaluate) the `$` sign, use the backtick: `` echo "`$myVar" `` prints `$myVar`
+    - note that expressions (`$(...)`) can be nested, each `$()` that materializes an expression to be usable in the outer context.
 - `'` (single quotes): for literal strings. These strings are not evaluated.
 
 Note that PowerShell consumes the first level of quoting, so that `"a b"` is passed as `a b` and the same goes for `'a b'`. If we need to preserve the quoting, we need to use a second level of quoting:
@@ -651,7 +652,7 @@ Note that **administrator privileges are required to create or modify symlinks**
 
 - `Get-Location`, `pwd`: get the current working directory
     - [Wikipedia](https://en.wikipedia.org/wiki/Pwd)
-
+- `Resolve-Path`: get the full path of a file or directory, given its relative path
 
 
 ## Network

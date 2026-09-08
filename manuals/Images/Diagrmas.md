@@ -4,7 +4,7 @@
 # Flowcharts
 [Wiki](https://en.wikipedia.org/wiki/Flowchart)
 
-Flowcharts are a type of diagram that is used to represent flow of control. The specific usages may be, for example, 
+Flowcharts are a type of diagram that is used to represent flow of control. The specific usages may be, for example:
 
 - algorithms
 - processes
@@ -30,6 +30,112 @@ Arrows doe NOT represent the flow, but instead the relationships between the com
 [Wiki](https://en.wikipedia.org/wiki/Euler_diagram)
 
 Euler diagrams are diagrams depicting set membership relationships. Unlike Venn diagrams, Euler diagrams do not have to contain all possible combinations of the sets. Euler diagrams are essential for depicting any complex terminology.
+
+
+
+# C4 Diagrams
+
+- [Wikipedia](https://en.wikipedia.org/wiki/C4_model)
+- [Homepage](https://c4model.com/)
+
+C4 is a hierarchical diagramming paradigm. It captures high-level of the system, the scope where the UML diagrams are too detailed.
+
+C4 stands for 4 levels of abstraction:
+
+- **System context diagram**: each diagram node represents a software system
+- **Container diagram**: each diagram node represents a container, an independently deployable unit of software
+- **Component diagram**: each diagram node represents a component, a logical unit of software
+- **Code diagram**: a unit of code like a class, or a database table
+
+The concept is independent of any tooling, so multiple tools can be used to create the diagrams.
+
+
+## structurizr
+
+- [Homepage](https://structurizr.com/)
+- [Documentation](https://docs.structurizr.com/)
+
+Structurizr is a tool for creating C4 diagrams. It works as a web server running inside Docker container, and a Browser-based GUI. A dedicated DSL format is used to define the diagrams.
+
+To **install** the Structurizr image, run `docker pull structurizr/structurizr`.
+
+To **run** the Structurizr server, run:
+```bash
+docker run -it --rm -p 8080:8080 -v <local workspace path>:/usr/local/structurizr structurizr/structurizr local
+```
+
+### Structurizr DSL
+
+- [Official documentation](https://docs.structurizr.com/dsl)
+- [Format Reference](https://docs.structurizr.com/dsl/language)
+- [Tutorial](https://docs.structurizr.com/dsl/tutorial)
+
+Structurizr provides a dedicated format for defining the diagrams. It is a hierarchical format, where nested levels are anclosed in curly braces.
+
+The top level element is the `workspace`, in a format:
+
+```dsl
+workspace <name> <description> {<workspace elements>}
+```
+
+The workspace elements are:
+
+- `configuration`: the configuration of the workspace.
+- `model`: the model of the system. All levels are modelled inside the model element.
+- `views`: the views definitions, i.e., the diagrams.
+
+
+#### Model
+Model contains nodes and connections.
+
+
+#### Connections
+Connections are defined as:
+```dsl
+<id> = <source> -> <target> "<description>"
+```
+The id is optional if we do not need to refer to the connection.
+
+Connections can be parallel, i.e., multiple connections can be defined between the same source and target. Note however, that these connections are collapsed if either the source or the target are not directly displayed in the diagram. To override that, add the following rule to the workspace element:
+```dsl
+!impliedRelationships com.structurizr.model.CreateImpliedRelationshipsUnlessSameRelationshipExistsStrategy
+```
+
+
+#### Views
+
+Each view has a syntax:
+```dsl
+<level> <main element> <id> {<properties>}
+```
+
+Where:
+
+- `<level>`: the level of the diagram (`system`, `container`, `component`, `code`)
+- `<main element>`: one of the elements from the model
+- `<id>`: identifier. Only alphanumeric characters, `_` and `-` are allowed.
+
+The `<properties>` can be:
+
+- `include`: what to include in the diagram.
+- `title`: the title of the diagram.
+
+
+#### Configuration
+Most important configuration options are:
+
+- [`scope`](https://docs.structurizr.com/dsl/language#scope): the [scope](https://docs.structurizr.com/workspaces/scope) of the Workspace. Determines the main philosophy and focus, i.e., whether the workspace focus on development of a single system, multiple systems, or it is a meta-model. The scope can be:
+    - `landscape`: meta model of systems
+    - `none`: multiple systems
+    - `softwaresystem`: single system
+
+
+#### Expressions
+[Official documentation](https://docs.structurizr.com/dsl/expressions)
+
+To select multiple elements at once, we can use expressions. Most important expressions are:
+
+- `elements.parent==<parent>`: select all elements that have the specified parent
 
 
 # Diagrams with D2

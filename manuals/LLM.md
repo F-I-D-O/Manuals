@@ -231,7 +231,9 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Accomplishing`](https://claudionary.com/definition/accomplishing/): When Claude thinks it has accomplished something, but the response is not yet complete.
 - [`Actioning`](https://claudionary.com/definition/actioning/): Making plan consisting of several hierarchical actions.
 - [`Actualizing`](https://claudionary.com/definition/actualizing/): Getiing from (prior) abstract output to a more concrete explanation required by the user.
+- [`Architecting`](https://claudionary.com/definition/architecting/): Designing architectures for the system.
 - [`Beboppin`](https://claudionary.com/definition/beboppin/): Navigating the problem intuitivali, withou any logical induction chain.
+- [`Billowing`](https://claudionary.com/definition/billowing/): Thinking hard
 - [`Blanching`](https://claudionary.com/definition/blanching/): refining the user prompt to produce the answer more efficiently.
 - [`Bloviating`](https://claudionary.com/definition/bloviating): spending a lot of processing power on just the preamble/introduction of the response
 - [`Boondoggling`](https://claudionary.com/definition/boondoggling/): A chaotic chain of thoughts that makes the response much slower than it should be for such a simple task.
@@ -269,6 +271,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Herding`](https://claudionary.com/definition/herding/): Gathering knowledge from different sources to form a coherent response.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
 - [`Hullaballooing`](https://claudionary.com/definition/hullaballooing/): competing subprocesses demands priority in completing the response.
+- [`Hyperspacing`](https://claudionary.com/definition/hyperspacing): Geting to the answer to a very hard and broad question quickly
 - [`Ideating`](https://claudionary.com/definition/ideating/): Producing ideas fast, much faster then evaluating them.
 - [`Infusing`](https://claudionary.com/definition/infusing/): Adding context to the response, so that the user can understand it better.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
@@ -297,8 +300,10 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Smooshing`](https://claudionary.com/definition/smooshing/): Pressing two different ideas or concept into one response without real synergy, i.e., no new ideas are generated.
 - [`Spelunking`](https://claudionary.com/definition/spelunking/): Claude is exploring a treacherous codebase, with lot of old APIs, fallbacks, or dead code
+- [`Sock-hopping`](https://claudionary.com/definition/sock-hopping/): Switch between multiple lines of thinking in a non-oscillating way, similar to socket hopping in computer networks.
 - [`Sprouting`](https://claudionary.com/definition/sprouting/): Branching the cognitive process
 - [`Stewing`](https://claudionary.com/definition/stewing/): thinking intensively about several distinc solutions, until producing a final one.
+- [`Swirling`](https://claudionary.com/definition/swirling/): Exploring multiple ideas independently, without concluding the right direction.
 - [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
 - [`Synthesizing`](https://claudionary.com/definition/synthesizing/): Using several external sources to form a coherent response.
 - [`Tempering`](https://claudionary.com/definition/tempering/): Moderating the strong and radical idea into a reasonable output.
@@ -311,6 +316,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Whatchamacalliting`](https://claudionary.com/definition/whatchamacalliting/): A cognitive operation that is clearly defined and recognized by the model, but does not have a name yet.
 - [`Whirpooling`](https://claudionary.com/definition/whirlpooling/): A recursive thinking pattern known to most humans, where resolving question A leads to question B, which leads to question C, and so on.
 - [`Whisking`](https://claudionary.com/definition/whisking/): Unstable coordination of multiple ideas, i.e., Claude is struglling to make sense out of the contradictory ideas.
+- [`Wibbling`](https://claudionary.com/definition/wibbling/): Oscillating between different concclusions
 - [`Wrangling`](https://claudionary.com/definition/wrangling/): dealing with bad, malform, corrupt, or incomplete inputs.
 - [`Zesting`](https://claudionary.com/definition/zesting/): Extracting important info from user prompt (minority) while discarding the useless crap (majority).
 

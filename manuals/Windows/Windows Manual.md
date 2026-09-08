@@ -522,16 +522,30 @@ Additionally, there are several command line package managers for Windows:
 - [GitHub](https://github.com/microsoft/winget-cli)
 - [Official Documentation](https://learn.microsoft.com/en-us/windows/package-manager/)
 
+To **search for a package**, run `winget search <search term>`.
+
 To **install a package**, run `winget install <package name>`.
 
-To **search for a package**, run `winget search <search term>`.
+To **update a package**, run `winget upgrade <package name>`.
+
+To **list packages that can be updated**, run `winget upgrade`.
+
 
 ### `winget install`
 [Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/install)
 
 Common options are:
 
-- `-h`, `--silent`: this supresses all UI of the installation 
+- `-h`, `--silent`: this supresses all UI of the installation
+
+### `winget upgrade`
+[Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/upgrade).
+
+Also `winget update` (alias). When run without any arguments, it lists all packages that can be updated.
+
+Important options:
+
+- `-e`, `--exact`: use the exact name of the package, do not guess if misstyped
 
 
 # Useful Commands

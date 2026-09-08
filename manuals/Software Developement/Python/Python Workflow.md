@@ -150,6 +150,16 @@ Note that the **editable package works correctly only if**:
 If any of these conditions is not met, we need to reinstall the package.
 
 
+# uv
+
+- [Homepage](https://docs.astral.sh/uv/)
+- [GitHub](https://github.com/astral-sh/uv)
+
+uv is a package manager for Python written in Rust. It has first-class support for virtual environments, and it is much faster than pip.
+
+To crete the virtual environment with all packages necessary for the project, run `uv sync`.
+
+
 # IDE
 
 ## Pycharm
