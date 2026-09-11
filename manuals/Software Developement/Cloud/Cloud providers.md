@@ -127,3 +127,9 @@ Both Google Cloud CLI and Application Default Credentials can be used for authen
 
 - Application Default Credentials are used automatically, if set up
 - Google Cloud CLI authentication can be used if the `-g` (or `--gcloud-auth`) flag is provided. Note that an active Google Cloud CLI session is required.
+
+
+### Management from Google Cloud Console
+The instances can be managed from `menu` > `Cloud SQL` > `Instances`.
+
+When clicking on the instance from the list, we can manage the specific instance.
