@@ -425,6 +425,26 @@ If ($condition) { "True" } Else { "False" }
 The `If` cmdlet is also available as an alias `if` and `?`.
 
 
+#### `switch`
+[Official documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.6)
+
+The `switch` structure syntax is:
+```PowerShell
+switch ($condition) {
+    "value1" {
+        # do something
+    }
+    "value2" {
+        # do something else
+    }
+    default {
+        # do something else
+    }
+}
+```
+
+
+
 ### Loops
 
 #### `foreach`

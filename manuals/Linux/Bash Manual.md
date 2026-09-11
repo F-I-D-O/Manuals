@@ -219,23 +219,23 @@ if <condition>
 fi
 ```
 
-The condition can have several formats:
+The `<condition>` can have several formats:
 
-- **plain command**: the condition is true if the command returns 0
+- **any command**: the condition is true if the command returns 0
 	```bash
 	if grep -q "$text" $file 
 		then ...
 	fi
 	```
 
-- **`[ <condition> ] or test <condition>`**: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
+- **test command: `[ <condition> ] or test <condition>`**: The standard POSIX test construct. Now only suitable if we want to run the script outside bash.
 	```bash
 	if [ $var = 1 ]
 	then ...
 	fi
 	```
 
-- **`[[ <condition> ]]`**: The extended test construct. This is the recommended way of writing conditions, due to [several practical features](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash) (e.g., no need to quote variables, regex support, logical operators, etc.).
+- **new test command: `[[ <condition> ]]`**: The extended test construct. This is the recommended way of writing conditions, due to [several practical features](https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash) (e.g., no need to quote variables, regex support, logical operators, etc.).
 	```bash
 	if [[ $var = 1 ]]
 	then ...
@@ -254,6 +254,25 @@ Note that if we want to use some arbitrary value (e. g. the *return value* of a 
 
 **Mind the spaces around the braces!**
 
+
+## Test commands
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Test_(command))
+- [SS64 bash manual](https://ss64.com/bash/test.html)
+
+The test constructs in bash and other unix shells are, in fact, jus another commands. In bash we have:
+
+- `test <condition>`: test command
+- `[ <condition> ]`: also test command (the command is `[`), the only difference is that the closing  must be passed as the last argument,
+- `[[ <condition> ]]`: extended test command (the command is `[[`), `]]` must be passed as the last argument.
+
+The "smart" implementation of the test conditions as commands has some unpleasant consequences. The most striking is that the whitespace around the brackets ar mandatory.
+
+The test command returns `0` if the condition is true, and `1` otherwise. We can pass flags to the test command to specify the `<condition>` interpretation, most important are:
+
+- `-z`: true if the `<condition>` evaluates to an empty string
+
+
 ## String comparison
 Strings can be compared using the standard `=` operator or the `==` operator. 
 
@@ -268,6 +287,10 @@ if [[ $var = "string" ]]
 then ...
 fi
 ```
+
+
+## Test if a variable is set
+Typically, if we need to take some action if a variable is not set, we can use `if [[ -z $var ]]`. However, this can trigger an error if we run a script with an `-u` flag, which is used to check for undefined variables. In this case, we have to use: `if [[ -z ${var-} ]]`.
 
 
 # Loops
