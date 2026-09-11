@@ -727,7 +727,7 @@ Usually, it is a good idea to configure autosave. This functionality is availabl
 Notepad++ can be used to convert line endings in a file or folder. If the whole folder is selected, do not forget to exclude binary files and `.git`.  To do that, add the following `Filter`:
 
 ```text
-*.* !/.git !*.png !*.jpg !*.pdf !*.gz !*.xdv !*.xlsx !*.gif !*.eps !*.ttf !*.aab !*.mp3 !*.ico
+*.* !/.git !*.png !*.jpg !*.pdf !*.gz !*.xdv !*.xlsx !*.gif !*.eps !*.ttf !*.aab !*.mp3 !*.ico !*.eps !*.shp !*.shx
 ```
 
 # OwnCloud Troubleshooting
