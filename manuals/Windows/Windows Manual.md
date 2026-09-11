@@ -131,6 +131,25 @@ Unlike Command Shell and PowerShell, the system execution does not consider scri
 
 
 # Networking
+Several commands are awailable for network monitoring and management:
+
+- [`ipconfig`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig) ([Wikipedia](https://en.wikipedia.org/wiki/Ipconfig)): for displaing network configuration
+- [`netstat`](#netstat): for monitoring network connections
+- [`arp`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/arp) Windows command: for displaying the Address Resolution Protocol (ARP) table, that maps IP addresses to MAC addresses
+
+
+## Common tasks
+
+### Display the IP address of the network adapter the computer is connected to
+This is not the same as gateway, as the gateway is the address of the modem that stands between the outermost local network and the internet which may be different device than the one the computer is connected to.
+
+To display the IP address of the network adapter the computer is connected to:
+
+1. run `ipconfig`
+1. check the `AP BSSID`. That is the MAC address of the network adapter.
+1. run  `arp -a`
+1. the IP address of the network adapter is the one on the line with the MAC address
+
 
 ## `netstat`
 

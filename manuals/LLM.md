@@ -264,6 +264,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
 - [`Frosting`](https://claudionary.com/definition/frosting/): Adding final touches to the response, which is already complete, but maybe not perfect.
 - [`Gallivanting`](https://claudionary.com/definition/gallivanting/): Doing a wide search of previously unexlorted areas.
+- [`Germinating`](https://claudionary.com/definition/germinating/): Early stage of thinking.
 - [`Gesticulating`](https://claudionary.com/definition/gesticulating/): Instead of thinking and processing, Claude is very sure about something.
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
@@ -534,6 +535,22 @@ Configuration is stored in the `~/.hermes/config.yaml` file. It can be also edit
 - `agent.max_turns`: the maximum number of query -> response cycles to perform
 - `terminal.cwd`: the working directory to use
 - `timezone`: the timezone to use. This is important for CRON jobs.
+
+
+#### Display Settings
+[Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#display-settings)
+
+
+##### Status Bar
+[Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#status-bar-field-selection-clitui)
+
+
+
+#### Clarification Timeout
+By default, Hermes close *clarification* (question prompts) after 120 seconds. because of a bug, two configurations are needed:
+
+- `agent.clarify_timeout`: 0
+- `clarify.timeout`: 0
 
 #### Guardrails
 [Official documentation](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#tool-loop-guardrails)

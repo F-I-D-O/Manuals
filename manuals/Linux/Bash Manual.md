@@ -1,4 +1,4 @@
-# Bash Manual
+# Introduction
 
 [documentation](https://www.gnu.org/software/bash/manual/bash.html)
 
@@ -14,7 +14,7 @@ In bash, **commands can be separated** by
 Therefore, we can write even complicated commands to a single line in the terminal.
 
 
-# General Remarks
+General Remarks
 
 - It's important to use Linux newlines, otherwise, bash scripts will fail with unexpected character error
 - Empty constructs are not allowed, i.e, empty function or loop results in an error
@@ -107,6 +107,7 @@ There are many operations on variables, the most important are:
 - `${<variable>##<pattern>}`: remove the longest prefix matching the pattern
 
 
+
 # Executable execution
 
 ## Executing binaries while skipping the shell aliases
@@ -114,6 +115,20 @@ There are many operations on variables, the most important are:
 
 We can do this by using the [`command`](https://manned.org/man/command) command: `command <executable> <arguments>`.
 This command will execute the executable directly, without any shell aliases.
+
+
+## `source` or `.`: Executing files in current bash process
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Dot_(command))
+- [SS64 bash manual](https://ss64.com/bash/source.html)
+
+By default, a new process is created for each executed file, even if the file is another bash script. None of the the variables and functions from the called script are available in the calling script.
+
+To execute a file in the current bash process, and have the variables and functions available, we can use the `source` command: `source <file>`. This enables a modular approach to bash scripting.
+
+The `.` command in bash is an alias for `source`.
+
+Additionally, the sourced file does not have to have the executable bit set (unlike programs we execute normally).
 
 
 # Working with I/O
@@ -341,6 +356,33 @@ where `<variable>` is the name of the variable to store the input. Important par
 
 - `-p <prompt>`: prints	the `<prompt>` before reading the input
 - `-s`: do not echo the input (usefull for passwords)
+
+
+
+# File System
+
+## Links (`ln`)
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Ln_(Unix))
+- [SS64 bash manual](https://ss64.com/bash/ln.html)
+
+Fo creating a link, we can use the `ln` command. The syntax is:
+```bash
+ln <target path> <link path>
+```
+
+Here the:
+
+- `<target path>`: is the link target, or destination. Unless the `-s` parameter is used, the `<target path>` must exist.
+- `<link path>`: is the link file. If `<link path>` exists, the command will fail unless the `-f` parameter is used.
+
+By default, hard links are created.
+
+The most important parameters are:
+
+- `-f`, `--force`: force: overwrite the `<link path>` if it exists
+- `-n`, `--no-dereference`: treat the `<link path>` as a normal file even if it is a directory or link to a directory. Without this, if the `<link path>` is a directory, the command cretes a new link inside `<link path>`, instead of replacing `<link path>` as expected.
+- `-s`, `--symbolic`: create a symbolic (soft) link
 
 
 # Bash Scripts

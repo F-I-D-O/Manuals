@@ -859,6 +859,9 @@ Useful meta-commands:
 - `\q`: quit the interactive mode.
 - `\i`: execute a script from a file.
 - `\sf <function name>`: show the source code of a function.
+- `\c`, `\connect`: establish a new connection.
+	- syntax: `\c <database name> <user name> <host> <port>`
+	- ommited parameters are reused from the previous connection
 
 ## Executing SQL files 
 In normal mode, we can execute SQL files using the `-f` parameter:
@@ -1021,7 +1024,6 @@ To check if a **specific table** exists, run:
 SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = '<schema_name>' AND table_name = '<table_name>');
 ```
 
-
 ## Databases
 To **list** all databases, we can use the `-l` parameter:
 ```bash
@@ -1039,6 +1041,33 @@ To [**create** a database](https://www.postgresql.org/docs/current/manage-ag-cre
 ```bash
 createdb <db name>
 ```
+
+
+
+# Permissions
+Permission in PostgreSQL are assigned to *roles*. If a role has a login permission, it is sometimes called a *user*.
+
+Similarly to the filesystem, every element in PostgreSQL has its *owner*. For many operations, the owner is the only user that has permission to perform the operation.
+
+The permissins with the database server scope can be displayed using the `\du` psql command. The following permissions/attributes are most important:
+
+- `Cannot login`: a non-user role, i.e., it is only for grouping permissions together
+- `Create role`: can create new roles and users
+- `Create DB`: can create new databases
+
+
+## Ownership
+The ownership is stored together with other table properties in the `pg_tables` table. Therefore, we can simply query ownership or filter tables by it using the `tableowner` column:
+
+```PostgreSQL
+-- Show all tables and their owners
+SELECT tablename, tableowner FROM pg_tables; 
+
+-- Show all tables that are owned by a specific user
+SELECT tablename, tableowner FROM pg_tables WHERE tableowner = '<user name>';
+```
+
+
 
 
 

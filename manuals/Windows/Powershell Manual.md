@@ -248,6 +248,9 @@ There are several ways how to run an executable in PowerShell:
     $argument = "--version"
     Invoke-Expression "java $argument"
     ```
+- The fourth option is to use the [`Start-Process`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process) command, which starts a process in a new window.
+    - if `-Verb RunAs` is used, the process is started with administrator privileges
+
 
 ### Using the call (`&`) operator
 

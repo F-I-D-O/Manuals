@@ -1,4 +1,5 @@
 # Setup second router as a switch
+
 ## Tools
 
 - Router 1 - master - connected to the internet

@@ -1,3 +1,10 @@
+
+# Exporting bookmarks
+## Edge
+
+In Edge, we can only export all bookmarks from the current profile.
+
+
 # Exporting cookies from a browser
 
 ## Edge
