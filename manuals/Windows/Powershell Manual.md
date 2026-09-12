@@ -764,6 +764,31 @@ exit
 ```
 
 
+# Environment Variables
+[Official documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.6)
+
+To read the environment variables, we can use `$env:` prefix:
+```PowerShell
+$env:<variable name>
+```
+
+To write the environment variables, we can simply use:
+```PowerShell
+$env:<variable name> = <value>
+```
+
+To **set the environment variables permanently**, we can use the `[System.Environment]::SetEnvironmentVariable` function:
+
+```PowerShell
+[System.Environment]::SetEnvironmentVariable('<var name>','<var value>', '<scope>')
+```
+
+The `<scope>` parameter can be:
+
+- `Machine`: permanent machine-wide variable
+- `User`: permanent user-wide variable
+
+
 # PowerShell History
 To iterate over the commands used in the past, we use the `up arrow` and `down arrow` keys.
 

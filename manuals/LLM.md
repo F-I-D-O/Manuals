@@ -15,6 +15,9 @@ The file can be used for:
 
 The Model Context Protocol (MCP) is a standard for communicating between LLMs and external tools.
 
+## Github MCP
+[Github](https://github.com/github/github-mcp-server/tree/main)
+
 
 # Codex
 

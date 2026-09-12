@@ -71,6 +71,40 @@ To access the value of a variable, we use `$`:
 echo $var
 ```
 
+## Literals
+
+### Strings literals
+String literals can be easily defined as:
+```bash
+str="string literal"
+# or equivalently
+str='string literal'
+```
+If we use double quotes, the variables are expanded, e.g., `echo "Hello $USER"` will print `Hello <username>`.
+
+The problem arises when we want to use double quotes in the string literal containing variables, e.g., `normal string "quotted string" $myvar`. In this case, we have to use quite cumbersome syntax:
+```bash
+a = "normal string "\""quotted string"\""
+# or equivalently
+a = "normal string "'"'"quotted string"'"'
+```
+
+#### Multiline string literals
+There is no dedicated syntax for multiline string literals. However, we can use the [here document (HEREDOC)](https://en.wikipedia.org/wiki/Here_document) syntax:
+```bash
+<target> << <delimiter> <content> 
+<delimiter>
+```
+
+For example, to store the command in a variable, we can use:
+```bash
+db_sql = $(cat << SQL
+CREATE DATABASE test_$name OWNER $name;
+grant all privileges on database test_$name to $name;
+SQL)
+```
+Note that the end `<delimiter>` must be at the beginning of the line, otherwise, it will not work.
+
 ## Assigning the output of a command to a variable
 The output of a command can be assigned to a variable only with the [command substitution](#command-substitution):
 ```bash
@@ -85,7 +119,11 @@ var=$(echo $var | sed 's/old/new/')
 ```
 
 
-
+### Array Literals
+Array literal syntax is:
+```bash
+array=(<element1> <element2> ... <elementN>)
+```
 
 
 ## List all variables
@@ -106,6 +144,11 @@ There are many operations on variables, the most important are:
 - `${<variable>%%<pattern>}`: remove the longest suffix matching the pattern
 - `${<variable>##<pattern>}`: remove the longest prefix matching the pattern
 
+
+## Built-in variables
+There are several built-in variables:
+
+- `PWD`: the current working directory
 
 
 # Executable execution
@@ -191,6 +234,23 @@ The solution is to use `tee`:
 ```bash
 sudo <command> | tee <file>
 ```
+
+
+
+# Parameter Substitution
+[Bash Guide](https://tldp.org/LDP/abs/html/parameter-substitution.html)
+
+When we use no quotes or double quotes, the parameter substitution is performed by the shell. There are several forms:
+
+- `$var`: substituted by the value of the variable `var`
+- `${var}`: same as `$var`, but safer, as `$var` can fail in certain cases
+- `${var-default}`: if `var` is set, substituted by the value of `var`, otherwise substituted by `default`
+- `${var:-default}`: same as `${var-default}`, but `default` is used when `var` is set to null or empty as well
+- `${var=default}`: if `var` not is set, set it to `default`, then substitute by `var`
+- `${var:=default}`: same as `${var=default}`, but `default` is used even if `var` is set to null or empty
+- `${var?error}`, `${var:?error}`: substitute by `var`, raise an error with `error` error message if `var` null (first form) or null or empty (second form)
+- `${var+alternate}`, `${var:+alternate}`: substitute by `alternate` if `var` is set, otherwise use empty string. Same difference between the two versions as in previous cases.
+- `${!var}`: substitute by the value of the variable with the name stored in variable `var`. This is useful for working with dynamic variable names.
 
 
 # Command Substitution
@@ -294,7 +354,9 @@ Typically, if we need to take some action if a variable is not set, we can use `
 
 
 # Loops
-The syntax of the loop is:
+
+## `while` loop
+The syntax of the `while` loop is:
 ```bash
 while <condition>
 do
@@ -303,6 +365,18 @@ do
    ...
 done
 ```
+
+## `for` loop
+The syntax of the `for` loop is:
+```bash
+for <variable> in <list>
+do
+   ...
+done
+```
+
+If the `<list>` is an array, we refer it as `${<array variable>[@]}`.
+
 
 ## Forward to loop
 We can forward an input into while loop using `|` as usuall. Additionally, it is possible to read from file directly by adding `<` to the end like this:
@@ -318,37 +392,7 @@ done < <input>
 The same goes for the output, i.e., we can forward th outut of a loop with `|`.
 
 
-# Strings literals
-String literals can be easily defined as:
-```bash
-str="string literal"
-# or equivalently
-str='string literal'
-```
-If we use double quotes, the variables are expanded, e.g., `echo "Hello $USER"` will print `Hello <username>`.
 
-The problem arises when we want to use double quotes in the string literal containing variables, e.g., `normal string "quotted string" $myvar`. In this case, we have to use quite cumbersome syntax:
-```bash
-a = "normal string "\""quotted string"\""
-# or equivalently
-a = "normal string "'"'"quotted string"'"'
-```
-
-## Multiline string literals
-There is no dedicated syntax for multiline string literals. However, we can use the [here document (HEREDOC)](https://en.wikipedia.org/wiki/Here_document) syntax:
-```bash
-<target> << <delimiter> <content> 
-<delimiter>
-```
-
-For example, to store the command in a variable, we can use:
-```bash
-db_sql = $(cat << SQL
-CREATE DATABASE test_$name OWNER $name;
-grant all privileges on database test_$name to $name;
-SQL)
-```
-Note that the end `<delimiter>` must be at the beginning of the line, otherwise, it will not work.
 
 # Functions
 Functions are defined as:
@@ -416,6 +460,8 @@ We refer the arguments of a bash script as
 - `$0` - the name of the script
 - `$1..$n` - the arguments of the script
 - `$@` - all the arguments of the script
+
+**Bash does not support named arguments**. 
 
 Sometimes, it is useful to throw away processed arguments. This can be done using the `shift` command `shift <n>`, where `<n>` is the number of arguments to be thrown away (default is 1). The remaining arguments are then shifted to the left, i.e., `$2` becomes `$1` and so on.
 
