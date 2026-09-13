@@ -19,6 +19,23 @@ The Model Context Protocol (MCP) is a standard for communicating between LLMs an
 [Github](https://github.com/github/github-mcp-server/tree/main)
 
 
+
+# Skills
+[agentskills.io](https://agentskills.io/home)
+
+Skills are reusable instructions for LLM. Unlike the core markdown instructions (`AGENTS.md`, `CLAUDE.md`), skills are inteded for specific tasks, and should be loaded into agents context on-demand. In this section, we follow the [agentskills.io](https://agentskills.io/home) skills format.
+
+The root file of each skill is `SKILL.md`. The structure of each skill is:
+```text
+<skill folder>
+├── SKILL.md
+├── scripts     # optional - scripts to be executed by the agent
+├── references  # optional - documentation
+├── assets      # optional - templates, resources, etc.
+└── ...
+```
+
+
 # Codex
 
 - [Homepage](https://openai.com/codex/)
@@ -254,6 +271,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Creating`](https://claudionary.com/definition/creating/): Claude main process is now creative, i.e., not only consolidating the knowledge, but also creating new ideas.
 - [`Crunching`](https://claudionary.com/definition/crunching/): Claude tries to get a reasonable answer for the user, despite the resistance from the underlying data/code.
 - [`Cultivating`](https://claudionary.com/definition/cultivating/): Expand the response from a small initial idea.
+- [`Deliberating`](https://claudionary.com/definition/deliberating/): Evaluating existing solutions from multiple angles to choose the best one. This indicates that the solution are simple, but can have complex consequences.
 - [`Discombobulating`](https://claudionary.com/definition/discombobulating/): Claude plans how to express an already presented idea in a new way, so that the user can understand it better
 - [`Doing`](https://claudionary.com/definition/doing/): When the classification of Claude's thoughts is not clear, the `doing` keyword is emitted.
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
@@ -285,6 +303,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
 - [`Nebulizing`](https://claudionary.com/definition/nebulizing/): spliting a coherent thought into many small parts that no loger fit together.
 - [`Newspapering`](https://claudionary.com/definition/newspapering/): Searching for inspiration in prior art, i.e., in the learning corpus.
+- [`Noodling`](https://claudionary.com/definition/noodling/): Generating response without any direction while not being sure about its correctness.
 - [`Nucleating`](https://claudionary.com/definition/nucleating/): Building a solution to a large problem from an already solved core problem. Happens if the problem is large, but mostly repeating in patters, so once a part is solved, the rest can be solved by the same way.
 - [`Percolating`](https://claudionary.com/definition/percolating/): Gathering knowlege from several layers of the reasoning architecture
 - [`Philosophising`](https://claudionary.com/definition/philosophising/): suspending all the tasks in favor of trying to understand the meaning of the user prompt.
@@ -566,3 +585,15 @@ Guardrail system prevents the unproductive loops. Two things need to be configur
     `tool_loop_guardrails.hard_stop_after.idempotent_no_progress <number>`: same result after `<number>` query -> response cycles
 
 #### MCP servers
+
+
+### Skills
+Hermes have a lot of bundeled skills. These skills are copied to any newly created profile.
+
+Beside that, we can add **external skill directories**:
+```yaml
+skills:
+  - external_dirs:
+      - <path to skill directory>
+      - <path to another skill directory>
+```

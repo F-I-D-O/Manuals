@@ -405,6 +405,8 @@ Matching operators:
 ### Conditions
 
 #### `if`
+[Official documentation](https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-if?view=powershell-7.6)
+
 The `if` statement is used for conditional execution. The syntax is:
 ```PowerShell
 if ($condition) {
@@ -418,6 +420,8 @@ else {
 }
 ```
 
+The `<condition>` is typically written using PowerShell operators like `-eq`, `-gt`, etc., e.g., `$myVar -eq 1`.
+
 The `if` structure is also available as a cmdlet `If`. Example:
 ```PowerShell
 If ($condition) { "True" } Else { "False" }
@@ -430,7 +434,7 @@ The `If` cmdlet is also available as an alias `if` and `?`.
 
 The `switch` structure syntax is:
 ```PowerShell
-switch ($condition) {
+switch ($expression) {
     "value1" {
         # do something
     }
@@ -589,6 +593,15 @@ To test if a string matches a regular expression, use the `Match` method. The sy
 $myString -match "pattern"
 ```
 
+
+### PowerShell Regex Specialties
+Group modifiers like `\U` and `\L` does not work in PowerShell. To get a similar result, we may use:
+
+```PowerShell
+{ '/' + $_.Groups[1].Value.ToLower() + '/' }
+```
+
+Which is basically taking the unmodified group and converting it to lowercase afterwards.
 
 
 # Usefull Cmdlets
@@ -801,7 +814,7 @@ To **clear** the history, use the [`Clear-History`](https://learn.microsoft.com/
 - `Clear-History -CommandLine <pattern>`: clear the commands that match the pattern. The pattern use the simple matching (e.g. `*` is the wildcard), and have to be wrapped in quotes if it contains spaces.
 
 # PowerShell Scripts
-
+To exit on the first error, like in bash's `set -e`, we can use the following: `$ErrorActionPreference = "Stop"`
 
 ## Including other scripts
 [documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.5&viewFallbackFrom=powershell-7.1#script-scope-and-dot-sourcing)
@@ -900,4 +913,19 @@ If we need to know the installed path of an executable or command, similar to th
         - `Filter`: PowerShell filters
         - `Script`: PowerShell scripts blocks
 
+
+# Debugging
+[Official documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-psdebug?view=powershell-7.6)
+
+When a PowerShell script fails, we typically get an error message, together with the failing expression. But the failing line is not displayed. To get more information, we can turn on the debugging mode:
+
+```PowerShell
+Set-PSDebug -Trace 1
+```
+
+After we finish, we turn off the debugging mode with:
+
+```PowerShell
+Set-PSDebug -Off
+```
 

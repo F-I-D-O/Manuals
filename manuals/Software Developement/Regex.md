@@ -5,6 +5,7 @@
 - `[c-j]` any character between `c` and `j`. We can combine this and the previou syntax, e.g.: `[az0-4jsd]`. Note that the minus sign is interpreted as a range only if it is between two characters.
 - `[^c-g]` `^` means negation: anything except the following set of characters. Note that the negation(`^`) sign needs to be the first character in the bracket.
 - `\`: escape character. 
+- `/` in some implementations, a regex delimitor
 - `|` means OR. It has the lowest precedence, so it is evaluated last.
 - `?`lazy quantifier. It will try to match as few characters as possible (i.e., previous pattern will try to match only till the next patern matches).
 
@@ -32,6 +33,15 @@
 - `(?!)` negative lookahead. It is useful when we want to match a pattern, but we don't want to consume it.
 - `(?<=)` positive lookbehind. Same as positive lookahead, but it looks behind.
 - `(?<!)` negative lookbehind. Same as negative lookahead, but it looks behind.
+
+
+### Modifiying the captured group
+We can apply modifiers to the captured group, e.g., `\U\1` will convert the captured group to uppercase. The modifiers are:
+
+- `\L`: convert to lowercase
+- `\U`: convert to uppercase
+
+
 
 ## Capture the same group multiple times
 Sometimes, it would be useful to capture the same pattern multiple times in a separate groups dynamically, without specifying the number of repetitions. 
