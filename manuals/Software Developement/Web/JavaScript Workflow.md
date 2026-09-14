@@ -20,10 +20,13 @@ To install `node.js`, download the `.msi` installer from the official website. D
 
 `npm` is the package manager included in Node.js. The most common subcommands are:
 
-- `install`: install or update a package
-- `uninstall`: uninstall a package
-- `run`: run a script from the package (defined in the `package.json` file)
+- [`ci`](https://docs.npmjs.com/cli/v11/commands/npm-ci): clean install. All the dependencies are re-installed. Dependencies considered frozen, the package lock must exist for this command to work.
 - [`init`](https://docs.npmjs.com/cli/v11/commands/npm-init): initialize a new package (create a `package.json` file)
+- `install`: install or update a package
+- `run`: run a script from the package (defined in the `package.json` file)
+- `uninstall`: uninstall a package
+
+
 
 
 ## Installing packages with `npm install`

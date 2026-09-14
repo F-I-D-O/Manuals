@@ -295,6 +295,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Hullaballooing`](https://claudionary.com/definition/hullaballooing/): competing subprocesses demands priority in completing the response.
 - [`Hyperspacing`](https://claudionary.com/definition/hyperspacing): Geting to the answer to a very hard and broad question quickly
 - [`Ideating`](https://claudionary.com/definition/ideating/): Producing ideas fast, much faster then evaluating them.
+- [`Inferring`](https://claudionary.com/definition/inferring/): Bridging the gap between current knowledge and the current hypothesis.
 - [`Infusing`](https://claudionary.com/definition/infusing/): Adding context to the response, so that the user can understand it better.
 - [`Ionizing`](https://claudionary.com/definition/ionizing/): Extracting most of the information from the output, so it has a reasonable lentgth.
 - [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response

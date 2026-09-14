@@ -7,13 +7,10 @@
 - [Documentation](https://cloud.google.com/docs)
 - [Wikipedia](https://en.wikipedia.org/wiki/Google_Cloud_Platform)
 
+The main unit in Google Cloud is a *project*. Each Google user can have multiple projects.
 
-Useful commands:
+The capabilities for each project are determined by the list of available *service*s.
 
-- **enable service for project**:
-    ```bash
-    gcloud services enable <service> --project <project>
-    ```
 
 
 ## Google Cloud CLI
@@ -30,6 +27,31 @@ Most used subcommands:
 - `gcloud auth`: authentication
 - `gcloud info`: show information about the current configuration (installation, project, paths, etc.)
 - `gcloud organizations`: see and manage organizations
+
+
+### Projects
+For managing projects, we use the `gcloud projects` subcommands.
+
+To **list** the projects, run `gcloud projects list`.
+
+To **create a project**, we call the [`create`](https://docs.cloud.google.com/sdk/gcloud/reference/projects/create) subcommand:
+```bash
+gcloud projects create <project id>
+```
+
+### Services
+To **enable service for project**:
+    ```bash
+    gcloud services enable <service> --project <project>
+    ```
+
+To *list or browse* services, use the `gcloud services list` command.
+
+
+#### Listing and browsing services
+[Reference](https://docs.cloud.google.com/sdk/gcloud/reference/services/list)
+
+By default, 
 
 
 ## Authentication

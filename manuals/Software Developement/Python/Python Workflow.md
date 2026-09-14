@@ -154,10 +154,36 @@ If any of these conditions is not met, we need to reinstall the package.
 
 - [Homepage](https://docs.astral.sh/uv/)
 - [GitHub](https://github.com/astral-sh/uv)
+- [Command Cheat Sheet](https://docs.astral.sh/uv/getting-started/features/)
+- [Project Structure](https://docs.astral.sh/uv/concepts/projects/layout/)
 
 uv is a package manager for Python written in Rust. It has first-class support for virtual environments, and it is much faster than pip.
 
-To crete the virtual environment with all packages necessary for the project, run `uv sync`.
+To **create a virtual environment with all packages necessary for the project**, run `uv sync`.
+
+To **run a script in the virtual environment**, run:
+```bash
+uv run <script name> <script arguments>
+```
+
+uv uses a double-defined dependency system:
+
+- first, dependencies are user defined in the `pyproject.toml` file (as specified in Python standard)
+- second, the exact version of the dependencies as resolved are written to the *lockfile*: `uv.lock`.
+
+
+## Getting a project ready
+[Reference](https://docs.astral.sh/uv/reference/cli/#uv-sync)
+
+In `uv` there is a syncing command `uv sync`  that encompasses
+
+1. creating a virtual environment
+1. activating the virtual environment
+1. installing all packages
+
+Important parameters:
+
+- [`--locked`](https://docs.astral.sh/uv/reference/cli/#uv-sync--locked): use the existing lockfile to determine the versions of the dependencies, instead of re-locking
 
 
 # IDE
