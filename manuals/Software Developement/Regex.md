@@ -1,7 +1,7 @@
 # Symbol meaning
 
 - `.` any character
-- `[xyz]` one of these characters   
+- `[xyz]` one of these characters
 - `[c-j]` any character between `c` and `j`. We can combine this and the previou syntax, e.g.: `[az0-4jsd]`. Note that the minus sign is interpreted as a range only if it is between two characters.
 - `[^c-g]` `^` means negation: anything except the following set of characters. Note that the negation(`^`) sign needs to be the first character in the bracket.
 - `\`: escape character. 

@@ -276,6 +276,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Doing`](https://claudionary.com/definition/doing/): When the classification of Claude's thoughts is not clear, the `doing` keyword is emitted.
 - [`Drizzling`](https://claudionary.com/definition/drizzling/): gathering the required knowledge in an inefficient, sparse way, like a light rain.
 - [`Effecting`](https://claudionary.com/definition/effecting/): Claude transitioned from thinking to acting, i.e., writing a plan, executing commands, writing code, etc.
+- [`Embellishing`](https://claudionary.com/definition/embellishing/): Improving an already existing answer. This indicates that most effor was not spend on the main reasoning process, but on the response tweaking.
 - [`Enchanting`](https://claudionary.com/definition/enchanting/): Producing undocumented and non-based responses that are result of the reinforcement learning process on the user ratings.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
 - [`Flambéing`](https://claudionary.com/definition/flambeing/): Removing confuding details and ambiguities from the response, leaving only the coherent core of the idea.
@@ -308,6 +309,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Nucleating`](https://claudionary.com/definition/nucleating/): Building a solution to a large problem from an already solved core problem. Happens if the problem is large, but mostly repeating in patters, so once a part is solved, the rest can be solved by the same way.
 - [`Percolating`](https://claudionary.com/definition/percolating/): Gathering knowlege from several layers of the reasoning architecture
 - [`Philosophising`](https://claudionary.com/definition/philosophising/): suspending all the tasks in favor of trying to understand the meaning of the user prompt.
+- [`Photosynthesizing`](https://claudionary.com/definition/photosynthesizing): Generating separate streams of response, and the generated files
 - [`Pollinating`](https://claudionary.com/definition/pollinating/): Adding knowledge to the response from a different context than what the user wanted, sometimes even from a different source or domain.
 - [`Pouncing`](https://claudionary.com/definition/pouncing/): When the solution is clear, and Clude just have to do some simple processing
 - [`Prestidigitating`](https://claudionary.com/definition/prestidigitating/): Claude does something that cannot be explained.
@@ -382,33 +384,33 @@ To **list** all MCP servers, run `claude mcp list`.
 
 
 # Sandboxing
-It is important to isolate the LLM from the host machine so that it does not demage it by accident. 
+It is important to isolate the LLM from the host machine so that it does not demage it by accident.
 
 
 ## Docker Sandbox
-[Homepage](https://docs.docker.com/ai/sandboxes/)
+
+- [Homepage](https://docs.docker.com/ai/sandboxes/)
+- [CLI reference](https://docs.docker.com/reference/cli/sbx/)
 
 First, install Docker Sandbox according to the instructions. Docker desktop is not required.
 
-To **run a sandboxed LLM**, run `sbx run <image name>`, where `<image name>` is the name of the image to run, typically named after the LLM, e.g., `claude`. 
+To **run a sandboxed LLM**, run `sbx run <agent>`, where `<agent>` is the name of a built-in agent, e.g., `claude`. The available agents are listed in the [`sbx run` reference](https://docs.docker.com/reference/cli/sbx/run/), currently: `claude`, `codex`, `copilot`, `cursor`, `devin`, `docker-agent`, `droid`, `gemini`, `kiro`, `opencode`, `shell`.
 
-This `sbx run` command for a directory automatically creates a new sandbox. To reattach to this sandbox after exiting, run `sbx run <image name> --name <sandbox name>`. The `<sandbox name>` is:
+This `sbx run` command for a directory automatically creates a new sandbox. To reattach to this sandbox after exiting, run `sbx run --name <sandbox name>` (the agent is read from the sandbox spec). The `<sandbox name>` is:
 
 - the name provided when creating the sandbox using the `--name` flag, or
-- an automatically generated name, typically `<image name>-<workspace root directory>`
+- an automatically generated name, typically `<agent>-<workspace root directory>`
 
 ### Create a sandbox without running it
 [Official documentation](https://docs.docker.com/ai/sandboxes/usage/#create-without-attaching)
 
-To **create a sandbox without running it**, use the `sbx create` command: `sbx create <image name> <flags>`.
-
-For `<image name>`, look to the [Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/?utm_source=chatgpt.com#base-images) for the list of available images. If the image is not listed, you can use the `shell` image and configure it yourself.
+To **create a sandbox without running it**, use the `sbx create` command: `sbx create <flags> <agent>`. The `<agent>` and the flags are the same as for `sbx run`. If there is no built-in agent for the tool you want to use, use the `shell` agent and configure it yourself.
 
 
 ### Add additional directories to the sandbox
 [Official documentation](https://docs.docker.com/ai/sandboxes/usage/#multiple-workspaces)
 
-To add additional directories to the sandbox, append the directories to the sandbox command, e.g., `sbx run <image name> <additional directory> <additional directory>`. You can use the `:ro` suffix to make the directory read-only. Full example:
+To add additional directories to the sandbox, append the directories to the sandbox command, e.g., `sbx run <agent> <additional directory> <additional directory>`. You can use the `:ro` suffix to make the directory read-only. Full example:
 
 ```bash
 sbx run claude /home/user/my-project /home/data:ro
@@ -420,7 +422,7 @@ Be carefull to add all the required directories, as **directories cannot be adde
 ### Execute code inside sandbox
 [Official documentation](https://docs.docker.com/reference/cli/sbx/exec/)
 
-In addition to start a claude interactive session, we can also execute arbitrary commands inside the sandbox. To do that, we can use the `sbx exec` command: `sbx exec <image name> <flags> <command>`.
+In addition to start a claude interactive session, we can also execute arbitrary commands inside the sandbox. To do that, we can use the `sbx exec` command: `sbx exec <flags> <sandbox name> <command>`.
 
 Important flags:
 
@@ -437,10 +439,32 @@ sbx cp <sandbox name>:<path in the sandbox> <path in the host machine>
 This currently does not work due to a bug [[source]](https://github.com/docker/sbx-releases/issues/265).
 
 
+
 ### Templates
 [Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/)
 
-There are two ways how to create a template:
+A template is the container image the sandbox is created from. The agent name used in the `run` or `create` command is not an image name. Each agent maps to a default image from the [`docker/sandbox-templates`](https://hub.docker.com/r/docker/sandbox-templates/tags) repository. 
+
+The image can be overriden using the `-t`/`--template` flag:
+```bash
+sbx run -t docker/sandbox-templates:claude-code-nightly claude
+```
+
+Note that the agent must match the base variant the template was built from (i.e., not mixing, for example, claude agent with codex template)
+
+There is no documented setting for changing the default template, so the flag has to be passed on each `sbx run`/`sbx create` that creates a new sandbox.
+
+
+#### Default templates
+All Docker-provided templates are published as `docker/sandbox-templates:<variant>` on [Docker Hub](https://hub.docker.com/r/docker/sandbox-templates/tags). The **mapping between the agent name and the image** is as follows:
+
+- The base variant is named after the agent, but the names differ: `claude` → `claude-code`, `cursor` → `cursor-agent`, the rest (`codex`, `copilot`, `devin`, `docker-agent`, `droid`, `gemini`, `kiro`, `opencode`, `shell`) use the agent name. There is also `claude-code-minimal` without Node.js, Python, Go, and Java.
+- Each variant has a `-docker` version (e.g., `claude-code-docker`) with a Docker Engine running inside the sandbox. **This is the default** used by `sbx run <agent>` and `sbx create <agent>` when no template is specified.
+- Each variant has a `-nightly` version (e.g., `claude-code-nightly`, `claude-code-docker-nightly`) that is rebuilt daily, while the plain tags are rebuilt roughly monthly (see [Image caching](#image-caching)).
+- Each release is also available under a versioned tag (e.g., `claude-code-0.5.0`).
+
+#### Custom templates
+There are two ways how to create a custom template:
 
 - **by snapshoting the sandbox**: good when recreating the sandbox for the same project. Most of the file system is preserved, including configuration files.
 - **using a Docker image as a template**: good for using the same template for many projects. Onlyt he specified packages are installed.
@@ -459,6 +483,35 @@ sbx template save <sandbox name> <template name>
 ```
 
 The format of the template name is typically `<template name>:version`, where `<template name>` is Kebab-cased (e.g., `my-template`) string, and version is typically in the format `v<version>`, e.g., `v1`.
+
+
+### Image caching
+[Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/#caching)
+
+Template images (both the Docker-provided ones such as `docker/sandbox-templates:claude-code` and custom templates) are **pulled on first use and cached locally**. The cache persists across sandbox creation and deletion. There is no configurable cache lifetime or refresh interval.
+
+There are **two independent reasons why a new sandbox can contain an old agent**:
+
+- **The local cache is stale**: a floating tag (e.g., `claude-code`) is not re-resolved against the registry reliably, so the cached image is reused even if a newer image was published under the same tag ([issue #45](https://github.com/docker/sbx-releases/issues/45), [issue #316](https://github.com/docker/sbx-releases/issues/316)).
+- **The published image itself is stale**: the Docker-provided templates are rebuilt only about once a month, so even a fresh pull can contain an agent that is many versions behind the upstream release ([issue #202](https://github.com/docker/sbx-releases/issues/202), open). The `*-nightly` tags (e.g., `claude-code-nightly`, `claude-code-docker-nightly`, `claude-code-minimal-nightly`) are rebuilt daily.
+
+Note that an **existing sandbox never picks up a new image**. All of the following only affect newly created sandboxes.
+
+To **refresh the cached image**, there are several options, from the least to the most destructive:
+
+- `sbx run`/`sbx create` have a hidden `--pull` flag ([issue #316](https://github.com/docker/sbx-releases/issues/316)), with the same semantics as in Docker:
+    - `--pull=always`: check the registry and pull the image if a newer one is available. According to the maintainers, this is the default, but the reports in the issues above suggest that it does not always work.
+    - `--pull=missing`: use the cached image if present
+    - `--pull=never`: never pull, fail if the image is not cached
+- **remove the cached image** and let the next sandbox creation pull it again. The full reference including the repository is required:
+    ```bash
+    sbx template ls
+    sbx template rm docker/sandbox-templates:claude-code
+    ```
+- **use a different tag**, e.g., a nightly tag or a specific version (see [Templates](#templates)): `sbx run -t docker/sandbox-templates:claude-code-docker-nightly claude`. A tag that is not in the cache is always pulled.
+- `sbx reset`: resets Docker Sandbox to a freshly installed state. This **removes all sandboxes**, terminates running agents, and clears all cached images and stored secrets. Use `--preserve-secrets` to keep the secrets.
+
+For **reproducible sandboxes**, the template can be pinned to a digest instead of a tag: `--template docker/sandbox-templates@sha256:<digest>`. Old pinned images are never cleaned up automatically ([issue #428](https://github.com/docker/sbx-releases/issues/428)).
 
 
 ### Policies

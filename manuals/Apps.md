@@ -1,3 +1,11 @@
+# Syncthing
+[Official documentation](https://docs.syncthing.net/)
+
+## Autostart
+[Official documentation](https://docs.syncthing.net/users/autostart.html)
+
+By default, we need to start the Syncthing manually. However, several ways of automating the startup are described in the documentation.
+
 # Toggle
 
 ## Troubleshooting
@@ -10,4 +18,5 @@ To resolved failed sync, we can use the sync button (or down slide on Android). 
 1. If there are any, export them to csv
 1. Import the entries online
 1. Log out, then log back in
+
 
