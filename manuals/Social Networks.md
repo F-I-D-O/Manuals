@@ -6,7 +6,7 @@ Posts can be added both from computer and from mobile device. However, there are
 | Feature | Mobile | Web |
 | - | - | - |
 | Image limit | 20 images per post | 10 images per post |
-| Aspect ratio | 1:1, 4:5 | 1:1, 4:5, 16:9, original |
+| Aspect ratio | 1:1, 4:5, mixed (original) | 1:1, 4:5, 16:9, mixed (original) |
 | Combined video and images | yes | only if the video is shorter than one minute |
 
 For the mobile app, the workflow is now (as of 2026-08-24):

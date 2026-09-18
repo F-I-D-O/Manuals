@@ -302,6 +302,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response
 - [`Leavening`](https://claudionary.com/definition/leavening/): Transforming a dense response into a longer response, without adding new information.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
+- [`Moonwalking`](https://claudionary.com/definition/moonwalking/): Processing the request or context in a backward direction, instead of forward.
 - [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
 - [`Nebulizing`](https://claudionary.com/definition/nebulizing/): spliting a coherent thought into many small parts that no loger fit together.
 - [`Newspapering`](https://claudionary.com/definition/newspapering/): Searching for inspiration in prior art, i.e., in the learning corpus.
