@@ -566,6 +566,8 @@ Important options:
 
 - `-e`, `--exact`: use the exact name of the package, do not guess if misstyped
 
+Note that **we can use the update command even for packages not installed using winget**. The only precondition is that the package is recognized by winget as installed (shows up when running `winget list`). After the update, the package will be managed by winget (`Source` will be `winget`).
+
 
 # Useful Commands
 

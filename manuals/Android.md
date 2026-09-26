@@ -7,3 +7,7 @@ ADB is a command-line tool that allows you that allows to manipulate Android dev
 
 # Google Docs or Sheets cannot load a document
 When this happens, go to the app settings and use the `Clear cache` button.
+
+
+# Google Wallet
+Allways first ry to add the card to Google Pay from the system of the card issuer first.
