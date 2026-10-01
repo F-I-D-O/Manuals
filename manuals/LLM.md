@@ -291,6 +291,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
 - [`Gusting`](https://claudionary.com/definition/gusting/): when the thinking is unstable, swithich between almost idle state to bursts of thoughts spending thousands of tokens.
 - [`Hashing`](https://claudionary.com/definition/hashing/): Splitting complex problem into smaller parts
+- [`Hatching`](https://claudionary.com/definition/hatching/): Reconsidering the response
 - [`Herding`](https://claudionary.com/definition/herding/): Gathering knowledge from different sources to form a coherent response.
 - [`Honking`](https://claudionary.com/definition/honking/): Claude dramatically change the line of thought, based on the user prompt. This happens if the user manifests disatisfaction.
 - [`Hullaballooing`](https://claudionary.com/definition/hullaballooing/): competing subprocesses demands priority in completing the response.
@@ -302,6 +303,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Kneading`](https://claudionary.com/definition/kneading): mixing all the facts into a response
 - [`Leavening`](https://claudionary.com/definition/leavening/): Transforming a dense response into a longer response, without adding new information.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
+- [`Lollygagging`](https://claudionary.com/definition/lollygagging/): Model solves unimportant details of otherwise easy problem. THe model should be engaged in this state only for a short time.
 - [`Moonwalking`](https://claudionary.com/definition/moonwalking/): Processing the request or context in a backward direction, instead of forward.
 - [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
 - [`Nebulizing`](https://claudionary.com/definition/nebulizing/): spliting a coherent thought into many small parts that no loger fit together.
