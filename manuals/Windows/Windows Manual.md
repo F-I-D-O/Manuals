@@ -643,17 +643,7 @@ It is best to use the portable version, so that nothing is stored in the Windows
 - auto reconnect: `Connection` -> `auto reconnect on connection failure` and `auto reconnect on system wakeup`
 
 
-## WinSCP
-WinSCP is a graphical tool for file manipulation. Ii can be used both for local and remote files, and it supports various protocols (FTP, SFTP, SCP, WebDAV, etc.). 
 
-### Adding a new connection
-There is a simple `New Site` button on the left, which opens a straightforward dialog. The only complicated thing can be the SSH key. To add it, click on the `Advanced` button and go to the `SSH` -> `Authentication` tab. There, we can select the private key file.
-
-
-### Bookmarks
-To add bookmarks, go to `Local`/`Remote` -> `Add Path to Bookmarks` or press `Ctrl` + `B`.
-
-To open a bookmark, go to `Local`/`Remote` -> `Go To` -> `Open Drirectory/bookmark` or press `Ctrl` + `O`.
 
 
 
@@ -750,6 +740,24 @@ Notepad++ can be used to convert line endings in a file or folder. If the whole 
 ```text
 *.* !/.git !*.png !*.jpg !*.pdf !*.gz !*.xdv !*.xlsx !*.gif !*.eps !*.ttf !*.aab !*.mp3 !*.ico !*.eps !*.shp !*.shx
 ```
+
+
+# WinSCP
+WinSCP is a graphical tool for file manipulation. Ii can be used both for local and remote files, and it supports various protocols (FTP, SFTP, SCP, WebDAV, etc.).
+
+## Adding a new connection
+There is a simple `New Site` button on the left, which opens a straightforward dialog. The only complicated thing can be the SSH key. To add it, click on the `Advanced` button and go to the `SSH` -> `Authentication` tab. There, we can select the private key file.
+
+
+## Configuration
+By default, WinSCP does not show the hidden files. this may be confusing, as some of the files are only hidden on the server side (e.g., `.htaccess`). To show hidden files, go to `Options` -> `Preferences` -> `Panels` -> `Show Hidden Files`, or press `Ctrl` + `Alt` + `H`.
+
+
+## Bookmarks
+To add bookmarks, go to `Local`/`Remote` -> `Add Path to Bookmarks` or press `Ctrl` + `B`.
+
+To open a bookmark, go to `Local`/`Remote` -> `Go To` -> `Open Drirectory/bookmark` or press `Ctrl` + `O`.
+
 
 # OwnCloud Troubleshooting
 If there is a problem, go to `Settings -> Advanced -> Log Settings` and enable the logging. 

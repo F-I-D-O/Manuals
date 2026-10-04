@@ -18,7 +18,14 @@ The Model Context Protocol (MCP) is a standard for communicating between LLMs an
 ## Github MCP
 [Github](https://github.com/github/github-mcp-server/tree/main)
 
-
+1. Create a fine-grained access token at [Github](https://github.com/settings/personal-access-tokens)
+    - select only required repositories
+    - only Issues R&W permission and its dependencies (added by default) is required for managing issues
+1. run 
+    ```bash
+    claude mcp add-json github '{"type":"http","url":"https://api.githubcopilot.com/mcp","headers":{"Authorization":"<GITHUB_PAT>"}}'
+    ```
+Note that one MCP can handle only one Github user or organization. If multiple users or organizations are needed, create multiple MCP servers.
 
 # Skills
 [agentskills.io](https://agentskills.io/home)
@@ -371,11 +378,13 @@ In the agents view, agents are divided into three categories:
 
 
 ## MCP servers
-[Official documentation](https://code.claude.com/docs/en/mcp-quickstart)
+
+- [Quickstart](https://code.claude.com/docs/en/mcp-quickstart)
+- [Official documentation](https://code.claude.com/docs/en/mcp)
 
 An MCP server is added by running:
 ```bash
-claude mcp add <claud mcp params> <server name> <serve source>
+claude mcp add <claude mcp params> <server name> [<url>] -- <serve argumets>
 ```
 
 Typically, the specific command is provided by the MCP server provider.
@@ -383,6 +392,12 @@ Typically, the specific command is provided by the MCP server provider.
 The settings are stored in the `~/.claude.json` file.
 
 To **list** all MCP servers, run `claude mcp list`.
+
+Important `<claude mcp params>` are:
+
+- `--transport`: the transport protocol to use.
+    - `http`: for the most common HTTP MCPs
+
 
 
 

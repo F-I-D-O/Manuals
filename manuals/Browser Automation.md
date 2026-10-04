@@ -181,13 +181,15 @@ Playwright is a browser automation suite that can be used for testing, scraping,
 
 - [Introduction](https://playwright.dev/mcp/introduction)
 - [Official documentation](https://playwright.dev/docs/getting-started-mcp)
+- [Configuration](https://playwright.dev/mcp/configuration/options)
+
 
 To start the Playwright MCP server, run:
 ```bash
 npx @playwright/mcp@latest <args>
 ```
 
-which is typically set up in `JSON` like
+If the server should be started automatically by the client, we can set it up in `JSON` like
 ```json
 {
   "mcpServers": {
@@ -205,11 +207,12 @@ which is typically set up in `JSON` like
 
 Typical arguments are:
 
-- `--browser <browser>`: specify the browser to use, e.g., `chromium`, `firefox`, `webkit`
+- `--browser <browser>`: specify the browser to use, e.g., `chromium`, `firefox`, `webkit`, `msedge`
 - `--extension`: connect to a running browser instance with the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm) installed
 - `--headless`: run the browser in headless mode, i.e., without a user interface
 - `--isolated`: start a new browser every time, instead of having one session per workspace and reusing it
 - `--port <port>`: specify the port to use for the Playwright server
+- `--profile-dir-name`: specify the name of the profile directory. This way, the the right browser window is selected automatically. Without this, we need to focus the right window manually before trying to use the Playwright MCP.
 
 
 ## Connecting to Browsers
@@ -230,24 +233,21 @@ There are two ways how to connect to a browser:
 
 1. Install the [Playwright Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm), if not yet installed
 1. in the extension settings in the browser, check the `Allow access to file URLs` checkbox (otherwise, file uploads are not possible)
-1. Add `--extension` as an argument to the MCP server configuration:
-    ```json
-    "mcpServers": {
-        "playwright": {
-          "type": "stdio",
-          "command": "npx",
-          "args": [
-            "@playwright/mcp@latest",
-            "--extension"
-          ]
-        }
-    }
+1. Add `--extension` as an argument to the MCP server configuration
 1. If running another browser than Chrome, you also need to use the `--browser` argument to specify the browser to use.
 
 When strting the Playwright server manually, e.g., for external use from a sandbox, the command line can be:
 ```bash
-npx @playwright/mcp@latest --port 8931 --browser msedge --extension
+npx @playwright/mcp@latest --port 8931 --browser msedge --extension --profile-dir-name "Profile 1"
 ```
+
+To connect from a sandbox, we then use the port from the command above, e.g., for claude:
+```bash
+claude mcp add --transport http playwright http://host.docker.internal:8931/mcp/
+```
+
+#### Auto-approve connections
+By default, we have to approve every new connection from the Playwright MCP to the browser. To prevent that, we can set up an environment variable `PLAYWRIGHT_MCP_EXTENSION_TOKEN`. To get the token, click on the extension icon in the browser.
 
 
 ### Connecting via Chrome DevTools Protocol

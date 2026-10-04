@@ -1838,7 +1838,9 @@ To setup testing in a project, we have to:
 1. Enable testing inthe `CMakeLists.txt` file,
     - either basic support using the [`enable_testing()`](https://cmake.org/cmake/help/latest/command/enable_testing.html) command, or
     - full support using `include(CTest)`
-1. add the individual tests using the `add_test` command, and
+1. add the individual tests 
+    - using the `add_test` command, or
+    - a dedicated function like `gtest_discover_tests(<target name>)`
 1. configure the project
 
 Then, we can run the tests using the `ctest` command.
@@ -1881,7 +1883,7 @@ It can run in three modes:
 - **Build and Test** mode: builds the tests and then runs them
     - activated by the `--build-and-test` argument
 - **Dashboard** mode: run CTest as a client of the [CDash](https://www.cdash.org/) dashboard application.
-    - activated by one of the `-D` (`--dahboard`), `-M` (`--test-model`), `-S` (`--script`), or `-SP` (`--script-new-process`) arguments
+    - activated by one of the `-D` (`--dahboard`), `-M` (`--test-model`), `-S` (`--script`), or `-SP` (`--script-new-process`), or `-T` (`--test-action`) arguments
     - this mode facilitates every phase of the testing process, from updating the source code to running the tests and collecting the results
     - if configured correctly, the results can be displayed on the CDash server dashboard
 
@@ -1893,6 +1895,8 @@ Important parameters for all modes:
 - `-V`: verbose output
 - `-VV`: very verbose output
 - `-O <file>`: output the results to a file
+- [`--output-on-failure`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#cmdoption-ctest-output-on-failure): prints the program output on test failure
+- [`-R`, `--tests-regex`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#cmdoption-ctest-R): runs only the tests that match the regular expression
 
 ### Run Tests mode (default)
 The default run mode expects the project to be configured and built. It simply runs the tests and reports the results. For multi-configurations generators, we have to specify the configuration using the `-C` argument.
@@ -1909,21 +1913,47 @@ Other useful arguments:
 ### Dashboard mode
 [CDash documentation at cmake.org](https://cmake.org/cmake/help/book/mastering-cmake/chapter/CDash.html)
 
-Unlike the previous two modes, the dashboard mode facilitates every phase of the testing process, namely:
+Unlike the previous two modes, the dashboard mode can facilitate every phase of the testing process (see [ctest dashboard steps](#ctest-dashboard-steps))
 
-- updating the source code from the version control system
-- configuring the project
-- building the project
-- running the tests
-- collecting the results
-- submitting the results to the CDash server
+This is iteself a strong argument for using the dashboard mode but the main advantage is that in this mode, we can see the results of the process on the CDash server dashboard. However, this feature requires [some extra configuration](#configuring-the-dashboard-mode).
 
-This is iteself a strong argument for using the dashboard mode but the main advantage is that in this mode, we can see the results of the process on the CDash server dashboard. However, this feature requires some extra configuration.
+There are multiple ways to use the dashboard mode:
 
-There are two main ways to use the dashboard mode:
-
-- configure the dashboard mode using the `-D` argument together with the dahsboard command line arguments
 - configure the dashboard mode using a cmake script and then run the script using the `-S` or `-SP` argument
+    - syntax: `ctest -S <script path>` or `ctest -SP <script path>`
+- configure the dashboard mode using the `-D` argument together with the dahsboard command line arguments
+    - syntax: `ctest -D <dashboard mode arguments>`
+- configure the dashboard by specifying action by the `-T` argument, and test model by th `-M` argument
+    - syntax: `ctest  [-M <dashboard client mode>] -T <dashboard step>`
+    - `<dashboard client mode>` is a [*dashboard client mode*](#dashboard-client-modes)
+    - `<dashboard step>` is a [*ctest dashboard step*](#ctest-dashboard-steps)
+
+The dashboard mode creates some output files. These are stored in the `Testing` folder in the build directory.
+
+
+#### Dashboard Client Modes
+[Official documentation](https://cmake.org/cmake/help/latest/manual/ctest.1.html#dashboard-client-modes)
+
+There are three modes of operation for the dashboard client:
+
+- **Experimental** (default): intended for developer to test local changes. This mode does not have the `Update` step.
+- **Nightly**: intended for once-a-day tests. All steps runs even if the `Update` step reports no changes.
+- **Continuous**: intedned for multiple tests during the day. This mode exits after `Update` if there are no changes.
+
+The currently active mode can be seen in `<build dir>/Testing/TAG` file. Note that if the testing already run, the default mode for the next test run is the one in the `TAG` file (i.e., the mode from the previous test run).
+
+#### ctest Dashboard Steps
+There are the following dashboard steps:
+
+- [`Start`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-start-step): initializes the dashboard mode.
+- [`Update`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-update-step): updates the source code from version control (Git, SVN, etc.)
+- [`Configure`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-configure-step): configures the project
+- [`Build`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-build-step): builds the project
+- [`Test`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-test-step): runs the tests
+- [`Coverage`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-coverage-step): collects the coverage information
+- [`MemCheck`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-memcheck-step): runs the memory check
+- [`Submit`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#ctest-submit-step): submits the results to the CDash server
+
 
 #### Using the Dashboard mode configured by the script
 When run with the `-S` or `-SP` argument, the `ctest` executable runs the script that configures the dashboard mode. The `-SP` mode only differs in that it runs the script in a new process.

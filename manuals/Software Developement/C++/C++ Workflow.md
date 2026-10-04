@@ -412,11 +412,13 @@ In VS Code, the C++ support is provided by multiple extensions.
 ### CMake support
 The CMake support extension is provided by the [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools) extension. To run the configuration or other CMake tasks, open the newly installed CMake view.
 
-By default, the CMake extension uses [CMake presets](./CMake%20Manual.md#cmake-presets) to configure the project. To use CMake without presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
+By default, the CMake extension uses [CMake presets](./CMake%20Manual.md#cmake-presets) to configure the project. Note that if you create preset files, you may need to restart VS Code for them to be loaded.
 
 The root build directory is `out/build/<configuration name>`.
 
 To switch between build presets, click the edit button next to the build preset in the CMake view.
+
+To use CMake without presets, go to the extension settings and set `CMake: Use CMake Presets` to `never`.
 
 
 #### Setting the toolchain file
