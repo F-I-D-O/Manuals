@@ -476,7 +476,7 @@ There is no documented setting for changing the default template, so the flag ha
 #### Default templates
 All Docker-provided templates are published as `docker/sandbox-templates:<variant>` on [Docker Hub](https://hub.docker.com/r/docker/sandbox-templates/tags). The **mapping between the agent name and the image** is as follows:
 
-- The base variant is named after the agent, but the names differ: `claude` → `claude-code`, `cursor` → `cursor-agent`, the rest (`codex`, `copilot`, `devin`, `docker-agent`, `droid`, `gemini`, `kiro`, `opencode`, `shell`) use the agent name. There is also `claude-code-minimal` without Node.js, Python, Go, and Java.
+- The base variant is named after the agent, but the names differ: `claude` → `claude-code`, `cursor` → `cursor-agent`, the rest (`codex`, `copilot`, `devin`, `docker-agent`, `droid`, `gemini`, `kiro`, `opencode`, `shell`) use the agent name. There is also `claude-code-minimal` without Node.js, Python, Go, and Java (see [Disk usage](#disk-usage)).
 - Each variant has a `-docker` version (e.g., `claude-code-docker`) with a Docker Engine running inside the sandbox. **This is the default** used by `sbx run <agent>` and `sbx create <agent>` when no template is specified.
 - Each variant has a `-nightly` version (e.g., `claude-code-nightly`, `claude-code-docker-nightly`) that is rebuilt daily, while the plain tags are rebuilt roughly monthly (see [Image caching](#image-caching)).
 - Each release is also available under a versioned tag (e.g., `claude-code-0.5.0`).
@@ -530,6 +530,29 @@ To **refresh the cached image**, there are several options, from the least to th
 - `sbx reset`: resets Docker Sandbox to a freshly installed state. This **removes all sandboxes**, terminates running agents, and clears all cached images and stored secrets. Use `--preserve-secrets` to keep the secrets.
 
 For **reproducible sandboxes**, the template can be pinned to a digest instead of a tag: `--template docker/sandbox-templates@sha256:<digest>`. Old pinned images are never cleaned up automatically ([issue #428](https://github.com/docker/sbx-releases/issues/428)).
+
+
+### Disk usage
+The sandbox root filesystem is an **overlay**: the template image layers are mounted read-only as the lower layers, and every write goes to a per-sandbox writable disk (copy-on-write). On the host, both live in the sandbox state directory (Windows: `%LOCALAPPDATA%\DockerSandboxes\sandboxes\state\sandboxd\containerd\root\io.containerd.snapshotter.v1.erofs\snapshots\`).
+
+Consequences:
+
+- **An image is stored once** and shared by all sandboxes created from the same image digest. Removing a sandbox does not remove the image; `sbx template ls` lists the cached images.
+- **Modifying a shared file never affects other sandboxes**: e.g., upgrading Python copies the changed files into the writable layer of that sandbox only. Likewise, an existing sandbox never sees a newer image.
+- **Per-sandbox disks are sparse with a fixed cap**: they take host space only for what the sandbox writes, so a fresh sandbox costs almost nothing. The caps are set at creation time only: root overlay 20 GB (`DOCKER_SANDBOXES_ROOT_SIZE`, [issue #107](https://github.com/docker/sbx-releases/issues/107)), inner Docker data at `/var/lib/docker` 10 GB (`sbx settings set sandbox.disk.dockerVolume <size>`), clone-mode workspace about 50 GB (`DOCKER_SANDBOXES_CLONED_WORKSPACE_SIZE`). Check the usage with `df -h` inside the sandbox.
+- **Nightly images share nothing** with each other or with the monthly build (not even the base layer, verified by comparing layer digests), so each nightly pull is a new full image on the host. Layer sharing only pays off when several sandboxes are created from the same cached image, e.g., from a digest-pinned template.
+
+Image sizes (October 2026):
+
+| Image | Download | On disk (host, once per image) |
+|---|---|---|
+| `claude-code-minimal` | 312 MB | 1.1 GB |
+| `claude-code` | 637 MB | 2.5 GB |
+| `claude-code-docker` | 705 MB | not measured |
+
+The `*-minimal` image drops Node.js, Python, Go, and Java (the JDK alone is 331 MB); Claude Code, `uv`, `git`, `gh`, `rg`, and `jq` are the same. There is no `claude-code-minimal-docker` variant. Note that toolchains installed later inside a minimal sandbox land in the writable layer, i.e., are paid per sandbox instead of once per image. Also, `npx`-based MCP servers and `node`-based hooks do not work in a minimal sandbox until Node.js is installed.
+
+Claude Code **updates itself inside the sandbox** (native install under `~/.local/share/claude/versions/`, about 245 MB per version in the writable layer), so a monthly image plus `claude update` after creation yields a current agent without the nightly image churn.
 
 
 ### Policies
@@ -591,6 +614,44 @@ For **network policies**, we have a dedicated [`sbx policy check network` comman
 sbx policy check network --sandbox <sandbox name> <URL>
 ```
 
+
+### Secrets
+
+- [Official documentation](https://docs.docker.com/ai/sandboxes/configuration/credentials/)
+- [Reference](https://docs.docker.com/reference/cli/sbx/secret/)
+
+
+Docker sandbox have a mechanism to make secrets available in the sandbox. Instead of storing them in the snadbox, we store them in the host and inject them into outgoing HTTP/HTTPS requests.
+
+The usage is as follows:
+
+1. create a secret in the host (if it does not exist)
+    - either a pre-defined secret, using `sbx secret set`, or
+    - a custom secret, using `sbx secret set-custom`
+1. use it in the sendbox
+
+
+#### Custom Secrets
+[Reference](https://docs.docker.com/reference/cli/sbx/secret/set-custom/)
+
+To create a custom secret, we can use the `sbx secret set-custom` command. This:
+
+- creates a secret binding that replace the secret placeholder by the actual secret value in the outgoing HTTP/HTTPS requests
+- stores the secret placeholder into an environment variable. 
+    - Note that this second step only affects new sandboxes.
+
+Required parameters:
+
+- `--host`: The host name defines the HTTP/HTTPS host to which the secret is bound.
+    - multiple `--host` parameters can be specified
+    - if a part of the domain is not specified, it applies to all variants, i.e., `.example.com` matches `api.example.com` and `www.example.com`
+
+Other important parameters:
+
+- `--env <env var>`: sets `<env var>` in any new sandboxes to the secret placeholder.
+- `--command <command>`: uses `<command>` stdout as the secret value.
+- `--sandbox`: the sandbox to which the secret is bound. By default, the secret is bound to all sandboxes.
+- `--refresh <refresh interval>`: the secret is refreshed every `<refresh interval>`. By default, the secret is never refreshed automatically.
 
 # Harness
 
@@ -669,3 +730,34 @@ skills:
       - <path to skill directory>
       - <path to another skill directory>
 ```
+
+
+
+# Google Sheets
+There is no official way how to maipulate Google Sheets so far. The official MCP is broen right now and only support Google Workspace accounts, not Google Personal accounts.
+
+My current solution is to use a crafted Google Sheet skill that uses Google API. To initialize it:
+
+1. Prepare the access in Google Cloud console **(only once)**:
+    1. create a cloud project
+    1. enable the Google Sheets API for the project
+    1. create a service account
+    1. create a `JSON` key for the service account and download it
+1. Register the secret in the sandbox (see [Secrets](#secrets)) **(once per host machine)**:
+    ```bash
+    sbx secret set-custom --host sheets.googleapis.com --host www.googleapis.com --env GOOGLE_WORKSPACE_CLI_TOKEN --command "uv run C:\Users\david\sandbox_home\.claude\skills\google-sheets\scripts\mint_token.py <JSON service account key path>"
+1. Initialize in the sandbox **(once per sandbox, old sandboxes only)**:
+    1. install the node.js google workspace CLI:
+        ```bash
+        /c/Users/david/sandbox_home/.claude/skills/google-sheets/scripts/install_gws.sh
+        ```
+    1. install the `gspread` package:
+        ```bash
+        sudo uv pip install --system --break-system-packages gspread
+        ```
+    1. introduce the placeholder variable
+        ```bash
+         echo 'export GOOGLE_WORKSPACE_CLI_TOKEN=<secret placeholder>' | sudo tee -a /etc/sandbox-persistent.sh
+         source /etc/sandbox-persistent.sh
+        ```
+        - to find the secret placeholder, run `sbx secret list`

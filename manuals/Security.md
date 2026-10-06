@@ -319,3 +319,14 @@ Web auth has two modes:
 Together with its products, Microsoft pushes a centralized login system. As the system is far from intuitive, we will cover it here.
 
 The main login page is https://login.microsoftonline.com. At this page all logged accounts can be seen. Also, we can log in here to a new account. This is very important as Microsoft login system has a design flaw that sometimes cause a redirection to an incorrect login page, if the user uses multiple accounts on the same device. When we use the login.microsoftonline.com page, we bypass this malfunctioning login system and we can choose the correct account manually.
+
+
+# LastPass
+
+## Multiple passwords for the same domain
+Sometimes, only the subdomain differs between sites with different authentication. If that is the case, the solution is to add an URL rule for that domain:
+
+1. go to `Advenced options` -> `Autofill Settings` -> `URL Rules`
+1. Add a new rule with the following parameters:
+	- `URL`: the domain name, e.g., `example.com`
+	- check the `Host matching` checkbox
