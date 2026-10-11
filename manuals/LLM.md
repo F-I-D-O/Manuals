@@ -457,6 +457,47 @@ sbx cp <sandbox name>:<path in the sandbox> <path in the host machine>
 This currently does not work due to a bug [[source]](https://github.com/docker/sbx-releases/issues/265).
 
 
+### Voice dictation in the sandbox
+[Official documentation](https://code.claude.com/docs/en/voice-dictation)
+
+Claude Code voice dictation (`/voice`) does not work in the sandbox out of the box: the sandbox has no audio device (`/dev/snd` does not exist) and `sbx` has no flag for passing host devices into the sandbox. Dictation also requires a claude.ai sign-in; it is not available with an API key.
+
+There are two ways to dictate into a sandboxed session:
+
+#### Windows voice typing
+Press `Win+H` while the terminal window running `sbx run` is focused. Windows transcribes the speech on the host and types the text into the Claude Code prompt as if typed. No sandbox changes are required, but Claude's coding-tuned transcription and the hold/tap key workflow are not used.
+
+#### PulseAudio over TCP
+The sandbox is in the same situation as WSL: there is no ALSA device, so Claude Code falls back to SoX with the PulseAudio backend. The microphone is forwarded from the host over the PulseAudio native protocol on TCP port 4713. This path is community-tested only, not documented by Anthropic or Docker.
+
+On the Windows host:
+
+1. Install a PulseAudio build for Windows, e.g. [pulseaudio-win32](https://pgaskin.net/pulseaudio-win32/), including its Windows service and firewall components.
+2. Make sure the TCP listener is loaded and accepts the sandbox. Add a file to the `*.pa.d` folder in the installation directory with:
+    ```
+    load-module module-native-protocol-tcp port=4713 auth-anonymous=1
+    ```
+    Use `auth-ip-acl=<address>` instead of `auth-anonymous=1` to restrict the clients.
+3. Allow the sandbox to reach the port:
+    ```bash
+    sbx policy allow network localhost:4713
+    ```
+
+Inside the sandbox:
+
+1. Install SoX with the PulseAudio backend and the PulseAudio client tools:
+    ```bash
+    sudo apt-get install -y sox libsox-fmt-pulse pulseaudio-utils
+    ```
+2. Point the PulseAudio clients to the host:
+    ```bash
+    echo 'export PULSE_SERVER=tcp:host.docker.internal:4713' >> /etc/sandbox-persistent.sh
+    ```
+3. Test the recording with `parecord -d 3 test.wav` and then run `/voice` in Claude Code. If `/voice` reports that SoX could not open an audio capture device, the host server does not expose a microphone source.
+
+The sandbox side is bundled in the [sbx-claude-kit](https://github.com/SamirSaidani/sbx-claude-kit) mixin kit, loaded with `sbx run claude --kit <path to the kit>` or `sbx kit add <sandbox name> <path to the kit>`. The kit is unreviewed, so inspect its `spec.yaml` and `init.sh` before using it.
+
+
 
 ### Templates
 [Official documentation](https://docs.docker.com/ai/sandboxes/customize/templates/)
