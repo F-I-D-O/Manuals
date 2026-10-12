@@ -636,7 +636,7 @@ The [`Select-Object`](https://learn.microsoft.com/en-us/powershell/module/micros
 
 Important parameters:
 
-- [`-First <number>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-first): select the first `number` of objects
+- [`-First <number>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-first): select the first `number` of objects. When used with text input, it behaves like the `head` command in Linux.
 - [`-ExpandProperty <property>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-expandproperty): Returns the string value of the specified property of each input object.
 - [`-Property <property list>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-7.6#-property): select the specified properties of an object. The `<property list>` is a comma-separated list of properties. The output is a [PSObject](https://learn.microsoft.com/en-us/dotnet/api/system.management.automation.psobject?view=powershellsdk-7.6.0) with the selected properties for each input object.
 
@@ -703,6 +703,11 @@ To use this connection, we can use the [`RasDial`](https://learn.microsoft.com/e
 ```PowerShell
 RasDial "<VPN name>" "<username>" "<password>"
 ```
+
+### DNS
+[documentation](https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2022-ps)
+
+To see DNS information associated with a domain name, we can use the `Resolve-DnsName` command: `Resolve-DnsName -Name <domain name>`.
 
 
 

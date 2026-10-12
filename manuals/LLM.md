@@ -402,7 +402,12 @@ Important `<claude mcp params>` are:
     - `http`: for the most common HTTP MCPs
 
 
+## Artifacts
+[Official documentation](https://code.claude.com/docs/en/artifacts)
 
+Claude code artifacts are visual representations of the claude findings stored onnline at [artifacts.claude.ai](https://artifacts.claude.ai/). 
+
+To instruct claude to generate an artifact, we just write it in the text of the prompt. For some special cases, claude has a special command to generate artifacts, e.g., `/slides` to generate a presentation.
 
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident.
