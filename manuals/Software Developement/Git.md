@@ -478,6 +478,27 @@ For **branches and tags**, we can use the dropdowns.
 For **commits**, we need to enter the commits manually to url as `https://github.com/<OWNER>/<REPOSITORY>/compare/<COMMIT1>..<COMMIT2>`, where `<COMMIT1>` and `<COMMIT2>` are the six-digit commit hashes.
 
 
+## Linking a commit or pull request to a specific issue
+[Official documentation](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+
+I most Git cloud apps, we can link a commit or pull request to a specific issue. On Github, we can automate this by adding a speciffic keyword to the commit message. If this keyword is detected on a commit to the default branch (either directly or via a merge), the commit will be linked to the issue. 
+
+The syntax is: `<keyword> #<issue number>`. If the keyword is one of the following, the issue will be closed automatically:
+
+- `close`
+- `closes`
+- `closed`
+- `fix`
+- `fixes`
+- `fixed`
+- `resolve`
+- `resolves`
+- `resolved`
+
+The case does not matter (e.g., `Closes #123` and `closes #123` are the same). Also, there can be a colon after the keyword, e.g., `closes: #123`.
+
+
+
 ## GitHub CLI
 Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
 

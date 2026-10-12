@@ -29,6 +29,39 @@ Most used subcommands:
 - `gcloud organizations`: see and manage organizations
 
 
+### Authentication
+There are two types of authentication in Google Cloud:
+
+- Google Cloud CLI authentication:
+    - used for Google Cloud CLI and few connected systems
+    - `gcloud auth login`
+- [Application Default Credentials](https://docs.cloud.google.com/docs/authentication/application-default-credentials): 
+    - special credential systems for other Google Cloud services and external applications
+    - `gcloud auth application-default login`
+
+
+#### Google Cloud CLI authentication
+[Official documentation](https://docs.cloud.google.com/sdk/docs/authenticate)
+
+The Google Cloud CLI authentication is used for the Google Cloud CLI and few connected systems.
+
+Typically, we **authenticate** using the `gcloud auth login` command, which initiates the OAuth2 authentication flow (in web browser, using the Google account).
+
+To **list** the active accounts, we can use the `gcloud auth list` command.
+
+When working with multiple accounts, we need to first **select the account** for the following commands. To do that, run:
+```bash
+gcloud config set account <email>
+```
+
+Sometimes, a **reauthentication** is required, with a prompt like the following:
+```text
+Reauthentication required.
+Please enter your password:
+```
+In this case, we need to type the password to the active google account.
+
+
 ### Filtering
 [Official documentation](https://docs.cloud.google.com/sdk/gcloud/reference/topic/filters)
 
@@ -97,37 +130,7 @@ By default, the enabled services are listed for the active project. Important pa
 
 
 
-## Authentication
-There are two types of authentication in Google Cloud:
 
-- Google Cloud CLI authentication:
-    - used for Google Cloud CLI and few connected systems
-    - `gcloud auth login`
-- [Application Default Credentials](https://docs.cloud.google.com/docs/authentication/application-default-credentials): 
-    - special credential systems for other Google Cloud services and external applications
-    - `gcloud auth application-default login`
-
-
-### Google Cloud CLI authentication
-[Official documentation](https://docs.cloud.google.com/sdk/docs/authenticate)
-
-The Google Cloud CLI authentication is used for the Google Cloud CLI and few connected systems.
-
-Typically, we **authenticate** using the `gcloud auth login` command, which initiates the OAuth2 authentication flow (in web browser, using the Google account).
-
-To **list** the active accounts, we can use the `gcloud auth list` command.
-
-When working with multiple accounts, we need to first **select the account** for the following commands. To do that, run:
-```bash
-gcloud config set account <email>
-```
-
-Sometimes, a **reauthentication** is required, with a prompt like the following:
-```text
-Reauthentication required.
-Please enter your password:
-```
-In this case, we need to type the password to the active google account.
 
 
 ## Google Cloud Console
@@ -218,3 +221,17 @@ Both Google Cloud CLI and Application Default Credentials can be used for authen
 The instances can be managed from `menu` > `Cloud SQL` > `Instances`.
 
 When clicking on the instance from the list, we can manage the specific instance.
+
+
+## Regions
+
+- [Region List](https://docs.cloud.google.com/compute/docs/regions-zones)
+- [Pricing Tiers](https://cloud.google.com/run/pricing)
+
+Any reserved resource in Google Cloud is assigned to a data center determined by the region. Choosing the region is essential as closer regions have lower latency, and different regions have different prices (tier pricing).
+
+To set the region inc CLI, we have threeoptions:
+
+- pass the `--region <region>` parameter to the gcloud command
+- set the default region: `gcloud config set run/region <region>`
+- skip both and select the region interactively

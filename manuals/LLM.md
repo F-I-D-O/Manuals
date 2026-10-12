@@ -286,6 +286,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Embellishing`](https://claudionary.com/definition/embellishing/): Improving an already existing answer. This indicates that most effor was not spend on the main reasoning process, but on the response tweaking.
 - [`Enchanting`](https://claudionary.com/definition/enchanting/): Producing undocumented and non-based responses that are result of the reinforcement learning process on the user ratings.
 - [`Envisioning`](https://claudionary.com/definition/envisioning/): Early phase of Claude's thinking, before it decides wheter the idea is achievable, sound or the best way to to do.
+- [`Finagling`](https://claudionary.com/definition/finagling/): negotiating the answer with internal constraints on what the answer may contain. Appears in controversial topics that may involve off-limits responses, e.g, cheating, fraud, drugs, sex, etc.
 - [`Flambéing`](https://claudionary.com/definition/flambeing/): Removing confuding details and ambiguities from the response, leaving only the coherent core of the idea.
 - [`Flummoxing`](https://claudionary.com/definition/flummoxing/): The model questions the user prompt itself, considering the question irrelevant, stupid, or not clear to be answered.
 - [`Fluttering`](https://claudionary.com/definition/fluttering/): oscilating between several different responses that all seem to be correct.
@@ -293,6 +294,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Frolicking`](https://claudionary.com/definition/frolicking/): fast creative thinking, that does not require to much research or other hard work.
 - [`Frosting`](https://claudionary.com/definition/frosting/): Adding final touches to the response, which is already complete, but maybe not perfect.
 - [`Gallivanting`](https://claudionary.com/definition/gallivanting/): Doing a wide search of previously unexlorted areas.
+- [`Garnishing`](https://claudionary.com/definition/garnishing/): Finalizing an almost complete response (disclaimers, pleasantries, caveats, etc.)
 - [`Germinating`](https://claudionary.com/definition/germinating/): Early stage of thinking.
 - [`Gesticulating`](https://claudionary.com/definition/gesticulating/): Instead of thinking and processing, Claude is very sure about something.
 - [`Gitifying`](https://claudionary.com/definition/gitifying/): Working intensively with git, reading the history, etc.
@@ -340,6 +342,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Sprouting`](https://claudionary.com/definition/sprouting/): Branching the cognitive process
 - [`Stewing`](https://claudionary.com/definition/stewing/): thinking intensively about several distinc solutions, until producing a final one.
 - [`Swirling`](https://claudionary.com/definition/swirling/): Exploring multiple ideas independently, without concluding the right direction.
+
 - [`Symbioting`](https://claudionary.com/definition/symbioting/): state in which nor the claudes knowledge, nor the codebase is seen as a ground truth, claude is questioning both.
 - [`Synthesizing`](https://claudionary.com/definition/synthesizing/): Using several external sources to form a coherent response.
 - [`Tempering`](https://claudionary.com/definition/tempering/): Moderating the strong and radical idea into a reasonable output.
