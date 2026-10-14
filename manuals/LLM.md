@@ -810,3 +810,4 @@ My current solution is to use a crafted Google Sheet skill that uses Google API.
          source /etc/sandbox-persistent.sh
         ```
         - to find the secret placeholder, run `sbx secret list`
+1. share the sheet with the service account (normal sharing dialog)
