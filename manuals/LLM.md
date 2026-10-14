@@ -409,6 +409,16 @@ Claude code artifacts are visual representations of the claude findings stored o
 
 To instruct claude to generate an artifact, we just write it in the text of the prompt. For some special cases, claude has a special command to generate artifacts, e.g., `/slides` to generate a presentation.
 
+
+## `. /claude` folder content
+
+- 📁 `backups`: backups of the `.claude.json` file. If the current file is broken for some reason, Claude will use the backup.
+- 📁 `cache`: files fetached from claude servers that may be used repeatedly (changelog, supported models for the current account,...)
+- 📁 `deamon`: 
+
+
+
+
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident.
 
