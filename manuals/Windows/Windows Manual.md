@@ -387,13 +387,44 @@ Important parameters:
 
 
 # Registry
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Windows_Registry)
+- [Official documentation](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users)
+
 Registry is a hierarchical database that stores configuration data for both the system and applications. It can be explored and manipulated using:
 
-- **Command shell**: e.g., `reg query HKEY_CURRENT_USER\Software\Microsoft\...`
+- **Registry Command**: e.g., `reg query HKEY_CURRENT_USER\Software\Microsoft\...`
     - see the [Command shell manual](./Comand%20shell.md#registry-manipulation) for more info
-- **PowerShell**: e.g., `Get-ItemProperty -Path HKCU:\Software\Microsoft\...`
+- **PowerShell cmdlet**: e.g., `Get-ItemProperty -Path Registry::HKEY_CURRENT_USER\Software\Microsoft\...`
     - see the [PowerShell manual](./Powershell%20Manual.md#windows-registry) for more info
 - **RegEdit**: a GUI tool for registry manipulation
+
+
+## The `reg` command
+[Official documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg)
+
+Typical subcommands:
+
+- `add`: add a value to the registry
+- [`delete`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-delete): delete a value from the registry
+- `query`: query the registry
+
+
+## Registry Structure
+There are six root keys. To shorten the registry paths, keys can be abbreviated in some contexts:
+
+- using abbreviations for the `reg` command (`reg.exe`), e.g., `reg query HKCU\Software\...`
+- using PowerShell Registry Drives, e.g., `Get-ItemProperty -Path HKCU:\Software\...`
+
+The root keys are:
+
+| Key | Abbreviation | PowerShell Drive | Description |
+|---|---|---|---|
+| `HKEY_CLASSES_ROOT` | `HKCR` | - | A merged view over `HKEY_LOCAL_MACHINE\SOFTWARE\Classes` and `HKEY_CURRENT_USER\SOFTWARE\Classes` |
+| `HKEY_CURRENT_CONFIG` | `HKCC` | - | Hardware profile, used for device startup |
+| `HKEY_CURRENT_USER` | `HKCU` | `HKCU:` | Current user configuration. A View over `HKEY_USERS\<USER ID>` |
+| `HKEY_LOCAL_MACHINE` | `HKLM` | `HKLM:` | System-wide configuration |
+| `HKEY_USERS` | `HKU` | - | All Users configurations |
 
 
 
@@ -447,6 +478,7 @@ It is possible to let the system have a different input method for each app. It 
 
 #### Nothing happens after clicking on the input method in the taskbar (windows 10)
 restrat the computer :)
+
 
 ## Right Click Menu
 
@@ -523,6 +555,23 @@ For deleting the item from the registry, just run `REG DELETE <path>`
 Haven't found a way to remove it yet. Even uninstalling the Deepl does not help.
 
 
+## Application auto-start
+[Official documentation](https://support.microsoft.com/en-us/windows/experience/startup-boot/configure-startup-applications-in-windows)
+
+There are several places where the application autostart can me configured:
+
+- **Registry**: (most common)
+    - these registry folders:
+        - `HKCU:\Software\Microsoft\Windows\CurrentVersion\Run`
+        - `HKLM:\Software\Microsoft\Windows\CurrentVersion\Run`
+- **Startup folder**: The user way, but some applications use startup folder s too
+    - these folders:
+        - User: `%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
+        - System: `%ProgramData%\Microsoft\Windows\Start Menu\Programs\Startup`
+- **Task Scheduler**: Task scheduler is a versatile task scheduling tool but it can be used even for simple tasks like autostarting an application.
+    - this is the recommended method e.g., for autostarting `Syncthing`
+
+The existing registry and startup folder autostrat entries can be additionally toggled on/off in `Settings` -> `Apps` -> `Startup` or in `Task Manager` -> `Startup apps`.
 
 # Managing Applications
 Traditionally, Windows application are installed using the [Windows Installer](https://en.wikipedia.org/wiki/Windows_Installer). Application installed with windows installer are registered in the registry, and can be uninstalled using the Windows Settings app. The installer uses the `msi` file format.

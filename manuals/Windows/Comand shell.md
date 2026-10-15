@@ -214,16 +214,6 @@ echo %~dp1
 The above command prints the directory of the file passed as the first argument.
 
 
-# Registry Manipulation
-For registry manipulation, we can use the [`reg`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg) command.
-
-Typical subcommands:
-
-- `add`: add a value to the registry
-- [`delete`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-delete): delete a value from the registry
-- `query`: query the registry
-
-
 # Usefull Commands
 
 - `dir`: list files and folders

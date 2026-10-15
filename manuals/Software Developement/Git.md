@@ -114,6 +114,13 @@ To use SSH for transfering data to and from the remote repository, the following
     ```
 
 
+# Basic commands
+
+## `clone`
+[Official documentation](https://git-scm.com/docs/git-clone)
+
+The syntax is: `git clone <url> [<folder>]`
+
 
 # Basic Tasks
 

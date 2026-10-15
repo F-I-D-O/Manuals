@@ -742,11 +742,20 @@ For both commands, we need to specify the class of the object we want to get usi
 
 
 ## Windows Registry
-To access the Windows registry, we use the same commands that are used for file system:
+To **read** the Windows registry, we use the same commands that are used for file system:
 
 - [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key
 - [`Get-ChilItem`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem) to get a list of child keys
 
+
+To **delete** a registry key, we use the [`Remove-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-itemproperty) cmdlet. The syntax is:
+```PowerShell
+Remove-ItemProperty -Path <Registry Path> -Name <Property Name>
+### Example
+Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name TogglTrack
+```
+
+To **write** a registry key, we use the [`Set-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-itemproperty) cmdlet.
 
 ## Services
 There are several cmdlets for managing services:
