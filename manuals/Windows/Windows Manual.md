@@ -618,6 +618,32 @@ Important options:
 Note that **we can use the update command even for packages not installed using winget**. The only precondition is that the package is recognized by winget as installed (shows up when running `winget list`). After the update, the package will be managed by winget (`Source` will be `winget`).
 
 
+## Squirrel Installer
+[GitHub](https://github.com/Squirrel/Squirrel.Windows)
+
+Squirrel is a tool for creating Windows installers utilizing the NuGet packaging system.
+
+Important properties:
+
+- It installs applications to user home directory
+- It installs every new version to a separate directory. This break some Windows integrations, e.g., tray icon configuration.
+
+
+# Task Scheduler
+The task scheduler is a tool for scheduling tasks. Typically, the **task** is:
+
+- running a program
+- starting a service
+- executing a command
+
+The **trigger** can be:
+
+- system start
+- start of an application
+- specifica time
+
+To **configure** the scheduled tasks, we can use either a GUI tool or [powershell cmdlets](Powershell%20Manual.md#task-scheduler).
+
 # Useful Commands
 
 ## Get Motherboard Info

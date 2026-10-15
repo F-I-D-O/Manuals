@@ -766,6 +766,13 @@ There are several cmdlets for managing services:
 - [`Stop-Service`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-service): to stop a service
 
 
+## Task Scheduler
+There are several cmdlets for managing scheduled tasks:
+
+- [`Get-ScheduledTask`](https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/get-scheduledtask): to get the list of scheduled tasks
+- [`Register-ScheduledTask`](https://learn.microsoft.com/en-us/powershell/module/scheduledtasks/register-scheduledtask): to register a scheduled task
+
+
 
 # Elevation
 Some commands may require administrator privileges. Therefore, it is wise to check if the script is running with administrator privileges so that the execution is not interrupted. To check if the script is running with administrator privileges, use the following code:
