@@ -11,6 +11,19 @@ The main unit in Google Cloud is a *project*. Each Google user can have multiple
 
 The capabilities for each project are determined by the list of available *service*s.
 
+## Projects
+[Official documentation](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+
+The main unit in Google Cloud is a *project*. Each project has three main properties
+
+- **Name**: Human readable name for the project.
+    - does not have to be unique
+    - it is for your own reference, it is not used by Google Cloud, nor the CLI
+- **ID**: Identifier
+    - must be unique
+    - may contain letters, numbers, and hyphens
+    - cannot be changed
+- **Number**: Automatically generated identifier
 
 
 ## Google Cloud CLI

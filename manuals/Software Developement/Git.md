@@ -710,3 +710,24 @@ If the ssh does not require a passphrase, but the git does, check whether git us
 2. run `where ssh`
 
 The first (and only) path should be the same as the one that you are using with the agent, most likely the OpenSSH from Windows. If the git bash bundeled OpenSSH command is first, it means an incorrect git installation.
+
+
+# Kdiff3
+Kdiff3 is a diff/merge tool.
+
+After installing Kdiff3, we need to integrate it into the git. Typically, we do this:
+
+1. configure the Kdiff3 command:
+    ```bash
+    git config --global mergetool.kdiff3.cmd '"<PATH TO KDIFF3.EXE>" "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"'
+    ```
+1. if we want to set it up as the default mergetool, we can run:
+    ```bash
+    git config --global merge.tool kdiff3
+    ```
+
+## Winget update specifics
+The Winget update does not work correctly. Therefore, it is a good idea to update only if necessary.  Then, the procedure is:
+
+1. `winget upgrade KDE.KDiff3 --source winget --uninstall-previous`
+1. Restart the computer

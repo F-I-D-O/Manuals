@@ -598,13 +598,22 @@ To **update a package**, run `winget upgrade <package name>`.
 
 To **list packages that can be updated**, run `winget upgrade`.
 
+Common options for multiple commands are:
+
+- `-e`, `--exact`: use the exact name of the package, do not guess if misstyped
+
 
 ### `winget install`
 [Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/install)
 
-Common options are:
+Important options:
 
 - `-h`, `--silent`: this supresses all UI of the installation
+- `--installer-type`: the type of the installer. See [supported installer types](https://learn.microsoft.com/en-us/windows/package-manager/winget/#supported-installer-formats)
+- `--scope`: the scope of the installation. Either `user` or `machine`. Typically, if multiple scopes are supported, the user scope is the default.
+    - Note that the `MSIX` installers still does not support system wide install, but `winget` is failing to detect that. Therefore, 
+        - for packages offering only `MSIX` installers, `machine` scope is impossible, and
+        - for packages offering both `MSIX` and other types, we need to specify the type using the `--installer-type` option, if we want to install the package system wide.
 
 ### `winget upgrade`
 [Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/upgrade).
@@ -613,9 +622,36 @@ Also `winget update` (alias). When run without any arguments, it lists all packa
 
 Important options:
 
-- `-e`, `--exact`: use the exact name of the package, do not guess if misstyped
+
 
 Note that **we can use the update command even for packages not installed using winget**. The only precondition is that the package is recognized by winget as installed (shows up when running `winget list`). After the update, the package will be managed by winget (`Source` will be `winget`).
+
+
+### Upgrading `winget` itself
+To upgrade `winget` itself, use `winget upgrade --id Microsoft.AppInstaller`. Note that there is a quirk in the `winget`  package that shows the update available forever:
+```PowerShell
+winget --version
+v1.29.380
+
+winget list --id Microsoft.AppInstaller --exact
+Name          Id                     Version    Available Source
+----------------------------------------------------------------
+App Installer Microsoft.AppInstaller 1.29.379.0 1.29.380  winget
+```
+
+Basically, `winget` detects an older version of itself than currently installed, and therefore, it shows the update available forever. This is, however, harmless, updating the version repeatedly will not harm the system.
+
+
+## Windows Installer XML (WiX)
+
+- [Wikipedia](https://en.wikipedia.org/wiki/WiX)
+- [GitHub](https://github.com/wixtoolset)
+
+WiX is a tool for creating Windows Installer packages base on declarative XML configuration. Additionally, WiX support extra functionality missing in the standard Windows Installer, such as:
+
+- creating SQL server databases
+- registering firewall exceptions
+- installing Web Sites
 
 
 ## Squirrel Installer
@@ -813,7 +849,7 @@ Usually, it is a good idea to configure autosave. This functionality is availabl
 Notepad++ can be used to convert line endings in a file or folder. If the whole folder is selected, do not forget to exclude binary files and `.git`.  To do that, add the following `Filter`:
 
 ```text
-*.* !/.git !*.png !*.jpg !*.pdf !*.gz !*.xdv !*.xlsx !*.gif !*.eps !*.ttf !*.aab !*.mp3 !*.ico !*.eps !*.shp !*.shx
+*.* !/.git !*.png !*.jpg !*.pdf !*.gz !*.xdv !*.xlsx !*.gif !*.eps !*.ttf !*.aab !*.mp3 !*.ico !*.eps !*.shp !*.shx !\.venv
 ```
 
 

@@ -690,6 +690,15 @@ The usage is as follows:
 1. use it in the sendbox
 
 
+#### Updating Secrets
+Secrets can be updated using the same command as creating them (`set` or `set-custom`). However, we need to identify the secret by its placeholder, not by its name. For that, we use the `--placeholder` parameter:
+
+```bash
+sbx secret set-custom  --placeholder <placeholder> <secret params>
+```
+
+Note that we need to repeat all the previously used parameters, if we want to preserve them.
+
 #### Custom Secrets
 [Reference](https://docs.docker.com/reference/cli/sbx/secret/set-custom/)
 
@@ -711,6 +720,13 @@ Other important parameters:
 - `--command <command>`: uses `<command>` stdout as the secret value.
 - `--sandbox`: the sandbox to which the secret is bound. By default, the secret is bound to all sandboxes.
 - `--refresh <refresh interval>`: the secret is refreshed every `<refresh interval>`. By default, the secret is never refreshed automatically.
+
+
+### Kits
+[Official Documentaion](https://docs.docker.com/ai/sandboxes/customize/)
+
+Kits are a separate layer of configuration that enables to use the same docker images with a different configuration. Its main file is `spec.yaml` 
+
 
 # Harness
 

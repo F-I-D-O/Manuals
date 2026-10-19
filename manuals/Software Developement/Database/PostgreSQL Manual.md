@@ -1067,7 +1067,58 @@ SELECT tablename, tableowner FROM pg_tables;
 SELECT tablename, tableowner FROM pg_tables WHERE tableowner = '<user name>';
 ```
 
+## Creating new user
+For creating a new user, we have two options:
 
+- the [`createuser`](#createuser) executable
+- the [`CREATE ROLE`](https://www.postgresql.org/docs/current/sql-createrole.html) PostgreSQL statement
+
+When creating new users, we can:
+
+- set the credentials for them
+- add them some server-wide privileges, like superuser, or the ability to create new roles
+- inherit the privileges from other users
+
+On the other hand, we cannot give database or table specific privileges when creating a new user. For that, see [Granting privileges](#granting-privileges).
+
+### `createuser`
+[`Official documentation`](https://www.postgresql.org/docs/current/app-createuser.html)
+
+Important parameters:
+
+- `-P` or `--pwprompt`: prompt for password. If not used, the user will be created without a password.
+
+
+
+## Granting privileges
+[Official documentation](https://www.postgresql.org/docs/current/sql-grant.html)
+
+For assigning privileges to a user, we use the `GRANT` command. The general syntax is:
+```PostgreSQL
+GRANT <privileges> ON <object type> <object name> TO <user name>
+```
+
+**Database privileges** are:
+
+- `CONNECT`: allows the user to connect to the database
+- `TEMPORARY`: allows the user to create temporary tables
+
+**Schema privileges** are:
+
+- `USAGE`: allows the user to use the schema
+
+**Table privileges** are:
+
+- `SELECT`: allows the user to select data from the table
+- `INSERT`: allows the user to insert data into the table
+
+**Function privileges and procedures privileges** are:
+
+- `EXECUTE`: allows the user to execute the function
+
+**Sequence privileges** are:
+
+- `USAGE`: allows the user to use the sequence
 
 
 

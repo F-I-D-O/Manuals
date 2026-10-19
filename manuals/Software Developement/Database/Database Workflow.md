@@ -86,7 +86,23 @@ Limitations:
 
 
 # PostgreSQL
+Thi section covers installation, configuration, update and other operations of the PostgreSQL server. For the topics concerning the database itself, check the [PostgreSQL Manual](./PostgreSQL%20Manual.md).
+
 As a first step, it is always good to know which clusters are installed and running. To show this information, use the `pg_lsclusters` command.
+
+
+## General notes on PostgreSQL server executables
+Besides running SQL statements, we can use several executables that can help us manage the server. The most important ones are:
+
+- `createdb`: used to create a new database
+- `createuser`: used to create a new user
+- `pg_ctl`: used to start, stop, and restart the server
+- `pg_dump`: used to dump the database to a file
+- `pg_restore`: used to restore the database from a file
+- `psql`: used to run SQL statements
+
+Most of the commands require the user to have some privileges, and therefore, to log in. Confusingly, by default, you are not propmpted for username, but your system username is used as the default. This is true even if such a user does not exist, no worning is issued. Therefore, **always specify the username using the `-U` parameter**.
+
 
 
 ## Starting, stopping, and restarting the cluster
@@ -177,10 +193,7 @@ The `PID` can be obtained from the [database activity monitoring tool](#monitori
 
 
 
-## Creating new user
-For creating a new user, we can use the [`createuser`](https://www.postgresql.org/docs/current/app-createuser.html) command. Important parameters:
 
-- `-P` or `--pwprompt`: prompt for password. If not used, the user will be created without a password.
 
 
 ## Deleting database

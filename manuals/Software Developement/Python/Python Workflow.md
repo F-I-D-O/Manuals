@@ -157,8 +157,12 @@ If any of these conditions is not met, we need to reinstall the package.
 - [Command Cheat Sheet](https://docs.astral.sh/uv/getting-started/features/)
 - [Project Structure](https://docs.astral.sh/uv/concepts/projects/layout/)
 
-uv is a package manager for Python written in Rust. It has first-class support for virtual environments, and it is much faster than pip.
+uv is a package manager for Python written in Rust. It has first-class support for virtual environments, and it is much faster than pip. I uses standard `pyproject.toml` project configuration.
 
+All packages in uv are installed in a virtual environment, typically assigned to a project. However, this is almost a free operation, as packages really live in the cache and the virtual environment contains only hard links to the packages.
+
+
+## Basic Usage
 To **create a virtual environment with all packages necessary for the project**, run `uv sync`.
 
 To **run a script in the virtual environment**, run:
@@ -184,6 +188,100 @@ In `uv` there is a syncing command `uv sync`  that encompasses
 Important parameters:
 
 - [`--locked`](https://docs.astral.sh/uv/reference/cli/#uv-sync--locked): use the existing lockfile to determine the versions of the dependencies, instead of re-locking
+
+
+## Fixing uv caching mechanism on Windows
+On Windows, hardlinks only works if the files are on the same drive. Therefore, if you are developing on a different drive than `C:`, you need to move the cache there to get hardlinks working (otherwise, uv resorts to copying the files).
+
+To do that, create an environment variable `UV_CACHE_DIR` with the path to the cache directory on the same drive as the project. Example:
+```PowerShell
+[Environment]::SetEnvironmentVariable("UV_CACHE_DIR", "D:\uv-cache", "User")
+```
+
+
+## uv files and folders
+The uv package manager creates the following files and folders:
+
+- `.venv`: the virtual environment folder. Unlike the standard virtual environment, the uv virtual environment stores hardlinks to the uv cache, instead of dependencies themselves.
+- [`uv.lock`](https://docs.astral.sh/uv/guides/projects/#uvlock): the lock file. Contains the resolved dependencies - specific versions of the packages.
+	- for consistent and reproducible installations, check this file to version control.
+
+## The `pip` interface
+[Official documentation](https://docs.astral.sh/uv/pip/)
+
+Pip interface is available for power users as `uv pip`. This enables to use workflows from `pip` while using the faster `uv` toolset.
+
+
+## Dependency management
+[Official documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/)
+
+All dependencies are defined in the `pyproject.toml` file. Standard dependencies are defined in the `[project.dependencies]` and `[project.optional-dependencies]` sections, nothing extra is needed.
+
+To modify the dependencies, we can either directly edit the `pyproject.toml` file, or use the commands
+
+- `uv add <package>` to add a new dependency
+- `uv remove <package>` to remove a dependency
+
+### Alternative dependency sources
+[Official documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/#dependency-sources)
+
+In uv, we can specify alternative dependency sources for the dependencies specified in the `project.dependencies` and `project.optional-dependencies` sections.
+
+The alternative sources can be
+
+- local directories
+- git repositories
+- alternative package indexes
+- URLs
+- members of a local virtual environment
+
+The alternative sources are specified in the `[tool.uv.sources]` section in the following format:
+```toml
+[tool.uv.sources]
+<package name> = {<source type> = <source location> }
+```
+
+#### Path dependency source
+[Official documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/#path)
+
+The path dependency source specifies a local path, absolute or relative. Even path depenencies are non-editable by default, to make them editable, we have to specify the `editable` property:
+
+```toml
+[tool.uv.sources]
+<package name> = {path = "<path>", editable = true}
+```
+
+
+#### Git dependency source
+[Official documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/#git)
+
+Git dependency source specifies a git repository. The syntax is:
+
+```toml
+[tool.uv.sources]
+<package name> = {git = "<git repository url>"}
+```
+
+Where the `<git repository url>` is the normal URL, not the SSH URL. We can also specify the branch, tag, or commit to checkout using the toml properties.
+
+
+### Editable installations
+The development (editable) dependencies like `pip install -e` has no equivalent in uv. To work around this, we may two multiple strategies:
+
+- **hardcode the path into the `pyproject.toml`**: relative or absolute, but hardoced for all developers. With the `editable` property, this will work like `pip install -e`, just with a fixed path
+- **override the package and ignore it with the future syncs**: Basically, we first install the package from its outdated source, and then override it with `uv pip install -e`.
+	- this way, the package path can differ for each developer
+	- we have to use the `--no-install-package <package name>` flag for each future `uv sync` and `--no-sync` flag for the `uv run` commands to prevent the override to be reverted
+
+
+### Cleaning the cache (local package repository)
+Because the packages are cached, we cannot resolve ccorrupted files by merely deleting the `.venv` folder. We need to delete the real files from the cache. The syntax is:
+
+```bash
+uv cache clean <package name>
+```
+
+If the `<package name>` is not specified, all packages are cleaned.
 
 
 # IDE

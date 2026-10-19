@@ -1,3 +1,11 @@
+# Introduction
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Python_(programming_language))
+- [Official Tutorial](https://docs.python.org/3/tutorial/index.html)
+- [Language Reference](https://docs.python.org/3/reference/index.html#reference-index)
+- [Built-ins Reference](https://docs.python.org/3/builtins/index.html#builtins-index)
+- [Standard Library Reference](https://docs.python.org/3/library/index.html#library-index)
+
 # Basics
 
 ## Code Organization
@@ -454,11 +462,15 @@ print(p.x) # 1
 
 
 # Functions
+[Official Manual](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)
+
 
 ## Variable length arguments
+[Official Manual](https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists)
+
 There are two types of variable length arguments in Python:
 
-- `*args` - variable length positional arguments.
+- `*args` - variable length positional arguments. They will be wrapped in a tuple.
 - `**kwargs` - variable length keyword arguments
 
 ## Argument unpacking
@@ -1327,6 +1339,17 @@ a: Series[int]
 ```
 [Officiall documentation for Pandera data types](https://pandera.readthedocs.io/)
 
+
+
+## Stub Files
+[Official documentation](https://typing.python.org/en/latest/guides/writing_stubs.html)
+
+Stub files are used to provide type hints for packages that does not contain type hints in the source code.
+
+If a package commits to provide type hints in the source code, it should contain an empty `py.typed` file in the root of the package.
+
+
+
 # Calling external programs
 To call an external program, we use the [`subprocess`](https://docs.python.org/3/library/subprocess.html) module. Most of the time, we use the [`run`](https://docs.python.org/3/library/subprocess.html#subprocess.run) function:
 ```Python
@@ -1853,7 +1876,7 @@ With modifying statements, the situation is more complicated as SQLAlchemy uses 
             conneciton.execute("INSERT INTO table VALUES (1, 2, 3)")
         ```
 
-Note that **the old `execute` method of the engine object is not available anymore** in newer versions of SQLAlchemy. 
+Note that **the old `execute` method of the engine object is not available anymore** in newer versions of SQLAlchemy.
 
 
 ### Statements with parameters
