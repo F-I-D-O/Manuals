@@ -978,14 +978,7 @@ The most Important information in the log is the `BUGCHECK_CODE`. The meaning of
 The problem can be the hardware acceleration. To disable it, go to the Edge settings and disable the `Use hardware acceleration when available` option. Then restart the browser.
 
 
-## SugarSync does not sync changes
-Sometimes, the syncing stops without any error. What to do:
 
-1. check [online](https://app.sugarsync.com/), if the files are there
-1. If the files are not there, restart sugarsync:
-    1. exit SugarSync
-    1. in services, restart the SugarSync service
-    1. start SugarSync again
 
 
 # Sugarsync
@@ -999,6 +992,15 @@ Quick orientation in the desktop app:
 1. check if the file is updated in cloud using web browser
 2. if not, check the activity log on the computer with the updated file
 3. if the change is not in the log, a simple hack can help: copy the file outside SugarSync folder and back.
+
+### SugarSync does not sync changes
+Sometimes, the syncing stops without any error. What to do:
+
+1. check [online](https://app.sugarsync.com/), if the files are there
+1. If the files are not there, restart sugarsync:
+    1. exit SugarSync
+    1. in services, restart the SugarSync service
+    1. start SugarSync again
 
 
 # Google Drive
