@@ -716,7 +716,7 @@ Information about users can be obtained with the [`Get-LocalUser`](https://docs.
 
 
 
-## Find out wheteher a disk is MBR or GPT
+
 
 # Open Command Promp from the Windows 10 USB
 
