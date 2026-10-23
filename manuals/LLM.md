@@ -414,10 +414,30 @@ To instruct claude to generate an artifact, we just write it in the text of the 
 
 - 📁 `backups`: backups of the `.claude.json` file. If the current file is broken for some reason, Claude will use the backup.
 - 📁 `cache`: files fetached from claude servers that may be used repeatedly (changelog, supported models for the current account,...)
-- 📁 `deamon`: 
-
-
-
+- 📁 `daemon`: folder for the long-running processes state - global state is here
+- 📁 `file-history`: file history for the rewind function, enables claude to revert any change it made to any file
+- 📁 `jobs`: folder for the long-running processes state - state of each individual job is here 
+- 📁 `paste-cache`: cache for the large pastes (`[Pasted text x linex...]`) 
+- 📁 `plugins`: stores the list of marketplaces, when they vere cloned, and last updated. Also this folder contains a clone of the official marketplace. Enterprise plugins are also distributed through this folder 
+- 📁 `projects`: the project context folder. Contains per project folders with the session/conversation files
+- 📁 `sessions`: register of the running Claude processes. Only for inter-session communication, remote control, etc, the conversation are not here
+- 📁 `shell-snapshots`: a cache for environment variables. It is used for shell sessions started by Claude. This way, Claude can use a cheaper, non-login shell.
+- 📁 `skills`: the skills folder. Custom skills have s subfolder here.
+    - 📁 `.trash`: backup folder for old skills synchronized using the Claude account (from the `synced` subfolder)
+    - 📁 `synced`: the folder where the skills are synced from the Claude account
+- 🖹 `.claude.json`: the main configuration file. Also contains the OAuth credentials, except secrets
+- 🖹 `.claude.json.tmp`: the backup of the main configuration file.
+- 🖹 `.credentials`: secrets for the OAuth credentials
+- 🖹 `.last-cleanup`: timestamp of the last cleanup
+- 🖹 `.last-update-result`: result of the last update
+- 🖹 `deamon.log`: log of the daemon manageing the long-running processes
+- 🖹 `history.jsonl`: history of the claude console (accessed using up arrow)
+- 🖹 `mcp-needs-auth-cache.json`: cache for the MCP authentication
+- 🖹 `policy-limits.json`: local cache of organization policies. Decides what policies are managed by the organization
+- 🖹 `policy-limits.json.signature.json`: JWS signature of the policy-limits.json
+- 🖹 `policy-limits.json.stamp.json`: timestamp for the JWS
+- 🖹 `remote-settings.json`: Actual settings for the policies described in `policy-limits.json`. Ssignature and stamp files exists too, analogously to the `policy-limits.json` files.
+- 🖹 `settings.json`: claude settings.
 
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident.
