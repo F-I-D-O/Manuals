@@ -1,4 +1,32 @@
 
+# Slack
+
+## Notifications
+[Official Manual](https://slack.com/help/articles/360025446073-Guide-to-Slack-notifications)
+
+There are two kinds of notifications in slack:
+
+- Pop-up notifications, including the beginning of the text message
+- Icon notifications: on the tray icon on PC and on the app icon on cell phone
+
+### Icon notifications
+Threre are two types of icon notifications:
+
+- **red**: for direct message, mention,, thread replies, or a keyword match. Basically, anything that trigers a popup should raise the red icon
+- **blue**: any unread activity, with exception of the muted chanels
+
+
+### Muting channels
+[Official Manual](https://slack.com/intl/en-gb/help/articles/204411433-Mute-channels-and-direct-messages)
+
+For each channel, there are three settings. Their effect is summarized in the following table:
+
+| Setting | pop-ups - mentions | pop-ups - all | icon notif. - mentions | icon notif. - all |
+| --- | --- | --- | --- | --- |
+| `All new posts` | yes | yes | yes | yes |
+| `Just mentions` | yes | no | yes | yes |
+| `Mute and hide` | no | no | yes | no |
+
 
 
 # Syncthing

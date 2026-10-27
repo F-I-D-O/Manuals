@@ -439,6 +439,53 @@ To instruct claude to generate an artifact, we just write it in the text of the 
 - 🖹 `remote-settings.json`: Actual settings for the policies described in `policy-limits.json`. Ssignature and stamp files exists too, analogously to the `policy-limits.json` files.
 - 🖹 `settings.json`: claude settings.
 
+# Supermaven
+
+- [Homepage](https://supermaven.com/)
+- [VS Code extension](https://marketplace.visualstudio.com/items?itemName=supermaven.supermaven)
+
+Supermaven is a code completion extension. It was acquired by Cursor in November 2024 and has seen little maintenance since. The extension consists of three parts:
+
+- the VS Code extension itself (`~/.vscode/extensions/supermaven.supermaven-<version>/out/main.js`)
+- the completion engine, a separate `sm-agent` process started by the extension (one per VS Code window). Its state is stored in `~/.supermaven/`.
+- the Chat sidebar panel, a webview with the id `supermaven-view`. Its bundle `main.chat.js` is shipped locally in the extension folder.
+
+## Known issues
+
+### `View has not been initialized after retrying for 5 seconds`
+This error floods the extension host log (`Developer: Open Extension Logs Folder` → `exthost.log`), but it is **harmless**: completions are not affected.
+
+The cause is the Chat panel. The extension sends messages to the chat webview on every cursor move (selection change), theme change, and on chat commands. The sending function retries every 250 ms for 5 seconds waiting for the webview to exist, and then logs this error. The webview is created only when the Chat panel is opened in the sidebar, so in a window where the panel was never opened, every cursor move ends with this error.
+
+To silence it, **open the Supermaven Chat panel once** in each window. The webview is registered with `retainContextWhenHidden`, so it stays alive after the panel is collapsed. Hiding the Supermaven icon from the activity bar does not help, as the listener still fires.
+
+
+### `Supermaven: disconnected` in the status bar, no completions
+The status bar text comes from the `connection_status` messages of the `sm-agent` process. On every keystroke, the agent opens a new websocket to `stream.supermaven.com`, the server answers with the user status (`Free Tier`) and then **resets the connection without a closing handshake**. No completion is ever returned, so the status cycles `connecting...` → connected → `disconnected` with each keystroke. The agent log shows:
+
+```text
+INFO - Starting new edge connection
+INFO - UserStatus: Free Tier <no email>
+ERROR - error reading from websocket: WebSocket protocol error: Connection reset without closing handshake
+INFO - websocket closed - shutting down EdgeConnection
+```
+
+This is **not a local problem**: the network, TLS, the binary (the installed `sm-agent` is identical to the one the download endpoint still serves) and the extension (1.1.12 is the last marketplace release, from September 2024) are all fine. Supermaven [was sunset on 2025-11-21](https://supermaven.com/blog/sunsetting-supermaven): free autocomplete inference is kept only for existing Neovim and JetBrains customers, while VS Code users are told to migrate to Cursor. The server simply drops VS Code clients. There is no fix on the client side; uninstall the extension or switch to another completion provider.
+
+
+## Debugging the agent
+The agent writes no log by default. To enable logging, either set the `supermaven.logFilePath` setting, or create an empty `~/sm-log.txt` file (its existence turns on the extension's debug mode and the agent logs into it). Both require restarting the extension host.
+
+Alternatively, the agent can be driven by hand without VS Code. It speaks newline-delimited JSON over stdio: the extension sends `{"kind":"greeting","allowGitignore":false}` followed by `{"kind":"state_update","newId":"1","updates":[{"kind":"file_update","path":"<file>","content":"<text>"},{"kind":"cursor_update","path":"<file>","offset":<byte offset>}]}`, and the agent answers with lines prefixed by `SM-MESSAGE ` followed by JSON (`connection_status`, `user_status`, `response`, ...). Run it as:
+
+```powershell
+$env:SM_LOG_PATH = "<log file>"; $env:SM_EDITOR = "vscode"
+& "$env:APPDATA\Code\User\globalStorage\supermaven.supermaven\binary\v2009\win32-x64\sm-agent.exe" stdio
+```
+
+The API key and machine id are read from `~/.supermaven/config.json`.
+
+
 # Sandboxing
 It is important to isolate the LLM from the host machine so that it does not demage it by accident.
 
@@ -579,7 +626,7 @@ To create a template by snapshoting the sandbox, we use the `sbx template save` 
 sbx template save <sandbox name> <template name>
 ```
 
-The format of the template name is typically `<template name>:version`, where `<template name>` is Kebab-cased (e.g., `my-template`) string, and version is typically in the format `v<version>`, e.g., `v1`.
+The format of the `<template name>` is typically `<name>:<version>`, where `<name>` is Kebab-cased (e.g., `my-template`) string, and version is typically in the format `v<version>`, e.g., `v1`.
 
 
 ### Image caching
@@ -829,7 +876,11 @@ skills:
 
 
 # Google Sheets
-There is no official way how to maipulate Google Sheets so far. The official MCP is broen right now and only support Google Workspace accounts, not Google Personal accounts.
+For reading the sheets, the official connectors are usually enough:
+
+- for Claude, it is the Google Sheets connector
+
+There is **no official way how to maipulate Google Sheets** so far. The official MCP is broken right now and only support Google Workspace accounts, not Google Personal accounts.
 
 My current solution is to use a crafted Google Sheet skill that uses Google API. To initialize it:
 
