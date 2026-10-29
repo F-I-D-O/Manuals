@@ -49,7 +49,7 @@ The following scheme shows the operations that can be performed between the work
 
 
 # Configuration
-[git config documentation](https://git-scm.com/docs/git-config#_variables)
+[git config documentation](https://git-scm.com/docs/git-config)
 
 For configuration, we can use the `git config` command. There are three levels of configuration:
 
@@ -74,15 +74,11 @@ We can also show whether the configuration results from the system, user or loca
 git config --list --show-origin
 ```
 
-## Configuration parameters
-[Official documentation](https://git-scm.com/docs/git-config)
+## Identity
+The identity in git is defined by two properties:
 
-Important parameters:
-
-- [`status.showUntrackedFiles`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles): This has three possible values:
-    - `normal` (default): show untracked files and directories on `git status` or `git commit`
-    - `no`: do not show untracked files and directories
-    - `all`: like `normal`, but also show individual files under untracked directories
+- `user.name`: the name of the user
+- `user.email`: the email of the user
 
 
 ## Controlling allowed protocols
@@ -101,6 +97,20 @@ In git configuration, this can be controlled using the [`protocol.allow`](https:
 - `user`: protocol is directly usable by the user, but cannot be used by commands that has no user input (e.g., `clone`, `fetch`, `push`, `pull`) (default for `file`)
 
 We can control this also by an environment variable: [`GIT_ALLOW_PROTOCOL=<protocol list>`](https://git-scm.com/docs/git#Documentation/git.txt-GITALLOWPROTOCOL), where `<protocol list>` is a **colon**-separated list of allowed protocols.
+
+
+## Other Configuration Parameters
+[Official documentation](https://git-scm.com/docs/git-config#_variables)
+
+Important parameters:
+
+- [`status.showUntrackedFiles`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-statusshowUntrackedFiles): This has three possible values:
+    - `normal` (default): show untracked files and directories on `git status` or `git commit`
+    - `no`: do not show untracked files and directories
+    - `all`: like `normal`, but also show individual files under untracked directories
+
+
+
 
 
 # Git over SSH
@@ -142,7 +152,7 @@ git revert --no-commit 0766c053..HEAD
 git rm --cached <FILEPATH>
 ```
 
-usefull params:
+useful params:
 
 - `-r`: recursive - deletes content of directories
 - `-n` dry run
@@ -209,7 +219,7 @@ git push <remote name> <branch name>
 
 
 # Wildcards
-Can be used in gitignore and also in some git commands. All described in the [Manual](https://git-scm.com/docs/gitignore#_pattern_format). Usefull wildcards:
+Can be used in gitignore and also in some git commands. All described in the [Manual](https://git-scm.com/docs/gitignore#_pattern_format). Useful wildcards:
 
 - `**/` in any directory
 - `/**` everything in a directory
