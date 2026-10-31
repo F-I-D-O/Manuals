@@ -30,7 +30,7 @@ We should first filter the motherboards by:
 This chapter is about diagnosing the problem with the PC. Solutions to the problems described here are provided in the following chapters.
 
 
-## PC is dead or shout down few seconds after start
+## PC is dead or shut down few seconds after start
 
  1. Unplug the power cables between the power supplz and the components and plug them again
  2. If the problem persists, check whether the source is not completely dead by connecting the green cable in the ATX 24 pin connector with anz of the black ones
