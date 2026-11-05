@@ -410,6 +410,34 @@ Claude code artifacts are visual representations of the claude findings stored o
 To instruct claude to generate an artifact, we just write it in the text of the prompt. For some special cases, claude has a special command to generate artifacts, e.g., `/slides` to generate a presentation.
 
 
+## Skills
+[Official documentation](https://code.claude.com/docs/en/skills)
+
+Claude load skills from:
+
+- the `~/.claude/skills` folder, and
+- the `.claude/skills` subfolder of any project folder
+
+The **support for custom skills** is very limited:
+
+- they must be placed in the `~/.claude/skills` folder
+- the folder layout must be flat, i.e., the skill root folder of each skill must be directly inside the `~/.claude/skills` folder
+
+For a better custom skill management, we may used plugins.
+
+
+## Plugins
+
+- [Official documentation](https://code.claude.com/docs/en/plugins)
+- [Official documentation for creating plugins](https://code.claude.com/docs/en/plugins/create)
+
+Claude supports plugins for extending its functionality. Plugins are typically managed through the marketplace and are stored in the `.claude/plugins` folder.
+
+The plugin customization is better than the custom skills support. Indeed, we can just add the plugins into the `.claude/plugins` folder. But also, we can add custom plugin directory by setting the `CLAUDE_CODE_PLUGIN_DIRS` environment variable (see in [Variables Documentation](https://code.claude.com/docs/en/env-vars#variables)). For more plugins, we separate the path by `:` on Unix and by `;` on Windows.
+
+To **load newly added plugins**, run `/reload-plugins` within Claude. Note that if the plugins are in a sanbox mounted directory, you may need to restart the sandbox to reload the cache.
+
+
 ## `. /claude` folder content
 
 - 📁 `backups`: backups of the `.claude.json` file. If the current file is broken for some reason, Claude will use the backup.

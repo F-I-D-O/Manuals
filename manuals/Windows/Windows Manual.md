@@ -240,7 +240,72 @@ Bluetooth Command Line Tools is a set off tools that enables command line intera
 
 
 
-# Filesytem
+# Drive Management and Filesytem
+
+- [General Terminology](https://fido.ninja/terminology/other.html#file-system)
+- [General Explanation in Operating Systems Manual](../Operating%20Systems.md#drive-management-and-file-systems)
+- [Microsoft File Systems Documentation Root](https://learn.microsoft.com/en-us/windows/win32/fileio/file-systems)
+- [Microsoft Terminology](https://learn.microsoft.com/en-us/previous-versions/tn-archive/dd163557(v=technet.10)?redirectedfrom=MSDN)
+
+## Overview
+The drive management and file system in Windows have the following characteristics:
+
+- All internal disks must be first partitioned to be usable. Typically, GUID Partition Table (GPT) is used as it is supported by all modern versions of Windows.
+- There are two tools for managing volumes:
+    - [Logical Disk Manager (LDM)](#logical-disk-manager-ldm) - the Disk Management tool
+    - [Storage Spaces](https://en.wikipedia.org/wiki/Features_new_to_Windows_8#Storage_Spaces) - Successor to Logical Disk Manager for managing storage pools and virtual disks
+- Windows supports two *storage types*: *basic* and *dynamic*
+    - *Basic*: volumes on basic disks correspond to partitions
+    - *Dynamic*: volumes are virtual and unrelated to partitions. Currently deprecated [[source]](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/basic-and-dynamic-disks)
+    - for more, see [Basic and Storage Types](#basic-and-dynamic-storage-types)
+
+
+## Logical Disk Manager (LDM)
+[Wikipedia](https://en.wikipedia.org/wiki/Logical_Disk_Manager)
+
+Although succeeded in Windows 8 by Storage Spaces, Logical Disk Manager is still the default and most commonly used tool for managing disks and volumes in Windows. It is the program called "Disk Management" in the Computer Management GUI.
+
+
+## Basic and Dynamic Storage Types
+[Official Documentation](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/basic-and-dynamic-disks)
+
+Windows supports two storage types for disks: basic and dynamic. The dynamic type is deprecated, but it is not a limitation as most of the time, basic disks are sufficient.
+
+The [**basic storage type**](https://learn.microsoft.com/en-us/windows/win32/fileio/basic-and-dynamic-disks#basic-disks) in Windows means that volumes (logical disks) correspond directly to partitions. Additionally, Windows can expand the volume size on the same disk by extending the underlying partition if there is contiguous unallocated space available. Only basic disks may be used for boot volumes and system partitions.
+
+The [**dynamic storage type**](https://learn.microsoft.com/en-us/windows/win32/fileio/basic-and-dynamic-disks#dynamic-disks) in Windows means that volumes are virtual and do not correspond directly to partitions. Dynamic volumes can span multiple disks and offer features like volume mirroring and striping. However, dynamic disks are deprecated and should generally be avoided in favor of basic disks. 
+
+Note that dynamic volumes are virtual, their layout is not derived from the underlying physical partitions, but stored in a database. This has important implications:
+
+- It allows for the flexibility, e.g., creating volumes that span multiple disks.
+- Corruption of one dynamic disk can make the files on other disks within the same dynamic volume inaccessible.
+- When connecting dynamic disks to another system:
+    - Windows: they must be initialized
+    - Other OS: they will generally not be recognized correctly
+
+Note that basic disks can always be converted to dynamic disks if needed, but the reverse is not as straightforward. For a dynamic disk to be converted back to a basic disk, all dynamic volumes on the disk must be deleted first.
+
+
+
+## Formatting
+When we want to delete all data from a drive/partition or disk and start over, we use the procedure called formatting. There are various tools for that, with different trade-offs between capabilities and complexity.
+
+In all tools, there are two **methods of formatting**:
+
+- Quick Format: All files are forgotten, but they data is not overwritten. Best choice most of the time but:
+	- other people can still recover the data using special software, and
+	- when bootable disk is formatted this way, the BIOS can still boot from it, confusing the user.
+- Full Format: All files are forgotten and the data is overwritten with zeros. This is the safe option, but it can take a long time.
+
+Beside the **methods**, there are several parameters:
+
+- Drive name
+- Drive letter
+- File system type
+- Allocation unit size (default is best unless some special cases)
+- Quick format checkbox: do not overwrite the data, just forget it. You should use this option most of the time
+
+
 
 ## Standard folder structure
 In Windows, the standard folder structure is completely different for system and user instalation. Details are listed below, but the main difference is that the system instalations are stored in a single root folder for each application (similarly to Android), while the user instalations' files are distributed among multiple folders, depending on the type of the file (similarly to Linux).
@@ -274,23 +339,16 @@ The user specific shortcuts are stored in: `%appdata%\Microsoft\Windows\Start Me
 The system wide shortcuts are stored in: `%programdata%\Microsoft\Windows\Start Menu\Programs`.
 
 
-## Read Only Files and Folders
+## Read-only Files and Folders
 An ancient form of file protection on Windows is the read only flag that can be set on files and folders. It is not a real protection, as it can be easily removed by the user, but it can be used to prevent accidental changes.
 
 Most of the programs can ignore this flag and work with the file anyway. However, some programs (e.g. Python) can have problems with it.
 
 
-## Formatting a drive/partition or disk
-When we want to delete all data from a drive/partition or disk and start over, we use the procedure called formatting. There are various tools for that, with different trade-offs between capabilities and complexity.
 
-In all tools, there are two variants of formatting:
 
-- Quick Format: All files are forgotten, but they data is not overwritten. Best choice most of the time but:
-	- other people can still recover the data using special software, and
-	- when bootable disk is formatted this way, the BIOS can still boot from it, confusing the user.
-- Full Format: All files are forgotten and the data is overwritten with zeros. This is the safe option, but it can take a long time.
 
-There are several tools for formatting:
+There are several **tools for formatting**:
 
 - `properties` window of the drive in File Explorer:
 	- can only format mounted drives

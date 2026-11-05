@@ -106,6 +106,12 @@ When we need to print \LaTeX commands, it is better to escape the whole command,
 
 ## Fonts
 
+### Font Weight
+
+To intorduce new terms, we typically use italic font by wrapping the term in `\emph{<term>}`.
+
+To highlight text, we typically use bold font by wrapping the text in `\textbf{<text>}`.
+
 ### Determining used font
 To determine the font (size, type) used in a particular place put the following command there:
 ```latex

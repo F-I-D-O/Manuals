@@ -684,6 +684,23 @@ To **modify a symlink**, we use the same command, we just need to add the `-Forc
 Note that **administrator privileges are required to create or modify symlinks**.
 
 
+### Disks, Partitions, and Drives
+There are several cmdlets for this:
+
+- [`Get-PhysicalDisk`](https://learn.microsoft.com/en-us/powershell/module/storage/get-physicaldisk?view=windowsserver2025-ps): Lists physical disks that are currently connected, including both simple and dynamic disks.
+- [`Get-PSDrive`](#get-psdrive): list everything that PowerShell considers as drives and is available in the current session
+- [`Get-Disk`](https://learn.microsoft.com/en-us/powershell/module/storage/get-disk?view=windowsserver2025-ps): Lists physical disks that are currently connected. However, it lists **only disks with simple partitions**, if there are dynamic partitions, the disk will not be included.
+- [`Get-Partition`](https://learn.microsoft.com/en-us/powershell/module/storage/get-partition?view=windowsserver2025-ps): Lists partitions that are currently connected. However, it **lists only simple partitions**, dynamic partitions are not included.
+
+#### `Get-PSDrive`
+[Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-psdrive)
+
+The `Get-PSDrive` command lists all the drives available in the current session. These are what PowerShell considers as drives, i.e., it can be a file system drive, folder, registry key, certificate root, and more.
+
+Important parameters:
+
+- [`-PSProvider <provider>`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-psdrive?view=powershell-7.6#-psprovider): filter the drives by the specified PowerShell provider (e.g., `FileSystem`, `Registry`, `Certificate`, etc.)
+
 ### Other commands
 
 - `Get-Location`, `pwd`: get the current working directory

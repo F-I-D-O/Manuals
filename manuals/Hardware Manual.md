@@ -57,8 +57,37 @@ When handling hard drive problems, we typically want to:
 
 This section is about step 1, i.e., identifying whether the hard drive is really faulty. Steps:
 
-1. Restart the PC, if the problem persistss,
-1. Move the hard drive to another slot, or connect it to another cable, in case of SATA drive.
+1. Restart the PC
+1. if the problem persists, perform the [PowerShell Diagnostic](#basic-powershell-diagnostic)
+1. If there is a suspected faulty cable, or the results are inconclusive, try to switch the faulty drive cables with some drive that works. 
+    - switch both power and data cables
+    - switch on the drive side, keep the cables as they are on the motherboard/card and power supply side
+1. If the results are still confusing, let Claude analyze it. The toolbox is in the `<Windows repo>/event analysis`    
+
+### Basic PowerShell Diagnostic
+Run the following two commands in an **elevated powershell terminal**
+
+```PowerShell
+Get-CimInstance Win32_DiskDrive | Sort-Object SCSIPort, SCSIBus | Format-Table SCSIPort, SCSIBus, SCSITargetId, Model, SerialNumber, @{n='GB'; e={[math]::Round($_.Size/1GB)}}
+
+Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Storage-Storport/Operational'; Id=500,549,552; StartTime=(Get-Date).AddMinutes(-<time>)} | Format-Table TimeCreated, Id, Message -Wrap
+```
+
+- here, `<time>` is the time in minutes from the moment we see the problems (you can use more, just not too much so that the log is not too long)
+- the first command lists the drives together with their sizes
+- the second command lists selected disk events
+
+The diagnostic is as follows:
+
+- Drive does not emit `552` (arrival) at all
+    - no other events after `552` block -> drive is completely dead or unpluged from power or data cable
+    - a storm of 549 every 100ms -> probably a faulty drive
+- Drive emits `552` (arrival)
+    - nothing for the drive after it -> healthy drive
+    - `500` (timeout) events after it -> drive is up but data connection fails, probably due toa bad SATA cable, SATA connector, or sata port on MB/card.
+    - `549` with with `SrbStatus 0x4` and a sense code starting `0x3` -> drive has bad sectors
+    - `549` with sense 0x5 once per boot -> the SSD rejecting a command it does not support. Benign.
+
 
 If none of this helps, the hard drive is faulty. It is time to proceed further and try to backup the data.
 
