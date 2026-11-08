@@ -258,6 +258,8 @@ The drive management and file system in Windows have the following characteristi
     - *Basic*: volumes on basic disks correspond to partitions
     - *Dynamic*: volumes are virtual and unrelated to partitions. Currently deprecated [[source]](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/basic-and-dynamic-disks)
     - for more, see [Basic and Storage Types](#basic-and-dynamic-storage-types)
+- In UI, Windows use binary units (e.g., 1 KiB = 1024 bytes) but label them as decimal units (1 KB). 
+    - This is important e.g. in creating new partitions. Imagine that a partition is specified to be 1TB. We need to create a new partition of the same size. In GUI, we are setting the size specified in MB. So one would assume that entering 1 000 000 MB would create a 1TB partition. But since the units are, in fact, binary, we need to enter 1 048 576 MB to create a 1TB partition.
 
 
 ## Logical Disk Manager (LDM)
@@ -271,7 +273,7 @@ Although succeeded in Windows 8 by Storage Spaces, Logical Disk Manager is still
 
 Windows supports two storage types for disks: basic and dynamic. The dynamic type is deprecated, but it is not a limitation as most of the time, basic disks are sufficient.
 
-The [**basic storage type**](https://learn.microsoft.com/en-us/windows/win32/fileio/basic-and-dynamic-disks#basic-disks) in Windows means that volumes (logical disks) correspond directly to partitions. Additionally, Windows can expand the volume size on the same disk by extending the underlying partition if there is contiguous unallocated space available. Only basic disks may be used for boot volumes and system partitions.
+The [**basic storage type**](https://learn.microsoft.com/en-us/windows/win32/fileio/basic-and-dynamic-disks#basic-disks) in Windows means that volumes (logical disks) correspond directly to partitions. Additionally, Windows can expand the volume size on the same disk by extending the underlying partition if there is contiguous unallocated space available. Note that **basic volumes can be extended only to the right, i.e., into contiguous unallocated space following the volume, but not preceding it**. Finally, only basic disks may be used for boot volumes and system partitions.
 
 The [**dynamic storage type**](https://learn.microsoft.com/en-us/windows/win32/fileio/basic-and-dynamic-disks#dynamic-disks) in Windows means that volumes are virtual and do not correspond directly to partitions. Dynamic volumes can span multiple disks and offer features like volume mirroring and striping. However, dynamic disks are deprecated and should generally be avoided in favor of basic disks. 
 
@@ -454,7 +456,7 @@ Registry is a hierarchical database that stores configuration data for both the 
 - **Registry Command**: e.g., `reg query HKEY_CURRENT_USER\Software\Microsoft\...`
     - see the [Command shell manual](./Comand%20shell.md#registry-manipulation) for more info
 - **PowerShell cmdlet**: e.g., `Get-ItemProperty -Path Registry::HKEY_CURRENT_USER\Software\Microsoft\...`
-    - see the [PowerShell manual](./Powershell%20Manual.md#windows-registry) for more info
+    - see the [PowerShell manual](./Powershell%20Manual.md#registry) for more info
 - **RegEdit**: a GUI tool for registry manipulation
 
 
@@ -698,6 +700,12 @@ App Installer Microsoft.AppInstaller 1.29.379.0 1.29.380  winget
 ```
 
 Basically, `winget` detects an older version of itself than currently installed, and therefore, it shows the update available forever. This is, however, harmless, updating the version repeatedly will not harm the system.
+
+
+## Microsoft Store Installation
+Microsoft Store installation use the MSIX packaging format.
+
+They are installed in `C:\Program Files\WindowsApps` by default. Each new version of an application is installed in a separate subdirectory, which cause several problems, including reseting the tray icon configuration.
 
 
 ## Windows Installer XML (WiX)

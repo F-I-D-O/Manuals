@@ -421,6 +421,14 @@ Best use the [official installation guide](https://github.com/ipython-contrib/ju
 To **move a cell** just use drag and drop, on the left side of the cell.
 
 
+### Jupytext Sync
+[GitHub](https://github.com/caenrigen/vscode-jupytext-sync)
+
+An automatic sync can be achieved between Jupyter notebooks and their corresponding cell scripts using the Jupytext Sync extension in VS Code. Just Right click on any notebook or cell script file, click `Pair via Jupytext` and a corresponding cell script/notebook will be created automatically and kept in sync.
+
+Note that the extension works by running all files with matching extension via Jupytext sync, even the unpaired files are processed. This can be problematic in unrelated projects that happen to have files with matching extensions. The best solution is to disable the extension in those projects: `Extensions` -> `Jupytext Sync` -> `Disable` -> `Disable (Workspace)`.
+
+
 
 # Debugging
 Pycharm contains a good debuger for python code. However, it cannot step into most standard library functions, as those are native, implemented in C/C++. For that, we need mixed python/native debugging.

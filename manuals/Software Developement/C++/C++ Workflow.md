@@ -560,35 +560,36 @@ for JNI, a `JAVA_HOME` system property needs to be set to the absolute path to t
 
 
 ## Gurobi
- 1.  If you don’t have Gurobi installed, do it now, and check that the installation is working
-	-   Windows: just install as usual  
-	-   Linux:
+
+ 1. If you don’t have Gurobi installed, do it now, and check that the installation is working
+	- Windows: just install as usual  
+	- Linux:
 		1. download the archive to `/opt`
 		2. `sudo tar xvfz <gurobi archive>`
 		3. add the the [file that introduce environment variables needed for gurobi](https://drive.google.com/file/d/1Vr5VReq2_rOMNm4bsC7HJ9xELeiKeiTR/view?usp=sharing) to `etc/profile.d`
- 2.  **Linux only:** it is necessary to build the C++ library for your version of the compiler. Steps:
-    	1. `cd <GUROBI DIR>/linux64/src/build/`
-    	2. `make`
-    	3.  `mv libgurobi_c++.a ../../lib/libgurobi_c++_<some id for you, like version>.a`
-    	4.  `cd ../../lib/`
-    	5.  `ln -sf ./libgurobi_c++<some id for you, like version>.a libgurobi_c++.a`
- 3.   Follow [this guide](https://support.gurobi.com/hc/en-us/articles/360039499751-CMake-C-C-compilation-of-Gurobi-projects), specifically:
-		1.   put the attached  [our custom FindGUROBI script](https://drive.google.com/file/d/1h9JovBfjxnnQKLjBPIjSfQQpmEhn3VKC/view?usp=sharing) to: 
-			 - Windows: `C:\Program Files\CMake\share\cmake-<your cmake
-   version>\Modules/`
-			 - Linux: `/opt/<CMAKNAME>/share/cmake-<VERSION>/Modules`
-		2.   to your `CMakeLists.txt`, add:
-				-   `find_package(GUROBI REQUIRED)`
-				-   `target_include_directories(<your executable> PRIVATE ${GUROBI_INCLUDE_DIRS})`
-				-   `target_link_libraries(<your executable> PRIVATE ${GUROBI_LIBRARY})`
-				-   `target_link_libraries(<your executable> PRIVATE optimized ${GUROBI_CXX_LIBRARY} debug ${GUROBI_CXX_DEBUG_LIBRARY})`
-		3.   try to load the cmake projects (i.e., generate the build scripts using cmake).
-		4.   if the C++ library is not found (`Gurobi c++ library not found`), check whether the correct C++ library is in the gurobi home, the file `<library name>.lib` has to be in the `lib` directory of the gurobi installation. If the file is not there, it is possible that your gurobi version is too old
+ 2. **Linux only:** it is necessary to build the C++ library for your version of the compiler. Steps:
+	1. `cd <GUROBI DIR>/linux64/src/build/`
+	2. `make`
+	3. `mv libgurobi_c++.a ../../lib/libgurobi_c++_<some id for you, like version>.a`
+	4. `cd ../../lib/`
+	5. `ln -sf ./libgurobi_c++<some id for you, like version>.a libgurobi_c++.a`
+ 3. Follow [this guide](https://support.gurobi.com/hc/en-us/articles/360039499751-CMake-C-C-compilation-of-Gurobi-projects), specifically:
+	1. put the attached  [our custom FindGUROBI script](https://drive.google.com/file/d/1h9JovBfjxnnQKLjBPIjSfQQpmEhn3VKC/view?usp=sharing) to:
+			- Windows: `C:\Program Files\CMake\share\cmake-<your cmake
+version>\Modules/`
+			- Linux: `/opt/<CMAKNAME>/share/cmake-<VERSION>/Modules`
+	2. to your `CMakeLists.txt`, add:
+			- `find_package(GUROBI REQUIRED)`
+			- `target_include_directories(<your executable> PRIVATE ${GUROBI_INCLUDE_DIRS})`
+			- `target_link_libraries(<your executable> PRIVATE ${GUROBI_LIBRARY})`
+			- `target_link_libraries(<your executable> PRIVATE optimized ${GUROBI_CXX_LIBRARY} debug ${GUROBI_CXX_DEBUG_LIBRARY})`
+	3. try to load the cmake projects (i.e., generate the build scripts using cmake).
+	4. if the C++ library is not found (`Gurobi c++ library not found`), check whether the correct C++ library is in the gurobi home, the file `<library name>.lib` has to be in the `lib` directory of the gurobi installation. If the file is not there, it is possible that your gurobi version is too old
 
 ### Update Gurobi
 
--   Updating is done by [installing the new version](https://www.gurobi.com/downloads/gurobi-software/) and generating and using [new licence key](https://www.gurobi.com/downloads/end-user-license-agreement-academic/).
--   after update, you need to delete your build dir in order to prevent using of cached path to old Gurobi install
+- Updating is done by [installing the new version](https://www.gurobi.com/downloads/gurobi-software/) and generating and using [new licence key](https://www.gurobi.com/downloads/end-user-license-agreement-academic/).
+- after update, you need to delete your build dir in order to prevent using of cached path to old Gurobi install
 - Also, you need to update the library name on line 10 of the `FindGUROBI.cmake` script.
 
 

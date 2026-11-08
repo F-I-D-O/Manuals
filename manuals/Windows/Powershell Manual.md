@@ -758,7 +758,7 @@ For both commands, we need to specify the class of the object we want to get usi
     - contains more information than `Win32_InstalledWin32Program`
 
 
-## Windows Registry
+## Registry
 To **read** the Windows registry, we use the same commands that are used for file system:
 
 - [`Get-ItemProperty`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty): to get the value of a registry key

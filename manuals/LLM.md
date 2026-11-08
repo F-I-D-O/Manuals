@@ -313,6 +313,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Leavening`](https://claudionary.com/definition/leavening/): Transforming a dense response into a longer response, without adding new information.
 - [`Levitating`](https://claudionary.com/definition/levitating/): Claude is very close to give the definitive answer, but it hangs right before the end, before responding
 - [`Lollygagging`](https://claudionary.com/definition/lollygagging/): Model solves unimportant details of otherwise easy problem. THe model should be engaged in this state only for a short time.
+- [`Meandering`](https://claudionary.com/definition/meandering/): Getting to the solution using a much longer path than necessary.
 - [`Moonwalking`](https://claudionary.com/definition/moonwalking/): Processing the request or context in a backward direction, instead of forward.
 - [`Moseying`](https://claudionary.com/definition/moseying/): Slowly moving towards the solution. Claude is solving a hard problem. There is a visible path towards the solution, but it is long.
 - [`Nebulizing`](https://claudionary.com/definition/nebulizing/): spliting a coherent thought into many small parts that no loger fit together.
@@ -334,6 +335,7 @@ Claude use more than a hundred different progress descriptions, depending on the
 - [`Sauteing`](https://claudionary.com/definition/sauteing): Fastly, jumping between different ideas and concepts.
 - [`Schlepping`](https://claudionary.com/definition/schlepping/): Processing a lot of contextual information, heavy work.
 - [`Seasoning`](https://claudionary.com/definition/seasoning/): final touches of the tone, response draft is already complete
+- [`Shenaniganing`](https://claudionary.com/definition/shenaniganing/): When Claude performs a set of steps that may seem ok separately, but using them together is suspicious.
 - [`Shimmying`](https://claudionary.com/definition/shimmying/): The workspace is full of contradictory information, so Claude fights is slow way to build a response satisfying each of the contradictory facts.
 - [`Slithering`](https://claudionary.com/definition/slithering/): exploring a structured hierarchical document (JSON, Markdown) in a non-systematic way, exploring both the with (same level) and the depth (lower levels) in a sinusoid way.
 - [`Smooshing`](https://claudionary.com/definition/smooshing/): Pressing two different ideas or concept into one response without real synergy, i.e., no new ideas are generated.
