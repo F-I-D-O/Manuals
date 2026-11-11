@@ -1,3 +1,25 @@
+
+# Database Markup Language (DBML)
+
+- [Home](https://dbml.dbdiagram.io/home)
+- [GitHub](https://github.com/holistics/dbml)
+
+DBML is a declarative language for defining database schemas. Databases can be easily defined in the brief and readable syntax, visuallized, and exported to various SQL dialects.
+
+## Generating SQL
+[Tutorial](https://dbml.dbdiagram.io/cli#convert-a-dbml-file-to-sql)
+
+To generate SQL from a DBML file, use the following command:
+
+```bash
+dbml2sql <input_file.dbml> 
+```
+
+Important parameters:
+
+- `-o`, `--out-file`: specify the output file for the generated SQL. By default, the output is printed to the console.
+- **dialect flags**, e.g., `--mysql`, `--sqlserver`. The default dialect is PostgreSQL.
+
 # DataGrip
 
 ## Import Formats

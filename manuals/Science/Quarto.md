@@ -19,6 +19,18 @@ There are two ways how to rander the preview of a Quarto documents:
 - **Live in-browser preview**: initiated by `quarto preview` command in the terminal, which watches for changes and updates the preview automatically.
 
 
+# YAML Header
+Each document can have a YAML header that specifies metadata and configuration options for the document. Mosst importantl fields are:
+
+- `title`: the title of the document
+- `format`: dictionary specifying the output format configuration. Each key represents a format (e.g., `html`, `pdf`), and its value is a dictionary of options for that format.
+
+## Format Options
+Some options are shared across formats, most notably:
+
+- `toc`: true or false, indicating whether to include a table of contents in the output.
+
+
 # Math
 [Tutorial](https://quarto.org/docs/authoring/markdown-basics.html#equations)
 

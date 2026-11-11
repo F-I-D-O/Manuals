@@ -633,8 +633,8 @@ There is no documented setting for changing the default template, so the flag ha
 All Docker-provided templates are published as `docker/sandbox-templates:<variant>` on [Docker Hub](https://hub.docker.com/r/docker/sandbox-templates/tags). The **mapping between the agent name and the image** is as follows:
 
 - The base variant is named after the agent, but the names differ: `claude` → `claude-code`, `cursor` → `cursor-agent`, the rest (`codex`, `copilot`, `devin`, `docker-agent`, `droid`, `gemini`, `kiro`, `opencode`, `shell`) use the agent name. There is also `claude-code-minimal` without Node.js, Python, Go, and Java (see [Disk usage](#disk-usage)).
-- Each variant has a `-docker` version (e.g., `claude-code-docker`) with a Docker Engine running inside the sandbox. **This is the default** used by `sbx run <agent>` and `sbx create <agent>` when no template is specified.
-- Each variant has a `-nightly` version (e.g., `claude-code-nightly`, `claude-code-docker-nightly`) that is rebuilt daily, while the plain tags are rebuilt roughly monthly (see [Image caching](#image-caching)).
+- Each variant has a `-docker` version (e.g., `claude-docker`) with a Docker Engine running inside the sandbox. **This is the default** used by `sbx run <agent>` and `sbx create <agent>` when no template is specified.
+- Each variant has a `-nightly` version (e.g., `claude-nightly`, `claude-docker-nightly`) that is rebuilt daily, while the plain tags are rebuilt roughly monthly (see [Image caching](#image-caching)).
 - Each release is also available under a versioned tag (e.g., `claude-code-0.5.0`).
 
 #### Custom templates

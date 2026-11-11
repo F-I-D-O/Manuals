@@ -6,6 +6,7 @@ Usually, the proceedure should be:
 1. Choose the CPU
 1. Choose the GPU, hard drives, and other devices we need
 1. Choose the motherboard
+1. Choose the cooling system for the CPU
 1. Choose the power supply
 1. Choose the case
 
