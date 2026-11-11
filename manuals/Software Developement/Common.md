@@ -500,7 +500,11 @@ To show the server status, press `Ctrl` + `Shift` + `P` and select `LTeX: Show L
 
 When coding, running various command line tools (e.g., `pytest`, `npm`, `cargo`, etc.) is often required. To avoid repeating typing the same commands over and over again in console, we can store them as tasks.
 
-Tasks for a project are stored in the `.vscode/tasks.json` file. 
+Tasks for are stored:
+
+- **Project level**: `.vscode/tasks.json`
+- **User level**: `~/AppData/Roaming/Code/User/tasks.json`
+    - can be quicky opened with `Command Palette`: `Tasks: Open User Tasks`
 
 ### Creating tasks
 For some languages, tasks are automatically suggested by the IDE. If the suggestions are accepted, the corresponding tasks are automatically added to the `.vscode/tasks.json` file.
@@ -670,6 +674,12 @@ C4 stands for 4 levels of abstraction:
 
 The concept is independent of any tooling, so multiple tools can be used to create the diagrams.
 
+Additionally, C4 contain these special diagram types:
+
+- [*Deployment diagram*](https://c4model.com/diagrams/deployment): for visualizing the deployment, i.e., where each container will be deployed. These contain:
+    - *Deployment nodes*: represent the physical or virtual infrastructure where containers are deployed. 
+    - *Container instances*: represent instances of containers deployed within deployment nodes.
+
 
 ## structurizr
 
@@ -749,6 +759,15 @@ The `<children>` are optional. The `<type>` can be:
 - `component`: level 3
 - `code`: level 4
 - `person`: level 1
+
+###### Deployment
+[Documentation](https://docs.structurizr.com/dsl/cookbook/deployment-view/)
+
+There are also special nodes for *deployment diagrams* (sse the [C4 introduction](#c4-diagrams)):
+
+- `deployment`: level 1
+- `deploymentNode`: level 2-n (can be nested)
+- `containerInstance`: under a `deploymentNode`
 
 
 ##### Connections

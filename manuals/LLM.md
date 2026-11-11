@@ -178,6 +178,7 @@ Instead of `AGENTS.md`, claude code uses `CLAUDE.md` file. The format is the sam
 
 To **see all active instructions** in a session, run `/context all` the `CLAUDE.md` and similar files are under the `memory` category.
 
+
 ### `~/.claude.json`
 [Official documentation](https://code.claude.com/docs/en/settings#global-config-settings)
 
