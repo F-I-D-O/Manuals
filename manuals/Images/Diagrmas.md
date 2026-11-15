@@ -63,7 +63,7 @@ The basic usage of d2 is to run it in command line: `d2 <input file>`. This comm
 - `--layout <layout engine>`: Layout engine to use. Options are:
     - `dagre`: Directed Acyclic Graph Layout (default)
     - `elk`: ELK Layout
-    
+
 ## Basic Syntax
 Any new line not prefixed with an existing key is considered a new element, e.g.,
 

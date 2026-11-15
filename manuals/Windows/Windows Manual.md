@@ -880,6 +880,26 @@ Important arguments:
 
 
 
+# Disk Cleanup
+
+For disk cleanup, we can start with the build in `Disk Cleanup` tool:
+
+1. select the disk
+2. click on `Clean up system files`, this will extend the list of folders available for cleanup.
+3. select the folders for cleanup
+
+Next it's good way to map what actually takes up space - Windirsat is  a perfect tool for this
+
+Usuall suspects:
+
+- `C:\hiberfil.sys`: the file used by Windows to store the contents of RAM when hibernating. This have to stay and the size is the RAM size
+- dump files in `C:\Windows\LiveKernelReports`: diagnostic kernel reports of device incidents. Safe to remove.
+- `C:\pagefile.sys`: the file used by Windows to store the virtual memory. This have to stay.
+- `C:/System Volume Information`: the folder used by Windows to store system restore points and other system data. This have to stay.
+- `C:\Recovery`: folder for Windows recovery. Typically small, unless a lot of OEM stuff is there.
+- `C:\Users\Fido\AppData\Local\DockerSandboxes`: Docker sandboxes can be several gigabytes in size. There is no easy way to identify which folder/img belongs to which sandbox, but `sbx rm` for any sandbox that is no longer needed is definitely recommended.
+
+
 # Dual Boot
 
 ## Make Windows Work after Linux Uninstall if the Bootloader is Grub

@@ -247,7 +247,10 @@ claude mcp add --transport http playwright http://host.docker.internal:8931/mcp/
 ```
 
 #### Auto-approve connections
-By default, we have to approve every new connection from the Playwright MCP to the browser. To prevent that, we can set up an environment variable `PLAYWRIGHT_MCP_EXTENSION_TOKEN`. To get the token, click on the extension icon in the browser.
+By default, we have to approve every new connection from the Playwright MCP to the browser. To prevent that, we can set up an environment variable `PLAYWRIGHT_MCP_EXTENSION_TOKEN`. To get the token, click on the extension icon in the browser. In PowerShell:
+```PowerShell
+[System.Environment]::SetEnvironmentVariable('PLAYWRIGHT_MCP_EXTENSION_TOKEN', "<token>", 'User')
+```
 
 
 ### Connecting via Chrome DevTools Protocol

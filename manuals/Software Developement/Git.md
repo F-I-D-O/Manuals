@@ -515,18 +515,12 @@ The syntax is: `<keyword> #<issue number>`. If the keyword is one of the followi
 The case does not matter (e.g., `Closes #123` and `closes #123` are the same). Also, there can be a colon after the keyword, e.g., `closes: #123`.
 
 
+## Token Authentication
+Token authentication is a method to authentication suitable for automation and scripts. It is mainly used for:
 
-## GitHub CLI
-Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
+- [GitHub CLI](#github-cli)
+- [GitHub MCP](../LLM.md#github-mcp)
 
-Typically, we need to authenticate the tool first by calling [`gh auth login`](https://cli.github.com/manual/gh_auth_login). There are two options for authentication:
-
-- browser authentication (default)
-- token authentication: suitable for automation
-	- only the old token type can be used, the fine-grained tokens are not supported yet
-
-
-### Token Authentication
 To authenticate using a token, we first need to **create a token**. The token settings are in `Profile Settings` -> `Developer settings` -> `Personal access tokens`.
 
 Thereare two types of tokens:
@@ -550,6 +544,19 @@ Then we can **authenticate using the token**. We can either:
 	gh auth login -h github.com -p ssh --skip-ssh-key --with-token <TOKEN>
     ```
 - or set the environment variable `GH_TOKEN` to the token value and call commands without authentication.
+
+
+## GitHub CLI
+Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
+
+Typically, we need to authenticate the tool first by calling [`gh auth login`](https://cli.github.com/manual/gh_auth_login). There are two options for authentication:
+
+- browser authentication (default)
+- token authentication: suitable for automation
+	- only the old token type can be used, the fine-grained tokens are not supported yet
+
+
+
 
 
 ### Managing realeases
@@ -587,6 +594,10 @@ Here, the `<repo path>` is the path on the `github.com` domain, e.g. `F-I-D-O/Fu
 ## Repository Migration
 
 - [Gitlab to GitHub migration tool](https://github.com/piceaTech/node-gitlab-2-github)
+
+
+
+
 
 
 

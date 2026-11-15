@@ -18,7 +18,7 @@ The Model Context Protocol (MCP) is a standard for communicating between LLMs an
 ## Github MCP
 [Github](https://github.com/github/github-mcp-server/tree/main)
 
-1. Create a fine-grained access token at [Github](https://github.com/settings/personal-access-tokens)
+1. Create a fine-grained access token at [Github](https://github.com/settings/personal-access-tokens) (see [Token Authentication](<./Software Developement/Git.md#token-authentication>))
     - select only required repositories
     - only Issues R&W permission and its dependencies (added by default) is required for managing issues
 1. run 
