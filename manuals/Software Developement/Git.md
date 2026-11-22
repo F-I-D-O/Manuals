@@ -547,6 +547,8 @@ Then we can **authenticate using the token**. We can either:
 
 
 ## GitHub CLI
+[Official manual](https://cli.github.com/manual/)
+
 Github has a CLI tool that can be used to interact with the repository. The tool can be installed from the [GitHub CLI page](https://cli.github.com/). The main command is `gh`.
 
 Typically, we need to authenticate the tool first by calling [`gh auth login`](https://cli.github.com/manual/gh_auth_login). There are two options for authentication:
@@ -556,8 +558,16 @@ Typically, we need to authenticate the tool first by calling [`gh auth login`](h
 	- only the old token type can be used, the fine-grained tokens are not supported yet
 
 
+### Changing privileges for GitHub CLI
+[Official manual](https://cli.github.com/manual/gh_auth_refresh)
 
+To change what we can do with the GitHub CLI, we use the `gh auth refresh` command. Typically, it prompts us to authenticate the change and then it updates the privileges accordingly.
 
+Possible actions:
+
+- **Add new privileges**: `gh auth refresh --scopes <comma-separated list of scopes>`
+- **Remove privileges**: `gh auth refresh --remove-scopes <comma-separated list of scopes>`
+- **Factory reset**: `gh auth refresh --reset-scopes`
 
 ### Managing realeases
 Required permissions:

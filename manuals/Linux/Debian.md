@@ -4,6 +4,34 @@
 - [Official Website](https://www.debian.org/)
 - [Official Wiki](https://wiki.debian.org/Debian)
 
+This manual describes tool specific to Debian-based Linux distributions (Debian, Ubuntu, Mint, etc.). A manual specific to each distribution (e.g., [Ubuntu Manual](./Ubuntu.md)) may provide additional details and instructions tailored to that distribution.
+
+# Users
+[`adduser` Reference](https://manpages.debian.org/trixie/adduser/adduser.8.en.html)
+
+On top of low-level commands like `useradd` and `usermod`, Debian provides an interactive Perl script `adduser` for adding new users to the system. In one step, it
+
+- creates a new user with a specified username and group
+- sets up the home directory for the new user
+- prompts for a password
+- creates a primary group for the user (group with the same name as the username)
+- and more
+
+The default configuration for this script is in `/etc/adduser.conf`. The basic syntax is
+
+```bash
+adduser <username>
+```
+
+Important parameters:
+
+- [`--disabled-password`](https://manpages.debian.org/trixie/adduser/adduser.8.en.html#disabled~2): create the user without setting a password, i.e., with the password authentication disabled.
+- `--gecos "<GECOS>"`: supply the content of the [GECOS field](https://en.wikipedia.org/wiki/Gecos_field). If skipped, the command will ask for the GECOS content interactively.
+- `--shell <shell>`: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to `/usr/sbin/nologin`.
+
+Note that the `adduser` needs to be run as root. Otherwise it will fail with `bash: adduser: command not found`.
+
+
 # System Upgrade
 
 - [Official Wiki - general tips](https://wiki.debian.org/DebianUpgrade)

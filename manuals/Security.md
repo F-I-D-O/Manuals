@@ -1,7 +1,19 @@
 This manual is focused on [asymmetric encryption](https://en.wikipedia.org/wiki/Public-key_cryptography). As the principles are more or less the same for all technologies, we will focus on the technical aspects that differs.
 
+
+
 # SSH
-The SSH is a protocol for secure communication between two computers. The basic usage is to connect to a remote computer:
+
+- [Home Page](https://www.openssh.org/)
+- [Wiki](https://en.wikipedia.org/wiki/OpenSSH)
+- [Official Manual](https://www.openssh.org/manual.html)
+
+The SSH is a protocol for secure communication between two computers. There is a whole software suite around it, with programs for connecting, but also for generating keys and more.
+
+The original ssh suite went proprietary (under the [SSH Communications Security](https://www.ssh.com/) Company), the free version, available on both Linux and Windows, is called OpenSSH. Everything we describe here refers to OpenSSH.
+
+
+The basic usage is to connect to a remote computer:
 ```bash
 ssh <username>@<address>
 ```
@@ -28,7 +40,20 @@ Note that the server needs to be properly configured to accept your credentials.
 - for private key authentication, the public key has to be added to your user account on the server. 
 
 ### Generating a key pair
-To generate a key pair, use the `ssh-keygen` command.
+
+- [Reference](https://man.openbsd.org/ssh-keygen)
+- [Wiki](https://en.wikipedia.org/wiki/Ssh-keygen)
+
+To generate a key pair, use the `ssh-keygen` command. Most important parameters are:
+
+- `-f <filepath>`: specify the output file name for the generated key pair
+
+During the key generation process, the command will prompt for a passphrase to protect the private key. An empty passphrase signalize no passphrase protection.
+
+The program will generate two files:
+
+- `<filepath>`: the private key file
+- `<filepath>.pub`: the corresponding public key file
 
 
 ### Setting up the private key to be used for ssh connection
@@ -113,9 +138,16 @@ To enable SSH access, follow these steps:
 
 
 ### Enabling key authentication for a user
-The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the `~/.ssh/authorized_keys` file.
+The user can only use a private key for authentication if the corresponding public key is assigned to the user on server. This is done by adding the public key to the `/home/<username>/.ssh/authorized_keys` file. For a fresh user with no keys, this can be easily established with the following two commands:
+```bash
+install -d -m 700 -o <username> -g <username> /home/<username>/.ssh
+echo '<public key content>' | install -o <username> -g <username> -m 644 /dev/stdin /home/<username>/.ssh/authorized_keys
+```
 
-Note that **the `authorized_keys` file has to have the right permissions**, which is read/write only for the owner, and read only for the group and others (`644`).
+Note the **permissions** in the above commands:
+
+- `700` for the `.ssh` directory, which is read/write/execute only for the owner
+- `644` for the `authorized_keys` file, which is read/write only for the owner, and read only for the group and others.
 
 The format of the file is simple: each line contains one public key. Empty lines, or lines starting with `#` are ignored. The public key is specified in the same format as in the public key file (`<key name>.pub`).
 
@@ -228,7 +260,7 @@ lsof -i -n | grep ssh
 Virtual Private Network is a network
 
 - that is established over the internet, ignoring the real network topology (i.e., *virtual*)
-- you can operate sacurely, shielded against actors outside the network (i.e., *private*)
+- you can operate securely, shielded against actors outside the network (i.e., *private*)
 
 We can divide VPN by the provider type:
 
@@ -237,6 +269,34 @@ We can divide VPN by the provider type:
 - **Self-hosted**: we run the VPN ourselves.
 	- [WireGuard](https://www.wireguard.com/) 
 	- [Tailscale](https://tailscale.com/) ([Wiki](https://en.wikipedia.org/wiki/Tailscale)): wrapper around WireGuard, makes it easier to use
+
+## WireGuard
+[WireGuard](https://www.wireguard.com/)
+
+WireGuard is a modern VPN protocol. Similarly to SSH, it is based on a public key exchange between the peers to establish secure communication channels, while the private keys never leave the peers.
+
+Typical setup on each peer:
+
+1. generate the private key and the corresponding public key
+	```bash
+	wg genkey | tee privatekey | wg pubkey > publickey
+	```
+1. create the WireGuard configuration file in `/etc/wireguard/<interface>.conf`, where `<interface>` is the name of the network interface, e.g., `wg0`. Typical content of the configuration file:
+	```ini
+	[Interface]
+	PrivateKey = <contents of privatekey>
+	Address = <IP address of this peer>
+
+	[Peer]
+	PublicKey = <public key of the other peer>
+	Endpoint = <IP address and port of the other peer>
+	AllowedIPs = <IP addresses allowed through the VPN>
+	```
+1. start the WireGuard interface
+	```bash
+	sudo wg-quick up <interface> # or equivalently using systemctl
+	systemctl enable --now wg-quick@<interface>
+	```
 
 
 

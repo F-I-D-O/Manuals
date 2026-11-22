@@ -25,6 +25,32 @@ Docker Desktop is a GUI program for running Docker containers on a local machine
 - `docker desktop restart`: restarts the Docker Desktop application
 
 
+## Basic commands
+
+Basic Docker commands include:
+
+- `docker build`: builds a Docker image from a Dockerfile
+- [`docker compose`](#docker-compose): manages multi-container Docker applications defined in a Compose file
+
+
+## Docker File
+
+- [Documentation](https://docs.docker.com/build/concepts/dockerfile/)
+- [Reference](https://docs.docker.com/reference/dockerfile/)
+
+A *Dockerfile* is a text file literally named `Dockerfile` that specifies how a Docker image is built. It uses a custom set of commands specific to Docker.
+
+Most used commands are:
+
+- [`ARG`](https://docs.docker.com/engine/reference/builder/#arg): defines an argument that can be used when running `docker build`
+- [`COPY`](https://docs.docker.com/engine/reference/builder/#copy): copies files into the image
+- [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#entrypoint): defines how the container can be run as an executable
+- [`EXPOSE`](https://docs.docker.com/engine/reference/builder/#expose): specifies a port on which the container will listen
+- [`FROM`](https://docs.docker.com/reference/dockerfile/#from): sets the base image this image is built on
+- [`RUN`](https://docs.docker.com/reference/builder/#run): executes a command in the image
+- [`WORKDIR`](https://docs.docker.com/reference/builder/#workdir): sets the working directory for the image. Basically, it sets CWD for the following commands.
+
+
 ## Compose File
 
 - [Documentation](https://docs.docker.com/compose/intro/compose-application-model/#the-compose-file)
@@ -59,7 +85,7 @@ Important service object keys:
 - [`env_file`](https://docs.docker.com/reference/compose-file/services/#env_file): an environment file or array of files to load into the container. The environment files contain a list of environment variables, and are alternative to the `environment` key for the case when there are many environment variables.
 - [`entrypoint`](https://docs.docker.com/reference/compose-file/services/#entrypoint): defines how the container can be run as an executable. Overrides the `ENTRYPOINT` instruction in the Dockerfile.
 - [`healthcheck`](https://docs.docker.com/reference/compose-file/services/#healthcheck): configuration of a set of commands that must run successfully to determine whether the container is in a healthy state, or some error has occurred
-- [`image`](https://docs.docker.com/reference/compose-file/services/#image): name of the image to use
+- [`image`](https://docs.docker.com/reference/compose-file/container-spec/#image): name of the image to use. `image` is required if `build` is not specified.
 - [`ports`](https://docs.docker.com/reference/compose-file/services/#ports): port mapping between host and container. See more in the [Ports](#ports) section.
 - [`profiles`](https://docs.docker.com/reference/compose-file/services/#profiles): an array of profile names that should start the service. By default, every profile starts every service.
 - [`volumes`](https://docs.docker.com/reference/compose-file/services/#volumes): host drives or folders to be mounted in the container
@@ -150,28 +176,27 @@ The `build` section specifies the configuration of the build process, which itse
 We can
 
 - either specify the build section as a path pointing to a directory with a `Dockerfile` file, or
-- fully specify the build process in the `build` section.
+- fully specify the build process in the `build` section. 
 
 
-## Docker File
 
-- [Documentation](https://docs.docker.com/build/concepts/dockerfile/)
-- [Reference](https://docs.docker.com/reference/dockerfile/)
+## Building an Image (`docker build`)
 
-A *Dockerfile* is a text file literally named `Dockerfile` that specifies how a Docker image is built. It uses a custom set of commands specific to Docker.
+[Reference](https://docs.docker.com/reference/cli/docker/buildx/build/)
 
-Most used commands are:
+Start building the image based on the `Dockerfile` using BuildKit. The syntax is:
 
-- [`ARG`](https://docs.docker.com/engine/reference/builder/#arg): defines an argument that can be used when running `docker build`
-- [`COPY`](https://docs.docker.com/engine/reference/builder/#copy): copies files into the image
-- [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#entrypoint): defines how the container can be run as an executable
-- [`EXPOSE`](https://docs.docker.com/engine/reference/builder/#expose): specifies a port on which the container will listen
-- [`FROM`](https://docs.docker.com/reference/dockerfile/#from): sets the base image this image is built on
-- [`RUN`](https://docs.docker.com/reference/builder/#run): executes a command in the image
-- [`WORKDIR`](https://docs.docker.com/reference/builder/#workdir): sets the working directory for the image. Basically, it sets CWD for the following commands.
+```PowerShell
+docker build <path to build directory>
+```
+
+Important parameters:
+
+- `-f`, `--file`: specifies the path to the `Dockerfile`. By default, Docker looks for a file named `Dockerfile` in `<path to build directory>`
+- `-t`, `--tag`: assigns a name and optionally a tag to the image being built. Example: `docker build -t myimage:latest <path_to_dockerfile_directory>`
 
 
-## Docker Compose
+## Managing Containers (`docker compose`)
 
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
 - [Docker Compose CLI Documentation](https://docs.docker.com/compose/intro/compose-application-model/#cli)
@@ -179,12 +204,18 @@ Most used commands are:
 
 Docker Compose is a core tool for managing containers. It is used for starting, stopping, and building containers, for viewing the status of running containers, or one a single command in a container.
 
-The basic subcommands are:
+The basic two subcommands are:
 
 - `docker compose up`: starts the containers
 - `docker compose down`: stops the containers
+
+Other useful subcommands (in alphabetical order):
+
+- [`docker compose build`](https://docs.docker.com/reference/cli/docker/compose/build/): Builds the services defined in the Compose file.
 - `docker compose logs`: shows the logs of the containers
 - `docker compose ps`: shows the status of the containers
+
+See the [Subcommands section in the Reference for more](https://docs.docker.com/reference/cli/docker/compose/#subcommands)
 
 
 ### `docker compose up`
@@ -194,6 +225,47 @@ This command starts the services defined in the Compose file. The most important
 
 - `-d`, `--detach`: starts the services in the background. Without this option, the terminal application switches from the host shell to the container shell, displaying the logs of the container. When the services are detached, we can inspect the output with the `docker compose logs` command.
 - `--wait`: only return the control to the host shell after all services are started. Only meaningful if the `--detach` option is used.
+
+
+## Working with a Registry 
+
+### Authentication (`docker login`)
+[Reference](https://docs.docker.com/reference/cli/docker/login/)
+
+The `docker login` command is used to authenticate with a registry to which we want to push or pull images. Syntax is:
+
+```PowerShell
+docker login <registry> -u <username> 
+```
+
+Other useful parameters are:
+
+- `--password-stdin`: reads the password from standard input instead of prompting for it interactively. 
+
+
+### Pushing and Pulling Images (`docker push` and `docker pull`)
+
+- [Reference for push](https://docs.docker.com/reference/cli/docker/image/push/)
+- [Reference for pull](https://docs.docker.com/reference/cli/docker/image/pull/)
+
+The `docker push` command is used to upload an image to a registry, while the `docker pull` command is used to download an image from a registry. Syntax is:
+
+```PowerShell
+docker push <image>
+docker pull <image>
+```
+
+
+## Image name aliasing (`docker tag`)
+[Reference](https://docs.docker.com/reference/cli/docker/image/tag/)
+
+The `docker tag` command is used to create an alias/tag for an existing image. Typically, it is used to translate a local image name to a unique name suitable for a registry.
+
+The syntax is:
+
+```PowerShell
+docker tag <source_image> <target_image>
+```
 
 
 

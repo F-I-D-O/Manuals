@@ -1,3 +1,16 @@
+# Restarting or shutting down Linux
+
+There are several commands available. All stops the OS, but they differ in what happens next.
+
+- `reboot`: restarts the computer
+- `poweroff`: shuts down the computer
+- `halt`: nothing, just stops the OS
+
+Addiditonaly, there is a `shutdown` command that has more options (like delays), and depending on the main parameters, it can deliver all the above actions (reboot, poweroff, halt).
+
+Note that none of these commands are standardized accross Linux distributions (but works on almost all of them). On systems with systemd, these commans call `systemctl` subcommands internally
+
+
 # Usefull Comands
 
 ## Versions
@@ -259,6 +272,47 @@ The most used options are:
 		- `%.2<format specifier>`: format the output to 2 digits
 
 
+## Access standard input as a file (`/dev/stdin`)
+[GNU manual](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
+
+In Linux, standard input can be accessed as a file through `/dev/stdin`. This allows commands that expect a file as input to read from standard input. For example:
+```bash
+cat /dev/stdin
+```
+You can then type input and press `Ctrl+D` to signal the end of input.
+
+
+## `install` command
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Install_(Unix))
+- [GBU Reference](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html)
+- [Man 7 Reference](https://man7.org/linux/man-pages/man1/install.1.html)
+
+In Linux the `install` command is not a command for software installation, but for a wrapper to copy files, create necessary directories, and set file attributes in one step. The basic syntax is:
+```bash
+install <source> <destination> # installing files
+install -d <directory> # creating directories
+```
+
+Besides, there exist an idiom to use a string instead of a `<source>` by using `/dev/stdin`:
+
+```bash
+echo "Hello, World!" | install /dev/stdin /tmp/hello.txt
+```
+
+Unlike the `cp` command, 
+
+- `install` creates executable copies of the files,
+- if the target file exists, `install` unlike it instead of overwriting the content, so it is safe to use for replacing running executables,
+- only files can be installed, not directories (unless the `-d` option is used).
+
+
+Important options:
+
+- [`-m <mode>`, `--mode=<mode>`](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#index-_002d_002ddirectory-1): set the file mode (permissions)
+- [`-o <owner>`, `--owner=<owner>`](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#index-_002d_002downer): set the file owner
+- [`-g <group>`, `--group=<group>`](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#index-_002d_002dgroup-1): set the file group
+- [`-d`, `--directory`](https://www.gnu.org/software/coreutils/manual/html_node/install-invocation.html#index-_002d_002ddirectory-1): create any necessary parent directories, then create the specified directory. Only the specified directory gets the specified attributes, parent directories get default attributes.
 
 
 ## List disks and partitions
@@ -289,20 +343,156 @@ The [`netstat`](https://en.wikipedia.org/wiki/Netstat) command is the basic comm
 # Bash
 See [Bash Manual](Bash%20Manual.md) for detailed information about Bash scripting and commands.
 
-# Root Access
-Some commands require root privilages. The basic way how to run a command as root, we can use the `sudo` command:
+
+# Users
+The users are listed in `/etc/passwd`. The file contains one line per user, each line has the following format:
+```text
+<username>:<password>:<user ID>:<group ID>:<GECOS>:<home folder>:<shell>
+```
+The password is typically stored in `/etc/shadow` and is represented by `x`. [GECOS](https://en.wikipedia.org/wiki/Gecos_field) is some kind of a comment storing arbitrary information about the user.
+
+There are several commands that can be used to manage users on any distribution:
+
+- `useradd`: add a new user
+- [`usermod`](https://man7.org/linux/man-pages/man8/usermod.8.html): modify an existing user
+- `deluser`: delete a user
+
+
+## Adding a user
+To add a user, we can use either the `useradd` binary directly, or, on some distributions, an interactive `adduser` wrapper script.
+
+
+
+## Modifying a user
+[`usermod` Reference](https://man7.org/linux/man-pages/man8/usermod.8.html)
+
+The basic syntax of the `usermod` command is:
+```bash
+usermod <options> <username>
+```
+
+Important options:
+
+- `-a`: add user to new groups (only used with `-G`)
+- `-G <group list>`, `--groups <group list>`: specify the list of groups the user should belong to. The groups are comma-separated, and must exist already.
+    - if the user is a member of any groups not listed in `<group list>`, they will be removed from those groups. This behavior can be changed by using the `-a` option, in that case, user will be added to the `<group list>` without being removed from non-listed groups.
+
+
+## User Groups
+
+- [`chgrp POSIX reference`](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chgrp.html)
+
+An important aspect of user management in Linux is the user groups. For example, by belonging to the `sudo` group, the user can execute commands with `sudo`. The groups are listed in `/etc/group`. The file contains one line per group, each line has the following format:
+```
+<group name>:<password>:<group ID>:<user list>
+```
+
+To **see the groups of a user**, we can use the `groups` command (no arguments needed).
+
+To **manipulate groups and users**, we need a root access. 
+To add a user to a group, we can use the `usermod` command:
+```bash
+usermod -a -G <group name> <username>
+```
+
+To **remove a user from a group**, we can use the same command:
+```bash
+usermod -G <group list> <username>
+```
+where `<group list>` is a comma separated list of groups the user should belong to.
+
+To **change the group ownership of a file**, we can use one of the following commands:
+
+- `chgrp <group> <files>`
+- `chown :<group> <files>`
+
+In both commands, `<files>` can be a single file or multiple files separated by spaces.
+
+
+## File ownership
+Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
+
+- *owner*: the user owner
+- *group*: the group owner
+- *other*: all other users
+
+To change the owner of a file, we can use the `chown` command. The syntax is:
+```bash
+chown <user>:<group> <file>
+```
+We can skip the `:<group>` part, in which case the group is not changed.
+
+The `chown` command can also be used to change the owner of a directory. In this case, the `-R` parameter is used to change the owner recursively.
+
+
+## User password management
+
+- [man 7 Reference](https://man7.org/linux/man-pages/man1/passwd.1.html)
+- [Wikipedia](https://en.wikipedia.org/wiki/Passwd)
+
+For password management, we use the `passwd` command. The syntax is:
+```bash
+passwd [<username>]
+```
+
+This prompts the current user to enter a new password for the specified user. If no username is provided, it changes the password for the current user. 
+
+THe command can be also used to see the **password status** of a user by running:
+```bash
+passwd -S <username>
+```
+The output fields are:
+
+- user name
+- password status:
+    - `P` for a usable password
+    - `L` for a locked password
+    - `NP` for no password set
+- last password change date
+- minimum age for password change
+- maximum age for password change
+- warning period for password expiration
+- inactivity period for password
+
+The last four fields are in days.
+
+
+## Disable access to shell for a user
+To disable access to shell for a user, we have to configure his/her shell to `/usr/sbin/nologin` or similar. 
+
+- For new users, we can use the `--shell` parameter of the `adduser` command.
+- For existing users, we can use the `usermod` command:
+    ```bash
+    usermod --shell /usr/sbin/nologin <username>
+    ```
+
+
+Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the `-N` parameter, which tells the client not to execute any command after login.
+
+
+
+# Privileged Access
+[`sudo` Wikipedia](https://en.wikipedia.org/wiki/Sudo)
+
+In Linux the security model is simple: some potentially sensitive operations require elevated privileges (called *root privileges*). The user with root privileges is usually named `root` and it's called the *superuser*.
+
+Unlike on Windows, the recommended way to run commands with elevated privileges is not to directly switch to the superuser account, but to use the `sudo` command. This command let a user to execute a command with root privileges without switching to the root user:
 ```bash
 sudo <command>
 ```
-A password of the current user is required to run the command. Also, the user has have the right to run `sudo`.
+A password of the current user is required to run the command (if not cached in case of recent use).
 
-The password is usually required only once per some time period (e.g., 15 minutes). 
+A user must me allowed to run `sudo`. This is usually configured by adding the user to a specific group:
+
+- `sudo` group on Debian-based systems (e.g., Ubuntu)
+- `wheel` group on Red Hat-based systems (e.g., CentOS, Fedora)
 
 For some operations (e.g., browsing folders requiring root access), we have to run multiple commands as root. In this case, we have to switch the shell user to root. 
 
 Resources:
 
 - [SO](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used#376386)
+
 
 ## Changing shell user
 To change the shell user, we can use the `su` command:
@@ -411,15 +601,17 @@ This replace the end of the line with string `",3"`. Note that there is a slash 
 ```
 
 ## `cut`
+[POSIX Reference](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cut.html)
+
 Cut is a useful command for data with delimiters. Usage:
 ```bash
 cut -f <columns>
 ```
-Where columns are splited by comma, e.g., `2,4,7`. 
+Where columns are data fields separated by the delimiter (default is tab).
 
 If we need to specify delimiters, we use the `-d` parameter:
 ```bash
-cut -d, -f 1,5
+cut -d , -f 1,5
 ```
 
 
@@ -472,75 +664,7 @@ important parameters:
 ## Process Info
 
 
-# Users
-The users are listed in `/etc/passwd`. The file contains one line per user, each line has the following format:
-```
-<username>:<password>:<user ID>:<group ID>:<GECOS>:<home folder>:<shell>
-```
-The password is typically stored in `/etc/shadow` and is represented by `x`. [GECOS](https://en.wikipedia.org/wiki/Gecos_field) is some kind of a comment storing arbitrary information about the user.
 
-## Adding a user
-To add a user, we can use either the `useradd` binary directly, or the `adduser` wrapper script. Here we describe the `adduser` script. The basic syntax is `adduser <username>`. Important parameters:
-
-- `--gecos "<GECOS>"`: supply the content of the GECOS field. If skipped, the command will ask for the GECOS content interactively.
-- `--shell <shell>`: The shell to be used by the user. If skipped, the default shell is used. This can be used to create a user without a shell by setting the shell to `/usr/sbin/nologin`.
-
-Note that the `adduser` needs to be run as root. Otherwise it will fail with `bash: adduser: command not found`.
-
-
-## User Groups
-An important aspect of user management in Linux is the user groups. For example, by belonging to the `sudo` group, the user can execute commands with `sudo`. The groups are listed in `/etc/group`. The file contains one line per group, each line has the following format:
-```
-<group name>:<password>:<group ID>:<user list>
-```
-
-To **see the groups of a user**, we can use the `groups` command (no arguments needed).
-
-To **manipulate groups and users**, we need a root access. 
-To add a user to a group, we can use the `usermod` command:
-```bash
-usermod -a -G <group name> <username>
-```
-
-To **remove a user from a group**, we can use the same command:
-```bash
-usermod -G <group list> <username>
-```
-where `<group list>` is a comma separated list of groups the user should belong to.
-
-
-
-
-## File ownership
-Each file has a pair of owners: the user owner and the group owner. These ownerships are important, as file permissions in Linux are usually set for a triplet of:
-
-- *owner*: the user owner
-- *group*: the group owner
-- *other*: all other users
-
-To change the owner of a file, we can use the `chown` command. The syntax is:
-```bash
-chown <user>:<group> <file>
-```
-We can skip the `:<group>` part, in which case the group is not changed.
-
-The `chown` command can also be used to change the owner of a directory. In this case, the `-R` parameter is used to change the owner recursively.
-
-
-
-
-
-## Disable access to shell for a user
-To disable access to shell for a user, we have to configure his/her shell to `/usr/sbin/nologin` or similar. 
-
-- For new users, we can use the `--shell` parameter of the `adduser` command.
-- For existing users, we can use the `usermod` command:
-```bash
-usermod --shell /usr/sbin/nologin <username>
-```
-
-
-Note that for some ssh client implementations, it is necessary to connect to a shell by default, otherwise, the connection is terminated immediately after login. In this case, the user has to connect to the server with the `-N` parameter, which tells the client not to execute any command after login.
 
 
 # Services and systemd
