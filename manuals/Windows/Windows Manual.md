@@ -267,6 +267,8 @@ The drive management and file system in Windows have the following characteristi
 
 Although succeeded in Windows 8 by Storage Spaces, Logical Disk Manager is still the default and most commonly used tool for managing disks and volumes in Windows. It is the program called "Disk Management" in the Computer Management GUI.
 
+If some operations are not allowed in the Disk Management GUI (e.g., deleting system or recovery partitions), use [Diskpart](#diskpart) command line tool.
+
 
 ## Basic and Dynamic Storage Types
 [Official Documentation](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/basic-and-dynamic-disks)
@@ -362,10 +364,30 @@ There are several **tools for formatting**:
 The blocking program can be discovered using the Sysinternals Process Explorer. Click on `Find` -> `Find Handles or DLLs...` and enter the path (or part of it) to the search field. Note that **you have to wait a long time** (up to several minutes) for the search to complete. There is not any indicator of the progress or completion.
 
 
+## Discovering what prevents device to being safely ejected
+Disk and other devices should be first safely released using the "Safely Remove Hardware" feature in Windows. This is no longer required for devices like flash drives, but it is definitely recommended for, e.g., internal hard drives connected via SATA + power cables.
+
+But sometimes, the release fails due to one of the two messages:
+
+- `This device is currently in use...`
+- `Windows cannot stop <device> because a program is still using it...`
+
+Two things can prevent a device from being safely ejected:
+
+- There is a handle on one of the files or folders on the device, or
+- There is a handle on the device itself, or on its whole disk
+
+In the first case, we may use Process Explorer to find the program that holds the handle, but it does not help with devices-wide handles. Therefore, it is recommended to use Event Viewer instead:
+
+1. navigate to `Event Viewer` -> `Windows Logs` -> `System`
+2. click on `Filter Current Log...`
+3. in the `Event sources` dropdown, select `Kernel-PnP` and click `OK`
+
+
 ## Diskpart
 [documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart)
 
-Diskpart is a useful command line tool for work with disks, partitions, etc. We start it by running `diskpart` command, and then, we use other commands to manage the disks. 
+Diskpart is a useful command line tool for work with disks, partitions, etc. We start it by running `diskpart` command, and then, we use other commands to manage the disks.
 
 Basic general commands:
 
@@ -379,6 +401,16 @@ When a disk is selected, we can use other commands:
 - `list volume`: list all volumes on the selected disk. A volume is a mount point for a partition.
 - `select partition <partition number>`: select the partition to manage
 
+Before performing any dangerous operations, it is recommended to double-check the selected disk/partition. To do that, the best is the [`detail` command](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/detail):
+
+- `detail disk`: show detailed information about the selected disk
+- `detail partition`: show detailed information about the selected partition
+
+### Erase the disk partitioning
+Some partitions (e.g., system or recovery partitions) cannot be deleted or modified with the standard Disk Management GUI. We can use the `diskpart` to completely erase the disk partitioning/booting sectors and start fresh:
+
+1. select the disk to erase using the `select disk <disk number>` command
+2. clean the disk using the `clean` command
 
 # Ownership and Permissions
 
